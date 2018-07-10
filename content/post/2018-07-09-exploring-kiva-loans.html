@@ -1,0 +1,601 @@
+---
+title: Exploring Kiva loans
+author: Ángela D. Castillo-Gill
+date: '2018-07-07'
+slug: exploring-kiva-loans
+categories:
+  - R
+  - EDA
+tags: 
+  - Kaggle
+  - Kiva
+summary: What do Kiva loans around the world look like?
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+    toc_depth: 1
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#summary"><span class="toc-section-number">1</span> Summary</a></li>
+<li><a href="#purpose-of-this-post"><span class="toc-section-number">2</span> Purpose of this post</a></li>
+<li><a href="#the-data"><span class="toc-section-number">3</span> The data</a></li>
+<li><a href="#what-i-did"><span class="toc-section-number">4</span> What I did</a></li>
+<li><a href="#data-cleaning"><span class="toc-section-number">5</span> Data cleaning</a></li>
+<li><a href="#a.-missing-values"><span class="toc-section-number">6</span> a. Missing values</a></li>
+<li><a href="#b.borrower_genders"><span class="toc-section-number">7</span> b.<code>borrower_genders</code></a></li>
+<li><a href="#c.loan_amounts"><span class="toc-section-number">8</span> c.<code>loan_amounts</code></a></li>
+<li><a href="#d.country_codes"><span class="toc-section-number">9</span> d.<code>country_codes</code></a></li>
+<li><a href="#e.-dates"><span class="toc-section-number">10</span> e. Dates</a></li>
+<li><a href="#exploratory-data-analysis"><span class="toc-section-number">11</span> Exploratory data analysis</a></li>
+<li><a href="#factors"><span class="toc-section-number">12</span> Factors</a></li>
+<li><a href="#numeric-variables"><span class="toc-section-number">13</span> Numeric variables</a></li>
+<li><a href="#what-i-found-out"><span class="toc-section-number">14</span> What I found out</a></li>
+<li><a href="#conclusions"><span class="toc-section-number">15</span> Conclusions</a></li>
+</ul>
+</div>
+
+<div id="summary" class="section level1">
+<h1><span class="header-section-number">1</span> Summary</h1>
+</div>
+<div id="purpose-of-this-post" class="section level1">
+<h1><span class="header-section-number">2</span> Purpose of this post</h1>
+<p>I’m learning machine learning with trees*. In order to practice the theory, nothing better than to put the learnings into a real case study and explain it. So, do you know <a href="www.kiva.org">Kiva</a>? Kiva is a platform where everyone with access to internet and spare change can lend money to low-income entrepreneurs around the world. Pretty neat.</p>
+<p>{{% alert note %}} this is cool {{% /alert %}}</p>
+</div>
+<div id="the-data" class="section level1">
+<h1><span class="header-section-number">3</span> The data</h1>
+<p>The dataset <a href="https://www.datacamp.com/courses/machine-learning-with-tree-based-models-in-r">with which I was first introduced</a> to regression trees was a dataset with lots of information on people who were given loans and whether they had defaulted on the loan or not. I thought that was a neat application so I went to <a href="https://www.kaggle.com/datasets">Kaggle</a> to find datasets related to loans. Here is where I found the <a href="https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding">Kiva dataset</a> I will use in this post.</p>
+<p>Of course the dataset was super tidy and ready to go when I saw it since the point was to learn the algorithms, not to clean the database. In this post, I’ll take you through everything I did, from the downloading of the data to the very last line of this post.</p>
+</div>
+<div id="what-i-did" class="section level1">
+<h1><span class="header-section-number">4</span> What I did</h1>
+<p>The first step was to have a look at the dataset. This is pretty exciting. The zip file (232.7 MB) from Kaggle contained four files: <code>kiva_loans.csv</code>, <code>kiva_mpi_region_locations.csv</code>,<code>loan_theme_ids.csv</code>, and <code>loan_themes_by_region.csv</code>.</p>
+<pre class="r"><code>path &lt;- &quot;/Volumes/TOSHIBAEXT/RStudio/blog/content/post/kiva_data/&quot;
+#Read `kiva_loans.csv`
+kiva_loans &lt;- read_csv(paste(path,&quot;kiva_loans.csv&quot;,sep = &quot;&quot;))
+#Read `kiva_mpi_region_locations.csv`
+kiva_locations &lt;- read_csv(paste(path,&quot;kiva_mpi_region_locations.csv&quot;,sep=&quot;&quot;))
+#Read `loan_theme_ids.csv`
+kiva_themes &lt;- read_csv(paste(path,&quot;loan_theme_ids.csv&quot;,sep=&quot;&quot;))
+#Read`loan_themes_by_region.csv`
+kiva_locations_themes &lt;- read_csv(paste(path,&quot;loan_themes_by_region.csv&quot;,sep=&quot;&quot;))</code></pre>
+<p>Let’s see what’s inside.</p>
+<pre class="r"><code>#Get a glimpse of kiva_loans
+glimpse(kiva_loans)
+Observations: 671,205
+Variables: 20
+$ id                 &lt;int&gt; 653051, 653053, 653068, 653063, 653084, 108...
+$ funded_amount      &lt;dbl&gt; 300, 575, 150, 200, 400, 250, 200, 400, 475...
+$ loan_amount        &lt;dbl&gt; 300, 575, 150, 200, 400, 250, 200, 400, 475...
+$ activity           &lt;chr&gt; &quot;Fruits &amp; Vegetables&quot;, &quot;Rickshaw&quot;, &quot;Transpo...
+$ sector             &lt;chr&gt; &quot;Food&quot;, &quot;Transportation&quot;, &quot;Transportation&quot;,...
+$ use                &lt;chr&gt; &quot;To buy seasonal, fresh fruits to sell.&quot;, &quot;...
+$ country_code       &lt;chr&gt; &quot;PK&quot;, &quot;PK&quot;, &quot;IN&quot;, &quot;PK&quot;, &quot;PK&quot;, &quot;KE&quot;, &quot;IN&quot;, &quot;...
+$ country            &lt;chr&gt; &quot;Pakistan&quot;, &quot;Pakistan&quot;, &quot;India&quot;, &quot;Pakistan&quot;...
+$ region             &lt;chr&gt; &quot;Lahore&quot;, &quot;Lahore&quot;, &quot;Maynaguri&quot;, &quot;Lahore&quot;, ...
+$ currency           &lt;chr&gt; &quot;PKR&quot;, &quot;PKR&quot;, &quot;INR&quot;, &quot;PKR&quot;, &quot;PKR&quot;, &quot;KES&quot;, &quot;...
+$ partner_id         &lt;dbl&gt; 247, 247, 334, 247, 245, NA, 334, 245, 245,...
+$ posted_time        &lt;dttm&gt; 2014-01-01 06:12:39, 2014-01-01 06:51:08, ...
+$ disbursed_time     &lt;dttm&gt; 2013-12-17 08:00:00, 2013-12-17 08:00:00, ...
+$ funded_time        &lt;dttm&gt; 2014-01-02 10:06:32, 2014-01-02 09:17:23, ...
+$ term_in_months     &lt;dbl&gt; 12, 11, 43, 11, 14, 4, 43, 14, 14, 11, 11, ...
+$ lender_count       &lt;int&gt; 12, 14, 6, 8, 16, 6, 8, 8, 19, 24, 3, 16, 1...
+$ tags               &lt;chr&gt; NA, NA, &quot;user_favorite, user_favorite&quot;, NA,...
+$ borrower_genders   &lt;chr&gt; &quot;female&quot;, &quot;female, female&quot;, &quot;female&quot;, &quot;fema...
+$ repayment_interval &lt;chr&gt; &quot;irregular&quot;, &quot;irregular&quot;, &quot;bullet&quot;, &quot;irregu...
+$ date               &lt;date&gt; 2014-01-01, 2014-01-01, 2014-01-01, 2014-0...</code></pre>
+<p>Wow! 671,205 observations and 20 variables.</p>
+<pre class="r"><code>#Get a glimpse of kiva_locations
+glimpse(kiva_locations)
+Observations: 2,772
+Variables: 9
+$ LocationName &lt;chr&gt; &quot;Badakhshan, Afghanistan&quot;, &quot;Badghis, Afghanistan&quot;...
+$ ISO          &lt;chr&gt; &quot;AFG&quot;, &quot;AFG&quot;, &quot;AFG&quot;, &quot;AFG&quot;, &quot;AFG&quot;, &quot;AFG&quot;, &quot;AFG&quot;, ...
+$ country      &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afg...
+$ region       &lt;chr&gt; &quot;Badakhshan&quot;, &quot;Badghis&quot;, &quot;Baghlan&quot;, &quot;Balkh&quot;, &quot;Bam...
+$ world_region &lt;chr&gt; &quot;South Asia&quot;, &quot;South Asia&quot;, &quot;South Asia&quot;, &quot;South ...
+$ MPI          &lt;dbl&gt; 0.387, 0.466, 0.300, 0.301, 0.325, 0.313, 0.319, ...
+$ geo          &lt;chr&gt; &quot;(36.7347725, 70.81199529999999)&quot;, &quot;(35.1671339, ...
+$ lat          &lt;dbl&gt; 36.73477, 35.16713, 35.80429, 36.75506, 34.81001,...
+$ lon          &lt;dbl&gt; 70.81200, 63.76954, 69.28775, 66.89754, 67.82121,...</code></pre>
+<p>It seems that this set is dedicated to showing the specific region but has 2,772. It doesn’t match the first dataset. I assume this dataset is related to the Kaggle contest related to the dataset.</p>
+<pre class="r"><code>#Get a glimpse of kiva_themes
+glimpse(kiva_themes)
+Observations: 779,092
+Variables: 4
+$ id                &lt;int&gt; 638631, 640322, 641006, 641019, 641594, 6422...
+$ `Loan Theme ID`   &lt;chr&gt; &quot;a1050000000skGl&quot;, &quot;a1050000000skGl&quot;, &quot;a1050...
+$ `Loan Theme Type` &lt;chr&gt; &quot;General&quot;, &quot;General&quot;, &quot;Higher Education&quot;, &quot;H...
+$ `Partner ID`      &lt;dbl&gt; 151, 151, 160, 160, 336, 217, 57, 217, 133, ...</code></pre>
+<p>It seems that this dataset could be linking the first one with a particular larger <code>theme</code>, as defined by Kiva.</p>
+<p>Finally, the last one.</p>
+<pre class="r"><code>#Get a glimpse of kiva_locations_themes
+glimpse(kiva_locations_themes)
+Observations: 15,736
+Variables: 21
+$ `Partner ID`         &lt;int&gt; 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,...
+$ `Field Partner Name` &lt;chr&gt; &quot;KREDIT Microfinance Institution&quot;, &quot;KREDI...
+$ sector               &lt;chr&gt; &quot;General Financial Inclusion&quot;, &quot;General F...
+$ `Loan Theme ID`      &lt;chr&gt; &quot;a1050000000slfi&quot;, &quot;a10500000068jPe&quot;, &quot;a1...
+$ `Loan Theme Type`    &lt;chr&gt; &quot;Higher Education&quot;, &quot;Vulnerable Populatio...
+$ country              &lt;chr&gt; &quot;Cambodia&quot;, &quot;Cambodia&quot;, &quot;Cambodia&quot;, &quot;Camb...
+$ forkiva              &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;,...
+$ region               &lt;chr&gt; &quot;Banteay Meanchey&quot;, &quot;Battambang Province&quot;...
+$ geocode_old          &lt;chr&gt; &quot;(13.75, 103.0)&quot;, NA, NA, &quot;(12.0, 105.5)&quot;...
+$ ISO                  &lt;chr&gt; &quot;KHM&quot;, &quot;KHM&quot;, &quot;KHM&quot;, &quot;KHM&quot;, &quot;KHM&quot;, &quot;KHM&quot;,...
+$ number               &lt;int&gt; 1, 58, 7, 1383, 3, 36, 2, 249, 7, 18, 890...
+$ amount               &lt;int&gt; 450, 20275, 9150, 604950, 275, 62225, 130...
+$ LocationName         &lt;chr&gt; &quot;Banteay Meanchey, Cambodia&quot;, &quot;Battambang...
+$ geocode              &lt;chr&gt; &quot;[(13.6672596, 102.8975098)]&quot;, &quot;[(13.0286...
+$ names                &lt;chr&gt; &quot;Banteay Meanchey Province; Cambodia&quot;, &quot;B...
+$ geo                  &lt;chr&gt; &quot;(13.6672596, 102.8975098)&quot;, &quot;(13.0286971...
+$ lat                  &lt;dbl&gt; 13.66726, 13.02870, 13.02870, 12.09829, 1...
+$ lon                  &lt;dbl&gt; 102.8975, 102.9896, 102.9896, 105.3131, 1...
+$ mpi_region           &lt;chr&gt; &quot;Banteay Mean Chey, Cambodia&quot;, &quot;Banteay M...
+$ mpi_geo              &lt;chr&gt; &quot;(13.6672596, 102.8975098)&quot;, &quot;(13.6672596...
+$ rural_pct            &lt;dbl&gt; 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 9...</code></pre>
+<p>It seems that this dataset contains more georeferenced information. Since I’m interested in <strong>learning what variables contribute to the final amount lended without specific geographic information, (country is enough)</strong>, I’m going to stick with the first dataset, <code>kiva_loans</code>. I’m tempted to jump into a regression of sorts, but first, let’s have a closer look at the data to understand the variables and decide which ones are most helpful.</p>
+<ul>
+<li><code>funded_amount</code>: “The amount disbursed by Kiva to the field agent(USD)”</li>
+<li><code>loan_amount</code>: “The amount disbursed by the field agent to the borrower(USD)”</li>
+</ul>
+<p>Here, I am interested in the latter of those two variables as my response variable.</p>
+<ul>
+<li><code>activity</code>: “More granular category”</li>
+<li><code>sector</code>: “High level category”</li>
+<li><code>use</code>: “Exact usage of loan amount”</li>
+</ul>
+<p>From these, I am going to pick <code>sector</code> because at first, I want to see if I can treat it like a factor in our regressions. The other ones are perhaps to specific to create levels.</p>
+<ul>
+<li><code>country_code</code>: “ISO country code of country in which loan was disbursed”</li>
+<li><code>country</code>: “Full country name of country in which loan was disbursed”</li>
+<li><code>region</code>: “Full region name within the country”</li>
+</ul>
+<p>I’m going to stick with <code>country_code</code> to make a factor with each country as a level.</p>
+<ul>
+<li><code>currency</code>: “The currency in which the loan was disbursed”</li>
+</ul>
+<p>Super important! In order to compare all loans, we need to translate them into the same currency.</p>
+<ul>
+<li><code>partner_id</code>: “ID of partner organization”</li>
+</ul>
+<p>This variable has a lot of missing values and the Kiva explanation on Kaggle doesn’t go much further. For now, I will exclude <code>partner_id</code>.</p>
+<ul>
+<li><code>posted_time</code>: “The time at which the loan is posted on Kiva by the field agent”</li>
+<li><code>disbursed_time</code>: “The time at which the loan is disbursed by the field agent to the borrower”</li>
+<li><code>funded_time</code>: “The time at which the loan posted to Kiva gets funded by lenders completely”</li>
+<li><code>term_in_months</code>: “The duration for which the loan was disbursed in months”</li>
+<li><code>lender_count</code>: “The total number of lenders that contributed to this loan”</li>
+<li><code>borrower_genders</code>: “Comma separated M,F letters, where each instance represents a single male/female in the group”</li>
+<li><code>repayment_interval</code>: Not specified so we’ll assume that it means the standard definition of when the loan is repaid back to the lender.</li>
+</ul>
+<p>I’m including all in this last batch, they provide specific information for each loan which may prove useful later. Now let’s create a new dataset with the selected variables with a few changes.</p>
+</div>
+<div id="data-cleaning" class="section level1">
+<h1><span class="header-section-number">5</span> Data cleaning</h1>
+<pre class="r"><code>#Select variables 
+kiva_loans %&gt;%
+  dplyr::select (id,
+          loan_amount,
+          sector,
+          country_code,
+          currency,
+          posted_time,
+          disbursed_time,
+          term_in_months,
+          lender_count,
+          borrower_genders,
+          repayment_interval,
+          funded_time) -&gt; kiva_loans
+
+#Convert country_code, sector, currency, borrower_genders, and repayment_interval to factors.
+categorical &lt;- c(&quot;sector&quot;,
+                 &quot;country_code&quot;,
+                 &quot;currency&quot;,
+                 &quot;borrower_genders&quot;,
+                 &quot;repayment_interval&quot;)
+
+kiva_loans[categorical] &lt;- lapply(kiva_loans[categorical],
+                                  factor)</code></pre>
+<p>By having another glimpse at the structure of our data, we can soon see there are a few bits that don’t make sense and need to be fixed.</p>
+<pre class="r"><code>summary(kiva_loans)
+       id           loan_amount                sector      
+ Min.   : 653047   Min.   :    25.0   Agriculture :180302  
+ 1st Qu.: 823072   1st Qu.:   275.0   Food        :136657  
+ Median : 992780   Median :   500.0   Retail      :124494  
+ Mean   : 993249   Mean   :   842.4   Services    : 45140  
+ 3rd Qu.:1163653   3rd Qu.:  1000.0   Personal Use: 36385  
+ Max.   :1340339   Max.   :100000.0   Housing     : 33731  
+                                      (Other)     :114496  
+  country_code       currency       posted_time                 
+ PH     :160441   PHP    :160440   Min.   :2014-01-01 04:49:26  
+ KE     : 75825   USD    :105494   1st Qu.:2014-12-17 13:02:38  
+ SV     : 39875   KES    : 75311   Median :2015-11-20 15:46:13  
+ KH     : 34836   KHR    : 29498   Mean   :2015-11-10 09:21:01  
+ PK     : 26857   PKR    : 26856   3rd Qu.:2016-10-06 07:24:48  
+ (Other):333363   COP    : 21984   Max.   :2017-07-26 06:31:46  
+ NA&#39;s   :     8   (Other):251622                                
+ disbursed_time                term_in_months    lender_count    
+ Min.   :2013-12-02 08:00:00   Min.   :  1.00   Min.   :   0.00  
+ 1st Qu.:2014-12-08 08:00:00   1st Qu.:  8.00   1st Qu.:   7.00  
+ Median :2015-11-06 08:00:00   Median : 13.00   Median :  13.00  
+ Mean   :2015-10-26 21:57:55   Mean   : 13.74   Mean   :  20.59  
+ 3rd Qu.:2016-09-21 07:00:00   3rd Qu.: 14.00   3rd Qu.:  24.00  
+ Max.   :2017-09-30 07:00:00   Max.   :158.00   Max.   :2986.00  
+ NA&#39;s   :2396                                                    
+                       borrower_genders  repayment_interval
+ female                        :426502   bullet   : 70728  
+ male                          :134710   irregular:257158  
+ female, female                : 12164   monthly  :342717  
+ female, female, female        : 11676   weekly   :   602  
+ female, female, female, female:  9052                     
+ (Other)                       : 72880                     
+ NA&#39;s                          :  4221                     
+  funded_time                 
+ Min.   :2014-01-01 12:18:55  
+ 1st Qu.:2014-12-29 13:13:00  
+ Median :2015-12-01 11:56:11  
+ Mean   :2015-11-19 07:44:52  
+ 3rd Qu.:2016-10-17 22:12:47  
+ Max.   :2017-07-26 02:09:43  
+ NA&#39;s   :48331                </code></pre>
+</div>
+<div id="a.-missing-values" class="section level1">
+<h1><span class="header-section-number">6</span> a. Missing values</h1>
+<p>Missing values, aka <code>NA's</code>, we could simply remove them since we have plenty of observations. But what if by removing them we introduce some bias. For example, <code>borrower_genders</code> has plenty of missing values, but what if this could say something about certain types of loans. For now we will leave them in.</p>
+</div>
+<div id="b.borrower_genders" class="section level1">
+<h1><span class="header-section-number">7</span> b.<code>borrower_genders</code></h1>
+<p>From the variable descriptions, we expected <code>borrower_genders</code>to have only two levels, <code>male</code>or <code>female</code>. Here we see there are many more levels, 11,298 to be precise. We know something is wrong here. So we’ll fix that first.</p>
+<pre class="r"><code>#Turn kiva_loans back into an atomic vector of characters
+kiva_loans$borrower_genders &lt;- as.character(kiva_loans$borrower_genders)
+
+#Split each row into multiple strings
+genders &lt;- str_split(kiva_loans$borrower_genders, &quot;, &quot;)
+
+#Assign 1 for female and 0 for male
+females_count &lt;- lapply(genders, str_count, pattern=&quot;female&quot;)
+
+#Count how many females are in each list element
+females_sum &lt;- lapply(females_count, sum)
+
+#Create a function that takes the two lists just made
+compare_genders &lt;- function(females_count, females_sum){
+  
+  #Set &quot;single_female&quot; when female sum and length is 1
+  ifelse (females_sum==1&amp;&amp;length(females_count)==1, &quot;single_female&quot;,
+          
+  #Set &quot;mult_females&quot; when female sum and length females_count is the same and different to zero
+  ifelse(females_sum==length(females_count)&amp;&amp;females_sum!=0,&quot;mult_females&quot;,
+         
+  #Set &quot;single_male&quot; #Set &quot;mult_males&quot; when female sum is zero and the count of individuals is 1
+  ifelse(females_sum==0&amp;&amp;length(females_count)==1,&quot;single_male&quot;,
+         
+  #Set &quot;mult_males&quot; when female sum is zero and the count of individuals is greater than 1
+  ifelse(females_sum==0&amp;&amp;length(females_count)&gt;1,&quot;mult_males&quot;,
+         
+  #Set &quot;mixed_genders&quot; when the sum of females is different to the count of individual       
+  ifelse(females_sum!=length(females_count),&quot;mixed_genders&quot;,&quot;strange&quot;)))))
+  
+}
+#Apply function compare_genders
+kiva_loans$borrower_genders &lt;- mapply(compare_genders,females_count,females_sum)</code></pre>
+<p>Let’s see if all is well…</p>
+<pre class="r"><code>#Make kiva_loans$borrower_genders a factor again
+kiva_loans$borrower_genders &lt;- as.factor(kiva_loans$borrower_genders)
+
+#Check levels
+levels(kiva_loans$borrower_genders)
+[1] &quot;mixed_genders&quot; &quot;mult_females&quot;  &quot;mult_males&quot;    &quot;single_female&quot;
+[5] &quot;single_male&quot;  </code></pre>
+<p>Nothing <code>strange</code>! Five levels as we wanted - fabulous! Onwards.</p>
+</div>
+<div id="c.loan_amounts" class="section level1">
+<h1><span class="header-section-number">8</span> c.<code>loan_amounts</code></h1>
+<p>Now, since we’re trying to predict <code>loan_amounts</code>, it’s better if they’re all in the same currency. Shall we translate them to USD? Here we go!</p>
+<pre class="r"><code>for (curr in levels(kiva_loans$currency))
+  
+  #Check that all currencies do not return any errors when requesting a currency conversion
+  tryCatch(quantmod::getQuote(paste0(curr, &quot;=X&quot;)), error = print)
+&lt;simpleError in download.file(paste0(&quot;https://query1.finance.yahoo.com/v7/finance/quote?symbols=&quot;,     Symbols, &quot;&amp;fields=&quot;, QFc), destfile = tmp, quiet = TRUE): cannot open URL &#39;https://query1.finance.yahoo.com/v7/finance/quote?symbols=SSP=X&amp;fields=regularMarketPrice,regularMarketChange,regularMarketChangePercent,regularMarketOpen,regularMarketDayHigh,regularMarketDayLow,regularMarketVolume&#39;&gt;
+&lt;simpleError in download.file(paste0(&quot;https://query1.finance.yahoo.com/v7/finance/quote?symbols=&quot;,     Symbols, &quot;&amp;fields=&quot;, QFc), destfile = tmp, quiet = TRUE): cannot open URL &#39;https://query1.finance.yahoo.com/v7/finance/quote?symbols=ZWD=X&amp;fields=regularMarketPrice,regularMarketChange,regularMarketChangePercent,regularMarketOpen,regularMarketDayHigh,regularMarketDayLow,regularMarketVolume&#39;&gt;</code></pre>
+<p>It seems like two currencies are returning an error. Let’s filter them out.</p>
+<pre class="r"><code>#Turning kiva_loans back into a character vector
+kiva_loans$currency &lt;- as.character(kiva_loans$currency)
+
+kiva_loans%&gt;%
+  #Filter out &quot;SSP&quot;
+  dplyr::filter(currency!=&quot;SSP&quot;)%&gt;% 
+  
+  #Filter out &quot;ZWD&quot;
+  filter(currency!=&quot;ZWD&quot;)-&gt;kiva_loans 
+
+#Turn kiva_loans$currency back into a factor
+kiva_loans$currency &lt;- as.factor(kiva_loans$currency) 
+
+#Store all levels as vector `from`
+from &lt;- as.vector(levels(kiva_loans$currency)) 
+
+#Create a vector `to` with requested currency &quot;USD&quot;
+to &lt;- rep(length(levels(kiva_loans$currency)),x=&quot;USD&quot;) 
+
+#Create a dataframe `currencies` with conversion rates `Last`
+currencies &lt;- quantmod::getQuote(paste0(from, to, &quot;=X&quot;))</code></pre>
+<pre class="r"><code>#Set row names as columns in the currencies dataframe
+currencies &lt;- rownames_to_column(currencies)
+
+#Split currencies$rownames by extracting the first 3 characters
+currencies$currency &lt;-  substring(currencies$rowname, 1,3)
+
+kiva_loans%&gt;%
+  #Join currencies to kiva_loans by=&quot;currency&quot;
+  left_join(currencies, by=&quot;currency&quot;) -&gt; kiva_loans
+
+kiva_loans%&gt;%
+  #Convert the loan from its original currency to USD
+  mutate(loan_usd=loan_amount*Last)-&gt; kiva_loans</code></pre>
+</div>
+<div id="d.country_codes" class="section level1">
+<h1><span class="header-section-number">9</span> d.<code>country_codes</code></h1>
+<p>Finally, with 86 countries, we have 86 levels. Perhaps it would be interesting to create another category called continent to produce less levels and have a better understanding of the overall function of regional distributions.</p>
+<p>Our country codes are in the ISO3166 format, so we will use the associated continent code found <a href="https://dev.maxmind.com/geoip/legacy/codes/country_continent/">here</a>.</p>
+<pre class="r"><code>#Read `country_continent.csv`
+continents &lt;- read_csv(paste(path,&quot;country_continent.csv&quot;,sep = &quot;&quot;))</code></pre>
+<p>We will do what we previously did for currencies, which is to join both tables.</p>
+<pre class="r"><code>kiva_loans%&gt;%
+  #Join currencies to kiva_loans by=&quot;country_code&quot;
+  left_join(continents, by=&quot;country_code&quot;) -&gt; kiva_loans</code></pre>
+<p>Let’s see what happened…</p>
+<pre class="r"><code>kiva_loans$continent &lt;- as.factor(kiva_loans$continent)
+levels(kiva_loans$continent)
+[1] &quot;AF&quot; &quot;AS&quot; &quot;EU&quot; &quot;OC&quot; &quot;SA&quot;</code></pre>
+<p>5 continents! Africa, Asia, Europe, Oceania, and South America. Granted, we’ve lost spacial resolution. However, for our initial purpose, this is exactly what we wanted.</p>
+</div>
+<div id="e.-dates" class="section level1">
+<h1><span class="header-section-number">10</span> e. Dates</h1>
+<p>Dates aren’t numeric, but we can make them. Let’s calculate two lengths of time that I think are interesting.
+First, how much time passes from the moment the loan is posted to the moment it’s disbursed (<code>total_time</code>). Second, how long does a loan take to get funded (<code>giving_time</code>)? Let’s find out!</p>
+<pre class="r"><code>kiva_loans%&gt;%
+  mutate(total_time_num=as.numeric(difftime(posted_time,
+                                            disbursed_time,
+                                            units = &quot;days&quot;)),
+         giving_time_num=as.numeric(difftime(funded_time,
+                                             posted_time,
+                                             units = &quot;days&quot;))) -&gt;kiva_loans</code></pre>
+<p>Final selection of variables…</p>
+<pre class="r"><code>#Select variables 
+kiva_loans %&gt;%
+  dplyr::select (id,
+          loan_usd,
+          sector,
+          continent,
+          term_in_months,
+          lender_count,
+          borrower_genders,
+          repayment_interval,
+          total_time_num,
+          giving_time_num,
+          country_code,
+          posted_time,
+          funded_time,
+          disbursed_time)%&gt;%
+  arrange(posted_time)-&gt; kiva_loans
+kiva_loans$country_code &lt;- as.factor(kiva_loans$country_code)
+kiva_loans$id &lt;- as.character(kiva_loans$id)
+#Skim the dataset
+skim(kiva_loans)
+Skim summary statistics
+ n obs: 671044 
+ n variables: 14 
+
+── Variable type:character ─────────────────────────────────────────────────────
+ variable missing complete      n min max empty n_unique
+       id       0   671044 671044   6   7     0   671044
+
+── Variable type:factor ────────────────────────────────────────────────────────
+           variable missing complete      n n_unique
+   borrower_genders    4184   666860 671044        5
+          continent   84856   586188 671044        5
+       country_code       8   671036 671044       86
+ repayment_interval       0   671044 671044        4
+             sector       0   671044 671044       15
+                                        top_counts ordered
+  sin: 426432, sin: 134657, mul: 61578, mix: 40380   FALSE
+      AS: 321434, AF: 172876, NA: 84856, SA: 78975   FALSE
+       PH: 160441, KE: 75825, SV: 39875, KH: 34836   FALSE
+    mon: 342679, irr: 257035, bul: 70728, wee: 602   FALSE
+ Agr: 180289, Foo: 136621, Ret: 124433, Ser: 45127   FALSE
+
+── Variable type:integer ───────────────────────────────────────────────────────
+     variable missing complete      n  mean    sd p0 p25 p50 p75 p100
+ lender_count       0   671044 671044 20.59 28.46  0   7  13  24 2986
+     hist
+ ▇▁▁▁▁▁▁▁
+
+── Variable type:numeric ───────────────────────────────────────────────────────
+        variable missing complete      n   mean     sd        p0  p25
+ giving_time_num   48331   622713 671044  14.64  14.4   -17.51   5.17
+        loan_usd       0   671044 671044 267.28 946.97    0.0022 1.74
+  term_in_months       0   671044 671044  13.74   8.6     1      8   
+  total_time_num    2396   668648 671044  14.09  18.56 -427.02   7.09
+   p50   p75     p100     hist
+  9.59 22.54   420.57 ▇▁▁▁▁▁▁▁
+  5.14 90.47 1e+05    ▇▁▁▁▁▁▁▁
+ 13    14      158    ▇▁▁▁▁▁▁▁
+ 16.12 26.67    32.04 ▁▁▁▁▁▁▁▇
+
+── Variable type:POSIXct ───────────────────────────────────────────────────────
+       variable missing complete      n        min        max     median
+ disbursed_time    2396   668648 671044 2013-12-02 2017-09-30 2015-11-07
+    funded_time   48331   622713 671044 2014-01-01 2017-07-26 2015-12-01
+    posted_time       0   671044 671044 2014-01-01 2017-07-26 2015-11-20
+ n_unique
+     5719
+   497868
+   667240</code></pre>
+</div>
+<div id="exploratory-data-analysis" class="section level1">
+<h1><span class="header-section-number">11</span> Exploratory data analysis</h1>
+<p>Now let’s describe the data. We could jump into the regression trees but exploring the data will help us interpret our predictions better. Do some extra work now and enjoy the benefits later.</p>
+</div>
+<div id="factors" class="section level1">
+<h1><span class="header-section-number">12</span> Factors</h1>
+<p>Let’s make two-way tables to understand our factors.</p>
+<pre class="r"><code>prop.table(table(kiva_loans$borrower_genders))
+
+mixed_genders  mult_females    mult_males single_female   single_male 
+  0.060552440   0.092340221   0.005717842   0.639462556   0.201926941 
+prop.table(table(kiva_loans$continent))
+
+         AF          AS          EU          OC          SA 
+0.294915624 0.548346264 0.008440978 0.013570732 0.134726402 
+prop.table(table(kiva_loans$repayment_interval))
+
+      bullet    irregular      monthly       weekly 
+0.1053999440 0.3830374759 0.5106654705 0.0008971096 
+prop.table(table(kiva_loans$sector))
+
+   Agriculture           Arts       Clothing   Construction      Education 
+  0.2686694166   0.0179690154   0.0487807059   0.0093376887   0.0462071042 
+ Entertainment           Food         Health        Housing  Manufacturing 
+  0.0012368787   0.2035946972   0.0137338237   0.0502485679   0.0092497660 
+  Personal Use         Retail       Services Transportation      Wholesale 
+  0.0542214818   0.1854319538   0.0672489434   0.0231251602   0.0009447965 </code></pre>
+<p>We can see that most of the loans are requested by single females, that the least amount of loans are given in the EU, that weekly repayment is an unpopular form of paying the loan back and that entertainment, wholesale, manufacturing, and construction amount less than 2.2% of sectors. Let’s remove these categories that are not representative of the data.</p>
+<pre class="r"><code>kiva_loans &lt;-  kiva_loans%&gt;%
+  filter(continent!=&quot;EU&quot;,
+         repayment_interval!=&quot;weekly&quot;,
+         sector!=&quot;Construction&quot;&amp;
+          sector!=&quot;Entertainment&quot;&amp;
+           sector!= &quot;Manufacturing&quot;&amp;
+            sector!= &quot;Wholesale&quot;)%&gt;%
+  droplevels()</code></pre>
+<p>Ideal. Now let’s look at our factors in an easier way to parse. Let’s compare genders by continents to see if we can spot anything worth noting.</p>
+<pre class="r"><code># Create side-by-side barchart of borrower_genders by continent
+ggplot(kiva_loans, aes(x = continent, fill = borrower_genders)) + 
+  geom_bar(position = &quot;dodge&quot;) +theme_classic()</code></pre>
+<p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/continent_and_borrower_genders_plots-1.png" width="672" /></p>
+<p>In all continents, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it’s mixed genders.</p>
+<pre class="r"><code>
+# Create side-by-side barchart of repayment interval by continent
+ggplot(kiva_loans, aes(x = continent, fill = repayment_interval)) + 
+  geom_bar(position = &quot;dodge&quot;)+ theme_classic()</code></pre>
+<p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/repayment_interval_and_continent-1.png" width="672" /></p>
+<p>In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it’s monthly.</p>
+<pre class="r"><code>
+# Create side-by-side barchart of sector by continent
+ggplot(kiva_loans, aes(x = continent, fill = sector)) + 
+  geom_bar(position = &quot;dodge&quot;)+ theme_classic()</code></pre>
+<p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/sectors_and_continents-1.png" width="672" /></p>
+<p>In every continent, the three most popular sectors are agriculture, retail, and food.</p>
+<p>Finally, we still would like to understand what countries are most represented and which ones, less so. Let’s have a look.</p>
+<pre class="r"><code>na.omit(kiva_loans)%&gt;%
+  group_by(country_code)%&gt;%
+  dplyr::summarize(country_count=n())%&gt;%
+  arrange(desc(country_count))%&gt;%
+  top_n(20)%&gt;%
+  ggplot(aes(x=reorder(country_code,country_count),y=country_count))+
+  geom_col(position=&quot;dodge&quot;,
+           color = &quot;black&quot;,
+           fill=&quot;purple&quot;)+
+  coord_flip()+
+    theme_minimal()+
+ theme(axis.title.y=element_blank())</code></pre>
+<p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries_plot-1.png" width="672" /></p>
+</div>
+<div id="numeric-variables" class="section level1">
+<h1><span class="header-section-number">13</span> Numeric variables</h1>
+<p>Now let’s look at the distributions of our numeric variables.</p>
+<pre class="r"><code>ggplot(kiva_loans,aes(x=loan_usd))+
+  geom_density()+
+  theme_classic()+
+  scale_x_continuous(limits=c(0,15))+
+  geom_vline(xintercept = median(kiva_loans$loan_usd),
+             color=&quot;red&quot;,
+              linetype=&quot;dashed&quot;)+
+  annotate(&quot;text&quot;,
+           label=paste(&quot;Median =&quot;,
+                       round(median(kiva_loans$loan_usd),digits = 2),&quot;USD&quot;),
+                x=median(kiva_loans$loan_usd),
+                y=0.2,
+           color=&quot;red&quot;)</code></pre>
+<p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/loan_usd_distribution-1.png" width="672" />
+The median loan in US dollars is 4.19. The distribution is multimodal and right-skewed with its biggest peak around $1 and its second around $4.</p>
+<pre class="r"><code>ggplot(kiva_loans,
+       aes(x=term_in_months))+
+  geom_density()+
+  theme_classic()+
+  scale_x_continuous(limits=c(0,50))+
+  geom_vline(xintercept = median(kiva_loans$term_in_months),
+             color=&quot;red&quot;,
+             linetype=&quot;dashed&quot;)+
+  annotate(&quot;text&quot;,
+           label=paste(&quot;Median =&quot;,
+                              median(kiva_loans$term_in_months),&quot;months&quot;),
+                x=18,
+                y=0.2,
+           color=&quot;red&quot;)</code></pre>
+<p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/term_in_months_distribution-1.png" width="672" />
+The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median.</p>
+<pre class="r"><code>ggplot(kiva_loans,
+       aes(x=lender_count))+
+  geom_histogram()+
+   theme_classic()+
+  scale_x_continuous(limits=c(0,100))+
+  geom_vline(xintercept = median(kiva_loans$lender_count),
+             color=&quot;red&quot;,
+             linetype=&quot;dashed&quot;)+
+  annotate(&quot;text&quot;,
+           label=paste(&quot;Median=&quot;,
+                              median(kiva_loans$lender_count),&quot;lenders&quot;),
+                x=21,
+                y=150000,
+           color=&quot;red&quot;)</code></pre>
+<p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/lender_count-1.png" width="672" />
+The lender count has a text book right-skewed distribution with a median of 12 lenders.</p>
+<pre class="r"><code>ggplot(kiva_loans,
+       aes(x=giving_time_num))+
+  geom_density()+
+   theme_classic()+
+  scale_x_continuous(limits=c(0,50))+
+  geom_vline(xintercept = median(kiva_loans$giving_time_num,na.rm=TRUE),
+             color=&quot;red&quot;,
+             linetype=&quot;dashed&quot;)+
+  annotate(&quot;text&quot;,
+           label=paste(&quot;Median=&quot;,
+                       round(median(kiva_loans$giving_time_num,na.rm = TRUE)),digits=2,&quot;days&quot;),
+           x=median(kiva_loans$giving_time_num,na.rm=TRUE)+5,
+           y=0.1,
+           color=&quot;red&quot;)</code></pre>
+<p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/giving_time-1.png" width="672" />
+The median time between posting the loan and the loan being fully funded is about 9.2 days. It is a bimodal distribution with its first peak around 6 days and its second peak around 30 days.</p>
+<pre class="r"><code>ggplot(kiva_loans,
+       aes(x=total_time_num))+
+  geom_density()+
+   theme_classic()+
+  scale_x_continuous(limits=c(0,50))+
+  geom_vline(xintercept = median(kiva_loans$total_time_num,
+                                 na.rm=TRUE),
+             color=&quot;red&quot;,
+             linetype=&quot;dashed&quot;)+
+  annotate(&quot;text&quot;,
+           label=paste(&quot;Median=&quot;,
+                       round(median(kiva_loans$total_time_num,
+                                    na.rm = TRUE)),digits=2,&quot;days&quot;),
+           x=15+5,
+           y=0.1,
+           color=&quot;red&quot;)</code></pre>
+<p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/total_time-1.png" width="672" />
+The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days.</p>
+</div>
+<div id="what-i-found-out" class="section level1">
+<h1><span class="header-section-number">14</span> What I found out</h1>
+</div>
+<div id="conclusions" class="section level1">
+<h1><span class="header-section-number">15</span> Conclusions</h1>
+<p>*LOL. Read that again outloud and laugh at the jargon put together in one short sentence.</p>
+</div>

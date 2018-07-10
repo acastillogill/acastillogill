@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kaggle on Ángela D. Castillo-Gill</title>
+    <link>/tags/kaggle/</link>
+    <description>Recent content in Kaggle on Ángela D. Castillo-Gill</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018 Ángela D. Castillo-Gill</copyright>
+    <lastBuildDate>Sat, 07 Jul 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/kaggle/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Exploring Kiva loans</title>
+      <link>/post/exploring-kiva-loans/</link>
+      <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/exploring-kiva-loans/</guid>
+      <description>1 Summary 2 Purpose of this post 3 The data 4 What I did 5 Data cleaning 6 a. Missing values 7 b.borrower_genders 8 c.loan_amounts 9 d.country_codes 10 e. Dates 11 Exploratory data analysis 12 Factors 13 Numeric variables 14 What I found out 15 Conclusions   1 Summary  2 Purpose of this post I’m learning machine learning with trees*. In order to practice the theory, nothing better than to put the learnings into a real case study and explain it.</description>
+    </item>
+    
+  </channel>
+</rss>
