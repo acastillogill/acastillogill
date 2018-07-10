@@ -191,11 +191,11 @@ By having another glimpse at the structure of our data, we can soon see there ar
 ```{r summary}
 summary(kiva_loans)
 ```
-# a. Missing values
+**a. Missing values**
 
 Missing values, aka `NA's`, we could simply remove them since we have plenty of observations. But what if by removing them we introduce some bias. For example, `borrower_genders` has plenty of missing values, but what if this could say something about certain types of loans. For now we will leave them in.
 
-# b.`borrower_genders`
+**b.`borrower_genders`**
 
 From the variable descriptions, we expected `borrower_genders`to have only two levels, `male`or `female`. Here we see there are many more levels, 11,298 to be precise. We know something is wrong here. So we'll fix that first. 
 
@@ -245,7 +245,7 @@ levels(kiva_loans$borrower_genders)
 ```
 Nothing `strange`! Five levels as we wanted - fabulous! Onwards. 
 
-# c.`loan_amounts`
+**c.`loan_amounts`**
 
 Now, since we're trying to predict `loan_amounts`, it's better if they're all in the same currency. Shall we translate them to USD? Here we go!
 
@@ -299,7 +299,7 @@ kiva_loans%>%
 ```
 
 
-# d.`country_codes`
+**d.`country_codes`**
 
 Finally, with 86 countries, we have 86 levels. Perhaps it would be interesting to create another category called continent to produce less levels and have a better understanding of the overall function of regional distributions.
 
@@ -326,7 +326,7 @@ levels(kiva_loans$continent)
 ```
 5 continents! Africa, Asia, Europe, Oceania, and South America. Granted, we've lost spacial resolution. However, for our initial purpose, this is exactly what we wanted. 
 
-# e. Dates
+**e. Dates**
 
 Dates aren't numeric, but we can make them. Let's calculate two lengths of time that I think are interesting. 
 First, how much time passes from the moment the loan is posted to the moment it's disbursed (`total_time`). Second, how long does a loan take to get funded (`giving_time`)? Let's find out!
