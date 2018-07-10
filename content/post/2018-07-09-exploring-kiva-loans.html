@@ -1,3 +1,22 @@
+---
+title: Exploring Kiva loans
+author: Ángela D. Castillo-Gill
+date: '2018-07-07'
+slug: exploring-kiva-loans
+categories:
+  - R
+  - EDA
+tags: 
+  - Kaggle
+  - Kiva
+summary: What do Kiva loans around the world look like?
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+    toc_depth: 1
+---
+
 
 <div id="TOC">
 <ul>
@@ -400,7 +419,7 @@ Skim summary statistics
 ── Variable type:numeric ─────────────────────────────────────────────────────────────────────
         variable missing complete      n   mean     sd        p0  p25
  giving_time_num   48331   622713 671044  14.64  14.4   -17.51   5.17
-        loan_usd       0   671044 671044 267.29 946.98    0.0022 1.74
+        loan_usd       0   671044 671044 267.29 946.99    0.0022 1.74
   term_in_months       0   671044 671044  13.74   8.6     1      8   
   total_time_num    2396   668648 671044  14.09  18.56 -427.02   7.09
    p50   p75     p100     hist
@@ -459,19 +478,19 @@ prop.table(table(kiva_loans$sector))
 <pre class="r"><code># Create side-by-side barchart of borrower_genders by continent
 ggplot(kiva_loans, aes(x = continent, fill = borrower_genders)) + 
   geom_bar(position = &quot;dodge&quot;) +theme_classic()</code></pre>
-<p><img src="2018-07-09-exploring-kiva-loans_files/figure-html/continent_and_borrower_genders_plots-1.png" width="672" /></p>
+<p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/continent_and_borrower_genders_plots-1.png" width="672" /></p>
 <p>In all continents, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it’s mixed genders.</p>
 <pre class="r"><code>
 # Create side-by-side barchart of repayment interval by continent
 ggplot(kiva_loans, aes(x = continent, fill = repayment_interval)) + 
   geom_bar(position = &quot;dodge&quot;)+ theme_classic()</code></pre>
-<p><img src="2018-07-09-exploring-kiva-loans_files/figure-html/repayment_interval_and_continent-1.png" width="672" /></p>
+<p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/repayment_interval_and_continent-1.png" width="672" /></p>
 <p>In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it’s monthly.</p>
 <pre class="r"><code>
 # Create side-by-side barchart of sector by continent
 ggplot(kiva_loans, aes(x = continent, fill = sector)) + 
   geom_bar(position = &quot;dodge&quot;)+ theme_classic()</code></pre>
-<p><img src="2018-07-09-exploring-kiva-loans_files/figure-html/sectors_and_continents-1.png" width="672" /></p>
+<p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/sectors_and_continents-1.png" width="672" /></p>
 <p>In every continent, the three most popular sectors are agriculture, retail, and food.</p>
 <p>Finally, we still would like to understand what countries are most represented and which ones, less so. Let’s have a look.</p>
 <pre class="r"><code>na.omit(kiva_loans)%&gt;%
@@ -486,7 +505,7 @@ ggplot(kiva_loans, aes(x = continent, fill = sector)) +
   coord_flip()+
     theme_minimal()+
  theme(axis.title.y=element_blank())</code></pre>
-<p><img src="2018-07-09-exploring-kiva-loans_files/figure-html/countries_plot-1.png" width="672" /></p>
+<p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries_plot-1.png" width="672" /></p>
 </div>
 <div id="numeric-variables" class="section level1">
 <h1><span class="header-section-number">13</span> Numeric variables</h1>
@@ -504,7 +523,7 @@ ggplot(kiva_loans, aes(x = continent, fill = sector)) +
                 x=median(kiva_loans$loan_usd),
                 y=0.2,
            color=&quot;red&quot;)</code></pre>
-<p><img src="2018-07-09-exploring-kiva-loans_files/figure-html/loan_usd_distribution-1.png" width="672" />
+<p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/loan_usd_distribution-1.png" width="672" />
 The median loan in US dollars is 4.19. The distribution is multimodal and right-skewed with its biggest peak around $1 and its second around $4.</p>
 <pre class="r"><code>ggplot(kiva_loans,
        aes(x=term_in_months))+
@@ -520,7 +539,7 @@ The median loan in US dollars is 4.19. The distribution is multimodal and right-
                 x=18,
                 y=0.2,
            color=&quot;red&quot;)</code></pre>
-<p><img src="2018-07-09-exploring-kiva-loans_files/figure-html/term_in_months_distribution-1.png" width="672" />
+<p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/term_in_months_distribution-1.png" width="672" />
 The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median.</p>
 <pre class="r"><code>ggplot(kiva_loans,
        aes(x=lender_count))+
@@ -536,7 +555,7 @@ The loan term in months is a bimodal distribution with its first peak around 8 m
                 x=21,
                 y=150000,
            color=&quot;red&quot;)</code></pre>
-<p><img src="2018-07-09-exploring-kiva-loans_files/figure-html/lender_count-1.png" width="672" />
+<p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/lender_count-1.png" width="672" />
 The lender count has a text book right-skewed distribution with a median of 12 lenders.</p>
 <pre class="r"><code>ggplot(kiva_loans,
        aes(x=giving_time_num))+
@@ -552,7 +571,7 @@ The lender count has a text book right-skewed distribution with a median of 12 l
            x=median(kiva_loans$giving_time_num,na.rm=TRUE)+5,
            y=0.1,
            color=&quot;red&quot;)</code></pre>
-<p><img src="2018-07-09-exploring-kiva-loans_files/figure-html/giving_time-1.png" width="672" />
+<p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/giving_time-1.png" width="672" />
 The median time between posting the loan and the loan being fully funded is about 9.2 days. It is a bimodal distribution with its first peak around 6 days and its second peak around 30 days.</p>
 <pre class="r"><code>ggplot(kiva_loans,
        aes(x=total_time_num))+
@@ -570,7 +589,7 @@ The median time between posting the loan and the loan being fully funded is abou
            x=15+5,
            y=0.1,
            color=&quot;red&quot;)</code></pre>
-<p><img src="2018-07-09-exploring-kiva-loans_files/figure-html/total_time-1.png" width="672" />
+<p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/total_time-1.png" width="672" />
 The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days.</p>
 </div>
 <div id="what-i-found-out" class="section level1">
