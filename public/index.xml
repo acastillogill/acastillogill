@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ángela D. Castillo-Gill on Ángela D. Castillo-Gill</title>
-    <link>/</link>
+    <link>https://ad-castillogill.netlify.com/</link>
     <description>Recent content in Ángela D. Castillo-Gill on Ángela D. Castillo-Gill</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -12,10 +12,10 @@
     
     <item>
       <title>Exploring Kiva loans</title>
-      <link>/post/exploring-kiva-loans/</link>
+      <link>https://ad-castillogill.netlify.com/post/exploring-kiva-loans/</link>
       <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/exploring-kiva-loans/</guid>
+      <guid>https://ad-castillogill.netlify.com/post/exploring-kiva-loans/</guid>
       <description>&lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#summary&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Summary&lt;/a&gt;&lt;/li&gt;
@@ -421,12 +421,12 @@ Skim summary statistics
 ── Variable type:numeric ─────────────────────────────────────────────────────────────────────
         variable missing complete      n   mean     sd        p0  p25
  giving_time_num   48331   622713 671044  14.64  14.4   -17.51   5.17
-        loan_usd       0   671044 671044 267.29 946.99    0.0022 1.74
+        loan_usd       0   671044 671044 267.3  946.98    0.0022 1.74
   term_in_months       0   671044 671044  13.74   8.6     1      8   
   total_time_num    2396   668648 671044  14.09  18.56 -427.02   7.09
    p50   p75     p100     hist
   9.59 22.54   420.57 ▇▁▁▁▁▁▁▁
-  5.14 90.3  1e+05    ▇▁▁▁▁▁▁▁
+  5.14 90.61 1e+05    ▇▁▁▁▁▁▁▁
  13    14      158    ▇▁▁▁▁▁▁▁
  16.12 26.67    32.04 ▁▁▁▁▁▁▁▇
 
@@ -480,19 +480,19 @@ prop.table(table(kiva_loans$sector))
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Create side-by-side barchart of borrower_genders by continent
 ggplot(kiva_loans, aes(x = continent, fill = borrower_genders)) + 
   geom_bar(position = &amp;quot;dodge&amp;quot;) +theme_classic()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/continent_and_borrower_genders_plots-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ad-castillogill.netlify.com/post/2018-07-09-exploring-kiva-loans_files/figure-html/continent_and_borrower_genders_plots-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In all continents, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it’s mixed genders.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
 # Create side-by-side barchart of repayment interval by continent
 ggplot(kiva_loans, aes(x = continent, fill = repayment_interval)) + 
   geom_bar(position = &amp;quot;dodge&amp;quot;)+ theme_classic()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/repayment_interval_and_continent-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ad-castillogill.netlify.com/post/2018-07-09-exploring-kiva-loans_files/figure-html/repayment_interval_and_continent-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it’s monthly.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
 # Create side-by-side barchart of sector by continent
 ggplot(kiva_loans, aes(x = continent, fill = sector)) + 
   geom_bar(position = &amp;quot;dodge&amp;quot;)+ theme_classic()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/sectors_and_continents-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ad-castillogill.netlify.com/post/2018-07-09-exploring-kiva-loans_files/figure-html/sectors_and_continents-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In every continent, the three most popular sectors are agriculture, retail, and food.&lt;/p&gt;
 &lt;p&gt;Finally, we still would like to understand what countries are most represented and which ones, less so. Let’s have a look.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;na.omit(kiva_loans)%&amp;gt;%
@@ -507,7 +507,7 @@ ggplot(kiva_loans, aes(x = continent, fill = sector)) +
   coord_flip()+
     theme_minimal()+
  theme(axis.title.y=element_blank())&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries_plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ad-castillogill.netlify.com/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries_plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;numeric-variables&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;13&lt;/span&gt; Numeric variables&lt;/h1&gt;
@@ -525,7 +525,7 @@ ggplot(kiva_loans, aes(x = continent, fill = sector)) +
                 x=median(kiva_loans$loan_usd),
                 y=0.2,
            color=&amp;quot;red&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/loan_usd_distribution-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://ad-castillogill.netlify.com/post/2018-07-09-exploring-kiva-loans_files/figure-html/loan_usd_distribution-1.png&#34; width=&#34;672&#34; /&gt;
 The median loan in US dollars is 4.19. The distribution is multimodal and right-skewed with its biggest peak around $1 and its second around $4.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(kiva_loans,
        aes(x=term_in_months))+
@@ -541,7 +541,7 @@ The median loan in US dollars is 4.19. The distribution is multimodal and right-
                 x=18,
                 y=0.2,
            color=&amp;quot;red&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/term_in_months_distribution-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://ad-castillogill.netlify.com/post/2018-07-09-exploring-kiva-loans_files/figure-html/term_in_months_distribution-1.png&#34; width=&#34;672&#34; /&gt;
 The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(kiva_loans,
        aes(x=lender_count))+
@@ -557,7 +557,7 @@ The loan term in months is a bimodal distribution with its first peak around 8 m
                 x=21,
                 y=150000,
            color=&amp;quot;red&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/lender_count-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://ad-castillogill.netlify.com/post/2018-07-09-exploring-kiva-loans_files/figure-html/lender_count-1.png&#34; width=&#34;672&#34; /&gt;
 The lender count has a text book right-skewed distribution with a median of 12 lenders.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(kiva_loans,
        aes(x=giving_time_num))+
@@ -573,7 +573,7 @@ The lender count has a text book right-skewed distribution with a median of 12 l
            x=median(kiva_loans$giving_time_num,na.rm=TRUE)+5,
            y=0.1,
            color=&amp;quot;red&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/giving_time-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://ad-castillogill.netlify.com/post/2018-07-09-exploring-kiva-loans_files/figure-html/giving_time-1.png&#34; width=&#34;672&#34; /&gt;
 The median time between posting the loan and the loan being fully funded is about 9.2 days. It is a bimodal distribution with its first peak around 6 days and its second peak around 30 days.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(kiva_loans,
        aes(x=total_time_num))+
@@ -591,7 +591,7 @@ The median time between posting the loan and the loan being fully funded is abou
            x=15+5,
            y=0.1,
            color=&amp;quot;red&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/total_time-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://ad-castillogill.netlify.com/post/2018-07-09-exploring-kiva-loans_files/figure-html/total_time-1.png&#34; width=&#34;672&#34; /&gt;
 The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;what-i-found-out&#34; class=&#34;section level1&#34;&gt;
@@ -606,30 +606,30 @@ The total time between posting the loan and it being disbursed has a funky looki
     
     <item>
       <title>Privacy Policy</title>
-      <link>/privacy/</link>
+      <link>https://ad-castillogill.netlify.com/privacy/</link>
       <pubDate>Thu, 28 Jun 2018 00:00:00 +0200</pubDate>
       
-      <guid>/privacy/</guid>
+      <guid>https://ad-castillogill.netlify.com/privacy/</guid>
       <description>&lt;p&gt;&amp;hellip;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Example Talk</title>
-      <link>/talk/example-talk/</link>
+      <link>https://ad-castillogill.netlify.com/talk/example-talk/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0100</pubDate>
       
-      <guid>/talk/example-talk/</guid>
+      <guid>https://ad-castillogill.netlify.com/talk/example-talk/</guid>
       <description>&lt;p&gt;Embed your slides or video here using &lt;a href=&#34;https://sourcethemes.com/academic/post/writing-markdown-latex/&#34; target=&#34;_blank&#34;&gt;shortcodes&lt;/a&gt;. Further details can easily be added using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Deep Learning</title>
-      <link>/project/deep-learning/</link>
+      <link>https://ad-castillogill.netlify.com/project/deep-learning/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0200</pubDate>
       
-      <guid>/project/deep-learning/</guid>
+      <guid>https://ad-castillogill.netlify.com/project/deep-learning/</guid>
       <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
 
 &lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
@@ -644,19 +644,19 @@ The total time between posting the loan and it being disbursed has a funky looki
     
     <item>
       <title>External Project</title>
-      <link>/project/example-external-project/</link>
+      <link>https://ad-castillogill.netlify.com/project/example-external-project/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0200</pubDate>
       
-      <guid>/project/example-external-project/</guid>
+      <guid>https://ad-castillogill.netlify.com/project/example-external-project/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Academic: the website designer for Hugo</title>
-      <link>/post/getting-started/</link>
+      <link>https://ad-castillogill.netlify.com/post/getting-started/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0200</pubDate>
       
-      <guid>/post/getting-started/</guid>
+      <guid>https://ad-castillogill.netlify.com/post/getting-started/</guid>
       <description>
 
 &lt;p&gt;&lt;strong&gt;Academic&lt;/strong&gt; is a framework to help you create a beautiful website quickly. Perfect for personal sites, blogs, or business/project sites. &lt;a href=&#34;https://themes.gohugo.io/theme/academic/&#34; target=&#34;_blank&#34;&gt;Check out the latest demo&lt;/a&gt; of what you&amp;rsquo;ll get in less than 10 minutes. Then head on over to the &lt;a href=&#34;https://sourcethemes.com/academic/docs/&#34; target=&#34;_blank&#34;&gt;Quick Start guide&lt;/a&gt; or take a look at the &lt;a href=&#34;https://sourcethemes.com/academic/updates/&#34; target=&#34;_blank&#34;&gt;Release Notes&lt;/a&gt;.&lt;/p&gt;
@@ -841,20 +841,20 @@ git submodule update --init --recursive
     
     <item>
       <title>A Person Re-Identification System For Mobile Devices</title>
-      <link>/publication/person-re-identification/</link>
+      <link>https://ad-castillogill.netlify.com/publication/person-re-identification/</link>
       <pubDate>Tue, 01 Sep 2015 00:00:00 +0200</pubDate>
       
-      <guid>/publication/person-re-identification/</guid>
+      <guid>https://ad-castillogill.netlify.com/publication/person-re-identification/</guid>
       <description>&lt;p&gt;More detail can easily be written here using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Hello R Markdown</title>
-      <link>/post/2015-07-23-r-rmarkdown/</link>
+      <link>https://ad-castillogill.netlify.com/post/2015-07-23-r-rmarkdown/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
-      <guid>/post/2015-07-23-r-rmarkdown/</guid>
+      <guid>https://ad-castillogill.netlify.com/post/2015-07-23-r-rmarkdown/</guid>
       <description>&lt;div id=&#34;r-markdown&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;R Markdown&lt;/h1&gt;
 &lt;p&gt;This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see &lt;a href=&#34;http://rmarkdown.rstudio.com&#34; class=&#34;uri&#34;&gt;http://rmarkdown.rstudio.com&lt;/a&gt;.&lt;/p&gt;
@@ -888,7 +888,7 @@ pie(
   init.angle = -50, border = NA
 )&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:pie&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2015-07-23-r-rmarkdown_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;672&#34; /&gt;
+&lt;img src=&#34;https://ad-castillogill.netlify.com/post/2015-07-23-r-rmarkdown_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;672&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 1: A fancy pie chart.
 &lt;/p&gt;
@@ -899,10 +899,10 @@ Figure 1: A fancy pie chart.
     
     <item>
       <title>Mobile visual clothing search</title>
-      <link>/publication/clothing-search/</link>
+      <link>https://ad-castillogill.netlify.com/publication/clothing-search/</link>
       <pubDate>Mon, 01 Jul 2013 00:00:00 +0200</pubDate>
       
-      <guid>/publication/clothing-search/</guid>
+      <guid>https://ad-castillogill.netlify.com/publication/clothing-search/</guid>
       <description>&lt;p&gt;More detail can easily be written here using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
 </description>
     </item>
