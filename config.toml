@@ -73,6 +73,8 @@ enableGitInfo = false
   phone = ""
   skype = ""
   telegram = ""
+  twitter = "ad_castillogill"
+  github = "ad-castillogill"
 
   # Enable Keybase in Contact widget by entering your keybase.io username.
   keybase = ""
