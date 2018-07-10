@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Ángela D. Castillo-Gill</title>
-    <link>https://ad-castillogill.netlify.com/categories/</link>
+    <link>/categories/</link>
     <description>Recent content in Categories on Ángela D. Castillo-Gill</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Ángela D. Castillo-Gill</copyright>
     
-	<atom:link href="https://ad-castillogill.netlify.com/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>EDA</title>
-      <link>https://ad-castillogill.netlify.com/categories/eda/</link>
+      <link>/categories/eda/</link>
       <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://ad-castillogill.netlify.com/categories/eda/</guid>
+      <guid>/categories/eda/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R</title>
-      <link>https://ad-castillogill.netlify.com/categories/r/</link>
+      <link>/categories/r/</link>
       <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://ad-castillogill.netlify.com/categories/r/</guid>
+      <guid>/categories/r/</guid>
       <description></description>
     </item>
     

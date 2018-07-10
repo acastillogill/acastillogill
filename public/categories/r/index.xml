@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>R on Ángela D. Castillo-Gill</title>
-    <link>https://ad-castillogill.netlify.com/categories/r/</link>
+    <link>/categories/r/</link>
     <description>Recent content in R on Ángela D. Castillo-Gill</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Ángela D. Castillo-Gill</copyright>
     <lastBuildDate>Sat, 07 Jul 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://ad-castillogill.netlify.com/categories/r/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Exploring Kiva loans</title>
-      <link>https://ad-castillogill.netlify.com/post/exploring-kiva-loans/</link>
+      <link>/post/exploring-kiva-loans/</link>
       <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://ad-castillogill.netlify.com/post/exploring-kiva-loans/</guid>
+      <guid>/post/exploring-kiva-loans/</guid>
       <description>1 Summary 2 Purpose of this post 3 The data 4 What I did 5 Data cleaning 6 a. Missing values 7 b.borrower_genders 8 c.loan_amounts 9 d.country_codes 10 e. Dates 11 Exploratory data analysis 12 Factors 13 Numeric variables 14 What I found out 15 Conclusions   1 Summary  2 Purpose of this post I’m learning machine learning with trees*. In order to practice the theory, nothing better than to put the learnings into a real case study and explain it.</description>
     </item>
     
     <item>
       <title>Hello R Markdown</title>
-      <link>https://ad-castillogill.netlify.com/post/2015-07-23-r-rmarkdown/</link>
+      <link>/post/2015-07-23-r-rmarkdown/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
-      <guid>https://ad-castillogill.netlify.com/post/2015-07-23-r-rmarkdown/</guid>
+      <guid>/post/2015-07-23-r-rmarkdown/</guid>
       <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
 You can embed an R code chunk like this:
 summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</description>
