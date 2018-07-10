@@ -10,23 +10,38 @@
   </div>
   <div class="col-xs-12 col-md-8">
     {{ with $page.Content }}<p>{{ . | markdownify }}</p>{{ end }}
-
+    
+    <h3>Let's chat!</h3>
+    
     <ul class="fa-ul" itemscope>
 
       {{ with $.Site.Params.email }}
       <li>
-        <i class="fa-li fa fa-envelope fa-2x" aria-hidden="true"></i>
-        <span id="person-email" itemprop="email">
-        {{- if $autolink }}<a href="mailto:{{ . }}">{{ . }}</a>{{ else }}{{ . }}{{ end -}}
-        </span>
+        <i class="fa-li fa fa-comments-o fa-2x" aria-hidden="true"></i>
+        <form action="https://formspree.io/{{ . }}" method="POST">
+          <label for="name">Your name: </label>
+          <input type="text" name="name" required="required" placeholder="here"><br>
+          <label for="email">Your email: </label>
+          <input type="email" name="_replyto" required="required" placeholder="here"><br>
+          <label for="message">Your message:</label><br>
+          <textarea rows="4" name="message" id="message" required="required" class="form-control" placeholder="I can't wait to read this!"></textarea>
+          <input type="hidden" name="_next" value="/html/thanks.html" />
+          <input type="submit" value="Send" name="submit" class="btn btn-primary btn-outline">
+          <input type="hidden" name="_subject" value="Website message" />
+          <input type="text" name="_gotcha" style="display:none" />
+        </form>
       </li>
       {{ end }}
+      
+    </ul>
+    <h3>Let's connect!</h3>
+    <ul class="fa-ul" itemscope>
 
-      {{ with $.Site.Params.discussion }}
+      {{ with $.Site.Params.email }}
       <li>
-        <i class="fa-li fa fa-comments-o fa-2x" aria-hidden="true"></i>
-        <span>
-          <a href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a>
+        <i class="fa-li fa fa-paper-plane fa-2x" aria-hidden="true"></i>
+        <span id="person-email" itemprop="email">
+        {{- if $autolink }}<a href="mailto:{{ . }}">{{ . }}</a>{{ else }}{{ . }}{{ end -}}
         </span>
       </li>
       {{ end }}
@@ -35,7 +50,7 @@
       <li>
         <i class="fa-li fa fa-lock fa-2x" aria-hidden="true"></i>
         <span>
-          <a href="https://keybase.io/{{ . }}" target="_blank" rel="noopener">@{{ . }}</a> on Keybase.
+          <a href="https://keybase.io/{{ . }}" target="_blank">@{{ . }}</a> on Keybase.
         </span>
       </li>
       {{ end }}
@@ -62,7 +77,7 @@
       <li>
         <i class="fa-li fa fa-telegram fa-2x" aria-hidden="true"></i>
         <span>
-        {{- if $autolink }}<a href="https://telegram.me/{{ . }}" target="_blank" rel="noopener">@{{ . }}</a>{{ else }}@{{ . }}{{ end -}}
+        {{- if $autolink }}<a href="https://telegram.me/{{ . }}" target="_blank">@{{ . }}</a>{{ else }}@{{ . }}{{ end -}}
         </span>
       </li>
       {{ end }}
@@ -70,7 +85,7 @@
       {{ with $.Site.Params.address }}
       <li>
         <i class="fa-li fa fa-map-marker fa-2x" aria-hidden="true"></i>
-        <span id="person-address" itemprop="address">{{ replace . "\n" "<br>" | safeHTML }}</span>
+        <span id="person-address" itemprop="address">{{ . }}</span>
       </li>
       {{ end }}
 
@@ -80,20 +95,27 @@
         <span>{{ . }}</span>
       </li>
       {{ end }}
+      
+      {{ with $.Site.Params.twitter }}
+      <li>
+        <i class="fa-li fa fa-twitter fa-2x" aria-hidden="true"></i>
+        <span>
+        {{- if $autolink }}<a href="https://twitter.com/{{ . }}" target="_blank">@{{ . }}</a>{{ else }}@{{ . }}{{ end -}}
+        </span>
+      </li>
+      {{ end }}
+      
+      {{ with $.Site.Params.github }}
+      <li>
+        <i class="fa-li fa fa-github fa-2x" aria-hidden="true"></i>
+        <span>
+        {{- if $autolink }}<a href="https://github.com/{{ . }}" target="_blank">@{{ . }}</a>{{ else }}@{{ . }}{{ end -}}
+        </span>
+      </li>
+      {{ end }}
+      
 
     </ul>
-
-    {{ if $.Site.Params.map }}
-    <div class="hidden">
-      <input id="map-provider" value="{{ $.Site.Params.map }}">
-      <input id="map-lat" value="{{ $.Site.Params.latitude }}">
-      <input id="map-lng" value="{{ $.Site.Params.longitude }}">
-      <input id="map-dir" value="{{ $.Site.Params.address }}">
-      <input id="map-zoom" value="{{ $.Site.Params.zoom | default "15" }}">
-      <input id="map-api-key" value="{{ $.Site.Params.map_api_key }}">
-    </div>
-    <div id="map"></div>
-    {{ end }}
 
   </div>
 </div>
