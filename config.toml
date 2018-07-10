@@ -266,6 +266,10 @@ enableGitInfo = false
   url = "#posts"
   weight = 2
 
+[[menu.main]]
+name = "Contact"
+url = "#contact"
+weight = 3
 
 # Taxonomies.
 [taxonomies]

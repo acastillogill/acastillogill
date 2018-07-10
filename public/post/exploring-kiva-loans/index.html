@@ -17,7 +17,7 @@
       
     
   
-  <meta name="description" content="1 Summary 2 Purpose of this post 3 The data 4 What I did 5 Data cleaning 6 a. Missing values 7 b.borrower_genders 8 c.loan_amounts 9 d.country_codes 10 e. Dates 11 Exploratory data analysis 12 Factors 13 Numeric variables 14 What I found out 15 Conclusions   1 Summary  2 Purpose of this post I’m learning machine learning with trees*. In order to practice the theory, nothing better than to put the learnings into a real case study and explain it.">
+  <meta name="description" content="1 Summary 2 Purpose of this post 3 The data 4 What I did 5 Data cleaning 6 Exploratory data analysis 7 Factors 8 Numeric variables 9 What I found out 10 Conclusions   1 Summary  2 Purpose of this post I’m learning machine learning with trees*. In order to practice the theory, nothing better than to put the learnings into a real case study and explain it.">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/exploring-kiva-loans/">
@@ -79,7 +79,7 @@
   <meta property="og:site_name" content="Ángela D. Castillo-Gill">
   <meta property="og:url" content="/post/exploring-kiva-loans/">
   <meta property="og:title" content="Exploring Kiva loans | Ángela D. Castillo-Gill">
-  <meta property="og:description" content="1 Summary 2 Purpose of this post 3 The data 4 What I did 5 Data cleaning 6 a. Missing values 7 b.borrower_genders 8 c.loan_amounts 9 d.country_codes 10 e. Dates 11 Exploratory data analysis 12 Factors 13 Numeric variables 14 What I found out 15 Conclusions   1 Summary  2 Purpose of this post I’m learning machine learning with trees*. In order to practice the theory, nothing better than to put the learnings into a real case study and explain it.">
+  <meta property="og:description" content="1 Summary 2 Purpose of this post 3 The data 4 What I did 5 Data cleaning 6 Exploratory data analysis 7 Factors 8 Numeric variables 9 What I found out 10 Conclusions   1 Summary  2 Purpose of this post I’m learning machine learning with trees*. In order to practice the theory, nothing better than to put the learnings into a real case study and explain it.">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2018-07-07T00:00:00&#43;00:00">
@@ -275,16 +275,11 @@
 <li><a href="#the-data"><span class="toc-section-number">3</span> The data</a></li>
 <li><a href="#what-i-did"><span class="toc-section-number">4</span> What I did</a></li>
 <li><a href="#data-cleaning"><span class="toc-section-number">5</span> Data cleaning</a></li>
-<li><a href="#a.-missing-values"><span class="toc-section-number">6</span> a. Missing values</a></li>
-<li><a href="#b.borrower_genders"><span class="toc-section-number">7</span> b.<code>borrower_genders</code></a></li>
-<li><a href="#c.loan_amounts"><span class="toc-section-number">8</span> c.<code>loan_amounts</code></a></li>
-<li><a href="#d.country_codes"><span class="toc-section-number">9</span> d.<code>country_codes</code></a></li>
-<li><a href="#e.-dates"><span class="toc-section-number">10</span> e. Dates</a></li>
-<li><a href="#exploratory-data-analysis"><span class="toc-section-number">11</span> Exploratory data analysis</a></li>
-<li><a href="#factors"><span class="toc-section-number">12</span> Factors</a></li>
-<li><a href="#numeric-variables"><span class="toc-section-number">13</span> Numeric variables</a></li>
-<li><a href="#what-i-found-out"><span class="toc-section-number">14</span> What I found out</a></li>
-<li><a href="#conclusions"><span class="toc-section-number">15</span> Conclusions</a></li>
+<li><a href="#exploratory-data-analysis"><span class="toc-section-number">6</span> Exploratory data analysis</a></li>
+<li><a href="#factors"><span class="toc-section-number">7</span> Factors</a></li>
+<li><a href="#numeric-variables"><span class="toc-section-number">8</span> Numeric variables</a></li>
+<li><a href="#what-i-found-out"><span class="toc-section-number">9</span> What I found out</a></li>
+<li><a href="#conclusions"><span class="toc-section-number">10</span> Conclusions</a></li>
 </ul>
 </div>
 
@@ -497,13 +492,9 @@ kiva_loans[categorical] &lt;- lapply(kiva_loans[categorical],
  3rd Qu.:2016-10-17 22:12:47  
  Max.   :2017-07-26 02:09:43  
  NA&#39;s   :48331                </code></pre>
-</div>
-<div id="a.-missing-values" class="section level1">
-<h1><span class="header-section-number">6</span> a. Missing values</h1>
+<p><strong>a. Missing values</strong></p>
 <p>Missing values, aka <code>NA's</code>, we could simply remove them since we have plenty of observations. But what if by removing them we introduce some bias. For example, <code>borrower_genders</code> has plenty of missing values, but what if this could say something about certain types of loans. For now we will leave them in.</p>
-</div>
-<div id="b.borrower_genders" class="section level1">
-<h1><span class="header-section-number">7</span> b.<code>borrower_genders</code></h1>
+<p><strong>b.<code>borrower_genders</code></strong></p>
 <p>From the variable descriptions, we expected <code>borrower_genders</code>to have only two levels, <code>male</code>or <code>female</code>. Here we see there are many more levels, 11,298 to be precise. We know something is wrong here. So we’ll fix that first.</p>
 <pre class="r"><code>#Turn kiva_loans back into an atomic vector of characters
 kiva_loans$borrower_genders &lt;- as.character(kiva_loans$borrower_genders)
@@ -547,9 +538,7 @@ levels(kiva_loans$borrower_genders)
 [1] &quot;mixed_genders&quot; &quot;mult_females&quot;  &quot;mult_males&quot;    &quot;single_female&quot;
 [5] &quot;single_male&quot;  </code></pre>
 <p>Nothing <code>strange</code>! Five levels as we wanted - fabulous! Onwards.</p>
-</div>
-<div id="c.loan_amounts" class="section level1">
-<h1><span class="header-section-number">8</span> c.<code>loan_amounts</code></h1>
+<p><strong>c.<code>loan_amounts</code></strong></p>
 <p>Now, since we’re trying to predict <code>loan_amounts</code>, it’s better if they’re all in the same currency. Shall we translate them to USD? Here we go!</p>
 <pre class="r"><code>for (curr in levels(kiva_loans$currency))
   
@@ -592,9 +581,7 @@ kiva_loans%&gt;%
 kiva_loans%&gt;%
   #Convert the loan from its original currency to USD
   mutate(loan_usd=loan_amount*Last)-&gt; kiva_loans</code></pre>
-</div>
-<div id="d.country_codes" class="section level1">
-<h1><span class="header-section-number">9</span> d.<code>country_codes</code></h1>
+<p><strong>d.<code>country_codes</code></strong></p>
 <p>Finally, with 86 countries, we have 86 levels. Perhaps it would be interesting to create another category called continent to produce less levels and have a better understanding of the overall function of regional distributions.</p>
 <p>Our country codes are in the ISO3166 format, so we will use the associated continent code found <a href="https://dev.maxmind.com/geoip/legacy/codes/country_continent/">here</a>.</p>
 <pre class="r"><code>#Read `country_continent.csv`
@@ -608,9 +595,7 @@ continents &lt;- read_csv(paste(path,&quot;country_continent.csv&quot;,sep = &qu
 levels(kiva_loans$continent)
 [1] &quot;AF&quot; &quot;AS&quot; &quot;EU&quot; &quot;OC&quot; &quot;SA&quot;</code></pre>
 <p>5 continents! Africa, Asia, Europe, Oceania, and South America. Granted, we’ve lost spacial resolution. However, for our initial purpose, this is exactly what we wanted.</p>
-</div>
-<div id="e.-dates" class="section level1">
-<h1><span class="header-section-number">10</span> e. Dates</h1>
+<p><strong>e. Dates</strong></p>
 <p>Dates aren’t numeric, but we can make them. Let’s calculate two lengths of time that I think are interesting.
 First, how much time passes from the moment the loan is posted to the moment it’s disbursed (<code>total_time</code>). Second, how long does a loan take to get funded (<code>giving_time</code>)? Let’s find out!</p>
 <pre class="r"><code>kiva_loans%&gt;%
@@ -673,12 +658,12 @@ Skim summary statistics
 ── Variable type:numeric ─────────────────────────────────────────────────────────────────────
         variable missing complete      n   mean     sd        p0  p25
  giving_time_num   48331   622713 671044  14.64  14.4   -17.51   5.17
-        loan_usd       0   671044 671044 267.3  946.99    0.0022 1.74
+        loan_usd       0   671044 671044 267.29 946.97    0.0022 1.74
   term_in_months       0   671044 671044  13.74   8.6     1      8   
   total_time_num    2396   668648 671044  14.09  18.56 -427.02   7.09
    p50   p75     p100     hist
   9.59 22.54   420.57 ▇▁▁▁▁▁▁▁
-  5.14 90.69 1e+05    ▇▁▁▁▁▁▁▁
+  5.14 90.62 1e+05    ▇▁▁▁▁▁▁▁
  13    14      158    ▇▁▁▁▁▁▁▁
  16.12 26.67    32.04 ▁▁▁▁▁▁▁▇
 
@@ -693,11 +678,11 @@ Skim summary statistics
    667240</code></pre>
 </div>
 <div id="exploratory-data-analysis" class="section level1">
-<h1><span class="header-section-number">11</span> Exploratory data analysis</h1>
+<h1><span class="header-section-number">6</span> Exploratory data analysis</h1>
 <p>Now let’s describe the data. We could jump into the regression trees but exploring the data will help us interpret our predictions better. Do some extra work now and enjoy the benefits later.</p>
 </div>
 <div id="factors" class="section level1">
-<h1><span class="header-section-number">12</span> Factors</h1>
+<h1><span class="header-section-number">7</span> Factors</h1>
 <p>Let’s make two-way tables to understand our factors.</p>
 <pre class="r"><code>prop.table(table(kiva_loans$borrower_genders))
 
@@ -762,7 +747,7 @@ ggplot(kiva_loans, aes(x = continent, fill = sector)) +
 <p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries_plot-1.png" width="672" /></p>
 </div>
 <div id="numeric-variables" class="section level1">
-<h1><span class="header-section-number">13</span> Numeric variables</h1>
+<h1><span class="header-section-number">8</span> Numeric variables</h1>
 <p>Now let’s look at the distributions of our numeric variables.</p>
 <pre class="r"><code>ggplot(kiva_loans,aes(x=loan_usd))+
   geom_density()+
@@ -847,10 +832,10 @@ The median time between posting the loan and the loan being fully funded is abou
 The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days.</p>
 </div>
 <div id="what-i-found-out" class="section level1">
-<h1><span class="header-section-number">14</span> What I found out</h1>
+<h1><span class="header-section-number">9</span> What I found out</h1>
 </div>
 <div id="conclusions" class="section level1">
-<h1><span class="header-section-number">15</span> Conclusions</h1>
+<h1><span class="header-section-number">10</span> Conclusions</h1>
 <p>*LOL. Read that again outloud and laugh at the jargon put together in one short sentence.</p>
 </div>
 

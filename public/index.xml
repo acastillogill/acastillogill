@@ -23,16 +23,11 @@
 &lt;li&gt;&lt;a href=&#34;#the-data&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; The data&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#what-i-did&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; What I did&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#data-cleaning&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Data cleaning&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#a.-missing-values&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; a. Missing values&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#b.borrower_genders&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;7&lt;/span&gt; b.&lt;code&gt;borrower_genders&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#c.loan_amounts&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;8&lt;/span&gt; c.&lt;code&gt;loan_amounts&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#d.country_codes&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;9&lt;/span&gt; d.&lt;code&gt;country_codes&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#e.-dates&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;10&lt;/span&gt; e. Dates&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#exploratory-data-analysis&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;11&lt;/span&gt; Exploratory data analysis&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#factors&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;12&lt;/span&gt; Factors&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#numeric-variables&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;13&lt;/span&gt; Numeric variables&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#what-i-found-out&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;14&lt;/span&gt; What I found out&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#conclusions&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;15&lt;/span&gt; Conclusions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#exploratory-data-analysis&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; Exploratory data analysis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#factors&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;7&lt;/span&gt; Factors&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#numeric-variables&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;8&lt;/span&gt; Numeric variables&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#what-i-found-out&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;9&lt;/span&gt; What I found out&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#conclusions&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;10&lt;/span&gt; Conclusions&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 
@@ -245,13 +240,9 @@ kiva_loans[categorical] &amp;lt;- lapply(kiva_loans[categorical],
  3rd Qu.:2016-10-17 22:12:47  
  Max.   :2017-07-26 02:09:43  
  NA&amp;#39;s   :48331                &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;a.-missing-values&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;6&lt;/span&gt; a. Missing values&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;a. Missing values&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Missing values, aka &lt;code&gt;NA&#39;s&lt;/code&gt;, we could simply remove them since we have plenty of observations. But what if by removing them we introduce some bias. For example, &lt;code&gt;borrower_genders&lt;/code&gt; has plenty of missing values, but what if this could say something about certain types of loans. For now we will leave them in.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;b.borrower_genders&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;7&lt;/span&gt; b.&lt;code&gt;borrower_genders&lt;/code&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;b.&lt;code&gt;borrower_genders&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;From the variable descriptions, we expected &lt;code&gt;borrower_genders&lt;/code&gt;to have only two levels, &lt;code&gt;male&lt;/code&gt;or &lt;code&gt;female&lt;/code&gt;. Here we see there are many more levels, 11,298 to be precise. We know something is wrong here. So we’ll fix that first.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#Turn kiva_loans back into an atomic vector of characters
 kiva_loans$borrower_genders &amp;lt;- as.character(kiva_loans$borrower_genders)
@@ -295,9 +286,7 @@ levels(kiva_loans$borrower_genders)
 [1] &amp;quot;mixed_genders&amp;quot; &amp;quot;mult_females&amp;quot;  &amp;quot;mult_males&amp;quot;    &amp;quot;single_female&amp;quot;
 [5] &amp;quot;single_male&amp;quot;  &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Nothing &lt;code&gt;strange&lt;/code&gt;! Five levels as we wanted - fabulous! Onwards.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;c.loan_amounts&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;8&lt;/span&gt; c.&lt;code&gt;loan_amounts&lt;/code&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;c.&lt;code&gt;loan_amounts&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Now, since we’re trying to predict &lt;code&gt;loan_amounts&lt;/code&gt;, it’s better if they’re all in the same currency. Shall we translate them to USD? Here we go!&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;for (curr in levels(kiva_loans$currency))
   
@@ -340,9 +329,7 @@ kiva_loans%&amp;gt;%
 kiva_loans%&amp;gt;%
   #Convert the loan from its original currency to USD
   mutate(loan_usd=loan_amount*Last)-&amp;gt; kiva_loans&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;d.country_codes&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;9&lt;/span&gt; d.&lt;code&gt;country_codes&lt;/code&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;d.&lt;code&gt;country_codes&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Finally, with 86 countries, we have 86 levels. Perhaps it would be interesting to create another category called continent to produce less levels and have a better understanding of the overall function of regional distributions.&lt;/p&gt;
 &lt;p&gt;Our country codes are in the ISO3166 format, so we will use the associated continent code found &lt;a href=&#34;https://dev.maxmind.com/geoip/legacy/codes/country_continent/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#Read `country_continent.csv`
@@ -356,9 +343,7 @@ continents &amp;lt;- read_csv(paste(path,&amp;quot;country_continent.csv&amp;quo
 levels(kiva_loans$continent)
 [1] &amp;quot;AF&amp;quot; &amp;quot;AS&amp;quot; &amp;quot;EU&amp;quot; &amp;quot;OC&amp;quot; &amp;quot;SA&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;5 continents! Africa, Asia, Europe, Oceania, and South America. Granted, we’ve lost spacial resolution. However, for our initial purpose, this is exactly what we wanted.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;e.-dates&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;10&lt;/span&gt; e. Dates&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;e. Dates&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Dates aren’t numeric, but we can make them. Let’s calculate two lengths of time that I think are interesting.
 First, how much time passes from the moment the loan is posted to the moment it’s disbursed (&lt;code&gt;total_time&lt;/code&gt;). Second, how long does a loan take to get funded (&lt;code&gt;giving_time&lt;/code&gt;)? Let’s find out!&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;kiva_loans%&amp;gt;%
@@ -421,12 +406,12 @@ Skim summary statistics
 ── Variable type:numeric ─────────────────────────────────────────────────────────────────────
         variable missing complete      n   mean     sd        p0  p25
  giving_time_num   48331   622713 671044  14.64  14.4   -17.51   5.17
-        loan_usd       0   671044 671044 267.3  946.99    0.0022 1.74
+        loan_usd       0   671044 671044 267.29 946.97    0.0022 1.74
   term_in_months       0   671044 671044  13.74   8.6     1      8   
   total_time_num    2396   668648 671044  14.09  18.56 -427.02   7.09
    p50   p75     p100     hist
   9.59 22.54   420.57 ▇▁▁▁▁▁▁▁
-  5.14 90.69 1e+05    ▇▁▁▁▁▁▁▁
+  5.14 90.62 1e+05    ▇▁▁▁▁▁▁▁
  13    14      158    ▇▁▁▁▁▁▁▁
  16.12 26.67    32.04 ▁▁▁▁▁▁▁▇
 
@@ -441,11 +426,11 @@ Skim summary statistics
    667240&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;exploratory-data-analysis&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;11&lt;/span&gt; Exploratory data analysis&lt;/h1&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;6&lt;/span&gt; Exploratory data analysis&lt;/h1&gt;
 &lt;p&gt;Now let’s describe the data. We could jump into the regression trees but exploring the data will help us interpret our predictions better. Do some extra work now and enjoy the benefits later.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;factors&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;12&lt;/span&gt; Factors&lt;/h1&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;7&lt;/span&gt; Factors&lt;/h1&gt;
 &lt;p&gt;Let’s make two-way tables to understand our factors.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;prop.table(table(kiva_loans$borrower_genders))
 
@@ -510,7 +495,7 @@ ggplot(kiva_loans, aes(x = continent, fill = sector)) +
 &lt;p&gt;&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries_plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;numeric-variables&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;13&lt;/span&gt; Numeric variables&lt;/h1&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;8&lt;/span&gt; Numeric variables&lt;/h1&gt;
 &lt;p&gt;Now let’s look at the distributions of our numeric variables.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(kiva_loans,aes(x=loan_usd))+
   geom_density()+
@@ -595,10 +580,10 @@ The median time between posting the loan and the loan being fully funded is abou
 The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;what-i-found-out&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;14&lt;/span&gt; What I found out&lt;/h1&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;9&lt;/span&gt; What I found out&lt;/h1&gt;
 &lt;/div&gt;
 &lt;div id=&#34;conclusions&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;15&lt;/span&gt; Conclusions&lt;/h1&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;10&lt;/span&gt; Conclusions&lt;/h1&gt;
 &lt;p&gt;*LOL. Read that again outloud and laugh at the jargon put together in one short sentence.&lt;/p&gt;
 &lt;/div&gt;
 </description>
@@ -652,248 +637,12 @@ The total time between posting the loan and it being disbursed has a funky looki
     </item>
     
     <item>
-      <title>Academic: the website designer for Hugo</title>
-      <link>/post/getting-started/</link>
-      <pubDate>Wed, 20 Apr 2016 00:00:00 +0200</pubDate>
-      
-      <guid>/post/getting-started/</guid>
-      <description>
-
-&lt;p&gt;&lt;strong&gt;Academic&lt;/strong&gt; is a framework to help you create a beautiful website quickly. Perfect for personal sites, blogs, or business/project sites. &lt;a href=&#34;https://themes.gohugo.io/theme/academic/&#34; target=&#34;_blank&#34;&gt;Check out the latest demo&lt;/a&gt; of what you&amp;rsquo;ll get in less than 10 minutes. Then head on over to the &lt;a href=&#34;https://sourcethemes.com/academic/docs/&#34; target=&#34;_blank&#34;&gt;Quick Start guide&lt;/a&gt; or take a look at the &lt;a href=&#34;https://sourcethemes.com/academic/updates/&#34; target=&#34;_blank&#34;&gt;Release Notes&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/gcushen/hugo-academic/&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;https://raw.githubusercontent.com/gcushen/hugo-academic/master/academic.png&#34; alt=&#34;Screenshot&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Key features:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Easily manage various content including homepage, blog posts, publications, talks, and projects&lt;/li&gt;
-&lt;li&gt;Extensible via &lt;strong&gt;color themes&lt;/strong&gt; and &lt;strong&gt;widgets/plugins&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Write in &lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34;&gt;Markdown&lt;/a&gt; for easy formatting and code highlighting, with &lt;a href=&#34;https://en.wikibooks.org/wiki/LaTeX/Mathematics&#34; target=&#34;_blank&#34;&gt;LaTeX&lt;/a&gt; for mathematical expressions&lt;/li&gt;
-&lt;li&gt;Social/academic network linking, &lt;a href=&#34;https://analytics.google.com&#34; target=&#34;_blank&#34;&gt;Google Analytics&lt;/a&gt;, and &lt;a href=&#34;https://disqus.com&#34; target=&#34;_blank&#34;&gt;Disqus&lt;/a&gt; comments&lt;/li&gt;
-&lt;li&gt;Responsive and mobile friendly&lt;/li&gt;
-&lt;li&gt;Simple and refreshing one page design&lt;/li&gt;
-&lt;li&gt;Multilingual and easy to customize&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;color-themes&#34;&gt;Color Themes&lt;/h2&gt;
-
-&lt;p&gt;Academic is available in different color themes and font themes.&lt;/p&gt;
-
-
-
-&lt;div class=&#34;gallery&#34;&gt;
-  
-  
-  
-  
-    
-  
-  &lt;a data-fancybox=&#34;gallery-1&#34; data-caption=&#34;Default&#34; href=&#34;https://raw.githubusercontent.com/gcushen/hugo-academic/master/images/theme-default.png&#34;&gt;
-    &lt;img alt=&#34;&#34; src=&#34;https://raw.githubusercontent.com/gcushen/hugo-academic/master/images/theme-default.png&#34;&gt;
-  &lt;/a&gt;
-  
-  
-  
-  
-    
-  
-  &lt;a data-fancybox=&#34;gallery-1&#34; data-caption=&#34;Ocean&#34; href=&#34;https://raw.githubusercontent.com/gcushen/hugo-academic/master/images/theme-ocean.png&#34;&gt;
-    &lt;img alt=&#34;&#34; src=&#34;https://raw.githubusercontent.com/gcushen/hugo-academic/master/images/theme-ocean.png&#34;&gt;
-  &lt;/a&gt;
-  
-  
-  
-  
-    
-  
-  &lt;a data-fancybox=&#34;gallery-1&#34; data-caption=&#34;Dark&#34; href=&#34;https://raw.githubusercontent.com/gcushen/hugo-academic/master/images/theme-dark.png&#34;&gt;
-    &lt;img alt=&#34;&#34; src=&#34;https://raw.githubusercontent.com/gcushen/hugo-academic/master/images/theme-dark.png&#34;&gt;
-  &lt;/a&gt;
-  
-  
-  
-  
-    
-  
-  &lt;a data-fancybox=&#34;gallery-1&#34; data-caption=&#34;Default&#34; href=&#34;https://raw.githubusercontent.com/gcushen/hugo-academic/master/images/theme-forest.png&#34;&gt;
-    &lt;img alt=&#34;&#34; src=&#34;https://raw.githubusercontent.com/gcushen/hugo-academic/master/images/theme-forest.png&#34;&gt;
-  &lt;/a&gt;
-  
-  
-  
-  
-    
-  
-  &lt;a data-fancybox=&#34;gallery-1&#34; data-caption=&#34;Coffee theme with Playfair font&#34; href=&#34;https://raw.githubusercontent.com/gcushen/hugo-academic/master/images/theme-coffee-playfair.png&#34;&gt;
-    &lt;img alt=&#34;&#34; src=&#34;https://raw.githubusercontent.com/gcushen/hugo-academic/master/images/theme-coffee-playfair.png&#34;&gt;
-  &lt;/a&gt;
-  
-  
-  
-  
-    
-  
-  &lt;a data-fancybox=&#34;gallery-1&#34; data-caption=&#34;1950s&#34; href=&#34;https://raw.githubusercontent.com/gcushen/hugo-academic/master/images/theme-1950s.png&#34;&gt;
-    &lt;img alt=&#34;&#34; src=&#34;https://raw.githubusercontent.com/gcushen/hugo-academic/master/images/theme-1950s.png&#34;&gt;
-  &lt;/a&gt;
-  
-&lt;/div&gt;
-
-&lt;h2 id=&#34;install&#34;&gt;Install&lt;/h2&gt;
-
-&lt;p&gt;You can choose from one of the following four methods to install:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;one-click install using your web browser (recommended)&lt;/li&gt;
-&lt;li&gt;install on your computer using Git with the Command Prompt/Terminal app&lt;/li&gt;
-&lt;li&gt;install on your computer by downloading the ZIP files&lt;/li&gt;
-&lt;li&gt;install on your computer with RStudio&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;quick-install-using-your-web-browser&#34;&gt;Quick install using your web browser&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;https://app.netlify.com/start/deploy?repository=https://github.com/sourcethemes/academic-kickstart&#34; target=&#34;_blank&#34;&gt;Install Academic with Netlify&lt;/a&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Netlify will provide you with a customizable URL to access your new site&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;On GitHub, go to your newly created &lt;code&gt;academic-kickstart&lt;/code&gt; repository and edit &lt;code&gt;config.toml&lt;/code&gt; to personalize your site. Shortly after saving the file, your site will automatically update&lt;/li&gt;
-&lt;li&gt;Read the &lt;a href=&#34;https://sourcethemes.com/academic/docs/&#34; target=&#34;_blank&#34;&gt;Quick Start Guide&lt;/a&gt; to learn how to add Markdown content. For inspiration, refer to the &lt;a href=&#34;https://github.com/gcushen/hugo-academic/tree/master/exampleSite&#34; target=&#34;_blank&#34;&gt;Markdown content&lt;/a&gt; which powers the &lt;a href=&#34;https://themes.gohugo.io/theme/academic/&#34; target=&#34;_blank&#34;&gt;Demo&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;install-with-git&#34;&gt;Install with Git&lt;/h3&gt;
-
-&lt;p&gt;Prerequisites:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://git-scm.com/downloads&#34; target=&#34;_blank&#34;&gt;Download and install Git&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://gohugo.io/getting-started/installing/#quick-install&#34; target=&#34;_blank&#34;&gt;Download and install Hugo&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/sourcethemes/academic-kickstart#fork-destination-box&#34; target=&#34;_blank&#34;&gt;Fork&lt;/a&gt; the &lt;em&gt;Academic Kickstart&lt;/em&gt; repository and clone your fork with Git:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git clone https://github.com/sourcethemes/academic-kickstart.git My_Website
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;Note that if you forked Academic Kickstart, the above command should be edited to clone your fork, i.e. replace &lt;code&gt;sourcethemes&lt;/code&gt; with your GitHub username.&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Initialize the theme:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cd My_Website
-git submodule update --init --recursive
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;install-with-zip&#34;&gt;Install with ZIP&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/sourcethemes/academic-kickstart/archive/master.zip&#34; target=&#34;_blank&#34;&gt;Download&lt;/a&gt; and extract &lt;em&gt;Academic Kickstart&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/gcushen/hugo-academic/archive/master.zip&#34; target=&#34;_blank&#34;&gt;Download&lt;/a&gt; and extract the &lt;em&gt;Academic theme&lt;/em&gt; to the &lt;code&gt;themes/academic/&lt;/code&gt; folder from the above step&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;install-with-rstudio&#34;&gt;Install with RStudio&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://sourcethemes.com/academic/docs/install/#install-with-rstudio&#34; target=&#34;_blank&#34;&gt;View the guide to installing Academic with RStudio&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;quick-start&#34;&gt;Quick start&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;If you installed on your computer, view your new website by running the following command:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;hugo server
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now visit &lt;a href=&#34;http://localhost:1313&#34; target=&#34;_blank&#34;&gt;localhost:1313&lt;/a&gt; and your new Academic powered website will appear. Otherwise, if using Netlify, they will provide you with your URL.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Read the &lt;a href=&#34;https://sourcethemes.com/academic/docs/&#34; target=&#34;_blank&#34;&gt;Quick Start Guide&lt;/a&gt; to learn how to add Markdown content, customize your site, and deploy it. For inspiration, refer to the &lt;a href=&#34;https://github.com/gcushen/hugo-academic/tree/master/exampleSite&#34; target=&#34;_blank&#34;&gt;Markdown content&lt;/a&gt; which powers the &lt;a href=&#34;https://themes.gohugo.io/theme/academic/&#34; target=&#34;_blank&#34;&gt;Demo&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Build your site by running the &lt;code&gt;hugo&lt;/code&gt; command. Then &lt;a href=&#34;https://georgecushen.com/create-your-website-with-hugo/&#34; target=&#34;_blank&#34;&gt;host it for free using Github Pages&lt;/a&gt; or Netlify (refer to the first installation method). Alternatively, copy the generated &lt;code&gt;public/&lt;/code&gt; directory (by FTP, Rsync, etc.) to your production web server (such as a university&amp;rsquo;s hosting service).&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;updating&#34;&gt;Updating&lt;/h2&gt;
-
-&lt;p&gt;Feel free to &lt;em&gt;star&lt;/em&gt; the project on &lt;a href=&#34;https://github.com/gcushen/hugo-academic/&#34; target=&#34;_blank&#34;&gt;Github&lt;/a&gt; to help keep track of updates and check out the &lt;a href=&#34;https://sourcethemes.com/academic/updates&#34; target=&#34;_blank&#34;&gt;release notes&lt;/a&gt; prior to updating your site.&lt;/p&gt;
-
-&lt;p&gt;Before updating the framework, it is recommended to make a backup of your entire website directory (or at least your &lt;code&gt;themes/academic&lt;/code&gt; directory) and record your current version number.&lt;/p&gt;
-
-&lt;p&gt;By default, Academic is installed as a Git submodule which can be updated by running the following command:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git submodule update --remote --merge
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://sourcethemes.com/academic/docs/update/&#34; target=&#34;_blank&#34;&gt;Check out the update guide&lt;/a&gt; for full instructions and alternative methods.&lt;/p&gt;
-
-&lt;h2 id=&#34;feedback-contributing&#34;&gt;Feedback &amp;amp; Contributing&lt;/h2&gt;
-
-&lt;p&gt;Please use the &lt;a href=&#34;https://github.com/gcushen/hugo-academic/issues&#34; target=&#34;_blank&#34;&gt;issue tracker&lt;/a&gt; to let me know about any bugs or feature requests, or alternatively make a pull request.&lt;/p&gt;
-
-&lt;p&gt;For support, head over to the &lt;a href=&#34;http://discuss.gohugo.io&#34; target=&#34;_blank&#34;&gt;Hugo discussion forum&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;license&#34;&gt;License&lt;/h2&gt;
-
-&lt;p&gt;Copyright 2016-present &lt;a href=&#34;https://georgecushen.com&#34; target=&#34;_blank&#34;&gt;George Cushen&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Released under the &lt;a href=&#34;https://github.com/gcushen/hugo-academic/blob/master/LICENSE.md&#34; target=&#34;_blank&#34;&gt;MIT&lt;/a&gt; license.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>A Person Re-Identification System For Mobile Devices</title>
       <link>/publication/person-re-identification/</link>
       <pubDate>Tue, 01 Sep 2015 00:00:00 +0200</pubDate>
       
       <guid>/publication/person-re-identification/</guid>
       <description>&lt;p&gt;More detail can easily be written here using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Hello R Markdown</title>
-      <link>/post/2015-07-23-r-rmarkdown/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
-      
-      <guid>/post/2015-07-23-r-rmarkdown/</guid>
-      <description>&lt;div id=&#34;r-markdown&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;R Markdown&lt;/h1&gt;
-&lt;p&gt;This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see &lt;a href=&#34;http://rmarkdown.rstudio.com&#34; class=&#34;uri&#34;&gt;http://rmarkdown.rstudio.com&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;You can embed an R code chunk like this:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(cars)
-##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00
-fit &amp;lt;- lm(dist ~ speed, data = cars)
-fit
-## 
-## Call:
-## lm(formula = dist ~ speed, data = cars)
-## 
-## Coefficients:
-## (Intercept)        speed  
-##     -17.579        3.932&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;including-plots&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Including Plots&lt;/h1&gt;
-&lt;p&gt;You can also embed plots. See Figure &lt;a href=&#34;#fig:pie&#34;&gt;1&lt;/a&gt; for example:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;par(mar = c(0, 1, 0, 1))
-pie(
-  c(280, 60, 20),
-  c(&amp;#39;Sky&amp;#39;, &amp;#39;Sunny side of pyramid&amp;#39;, &amp;#39;Shady side of pyramid&amp;#39;),
-  col = c(&amp;#39;#0292D8&amp;#39;, &amp;#39;#F7EA39&amp;#39;, &amp;#39;#C4B632&amp;#39;),
-  init.angle = -50, border = NA
-)&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:pie&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2015-07-23-r-rmarkdown_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 1: A fancy pie chart.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 </description>
     </item>
     
