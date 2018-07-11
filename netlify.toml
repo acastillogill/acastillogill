@@ -18,3 +18,8 @@ HUGO_VERSION = "0.42"
 # you can lock a version of hugo for a branch-deploy (other than previews)
 [context.branch-deploy.environment]
 HUGO_VERSION = "0.42"
+
+# A basic redirects rule
+[[redirects]]
+from = "https://ad-castillogill.netlify.com/*"
+to = "https://ad-castillogill.com/:splat"
