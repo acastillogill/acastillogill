@@ -1,2 +1,2 @@
 # Redirect default Netlify subdomain to primary domain
-https://ad-castillogill.netlify.com/* https://www.ad-castillogill.com/:splat 301!
+https://ad-castillogill.netlify.com/post* https://www.ad-castillogill.com/:splat 301!
