@@ -23,6 +23,3 @@ HUGO_VERSION = "0.42"
 [[redirects]]
 from = "https://ad-castillogill.netlify.com/*"
 to = "https://ad-castillogill.com/:splat 301!"
-
-from = "https://ad-castillogill.netlify.com/post*"
-to = "https://ad-castillogill.com/post/:splat 301!"
