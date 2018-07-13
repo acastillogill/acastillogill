@@ -439,7 +439,10 @@ na.omit(kiva_loans)%>%
            fill="purple")+
   coord_flip()+
     theme_minimal()+
- theme(axis.title.y=element_blank())
+ theme(axis.title.y=element_blank())+
+  labs(title="Top 20 countries that request Kiva Loans",
+       x="Country count",
+       y="")
 
 ```
 
