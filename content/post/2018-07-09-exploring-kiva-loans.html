@@ -17,139 +17,6 @@ output:
     toc_depth: 1
 ---
 
----
-title: Exploring Kiva loans
-author: Ángela D. Castillo-Gill
-date: '2018-07-07'
-slug: exploring-kiva-loans
-categories:
-  - R
-  - EDA
-tags: 
-  - Kaggle
-  - Kiva
-summary: What do Kiva loans around the world look like?
-output:
-  blogdown::html_page:
-    toc: true
-    number_sections: true
-    toc_depth: 1
----
-
----
-title: Exploring Kiva loans
-author: Ángela D. Castillo-Gill
-date: '2018-07-07'
-slug: exploring-kiva-loans
-categories:
-  - R
-  - EDA
-tags: 
-  - Kaggle
-  - Kiva
-summary: What do Kiva loans around the world look like?
-output:
-  blogdown::html_page:
-    toc: true
-    number_sections: true
-    toc_depth: 1
----
-
----
-title: Exploring Kiva loans
-author: Ángela D. Castillo-Gill
-date: '2018-07-07'
-slug: exploring-kiva-loans
-categories:
-  - R
-  - EDA
-tags: 
-  - Kaggle
-  - Kiva
-summary: What do Kiva loans around the world look like?
-output:
-  blogdown::html_page:
-    toc: true
-    number_sections: true
-    toc_depth: 1
----
-
----
-title: Exploring Kiva loans
-author: Ángela D. Castillo-Gill
-date: '2018-07-07'
-slug: exploring-kiva-loans
-categories:
-  - R
-  - EDA
-tags: 
-  - Kaggle
-  - Kiva
-summary: What do Kiva loans around the world look like?
-output:
-  blogdown::html_page:
-    toc: true
-    number_sections: true
-    toc_depth: 1
----
-
----
-title: Exploring Kiva loans
-author: Ángela D. Castillo-Gill
-date: '2018-07-07'
-slug: exploring-kiva-loans
-categories:
-  - R
-  - EDA
-tags: 
-  - Kaggle
-  - Kiva
-summary: What do Kiva loans around the world look like?
-output:
-  blogdown::html_page:
-    toc: true
-    number_sections: true
-    toc_depth: 1
----
-
----
-title: Exploring Kiva loans
-author: Ángela D. Castillo-Gill
-date: '2018-07-07'
-slug: exploring-kiva-loans
-categories:
-  - R
-  - EDA
-tags: 
-  - Kaggle
-  - Kiva
-summary: What do Kiva loans around the world look like?
-output:
-  blogdown::html_page:
-    toc: true
-    number_sections: true
-    toc_depth: 1
----
-
----
-title: Exploring Kiva loans
-author: Ángela D. Castillo-Gill
-date: '2018-07-07'
-slug: exploring-kiva-loans
-categories:
-  - R
-  - EDA
-tags: 
-  - Kaggle
-  - Kiva
-summary: What do Kiva loans around the world look like?
-output:
-  blogdown::html_page:
-    toc: true
-    number_sections: true
-    toc_depth: 1
----
-
 
 <div id="TOC">
 <ul>
@@ -217,56 +84,7 @@ $ borrower_genders   &lt;chr&gt; &quot;female&quot;, &quot;female, female&quot;,
 $ repayment_interval &lt;chr&gt; &quot;irregular&quot;, &quot;irregular&quot;, &quot;bullet&quot;, &quot;irregu...
 $ date               &lt;date&gt; 2014-01-01, 2014-01-01, 2014-01-01, 2014-0...</code></pre>
 <p>Wow! 671,205 observations and 20 variables.</p>
-<pre class="r"><code>#Get a glimpse of kiva_locations
-glimpse(kiva_locations)
-Observations: 2,772
-Variables: 9
-$ LocationName &lt;chr&gt; &quot;Badakhshan, Afghanistan&quot;, &quot;Badghis, Afghanistan&quot;...
-$ ISO          &lt;chr&gt; &quot;AFG&quot;, &quot;AFG&quot;, &quot;AFG&quot;, &quot;AFG&quot;, &quot;AFG&quot;, &quot;AFG&quot;, &quot;AFG&quot;, ...
-$ country      &lt;chr&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afg...
-$ region       &lt;chr&gt; &quot;Badakhshan&quot;, &quot;Badghis&quot;, &quot;Baghlan&quot;, &quot;Balkh&quot;, &quot;Bam...
-$ world_region &lt;chr&gt; &quot;South Asia&quot;, &quot;South Asia&quot;, &quot;South Asia&quot;, &quot;South ...
-$ MPI          &lt;dbl&gt; 0.387, 0.466, 0.300, 0.301, 0.325, 0.313, 0.319, ...
-$ geo          &lt;chr&gt; &quot;(36.7347725, 70.81199529999999)&quot;, &quot;(35.1671339, ...
-$ lat          &lt;dbl&gt; 36.73477, 35.16713, 35.80429, 36.75506, 34.81001,...
-$ lon          &lt;dbl&gt; 70.81200, 63.76954, 69.28775, 66.89754, 67.82121,...</code></pre>
-<p>It seems that this set is dedicated to showing the specific region but has 2,772. It doesn’t match the first dataset. I assume this dataset is related to the Kaggle contest related to the dataset.</p>
-<pre class="r"><code>#Get a glimpse of kiva_themes
-glimpse(kiva_themes)
-Observations: 779,092
-Variables: 4
-$ id                &lt;int&gt; 638631, 640322, 641006, 641019, 641594, 6422...
-$ `Loan Theme ID`   &lt;chr&gt; &quot;a1050000000skGl&quot;, &quot;a1050000000skGl&quot;, &quot;a1050...
-$ `Loan Theme Type` &lt;chr&gt; &quot;General&quot;, &quot;General&quot;, &quot;Higher Education&quot;, &quot;H...
-$ `Partner ID`      &lt;dbl&gt; 151, 151, 160, 160, 336, 217, 57, 217, 133, ...</code></pre>
-<p>It seems that this dataset could be linking the first one with a particular larger <code>theme</code>, as defined by Kiva.</p>
-<p>Finally, the last one.</p>
-<pre class="r"><code>#Get a glimpse of kiva_locations_themes
-glimpse(kiva_locations_themes)
-Observations: 15,736
-Variables: 21
-$ `Partner ID`         &lt;int&gt; 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,...
-$ `Field Partner Name` &lt;chr&gt; &quot;KREDIT Microfinance Institution&quot;, &quot;KREDI...
-$ sector               &lt;chr&gt; &quot;General Financial Inclusion&quot;, &quot;General F...
-$ `Loan Theme ID`      &lt;chr&gt; &quot;a1050000000slfi&quot;, &quot;a10500000068jPe&quot;, &quot;a1...
-$ `Loan Theme Type`    &lt;chr&gt; &quot;Higher Education&quot;, &quot;Vulnerable Populatio...
-$ country              &lt;chr&gt; &quot;Cambodia&quot;, &quot;Cambodia&quot;, &quot;Cambodia&quot;, &quot;Camb...
-$ forkiva              &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;,...
-$ region               &lt;chr&gt; &quot;Banteay Meanchey&quot;, &quot;Battambang Province&quot;...
-$ geocode_old          &lt;chr&gt; &quot;(13.75, 103.0)&quot;, NA, NA, &quot;(12.0, 105.5)&quot;...
-$ ISO                  &lt;chr&gt; &quot;KHM&quot;, &quot;KHM&quot;, &quot;KHM&quot;, &quot;KHM&quot;, &quot;KHM&quot;, &quot;KHM&quot;,...
-$ number               &lt;int&gt; 1, 58, 7, 1383, 3, 36, 2, 249, 7, 18, 890...
-$ amount               &lt;int&gt; 450, 20275, 9150, 604950, 275, 62225, 130...
-$ LocationName         &lt;chr&gt; &quot;Banteay Meanchey, Cambodia&quot;, &quot;Battambang...
-$ geocode              &lt;chr&gt; &quot;[(13.6672596, 102.8975098)]&quot;, &quot;[(13.0286...
-$ names                &lt;chr&gt; &quot;Banteay Meanchey Province; Cambodia&quot;, &quot;B...
-$ geo                  &lt;chr&gt; &quot;(13.6672596, 102.8975098)&quot;, &quot;(13.0286971...
-$ lat                  &lt;dbl&gt; 13.66726, 13.02870, 13.02870, 12.09829, 1...
-$ lon                  &lt;dbl&gt; 102.8975, 102.9896, 102.9896, 105.3131, 1...
-$ mpi_region           &lt;chr&gt; &quot;Banteay Mean Chey, Cambodia&quot;, &quot;Banteay M...
-$ mpi_geo              &lt;chr&gt; &quot;(13.6672596, 102.8975098)&quot;, &quot;(13.6672596...
-$ rural_pct            &lt;dbl&gt; 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 9...</code></pre>
-<p>It seems that this dataset contains more georeferenced information. Since I’m interested in <strong>learning what variables contribute to the final amount lended without specific geographic information, (country is enough)</strong>, I’m going to stick with the first dataset, <code>kiva_loans</code>. I’m tempted to jump into a regression of sorts, but first, let’s have a closer look at the data to understand the variables and decide which ones are most helpful.</p>
+<p>Let’s have a closer look at the data and see what each variable looks like.</p>
 <ul>
 <li><code>funded_amount</code>: “The amount disbursed by Kiva to the field agent(USD)”</li>
 <li><code>loan_amount</code>: “The amount disbursed by the field agent to the borrower(USD)”</li>
@@ -537,12 +355,12 @@ Skim summary statistics
 ── Variable type:numeric ─────────────────────────────────────────────────────────────────────
         variable missing complete      n   mean     sd        p0  p25
  giving_time_num   48331   622713 671044  14.64  14.4   -17.51   5.17
-        loan_usd       0   671044 671044 267.29 946.97    0.0022 1.74
+        loan_usd       0   671044 671044 267.26 947.01    0.0022 1.72
   term_in_months       0   671044 671044  13.74   8.6     1      8   
   total_time_num    2396   668648 671044  14.09  18.56 -427.02   7.09
    p50   p75     p100     hist
   9.59 22.54   420.57 ▇▁▁▁▁▁▁▁
-  5.14 90.62 1e+05    ▇▁▁▁▁▁▁▁
+  5.14 90.23 1e+05    ▇▁▁▁▁▁▁▁
  13    14      158    ▇▁▁▁▁▁▁▁
  16.12 26.67    32.04 ▁▁▁▁▁▁▁▇
 
@@ -598,10 +416,11 @@ ggplot(kiva_loans, aes(x = continent, fill = borrower_genders)) +
   geom_bar(position = &quot;dodge&quot;) +theme_classic()</code></pre>
 <p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/continent_and_borrower_genders_plots-1.png" width="672" /></p>
 <p>In all continents, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it’s mixed genders.</p>
-<pre class="r"><code>
-# Create side-by-side barchart of repayment interval by continent
-ggplot(kiva_loans, aes(x = continent, fill = repayment_interval)) + 
-  geom_bar(position = &quot;dodge&quot;)+ theme_classic()</code></pre>
+<pre class="r"><code>#Create side-by-side barchart of repayment interval by continent
+ggplot(kiva_loans,
+       aes(x = continent, fill = repayment_interval)) + 
+  geom_bar(position = &quot;dodge&quot;)+
+  theme_classic()</code></pre>
 <p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/repayment_interval_and_continent-1.png" width="672" /></p>
 <p>In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it’s monthly.</p>
 <pre class="r"><code>
@@ -610,39 +429,54 @@ ggplot(kiva_loans, aes(x = continent, fill = sector)) +
   geom_bar(position = &quot;dodge&quot;)+ theme_classic()</code></pre>
 <p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/sectors_and_continents-1.png" width="672" /></p>
 <p>In every continent, the three most popular sectors are agriculture, retail, and food.</p>
-<p>Finally, we still would like to understand what countries are most represented and which ones, less so. Let’s have a look.</p>
-<pre class="r"><code>na.omit(kiva_loans)%&gt;%
-  group_by(country_code)%&gt;%
-  dplyr::summarize(country_count=n())%&gt;%
-  arrange(desc(country_count))%&gt;%
-  top_n(20)%&gt;%
-  ggplot(aes(x=reorder(country_code,country_count),y=country_count))+
-  geom_col(position=&quot;dodge&quot;,
-           color = &quot;black&quot;,
-           fill=&quot;purple&quot;)+
-  coord_flip()+
-    theme_minimal()+
- theme(axis.title.y=element_blank())</code></pre>
+<p>Finally, we still would like to understand which countries are requesting the most loans. Let’see.</p>
+<pre class="r"><code>kiva_loans %&gt;%
+  group_by(country_code) %&gt;%
+  dplyr::count(country_code, sort = TRUE) %&gt;%
+  ungroup() %&gt;%
+  top_n(10) %&gt;%
+  ggplot(aes(reorder(x = country_code, n), y = n)) +
+  geom_col(position = &quot;dodge&quot;,
+  color = &quot;purple&quot;,
+  fill = &quot;purple&quot;) +
+  coord_flip() +
+  theme_minimal() +
+  labs(title = &quot;Top 10 countries requesting Kiva Loans&quot;,
+  x = &quot;&quot;,
+  y = &quot;Country count&quot;)</code></pre>
 <p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries_plot-1.png" width="672" /></p>
+<p>We see that the Philippines is the country that requests the mosts loans with over double as the second country Kenya <code>KE</code>. Other top countries Cambodia <code>KH</code>, Pakistan <code>PK</code>, Peru <code>PE</code>, Colombia <code>CO</code>, Uganda <code>UG</code>, Tajikistan <code>TJ</code>, Ecuador <code>EC</code>, and Paraguay <code>PY</code>.</p>
 </div>
 <div id="numeric-variables" class="section level1">
 <h1><span class="header-section-number">8</span> Numeric variables</h1>
 <p>Now let’s look at the distributions of our numeric variables.</p>
-<pre class="r"><code>ggplot(kiva_loans,aes(x=loan_usd))+
-  geom_density()+
-  theme_classic()+
-  scale_x_continuous(limits=c(0,15))+
-  geom_vline(xintercept = median(kiva_loans$loan_usd),
-             color=&quot;red&quot;,
-              linetype=&quot;dashed&quot;)+
-  annotate(&quot;text&quot;,
-           label=paste(&quot;Median =&quot;,
-                       round(median(kiva_loans$loan_usd),digits = 2),&quot;USD&quot;),
-                x=median(kiva_loans$loan_usd),
-                y=0.2,
-           color=&quot;red&quot;)</code></pre>
-<p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/loan_usd_distribution-1.png" width="672" />
-The median loan in US dollars is 4.19. The distribution is multimodal and right-skewed with its biggest peak around $1 and its second around $4.</p>
+<pre class="r"><code>
+ggplot(kiva_loans, aes(x = loan_usd)) +
+  geom_density() +
+  theme_classic() +
+  scale_x_continuous(limits = c(0, 15)) +
+  geom_vline(
+  xintercept = median(kiva_loans$loan_usd),
+  color = &quot;red&quot;,
+  linetype = &quot;dashed&quot;) +
+  annotate(
+  &quot;text&quot;,
+  label = paste(&quot;Median =&quot;,
+  round(median(kiva_loans$loan_usd), digits = 2), &quot;USD&quot;),
+  x = 5,
+  y = 0.2,
+  color = &quot;red&quot;
+  ) +
+  labs(title = &quot;Distribution of Kiva loans in USD&quot;,
+  x = &quot;US dollars&quot;,
+  y = &quot;&quot;)</code></pre>
+<div class="figure">
+<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/loan_usd_distribution-1.png" alt="Distribution of Kiva loans in USD" width="672" />
+<p class="caption">
+(#fig:loan_usd_distribution)Distribution of Kiva loans in USD
+</p>
+</div>
+<p>Figure @ref(fig:loan_usd_distribution), shows that the distribution of Kiva loans in US dollars is right skewed and multimodal with its biggest peak around $1 and its second around $4. The median is about 4.2071803.</p>
 <pre class="r"><code>ggplot(kiva_loans,
        aes(x=term_in_months))+
   geom_density()+

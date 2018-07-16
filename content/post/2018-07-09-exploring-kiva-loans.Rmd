@@ -378,7 +378,7 @@ In all continents, single females request the most loans followed by single male
 ggplot(kiva_loans,
        aes(x = continent, fill = repayment_interval)) + 
   geom_bar(position = "dodge")+
-  theme_classic()+
+  theme_classic()
 ```
 
 In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it's monthly. 
