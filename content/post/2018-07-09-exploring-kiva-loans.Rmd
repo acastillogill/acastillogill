@@ -408,10 +408,11 @@ ggplot(kiva_loans, aes(x = continent, fill = borrower_genders)) +
 In all continents, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it's mixed genders. 
 
 ```{r repayment_interval_and_continent}
-
-# Create side-by-side barchart of repayment interval by continent
-ggplot(kiva_loans, aes(x = continent, fill = repayment_interval)) + 
-  geom_bar(position = "dodge")+ theme_classic()
+#Create side-by-side barchart of repayment interval by continent
+ggplot(kiva_loans,
+       aes(x = continent, fill = repayment_interval)) + 
+  geom_bar(position = "dodge")+
+  theme_classic()+
 ```
 
 In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it's monthly. 
@@ -425,52 +426,57 @@ ggplot(kiva_loans, aes(x = continent, fill = sector)) +
 
 In every continent, the three most popular sectors are agriculture, retail, and food. 
 
-Finally, we still would like to understand what countries are most represented and which ones, less so. Let's have a look. 
+Finally, we still would like to understand which countries are requesting the most loans. Let'see.
 
-```{r countries_plot, fig.height=5 }
-na.omit(kiva_loans)%>%
-  group_by(country_code)%>%
-  dplyr::summarize(country_count=n())%>%
-  arrange(desc(country_count))%>%
-  top_n(20)%>%
-  ggplot(aes(x=reorder(country_code,country_count),y=country_count))+
-  geom_col(position="dodge",
-           color = "black",
-           fill="purple")+
-  coord_flip()+
-    theme_minimal()+
- theme(axis.title.y=element_blank())+
-  labs(title="Top 20 countries that request Kiva Loans",
-       x="Country count",
-       y="")
-
+```{r countries_plot, fig.height=5}
+kiva_loans %>%
+  group_by(country_code) %>%
+  dplyr::count(country_code, sort = TRUE) %>%
+  ungroup() %>%
+  top_n(10) %>%
+  ggplot(aes(reorder(x = country_code, n), y = n)) +
+  geom_col(position = "dodge",
+  color = "purple",
+  fill = "purple") +
+  coord_flip() +
+  theme_minimal() +
+  labs(title = "Top 10 countries requesting Kiva Loans",
+  x = "",
+  y = "Country count")
 ```
 
-
-
-
+We see that the Philippines is the country that requests the mosts loans with over double as the second country Kenya `KE`. Other top countries Cambodia `KH`, Pakistan `PK`, Peru `PE`, Colombia `CO`, Uganda `UG`, Tajikistan `TJ`, Ecuador `EC`, and Paraguay `PY`.
 
 
 # Numeric variables 
 
 Now let's look at the distributions of our numeric variables.
 
-```{r loan_usd_distribution}
-ggplot(kiva_loans,aes(x=loan_usd))+
-  geom_density()+
-  theme_classic()+
-  scale_x_continuous(limits=c(0,15))+
-  geom_vline(xintercept = median(kiva_loans$loan_usd),
-             color="red",
-              linetype="dashed")+
-  annotate("text",
-           label=paste("Median =",
-                       round(median(kiva_loans$loan_usd),digits = 2),"USD"),
-                x=median(kiva_loans$loan_usd),
-                y=0.2,
-           color="red")
+```{r loan_usd_distribution, fig.cap="Distribution of Kiva loans in USD"}
+
+ggplot(kiva_loans, aes(x = loan_usd)) +
+  geom_density() +
+  theme_classic() +
+  scale_x_continuous(limits = c(0, 15)) +
+  geom_vline(
+  xintercept = median(kiva_loans$loan_usd),
+  color = "red",
+  linetype = "dashed") +
+  annotate(
+  "text",
+  label = paste("Median =",
+  round(median(kiva_loans$loan_usd), digits = 2), "USD"),
+  x = 5,
+  y = 0.2,
+  color = "red"
+  ) +
+  labs(title = "Distribution of Kiva loans in USD",
+  x = "US dollars",
+  y = "")
 ```
-The median loan in US dollars is 4.19. The distribution is multimodal and right-skewed with its biggest peak around $1 and its second around $4. 
+
+Figure \@ref(fig:loan_usd_distribution), shows that the distribution of Kiva loans in US dollars is right skewed and multimodal with its biggest peak around $1 and its second around $4. The median is about `r median(kiva_loans$loan_usd)`. 
+
 ```{r term_in_months_distribution}
 ggplot(kiva_loans,
        aes(x=term_in_months))+
