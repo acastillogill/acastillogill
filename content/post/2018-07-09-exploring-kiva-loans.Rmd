@@ -22,23 +22,9 @@ output:
 x <-
   c("tidyverse",
     "bookdown",
-    "fcuk",
     "knitr",
     "kableExtra",
     "formatR",
-    "gridExtra",
-    "tidyverse",
-    "rpart",
-    "rpart.plot",
-    "readxl",
-    "caret",
-    "ModelMetrics",
-    "Metrics",
-    "rattle",
-    "ipred",
-    "randomForest",
-    "gbm",
-    "ROCR",
     "stringr",
     "rebus",
     "quantmode",
@@ -61,7 +47,7 @@ opts_chunk$set(echo = TRUE,
 
 ```
 
-
+--- ___---
 # Summary
 
 
