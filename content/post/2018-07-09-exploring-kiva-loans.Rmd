@@ -47,7 +47,6 @@ opts_chunk$set(echo = TRUE,
 
 ```
 
---- ___---
 # Summary
 
 
