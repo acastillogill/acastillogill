@@ -102,26 +102,7 @@ glimpse(kiva_loans)
 
 Wow! 671,205 observations and 20 variables.
 
-```{r}
-#Get a glimpse of kiva_locations
-glimpse(kiva_locations)
-```
-It seems that this set is dedicated to showing the specific region but has 2,772. It doesn't match the first dataset. I assume this dataset is related to the Kaggle contest related to the dataset. 
-
-```{r}
-#Get a glimpse of kiva_themes
-glimpse(kiva_themes)
-```
-It seems that this dataset could be linking the first one with a particular larger `theme`, as defined by Kiva. 
-
-Finally, the last one. 
-
-```{r}
-#Get a glimpse of kiva_locations_themes
-glimpse(kiva_locations_themes)
-```
-
-It seems that this dataset contains more georeferenced information. Since I'm interested in **learning what variables contribute to the final amount lended without specific geographic information, (country is enough)**, I'm going to stick with the first dataset, `kiva_loans`. I'm tempted to jump into a regression of sorts, but first, let's have a closer look at the data to understand the variables and decide which ones are most helpful. 
+Let's have a closer look at the data and see what each variable looks like.
 
 - `funded_amount`: "The amount disbursed by Kiva to the field agent(USD)"
 - `loan_amount`: "The amount disbursed by the field agent to the borrower(USD)"
