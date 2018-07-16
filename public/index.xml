@@ -16,7 +16,27 @@
       <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/exploring-kiva-loans/</guid>
-      <description>&lt;div id=&#34;TOC&#34;&gt;
+      <description>---
+title: Exploring Kiva loans
+author: Ángela D. Castillo-Gill
+date: &#39;2018-07-07&#39;
+slug: exploring-kiva-loans
+categories:
+  - R
+  - EDA
+tags: 
+  - Kaggle
+  - Kiva
+summary: What do Kiva loans around the world look like?
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+    toc_depth: 1
+---
+
+
+&lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#summary&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Summary&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#purpose-of-this-post&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Purpose of this post&lt;/a&gt;&lt;/li&gt;
