@@ -330,11 +330,11 @@ Skim summary statistics
  n obs: 671044 
  n variables: 14 
 
-── Variable type:character ───────────────────────────────────────────────────────────────────
+── Variable type:character ────────────────────────────────────────────────────────────────────────────────────────────────────────────
  variable missing complete      n min max empty n_unique
        id       0   671044 671044   6   7     0   671044
 
-── Variable type:factor ──────────────────────────────────────────────────────────────────────
+── Variable type:factor ───────────────────────────────────────────────────────────────────────────────────────────────────────────────
            variable missing complete      n n_unique
    borrower_genders    4184   666860 671044        5
           continent   84856   586188 671044        5
@@ -348,13 +348,13 @@ Skim summary statistics
     mon: 342679, irr: 257035, bul: 70728, wee: 602   FALSE
  Agr: 180289, Foo: 136621, Ret: 124433, Ser: 45127   FALSE
 
-── Variable type:integer ─────────────────────────────────────────────────────────────────────
+── Variable type:integer ──────────────────────────────────────────────────────────────────────────────────────────────────────────────
      variable missing complete      n  mean    sd p0 p25 p50 p75 p100
  lender_count       0   671044 671044 20.59 28.46  0   7  13  24 2986
      hist
  ▇▁▁▁▁▁▁▁
 
-── Variable type:numeric ─────────────────────────────────────────────────────────────────────
+── Variable type:numeric ──────────────────────────────────────────────────────────────────────────────────────────────────────────────
         variable missing complete      n   mean     sd        p0  p25
  giving_time_num   48331   622713 671044  14.64  14.4   -17.51   5.17
         loan_usd       0   671044 671044 267.26 947.01    0.0022 1.72
@@ -362,11 +362,11 @@ Skim summary statistics
   total_time_num    2396   668648 671044  14.09  18.56 -427.02   7.09
    p50   p75     p100     hist
   9.59 22.54   420.57 ▇▁▁▁▁▁▁▁
-  5.14 90.23 1e+05    ▇▁▁▁▁▁▁▁
+  5.15 90.23 1e+05    ▇▁▁▁▁▁▁▁
  13    14      158    ▇▁▁▁▁▁▁▁
  16.12 26.67    32.04 ▁▁▁▁▁▁▁▇
 
-── Variable type:POSIXct ─────────────────────────────────────────────────────────────────────
+── Variable type:POSIXct ──────────────────────────────────────────────────────────────────────────────────────────────────────────────
        variable missing complete      n        min        max     median
  disbursed_time    2396   668648 671044 2013-12-02 2017-09-30 2015-11-07
     funded_time   48331   622713 671044 2014-01-01 2017-07-26 2015-12-01
@@ -452,8 +452,7 @@ ggplot(kiva_loans, aes(x = continent, fill = sector)) +
 &lt;div id=&#34;numeric-variables&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;8&lt;/span&gt; Numeric variables&lt;/h1&gt;
 &lt;p&gt;Now let’s look at the distributions of our numeric variables.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
-ggplot(kiva_loans, aes(x = loan_usd)) +
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(kiva_loans, aes(x = loan_usd)) +
   geom_density() +
   theme_classic() +
   scale_x_continuous(limits = c(0, 15)) +
@@ -472,13 +471,13 @@ ggplot(kiva_loans, aes(x = loan_usd)) +
   labs(title = &amp;quot;Distribution of Kiva loans in USD&amp;quot;,
   x = &amp;quot;US dollars&amp;quot;,
   y = &amp;quot;&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/loan_usd_distribution-1.png&#34; alt=&#34;Distribution of Kiva loans in USD&#34; width=&#34;672&#34; /&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:loan-usd-distribution&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/loan-usd-distribution-1.png&#34; alt=&#34;Distribution of Kiva loans in USD&#34; width=&#34;672&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
-(#fig:loan_usd_distribution)Distribution of Kiva loans in USD
+Figure 8.1: Distribution of Kiva loans in USD
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;Figure @ref(fig:loan_usd_distribution), shows that the distribution of Kiva loans in US dollars is right skewed and multimodal with its biggest peak around $1 and its second around $4. The median is about 4.2071803.&lt;/p&gt;
+&lt;p&gt;Figure &lt;a href=&#34;#fig:loan-usd-distribution&#34;&gt;8.1&lt;/a&gt;, shows that the distribution of Kiva loans in US dollars is right skewed and multimodal with its biggest peak around $1 and its second around $4. The median is about 4.21.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(kiva_loans,
        aes(x=term_in_months))+
   geom_density()+

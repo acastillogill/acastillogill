@@ -418,8 +418,7 @@ We see that the Philippines is the country that requests the mosts loans with ov
 
 Now let's look at the distributions of our numeric variables.
 
-```{r loan_usd_distribution, fig.cap="Distribution of Kiva loans in USD"}
-
+```{r loan-usd-distribution, fig.cap="Distribution of Kiva loans in USD"}
 ggplot(kiva_loans, aes(x = loan_usd)) +
   geom_density() +
   theme_classic() +
@@ -441,7 +440,7 @@ ggplot(kiva_loans, aes(x = loan_usd)) +
   y = "")
 ```
 
-Figure \@ref(fig:loan_usd_distribution), shows that the distribution of Kiva loans in US dollars is right skewed and multimodal with its biggest peak around $1 and its second around $4. The median is about `r median(kiva_loans$loan_usd)`. 
+Figure \@ref(fig:loan-usd-distribution), shows that the distribution of Kiva loans in US dollars is right skewed and multimodal with its biggest peak around $1 and its second around $4. The median is about `r round(median(kiva_loans$loan_usd),digits=2)`. 
 
 ```{r term_in_months_distribution}
 ggplot(kiva_loans,
