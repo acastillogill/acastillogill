@@ -14,8 +14,7 @@ output:
   blogdown::html_page:
     toc: true
     number_sections: true
-    code_folding: hide
-    toc_depth: 1
+    toc_depth: 2
 ---
 
 
