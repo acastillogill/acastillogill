@@ -125,7 +125,8 @@ $ date               &amp;lt;date&amp;gt; 2014-01-01, 2014-01-01, 2014-01-01, 20
 &lt;/div&gt;
 &lt;div id=&#34;data-cleaning&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;5&lt;/span&gt; Data cleaning&lt;/h1&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#Select variables 
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
+#Select variables 
 kiva_loans %&amp;gt;%
   dplyr::select (id,
           loan_amount,
@@ -150,7 +151,8 @@ categorical &amp;lt;- c(&amp;quot;sector&amp;quot;,
 kiva_loans[categorical] &amp;lt;- lapply(kiva_loans[categorical],
                                   factor)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;By having another glimpse at the structure of our data, we can soon see there are a few bits that don’t make sense and need to be fixed.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(kiva_loans)
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
+summary(kiva_loans)
        id           loan_amount                sector      
  Min.   : 653047   Min.   :    25.0   Agriculture :180302  
  1st Qu.: 823072   1st Qu.:   275.0   Food        :136657  
@@ -195,7 +197,8 @@ kiva_loans[categorical] &amp;lt;- lapply(kiva_loans[categorical],
 &lt;p&gt;Missing values, aka &lt;code&gt;NA&#39;s&lt;/code&gt;, we could simply remove them since we have plenty of observations. But what if by removing them we introduce some bias. For example, &lt;code&gt;borrower_genders&lt;/code&gt; has plenty of missing values, but what if this could say something about certain types of loans. For now we will leave them in.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;b.&lt;code&gt;borrower_genders&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;From the variable descriptions, we expected &lt;code&gt;borrower_genders&lt;/code&gt;to have only two levels, &lt;code&gt;male&lt;/code&gt;or &lt;code&gt;female&lt;/code&gt;. Here we see there are many more levels, 11,298 to be precise. We know something is wrong here. So we’ll fix that first.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#Turn kiva_loans back into an atomic vector of characters
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
+#Turn kiva_loans back into an atomic vector of characters
 kiva_loans$borrower_genders &amp;lt;- as.character(kiva_loans$borrower_genders)
 
 #Split each row into multiple strings
@@ -229,7 +232,8 @@ compare_genders &amp;lt;- function(females_count, females_sum){
 #Apply function compare_genders
 kiva_loans$borrower_genders &amp;lt;- mapply(compare_genders,females_count,females_sum)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Let’s see if all is well…&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#Make kiva_loans$borrower_genders a factor again
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
+#Make kiva_loans$borrower_genders a factor again
 kiva_loans$borrower_genders &amp;lt;- as.factor(kiva_loans$borrower_genders)
 
 #Check levels
@@ -239,14 +243,16 @@ levels(kiva_loans$borrower_genders)
 &lt;p&gt;Nothing &lt;code&gt;strange&lt;/code&gt;! Five levels as we wanted - fabulous! Onwards.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;c.&lt;code&gt;loan_amounts&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Now, since we’re trying to predict &lt;code&gt;loan_amounts&lt;/code&gt;, it’s better if they’re all in the same currency. Shall we translate them to USD? Here we go!&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;for (curr in levels(kiva_loans$currency))
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
+for (curr in levels(kiva_loans$currency))
   
   #Check that all currencies do not return any errors when requesting a currency conversion
   tryCatch(quantmod::getQuote(paste0(curr, &amp;quot;=X&amp;quot;)), error = print)
 &amp;lt;simpleError in download.file(paste0(&amp;quot;https://query1.finance.yahoo.com/v7/finance/quote?symbols=&amp;quot;,     Symbols, &amp;quot;&amp;amp;fields=&amp;quot;, QFc), destfile = tmp, quiet = TRUE): cannot open URL &amp;#39;https://query1.finance.yahoo.com/v7/finance/quote?symbols=SSP=X&amp;amp;fields=regularMarketPrice,regularMarketChange,regularMarketChangePercent,regularMarketOpen,regularMarketDayHigh,regularMarketDayLow,regularMarketVolume&amp;#39;&amp;gt;
 &amp;lt;simpleError in download.file(paste0(&amp;quot;https://query1.finance.yahoo.com/v7/finance/quote?symbols=&amp;quot;,     Symbols, &amp;quot;&amp;amp;fields=&amp;quot;, QFc), destfile = tmp, quiet = TRUE): cannot open URL &amp;#39;https://query1.finance.yahoo.com/v7/finance/quote?symbols=ZWD=X&amp;amp;fields=regularMarketPrice,regularMarketChange,regularMarketChangePercent,regularMarketOpen,regularMarketDayHigh,regularMarketDayLow,regularMarketVolume&amp;#39;&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;It seems like two currencies are returning an error. Let’s filter them out.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#Turning kiva_loans back into a character vector
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
+#Turning kiva_loans back into a character vector
 kiva_loans$currency &amp;lt;- as.character(kiva_loans$currency)
 
 kiva_loans%&amp;gt;%
@@ -330,11 +336,11 @@ Skim summary statistics
  n obs: 671044 
  n variables: 14 
 
-── Variable type:character ────────────────────────────────────────────────────────────────────────────────────────────────────────────
+── Variable type:character ──────────────────────────────────────────────────────────────────────────────────
  variable missing complete      n min max empty n_unique
        id       0   671044 671044   6   7     0   671044
 
-── Variable type:factor ───────────────────────────────────────────────────────────────────────────────────────────────────────────────
+── Variable type:factor ─────────────────────────────────────────────────────────────────────────────────────
            variable missing complete      n n_unique
    borrower_genders    4184   666860 671044        5
           continent   84856   586188 671044        5
@@ -348,25 +354,25 @@ Skim summary statistics
     mon: 342679, irr: 257035, bul: 70728, wee: 602   FALSE
  Agr: 180289, Foo: 136621, Ret: 124433, Ser: 45127   FALSE
 
-── Variable type:integer ──────────────────────────────────────────────────────────────────────────────────────────────────────────────
+── Variable type:integer ────────────────────────────────────────────────────────────────────────────────────
      variable missing complete      n  mean    sd p0 p25 p50 p75 p100
  lender_count       0   671044 671044 20.59 28.46  0   7  13  24 2986
      hist
  ▇▁▁▁▁▁▁▁
 
-── Variable type:numeric ──────────────────────────────────────────────────────────────────────────────────────────────────────────────
+── Variable type:numeric ────────────────────────────────────────────────────────────────────────────────────
         variable missing complete      n   mean     sd        p0  p25
  giving_time_num   48331   622713 671044  14.64  14.4   -17.51   5.17
-        loan_usd       0   671044 671044 267.26 947.01    0.0022 1.72
+        loan_usd       0   671044 671044 267.28 947.01    0.0022 1.72
   term_in_months       0   671044 671044  13.74   8.6     1      8   
   total_time_num    2396   668648 671044  14.09  18.56 -427.02   7.09
    p50   p75     p100     hist
   9.59 22.54   420.57 ▇▁▁▁▁▁▁▁
-  5.15 90.23 1e+05    ▇▁▁▁▁▁▁▁
+  5.14 90.23 1e+05    ▇▁▁▁▁▁▁▁
  13    14      158    ▇▁▁▁▁▁▁▁
  16.12 26.67    32.04 ▁▁▁▁▁▁▁▇
 
-── Variable type:POSIXct ──────────────────────────────────────────────────────────────────────────────────────────────────────────────
+── Variable type:POSIXct ────────────────────────────────────────────────────────────────────────────────────
        variable missing complete      n        min        max     median
  disbursed_time    2396   668648 671044 2013-12-02 2017-09-30 2015-11-07
     funded_time   48331   622713 671044 2014-01-01 2017-07-26 2015-12-01
