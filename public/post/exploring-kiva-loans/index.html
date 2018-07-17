@@ -17,7 +17,7 @@
       
     
   
-  <meta name="description" content="1 Summary 2 Purpose of this post 3 The data 4 What I did 5 Data cleaning 6 Exploratory data analysis 7 Factors 8 Numeric variables 9 What I found out 10 Conclusions   1 Summary  2 Purpose of this post Muhammad Yunus and the Grameen Bank won the [Nobel Peace Prize] (https://www.nobelpeaceprize.org/Prize-winners/Winners/2006) in 2006 for “their efforts through microcredit to create economic and social development from below.">
+  <meta name="description" content="1 Summary 2 Purpose of this post 3 The data 4 What I did 5 Data cleaning 6 Exploratory data analysis 7 Factors 8 Numeric variables 9 What I found out 10 Conclusions   1 Summary  2 Purpose of this post Muhammad Yunus and the Grameen Bank won the Nobel Peace Prize in 2006 for “their efforts through microcredit to create economic and social development from below.”">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/exploring-kiva-loans/">
@@ -79,7 +79,7 @@
   <meta property="og:site_name" content="Ángela D. Castillo-Gill">
   <meta property="og:url" content="/post/exploring-kiva-loans/">
   <meta property="og:title" content="Exploring Kiva loans | Ángela D. Castillo-Gill">
-  <meta property="og:description" content="1 Summary 2 Purpose of this post 3 The data 4 What I did 5 Data cleaning 6 Exploratory data analysis 7 Factors 8 Numeric variables 9 What I found out 10 Conclusions   1 Summary  2 Purpose of this post Muhammad Yunus and the Grameen Bank won the [Nobel Peace Prize] (https://www.nobelpeaceprize.org/Prize-winners/Winners/2006) in 2006 for “their efforts through microcredit to create economic and social development from below.">
+  <meta property="og:description" content="1 Summary 2 Purpose of this post 3 The data 4 What I did 5 Data cleaning 6 Exploratory data analysis 7 Factors 8 Numeric variables 9 What I found out 10 Conclusions   1 Summary  2 Purpose of this post Muhammad Yunus and the Grameen Bank won the Nobel Peace Prize in 2006 for “their efforts through microcredit to create economic and social development from below.”">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2018-07-07T00:00:00&#43;00:00">
@@ -307,7 +307,7 @@
 </div>
 <div id="purpose-of-this-post" class="section level1">
 <h1><span class="header-section-number">2</span> Purpose of this post</h1>
-<p>Muhammad Yunus and the Grameen Bank won the [Nobel Peace Prize] (<a href="https://www.nobelpeaceprize.org/Prize-winners/Winners/2006" class="uri">https://www.nobelpeaceprize.org/Prize-winners/Winners/2006</a>) in 2006 for “their efforts through microcredit to create economic and social development from below.”</p>
+<p>Muhammad Yunus and the Grameen Bank won the <a href="https://www.nobelpeaceprize.org/Prize-winners/Winners/2006">Nobel Peace Prize</a> in 2006 for “their efforts through microcredit to create economic and social development from below.”</p>
 <p>Who is Muhammad Yunus? What is the Grameen Bank? What are microcredits?</p>
 <p>In 1976, Yunus, who had studied economics and eventually became a professor at the University of Chittagong (Bangladesh), <a href="https://www.bbc.co.uk/news/world-south-asia-11901625">noticed that small amounts of money could make a substantial difference to people living in poverty</a>. He started to loan money to people that didn’t meet the requirements listed by the mainstream banking system. Not only did these type of loans turn out to be effective to <a href="https://www.nobelpeaceprize.org/Prize-winners/Prizewinner-documentation/Muhammad-Yunus-Grameen-Bank">“emerge” from poverty</a>, but default rates were lower than those of commercial banks, <a href="https://www.gdrc.org/icm/grameen-article4.html">reported at 2%</a>. Eventually, in October 1983, Muhammad Yunus founded <a href="https://grameenfoundation.org/about/history">Grameen Bank</a>, considered to be the first microfinance institution.</p>
 <p>Founded in 2005, <a href="www.kiva.org">Kiva</a>, has the same mission as Grameen Bank except that anyone can become a Kiva banker. This online platform enables microcredit lending to help low-income entrepreneurs around the world with a couple of cliks. Pretty neat, huh?</p>
@@ -463,11 +463,11 @@ First, how much time passes from the moment the loan is posted to the moment it�
  n obs: 671044 
  n variables: 14 
 
-── Variable type:character ────────────────────────────────────────────────────────────────────────────
+── Variable type:character ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
  variable missing complete      n min max empty n_unique
        id       0   671044 671044   6   7     0   671044
 
-── Variable type:factor ───────────────────────────────────────────────────────────────────────────────
+── Variable type:factor ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
            variable missing complete      n n_unique
    borrower_genders    4184   666860 671044        5
           continent   84856   586188 671044        5
@@ -481,25 +481,25 @@ First, how much time passes from the moment the loan is posted to the moment it�
     mon: 342679, irr: 257035, bul: 70728, wee: 602   FALSE
  Agr: 180289, Foo: 136621, Ret: 124433, Ser: 45127   FALSE
 
-── Variable type:integer ──────────────────────────────────────────────────────────────────────────────
+── Variable type:integer ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
      variable missing complete      n  mean    sd p0 p25 p50 p75 p100
  lender_count       0   671044 671044 20.59 28.46  0   7  13  24 2986
      hist
  ▇▁▁▁▁▁▁▁
 
-── Variable type:numeric ──────────────────────────────────────────────────────────────────────────────
+── Variable type:numeric ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
         variable missing complete      n   mean     sd        p0  p25
  giving_time_num   48331   622713 671044  14.64  14.4   -17.51   5.17
-        loan_usd       0   671044 671044 267.26 947.01    0.0022 1.72
+        loan_usd       0   671044 671044 267.25 947       0.0022 1.72
   term_in_months       0   671044 671044  13.74   8.6     1      8   
   total_time_num    2396   668648 671044  14.09  18.56 -427.02   7.09
    p50   p75     p100     hist
   9.59 22.54   420.57 ▇▁▁▁▁▁▁▁
-  5.16 90.16 1e+05    ▇▁▁▁▁▁▁▁
+  5.15 90.16 1e+05    ▇▁▁▁▁▁▁▁
  13    14      158    ▇▁▁▁▁▁▁▁
  16.12 26.67    32.04 ▁▁▁▁▁▁▁▇
 
-── Variable type:POSIXct ──────────────────────────────────────────────────────────────────────────────
+── Variable type:POSIXct ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
        variable missing complete      n        min        max     median
  disbursed_time    2396   668648 671044 2013-12-02 2017-09-30 2015-11-07
     funded_time   48331   622713 671044 2014-01-01 2017-07-26 2015-12-01
@@ -553,7 +553,7 @@ mixed_genders  mult_females    mult_males single_female   single_male
 Figure 8.1: Distribution of Kiva loans in USD
 </p>
 </div>
-<p>Figure <a href="#fig:loan-usd-distribution">8.1</a>, shows that the distribution of Kiva loans in US dollars is right skewed and multimodal with its biggest peak around $1 and its second around $4. The median is about 4.22.</p>
+<p>Figure <a href="#fig:loan-usd-distribution">8.1</a>, shows that the distribution of Kiva loans in US dollars is right skewed and multimodal with its biggest peak around $1 and its second around $4. The median is about 4.21.</p>
 <p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/term_in_months_distribution-1.png" width="672" />
 The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median.
 <img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/lender_count-1.png" width="672" />
