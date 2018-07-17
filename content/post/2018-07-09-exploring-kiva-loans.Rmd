@@ -21,12 +21,9 @@ output:
 ```{r setup, include=FALSE}
 x <-
   c("tidyverse",
-    "bookdown",
     "knitr",
-    "kableExtra",
     "formatR",
     "stringr",
-    "rebus",
     "quantmode",
     "skimr",
     "lubridate",
@@ -52,17 +49,27 @@ opts_chunk$set(echo = FALSE,
 
 # Purpose of this post
 
-I'm learning machine learning with trees*. In order to practice the theory, nothing better than to put the learnings into a real case study and explain it. So, do you know [Kiva](www.kiva.org)? Kiva is a platform where everyone with access to internet and spare change can lend money to low-income entrepreneurs around the world. Pretty neat. 
+Muhammad Yunus and the Grameen Bank won the [Nobel Peace Prize] (https://www.nobelpeaceprize.org/Prize-winners/Winners/2006) in 2006 for "their efforts through microcredit to create economic and social development from below."
 
-{{% alert note %}} this is cool {{% /alert %}}
+Who is Muhammad Yunus? What is the Grameen Bank? What are microcredits?
+
+In 1976, Yunus, who had studied economics and eventually became a professor at the University of Chittagong (Bangladesh), [noticed that small amounts of money could make a substantial difference to people living in poverty](https://www.bbc.co.uk/news/world-south-asia-11901625). He started to loan money to people that didn't meet the requirements listed by the mainstream banking system. Not only did these type of loans turn out to be effective to ["emerge" from poverty](https://www.nobelpeaceprize.org/Prize-winners/Prizewinner-documentation/Muhammad-Yunus-Grameen-Bank), but default rates were lower than those of commercial banks, [reported at 2%](https://www.gdrc.org/icm/grameen-article4.html). Eventually, in October 1983, Muhammad Yunus founded [Grameen Bank](https://grameenfoundation.org/about/history), considered to be the first microfinance institution. 
+
+Founded in 2005, [Kiva](www.kiva.org), has the same mission as Grameen Bank except that anyone can become a Kiva banker. This online platform enables microcredit lending to help low-income entrepreneurs around the world with a couple of cliks. Pretty neat, huh?
+
+In this post, I unpack a large dataset published by [Kiva on the Kaggle platform](https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding) and explore these cool microloans.
 
 # The data
 
-The dataset [with which I was first introduced](https://www.datacamp.com/courses/machine-learning-with-tree-based-models-in-r) to regression trees was a dataset with lots of information on people who were given loans and whether they had defaulted on the loan or not. I thought that was a neat application so I went to [Kaggle](https://www.kaggle.com/datasets) to find datasets related to loans. Here is where I found the [Kiva dataset](https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding) I will use in this post.  
+The dataset was published during the first months of 2018. 
 
 Of course the dataset was super tidy and ready to go when I saw it since the point was to learn the algorithms, not to clean the database. In this post, I'll take you through everything I did, from the downloading of the data to the very last line of this post.
 
 # What I did
+
+If you would like to have a look at all the code used in this post, feel free to visit my [kernel on kaggle in R Markdown format](https://www.kaggle.com/adcastillogill/exploring-kiva-loans). 
+
+
 
 The first step was to have a look at the dataset. This is pretty exciting. The zip file (232.7 MB) from Kaggle contained four files: `kiva_loans.csv`, `kiva_mpi_region_locations.csv`,`loan_theme_ids.csv`, and `loan_themes_by_region.csv`. 
 
