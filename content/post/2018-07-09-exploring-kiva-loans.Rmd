@@ -49,7 +49,7 @@ opts_chunk$set(echo = FALSE,
 
 # Purpose of this post
 
-Muhammad Yunus and the Grameen Bank won the [Nobel Peace Prize] (https://www.nobelpeaceprize.org/Prize-winners/Winners/2006) in 2006 for "their efforts through microcredit to create economic and social development from below."
+Muhammad Yunus and the Grameen Bank won the [Nobel Peace Prize](https://www.nobelpeaceprize.org/Prize-winners/Winners/2006) in 2006 for "their efforts through microcredit to create economic and social development from below."
 
 Who is Muhammad Yunus? What is the Grameen Bank? What are microcredits?
 
