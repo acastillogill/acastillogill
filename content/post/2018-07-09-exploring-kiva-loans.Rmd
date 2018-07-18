@@ -27,9 +27,9 @@ x <-
     "quantmode",
     "skimr",
     "lubridate",
-    "broom",
     "tidyr",
-    "GGally")
+    "formattable",
+    "gridExtra")
 
 lapply(x, require, character.only = TRUE)
 
@@ -40,7 +40,8 @@ opts_chunk$set(echo = FALSE,
                message = FALSE,
                collapse= TRUE,
                comment = NA,
-               tidy = FALSE)
+               tidy = TRUE,
+               fig.width = 7)
 
 ```
 
@@ -51,38 +52,25 @@ opts_chunk$set(echo = FALSE,
 
 Muhammad Yunus and the Grameen Bank won the [Nobel Peace Prize](https://www.nobelpeaceprize.org/Prize-winners/Winners/2006) in 2006 for "their efforts through microcredit to create economic and social development from below."
 
-Who is Muhammad Yunus? What is the Grameen Bank? What are microcredits?
+Back in 1976, Yunus, a professor at the University of Chittagong (Bangladesh) at the time, [noticed that small amounts of money could make a substantial difference to people living in poverty](https://www.bbc.co.uk/news/world-south-asia-11901625). He started to loan money to people that didn't meet the requirements listed by the mainstream banking system. Not only did these type of loans turn out to be effective to ["emerge" from poverty](https://www.nobelpeaceprize.org/Prize-winners/Prizewinner-documentation/Muhammad-Yunus-Grameen-Bank), but default rates were lower than those of commercial banks, [reported at 2%](https://www.gdrc.org/icm/grameen-article4.html). Eventually, in October 1983, Muhammad Yunus founded [Grameen Bank](https://grameenfoundation.org/about/history), considered to be the first microfinance institution. 
 
-In 1976, Yunus, who had studied economics and eventually became a professor at the University of Chittagong (Bangladesh), [noticed that small amounts of money could make a substantial difference to people living in poverty](https://www.bbc.co.uk/news/world-south-asia-11901625). He started to loan money to people that didn't meet the requirements listed by the mainstream banking system. Not only did these type of loans turn out to be effective to ["emerge" from poverty](https://www.nobelpeaceprize.org/Prize-winners/Prizewinner-documentation/Muhammad-Yunus-Grameen-Bank), but default rates were lower than those of commercial banks, [reported at 2%](https://www.gdrc.org/icm/grameen-article4.html). Eventually, in October 1983, Muhammad Yunus founded [Grameen Bank](https://grameenfoundation.org/about/history), considered to be the first microfinance institution. 
-
-Founded in 2005, [Kiva](www.kiva.org), has the same mission as Grameen Bank except that anyone can become a Kiva banker. This online platform enables microcredit lending to help low-income entrepreneurs around the world with a couple of cliks. Pretty neat, huh?
-
-In this post, I unpack a large dataset published by [Kiva on the Kaggle platform](https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding) and explore these cool microloans.
+Founded in 2005, [Kiva](www.kiva.org), has the same mission as Grameen Bank except that anyone can become a Kiva banker. This online platform enables microcredit lending to help low-income entrepreneurs around the world with a couple of cliks. Pretty neat, huh? In this post, I unpack a large dataset published by [Kiva on the Kaggle platform](https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding) and explore these cool microloans.
 
 # The data
 
 The dataset was published during the first months of 2018. 
 
-Of course the dataset was super tidy and ready to go when I saw it since the point was to learn the algorithms, not to clean the database. In this post, I'll take you through everything I did, from the downloading of the data to the very last line of this post.
-
 # What I did
 
 If you would like to have a look at all the code used in this post, feel free to visit my [kernel on kaggle in R Markdown format](https://www.kaggle.com/adcastillogill/exploring-kiva-loans). 
-
-
 
 The first step was to have a look at the dataset. This is pretty exciting. The zip file (232.7 MB) from Kaggle contained four files: `kiva_loans.csv`, `kiva_mpi_region_locations.csv`,`loan_theme_ids.csv`, and `loan_themes_by_region.csv`. 
 
 ```{r echo=T, results='hide',message=FALSE}
 path <- "/Volumes/TOSHIBAEXT/RStudio/blog/content/post/kiva_data/"
 #Read `kiva_loans.csv`
-kiva_loans <- read_csv(paste(path,"kiva_loans.csv",sep = ""))
-#Read `kiva_mpi_region_locations.csv`
-kiva_locations <- read_csv(paste(path,"kiva_mpi_region_locations.csv",sep=""))
-#Read `loan_theme_ids.csv`
-kiva_themes <- read_csv(paste(path,"loan_theme_ids.csv",sep=""))
-#Read`loan_themes_by_region.csv`
-kiva_locations_themes <- read_csv(paste(path,"loan_themes_by_region.csv",sep=""))
+kiva_loans <- read_csv(paste0(path,"kiva_loans.csv"))
+
 ```
 
 Let's see what's inside. 
@@ -160,13 +148,9 @@ kiva_loans[categorical] <- lapply(kiva_loans[categorical],
                                   factor)
 ```
 
-By having another glimpse at the structure of our data, we can soon see there are a few bits that don't make sense and need to be fixed. 
+From  at the structure of our data, we can soon see there are a few bits that don't make sense and need to be fixed. 
 
-```{r summary}
 
-summary(kiva_loans)
-
-```
 **a. Missing values**
 
 Missing values, aka `NA's`, we could simply remove them since we have plenty of observations. But what if by removing them we introduce some bias. For example, `borrower_genders` has plenty of missing values, but what if this could say something about certain types of loans. For now we will leave them in.
@@ -227,7 +211,7 @@ Nothing `strange`! Five levels as we wanted - fabulous! Onwards.
 
 Now, since we're trying to predict `loan_amounts`, it's better if they're all in the same currency. Shall we translate them to USD? Here we go!
 
-```{r }
+```{r eval=FALSE}
 
 for (curr in levels(kiva_loans$currency))
   
@@ -260,14 +244,20 @@ to <- rep(length(levels(kiva_loans$currency)),x="USD")
 
 #Create a dataframe `currencies` with conversion rates `Last`
 currencies <- quantmod::getQuote(paste0(from, to, "=X"))
+  
+
 ```
 
 ```{r}
 #Set row names as columns in the currencies dataframe
+
 currencies <- rownames_to_column(currencies)
 
 #Split currencies$rownames by extracting the first 3 characters
+
 currencies$currency <-  substring(currencies$rowname, 1,3)
+
+#currencies <- readRDS(file="/Users/AngelaDelgado/Desktop/currencies.rds")
 
 kiva_loans%>%
   #Join currencies to kiva_loans by="currency"
@@ -379,36 +369,299 @@ kiva_loans <-  kiva_loans%>%
 
 Ideal. Now let's look at our factors in an easier way to parse. Let's compare genders by continents to see if we can spot anything worth noting.
 
-```{r continent_and_borrower_genders_plots}
-# Create side-by-side barchart of borrower_genders by continent
-ggplot(kiva_loans, aes(x = continent, fill = borrower_genders)) + 
-  geom_bar(position = "dodge") +theme_classic()
+```{r continent_and_borrower_genders_plots, fig.height=2, fig.cap="Most popular borrower genders by continent"}
+AF_borrower_genders <- na.omit(kiva_loans) %>%
+  filter(continent == "AF") %>%
+  dplyr::count(borrower_genders) %>%
+  mutate(borrower_genders = reorder(borrower_genders, n)) %>%
+  ggplot(aes(
+    x = borrower_genders,
+    y = n,
+    fill = borrower_genders,
+    color = borrower_genders
+  )) +
+  geom_col(show.legend = FALSE, alpha = 0.7) +
+  theme_minimal() +
+  labs(title = "Africa",
+       x = "",
+       y = "Count") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.ticks.x = element_blank()) +
+  #guides(fill = guide_legend(title = "Borrower genders")) +
+  scale_fill_viridis_d() +
+  scale_color_viridis_d() +
+  coord_flip()
+
+
+OC_borrower_genders <- na.omit(kiva_loans) %>%
+  filter(continent == "OC") %>%
+  dplyr::count(borrower_genders) %>%
+  mutate(borrower_genders = reorder(borrower_genders, n)) %>%
+  ggplot(aes(
+    x = borrower_genders,
+    y = n,
+    fill = borrower_genders,
+    color = borrower_genders
+  )) +
+  geom_col(show.legend = FALSE, alpha = 0.7) +
+  theme_minimal() +
+  labs(title = "Oceania",
+       x = "",
+       y = "Count") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.ticks.x = element_blank()) +
+  #guides(fill = guide_legend(title = "Borrower genders")) +
+  scale_fill_viridis_d() +
+  scale_color_viridis_d() +
+  coord_flip()
+
+
+AS_borrower_genders <- na.omit(kiva_loans) %>%
+  filter(continent == "AS") %>%
+  dplyr::count(borrower_genders) %>%
+  mutate(borrower_genders = reorder(borrower_genders, n)) %>%
+  ggplot(aes(
+    x = borrower_genders,
+    y = n,
+    fill = borrower_genders,
+    color = borrower_genders
+  )) +
+  geom_col(show.legend = FALSE, alpha = 0.7) +
+  theme_minimal() +
+  labs(title = "Asia",
+       x = "",
+       y = "Count") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.ticks.x = element_blank()) +
+  #guides(fill = guide_legend(title = "Borrower genders")) +
+  scale_fill_viridis_d() +
+  scale_color_viridis_d() +
+  coord_flip()
+
+
+SA_borrower_genders <- na.omit(kiva_loans) %>%
+  filter(continent == "SA") %>%
+  dplyr::count(borrower_genders) %>%
+  mutate(borrower_genders = reorder(borrower_genders, n)) %>%
+  ggplot(aes(
+    x = borrower_genders,
+    y = n,
+    fill = borrower_genders,
+    color = borrower_genders
+  )) +
+  geom_col(show.legend = FALSE, alpha = 0.7) +
+  theme_minimal() +
+  labs(title = "South America",
+       x = "",
+       y = "Count") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.ticks.x = element_blank()) +
+  #guides(fill = guide_legend(title = "Borrower genders")) +
+  scale_fill_viridis_d() +
+  scale_color_viridis_d() +
+  coord_flip()
+
+grid.arrange(
+  AS_borrower_genders,
+  AF_borrower_genders,
+  SA_borrower_genders,
+  OC_borrower_genders,
+  nrow = 1
+)
 ```
 
 In all continents, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it's mixed genders. 
 
-```{r repayment_interval_and_continent}
-#Create side-by-side barchart of repayment interval by continent
-ggplot(kiva_loans,
-       aes(x = continent, fill = repayment_interval)) + 
-  geom_bar(position = "dodge")+
-  theme_classic()
+```{r repayment_interval_and_continent, fig.height=2, fig.cap="Most popular repayment styles by continent"}
+AF_repayment_interval <- kiva_loans %>%
+  filter(continent=="AF")%>%
+  dplyr::count(repayment_interval)%>%
+  mutate(repayment_interval=reorder(repayment_interval, n))%>%
+  ggplot(aes(
+    x = repayment_interval,
+    y = n,
+    fill = repayment_interval,
+    color = repayment_interval)) +
+  geom_col(show.legend = FALSE, alpha=0.7) +
+  theme_minimal() +
+  labs(title = "Africa",
+       x = "",
+       y = "Count") +
+  theme(axis.text.x = element_text(angle = 45, hjust=1),
+        axis.ticks.x = element_blank()) +
+  #guides(fill = guide_legend(title = "Repayment interval")) +
+  scale_fill_viridis_d()+
+  scale_color_viridis_d()+
+  coord_flip()
+
+
+OC_repayment_interval <- kiva_loans %>%
+  filter(continent=="OC")%>%
+  dplyr::count(repayment_interval)%>%
+  mutate(repayment_interval=reorder(repayment_interval, n))%>%
+  ggplot(aes(
+    x = repayment_interval,
+    y = n,
+    fill = repayment_interval,
+    color = repayment_interval)) +
+  geom_col(show.legend = FALSE, alpha=0.7) +
+  theme_minimal() +
+  labs(title = "Oceania",
+       x = "",
+       y = "Count") +
+  theme(axis.text.x = element_text(angle = 45, hjust=1),
+        axis.ticks.x = element_blank()) +
+  #guides(fill = guide_legend(title = "Repayment interval")) +
+  scale_fill_viridis_d()+
+  scale_color_viridis_d()+
+  coord_flip()
+
+
+AS_repayment_interval <- kiva_loans %>%
+  filter(continent=="AS")%>%
+  dplyr::count(repayment_interval)%>%
+  mutate(repayment_interval=reorder(repayment_interval, n))%>%
+  ggplot(aes(
+    x = repayment_interval,
+    y = n,
+    fill = repayment_interval,
+    color = repayment_interval)) +
+  geom_col(show.legend = FALSE, alpha=0.7) +
+  theme_minimal() +
+  labs(title = "Asia",
+       x = "",
+       y = "Count") +
+  theme(axis.text.x = element_text(angle = 45, hjust=1),
+        axis.ticks.x = element_blank()) +
+  #guides(fill = guide_legend(title = "Repayment interval")) +
+  scale_fill_viridis_d()+
+  scale_color_viridis_d()+
+  coord_flip()
+
+
+SA_repayment_interval <- kiva_loans %>%
+  filter(continent=="SA")%>%
+  dplyr::count(repayment_interval)%>%
+  mutate(repayment_interval=reorder(repayment_interval, n))%>%
+  ggplot(aes(
+    x = repayment_interval,
+    y = n,
+    fill = repayment_interval,
+    color = repayment_interval)) +
+  geom_col(show.legend = FALSE, alpha=0.7) +
+  theme_minimal() +
+  labs(title = "South America",
+       x = "",
+       y = "Count") +
+  theme(axis.text.x = element_text(angle = 45, hjust=1),
+        axis.ticks.x = element_blank()) +
+  #guides(fill = guide_legend(title = "Repayment interval")) +
+  scale_fill_viridis_d()+
+  scale_color_viridis_d()+
+  coord_flip()
+
+grid.arrange(AS_repayment_interval, AF_repayment_interval, SA_repayment_interval, OC_repayment_interval,nrow=1)
+
 ```
 
 In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it's monthly. 
 
-```{r sectors_and_continents}
+```{r sectors_and_continents, fig.height=2, fig.cap="Most popular uses of loans by continent"}
+AF_sector <- kiva_loans %>%
+filter(continent=="AF")%>%
+dplyr::count(sector)%>%
+mutate(sector=reorder(sector, n))%>%
+ggplot(aes(
+x = sector,
+y = n,
+fill = sector,
+color = sector)) +
+geom_col(show.legend = FALSE, alpha=0.7) +
+theme_minimal() +
+labs(title = "Africa",
+x = "",
+y = "Count") +
+theme(axis.text.x = element_text(angle = 45, hjust=1),
+axis.ticks.x = element_blank()) +
+#guides(fill = guide_legend(title = "Sector")) +
+scale_fill_viridis_d()+
+scale_color_viridis_d()+
+coord_flip()
 
-# Create side-by-side barchart of sector by continent
-ggplot(kiva_loans, aes(x = continent, fill = sector)) + 
-  geom_bar(position = "dodge")+ theme_classic()
+
+OC_sector <- kiva_loans %>%
+filter(continent=="OC")%>%
+dplyr::count(sector)%>%
+mutate(sector=reorder(sector, n))%>%
+ggplot(aes(
+x = sector,
+y = n,
+fill = sector,
+color = sector)) +
+geom_col(show.legend = FALSE, alpha=0.7) +
+theme_minimal() +
+labs(title = "Oceania",
+x = "",
+y = "Count") +
+theme(axis.text.x = element_text(angle = 45, hjust=1),
+axis.ticks.x = element_blank()) +
+#guides(fill = guide_legend(title = "Sector")) +
+scale_fill_viridis_d()+
+scale_color_viridis_d()+
+coord_flip()
+
+
+AS_sector <- kiva_loans %>%
+filter(continent=="AS")%>%
+dplyr::count(sector)%>%
+mutate(sector=reorder(sector, n))%>%
+ggplot(aes(
+x = sector,
+y = n,
+fill = sector,
+color = sector)) +
+geom_col(show.legend = FALSE, alpha=0.7) +
+theme_minimal() +
+labs(title = "Asia",
+x = "",
+y = "Count") +
+theme(axis.text.x = element_text(angle = 45, hjust=1),
+axis.ticks.x = element_blank()) +
+#guides(fill = guide_legend(title = "Sector")) +
+scale_fill_viridis_d()+
+scale_color_viridis_d()+
+coord_flip()
+
+
+SA_sector <- kiva_loans %>%
+filter(continent=="SA")%>%
+dplyr::count(sector)%>%
+mutate(sector=reorder(sector, n))%>%
+ggplot(aes(
+x = sector,
+y = n,
+fill = sector,
+color = sector)) +
+geom_col(show.legend = FALSE, alpha=0.7) +
+theme_minimal() +
+labs(title = "South America",
+x = "",
+y = "Count") +
+theme(axis.text.x = element_text(angle = 45, hjust=1),
+axis.ticks.x = element_blank()) +
+#guides(fill = guide_legend(title = "Sector")) +
+scale_fill_viridis_d()+
+scale_color_viridis_d()+
+coord_flip()
+
+grid.arrange(AS_sector, AF_sector, SA_sector, OC_sector,nrow=1)
 ```
 
 In every continent, the three most popular sectors are agriculture, retail, and food. 
 
 Finally, we still would like to understand which countries are requesting the most loans. Let'see.
 
-```{r countries_plot, fig.height=5}
+```{r countries_plot, fig.height=2, fig.cap="Top 10 countries requesting Kiva loans"}
 kiva_loans %>%
   group_by(country_code) %>%
   dplyr::count(country_code, sort = TRUE) %>%
@@ -417,7 +670,8 @@ kiva_loans %>%
   ggplot(aes(reorder(x = country_code, n), y = n)) +
   geom_col(position = "dodge",
   color = "purple",
-  fill = "purple") +
+  fill = "purple",
+  alpha=0.6) +
   coord_flip() +
   theme_minimal() +
   labs(title = "Top 10 countries requesting Kiva Loans",
@@ -445,7 +699,7 @@ ggplot(kiva_loans, aes(x = loan_usd)) +
   "text",
   label = paste("Median =",
   round(median(kiva_loans$loan_usd), digits = 2), "USD"),
-  x = 5,
+  x = 10,
   y = 0.2,
   color = "red"
   ) +
