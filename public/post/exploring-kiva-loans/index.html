@@ -217,7 +217,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    11 min read
+    10 min read
   </span>
   
 
@@ -310,29 +310,20 @@
 <div id="purpose-of-this-post" class="section level1">
 <h1><span class="header-section-number">2</span> Purpose of this post</h1>
 <p>Muhammad Yunus and the Grameen Bank won the <a href="https://www.nobelpeaceprize.org/Prize-winners/Winners/2006">Nobel Peace Prize</a> in 2006 for “their efforts through microcredit to create economic and social development from below.”</p>
-<p>Who is Muhammad Yunus? What is the Grameen Bank? What are microcredits?</p>
-<p>In 1976, Yunus, who had studied economics and eventually became a professor at the University of Chittagong (Bangladesh), <a href="https://www.bbc.co.uk/news/world-south-asia-11901625">noticed that small amounts of money could make a substantial difference to people living in poverty</a>. He started to loan money to people that didn’t meet the requirements listed by the mainstream banking system. Not only did these type of loans turn out to be effective to <a href="https://www.nobelpeaceprize.org/Prize-winners/Prizewinner-documentation/Muhammad-Yunus-Grameen-Bank">“emerge” from poverty</a>, but default rates were lower than those of commercial banks, <a href="https://www.gdrc.org/icm/grameen-article4.html">reported at 2%</a>. Eventually, in October 1983, Muhammad Yunus founded <a href="https://grameenfoundation.org/about/history">Grameen Bank</a>, considered to be the first microfinance institution.</p>
-<p>Founded in 2005, <a href="www.kiva.org">Kiva</a>, has the same mission as Grameen Bank except that anyone can become a Kiva banker. This online platform enables microcredit lending to help low-income entrepreneurs around the world with a couple of cliks. Pretty neat, huh?</p>
-<p>In this post, I unpack a large dataset published by <a href="https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding">Kiva on the Kaggle platform</a> and explore these cool microloans.</p>
+<p>Back in 1976, Yunus, a professor at the University of Chittagong (Bangladesh) at the time, <a href="https://www.bbc.co.uk/news/world-south-asia-11901625">noticed that small amounts of money could make a substantial difference to people living in poverty</a>. He started to loan money to people that didn’t meet the requirements listed by the mainstream banking system. Not only did these type of loans turn out to be effective to <a href="https://www.nobelpeaceprize.org/Prize-winners/Prizewinner-documentation/Muhammad-Yunus-Grameen-Bank">“emerge” from poverty</a>, but default rates were lower than those of commercial banks, <a href="https://www.gdrc.org/icm/grameen-article4.html">reported at 2%</a>. Eventually, in October 1983, Muhammad Yunus founded <a href="https://grameenfoundation.org/about/history">Grameen Bank</a>, considered to be the first microfinance institution.</p>
+<p>Founded in 2005, <a href="www.kiva.org">Kiva</a>, has the same mission as Grameen Bank except that anyone can become a Kiva banker. This online platform enables microcredit lending to help low-income entrepreneurs around the world with a couple of cliks. Pretty neat, huh? In this post, I unpack a large dataset published by <a href="https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding">Kiva on the Kaggle platform</a> and explore these cool microloans.</p>
 </div>
 <div id="the-data" class="section level1">
 <h1><span class="header-section-number">3</span> The data</h1>
 <p>The dataset was published during the first months of 2018.</p>
-<p>Of course the dataset was super tidy and ready to go when I saw it since the point was to learn the algorithms, not to clean the database. In this post, I’ll take you through everything I did, from the downloading of the data to the very last line of this post.</p>
 </div>
 <div id="what-i-did" class="section level1">
 <h1><span class="header-section-number">4</span> What I did</h1>
 <p>If you would like to have a look at all the code used in this post, feel free to visit my <a href="https://www.kaggle.com/adcastillogill/exploring-kiva-loans">kernel on kaggle in R Markdown format</a>.</p>
 <p>The first step was to have a look at the dataset. This is pretty exciting. The zip file (232.7 MB) from Kaggle contained four files: <code>kiva_loans.csv</code>, <code>kiva_mpi_region_locations.csv</code>,<code>loan_theme_ids.csv</code>, and <code>loan_themes_by_region.csv</code>.</p>
 <pre class="r"><code>path &lt;- &quot;/Volumes/TOSHIBAEXT/RStudio/blog/content/post/kiva_data/&quot;
-#Read `kiva_loans.csv`
-kiva_loans &lt;- read_csv(paste(path,&quot;kiva_loans.csv&quot;,sep = &quot;&quot;))
-#Read `kiva_mpi_region_locations.csv`
-kiva_locations &lt;- read_csv(paste(path,&quot;kiva_mpi_region_locations.csv&quot;,sep=&quot;&quot;))
-#Read `loan_theme_ids.csv`
-kiva_themes &lt;- read_csv(paste(path,&quot;loan_theme_ids.csv&quot;,sep=&quot;&quot;))
-#Read`loan_themes_by_region.csv`
-kiva_locations_themes &lt;- read_csv(paste(path,&quot;loan_themes_by_region.csv&quot;,sep=&quot;&quot;))</code></pre>
+# Read `kiva_loans.csv`
+kiva_loans &lt;- read_csv(paste0(path, &quot;kiva_loans.csv&quot;))</code></pre>
 <p>Let’s see what’s inside.</p>
 <pre><code>Observations: 671,205
 Variables: 20
@@ -396,47 +387,7 @@ $ date               &lt;date&gt; 2014-01-01, 2014-01-01, 2014-01-01, 2014-0...<
 </div>
 <div id="data-cleaning" class="section level1">
 <h1><span class="header-section-number">5</span> Data cleaning</h1>
-<p>By having another glimpse at the structure of our data, we can soon see there are a few bits that don’t make sense and need to be fixed.</p>
-<pre><code>       id           loan_amount                sector      
- Min.   : 653047   Min.   :    25.0   Agriculture :180302  
- 1st Qu.: 823072   1st Qu.:   275.0   Food        :136657  
- Median : 992780   Median :   500.0   Retail      :124494  
- Mean   : 993249   Mean   :   842.4   Services    : 45140  
- 3rd Qu.:1163653   3rd Qu.:  1000.0   Personal Use: 36385  
- Max.   :1340339   Max.   :100000.0   Housing     : 33731  
-                                      (Other)     :114496  
-  country_code       currency       posted_time                 
- PH     :160441   PHP    :160440   Min.   :2014-01-01 04:49:26  
- KE     : 75825   USD    :105494   1st Qu.:2014-12-17 13:02:38  
- SV     : 39875   KES    : 75311   Median :2015-11-20 15:46:13  
- KH     : 34836   KHR    : 29498   Mean   :2015-11-10 09:21:01  
- PK     : 26857   PKR    : 26856   3rd Qu.:2016-10-06 07:24:48  
- (Other):333363   COP    : 21984   Max.   :2017-07-26 06:31:46  
- NA&#39;s   :     8   (Other):251622                                
- disbursed_time                term_in_months    lender_count    
- Min.   :2013-12-02 08:00:00   Min.   :  1.00   Min.   :   0.00  
- 1st Qu.:2014-12-08 08:00:00   1st Qu.:  8.00   1st Qu.:   7.00  
- Median :2015-11-06 08:00:00   Median : 13.00   Median :  13.00  
- Mean   :2015-10-26 21:57:55   Mean   : 13.74   Mean   :  20.59  
- 3rd Qu.:2016-09-21 07:00:00   3rd Qu.: 14.00   3rd Qu.:  24.00  
- Max.   :2017-09-30 07:00:00   Max.   :158.00   Max.   :2986.00  
- NA&#39;s   :2396                                                    
-                       borrower_genders  repayment_interval
- female                        :426502   bullet   : 70728  
- male                          :134710   irregular:257158  
- female, female                : 12164   monthly  :342717  
- female, female, female        : 11676   weekly   :   602  
- female, female, female, female:  9052                     
- (Other)                       : 72880                     
- NA&#39;s                          :  4221                     
-  funded_time                 
- Min.   :2014-01-01 12:18:55  
- 1st Qu.:2014-12-29 13:13:00  
- Median :2015-12-01 11:56:11  
- Mean   :2015-11-19 07:44:52  
- 3rd Qu.:2016-10-17 22:12:47  
- Max.   :2017-07-26 02:09:43  
- NA&#39;s   :48331                </code></pre>
+<p>From at the structure of our data, we can soon see there are a few bits that don’t make sense and need to be fixed.</p>
 <p><strong>a. Missing values</strong></p>
 <p>Missing values, aka <code>NA's</code>, we could simply remove them since we have plenty of observations. But what if by removing them we introduce some bias. For example, <code>borrower_genders</code> has plenty of missing values, but what if this could say something about certain types of loans. For now we will leave them in.</p>
 <p><strong>b.<code>borrower_genders</code></strong></p>
@@ -447,8 +398,6 @@ $ date               &lt;date&gt; 2014-01-01, 2014-01-01, 2014-01-01, 2014-0...<
 <p>Nothing <code>strange</code>! Five levels as we wanted - fabulous! Onwards.</p>
 <p><strong>c.<code>loan_amounts</code></strong></p>
 <p>Now, since we’re trying to predict <code>loan_amounts</code>, it’s better if they’re all in the same currency. Shall we translate them to USD? Here we go!</p>
-<pre><code>&lt;simpleError in download.file(paste0(&quot;https://query1.finance.yahoo.com/v7/finance/quote?symbols=&quot;,     Symbols, &quot;&amp;fields=&quot;, QFc), destfile = tmp, quiet = TRUE): cannot open URL &#39;https://query1.finance.yahoo.com/v7/finance/quote?symbols=SSP=X&amp;fields=regularMarketPrice,regularMarketChange,regularMarketChangePercent,regularMarketOpen,regularMarketDayHigh,regularMarketDayLow,regularMarketVolume&#39;&gt;
-&lt;simpleError in download.file(paste0(&quot;https://query1.finance.yahoo.com/v7/finance/quote?symbols=&quot;,     Symbols, &quot;&amp;fields=&quot;, QFc), destfile = tmp, quiet = TRUE): cannot open URL &#39;https://query1.finance.yahoo.com/v7/finance/quote?symbols=ZWD=X&amp;fields=regularMarketPrice,regularMarketChange,regularMarketChangePercent,regularMarketOpen,regularMarketDayHigh,regularMarketDayLow,regularMarketVolume&#39;&gt;</code></pre>
 <p>It seems like two currencies are returning an error. Let’s filter them out.</p>
 <p><strong>d.<code>country_codes</code></strong></p>
 <p>Finally, with 86 countries, we have 86 levels. Perhaps it would be interesting to create another category called continent to produce less levels and have a better understanding of the overall function of regional distributions.</p>
@@ -465,11 +414,11 @@ First, how much time passes from the moment the loan is posted to the moment it�
  n obs: 671044 
  n variables: 14 
 
-── Variable type:character ───────────────────────────────────────────────────────────────────────────────
+── Variable type:character ────────────────────────────────────────────────────────────────────────
  variable missing complete      n min max empty n_unique
        id       0   671044 671044   6   7     0   671044
 
-── Variable type:factor ──────────────────────────────────────────────────────────────────────────────────
+── Variable type:factor ───────────────────────────────────────────────────────────────────────────
            variable missing complete      n n_unique
    borrower_genders    4184   666860 671044        5
           continent   84856   586188 671044        5
@@ -483,25 +432,25 @@ First, how much time passes from the moment the loan is posted to the moment it�
     mon: 342679, irr: 257035, bul: 70728, wee: 602   FALSE
  Agr: 180289, Foo: 136621, Ret: 124433, Ser: 45127   FALSE
 
-── Variable type:integer ─────────────────────────────────────────────────────────────────────────────────
+── Variable type:integer ──────────────────────────────────────────────────────────────────────────
      variable missing complete      n  mean    sd p0 p25 p50 p75 p100
  lender_count       0   671044 671044 20.59 28.46  0   7  13  24 2986
      hist
  ▇▁▁▁▁▁▁▁
 
-── Variable type:numeric ─────────────────────────────────────────────────────────────────────────────────
+── Variable type:numeric ──────────────────────────────────────────────────────────────────────────
         variable missing complete      n   mean     sd        p0  p25
  giving_time_num   48331   622713 671044  14.64  14.4   -17.51   5.17
-        loan_usd       0   671044 671044 267.24 946.97    0.0022 1.71
+        loan_usd       0   671044 671044 267.21 946.97    0.0022 1.71
   term_in_months       0   671044 671044  13.74   8.6     1      8   
   total_time_num    2396   668648 671044  14.09  18.56 -427.02   7.09
    p50   p75     p100     hist
   9.59 22.54   420.57 ▇▁▁▁▁▁▁▁
-  5.15 90.21 1e+05    ▇▁▁▁▁▁▁▁
+  5.14 90.16 1e+05    ▇▁▁▁▁▁▁▁
  13    14      158    ▇▁▁▁▁▁▁▁
  16.12 26.67    32.04 ▁▁▁▁▁▁▁▇
 
-── Variable type:POSIXct ─────────────────────────────────────────────────────────────────────────────────
+── Variable type:POSIXct ──────────────────────────────────────────────────────────────────────────
        variable missing complete      n        min        max     median
  disbursed_time    2396   668648 671044 2013-12-02 2017-09-30 2015-11-07
     funded_time   48331   622713 671044 2014-01-01 2017-07-26 2015-12-01
@@ -536,14 +485,34 @@ mixed_genders  mult_females    mult_males single_female   single_male
   0.0542214818   0.1854319538   0.0672489434   0.0231251602   0.0009447965 </code></pre>
 <p>We can see that most of the loans are requested by single females, that the least amount of loans are given in the EU, that weekly repayment is an unpopular form of paying the loan back and that entertainment, wholesale, manufacturing, and construction amount less than 2.2% of sectors. Let’s remove these categories that are not representative of the data.</p>
 <p>Ideal. Now let’s look at our factors in an easier way to parse. Let’s compare genders by continents to see if we can spot anything worth noting.</p>
-<p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/continent_and_borrower_genders_plots-1.png" width="672" /></p>
+<div class="figure">
+<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/continent_and_borrower_genders_plots-1.png" alt="Most popular borrower genders by continent" width="672" />
+<p class="caption">
+(#fig:continent_and_borrower_genders_plots)Most popular borrower genders by continent
+</p>
+</div>
 <p>In all continents, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it’s mixed genders.</p>
-<p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/repayment_interval_and_continent-1.png" width="672" /></p>
+<div class="figure">
+<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/repayment_interval_and_continent-1.png" alt="Most popular repayment styles by continent" width="672" />
+<p class="caption">
+(#fig:repayment_interval_and_continent)Most popular repayment styles by continent
+</p>
+</div>
 <p>In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it’s monthly.</p>
-<p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/sectors_and_continents-1.png" width="672" /></p>
+<div class="figure">
+<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/sectors_and_continents-1.png" alt="Most popular uses of loans by continent" width="672" />
+<p class="caption">
+(#fig:sectors_and_continents)Most popular uses of loans by continent
+</p>
+</div>
 <p>In every continent, the three most popular sectors are agriculture, retail, and food.</p>
 <p>Finally, we still would like to understand which countries are requesting the most loans. Let’see.</p>
-<p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries_plot-1.png" width="672" /></p>
+<div class="figure">
+<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries_plot-1.png" alt="Top 10 countries requesting Kiva loans" width="672" />
+<p class="caption">
+(#fig:countries_plot)Top 10 countries requesting Kiva loans
+</p>
+</div>
 <p>We see that the Philippines is the country that requests the mosts loans with over double as the second country Kenya <code>KE</code>. Other top countries Cambodia <code>KH</code>, Pakistan <code>PK</code>, Peru <code>PE</code>, Colombia <code>CO</code>, Uganda <code>UG</code>, Tajikistan <code>TJ</code>, Ecuador <code>EC</code>, and Paraguay <code>PY</code>.</p>
 </div>
 <div id="numeric-variables" class="section level1">
@@ -555,7 +524,7 @@ mixed_genders  mult_females    mult_males single_female   single_male
 Figure 8.1: Distribution of Kiva loans in USD
 </p>
 </div>
-<p>Figure <a href="#fig:loan-usd-distribution">8.1</a>, shows that the distribution of Kiva loans in US dollars is right skewed and multimodal with its biggest peak around $1 and its second around $4. The median is about 4.21.</p>
+<p>Figure <a href="#fig:loan-usd-distribution">8.1</a>, shows that the distribution of Kiva loans in US dollars is right skewed and multimodal with its biggest peak around $1 and its second around $4. The median is about 4.2.</p>
 <p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/term_in_months_distribution-1.png" width="672" />
 The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median.
 <img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/lender_count-1.png" width="672" />
