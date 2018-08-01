@@ -369,7 +369,7 @@ kiva_loans <-  kiva_loans%>%
 
 Ideal. Now let's look at our factors in an easier way to parse. Let's compare genders by continents to see if we can spot anything worth noting.
 
-```{r continent_and_borrower_genders_plots, fig.cap="Most popular borrower genders by continent"}
+```{r continent-and-borrower-genders-plots, fig.cap="Most popular borrower genders by continent"}
 AF_borrower_genders <- na.omit(kiva_loans) %>%
   filter(continent == "AF") %>%
   dplyr::count(borrower_genders) %>%
@@ -472,7 +472,7 @@ grid.arrange(
 
 In all continents, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it's mixed genders. 
 
-```{r repayment_interval_and_continent, fig.cap="Most popular repayment styles by continent"}
+```{r repayment-interval-and-continent, fig.cap="Most popular repayment styles by continent"}
 AF_repayment_interval <- kiva_loans %>%
   filter(continent=="AF")%>%
   dplyr::count(repayment_interval)%>%
@@ -566,7 +566,7 @@ grid.arrange(AS_repayment_interval, AF_repayment_interval, SA_repayment_interval
 
 In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it's monthly. 
 
-```{r sectors_and_continents, fig.cap="Most popular uses of loans by continent"}
+```{r sectors-and-continents, fig.cap="Most popular uses of loans by continent"}
 AF_sector <- kiva_loans %>%
 filter(continent=="AF")%>%
 dplyr::count(sector)%>%
@@ -661,7 +661,7 @@ In every continent, the three most popular sectors are agriculture, retail, and 
 
 Finally, we still would like to understand which countries are requesting the most loans. Let'see.
 
-```{r countries_plot, fig.cap="Top 10 countries requesting Kiva loans"}
+```{r countries-plot, fig.cap="Top 10 countries requesting Kiva loans"}
 kiva_loans %>%
   group_by(country_code) %>%
   dplyr::count(country_code, sort = TRUE) %>%

@@ -144,11 +144,11 @@ First, how much time passes from the moment the loan is posted to the moment it�
  n obs: 671044 
  n variables: 14 
 
-── Variable type:character ────────────────────────────────────────────────────────────────────────
+── Variable type:character ────────────────────────────────────────────────────────────────────
  variable missing complete      n min max empty n_unique
        id       0   671044 671044   6   7     0   671044
 
-── Variable type:factor ───────────────────────────────────────────────────────────────────────────
+── Variable type:factor ───────────────────────────────────────────────────────────────────────
            variable missing complete      n n_unique
    borrower_genders    4184   666860 671044        5
           continent   84856   586188 671044        5
@@ -162,25 +162,25 @@ First, how much time passes from the moment the loan is posted to the moment it�
     mon: 342679, irr: 257035, bul: 70728, wee: 602   FALSE
  Agr: 180289, Foo: 136621, Ret: 124433, Ser: 45127   FALSE
 
-── Variable type:integer ──────────────────────────────────────────────────────────────────────────
+── Variable type:integer ──────────────────────────────────────────────────────────────────────
      variable missing complete      n  mean    sd p0 p25 p50 p75 p100
  lender_count       0   671044 671044 20.59 28.46  0   7  13  24 2986
      hist
  ▇▁▁▁▁▁▁▁
 
-── Variable type:numeric ──────────────────────────────────────────────────────────────────────────
+── Variable type:numeric ──────────────────────────────────────────────────────────────────────
         variable missing complete      n   mean     sd        p0  p25
  giving_time_num   48331   622713 671044  14.64  14.4   -17.51   5.17
-        loan_usd       0   671044 671044 267.21 946.96    0.0022 1.71
+        loan_usd       0   671044 671044 267.27 946.98    0.0021 1.73
   term_in_months       0   671044 671044  13.74   8.6     1      8   
   total_time_num    2396   668648 671044  14.09  18.56 -427.02   7.09
    p50   p75     p100     hist
   9.59 22.54   420.57 ▇▁▁▁▁▁▁▁
-  5.14 90.16 1e+05    ▇▁▁▁▁▁▁▁
+  5.19 90.19 1e+05    ▇▁▁▁▁▁▁▁
  13    14      158    ▇▁▁▁▁▁▁▁
  16.12 26.67    32.04 ▁▁▁▁▁▁▁▇
 
-── Variable type:POSIXct ──────────────────────────────────────────────────────────────────────────
+── Variable type:POSIXct ──────────────────────────────────────────────────────────────────────
        variable missing complete      n        min        max     median
  disbursed_time    2396   668648 671044 2013-12-02 2017-09-30 2015-11-07
     funded_time   48331   622713 671044 2014-01-01 2017-07-26 2015-12-01
@@ -215,32 +215,32 @@ mixed_genders  mult_females    mult_males single_female   single_male
   0.0542214818   0.1854319538   0.0672489434   0.0231251602   0.0009447965 </code></pre>
 <p>We can see that most of the loans are requested by single females, that the least amount of loans are given in the EU, that weekly repayment is an unpopular form of paying the loan back and that entertainment, wholesale, manufacturing, and construction amount less than 2.2% of sectors. Let’s remove these categories that are not representative of the data.</p>
 <p>Ideal. Now let’s look at our factors in an easier way to parse. Let’s compare genders by continents to see if we can spot anything worth noting.</p>
-<div class="figure">
-<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/continent_and_borrower_genders_plots-1.png" alt="Most popular borrower genders by continent" width="672" />
+<div class="figure"><span id="fig:continent-and-borrower-genders-plots"></span>
+<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/continent-and-borrower-genders-plots-1.png" alt="Most popular borrower genders by continent" width="672" />
 <p class="caption">
-(#fig:continent_and_borrower_genders_plots)Most popular borrower genders by continent
+Figure 7.1: Most popular borrower genders by continent
 </p>
 </div>
 <p>In all continents, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it’s mixed genders.</p>
-<div class="figure">
-<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/repayment_interval_and_continent-1.png" alt="Most popular repayment styles by continent" width="672" />
+<div class="figure"><span id="fig:repayment-interval-and-continent"></span>
+<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/repayment-interval-and-continent-1.png" alt="Most popular repayment styles by continent" width="672" />
 <p class="caption">
-(#fig:repayment_interval_and_continent)Most popular repayment styles by continent
+Figure 7.2: Most popular repayment styles by continent
 </p>
 </div>
 <p>In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it’s monthly.</p>
-<div class="figure">
-<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/sectors_and_continents-1.png" alt="Most popular uses of loans by continent" width="672" />
+<div class="figure"><span id="fig:sectors-and-continents"></span>
+<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/sectors-and-continents-1.png" alt="Most popular uses of loans by continent" width="672" />
 <p class="caption">
-(#fig:sectors_and_continents)Most popular uses of loans by continent
+Figure 7.3: Most popular uses of loans by continent
 </p>
 </div>
 <p>In every continent, the three most popular sectors are agriculture, retail, and food.</p>
 <p>Finally, we still would like to understand which countries are requesting the most loans. Let’see.</p>
-<div class="figure">
-<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries_plot-1.png" alt="Top 10 countries requesting Kiva loans" width="672" />
+<div class="figure"><span id="fig:countries-plot"></span>
+<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries-plot-1.png" alt="Top 10 countries requesting Kiva loans" width="672" />
 <p class="caption">
-(#fig:countries_plot)Top 10 countries requesting Kiva loans
+Figure 7.4: Top 10 countries requesting Kiva loans
 </p>
 </div>
 <p>We see that the Philippines is the country that requests the mosts loans with over double as the second country Kenya <code>KE</code>. Other top countries Cambodia <code>KH</code>, Pakistan <code>PK</code>, Peru <code>PE</code>, Colombia <code>CO</code>, Uganda <code>UG</code>, Tajikistan <code>TJ</code>, Ecuador <code>EC</code>, and Paraguay <code>PY</code>.</p>
@@ -254,7 +254,7 @@ mixed_genders  mult_females    mult_males single_female   single_male
 Figure 8.1: Distribution of Kiva loans in USD
 </p>
 </div>
-<p>Figure <a href="#fig:loan-usd-distribution">8.1</a>, shows that the distribution of Kiva loans in US dollars is right skewed and multimodal with its biggest peak around $1 and its second around $4. The median is about 4.2.</p>
+<p>Figure <a href="#fig:loan-usd-distribution">8.1</a>, shows that the distribution of Kiva loans in US dollars is right skewed and multimodal with its biggest peak around $1 and its second around $4. The median is about 4.25.</p>
 <p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/term_in_months_distribution-1.png" width="672" />
 The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median.
 <img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/lender_count-1.png" width="672" />
