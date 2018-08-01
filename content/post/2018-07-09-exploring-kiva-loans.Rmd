@@ -66,7 +66,7 @@ If you would like to have a look at all the code used in this post, feel free to
 
 The first step was to have a look at the dataset. This is pretty exciting. The zip file (232.7 MB) from Kaggle contained four files: `kiva_loans.csv`, `kiva_mpi_region_locations.csv`,`loan_theme_ids.csv`, and `loan_themes_by_region.csv`. 
 
-```{r echo=T, results='hide',message=FALSE}
+```{r results='hide', message=FALSE}
 path <- "/Volumes/TOSHIBAEXT/RStudio/blog/content/post/kiva_data/"
 #Read `kiva_loans.csv`
 kiva_loans <- read_csv(paste0(path,"kiva_loans.csv"))
@@ -782,9 +782,17 @@ ggplot(kiva_loans,
 The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days. 
 
 
-# What I found out
+# Skills practiced in this post 
 
-# Conclusions
+- The `quantmode` package was new to me. I used this to convert all loans into a unique currency (US dollars) for comparison. There were two currencies that were unavailable and because I hadn't seen the warnings, the whole chunk kept throwing an error that was a bit frustrating. 
+
+- Taking all the different levels that came in the `borrower_genders` variable and creating five neat categories to better understand who are the borrowers was good practice with lists and the `stringr` package. 
 
 
-*LOL. Read that again outloud and laugh at the jargon put together in one short sentence. 
+# What I'm curious about
+
+- Why is `Retail` and not `Food` (as in other regions) the second most common use for loans in Asia. 
+
+- Who are the givers? Where are they? Does proximity of the lender to the borrower have anything to do with funding times?
+
+- Does the Kiva website have anything to do with funding times? For example, `giving_time`, the time between posting the loan and the loan being fully funded, has two peaks, at around one week and one month. Is this due to the platform and the promotion of loans that have been posted for a certain amount of time?

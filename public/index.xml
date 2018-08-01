@@ -26,8 +26,8 @@
 &lt;li&gt;&lt;a href=&#34;#exploratory-data-analysis&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; Exploratory data analysis&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#factors&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;7&lt;/span&gt; Factors&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#numeric-variables&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;8&lt;/span&gt; Numeric variables&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#what-i-found-out&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;9&lt;/span&gt; What I found out&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#conclusions&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;10&lt;/span&gt; Conclusions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#skills-practiced-in-this-post&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;9&lt;/span&gt; Skills practiced in this post&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#what-im-curious-about&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;10&lt;/span&gt; What I’m curious about&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 
@@ -48,9 +48,6 @@
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;4&lt;/span&gt; What I did&lt;/h1&gt;
 &lt;p&gt;If you would like to have a look at all the code used in this post, feel free to visit my &lt;a href=&#34;https://www.kaggle.com/adcastillogill/exploring-kiva-loans&#34;&gt;kernel on kaggle in R Markdown format&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The first step was to have a look at the dataset. This is pretty exciting. The zip file (232.7 MB) from Kaggle contained four files: &lt;code&gt;kiva_loans.csv&lt;/code&gt;, &lt;code&gt;kiva_mpi_region_locations.csv&lt;/code&gt;,&lt;code&gt;loan_theme_ids.csv&lt;/code&gt;, and &lt;code&gt;loan_themes_by_region.csv&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;path &amp;lt;- &amp;quot;/Volumes/TOSHIBAEXT/RStudio/blog/content/post/kiva_data/&amp;quot;
-# Read `kiva_loans.csv`
-kiva_loans &amp;lt;- read_csv(paste0(path, &amp;quot;kiva_loans.csv&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Let’s see what’s inside.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;Observations: 671,205
 Variables: 20
@@ -261,12 +258,20 @@ The median time between posting the loan and the loan being fully funded is abou
 &lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/total_time-1.png&#34; width=&#34;672&#34; /&gt;
 The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div id=&#34;what-i-found-out&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;9&lt;/span&gt; What I found out&lt;/h1&gt;
+&lt;div id=&#34;skills-practiced-in-this-post&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;9&lt;/span&gt; Skills practiced in this post&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The &lt;code&gt;quantmode&lt;/code&gt; package was new to me. I used this to convert all loans into a unique currency (US dollars) for comparison. There were two currencies that were unavailable and because I hadn’t seen the warnings, the whole chunk kept throwing an error that was a bit frustrating.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Taking all the different levels that came in the &lt;code&gt;borrower_genders&lt;/code&gt; variable and creating five neat categories to better understand who are the borrowers was good practice with lists and the &lt;code&gt;stringr&lt;/code&gt; package.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/div&gt;
-&lt;div id=&#34;conclusions&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;10&lt;/span&gt; Conclusions&lt;/h1&gt;
-&lt;p&gt;*LOL. Read that again outloud and laugh at the jargon put together in one short sentence.&lt;/p&gt;
+&lt;div id=&#34;what-im-curious-about&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;10&lt;/span&gt; What I’m curious about&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Why is &lt;code&gt;Retail&lt;/code&gt; and not &lt;code&gt;Food&lt;/code&gt; (as in other regions) the second most common use for loans in Asia.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Who are the givers? Where are they? Does proximity of the lender to the borrower have anything to do with funding times?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Does the Kiva website have anything to do with funding times? For example, &lt;code&gt;giving_time&lt;/code&gt;, the time between posting the loan and the loan being fully funded, has two peaks, at around one week and one month. Is this due to the platform and the promotion of loans that have been posted for a certain amount of time?&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/div&gt;
 </description>
     </item>

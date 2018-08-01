@@ -29,8 +29,8 @@ output:
 <li><a href="#exploratory-data-analysis"><span class="toc-section-number">6</span> Exploratory data analysis</a></li>
 <li><a href="#factors"><span class="toc-section-number">7</span> Factors</a></li>
 <li><a href="#numeric-variables"><span class="toc-section-number">8</span> Numeric variables</a></li>
-<li><a href="#what-i-found-out"><span class="toc-section-number">9</span> What I found out</a></li>
-<li><a href="#conclusions"><span class="toc-section-number">10</span> Conclusions</a></li>
+<li><a href="#skills-practiced-in-this-post"><span class="toc-section-number">9</span> Skills practiced in this post</a></li>
+<li><a href="#what-im-curious-about"><span class="toc-section-number">10</span> What I’m curious about</a></li>
 </ul>
 </div>
 
@@ -51,9 +51,6 @@ output:
 <h1><span class="header-section-number">4</span> What I did</h1>
 <p>If you would like to have a look at all the code used in this post, feel free to visit my <a href="https://www.kaggle.com/adcastillogill/exploring-kiva-loans">kernel on kaggle in R Markdown format</a>.</p>
 <p>The first step was to have a look at the dataset. This is pretty exciting. The zip file (232.7 MB) from Kaggle contained four files: <code>kiva_loans.csv</code>, <code>kiva_mpi_region_locations.csv</code>,<code>loan_theme_ids.csv</code>, and <code>loan_themes_by_region.csv</code>.</p>
-<pre class="r"><code>path &lt;- &quot;/Volumes/TOSHIBAEXT/RStudio/blog/content/post/kiva_data/&quot;
-# Read `kiva_loans.csv`
-kiva_loans &lt;- read_csv(paste0(path, &quot;kiva_loans.csv&quot;))</code></pre>
 <p>Let’s see what’s inside.</p>
 <pre><code>Observations: 671,205
 Variables: 20
@@ -264,10 +261,18 @@ The median time between posting the loan and the loan being fully funded is abou
 <img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/total_time-1.png" width="672" />
 The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days.</p>
 </div>
-<div id="what-i-found-out" class="section level1">
-<h1><span class="header-section-number">9</span> What I found out</h1>
+<div id="skills-practiced-in-this-post" class="section level1">
+<h1><span class="header-section-number">9</span> Skills practiced in this post</h1>
+<ul>
+<li><p>The <code>quantmode</code> package was new to me. I used this to convert all loans into a unique currency (US dollars) for comparison. There were two currencies that were unavailable and because I hadn’t seen the warnings, the whole chunk kept throwing an error that was a bit frustrating.</p></li>
+<li><p>Taking all the different levels that came in the <code>borrower_genders</code> variable and creating five neat categories to better understand who are the borrowers was good practice with lists and the <code>stringr</code> package.</p></li>
+</ul>
 </div>
-<div id="conclusions" class="section level1">
-<h1><span class="header-section-number">10</span> Conclusions</h1>
-<p>*LOL. Read that again outloud and laugh at the jargon put together in one short sentence.</p>
+<div id="what-im-curious-about" class="section level1">
+<h1><span class="header-section-number">10</span> What I’m curious about</h1>
+<ul>
+<li><p>Why is <code>Retail</code> and not <code>Food</code> (as in other regions) the second most common use for loans in Asia.</p></li>
+<li><p>Who are the givers? Where are they? Does proximity of the lender to the borrower have anything to do with funding times?</p></li>
+<li><p>Does the Kiva website have anything to do with funding times? For example, <code>giving_time</code>, the time between posting the loan and the loan being fully funded, has two peaks, at around one week and one month. Is this due to the platform and the promotion of loans that have been posted for a certain amount of time?</p></li>
+</ul>
 </div>
