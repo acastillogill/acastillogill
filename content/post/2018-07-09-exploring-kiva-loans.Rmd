@@ -480,7 +480,7 @@ grid.arrange(
 
 In all continents, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it's mixed genders. 
 
-```{r repayment-interval-and-continent, fig.cap="Most popular repayment styles by continent"}
+```{r repayment-interval-and-continent, fig.cap="Most popular repayment styles by continent",fig.width=12}
 AF_repayment_interval <- kiva_loans %>%
   filter(continent=="AF")%>%
   dplyr::count(repayment_interval)%>%
@@ -583,7 +583,7 @@ grid.arrange(AS_repayment_interval,
 
 In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it's monthly. 
 
-```{r sectors-and-continents, fig.cap="Most popular uses of loans by continent"}
+```{r sectors-and-continents, fig.cap="Most popular uses of loans by continent",fig.width=12}
 AF_sector <- kiva_loans %>%
 filter(continent=="AF")%>%
 dplyr::count(sector)%>%

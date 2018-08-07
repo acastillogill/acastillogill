@@ -121,7 +121,7 @@ $ date               &amp;lt;date&amp;gt; 2014-01-01, 2014-01-01, 2014-01-01, 20
 [5] &amp;quot;single_male&amp;quot;  &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Nothing &lt;code&gt;strange&lt;/code&gt;! Five levels as we wanted - fabulous! Onwards.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;c.&lt;code&gt;loan_amounts&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Now, since we’re trying to predict &lt;code&gt;loan_amounts&lt;/code&gt;, it’s better if they’re all in the same currency. Shall we translate them to USD? Here we go!&lt;/p&gt;
+&lt;p&gt;Now, since we’re trying to predict &lt;code&gt;loan_amounts&lt;/code&gt;, it’s better if they’re all in the same currency. Let’s translate them to USD.&lt;/p&gt;
 &lt;p&gt;It seems like two currencies are returning an error. Let’s filter them out.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;d.&lt;code&gt;country_codes&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Finally, with 86 countries, we have 86 levels. Perhaps it would be interesting to create another category called continent to produce less levels and have a better understanding of the overall function of regional distributions.&lt;/p&gt;
@@ -138,11 +138,11 @@ First, how much time passes from the moment the loan is posted to the moment it�
  n obs: 671044 
  n variables: 14 
 
-── Variable type:character ───────────────────────────────────────────────────────────
+── Variable type:character ─────────────────────────────────────────────────────────
  variable missing complete      n min max empty n_unique
        id       0   671044 671044   6   7     0   671044
 
-── Variable type:factor ──────────────────────────────────────────────────────────────
+── Variable type:factor ────────────────────────────────────────────────────────────
            variable missing complete      n n_unique
    borrower_genders    4184   666860 671044        5
           continent   84856   586188 671044        5
@@ -156,16 +156,16 @@ First, how much time passes from the moment the loan is posted to the moment it�
     mon: 342679, irr: 257035, bul: 70728, wee: 602   FALSE
  Agr: 180289, Foo: 136621, Ret: 124433, Ser: 45127   FALSE
 
-── Variable type:integer ─────────────────────────────────────────────────────────────
+── Variable type:integer ───────────────────────────────────────────────────────────
      variable missing complete      n  mean    sd p0 p25 p50 p75 p100
  lender_count       0   671044 671044 20.59 28.46  0   7  13  24 2986
      hist
  ▇▁▁▁▁▁▁▁
 
-── Variable type:numeric ─────────────────────────────────────────────────────────────
+── Variable type:numeric ───────────────────────────────────────────────────────────
         variable missing complete      n   mean     sd        p0  p25
  giving_time_num   48331   622713 671044  14.64  14.4   -17.51   5.17
-        loan_usd       0   671044 671044 267.26 946.95    0.0021 1.72
+        loan_usd       0   671044 671044 267.25 946.95    0.0021 1.72
   term_in_months       0   671044 671044  13.74   8.6     1      8   
   total_time_num    2396   668648 671044  14.09  18.56 -427.02   7.09
    p50   p75     p100     hist
@@ -174,7 +174,7 @@ First, how much time passes from the moment the loan is posted to the moment it�
  13    14      158    ▇▁▁▁▁▁▁▁
  16.12 26.67    32.04 ▁▁▁▁▁▁▁▇
 
-── Variable type:POSIXct ─────────────────────────────────────────────────────────────
+── Variable type:POSIXct ───────────────────────────────────────────────────────────
        variable missing complete      n        min        max     median
  disbursed_time    2396   668648 671044 2013-12-02 2017-09-30 2015-11-07
     funded_time   48331   622713 671044 2014-01-01 2017-07-26 2015-12-01
@@ -217,14 +217,14 @@ Figure 7.1: Most popular borrower genders by continent
 &lt;/div&gt;
 &lt;p&gt;In all continents, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it’s mixed genders.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:repayment-interval-and-continent&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/repayment-interval-and-continent-1.png&#34; alt=&#34;Most popular repayment styles by continent&#34; width=&#34;672&#34; /&gt;
+&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/repayment-interval-and-continent-1.png&#34; alt=&#34;Most popular repayment styles by continent&#34; width=&#34;1152&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 7.2: Most popular repayment styles by continent
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it’s monthly.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:sectors-and-continents&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/sectors-and-continents-1.png&#34; alt=&#34;Most popular uses of loans by continent&#34; width=&#34;672&#34; /&gt;
+&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/sectors-and-continents-1.png&#34; alt=&#34;Most popular uses of loans by continent&#34; width=&#34;1152&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 7.3: Most popular uses of loans by continent
 &lt;/p&gt;
