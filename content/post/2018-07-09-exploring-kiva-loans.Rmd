@@ -344,7 +344,6 @@ skim(kiva_loans)
 
 Now let's describe the data. We could jump into the regression trees but exploring the data will help us interpret our predictions better. Do some extra work now and enjoy the benefits later. 
 
-# Factors
 
 Let's make two-way tables to understand our factors.
 
@@ -701,15 +700,13 @@ kiva_loans %>%
   alpha=0.6) +
   coord_flip() +
   theme_minimal() +
-  labs(title = "Top 10 countries requesting Kiva Loans",
+  labs(title = "Top 10 countries requesting Kiva loans",
   x = "",
   y = "Number of loans")
 ```
 
 We see that the Philippines is the country that requests the mosts loans with over double as the second country Kenya `KE`. Other top countries Cambodia `KH`, Pakistan `PK`, Peru `PE`, Colombia `CO`, Uganda `UG`, Tajikistan `TJ`, Ecuador `EC`, and Paraguay `PY`.
 
-
-# Numeric variables 
 
 Now let's look at the distributions of our numeric variables.
 
@@ -730,9 +727,9 @@ ggplot(kiva_loans, aes(x = loan_usd)) +
   y = 0.2,
   color = "red"
   ) +
-  labs(title = "Distribution of Kiva loans in USD",
-  x = "US dollars",
-  y = "")
+  labs(title = "Distribution of Kiva loans' amounts in USD",
+  x = "US Dollars",
+  y = "Density")
 ```
 
 Figure \@ref(fig:loan-usd-distribution), shows that the distribution of Kiva loans in US dollars is right skewed and multimodal with its biggest peak around $1 and its second around $4. The median is about `r round(median(kiva_loans$loan_usd),digits=2)`. 
@@ -747,11 +744,13 @@ ggplot(kiva_loans,
              color="red",
              linetype="dashed")+
   annotate("text",
-           label=paste("Median =",
-                              median(kiva_loans$term_in_months),"months"),
+           label=paste("Median =",                          median(kiva_loans$term_in_months),"months"),
                 x=18,
                 y=0.2,
-           color="red")
+           color="red")+
+    labs(title = "Distribution of Kiva loans' terms in months",
+  x = "Months",
+  y = "Density")
 ```
 The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median. 
 ```{r lender_count}
@@ -768,7 +767,10 @@ ggplot(kiva_loans,
                               median(kiva_loans$lender_count),"lenders"),
                 x=21,
                 y=150000,
-           color="red")
+           color="red")+
+    labs(title = "Distribution of number of lenders per Kiva loan",
+  x = "Number of lenders",
+  y = "Frequency")
 ```
 The lender count has a text book right-skewed distribution with a median of 12 lenders. 
 ```{r giving_time}
@@ -785,7 +787,10 @@ ggplot(kiva_loans,
                        round(median(kiva_loans$giving_time_num,na.rm = TRUE)),digits=2,"days"),
            x=median(kiva_loans$giving_time_num,na.rm=TRUE)+5,
            y=0.1,
-           color="red")
+           color="red")+
+    labs(title = "Distribution of time to fully fund a Kiva loan",
+  x = "Days",
+  y = "Density")
 ```
 The median time between posting the loan and the loan being fully funded is about 9.2 days. It is a bimodal distribution with its first peak around 6 days and its second peak around 30 days. 
 ```{r total_time}
@@ -804,7 +809,10 @@ ggplot(kiva_loans,
                                     na.rm = TRUE)),digits=2,"days"),
            x=15+5,
            y=0.1,
-           color="red")
+           color="red")+
+    labs(title = "Distribution of time between posting and disbursing a Kiva loan",
+  x = "Months",
+  y = "Density")
 ```
 The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days. 
 

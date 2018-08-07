@@ -24,10 +24,8 @@
 &lt;li&gt;&lt;a href=&#34;#what-i-did&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; What I did&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#data-cleaning&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Data cleaning&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#exploratory-data-analysis&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; Exploratory data analysis&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#factors&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;7&lt;/span&gt; Factors&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#numeric-variables&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;8&lt;/span&gt; Numeric variables&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#skills-practiced-in-this-post&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;9&lt;/span&gt; Skills practiced in this post&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#what-im-curious-about&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;10&lt;/span&gt; What I’m curious about&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#skills-practiced-in-this-post&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;7&lt;/span&gt; Skills practiced in this post&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#what-im-curious-about&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;8&lt;/span&gt; What I’m curious about&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 
@@ -170,7 +168,7 @@ First, how much time passes from the moment the loan is posted to the moment it�
   total_time_num    2396   668648 671044  14.09  18.56 -427.02   7.09
    p50   p75     p100     hist
   9.59 22.54   420.57 ▇▁▁▁▁▁▁▁
-  5.2  90.21 1e+05    ▇▁▁▁▁▁▁▁
+  5.21 90.21 1e+05    ▇▁▁▁▁▁▁▁
  13    14      158    ▇▁▁▁▁▁▁▁
  16.12 26.67    32.04 ▁▁▁▁▁▁▁▇
 
@@ -187,9 +185,6 @@ First, how much time passes from the moment the loan is posted to the moment it�
 &lt;div id=&#34;exploratory-data-analysis&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;6&lt;/span&gt; Exploratory data analysis&lt;/h1&gt;
 &lt;p&gt;Now let’s describe the data. We could jump into the regression trees but exploring the data will help us interpret our predictions better. Do some extra work now and enjoy the benefits later.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;factors&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;7&lt;/span&gt; Factors&lt;/h1&gt;
 &lt;p&gt;Let’s make two-way tables to understand our factors.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;
 mixed_genders  mult_females    mult_males single_female   single_male 
@@ -212,21 +207,21 @@ mixed_genders  mult_females    mult_males single_female   single_male
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:continent-and-borrower-genders-plots&#34;&gt;&lt;/span&gt;
 &lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/continent-and-borrower-genders-plots-1.png&#34; alt=&#34;Most popular borrower genders by continent&#34; width=&#34;1152&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
-Figure 7.1: Most popular borrower genders by continent
+Figure 6.1: Most popular borrower genders by continent
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;In all continents, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it’s mixed genders.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:repayment-interval-and-continent&#34;&gt;&lt;/span&gt;
 &lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/repayment-interval-and-continent-1.png&#34; alt=&#34;Most popular repayment styles by continent&#34; width=&#34;1152&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
-Figure 7.2: Most popular repayment styles by continent
+Figure 6.2: Most popular repayment styles by continent
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it’s monthly.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:sectors-and-continents&#34;&gt;&lt;/span&gt;
 &lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/sectors-and-continents-1.png&#34; alt=&#34;Most popular uses of loans by continent&#34; width=&#34;1152&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
-Figure 7.3: Most popular uses of loans by continent
+Figure 6.3: Most popular uses of loans by continent
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;In every continent, the three most popular sectors are agriculture, retail, and food.&lt;/p&gt;
@@ -234,21 +229,18 @@ Figure 7.3: Most popular uses of loans by continent
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:countries-plot&#34;&gt;&lt;/span&gt;
 &lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries-plot-1.png&#34; alt=&#34;Top 10 countries requesting Kiva loans&#34; width=&#34;672&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
-Figure 7.4: Top 10 countries requesting Kiva loans
+Figure 6.4: Top 10 countries requesting Kiva loans
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;We see that the Philippines is the country that requests the mosts loans with over double as the second country Kenya &lt;code&gt;KE&lt;/code&gt;. Other top countries Cambodia &lt;code&gt;KH&lt;/code&gt;, Pakistan &lt;code&gt;PK&lt;/code&gt;, Peru &lt;code&gt;PE&lt;/code&gt;, Colombia &lt;code&gt;CO&lt;/code&gt;, Uganda &lt;code&gt;UG&lt;/code&gt;, Tajikistan &lt;code&gt;TJ&lt;/code&gt;, Ecuador &lt;code&gt;EC&lt;/code&gt;, and Paraguay &lt;code&gt;PY&lt;/code&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;numeric-variables&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;8&lt;/span&gt; Numeric variables&lt;/h1&gt;
 &lt;p&gt;Now let’s look at the distributions of our numeric variables.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:loan-usd-distribution&#34;&gt;&lt;/span&gt;
 &lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/loan-usd-distribution-1.png&#34; alt=&#34;Distribution of Kiva loans in USD&#34; width=&#34;672&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
-Figure 8.1: Distribution of Kiva loans in USD
+Figure 6.5: Distribution of Kiva loans in USD
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;Figure &lt;a href=&#34;#fig:loan-usd-distribution&#34;&gt;8.1&lt;/a&gt;, shows that the distribution of Kiva loans in US dollars is right skewed and multimodal with its biggest peak around $1 and its second around $4. The median is about 4.26.&lt;/p&gt;
+&lt;p&gt;Figure &lt;a href=&#34;#fig:loan-usd-distribution&#34;&gt;6.5&lt;/a&gt;, shows that the distribution of Kiva loans in US dollars is right skewed and multimodal with its biggest peak around $1 and its second around $4. The median is about 4.26.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/term_in_months_distribution-1.png&#34; width=&#34;672&#34; /&gt;
 The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median.
 &lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/lender_count-1.png&#34; width=&#34;672&#34; /&gt;
@@ -259,14 +251,14 @@ The median time between posting the loan and the loan being fully funded is abou
 The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;skills-practiced-in-this-post&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;9&lt;/span&gt; Skills practiced in this post&lt;/h1&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;7&lt;/span&gt; Skills practiced in this post&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;The &lt;code&gt;quantmode&lt;/code&gt; package was new to me. I used this to convert all loans into a unique currency (US dollars) for comparison. There were two currencies that were unavailable and because I hadn’t seen the warnings, the whole chunk kept throwing an error that was a bit frustrating.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Taking all the different levels that came in the &lt;code&gt;borrower_genders&lt;/code&gt; variable and creating five neat categories to better understand who are the borrowers was good practice with lists and the &lt;code&gt;stringr&lt;/code&gt; package.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&#34;what-im-curious-about&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;10&lt;/span&gt; What I’m curious about&lt;/h1&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;8&lt;/span&gt; What I’m curious about&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Why is &lt;code&gt;Retail&lt;/code&gt; and not &lt;code&gt;Food&lt;/code&gt; (as in other regions) the second most common use for loans in Asia.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Who are the givers? Where are they? Does proximity of the lender to the borrower have anything to do with funding times?&lt;/p&gt;&lt;/li&gt;
