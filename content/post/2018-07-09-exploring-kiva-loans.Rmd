@@ -468,7 +468,7 @@ grid.arrange(
   SA_borrower_genders,
   OC_borrower_genders,
   nrow = 1,
-  top = textGrob("Borrower genders by continent")
+  top = textGrob("Borrower genders by continent"),gp=gpar(fontsize=20,font=3)
 )
 ```
 
