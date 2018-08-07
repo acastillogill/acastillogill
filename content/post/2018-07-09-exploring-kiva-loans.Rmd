@@ -30,6 +30,7 @@ x <-
     "lubridate",
     "tidyr",
     "formattable",
+    "grid",
     "gridExtra")
 
 lapply(x, require, character.only = TRUE)
@@ -369,7 +370,7 @@ kiva_loans <-  kiva_loans%>%
 
 Ideal. Now let's look at our factors in an easier way to parse. Let's compare genders by continents to see if we can spot anything worth noting.
 
-```{r continent-and-borrower-genders-plots, fig.cap="Most popular borrower genders by continent",fig.width=8}
+```{r continent-and-borrower-genders-plots, fig.cap="Most popular borrower genders by continent",fig.width=12}
 AF_borrower_genders <- na.omit(kiva_loans) %>%
   filter(continent == "AF") %>%
   dplyr::count(borrower_genders) %>%
@@ -384,7 +385,7 @@ AF_borrower_genders <- na.omit(kiva_loans) %>%
   theme_minimal() +
   labs(title = "Africa",
        x = "",
-       y = "Count") +
+       y = "Number of loans") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         axis.ticks.x = element_blank()) +
   #guides(fill = guide_legend(title = "Borrower genders")) +
@@ -407,7 +408,7 @@ OC_borrower_genders <- na.omit(kiva_loans) %>%
   theme_minimal() +
   labs(title = "Oceania",
        x = "",
-       y = "Count") +
+       y = "Number of loans") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         axis.ticks.x = element_blank()) +
   #guides(fill = guide_legend(title = "Borrower genders")) +
@@ -430,7 +431,7 @@ AS_borrower_genders <- na.omit(kiva_loans) %>%
   theme_minimal() +
   labs(title = "Asia",
        x = "",
-       y = "Count") +
+       y = "Number of loans") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         axis.ticks.x = element_blank()) +
   #guides(fill = guide_legend(title = "Borrower genders")) +
@@ -453,7 +454,7 @@ SA_borrower_genders <- na.omit(kiva_loans) %>%
   theme_minimal() +
   labs(title = "South America",
        x = "",
-       y = "Count") +
+       y = "Number of loans") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         axis.ticks.x = element_blank()) +
   #guides(fill = guide_legend(title = "Borrower genders")) +
@@ -466,7 +467,8 @@ grid.arrange(
   AF_borrower_genders,
   SA_borrower_genders,
   OC_borrower_genders,
-  nrow = 1
+  nrow = 1,
+  top = textGrob("Borrower genders by continent")
 )
 ```
 
@@ -486,7 +488,7 @@ AF_repayment_interval <- kiva_loans %>%
   theme_minimal() +
   labs(title = "Africa",
        x = "",
-       y = "Count") +
+       y = "Number of loans") +
   theme(axis.text.x = element_text(angle = 45, hjust=1),
         axis.ticks.x = element_blank()) +
   #guides(fill = guide_legend(title = "Repayment interval")) +
@@ -508,7 +510,7 @@ OC_repayment_interval <- kiva_loans %>%
   theme_minimal() +
   labs(title = "Oceania",
        x = "",
-       y = "Count") +
+       y = "Number of loans") +
   theme(axis.text.x = element_text(angle = 45, hjust=1),
         axis.ticks.x = element_blank()) +
   #guides(fill = guide_legend(title = "Repayment interval")) +
@@ -530,7 +532,7 @@ AS_repayment_interval <- kiva_loans %>%
   theme_minimal() +
   labs(title = "Asia",
        x = "",
-       y = "Count") +
+       y = "Number of loans") +
   theme(axis.text.x = element_text(angle = 45, hjust=1),
         axis.ticks.x = element_blank()) +
   #guides(fill = guide_legend(title = "Repayment interval")) +
@@ -552,7 +554,7 @@ SA_repayment_interval <- kiva_loans %>%
   theme_minimal() +
   labs(title = "South America",
        x = "",
-       y = "Count") +
+       y = "Number of loans") +
   theme(axis.text.x = element_text(angle = 45, hjust=1),
         axis.ticks.x = element_blank()) +
   #guides(fill = guide_legend(title = "Repayment interval")) +
@@ -580,7 +582,7 @@ geom_col(show.legend = FALSE, alpha=0.7) +
 theme_minimal() +
 labs(title = "Africa",
 x = "",
-y = "Count") +
+y = "Number of loans") +
 theme(axis.text.x = element_text(angle = 45, hjust=1),
 axis.ticks.x = element_blank()) +
 #guides(fill = guide_legend(title = "Sector")) +
@@ -602,7 +604,7 @@ geom_col(show.legend = FALSE, alpha=0.7) +
 theme_minimal() +
 labs(title = "Oceania",
 x = "",
-y = "Count") +
+y = "Number of loans") +
 theme(axis.text.x = element_text(angle = 45, hjust=1),
 axis.ticks.x = element_blank()) +
 #guides(fill = guide_legend(title = "Sector")) +
@@ -624,7 +626,7 @@ geom_col(show.legend = FALSE, alpha=0.7) +
 theme_minimal() +
 labs(title = "Asia",
 x = "",
-y = "Count") +
+y = "Number of loans") +
 theme(axis.text.x = element_text(angle = 45, hjust=1),
 axis.ticks.x = element_blank()) +
 #guides(fill = guide_legend(title = "Sector")) +
@@ -646,7 +648,7 @@ geom_col(show.legend = FALSE, alpha=0.7) +
 theme_minimal() +
 labs(title = "South America",
 x = "",
-y = "Count") +
+y = "Number of loans") +
 theme(axis.text.x = element_text(angle = 45, hjust=1),
 axis.ticks.x = element_blank()) +
 #guides(fill = guide_legend(title = "Sector")) +
