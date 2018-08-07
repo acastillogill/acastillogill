@@ -210,7 +210,7 @@ Nothing `strange`! Five levels as we wanted - fabulous! Onwards.
 
 **c.`loan_amounts`**
 
-Now, since we're trying to predict `loan_amounts`, it's better if they're all in the same currency. Shall we translate them to USD? Here we go!
+Now, since we're trying to predict `loan_amounts`, it's better if they're all in the same currency. Let's translate them to USD.
 
 ```{r eval=FALSE}
 
@@ -462,13 +462,19 @@ SA_borrower_genders <- na.omit(kiva_loans) %>%
   scale_color_viridis_d() +
   coord_flip()
 
+                 
+
 grid.arrange(
   AS_borrower_genders,
   AF_borrower_genders,
   SA_borrower_genders,
   OC_borrower_genders,
   nrow = 1,
-  top = textGrob("Borrower genders by continent"),gp=gpar(fontsize=20,font=3)
+  top = grid::textGrob("Borrower genders by continent",
+                       x=0,
+                       hjust=0,
+                       gp=gpar(fontsize=30,
+                         font=8))
 )
 ```
 
@@ -562,7 +568,16 @@ SA_repayment_interval <- kiva_loans %>%
   scale_color_viridis_d()+
   coord_flip()
 
-grid.arrange(AS_repayment_interval, AF_repayment_interval, SA_repayment_interval, OC_repayment_interval,nrow=1)
+grid.arrange(AS_repayment_interval,
+             AF_repayment_interval,
+             SA_repayment_interval, OC_repayment_interval,
+             nrow=1,  
+             top = grid::textGrob("Repayment interval by continent",
+                       x=0,
+                       hjust=0,
+                       gp=gpar(fontsize=30,
+                               font=8))
+)
 
 ```
 
@@ -656,7 +671,17 @@ scale_fill_viridis_d()+
 scale_color_viridis_d()+
 coord_flip()
 
-grid.arrange(AS_sector, AF_sector, SA_sector, OC_sector,nrow=1)
+grid.arrange(AS_sector,
+             AF_sector,
+             SA_sector,
+             OC_sector,
+             nrow=1,
+             top = grid::textGrob("Loan use by continent",
+                       x=0,
+                       hjust=0,
+                       gp=gpar(fontsize=30,
+                               font=8))
+)
 ```
 
 In every continent, the three most popular sectors are agriculture, retail, and food. 
@@ -678,7 +703,7 @@ kiva_loans %>%
   theme_minimal() +
   labs(title = "Top 10 countries requesting Kiva Loans",
   x = "",
-  y = "Country count")
+  y = "Number of loans")
 ```
 
 We see that the Philippines is the country that requests the mosts loans with over double as the second country Kenya `KE`. Other top countries Cambodia `KH`, Pakistan `PK`, Peru `PE`, Colombia `CO`, Uganda `UG`, Tajikistan `TJ`, Ecuador `EC`, and Paraguay `PY`.
