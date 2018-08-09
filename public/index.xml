@@ -136,11 +136,11 @@ First, how much time passes from the moment the loan is posted to the moment it�
  n obs: 671044 
  n variables: 14 
 
-── Variable type:character ─────────────────────────────────────────────────────────
+── Variable type:character ──────────────────────────────────────────────────────────────────
  variable missing complete      n min max empty n_unique
        id       0   671044 671044   6   7     0   671044
 
-── Variable type:factor ────────────────────────────────────────────────────────────
+── Variable type:factor ─────────────────────────────────────────────────────────────────────
            variable missing complete      n n_unique
    borrower_genders    4184   666860 671044        5
           continent   84856   586188 671044        5
@@ -154,25 +154,25 @@ First, how much time passes from the moment the loan is posted to the moment it�
     mon: 342679, irr: 257035, bul: 70728, wee: 602   FALSE
  Agr: 180289, Foo: 136621, Ret: 124433, Ser: 45127   FALSE
 
-── Variable type:integer ───────────────────────────────────────────────────────────
+── Variable type:integer ────────────────────────────────────────────────────────────────────
      variable missing complete      n  mean    sd p0 p25 p50 p75 p100
  lender_count       0   671044 671044 20.59 28.46  0   7  13  24 2986
      hist
  ▇▁▁▁▁▁▁▁
 
-── Variable type:numeric ───────────────────────────────────────────────────────────
+── Variable type:numeric ────────────────────────────────────────────────────────────────────
         variable missing complete      n   mean     sd        p0  p25
  giving_time_num   48331   622713 671044  14.64  14.4   -17.51   5.17
-        loan_usd       0   671044 671044 267.25 946.95    0.0021 1.72
+        loan_usd       0   671044 671044 267.21 946.93    0.0021 1.73
   term_in_months       0   671044 671044  13.74   8.6     1      8   
   total_time_num    2396   668648 671044  14.09  18.56 -427.02   7.09
    p50   p75     p100     hist
   9.59 22.54   420.57 ▇▁▁▁▁▁▁▁
-  5.21 90.21 1e+05    ▇▁▁▁▁▁▁▁
+  5.19 90.2  1e+05    ▇▁▁▁▁▁▁▁
  13    14      158    ▇▁▁▁▁▁▁▁
  16.12 26.67    32.04 ▁▁▁▁▁▁▁▇
 
-── Variable type:POSIXct ───────────────────────────────────────────────────────────
+── Variable type:POSIXct ────────────────────────────────────────────────────────────────────
        variable missing complete      n        min        max     median
  disbursed_time    2396   668648 671044 2013-12-02 2017-09-30 2015-11-07
     funded_time   48331   622713 671044 2014-01-01 2017-07-26 2015-12-01
@@ -202,17 +202,17 @@ mixed_genders  mult_females    mult_males single_female   single_male
   0.0012368787   0.2035946972   0.0137338237   0.0502485679   0.0092497660 
   Personal Use         Retail       Services Transportation      Wholesale 
   0.0542214818   0.1854319538   0.0672489434   0.0231251602   0.0009447965 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;We can see that most of the loans are requested by single females, that the least amount of loans are given in the EU, that weekly repayment is an unpopular form of paying the loan back and that entertainment, wholesale, manufacturing, and construction amount less than 2.2% of sectors. Let’s remove these categories that are not representative of the data.&lt;/p&gt;
+&lt;p&gt;Notice most loans are requested by single females, that the least amount of loans are given in the EU, that weekly repayment is an unpopular form of paying the loan back and that entertainment, wholesale, manufacturing, and construction amount less than 2.2% of sectors. Let’s remove these categories that are not representative of the data.&lt;/p&gt;
 &lt;p&gt;Ideal. Now let’s look at our factors in an easier way to parse. Let’s compare genders by continents to see if we can spot anything worth noting.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:continent-and-borrower-genders-plots&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/continent-and-borrower-genders-plots-1.png&#34; alt=&#34;Most popular borrower genders by continent&#34; width=&#34;1152&#34; /&gt;
+&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/continent-and-borrower-genders-plots-1.png&#34; alt=&#34;Four continents in descending order from the continent that requests the most loans (Asia). Notice Europe and North America do not appear. `mult_females` or `mult_males` means more than one female or male.&#34; width=&#34;1152&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
-Figure 6.1: Most popular borrower genders by continent
+Figure 6.1: Four continents in descending order from the continent that requests the most loans (Asia). Notice Europe and North America do not appear. &lt;code&gt;mult_females&lt;/code&gt; or &lt;code&gt;mult_males&lt;/code&gt; means more than one female or male.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;In all continents, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it’s mixed genders.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:repayment-interval-and-continent&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/repayment-interval-and-continent-1.png&#34; alt=&#34;Most popular repayment styles by continent&#34; width=&#34;1152&#34; /&gt;
+&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/repayment-interval-and-continent-1.png&#34; alt=&#34;Most popular repayment styles by continent&#34; width=&#34;1440&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 6.2: Most popular repayment styles by continent
 &lt;/p&gt;
@@ -240,7 +240,7 @@ Figure 6.4: Top 10 countries requesting Kiva loans
 Figure 6.5: Distribution of Kiva loans in USD
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;Figure &lt;a href=&#34;#fig:loan-usd-distribution&#34;&gt;6.5&lt;/a&gt;, shows that the distribution of Kiva loans in US dollars is right skewed and multimodal with its biggest peak around $1 and its second around $4. The median is about 4.26.&lt;/p&gt;
+&lt;p&gt;Figure &lt;a href=&#34;#fig:loan-usd-distribution&#34;&gt;6.5&lt;/a&gt;, shows that the distribution of Kiva loans in US dollars is right skewed and multimodal with its biggest peak around $1 and its second around $4. The median is about 4.24.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/term_in_months_distribution-1.png&#34; width=&#34;672&#34; /&gt;
 The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median.
 &lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/lender_count-1.png&#34; width=&#34;672&#34; /&gt;

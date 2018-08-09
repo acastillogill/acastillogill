@@ -354,7 +354,7 @@ prop.table(table(kiva_loans$repayment_interval))
 prop.table(table(kiva_loans$sector))
 ```
 
-We can see that most of the loans are requested by single females, that the least amount of loans are given in the EU, that weekly repayment is an unpopular form of paying the loan back and that entertainment, wholesale, manufacturing, and construction amount less than 2.2% of sectors. Let's remove these categories that are not representative of the data. 
+Notice most loans are requested by single females, that the least amount of loans are given in the EU, that weekly repayment is an unpopular form of paying the loan back and that entertainment, wholesale, manufacturing, and construction amount less than 2.2% of sectors. Let's remove these categories that are not representative of the data. 
 
 ```{r}
 kiva_loans <-  kiva_loans%>%
@@ -369,7 +369,7 @@ kiva_loans <-  kiva_loans%>%
 
 Ideal. Now let's look at our factors in an easier way to parse. Let's compare genders by continents to see if we can spot anything worth noting.
 
-```{r continent-and-borrower-genders-plots, fig.cap="Most popular borrower genders by continent",fig.width=12}
+```{r continent-and-borrower-genders-plots, fig.cap="Four continents in descending order from the continent that requests the most loans (Asia). Notice Europe and North America do not appear. `mult_females` or `mult_males` means more than one female or male.",fig.width=12}
 AF_borrower_genders <- na.omit(kiva_loans) %>%
   filter(continent == "AF") %>%
   dplyr::count(borrower_genders) %>%
@@ -390,7 +390,8 @@ AF_borrower_genders <- na.omit(kiva_loans) %>%
   #guides(fill = guide_legend(title = "Borrower genders")) +
   scale_fill_viridis_d() +
   scale_color_viridis_d() +
-  coord_flip()
+  coord_flip() +
+  coord_flip(ylim = c(0,250000))
 
 
 OC_borrower_genders <- na.omit(kiva_loans) %>%
@@ -413,7 +414,8 @@ OC_borrower_genders <- na.omit(kiva_loans) %>%
   #guides(fill = guide_legend(title = "Borrower genders")) +
   scale_fill_viridis_d() +
   scale_color_viridis_d() +
-  coord_flip()
+  coord_flip() +
+  coord_flip(ylim = c(0,250000))
 
 
 AS_borrower_genders <- na.omit(kiva_loans) %>%
@@ -436,7 +438,7 @@ AS_borrower_genders <- na.omit(kiva_loans) %>%
   #guides(fill = guide_legend(title = "Borrower genders")) +
   scale_fill_viridis_d() +
   scale_color_viridis_d() +
-  coord_flip()
+  coord_flip(ylim = c(0,250000))
 
 
 SA_borrower_genders <- na.omit(kiva_loans) %>%
@@ -459,7 +461,7 @@ SA_borrower_genders <- na.omit(kiva_loans) %>%
   #guides(fill = guide_legend(title = "Borrower genders")) +
   scale_fill_viridis_d() +
   scale_color_viridis_d() +
-  coord_flip()
+  coord_flip(ylim = c(0,250000))
 
                  
 
@@ -479,7 +481,7 @@ grid.arrange(
 
 In all continents, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it's mixed genders. 
 
-```{r repayment-interval-and-continent, fig.cap="Most popular repayment styles by continent",fig.width=12}
+```{r repayment-interval-and-continent, fig.cap="Most popular repayment styles by continent",fig.width=15}
 AF_repayment_interval <- kiva_loans %>%
   filter(continent=="AF")%>%
   dplyr::count(repayment_interval)%>%
