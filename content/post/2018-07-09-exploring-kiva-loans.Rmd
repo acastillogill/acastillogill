@@ -369,7 +369,7 @@ kiva_loans <-  kiva_loans%>%
 
 Ideal. Now let's look at our factors in an easier way to parse. Let's compare genders by continents to see if we can spot anything worth noting.
 
-```{r continent-and-borrower-genders-plots, fig.cap="Four continents in descending order from the continent that requests the most loans (Asia). Notice Europe and North America do not appear. `mult_females` or `mult_males` means more than one female or male.",fig.width=12}
+```{r continent-and-borrower-genders-plots, fig.cap="Four continents in descending order from the continent that requests the most loans (Asia). Notice Europe and North America do not appear. `mult_females` or `mult_males` means more than one female or male.",fig.width=15}
 AF_borrower_genders <- na.omit(kiva_loans) %>%
   filter(continent == "AF") %>%
   dplyr::count(borrower_genders) %>%
