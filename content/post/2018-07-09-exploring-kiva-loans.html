@@ -46,6 +46,7 @@ output:
 <h1><span class="header-section-number">3</span> The data</h1>
 <p>The dataset was published during the first months of 2018 on the <a href="https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding">Kaggle platform</a>.</p>
 <p>The complete dataset was a zip file with size 232.7 MB containing four files: <code>kiva_loans.csv</code>, <code>kiva_mpi_region_locations.csv</code>,<code>loan_theme_ids.csv</code>, and <code>loan_themes_by_region.csv</code>. After I looked at the contents, I chose to work with the first one.</p>
+<p>The dataset was large with 671,205 observations and 20 variables.</p>
 <pre><code>Observations: 671,205
 Variables: 20
 $ id                 &lt;int&gt; 653051, 653053, 653068, 653063, 653084, 108...
@@ -68,7 +69,6 @@ $ tags               &lt;chr&gt; NA, NA, &quot;user_favorite, user_favorite&quot
 $ borrower_genders   &lt;chr&gt; &quot;female&quot;, &quot;female, female&quot;, &quot;female&quot;, &quot;fema...
 $ repayment_interval &lt;chr&gt; &quot;irregular&quot;, &quot;irregular&quot;, &quot;bullet&quot;, &quot;irregu...
 $ date               &lt;date&gt; 2014-01-01, 2014-01-01, 2014-01-01, 2014-0...</code></pre>
-<p>The dataset was large with 671,205 observations and 20 variables.</p>
 <p>Some of the codebook came with the dataset and some I researched to make assumptions:</p>
 <ul>
 <li><code>funded_amount</code>: “The amount disbursed by Kiva to the field agent(USD)”</li>
@@ -124,7 +124,7 @@ First, how much time passes from the moment the loan is posted to the moment it�
 <p>Let’s make some tables to understand our factors.</p>
 <table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-13">Table 5.1: </span>A single female is the most common type of borrower gender with over half of all Kiva loans requested.
+(#tab:borrower genders table)A single female is the most common type of borrower gender with over half of all Kiva loans requested.
 </caption>
 <thead>
 <tr>
@@ -142,7 +142,7 @@ Percentage
 single_female
 </td>
 <td style="text-align:right;">
-63.9462556
+63.946
 </td>
 </tr>
 <tr>
@@ -150,7 +150,7 @@ single_female
 single_male
 </td>
 <td style="text-align:right;">
-20.1926941
+20.193
 </td>
 </tr>
 <tr>
@@ -158,7 +158,7 @@ single_male
 mult_females
 </td>
 <td style="text-align:right;">
-9.2340221
+9.234
 </td>
 </tr>
 <tr>
@@ -166,7 +166,7 @@ mult_females
 mixed_genders
 </td>
 <td style="text-align:right;">
-6.0552440
+6.055
 </td>
 </tr>
 <tr>
@@ -174,14 +174,14 @@ mixed_genders
 mult_males
 </td>
 <td style="text-align:right;">
-0.5717842
+0.572
 </td>
 </tr>
 </tbody>
 </table>
 <table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-13">Table 5.1: </span>Half of all Kiva loans are requested in Asia followed by Africa, South America, Oceania and finally the European Union.
+(#tab:continent table)Half of all Kiva loans are requested in Asia followed by Africa, South America, Oceania and finally the European Union.
 </caption>
 <thead>
 <tr>
@@ -199,7 +199,7 @@ Percentage
 AS
 </td>
 <td style="text-align:right;">
-54.8346264
+54.835
 </td>
 </tr>
 <tr>
@@ -207,7 +207,7 @@ AS
 AF
 </td>
 <td style="text-align:right;">
-29.4915624
+29.492
 </td>
 </tr>
 <tr>
@@ -215,7 +215,7 @@ AF
 SA
 </td>
 <td style="text-align:right;">
-13.4726402
+13.473
 </td>
 </tr>
 <tr>
@@ -223,7 +223,7 @@ SA
 OC
 </td>
 <td style="text-align:right;">
-1.3570732
+1.357
 </td>
 </tr>
 <tr>
@@ -231,14 +231,14 @@ OC
 EU
 </td>
 <td style="text-align:right;">
-0.8440978
+0.844
 </td>
 </tr>
 </tbody>
 </table>
 <table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-13">Table 5.1: </span>The most popular type of repayment interval is monthly.
+(#tab:repayment interval table)The most popular type of repayment interval is monthly.
 </caption>
 <thead>
 <tr>
@@ -256,7 +256,7 @@ Percentage
 monthly
 </td>
 <td style="text-align:right;">
-51.066547
+51.07
 </td>
 </tr>
 <tr>
@@ -264,7 +264,7 @@ monthly
 irregular
 </td>
 <td style="text-align:right;">
-38.303748
+38.30
 </td>
 </tr>
 <tr>
@@ -272,7 +272,7 @@ irregular
 bullet
 </td>
 <td style="text-align:right;">
-10.539994
+10.54
 </td>
 </tr>
 <tr>
@@ -280,14 +280,14 @@ bullet
 weekly
 </td>
 <td style="text-align:right;">
-0.089711
+0.09
 </td>
 </tr>
 </tbody>
 </table>
 <table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-13">Table 5.1: </span>Generally, the most frequent use of loans is agriculture, followed by food and retail.
+(#tab:sector table)Generally, the most frequent use of loans is agriculture, followed by food and retail.
 </caption>
 <thead>
 <tr>
@@ -305,7 +305,7 @@ Percentage
 Agriculture
 </td>
 <td style="text-align:right;">
-26.8669417
+26.867
 </td>
 </tr>
 <tr>
@@ -313,7 +313,7 @@ Agriculture
 Food
 </td>
 <td style="text-align:right;">
-20.3594697
+20.359
 </td>
 </tr>
 <tr>
@@ -321,7 +321,7 @@ Food
 Retail
 </td>
 <td style="text-align:right;">
-18.5431954
+18.543
 </td>
 </tr>
 <tr>
@@ -329,7 +329,7 @@ Retail
 Services
 </td>
 <td style="text-align:right;">
-6.7248943
+6.725
 </td>
 </tr>
 <tr>
@@ -337,7 +337,7 @@ Services
 Personal Use
 </td>
 <td style="text-align:right;">
-5.4221482
+5.422
 </td>
 </tr>
 <tr>
@@ -345,7 +345,7 @@ Personal Use
 Housing
 </td>
 <td style="text-align:right;">
-5.0248568
+5.025
 </td>
 </tr>
 <tr>
@@ -353,7 +353,7 @@ Housing
 Clothing
 </td>
 <td style="text-align:right;">
-4.8780706
+4.878
 </td>
 </tr>
 <tr>
@@ -361,7 +361,7 @@ Clothing
 Education
 </td>
 <td style="text-align:right;">
-4.6207104
+4.621
 </td>
 </tr>
 <tr>
@@ -369,7 +369,7 @@ Education
 Transportation
 </td>
 <td style="text-align:right;">
-2.3125160
+2.313
 </td>
 </tr>
 <tr>
@@ -377,7 +377,7 @@ Transportation
 Arts
 </td>
 <td style="text-align:right;">
-1.7969015
+1.797
 </td>
 </tr>
 <tr>
@@ -385,7 +385,7 @@ Arts
 Health
 </td>
 <td style="text-align:right;">
-1.3733824
+1.373
 </td>
 </tr>
 <tr>
@@ -393,7 +393,7 @@ Health
 Construction
 </td>
 <td style="text-align:right;">
-0.9337689
+0.934
 </td>
 </tr>
 <tr>
@@ -401,7 +401,7 @@ Construction
 Manufacturing
 </td>
 <td style="text-align:right;">
-0.9249766
+0.925
 </td>
 </tr>
 <tr>
@@ -409,7 +409,7 @@ Manufacturing
 Entertainment
 </td>
 <td style="text-align:right;">
-0.1236879
+0.124
 </td>
 </tr>
 <tr>
@@ -417,7 +417,7 @@ Entertainment
 Wholesale
 </td>
 <td style="text-align:right;">
-0.0944796
+0.094
 </td>
 </tr>
 </tbody>

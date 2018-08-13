@@ -44,6 +44,7 @@
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; The data&lt;/h1&gt;
 &lt;p&gt;The dataset was published during the first months of 2018 on the &lt;a href=&#34;https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding&#34;&gt;Kaggle platform&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The complete dataset was a zip file with size 232.7 MB containing four files: &lt;code&gt;kiva_loans.csv&lt;/code&gt;, &lt;code&gt;kiva_mpi_region_locations.csv&lt;/code&gt;,&lt;code&gt;loan_theme_ids.csv&lt;/code&gt;, and &lt;code&gt;loan_themes_by_region.csv&lt;/code&gt;. After I looked at the contents, I chose to work with the first one.&lt;/p&gt;
+&lt;p&gt;The dataset was large with 671,205 observations and 20 variables.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;Observations: 671,205
 Variables: 20
 $ id                 &amp;lt;int&amp;gt; 653051, 653053, 653068, 653063, 653084, 108...
@@ -66,7 +67,6 @@ $ tags               &amp;lt;chr&amp;gt; NA, NA, &amp;quot;user_favorite, user_f
 $ borrower_genders   &amp;lt;chr&amp;gt; &amp;quot;female&amp;quot;, &amp;quot;female, female&amp;quot;, &amp;quot;female&amp;quot;, &amp;quot;fema...
 $ repayment_interval &amp;lt;chr&amp;gt; &amp;quot;irregular&amp;quot;, &amp;quot;irregular&amp;quot;, &amp;quot;bullet&amp;quot;, &amp;quot;irregu...
 $ date               &amp;lt;date&amp;gt; 2014-01-01, 2014-01-01, 2014-01-01, 2014-0...&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The dataset was large with 671,205 observations and 20 variables.&lt;/p&gt;
 &lt;p&gt;Some of the codebook came with the dataset and some I researched to make assumptions:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;funded_amount&lt;/code&gt;: “The amount disbursed by Kiva to the field agent(USD)”&lt;/li&gt;
@@ -122,7 +122,7 @@ First, how much time passes from the moment the loan is posted to the moment it�
 &lt;p&gt;Let’s make some tables to understand our factors.&lt;/p&gt;
 &lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
 &lt;caption&gt;
-&lt;span id=&#34;tab:unnamed-chunk-13&#34;&gt;Table 5.1: &lt;/span&gt;A single female is the most common type of borrower gender with over half of all Kiva loans requested.
+(#tab:borrower genders table)A single female is the most common type of borrower gender with over half of all Kiva loans requested.
 &lt;/caption&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -140,7 +140,7 @@ Percentage
 single_female
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-63.9462556
+63.946
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -148,7 +148,7 @@ single_female
 single_male
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-20.1926941
+20.193
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -156,7 +156,7 @@ single_male
 mult_females
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-9.2340221
+9.234
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -164,7 +164,7 @@ mult_females
 mixed_genders
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-6.0552440
+6.055
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -172,14 +172,14 @@ mixed_genders
 mult_males
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.5717842
+0.572
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
 &lt;caption&gt;
-&lt;span id=&#34;tab:unnamed-chunk-13&#34;&gt;Table 5.1: &lt;/span&gt;Half of all Kiva loans are requested in Asia followed by Africa, South America, Oceania and finally the European Union.
+(#tab:continent table)Half of all Kiva loans are requested in Asia followed by Africa, South America, Oceania and finally the European Union.
 &lt;/caption&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -197,7 +197,7 @@ Percentage
 AS
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-54.8346264
+54.835
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -205,7 +205,7 @@ AS
 AF
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-29.4915624
+29.492
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -213,7 +213,7 @@ AF
 SA
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-13.4726402
+13.473
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -221,7 +221,7 @@ SA
 OC
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-1.3570732
+1.357
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -229,14 +229,14 @@ OC
 EU
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.8440978
+0.844
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
 &lt;caption&gt;
-&lt;span id=&#34;tab:unnamed-chunk-13&#34;&gt;Table 5.1: &lt;/span&gt;The most popular type of repayment interval is monthly.
+(#tab:repayment interval table)The most popular type of repayment interval is monthly.
 &lt;/caption&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -254,7 +254,7 @@ Percentage
 monthly
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-51.066547
+51.07
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -262,7 +262,7 @@ monthly
 irregular
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-38.303748
+38.30
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -270,7 +270,7 @@ irregular
 bullet
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-10.539994
+10.54
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -278,14 +278,14 @@ bullet
 weekly
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.089711
+0.09
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
 &lt;caption&gt;
-&lt;span id=&#34;tab:unnamed-chunk-13&#34;&gt;Table 5.1: &lt;/span&gt;Generally, the most frequent use of loans is agriculture, followed by food and retail.
+(#tab:sector table)Generally, the most frequent use of loans is agriculture, followed by food and retail.
 &lt;/caption&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -303,7 +303,7 @@ Percentage
 Agriculture
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-26.8669417
+26.867
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -311,7 +311,7 @@ Agriculture
 Food
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-20.3594697
+20.359
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -319,7 +319,7 @@ Food
 Retail
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-18.5431954
+18.543
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -327,7 +327,7 @@ Retail
 Services
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-6.7248943
+6.725
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -335,7 +335,7 @@ Services
 Personal Use
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-5.4221482
+5.422
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -343,7 +343,7 @@ Personal Use
 Housing
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-5.0248568
+5.025
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -351,7 +351,7 @@ Housing
 Clothing
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-4.8780706
+4.878
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -359,7 +359,7 @@ Clothing
 Education
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-4.6207104
+4.621
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -367,7 +367,7 @@ Education
 Transportation
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-2.3125160
+2.313
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -375,7 +375,7 @@ Transportation
 Arts
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-1.7969015
+1.797
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -383,7 +383,7 @@ Arts
 Health
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-1.3733824
+1.373
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -391,7 +391,7 @@ Health
 Construction
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.9337689
+0.934
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -399,7 +399,7 @@ Construction
 Manufacturing
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.9249766
+0.925
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -407,7 +407,7 @@ Manufacturing
 Entertainment
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.1236879
+0.124
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -415,7 +415,7 @@ Entertainment
 Wholesale
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.0944796
+0.094
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
