@@ -138,7 +138,7 @@ First, how much time passes from the moment the loan is posted to the moment it�
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;6&lt;/span&gt; Exploratory data analysis&lt;/h1&gt;
 &lt;p&gt;Now let’s describe the data. We could jump into the regression trees but exploring the data will help us interpret our predictions better. Do some extra work now and enjoy the benefits later.&lt;/p&gt;
 &lt;p&gt;Let’s make some tables to understand our factors.&lt;/p&gt;
-&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;width: auto !important; margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
 &lt;caption&gt;
 &lt;span id=&#34;tab:unnamed-chunk-13&#34;&gt;Table 6.1: &lt;/span&gt;A single female is the most common type of borrower gender with over half of all Kiva loans requested.
 &lt;/caption&gt;
@@ -195,7 +195,7 @@ mult_males
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;width: auto !important; margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
 &lt;caption&gt;
 &lt;span id=&#34;tab:unnamed-chunk-13&#34;&gt;Table 6.1: &lt;/span&gt;Half of all Kiva loans are requested in Asia followed by Africa, South America, Oceania and finally the European Union.
 &lt;/caption&gt;
@@ -252,7 +252,7 @@ EU
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;width: auto !important; margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
 &lt;caption&gt;
 &lt;span id=&#34;tab:unnamed-chunk-13&#34;&gt;Table 6.1: &lt;/span&gt;The most popular type of repayment interval is monthly.
 &lt;/caption&gt;
@@ -301,7 +301,7 @@ weekly
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;width: auto !important; margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
 &lt;caption&gt;
 &lt;span id=&#34;tab:unnamed-chunk-13&#34;&gt;Table 6.1: &lt;/span&gt;Generally, the most frequent use of loans is agriculture, followed by food and retail.
 &lt;/caption&gt;

@@ -354,8 +354,7 @@ prop.table(table(kiva_loans$borrower_genders))%>%
   arrange(desc(n))%>%
   kable(caption="A single female is the most common type of borrower gender with over half of all Kiva loans requested.",
         col.names = c("Gender","Percentage")) %>%
- kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
-               full_width = F)
+ kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 
 
 
@@ -365,8 +364,7 @@ prop.table(table(kiva_loans$continent))%>%
   arrange(desc(n))%>%
   kable(caption="Half of all Kiva loans are requested in Asia followed by Africa, South America, Oceania and finally the European Union.",
         col.names = c("Continents","Percentage")) %>%
- kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
-               full_width = F)
+ kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 
 
 
@@ -376,9 +374,7 @@ prop.table(table(kiva_loans$repayment_interval))%>%
   arrange(desc(n))%>%
   kable(caption="The most popular type of repayment interval is monthly.",
         col.names = c("Repayment interval","Percentage")) %>%
- kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
-               full_width = F)
-
+ kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 
 
 prop.table(table(kiva_loans$sector))%>%
@@ -387,9 +383,7 @@ prop.table(table(kiva_loans$sector))%>%
   arrange(desc(n))%>%
   kable(caption="Generally, the most frequent use of loans is agriculture, followed by food and retail.",
         col.names = c("Sector","Percentage")) %>%
- kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
-               full_width = F)
-
+ kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 
 ```
 
@@ -641,8 +635,7 @@ axis.ticks.x = element_blank()) +
 #guides(fill = guide_legend(title = "Sector")) +
 scale_fill_viridis_d()+
 scale_color_viridis_d()+
-coord_flip()
-
+  coord_flip(ylim = c(0,80000))
 
 OC_sector <- kiva_loans %>%
 filter(continent=="OC")%>%
@@ -663,8 +656,7 @@ axis.ticks.x = element_blank()) +
 #guides(fill = guide_legend(title = "Sector")) +
 scale_fill_viridis_d()+
 scale_color_viridis_d()+
-coord_flip()
-
+  coord_flip(ylim = c(0,80000))
 
 AS_sector <- kiva_loans %>%
 filter(continent=="AS")%>%
@@ -685,8 +677,7 @@ axis.ticks.x = element_blank()) +
 #guides(fill = guide_legend(title = "Sector")) +
 scale_fill_viridis_d()+
 scale_color_viridis_d()+
-coord_flip()
-
+  coord_flip(ylim = c(0,80000))
 
 SA_sector <- kiva_loans %>%
 filter(continent=="SA")%>%
@@ -707,7 +698,7 @@ axis.ticks.x = element_blank()) +
 #guides(fill = guide_legend(title = "Sector")) +
 scale_fill_viridis_d()+
 scale_color_viridis_d()+
-coord_flip()
+  coord_flip(ylim = c(0,80000))
 
 grid.arrange(AS_sector,
              AF_sector,
