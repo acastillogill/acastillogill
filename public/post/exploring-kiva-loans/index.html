@@ -17,8 +17,7 @@
       
     
   
-  <meta name="description" content="1 Summary 2 Purpose of this post 3 The data 4 What I did 5 Data cleaning 6 Exploratory data analysis 7 Skills practiced in this post 8 What I’m curious about   1 Summary  2 Purpose of this post Muhammad Yunus and the Grameen Bank won the Nobel Peace Prize in 2006 for “their efforts through microcredit to create economic and social development from below.”
-Back in 1976, Yunus, a professor at the University of Chittagong (Bangladesh) at the time, noticed that small amounts of money could make a substantial difference to people living in poverty.">
+  <meta name="description" content="1 Summary 2 Purpose of this post 3 The data 4 What I did 5 Data cleaning 6 Exploratory data analysis 7 Skills practiced in this post 8 What I’m curious about   1 Summary  2 Purpose of this post Muhammad Yunus and the Grameen Bank won the Nobel Peace Prize in 2006 for “their efforts through microcredit to create economic and social development from below.”">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/exploring-kiva-loans/">
@@ -82,8 +81,7 @@ Back in 1976, Yunus, a professor at the University of Chittagong (Bangladesh) at
   <meta property="og:site_name" content="Ángela D. Castillo-Gill">
   <meta property="og:url" content="/post/exploring-kiva-loans/">
   <meta property="og:title" content="Exploring Kiva loans | Ángela D. Castillo-Gill">
-  <meta property="og:description" content="1 Summary 2 Purpose of this post 3 The data 4 What I did 5 Data cleaning 6 Exploratory data analysis 7 Skills practiced in this post 8 What I’m curious about   1 Summary  2 Purpose of this post Muhammad Yunus and the Grameen Bank won the Nobel Peace Prize in 2006 for “their efforts through microcredit to create economic and social development from below.”
-Back in 1976, Yunus, a professor at the University of Chittagong (Bangladesh) at the time, noticed that small amounts of money could make a substantial difference to people living in poverty.">
+  <meta property="og:description" content="1 Summary 2 Purpose of this post 3 The data 4 What I did 5 Data cleaning 6 Exploratory data analysis 7 Skills practiced in this post 8 What I’m curious about   1 Summary  2 Purpose of this post Muhammad Yunus and the Grameen Bank won the Nobel Peace Prize in 2006 for “their efforts through microcredit to create economic and social development from below.”">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2018-07-07T00:00:00&#43;00:00">
@@ -291,7 +289,9 @@ Back in 1976, Yunus, a professor at the University of Chittagong (Bangladesh) at
 
 
     <div class="article-style" itemprop="articleBody">
-      <div id="TOC">
+      <script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+
+<div id="TOC">
 <ul>
 <li><a href="#summary"><span class="toc-section-number">1</span> Summary</a></li>
 <li><a href="#purpose-of-this-post"><span class="toc-section-number">2</span> Purpose of this post</a></li>
@@ -405,17 +405,67 @@ $ date               &lt;date&gt; 2014-01-01, 2014-01-01, 2014-01-01, 2014-0...<
 <p>5 continents! Africa, Asia, Europe, Oceania, and South America. Granted, we’ve lost spacial resolution. However, for our initial purpose, this is exactly what we wanted.</p>
 <p><strong>e. Dates</strong></p>
 <p>Dates aren’t numeric, but we can make them. Let’s calculate two lengths of time that I think are interesting.
-First, how much time passes from the moment the loan is posted to the moment it’s disbursed (<code>total_time</code>). Second, how long does a loan take to get funded (<code>giving_time</code>)? Let’s find out!</p>
-<p>Final selection of variables…</p>
+First, how much time passes from the moment the loan is posted to the moment it’s disbursed (<code>total_time</code>). Second, how long does a loan take to get funded (<code>giving_time</code>)?</p>
 </div>
 <div id="exploratory-data-analysis" class="section level1">
 <h1><span class="header-section-number">6</span> Exploratory data analysis</h1>
 <p>Now let’s describe the data. We could jump into the regression trees but exploring the data will help us interpret our predictions better. Do some extra work now and enjoy the benefits later.</p>
-<p>Let’s make two-way tables to understand our factors.</p>
+<p>Let’s make some tables to understand our factors.</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Var1
+</th>
+<th style="text-align:right;">
+Freq
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+mixed_genders
+</td>
+<td style="text-align:right;">
+0.0605524
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mult_females
+</td>
+<td style="text-align:right;">
+0.0923402
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mult_males
+</td>
+<td style="text-align:right;">
+0.0057178
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+single_female
+</td>
+<td style="text-align:right;">
+0.6394626
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+single_male
+</td>
+<td style="text-align:right;">
+0.2019269
+</td>
+</tr>
+</tbody>
+</table>
 <pre><code>
-mixed_genders  mult_females    mult_males single_female   single_male 
-  0.060552440   0.092340221   0.005717842   0.639462556   0.201926941 
-
          AF          AS          EU          OC          SA 
 0.294915624 0.548346264 0.008440978 0.013570732 0.134726402 
 

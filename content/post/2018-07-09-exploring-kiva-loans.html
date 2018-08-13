@@ -18,6 +18,7 @@ output:
   fig_caption: true
 ---
 
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
 
 <div id="TOC">
 <ul>
@@ -133,17 +134,67 @@ $ date               &lt;date&gt; 2014-01-01, 2014-01-01, 2014-01-01, 2014-0...<
 <p>5 continents! Africa, Asia, Europe, Oceania, and South America. Granted, we’ve lost spacial resolution. However, for our initial purpose, this is exactly what we wanted.</p>
 <p><strong>e. Dates</strong></p>
 <p>Dates aren’t numeric, but we can make them. Let’s calculate two lengths of time that I think are interesting.
-First, how much time passes from the moment the loan is posted to the moment it’s disbursed (<code>total_time</code>). Second, how long does a loan take to get funded (<code>giving_time</code>)? Let’s find out!</p>
-<p>Final selection of variables…</p>
+First, how much time passes from the moment the loan is posted to the moment it’s disbursed (<code>total_time</code>). Second, how long does a loan take to get funded (<code>giving_time</code>)?</p>
 </div>
 <div id="exploratory-data-analysis" class="section level1">
 <h1><span class="header-section-number">6</span> Exploratory data analysis</h1>
 <p>Now let’s describe the data. We could jump into the regression trees but exploring the data will help us interpret our predictions better. Do some extra work now and enjoy the benefits later.</p>
-<p>Let’s make two-way tables to understand our factors.</p>
+<p>Let’s make some tables to understand our factors.</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Var1
+</th>
+<th style="text-align:right;">
+Freq
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+mixed_genders
+</td>
+<td style="text-align:right;">
+0.0605524
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mult_females
+</td>
+<td style="text-align:right;">
+0.0923402
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mult_males
+</td>
+<td style="text-align:right;">
+0.0057178
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+single_female
+</td>
+<td style="text-align:right;">
+0.6394626
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+single_male
+</td>
+<td style="text-align:right;">
+0.2019269
+</td>
+</tr>
+</tbody>
+</table>
 <pre><code>
-mixed_genders  mult_females    mult_males single_female   single_male 
-  0.060552440   0.092340221   0.005717842   0.639462556   0.201926941 
-
          AF          AS          EU          OC          SA 
 0.294915624 0.548346264 0.008440978 0.013570732 0.134726402 
 

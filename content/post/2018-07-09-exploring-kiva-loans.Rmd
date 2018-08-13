@@ -31,7 +31,8 @@ x <-
     "tidyr",
     "formattable",
     "grid",
-    "gridExtra")
+    "gridExtra",
+    "kableExtra")
 
 lapply(x, require, character.only = TRUE)
 
@@ -300,7 +301,7 @@ levels(kiva_loans$continent)
 **e. Dates**
 
 Dates aren't numeric, but we can make them. Let's calculate two lengths of time that I think are interesting. 
-First, how much time passes from the moment the loan is posted to the moment it's disbursed (`total_time`). Second, how long does a loan take to get funded (`giving_time`)? Let's find out!
+First, how much time passes from the moment the loan is posted to the moment it's disbursed (`total_time`). Second, how long does a loan take to get funded (`giving_time`)? 
 
 ```{r total_time_creation}
 kiva_loans%>%
@@ -314,7 +315,6 @@ kiva_loans%>%
 ```
 
 
-Final selection of variables...
 ```{r, results='hide'}
 #Select variables 
 kiva_loans %>%
@@ -345,10 +345,12 @@ skim(kiva_loans)
 Now let's describe the data. We could jump into the regression trees but exploring the data will help us interpret our predictions better. Do some extra work now and enjoy the benefits later. 
 
 
-Let's make two-way tables to understand our factors.
+Let's make some tables to understand our factors.
 
 ```{r}
-prop.table(table(kiva_loans$borrower_genders))
+prop.table(table(kiva_loans$borrower_genders))%>%
+  kable() %>%
+  kable_styling()
 prop.table(table(kiva_loans$continent))
 prop.table(table(kiva_loans$repayment_interval))
 prop.table(table(kiva_loans$sector))

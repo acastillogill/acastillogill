@@ -16,7 +16,9 @@
       <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/exploring-kiva-loans/</guid>
-      <description>&lt;div id=&#34;TOC&#34;&gt;
+      <description>&lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#summary&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Summary&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#purpose-of-this-post&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Purpose of this post&lt;/a&gt;&lt;/li&gt;
@@ -130,17 +132,67 @@ $ date               &amp;lt;date&amp;gt; 2014-01-01, 2014-01-01, 2014-01-01, 20
 &lt;p&gt;5 continents! Africa, Asia, Europe, Oceania, and South America. Granted, we’ve lost spacial resolution. However, for our initial purpose, this is exactly what we wanted.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;e. Dates&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Dates aren’t numeric, but we can make them. Let’s calculate two lengths of time that I think are interesting.
-First, how much time passes from the moment the loan is posted to the moment it’s disbursed (&lt;code&gt;total_time&lt;/code&gt;). Second, how long does a loan take to get funded (&lt;code&gt;giving_time&lt;/code&gt;)? Let’s find out!&lt;/p&gt;
-&lt;p&gt;Final selection of variables…&lt;/p&gt;
+First, how much time passes from the moment the loan is posted to the moment it’s disbursed (&lt;code&gt;total_time&lt;/code&gt;). Second, how long does a loan take to get funded (&lt;code&gt;giving_time&lt;/code&gt;)?&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;exploratory-data-analysis&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;6&lt;/span&gt; Exploratory data analysis&lt;/h1&gt;
 &lt;p&gt;Now let’s describe the data. We could jump into the regression trees but exploring the data will help us interpret our predictions better. Do some extra work now and enjoy the benefits later.&lt;/p&gt;
-&lt;p&gt;Let’s make two-way tables to understand our factors.&lt;/p&gt;
+&lt;p&gt;Let’s make some tables to understand our factors.&lt;/p&gt;
+&lt;table class=&#34;table&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+Var1
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Freq
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+mixed_genders
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.0605524
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+mult_females
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.0923402
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+mult_males
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.0057178
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+single_female
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.6394626
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+single_male
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.2019269
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 &lt;pre&gt;&lt;code&gt;
-mixed_genders  mult_females    mult_males single_female   single_male 
-  0.060552440   0.092340221   0.005717842   0.639462556   0.201926941 
-
          AF          AS          EU          OC          SA 
 0.294915624 0.548346264 0.008440978 0.013570732 0.134726402 
 
