@@ -324,7 +324,7 @@ Now let's describe the data. We could jump into the regression trees but explori
 
 Let's make some tables to understand our factors.
 
-```{r borrower genders table}
+```{r borrower-genders-table}
 options("digits"=3)
 prop.table(table(kiva_loans$borrower_genders))%>%
   as.tibble()%>%
@@ -336,7 +336,7 @@ prop.table(table(kiva_loans$borrower_genders))%>%
 
 ```
 
-```{r continent table}
+```{r continent-table}
 
 
 prop.table(table(kiva_loans$continent))%>%
@@ -353,7 +353,7 @@ prop.table(table(kiva_loans$continent))%>%
 ```
 
 
-```{r repayment interval table}
+```{r repayment-interval-table}
 
 prop.table(table(kiva_loans$repayment_interval))%>%
   as.tibble()%>%
@@ -366,7 +366,7 @@ prop.table(table(kiva_loans$repayment_interval))%>%
 
 ```
 
-```{r sector table}
+```{r sector-table}
 
 prop.table(table(kiva_loans$sector))%>%
   as.tibble()%>%
