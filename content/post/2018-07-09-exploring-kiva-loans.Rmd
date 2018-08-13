@@ -320,7 +320,7 @@ kiva_loans%>%
 kiva_loans %>%
   dplyr::select (id,
           loan_usd,
-          sector,
+          sector, 
           continent,
           term_in_months,
           lender_count,
@@ -349,8 +349,10 @@ Let's make some tables to understand our factors.
 
 ```{r}
 prop.table(table(kiva_loans$borrower_genders))%>%
-  kable() %>%
-  kable_styling()
+  kable(caption="Borrower genders",
+        col.names = c("Borrower genders","Percentage")) %>%
+ kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+               full_width = F)
 prop.table(table(kiva_loans$continent))
 prop.table(table(kiva_loans$repayment_interval))
 prop.table(table(kiva_loans$sector))
