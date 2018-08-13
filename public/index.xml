@@ -448,37 +448,38 @@ Figure 6.1: Four continents in descending order from the continent that requests
 &lt;/div&gt;
 &lt;p&gt;In all continents, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it’s mixed genders.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:repayment-interval-and-continent&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/repayment-interval-and-continent-1.png&#34; alt=&#34;Most popular repayment styles by continent&#34; width=&#34;1440&#34; /&gt;
+&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/repayment-interval-and-continent-1.png&#34; alt=&#34;In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it&#39;s monthly.&#34; width=&#34;1440&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
-Figure 6.2: Most popular repayment styles by continent
+Figure 6.2: In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it’s monthly.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it’s monthly.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:sectors-and-continents&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/sectors-and-continents-1.png&#34; alt=&#34;Most popular uses of loans by continent&#34; width=&#34;1152&#34; /&gt;
+&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/sectors-and-continents-1.png&#34; alt=&#34;In every continent, the three most popular sectors are agriculture, retail, and food.&#34; width=&#34;1152&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
-Figure 6.3: Most popular uses of loans by continent
+Figure 6.3: In every continent, the three most popular sectors are agriculture, retail, and food.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;In every continent, the three most popular sectors are agriculture, retail, and food.&lt;/p&gt;
-&lt;p&gt;Finally, we still would like to understand which countries are requesting the most loans. Let’see.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:countries-plot&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries-plot-1.png&#34; alt=&#34;Top 10 countries requesting Kiva loans&#34; width=&#34;672&#34; /&gt;
+&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries-plot-1.png&#34; alt=&#34;Philippines is the country that requests the mosts loans with over double as the second country Kenya `KE`. Other top countries are Cambodia `KH`, Pakistan `PK`, Peru `PE`, Colombia `CO`, Uganda `UG`, Tajikistan `TJ`, Ecuador `EC`, and Paraguay `PY`.&#34; width=&#34;672&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
-Figure 6.4: Top 10 countries requesting Kiva loans
+Figure 6.4: Philippines is the country that requests the mosts loans with over double as the second country Kenya &lt;code&gt;KE&lt;/code&gt;. Other top countries are Cambodia &lt;code&gt;KH&lt;/code&gt;, Pakistan &lt;code&gt;PK&lt;/code&gt;, Peru &lt;code&gt;PE&lt;/code&gt;, Colombia &lt;code&gt;CO&lt;/code&gt;, Uganda &lt;code&gt;UG&lt;/code&gt;, Tajikistan &lt;code&gt;TJ&lt;/code&gt;, Ecuador &lt;code&gt;EC&lt;/code&gt;, and Paraguay &lt;code&gt;PY&lt;/code&gt;.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;We see that the Philippines is the country that requests the mosts loans with over double as the second country Kenya &lt;code&gt;KE&lt;/code&gt;. Other top countries Cambodia &lt;code&gt;KH&lt;/code&gt;, Pakistan &lt;code&gt;PK&lt;/code&gt;, Peru &lt;code&gt;PE&lt;/code&gt;, Colombia &lt;code&gt;CO&lt;/code&gt;, Uganda &lt;code&gt;UG&lt;/code&gt;, Tajikistan &lt;code&gt;TJ&lt;/code&gt;, Ecuador &lt;code&gt;EC&lt;/code&gt;, and Paraguay &lt;code&gt;PY&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Now let’s look at the distributions of our numeric variables.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:loan-usd-distribution&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/loan-usd-distribution-1.png&#34; alt=&#34;Distribution of Kiva loans in USD&#34; width=&#34;672&#34; /&gt;
+&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/loan-usd-distribution-1.png&#34; alt=&#34;Half of Kiva loans are 4.22 USD or less. Although the maximum loan is about 100,000 USD, 75% of loans are equal to or less than 89.79 USD.&#34; width=&#34;672&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
-Figure 6.5: Distribution of Kiva loans in USD
+Figure 6.5: Half of Kiva loans are 4.22 USD or less. Although the maximum loan is about 100,000 USD, 75% of loans are equal to or less than 89.79 USD.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;Figure &lt;a href=&#34;#fig:loan-usd-distribution&#34;&gt;6.5&lt;/a&gt;, shows that the distribution of Kiva loans in US dollars is right skewed and multimodal with its biggest peak around $1 and its second around $4. The median is about 4.22.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/term_in_months_distribution-1.png&#34; width=&#34;672&#34; /&gt;
-The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median.
+&lt;p&gt;Figure &lt;a href=&#34;#fig:loan-usd-distribution&#34;&gt;6.5&lt;/a&gt;, shows that the distribution of Kiva loans in US dollars is right skewed and multimodal with its biggest peak around $1 and its second around $4. The median is about 4.21.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/term_in_months_distribution-1.png&#34; alt=&#34;Distribution of Kiva loans in USD&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+(#fig:term_in_months_distribution)Distribution of Kiva loans in USD
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median.
 &lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/lender_count-1.png&#34; width=&#34;672&#34; /&gt;
 The lender count has a text book right-skewed distribution with a median of 12 lenders.
 &lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/giving_time-1.png&#34; width=&#34;672&#34; /&gt;
