@@ -315,7 +315,7 @@ kiva_loans%>%
 
 
 Final selection of variables...
-```{r}
+```{r, results='hide'}
 #Select variables 
 kiva_loans %>%
   dplyr::select (id,
