@@ -349,13 +349,48 @@ Let's make some tables to understand our factors.
 
 ```{r}
 prop.table(table(kiva_loans$borrower_genders))%>%
-  kable(caption="Borrower genders",
-        col.names = c("Borrower genders","Percentage")) %>%
+  as.tibble()%>%
+  mutate(n=n*100)%>%
+  arrange(desc(n))%>%
+  kable(caption="A single female is the most common type of borrower gender with over half of all Kiva loans requested.",
+        col.names = c("Gender","Percentage")) %>%
  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
                full_width = F)
-prop.table(table(kiva_loans$continent))
-prop.table(table(kiva_loans$repayment_interval))
-prop.table(table(kiva_loans$sector))
+
+
+
+prop.table(table(kiva_loans$continent))%>%
+  as.tibble()%>%
+  mutate(n=n*100)%>%
+  arrange(desc(n))%>%
+  kable(caption="Half of all Kiva loans are requested in Asia followed by Africa, South America, Oceania and finally the European Union.",
+        col.names = c("Continents","Percentage")) %>%
+ kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+               full_width = F)
+
+
+
+prop.table(table(kiva_loans$repayment_interval))%>%
+  as.tibble()%>%
+  mutate(n=n*100)%>%
+  arrange(desc(n))%>%
+  kable(caption="The most popular type of repayment interval is monthly.",
+        col.names = c("Repayment interval","Percentage")) %>%
+ kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+               full_width = F)
+
+
+
+prop.table(table(kiva_loans$sector))%>%
+  as.tibble()%>%
+  mutate(n=n*100)%>%
+  arrange(desc(n))%>%
+  kable(caption="Generally, the most frequent use of loans is agriculture, followed by food and retail.",
+        col.names = c("Sector","Percentage")) %>%
+ kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+               full_width = F)
+
+
 ```
 
 Notice most loans are requested by single females, that the least amount of loans are given in the EU, that weekly repayment is an unpopular form of paying the loan back and that entertainment, wholesale, manufacturing, and construction amount less than 2.2% of sectors. Let's remove these categories that are not representative of the data. 
@@ -394,7 +429,6 @@ AF_borrower_genders <- na.omit(kiva_loans) %>%
   #guides(fill = guide_legend(title = "Borrower genders")) +
   scale_fill_viridis_d() +
   scale_color_viridis_d() +
-  coord_flip() +
   coord_flip(ylim = c(0,250000))
 
 
@@ -418,7 +452,6 @@ OC_borrower_genders <- na.omit(kiva_loans) %>%
   #guides(fill = guide_legend(title = "Borrower genders")) +
   scale_fill_viridis_d() +
   scale_color_viridis_d() +
-  coord_flip() +
   coord_flip(ylim = c(0,250000))
 
 
@@ -505,7 +538,7 @@ AF_repayment_interval <- kiva_loans %>%
   #guides(fill = guide_legend(title = "Repayment interval")) +
   scale_fill_viridis_d()+
   scale_color_viridis_d()+
-  coord_flip()
+  coord_flip(ylim = c(0,170000))
 
 
 OC_repayment_interval <- kiva_loans %>%
@@ -527,7 +560,7 @@ OC_repayment_interval <- kiva_loans %>%
   #guides(fill = guide_legend(title = "Repayment interval")) +
   scale_fill_viridis_d()+
   scale_color_viridis_d()+
-  coord_flip()
+  coord_flip(ylim = c(0,170000))
 
 
 AS_repayment_interval <- kiva_loans %>%
@@ -549,7 +582,7 @@ AS_repayment_interval <- kiva_loans %>%
   #guides(fill = guide_legend(title = "Repayment interval")) +
   scale_fill_viridis_d()+
   scale_color_viridis_d()+
-  coord_flip()
+  coord_flip(ylim = c(0,170000))
 
 
 SA_repayment_interval <- kiva_loans %>%
@@ -571,7 +604,7 @@ SA_repayment_interval <- kiva_loans %>%
   #guides(fill = guide_legend(title = "Repayment interval")) +
   scale_fill_viridis_d()+
   scale_color_viridis_d()+
-  coord_flip()
+  coord_flip(ylim = c(0,170000))
 
 grid.arrange(AS_repayment_interval,
              AF_repayment_interval,

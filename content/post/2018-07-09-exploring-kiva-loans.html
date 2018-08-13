@@ -142,12 +142,12 @@ First, how much time passes from the moment the loan is posted to the moment it�
 <p>Let’s make some tables to understand our factors.</p>
 <table class="table table-striped table-hover table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-13">Table 6.1: </span>Borrower genders
+<span id="tab:unnamed-chunk-13">Table 6.1: </span>A single female is the most common type of borrower gender with over half of all Kiva loans requested.
 </caption>
 <thead>
 <tr>
 <th style="text-align:left;">
-Borrower genders
+Gender
 </th>
 <th style="text-align:right;">
 Percentage
@@ -157,34 +157,10 @@ Percentage
 <tbody>
 <tr>
 <td style="text-align:left;">
-mixed_genders
-</td>
-<td style="text-align:right;">
-0.0605524
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-mult_females
-</td>
-<td style="text-align:right;">
-0.0923402
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-mult_males
-</td>
-<td style="text-align:right;">
-0.0057178
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 single_female
 </td>
 <td style="text-align:right;">
-0.6394626
+63.9462556
 </td>
 </tr>
 <tr>
@@ -192,24 +168,278 @@ single_female
 single_male
 </td>
 <td style="text-align:right;">
-0.2019269
+20.1926941
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mult_females
+</td>
+<td style="text-align:right;">
+9.2340221
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mixed_genders
+</td>
+<td style="text-align:right;">
+6.0552440
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mult_males
+</td>
+<td style="text-align:right;">
+0.5717842
 </td>
 </tr>
 </tbody>
 </table>
-<pre><code>
-         AF          AS          EU          OC          SA 
-0.294915624 0.548346264 0.008440978 0.013570732 0.134726402 
-
-      bullet    irregular      monthly       weekly 
-0.1053999440 0.3830374759 0.5106654705 0.0008971096 
-
-   Agriculture           Arts       Clothing   Construction      Education 
-  0.2686694166   0.0179690154   0.0487807059   0.0093376887   0.0462071042 
- Entertainment           Food         Health        Housing  Manufacturing 
-  0.0012368787   0.2035946972   0.0137338237   0.0502485679   0.0092497660 
-  Personal Use         Retail       Services Transportation      Wholesale 
-  0.0542214818   0.1854319538   0.0672489434   0.0231251602   0.0009447965 </code></pre>
+<table class="table table-striped table-hover table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-13">Table 6.1: </span>Half of all Kiva loans are requested in Asia followed by Africa, South America, Oceania and finally the European Union.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Continents
+</th>
+<th style="text-align:right;">
+Percentage
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+AS
+</td>
+<td style="text-align:right;">
+54.8346264
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AF
+</td>
+<td style="text-align:right;">
+29.4915624
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SA
+</td>
+<td style="text-align:right;">
+13.4726402
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OC
+</td>
+<td style="text-align:right;">
+1.3570732
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EU
+</td>
+<td style="text-align:right;">
+0.8440978
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table table-striped table-hover table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-13">Table 6.1: </span>The most popular type of repayment interval is monthly.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Repayment interval
+</th>
+<th style="text-align:right;">
+Percentage
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+monthly
+</td>
+<td style="text-align:right;">
+51.066547
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+irregular
+</td>
+<td style="text-align:right;">
+38.303748
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bullet
+</td>
+<td style="text-align:right;">
+10.539994
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+weekly
+</td>
+<td style="text-align:right;">
+0.089711
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table table-striped table-hover table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-13">Table 6.1: </span>Generally, the most frequent use of loans is agriculture, followed by food and retail.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Sector
+</th>
+<th style="text-align:right;">
+Percentage
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Agriculture
+</td>
+<td style="text-align:right;">
+26.8669417
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Food
+</td>
+<td style="text-align:right;">
+20.3594697
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Retail
+</td>
+<td style="text-align:right;">
+18.5431954
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Services
+</td>
+<td style="text-align:right;">
+6.7248943
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Personal Use
+</td>
+<td style="text-align:right;">
+5.4221482
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Housing
+</td>
+<td style="text-align:right;">
+5.0248568
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Clothing
+</td>
+<td style="text-align:right;">
+4.8780706
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Education
+</td>
+<td style="text-align:right;">
+4.6207104
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Transportation
+</td>
+<td style="text-align:right;">
+2.3125160
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Arts
+</td>
+<td style="text-align:right;">
+1.7969015
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Health
+</td>
+<td style="text-align:right;">
+1.3733824
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Construction
+</td>
+<td style="text-align:right;">
+0.9337689
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Manufacturing
+</td>
+<td style="text-align:right;">
+0.9249766
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Entertainment
+</td>
+<td style="text-align:right;">
+0.1236879
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wholesale
+</td>
+<td style="text-align:right;">
+0.0944796
+</td>
+</tr>
+</tbody>
+</table>
 <p>Notice most loans are requested by single females, that the least amount of loans are given in the EU, that weekly repayment is an unpopular form of paying the loan back and that entertainment, wholesale, manufacturing, and construction amount less than 2.2% of sectors. Let’s remove these categories that are not representative of the data.</p>
 <p>Ideal. Now let’s look at our factors in an easier way to parse. Let’s compare genders by continents to see if we can spot anything worth noting.</p>
 <div class="figure"><span id="fig:continent-and-borrower-genders-plots"></span>

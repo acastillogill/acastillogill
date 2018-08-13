@@ -140,12 +140,12 @@ First, how much time passes from the moment the loan is posted to the moment it�
 &lt;p&gt;Let’s make some tables to understand our factors.&lt;/p&gt;
 &lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;width: auto !important; margin-left: auto; margin-right: auto;&#34;&gt;
 &lt;caption&gt;
-&lt;span id=&#34;tab:unnamed-chunk-13&#34;&gt;Table 6.1: &lt;/span&gt;Borrower genders
+&lt;span id=&#34;tab:unnamed-chunk-13&#34;&gt;Table 6.1: &lt;/span&gt;A single female is the most common type of borrower gender with over half of all Kiva loans requested.
 &lt;/caption&gt;
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th style=&#34;text-align:left;&#34;&gt;
-Borrower genders
+Gender
 &lt;/th&gt;
 &lt;th style=&#34;text-align:right;&#34;&gt;
 Percentage
@@ -155,34 +155,10 @@ Percentage
 &lt;tbody&gt;
 &lt;tr&gt;
 &lt;td style=&#34;text-align:left;&#34;&gt;
-mixed_genders
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.0605524
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-mult_females
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.0923402
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-mult_males
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.0057178
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
 single_female
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.6394626
+63.9462556
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -190,24 +166,278 @@ single_female
 single_male
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.2019269
+20.1926941
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+mult_females
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+9.2340221
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+mixed_genders
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+6.0552440
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+mult_males
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.5717842
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;pre&gt;&lt;code&gt;
-         AF          AS          EU          OC          SA 
-0.294915624 0.548346264 0.008440978 0.013570732 0.134726402 
-
-      bullet    irregular      monthly       weekly 
-0.1053999440 0.3830374759 0.5106654705 0.0008971096 
-
-   Agriculture           Arts       Clothing   Construction      Education 
-  0.2686694166   0.0179690154   0.0487807059   0.0093376887   0.0462071042 
- Entertainment           Food         Health        Housing  Manufacturing 
-  0.0012368787   0.2035946972   0.0137338237   0.0502485679   0.0092497660 
-  Personal Use         Retail       Services Transportation      Wholesale 
-  0.0542214818   0.1854319538   0.0672489434   0.0231251602   0.0009447965 &lt;/code&gt;&lt;/pre&gt;
+&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;width: auto !important; margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;caption&gt;
+&lt;span id=&#34;tab:unnamed-chunk-13&#34;&gt;Table 6.1: &lt;/span&gt;Half of all Kiva loans are requested in Asia followed by Africa, South America, Oceania and finally the European Union.
+&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+Continents
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Percentage
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+AS
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+54.8346264
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+AF
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+29.4915624
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+SA
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+13.4726402
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+OC
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1.3570732
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+EU
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.8440978
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;width: auto !important; margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;caption&gt;
+&lt;span id=&#34;tab:unnamed-chunk-13&#34;&gt;Table 6.1: &lt;/span&gt;The most popular type of repayment interval is monthly.
+&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+Repayment interval
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Percentage
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+monthly
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+51.066547
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+irregular
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+38.303748
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+bullet
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+10.539994
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+weekly
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.089711
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;width: auto !important; margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;caption&gt;
+&lt;span id=&#34;tab:unnamed-chunk-13&#34;&gt;Table 6.1: &lt;/span&gt;Generally, the most frequent use of loans is agriculture, followed by food and retail.
+&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+Sector
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Percentage
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Agriculture
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+26.8669417
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Food
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+20.3594697
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Retail
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+18.5431954
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Services
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+6.7248943
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Personal Use
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+5.4221482
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Housing
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+5.0248568
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Clothing
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+4.8780706
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Education
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+4.6207104
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Transportation
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2.3125160
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Arts
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1.7969015
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Health
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1.3733824
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Construction
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.9337689
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Manufacturing
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.9249766
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Entertainment
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.1236879
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Wholesale
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.0944796
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 &lt;p&gt;Notice most loans are requested by single females, that the least amount of loans are given in the EU, that weekly repayment is an unpopular form of paying the loan back and that entertainment, wholesale, manufacturing, and construction amount less than 2.2% of sectors. Let’s remove these categories that are not representative of the data.&lt;/p&gt;
 &lt;p&gt;Ideal. Now let’s look at our factors in an easier way to parse. Let’s compare genders by continents to see if we can spot anything worth noting.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:continent-and-borrower-genders-plots&#34;&gt;&lt;/span&gt;
