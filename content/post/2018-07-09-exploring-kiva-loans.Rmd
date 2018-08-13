@@ -48,7 +48,7 @@ opts_chunk$set(echo = FALSE,
 ```
 
 # Summary
-
+If you would like to have a look at all the code used in this post, feel free to visit my [kernel on kaggle in R Markdown format](https://www.kaggle.com/adcastillogill/exploring-kiva-loans). 
 
 # Purpose of this post
 
@@ -60,13 +60,9 @@ Founded in 2005, [Kiva](www.kiva.org), has the same mission as Grameen Bank exce
 
 # The data
 
-The dataset was published during the first months of 2018. 
+The dataset was published during the first months of 2018 on the [Kaggle platform](https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding). 
 
-# What I did
-
-If you would like to have a look at all the code used in this post, feel free to visit my [kernel on kaggle in R Markdown format](https://www.kaggle.com/adcastillogill/exploring-kiva-loans). 
-
-The first step was to have a look at the dataset. This is pretty exciting. The zip file (232.7 MB) from Kaggle contained four files: `kiva_loans.csv`, `kiva_mpi_region_locations.csv`,`loan_theme_ids.csv`, and `loan_themes_by_region.csv`. 
+The complete dataset was a zip file with size 232.7 MB containing four files: `kiva_loans.csv`, `kiva_mpi_region_locations.csv`,`loan_theme_ids.csv`, and `loan_themes_by_region.csv`. After I looked at the contents, I chose to work with the first one.
 
 ```{r results='hide', message=FALSE}
 path <- "/Volumes/TOSHIBAEXT/RStudio/blog/content/post/kiva_data/"
@@ -75,38 +71,24 @@ kiva_loans <- read_csv(paste0(path,"kiva_loans.csv"))
 
 ```
 
-Let's see what's inside. 
-
 ```{r}
 #Get a glimpse of kiva_loans
 glimpse(kiva_loans)
 ```
 
-Wow! 671,205 observations and 20 variables.
+The dataset was large with 671,205 observations and 20 variables.
 
-Let's have a closer look at the data and see what each variable looks like.
+Some of the codebook came with the dataset and some I researched to make assumptions:
 
 - `funded_amount`: "The amount disbursed by Kiva to the field agent(USD)"
 - `loan_amount`: "The amount disbursed by the field agent to the borrower(USD)"
-
-Here, I am interested in the latter of those two variables as my response variable. 
-
 - `activity`: "More granular category"
 - `sector`: "High level category"
 - `use`: "Exact usage of loan amount"
-
-From these, I am going to pick `sector` because at first, I want to see if I can treat it like a factor in our regressions. The other ones are perhaps to specific to create levels.
-
 - `country_code`: "ISO country code of country in which loan was disbursed"
 - `country`: "Full country name of country in which loan was disbursed"
 - `region`: "Full region name within the country"
-
-I'm going to stick with `country_code` to make a factor with each country as a level.
-
 - `currency`: "The currency in which the loan was disbursed"
-
-Super important! In order to compare all loans, we need to translate them into the same currency.
-
 - `partner_id`: "ID of partner organization"
 
 This variable has a lot of missing values and the Kiva explanation on Kaggle doesn't go much further. For now, I will exclude `partner_id`. 
@@ -118,8 +100,6 @@ This variable has a lot of missing values and the Kiva explanation on Kaggle doe
 - `lender_count`: "The total number of lenders that contributed to this loan"
 - `borrower_genders`: "Comma separated M,F letters, where each instance represents a single male/female in the group"
 - `repayment_interval`: Not specified so we'll assume that it means the standard definition of when the loan is repaid back to the lender.
-
-I'm including all in this last batch, they provide specific information for each loan which may prove useful later. Now let's create a new dataset with the selected variables with a few changes. 
 
 # Data cleaning 
 ```{r}
@@ -151,7 +131,6 @@ kiva_loans[categorical] <- lapply(kiva_loans[categorical],
 ```
 
 From  at the structure of our data, we can soon see there are a few bits that don't make sense and need to be fixed. 
-
 
 **a. Missing values**
 
