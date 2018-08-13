@@ -138,14 +138,17 @@ First, how much time passes from the moment the loan is posted to the moment it�
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;6&lt;/span&gt; Exploratory data analysis&lt;/h1&gt;
 &lt;p&gt;Now let’s describe the data. We could jump into the regression trees but exploring the data will help us interpret our predictions better. Do some extra work now and enjoy the benefits later.&lt;/p&gt;
 &lt;p&gt;Let’s make some tables to understand our factors.&lt;/p&gt;
-&lt;table class=&#34;table&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;width: auto !important; margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;caption&gt;
+&lt;span id=&#34;tab:unnamed-chunk-13&#34;&gt;Table 6.1: &lt;/span&gt;Borrower genders
+&lt;/caption&gt;
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th style=&#34;text-align:left;&#34;&gt;
-Var1
+Borrower genders
 &lt;/th&gt;
 &lt;th style=&#34;text-align:right;&#34;&gt;
-Freq
+Percentage
 &lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
