@@ -343,7 +343,8 @@ prop.table(table(kiva_loans$continent))%>%
   as.tibble()%>%
   mutate(n=n*100)%>%
   arrange(desc(n))%>%
-  kable(caption="Half of all Kiva loans are requested in Asia followed by Africa, South America, Oceania and finally the European Union.",
+  kable(format="html",
+          caption="Half of all Kiva loans are requested in Asia followed by Africa, South America, Oceania and finally the European Union.",
         col.names = c("Continents","Percentage")) %>%
  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 
@@ -809,6 +810,8 @@ ggplot(kiva_loans,
 ```
 
 ```{r total-time, fig.cap="The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days."}
+
+
 ggplot(kiva_loans,
        aes(x=total_time_num))+
   geom_density()+
@@ -817,14 +820,16 @@ ggplot(kiva_loans,
   geom_vline(xintercept = median(kiva_loans$total_time_num,
                                  na.rm=TRUE),
              color="red",
-             linetype="dashed")+
-  annotate("text",
-           label=paste("Median=",
-                       round(median(kiva_loans$total_time_num,
-                                    na.rm = TRUE)),digits=2,"days"),
-           x=15+5,
-           y=0.1,
-           color="red")+
+              linetype="dashed")+
+  # geom_label(aes(x = (median(kiva_loans$total_time_num,
+  #                                   na.rm = TRUE)),
+  #                y = 0,
+  #                label = paste("Median=",
+  #                      round(median(kiva_loans$total_time_num,
+  #                                   na.rm = TRUE)),
+  #                      digits=2,
+  #                      "days")),
+  #                    fill = "white")+
     labs(title = "Distribution of time between posting and disbursing a Kiva loan",
   x = "Months",
   y = "Density")

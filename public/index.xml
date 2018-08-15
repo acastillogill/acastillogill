@@ -122,7 +122,7 @@ First, how much time passes from the moment the loan is posted to the moment itâ
 &lt;p&gt;Letâ€™s make some tables to understand our factors.&lt;/p&gt;
 &lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
 &lt;caption&gt;
-(#tab:borrower genders table)A single female is the most common type of borrower gender with over half of all Kiva loans requested.
+&lt;span id=&#34;tab:borrower-genders-table&#34;&gt;Table 5.1: &lt;/span&gt;A single female is the most common type of borrower gender with over half of all Kiva loans requested.
 &lt;/caption&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -179,7 +179,7 @@ mult_males
 &lt;/table&gt;
 &lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
 &lt;caption&gt;
-(#tab:continent table)Half of all Kiva loans are requested in Asia followed by Africa, South America, Oceania and finally the European Union.
+&lt;span id=&#34;tab:continent-table&#34;&gt;Table 5.2: &lt;/span&gt;Half of all Kiva loans are requested in Asia followed by Africa, South America, Oceania and finally the European Union.
 &lt;/caption&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -236,7 +236,7 @@ EU
 &lt;/table&gt;
 &lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
 &lt;caption&gt;
-(#tab:repayment interval table)The most popular type of repayment interval is monthly.
+&lt;span id=&#34;tab:repayment-interval-table&#34;&gt;Table 5.3: &lt;/span&gt;The most popular type of repayment interval is monthly.
 &lt;/caption&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -285,7 +285,7 @@ weekly
 &lt;/table&gt;
 &lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
 &lt;caption&gt;
-(#tab:sector table)Generally, the most frequent use of loans is agriculture, followed by food and retail.
+&lt;span id=&#34;tab:sector-table&#34;&gt;Table 5.4: &lt;/span&gt;Generally, the most frequent use of loans is agriculture, followed by food and retail.
 &lt;/caption&gt;
 &lt;thead&gt;
 &lt;tr&gt;
