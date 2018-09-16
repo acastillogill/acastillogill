@@ -325,7 +325,7 @@ Now let's describe the data. We could jump into the regression trees but explori
 Let's make some tables to understand our factors.
 
 ```{r borrower-genders-table}
-options("digits"=3)
+options("digits"=2)
 prop.table(table(kiva_loans$borrower_genders))%>%
   as.tibble()%>%
   mutate(n=n*100)%>%

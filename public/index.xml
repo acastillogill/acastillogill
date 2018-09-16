@@ -140,7 +140,7 @@ Percentage
 single_female
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-63.946
+63.95
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -148,7 +148,7 @@ single_female
 single_male
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-20.193
+20.19
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -156,7 +156,7 @@ single_male
 mult_females
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-9.234
+9.23
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -164,7 +164,7 @@ mult_females
 mixed_genders
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-6.055
+6.06
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -172,7 +172,7 @@ mixed_genders
 mult_males
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.572
+0.57
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
@@ -197,7 +197,7 @@ Percentage
 AS
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-54.835
+54.83
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -205,7 +205,7 @@ AS
 AF
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-29.492
+29.49
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -213,7 +213,7 @@ AF
 SA
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-13.473
+13.47
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -221,7 +221,7 @@ SA
 OC
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-1.357
+1.36
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -229,7 +229,7 @@ OC
 EU
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.844
+0.84
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
@@ -303,7 +303,7 @@ Percentage
 Agriculture
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-26.867
+26.87
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -311,7 +311,7 @@ Agriculture
 Food
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-20.359
+20.36
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -319,7 +319,7 @@ Food
 Retail
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-18.543
+18.54
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -327,7 +327,7 @@ Retail
 Services
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-6.725
+6.72
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -335,7 +335,7 @@ Services
 Personal Use
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-5.422
+5.42
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -343,7 +343,7 @@ Personal Use
 Housing
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-5.025
+5.02
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -351,7 +351,7 @@ Housing
 Clothing
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-4.878
+4.88
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -359,7 +359,7 @@ Clothing
 Education
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-4.621
+4.62
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -367,7 +367,7 @@ Education
 Transportation
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-2.313
+2.31
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -375,7 +375,7 @@ Transportation
 Arts
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-1.797
+1.80
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -383,7 +383,7 @@ Arts
 Health
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-1.373
+1.37
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -391,7 +391,7 @@ Health
 Construction
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.934
+0.93
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -399,7 +399,7 @@ Construction
 Manufacturing
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.925
+0.92
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -407,7 +407,7 @@ Manufacturing
 Entertainment
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.124
+0.12
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -415,7 +415,7 @@ Entertainment
 Wholesale
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.094
+0.09
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
