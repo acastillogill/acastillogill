@@ -59,7 +59,7 @@ enableGitInfo = false
   # Your details.
   name = "Ángela D. Castillo-Gill"
   description = "Welcome my data science journal!"
-  role = "PhD Student"
+  role = "Data Analyst"
 
   # Organizations/Affiliations.
   #   Separate multiple entries with a comma, using the form: `[ {name="Org1", url=""}, {name="Org2", url=""} ]`.
