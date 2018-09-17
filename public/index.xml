@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Ángela D. Castillo-Gill</copyright>
-    <lastBuildDate>Wed, 20 Apr 2016 00:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 20 Apr 2016 00:00:00 +0200</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
@@ -500,7 +500,7 @@ Figure 5.9: The total time between posting the loan and it being disbursed has a
     <item>
       <title>Privacy Policy</title>
       <link>/privacy/</link>
-      <pubDate>Thu, 28 Jun 2018 00:00:00 -0500</pubDate>
+      <pubDate>Thu, 28 Jun 2018 00:00:00 +0200</pubDate>
       
       <guid>/privacy/</guid>
       <description>&lt;p&gt;&amp;hellip;&lt;/p&gt;
@@ -510,7 +510,7 @@ Figure 5.9: The total time between posting the loan and it being disbursed has a
     <item>
       <title>Example Talk</title>
       <link>/talk/example-talk/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0100</pubDate>
       
       <guid>/talk/example-talk/</guid>
       <description>&lt;p&gt;Embed your slides or video here using &lt;a href=&#34;https://sourcethemes.com/academic/post/writing-markdown-latex/&#34; target=&#34;_blank&#34;&gt;shortcodes&lt;/a&gt;. Further details can easily be added using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
@@ -520,7 +520,7 @@ Figure 5.9: The total time between posting the loan and it being disbursed has a
     <item>
       <title>Deep Learning</title>
       <link>/project/deep-learning/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0500</pubDate>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0200</pubDate>
       
       <guid>/project/deep-learning/</guid>
       <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
@@ -538,7 +538,7 @@ Figure 5.9: The total time between posting the loan and it being disbursed has a
     <item>
       <title>External Project</title>
       <link>/project/example-external-project/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0500</pubDate>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0200</pubDate>
       
       <guid>/project/example-external-project/</guid>
       <description></description>
@@ -547,7 +547,7 @@ Figure 5.9: The total time between posting the loan and it being disbursed has a
     <item>
       <title>A Person Re-Identification System For Mobile Devices</title>
       <link>/publication/person-re-identification/</link>
-      <pubDate>Tue, 01 Sep 2015 00:00:00 -0500</pubDate>
+      <pubDate>Tue, 01 Sep 2015 00:00:00 +0200</pubDate>
       
       <guid>/publication/person-re-identification/</guid>
       <description>&lt;p&gt;More detail can easily be written here using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
@@ -557,7 +557,7 @@ Figure 5.9: The total time between posting the loan and it being disbursed has a
     <item>
       <title>Mobile visual clothing search</title>
       <link>/publication/clothing-search/</link>
-      <pubDate>Mon, 01 Jul 2013 00:00:00 -0500</pubDate>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0200</pubDate>
       
       <guid>/publication/clothing-search/</guid>
       <description>&lt;p&gt;More detail can easily be written here using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
