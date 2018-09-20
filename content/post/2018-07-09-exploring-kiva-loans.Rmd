@@ -828,7 +828,7 @@ ggplot(kiva_loans,
 ```{r lender-count, fig.cap="The lender count has a text book right-skewed distribution with a median of 12 lenders."}
 ggplot(kiva_loans,
        aes(x=lender_count))+
-  geom_histogram()+
+  geom_histogram(color="purple",alpha=0.3,fill="purple")+
    theme_classic()+
   scale_x_continuous(limits=c(0,100))+
   geom_vline(xintercept = median(kiva_loans$lender_count),

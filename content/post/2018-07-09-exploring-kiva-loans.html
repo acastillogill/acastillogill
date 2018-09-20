@@ -452,36 +452,42 @@ Figure 5.4: Philippines is the country that requests the mosts loans with over d
 </p>
 </div>
 <p>Now I’m curious to look at the top 10 countries requesting Kiva loans but per capita and per number of internet users.</p>
-<p><img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<div class="figure"><span id="fig:countries-plot-capita"></span>
+<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries-plot-capita-1.png" alt="Interesting to see how the ranking changed! Leading the charts is the island of Samoa, followed by Armenia. Countries that remain in the top 10 are Cambodia, Philippines, Kenia, and Tajikstan. Other new countries are Timor-Leste, Paraguay, Palestine, and Lebanon" width="672" />
+<p class="caption">
+Figure 5.5: Interesting to see how the ranking changed! Leading the charts is the island of Samoa, followed by Armenia. Countries that remain in the top 10 are Cambodia, Philippines, Kenia, and Tajikstan. Other new countries are Timor-Leste, Paraguay, Palestine, and Lebanon
+</p>
+</div>
+<p>Let’s see how the top 10 changes when it comes to internet users. I used the numbers published by the International Telecommunications Union available <a href="https://www.itu.int/en/ITU-D/Statistics/Pages/stat/default.aspx">here</a>.</p>
 <p>Now let’s look at the distributions of our numeric variables.</p>
 <div class="figure"><span id="fig:loan-usd-distribution"></span>
 <img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/loan-usd-distribution-1.png" alt="Half of Kiva loans are 4.22 USD or less. Although the maximum loan is 100,000 USD, 75% of loans are equal to or less than 89.79 USD." width="672" />
 <p class="caption">
-Figure 5.5: Half of Kiva loans are 4.22 USD or less. Although the maximum loan is 100,000 USD, 75% of loans are equal to or less than 89.79 USD.
+Figure 5.6: Half of Kiva loans are 4.22 USD or less. Although the maximum loan is 100,000 USD, 75% of loans are equal to or less than 89.79 USD.
 </p>
 </div>
 <div class="figure"><span id="fig:term-in-months-distribution"></span>
 <img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/term-in-months-distribution-1.png" alt="The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median." width="672" />
 <p class="caption">
-Figure 5.6: The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median.
+Figure 5.7: The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median.
 </p>
 </div>
 <div class="figure"><span id="fig:lender-count"></span>
 <img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/lender-count-1.png" alt="The lender count has a text book right-skewed distribution with a median of 12 lenders." width="672" />
 <p class="caption">
-Figure 5.7: The lender count has a text book right-skewed distribution with a median of 12 lenders.
+Figure 5.8: The lender count has a text book right-skewed distribution with a median of 12 lenders.
 </p>
 </div>
 <div class="figure"><span id="fig:giving-time"></span>
 <img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/giving-time-1.png" alt="The median time between posting the loan and the loan being fully funded is about 9.2 days. It is a bimodal distribution with its first peak around 6 days and its second peak around 30 days." width="672" />
 <p class="caption">
-Figure 5.8: The median time between posting the loan and the loan being fully funded is about 9.2 days. It is a bimodal distribution with its first peak around 6 days and its second peak around 30 days.
+Figure 5.9: The median time between posting the loan and the loan being fully funded is about 9.2 days. It is a bimodal distribution with its first peak around 6 days and its second peak around 30 days.
 </p>
 </div>
 <div class="figure"><span id="fig:total-time"></span>
 <img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/total-time-1.png" alt="The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days." width="672" />
 <p class="caption">
-Figure 5.9: The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days.
+Figure 5.10: The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days.
 </p>
 </div>
 </div>
