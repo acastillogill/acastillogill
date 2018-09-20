@@ -350,8 +350,6 @@ prop.table(table(kiva_loans$continent))%>%
  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 
 
-
-
 ```
 
 
@@ -364,7 +362,6 @@ prop.table(table(kiva_loans$repayment_interval))%>%
   kable(caption="The most popular type of repayment interval is monthly.",
         col.names = c("Repayment interval","Percentage")) %>%
  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
-
 
 ```
 
@@ -725,6 +722,65 @@ kiva_loans %>%
   y = "Number of loans")
 ```
 
+Now I'm curious to look at the top 10 countries requesting Kiva loans but per capita and per number of internet users.
+
+```{r loans per country}
+#Count all loans per country
+loans_per_country <- kiva_loans %>%
+  group_by(country_code) %>%
+  dplyr::count(country_code, sort = TRUE) %>%
+  ungroup()
+```
+
+```{r import population}
+population <- read_csv(paste0(path,"country_populations.csv"))
+iso <- read_csv(paste0(path,"iso_countries.csv"))
+```
+
+```{r join three data sources}
+#Left join country codes with population amounts
+population_iso <- left_join(population,iso,by="name")
+```
+
+```{r}
+
+#population_iso_loans 
+pop_iso_loans <- left_join(loans_per_country,
+                          population_iso,
+                          by=c("country_code"="iso"))
+
+pop_iso_loans <- pop_iso_loans %>% 
+                        select(n,
+                        `2018 Population`,
+                        country_code,
+                        name)
+#Calculate loans per capita
+pop_iso_loans$n_per_cap <- pop_iso_loans$n/pop_iso_loans$`2018 Population`
+#Arrange in descending order
+pop_iso_loans <- pop_iso_loans %>%
+  arrange(desc(n_per_cap))
+#Remove strange first row
+pop_iso_loans <- pop_iso_loans[-1,]
+```
+
+```{r countries-plot-capita, fig.cap="Interesting to see how the ranking changed! Leading the charts is the island of Samoa, followed by Armenia. Countries that remain in the top 10 are Cambodia, Philippines, Kenia, and Tajikstan. Other new countries are Timor-Leste, Paraguay, Palestine, and Lebanon"}
+pop_iso_loans %>%
+  top_n(10) %>%
+  ggplot(aes(reorder(x = country_code, n_per_cap), y = n_per_cap)) +
+  geom_col(position = "dodge",
+  color = "purple",
+  fill = "purple",
+  alpha=0.6) +
+  coord_flip() +
+  theme_minimal() +
+  labs(title = "Top 10 countries requesting Kiva loans per capita",
+  x = "",
+  y = "Number of loans per capita")
+```
+
+Let's see how the top 10 changes when it comes to internet users. I used the numbers published by the International Telecommunications Union available [here](https://www.itu.int/en/ITU-D/Statistics/Pages/stat/default.aspx).
+
+
 
 Now let's look at the distributions of our numeric variables.
 
@@ -740,8 +796,10 @@ ggplot(kiva_loans, aes(x = loan_usd)) +
   linetype = "dashed") +
   annotate(geom="label",
              y=0.4,
-            label=paste("Median =", ... = round(median(kiva_loans$loan_usd), digits = 2)),
-             x=round(median(kiva_loans$loan_usd), digits = 2),
+            label=paste("Median =", round(median(kiva_loans$loan_usd),
+                                          digits = 2)),
+             x=round(median(kiva_loans$loan_usd),
+                     digits = 2),
            color="purple")+
   labs(title = "Distribution of Kiva loan amounts in USD",
   x = "US Dollars",
