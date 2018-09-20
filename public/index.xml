@@ -43,8 +43,8 @@
 &lt;div id=&#34;the-data&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; The data&lt;/h1&gt;
 &lt;p&gt;The dataset was published during the first months of 2018 on the &lt;a href=&#34;https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding&#34;&gt;Kaggle platform&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The complete dataset was a zip file with size 232.7 MB containing four files: &lt;code&gt;kiva_loans.csv&lt;/code&gt;, &lt;code&gt;kiva_mpi_region_locations.csv&lt;/code&gt;,&lt;code&gt;loan_theme_ids.csv&lt;/code&gt;, and &lt;code&gt;loan_themes_by_region.csv&lt;/code&gt;. After I looked at the contents, I chose to work with the first one.&lt;/p&gt;
-&lt;p&gt;The dataset was large with 671,205 observations and 20 variables.&lt;/p&gt;
+&lt;p&gt;The complete dataset was a zip file with size 232.7 MB containing four files: &lt;code&gt;kiva_loans.csv&lt;/code&gt;, &lt;code&gt;kiva_mpi_region_locations.csv&lt;/code&gt;,&lt;code&gt;loan_theme_ids.csv&lt;/code&gt;, and &lt;code&gt;loan_themes_by_region.csv&lt;/code&gt;. After I looked at the contents, I chose to work with the first one `kiva_loans.csv.&lt;/p&gt;
+&lt;p&gt;The dataset had 671,205 observations and 20 variables.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;Observations: 671,205
 Variables: 20
 $ id                 &amp;lt;int&amp;gt; 653051, 653053, 653068, 653063, 653084, 108...
