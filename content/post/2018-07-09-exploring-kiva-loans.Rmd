@@ -712,14 +712,15 @@ kiva_loans %>%
   top_n(10) %>%
   ggplot(aes(reorder(x = country_code, n), y = n)) +
   geom_col(position = "dodge",
-  color = "purple",
-  fill = "purple",
+  color = "#84628e",
+  fill = "#84628e",
   alpha=0.6) +
   coord_flip() +
   theme_minimal() +
   labs(title = "Top 10 countries requesting Kiva loans",
   x = "",
-  y = "Number of loans")
+  y = "Number of loans")+
+ geom_label(aes(label=n))
 ```
 
 Now I'm curious to look at the top 10 countries requesting Kiva loans but per capita and per number of internet users.
@@ -735,15 +736,13 @@ loans_per_country <- kiva_loans %>%
 ```{r import population}
 population <- read_csv(paste0(path,"country_populations.csv"))
 iso <- read_csv(paste0(path,"iso_countries.csv"))
+users <- read_csv(paste0(path,"internet_users.csv"))
 ```
 
-```{r join three data sources}
-#Left join country codes with population amounts
-population_iso <- left_join(population,iso,by="name")
-```
 
 ```{r}
-
+#Left join country codes with population amounts
+population_iso <- left_join(population,iso,by="name")
 #population_iso_loans 
 pop_iso_loans <- left_join(loans_per_country,
                           population_iso,
@@ -766,20 +765,60 @@ pop_iso_loans <- pop_iso_loans[-1,]
 ```{r countries-plot-capita, fig.cap="Interesting to see how the ranking changed! Leading the charts is the island of Samoa, followed by Armenia. Countries that remain in the top 10 are Cambodia, Philippines, Kenia, and Tajikstan. Other new countries are Timor-Leste, Paraguay, Palestine, and Lebanon"}
 pop_iso_loans %>%
   top_n(10) %>%
-  ggplot(aes(reorder(x = country_code, n_per_cap), y = n_per_cap)) +
+  ggplot(aes(reorder(x = country_code,
+                     n_per_cap),
+             y = n_per_cap)) +
   geom_col(position = "dodge",
-  color = "purple",
-  fill = "purple",
+  color = "#a0d985",
+  fill = "#a0d985",
   alpha=0.6) +
   coord_flip() +
   theme_minimal() +
-  labs(title = "Top 10 countries requesting Kiva loans per capita",
+  labs(title = "Top 10 countries requesting Kiva loans per 1,000 capita",
   x = "",
-  y = "Number of loans per capita")
+  y = "Number of loans per 1,000 capita")+
+ geom_label(aes(label=round(n_per_cap,
+                            digits = 2)))
 ```
 
-Let's see how the top 10 changes when it comes to internet users. I used the numbers published by the International Telecommunications Union available [here](https://www.itu.int/en/ITU-D/Statistics/Pages/stat/default.aspx).
+Let's see how the top 10 changes when it comes to internet users. I used the ranking based on numbers published by the International Telecommunications Union available [here](https://en.wikipedia.org/wiki/List_of_countries_by_number_of_Internet_users).
 
+```{r}
+#Left join country codes with users
+users_iso <- left_join(users,iso,by="name")
+#users_iso_loans 
+users_iso_loans <- left_join(loans_per_country,
+                           users_iso,
+                           by=c("country_code"="iso"))
+
+ users_iso_loans <- users_iso_loans%>% 
+   select(n,
+        users,
+        country_code,
+       name)
+#Calculate loans per users
+users_iso_loans$n_per_users <- users_iso_loans$n/users_iso_loans$users*1000
+ #Arrange in descending order
+ users_iso_loans <- users_iso_loans %>%
+   arrange(desc(n_per_users))
+```
+
+```{r countries-plot-users, fig.cap="Interesting to see how the ranking changed! Leading the charts is the island of Samoa, followed by Armenia. Countries that remain in the top 10 are Cambodia, Philippines, Kenia, and Tajikstan. Other new countries are Timor-Leste, Paraguay, Palestine, and Lebanon"}
+users_iso_loans %>%
+  top_n(10) %>%
+  ggplot(aes(reorder(x = country_code, n_per_users), y = n_per_users)) +
+  geom_col(position = "dodge",
+  color = "#8283ad",
+  fill = "#8283ad",
+  alpha=0.6) +
+  coord_flip() +
+  theme_minimal() +
+  labs(title = "Top 10 countries requesting Kiva loans per 1,000 internet users",
+  x = "",
+  y = "Number of loans per 1,000 internet users")+
+ geom_label(aes(label=round(n_per_users,
+                            digits = 2)))
+```
 
 
 Now let's look at the distributions of our numeric variables.
@@ -787,12 +826,12 @@ Now let's look at the distributions of our numeric variables.
 ```{r loan-usd-distribution, fig.cap="Half of Kiva loans are 4.22 USD or less. Although the maximum loan is 100,000 USD, 75% of loans are equal to or less than 89.79 USD."}
 
 ggplot(kiva_loans, aes(x = loan_usd)) +
-  geom_density(color="purple",alpha=0.3,fill="purple") +
+  geom_density(color="#84628e",alpha=0.3,fill="#84628e") +
   theme_classic() +
   scale_x_continuous(limits = c(0, 15)) +
   geom_vline(
   xintercept = median(kiva_loans$loan_usd),
-  color = "purple",
+  color = "#84628e",
   linetype = "dashed") +
   annotate(geom="label",
              y=0.4,
@@ -800,7 +839,7 @@ ggplot(kiva_loans, aes(x = loan_usd)) +
                                           digits = 2)),
              x=round(median(kiva_loans$loan_usd),
                      digits = 2),
-           color="purple")+
+           color="#84628e")+
   labs(title = "Distribution of Kiva loan amounts in USD",
   x = "US Dollars",
   y = "Density")
@@ -809,17 +848,17 @@ ggplot(kiva_loans, aes(x = loan_usd)) +
 ```{r term-in-months-distribution, fig.cap="The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median."}
 ggplot(kiva_loans,
        aes(x=term_in_months))+
-  geom_density(color="purple",alpha=0.3,fill="purple")+
+  geom_density(color="#84628e",alpha=0.3,fill="#84628e")+
   theme_classic()+
   scale_x_continuous(limits=c(0,50))+
   geom_vline(xintercept = median(kiva_loans$term_in_months),
-             color="purple",
+             color="#84628e",
              linetype="dashed")+
   annotate("label",
            label=paste("Median =",                          median(kiva_loans$term_in_months)),
                 x=median(kiva_loans$term_in_months),
                 y=0.2,
-           color="purple")+
+           color="#84628e")+
     labs(title = "Distribution of Kiva loan terms in months",
   x = "Months",
   y = "Density")
@@ -828,18 +867,18 @@ ggplot(kiva_loans,
 ```{r lender-count, fig.cap="The lender count has a text book right-skewed distribution with a median of 12 lenders."}
 ggplot(kiva_loans,
        aes(x=lender_count))+
-  geom_histogram(color="purple",alpha=0.3,fill="purple")+
+  geom_histogram(color="#84628e",alpha=0.3,fill="#84628e")+
    theme_classic()+
   scale_x_continuous(limits=c(0,100))+
   geom_vline(xintercept = median(kiva_loans$lender_count),
-             color="purple",
+             color="#84628e",
              linetype="dashed")+
   annotate(geom = "label",
            label=paste("Median =",
                               median(kiva_loans$lender_count)),
                 x=median(kiva_loans$lender_count),
                 y=150000,
-           color="purple")+
+           color="#84628e")+
     labs(title = "Distribution of number of lenders per Kiva loan",
   x = "Lenders",
   y = "Frequency")
@@ -848,12 +887,12 @@ ggplot(kiva_loans,
 ```{r giving-time, fig.cap="The median time between posting the loan and the loan being fully funded is about 9.2 days. It is a bimodal distribution with its first peak around 6 days and its second peak around 30 days."}
 ggplot(kiva_loans,
        aes(x=giving_time_num))+
-  geom_density(color="purple",alpha=0.3,fill="purple")+
+  geom_density(color="#84628e",alpha=0.3,fill="#84628e")+
    theme_classic()+
   scale_x_continuous(limits=c(0,50))+
   geom_vline(xintercept = median(kiva_loans$giving_time_num,
                                  na.rm=TRUE),
-             color="purple",
+             color="#84628e",
              linetype="dashed")+
   annotate("label",
            label=paste("Median =",
@@ -862,7 +901,7 @@ ggplot(kiva_loans,
            x=median(kiva_loans$giving_time_num,
                     na.rm=TRUE),
            y=0.1,
-           color="purple")+
+           color="#84628e")+
     labs(title = "Distribution of time to fully fund a Kiva loan",
   x = "Days",
   y = "Density")
@@ -873,12 +912,12 @@ ggplot(kiva_loans,
 
 ggplot(kiva_loans,
        aes(x=total_time_num))+
-  geom_density(color="purple",alpha=0.3,fill="purple")+
+  geom_density(color="#84628e",alpha=0.3,fill="#84628e")+
    theme_classic()+
   scale_x_continuous(limits=c(0,50))+
   geom_vline(xintercept = median(kiva_loans$total_time_num,
                                  na.rm=TRUE),
-             color="purple",
+             color="#84628e",
               linetype="dashed")+
    annotate("label",
            label=paste("Median =",
@@ -887,7 +926,7 @@ ggplot(kiva_loans,
            x=median(kiva_loans$total_time_num,
                     na.rm=TRUE),
            y=0.1,
-           color="purple")+
+           color="#84628e")+
     labs(title = "Distribution of time between posting and disbursing a Kiva loan",
   x = "Months",
   y = "Density")
