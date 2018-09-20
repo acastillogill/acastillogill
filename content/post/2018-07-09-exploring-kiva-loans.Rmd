@@ -64,15 +64,14 @@ Founded in 2005, [Kiva](www.kiva.org), has the same mission as Grameen Bank exce
 
 The dataset was published during the first months of 2018 on the [Kaggle platform](https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding). 
 
-The complete dataset was a zip file with size 232.7 MB containing four files: `kiva_loans.csv`, `kiva_mpi_region_locations.csv`,`loan_theme_ids.csv`, and `loan_themes_by_region.csv`. After I looked at the contents, I chose to work with the first one.
+The complete dataset was a zip file with size 232.7 MB containing four files: `kiva_loans.csv`, `kiva_mpi_region_locations.csv`,`loan_theme_ids.csv`, and `loan_themes_by_region.csv`. After I looked at the contents, I chose to work with the first one `kiva_loans.csv.
 
 ```{r results='hide', message=FALSE}
 path <- "/Volumes/TOSHIBAEXT/RStudio/blog/content/post/kiva_data/"
 #Read `kiva_loans.csv`
 kiva_loans <- read_csv(paste0(path,"kiva_loans.csv"))
-
 ```
-The dataset was large with 671,205 observations and 20 variables.
+The dataset had 671,205 observations and 20 variables.
 
 ```{r}
 #Get a glimpse of kiva_loans
@@ -730,23 +729,21 @@ kiva_loans %>%
 Now let's look at the distributions of our numeric variables.
 
 ```{r loan-usd-distribution, fig.cap="Half of Kiva loans are 4.22 USD or less. Although the maximum loan is 100,000 USD, 75% of loans are equal to or less than 89.79 USD."}
+
 ggplot(kiva_loans, aes(x = loan_usd)) +
-  geom_density() +
+  geom_density(color="purple",alpha=0.3,fill="purple") +
   theme_classic() +
   scale_x_continuous(limits = c(0, 15)) +
   geom_vline(
   xintercept = median(kiva_loans$loan_usd),
-  color = "red",
+  color = "purple",
   linetype = "dashed") +
-  annotate(
-  "text",
-  label = paste("Median =",
-  round(median(kiva_loans$loan_usd), digits = 2), "USD"),
-  x = 10,
-  y = 0.2,
-  color = "red"
-  ) +
-  labs(title = "Distribution of Kiva loans' amounts in USD",
+  annotate(geom="label",
+             y=0.4,
+            label=paste("Median =", ... = round(median(kiva_loans$loan_usd), digits = 2)),
+             x=round(median(kiva_loans$loan_usd), digits = 2),
+           color="purple")+
+  labs(title = "Distribution of Kiva loan amounts in USD",
   x = "US Dollars",
   y = "Density")
 ```
@@ -754,18 +751,18 @@ ggplot(kiva_loans, aes(x = loan_usd)) +
 ```{r term-in-months-distribution, fig.cap="The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median."}
 ggplot(kiva_loans,
        aes(x=term_in_months))+
-  geom_density()+
+  geom_density(color="purple",alpha=0.3,fill="purple")+
   theme_classic()+
   scale_x_continuous(limits=c(0,50))+
   geom_vline(xintercept = median(kiva_loans$term_in_months),
-             color="red",
+             color="purple",
              linetype="dashed")+
-  annotate("text",
-           label=paste("Median =",                          median(kiva_loans$term_in_months),"months"),
-                x=18,
+  annotate("label",
+           label=paste("Median =",                          median(kiva_loans$term_in_months)),
+                x=median(kiva_loans$term_in_months),
                 y=0.2,
-           color="red")+
-    labs(title = "Distribution of Kiva loans' terms in months",
+           color="purple")+
+    labs(title = "Distribution of Kiva loan terms in months",
   x = "Months",
   y = "Density")
 ```
@@ -777,35 +774,37 @@ ggplot(kiva_loans,
    theme_classic()+
   scale_x_continuous(limits=c(0,100))+
   geom_vline(xintercept = median(kiva_loans$lender_count),
-             color="red",
+             color="purple",
              linetype="dashed")+
-  annotate("text",
-           label=paste("Median=",
-                              median(kiva_loans$lender_count),
-                       "lenders"),
-                x=21,
+  annotate(geom = "label",
+           label=paste("Median =",
+                              median(kiva_loans$lender_count)),
+                x=median(kiva_loans$lender_count),
                 y=150000,
-           color="red")+
+           color="purple")+
     labs(title = "Distribution of number of lenders per Kiva loan",
-  x = "Number of lenders",
+  x = "Lenders",
   y = "Frequency")
 ```
  
 ```{r giving-time, fig.cap="The median time between posting the loan and the loan being fully funded is about 9.2 days. It is a bimodal distribution with its first peak around 6 days and its second peak around 30 days."}
 ggplot(kiva_loans,
        aes(x=giving_time_num))+
-  geom_density()+
+  geom_density(color="purple",alpha=0.3,fill="purple")+
    theme_classic()+
   scale_x_continuous(limits=c(0,50))+
-  geom_vline(xintercept = median(kiva_loans$giving_time_num,na.rm=TRUE),
-             color="red",
+  geom_vline(xintercept = median(kiva_loans$giving_time_num,
+                                 na.rm=TRUE),
+             color="purple",
              linetype="dashed")+
-  annotate("text",
-           label=paste("Median=",
-                       round(median(kiva_loans$giving_time_num,na.rm = TRUE)),digits=2,"days"),
-           x=median(kiva_loans$giving_time_num,na.rm=TRUE)+5,
+  annotate("label",
+           label=paste("Median =",
+                    round(median(kiva_loans$giving_time_num,
+                           na.rm=TRUE),digits = 2)),
+           x=median(kiva_loans$giving_time_num,
+                    na.rm=TRUE),
            y=0.1,
-           color="red")+
+           color="purple")+
     labs(title = "Distribution of time to fully fund a Kiva loan",
   x = "Days",
   y = "Density")
@@ -816,22 +815,21 @@ ggplot(kiva_loans,
 
 ggplot(kiva_loans,
        aes(x=total_time_num))+
-  geom_density()+
+  geom_density(color="purple",alpha=0.3,fill="purple")+
    theme_classic()+
   scale_x_continuous(limits=c(0,50))+
   geom_vline(xintercept = median(kiva_loans$total_time_num,
                                  na.rm=TRUE),
-             color="red",
+             color="purple",
               linetype="dashed")+
-  # geom_label(aes(x = (median(kiva_loans$total_time_num,
-  #                                   na.rm = TRUE)),
-  #                y = 0,
-  #                label = paste("Median=",
-  #                      round(median(kiva_loans$total_time_num,
-  #                                   na.rm = TRUE)),
-  #                      digits=2,
-  #                      "days")),
-  #                    fill = "white")+
+   annotate("label",
+           label=paste("Median =",
+                    round(median(kiva_loans$total_time_num,
+                                 na.rm=TRUE),digits = 2)),
+           x=median(kiva_loans$total_time_num,
+                    na.rm=TRUE),
+           y=0.1,
+           color="purple")+
     labs(title = "Distribution of time between posting and disbursing a Kiva loan",
   x = "Months",
   y = "Density")
