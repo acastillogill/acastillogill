@@ -719,7 +719,7 @@ kiva_loans %>%
   labs(title = "Top 10 countries requesting Kiva loans",
   x = "",
   y = "Number of loans")+
- geom_label(aes(label=n))
+ geom_label(aes(label=n), nudge_x = -0.5)
 ```
 
 Now I'm curious to look at the top 10 countries requesting Kiva loans but per capita and per number of internet users.
