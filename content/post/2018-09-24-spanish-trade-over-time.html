@@ -37,19 +37,12 @@ editor_options:
 <div id="summary" class="section level1">
 <h1><span class="header-section-number">1</span> Summary</h1>
 <p><em>To see the code used in this post, visit my <a href="https://www.kaggle.com/adcastillogill/exploring-kiva-loans">kernel on kaggle in R Markdown format</a>.</em></p>
-<p>In this post, I analyse 671,205 observations. Each represents a <a href="www.kiva.org">Kiva</a> loan. I find that the gender that requests the most loans is female with single females being the most responsible. The main uses for these loans are agriculture, retail, and food with some variations amongst continents. Half of the loans are 4.22 USD or less and are funded by 12 or less contributers. The median time between posting a loan online and disbursing it to the borrower is 16.89 days. I mainly use the <code>tidyverse</code>, <code>stringr</code>, and <code>quantmode</code> packages.</p>
 </div>
 <div id="purpose-of-this-post" class="section level1">
 <h1><span class="header-section-number">2</span> Purpose of this post</h1>
-<p>Muhammad Yunus and the Grameen Bank won the <a href="https://www.nobelpeaceprize.org/Prize-winners/Winners/2006">Nobel Peace Prize</a> in 2006 for “their efforts through microcredit to create economic and social development from below.”</p>
-<p>Back in 1976, Yunus, at the time a professor at the University of Chittagong (Bangladesh), <a href="https://www.bbc.co.uk/news/world-south-asia-11901625">noticed that small amounts of money could make a substantial difference to people living in poverty</a>. He started to loan money to people that didn’t meet the requirements listed by the mainstream banking system. It was reported that these type of loans were effective to <a href="https://www.nobelpeaceprize.org/Prize-winners/Prizewinner-documentation/Muhammad-Yunus-Grameen-Bank">“emerge” from poverty</a> using default rates lower than those of commercial banks, <a href="https://www.gdrc.org/icm/grameen-article4.html">reported at 2%</a>. Eventually, in October 1983, Muhammad Yunus founded <a href="https://grameenfoundation.org/about/history">Grameen Bank</a>, considered to be the first microfinance institution.</p>
-<p>Founded in 2005, <a href="www.kiva.org">Kiva</a>, has the same mission as Grameen Bank except that anyone can become a Kiva banker. This online platform enables microcredit lending to help low-income entrepreneurs around the world with a couple of clicks. Pretty neat, huh? In this post, I unpack a large dataset published by <a href="https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding">Kiva on the Kaggle platform</a> and explore these microloans.</p>
 </div>
 <div id="the-data" class="section level1">
 <h1><span class="header-section-number">3</span> The data</h1>
-<p>The dataset was published during the first months of 2018 on the <a href="https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding">Kaggle platform</a>.</p>
-<p>The complete dataset was a zip file with size 232.7 MB containing four files: <code>kiva_loans.csv</code>, <code>kiva_mpi_region_locations.csv</code>,<code>loan_theme_ids.csv</code>, and <code>loan_themes_by_region.csv</code>. After I looked at the contents, I chose to work with the first one <code>kiva_loans.csv</code>.</p>
-<p>The dataset had 671,205 observations and 20 variables.</p>
 <pre><code>Observations: 671,205
 Variables: 20
 $ id                 &lt;int&gt; 653051, 653053, 653068, 653063, 653084, 108...
@@ -75,25 +68,6 @@ $ date               &lt;date&gt; 2014-01-01, 2014-01-01, 2014-01-01, 2014-0...<
 <p>Some of the codebook came with the dataset and some I researched to make assumptions:</p>
 <ul>
 <li><code>funded_amount</code>: “The amount disbursed by Kiva to the field agent(USD)”</li>
-<li><code>loan_amount</code>: “The amount disbursed by the field agent to the borrower(USD)”</li>
-<li><code>activity</code>: “More granular category”</li>
-<li><code>sector</code>: “High level category”</li>
-<li><code>use</code>: “Exact usage of loan amount”</li>
-<li><code>country_code</code>: “ISO country code of country in which loan was disbursed”</li>
-<li><code>country</code>: “Full country name of country in which loan was disbursed”</li>
-<li><code>region</code>: “Full region name within the country”</li>
-<li><code>currency</code>: “The currency in which the loan was disbursed”</li>
-<li><code>partner_id</code>: “ID of partner organization”</li>
-</ul>
-<p>This variable has a lot of missing values and the Kiva explanation on Kaggle doesn’t go much further. For now, I will exclude <code>partner_id</code>.</p>
-<ul>
-<li><code>posted_time</code>: “The time at which the loan is posted on Kiva by the field agent”</li>
-<li><code>disbursed_time</code>: “The time at which the loan is disbursed by the field agent to the borrower”</li>
-<li><code>funded_time</code>: “The time at which the loan posted to Kiva gets funded by lenders completely”</li>
-<li><code>term_in_months</code>: “The duration for which the loan was disbursed in months”</li>
-<li><code>lender_count</code>: “The total number of lenders that contributed to this loan”</li>
-<li><code>borrower_genders</code>: “Comma separated M,F letters, where each instance represents a single male/female in the group”</li>
-<li><code>repayment_interval</code>: Not specified so we’ll assume that it means the standard definition of when the loan is repaid back to the lender.</li>
 </ul>
 </div>
 <div id="data-cleaning" class="section level1">
