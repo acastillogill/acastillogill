@@ -561,7 +561,7 @@ prop.table(table(kiva_loans$repayment_interval))%>%
 
 ```
 
-```{r sectors-and-continents, fig.cap="In every continent, the three most popular sectors are agriculture, retail, and food.",fig.width=12}
+```{r sectors-and-continents, fig.cap="In every continent, the three most popular sectors are agriculture, retail, and food.",fig.width=15}
 AF_sector <- kiva_loans %>%
 filter(continent=="AF")%>%
 dplyr::count(sector)%>%
@@ -687,7 +687,7 @@ prop.table(table(kiva_loans$continent))%>%
 
 Notice most loans are requested by single females, the least amount of loans are given in the EU, weekly repayment is an unpopular form of paying loans back and entertainment, wholesale, manufacturing, and construction amount less than 2.2% of sectors.
 
-```{r countries-plot, fig.cap="Philippines requests the mosts loans with over double as the second country, Kenya `KE`. Other top countries in this ranking are Cambodia `KH`, Pakistan `PK`, Peru `PE`, Colombia `CO`, Uganda `UG`, Tajikistan `TJ`, Ecuador `EC`, and Paraguay `PY`."}
+```{r countries-plot, fig.cap="Philippines requests the mosts loans with over double as the second country, Kenya `KE`. Other top countries in this ranking are Cambodia `KH`, Pakistan `PK`, Peru `PE`, Colombia `CO`, Uganda `UG`, Tajikistan `TJ`, Ecuador `EC`, and Paraguay `PY`.", fig.width=17}
 
 kiva_loans %>%
   group_by(country_code) %>%
@@ -914,16 +914,13 @@ ggplot(kiva_loans,
   y = "Density")
 ```
 
-
-
 # Techniques used
 
 - I used the `quantmode` package to convert all loans into a unique currency (US dollars) for comparison. There were two currencies that were unavailable.
 
 - Taking all the different levels that came in the `borrower_genders` variable and creating five neat categories to better understand who are the borrowers was good practice with lists and the `stringr` package. 
 
-
-# Questions that came from this analysis
+# Questions from this analysis
 
 - Why is `Retail` and not `Food` (as in other regions) the second most common use for loans in Asia. 
 

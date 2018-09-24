@@ -26,7 +26,7 @@
 &lt;li&gt;&lt;a href=&#34;#data-cleaning&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Data cleaning&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#exploratory-data-analysis&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Exploratory data analysis&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#techniques-used&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; Techniques used&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#questions-that-came-from-this-analysis&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;7&lt;/span&gt; Questions that came from this analysis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#questions-from-this-analysis&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;7&lt;/span&gt; Questions from this analysis&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 
@@ -224,7 +224,7 @@ bullet
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:sectors-and-continents&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/sectors-and-continents-1.png&#34; alt=&#34;In every continent, the three most popular sectors are agriculture, retail, and food.&#34; width=&#34;1152&#34; /&gt;
+&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/sectors-and-continents-1.png&#34; alt=&#34;In every continent, the three most popular sectors are agriculture, retail, and food.&#34; width=&#34;1440&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 5.3: In every continent, the three most popular sectors are agriculture, retail, and food.
 &lt;/p&gt;
@@ -385,7 +385,7 @@ OC
 &lt;/table&gt;
 &lt;p&gt;Notice most loans are requested by single females, the least amount of loans are given in the EU, weekly repayment is an unpopular form of paying loans back and entertainment, wholesale, manufacturing, and construction amount less than 2.2% of sectors.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:countries-plot&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries-plot-1.png&#34; alt=&#34;Philippines requests the mosts loans with over double as the second country, Kenya `KE`. Other top countries in this ranking are Cambodia `KH`, Pakistan `PK`, Peru `PE`, Colombia `CO`, Uganda `UG`, Tajikistan `TJ`, Ecuador `EC`, and Paraguay `PY`.&#34; width=&#34;672&#34; /&gt;
+&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries-plot-1.png&#34; alt=&#34;Philippines requests the mosts loans with over double as the second country, Kenya `KE`. Other top countries in this ranking are Cambodia `KH`, Pakistan `PK`, Peru `PE`, Colombia `CO`, Uganda `UG`, Tajikistan `TJ`, Ecuador `EC`, and Paraguay `PY`.&#34; width=&#34;1632&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 5.4: Philippines requests the mosts loans with over double as the second country, Kenya &lt;code&gt;KE&lt;/code&gt;. Other top countries in this ranking are Cambodia &lt;code&gt;KH&lt;/code&gt;, Pakistan &lt;code&gt;PK&lt;/code&gt;, Peru &lt;code&gt;PE&lt;/code&gt;, Colombia &lt;code&gt;CO&lt;/code&gt;, Uganda &lt;code&gt;UG&lt;/code&gt;, Tajikistan &lt;code&gt;TJ&lt;/code&gt;, Ecuador &lt;code&gt;EC&lt;/code&gt;, and Paraguay &lt;code&gt;PY&lt;/code&gt;.
 &lt;/p&gt;
@@ -443,8 +443,8 @@ Figure 5.11: The total time between posting the loan and it being disbursed has 
 &lt;li&gt;&lt;p&gt;Taking all the different levels that came in the &lt;code&gt;borrower_genders&lt;/code&gt; variable and creating five neat categories to better understand who are the borrowers was good practice with lists and the &lt;code&gt;stringr&lt;/code&gt; package.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-&lt;div id=&#34;questions-that-came-from-this-analysis&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;7&lt;/span&gt; Questions that came from this analysis&lt;/h1&gt;
+&lt;div id=&#34;questions-from-this-analysis&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;7&lt;/span&gt; Questions from this analysis&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Why is &lt;code&gt;Retail&lt;/code&gt; and not &lt;code&gt;Food&lt;/code&gt; (as in other regions) the second most common use for loans in Asia.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Who are the givers? Where are they? Does proximity of the lender to the borrower have anything to do with funding times?&lt;/p&gt;&lt;/li&gt;
