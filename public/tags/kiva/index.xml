@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Ángela D. Castillo-Gill</copyright>
-    <lastBuildDate>Sat, 07 Jul 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 24 Sep 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/kiva/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Spanish trade over time</title>
+      <link>/post/spanish-trade-over-time/</link>
+      <pubDate>Mon, 24 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/spanish-trade-over-time/</guid>
+      <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 5 Exploratory data analysis 6 Techniques used 7 Questions from this analysis   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
+In this post, I analyse 671,205 observations. Each represents a Kiva loan. I find that the gender that requests the most loans is female with single females being the most responsible.</description>
+    </item>
     
     <item>
       <title>Exploring Kiva loans</title>
@@ -19,7 +29,7 @@
       
       <guid>/post/exploring-kiva-loans/</guid>
       <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 5 Exploratory data analysis 6 Techniques used 7 Questions from this analysis   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
- 2 Purpose of this post Muhammad Yunus and the Grameen Bank won the Nobel Peace Prize in 2006 for “their efforts through microcredit to create economic and social development from below.</description>
+In this post, I analyse 671,205 observations. Each represents a Kiva loan. I find that the gender that requests the most loans is female with single females being the most responsible.</description>
     </item>
     
   </channel>

@@ -18,7 +18,7 @@
     
   
   <meta name="description" content="1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 5 Exploratory data analysis 6 Techniques used 7 Questions from this analysis   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
- 2 Purpose of this post Muhammad Yunus and the Grameen Bank won the Nobel Peace Prize in 2006 for “their efforts through microcredit to create economic and social development from below.">
+In this post, I analyse 671,205 observations. Each represents a Kiva loan. I find that the gender that requests the most loans is female with single females being the most responsible.">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/exploring-kiva-loans/">
@@ -83,7 +83,7 @@
   <meta property="og:url" content="/post/exploring-kiva-loans/">
   <meta property="og:title" content="Exploring Kiva loans | Ángela D. Castillo-Gill">
   <meta property="og:description" content="1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 5 Exploratory data analysis 6 Techniques used 7 Questions from this analysis   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
- 2 Purpose of this post Muhammad Yunus and the Grameen Bank won the Nobel Peace Prize in 2006 for “their efforts through microcredit to create economic and social development from below.">
+In this post, I analyse 671,205 observations. Each represents a Kiva loan. I find that the gender that requests the most loans is female with single females being the most responsible.">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2018-07-07T00:00:00&#43;00:00">
@@ -307,7 +307,8 @@
 
 <div id="summary" class="section level1">
 <h1><span class="header-section-number">1</span> Summary</h1>
-<p>To see the code used in this post, visit my <a href="https://www.kaggle.com/adcastillogill/exploring-kiva-loans">kernel on kaggle in R Markdown format</a>.</p>
+<p><em>To see the code used in this post, visit my <a href="https://www.kaggle.com/adcastillogill/exploring-kiva-loans">kernel on kaggle in R Markdown format</a>.</em></p>
+<p>In this post, I analyse 671,205 observations. Each represents a <a href="www.kiva.org">Kiva</a> loan. I find that the gender that requests the most loans is female with single females being the most responsible. The main uses for these loans are agriculture, retail, and food with some variations amongst continents. Half of the loans are 4.22 USD or less and are funded by 12 or less contributers. The median time between posting a loan online and disbursing it to the borrower is 16.89 days. I mainly use the <code>tidyverse</code>, <code>stringr</code>, and <code>quantmode</code> packages.</p>
 </div>
 <div id="purpose-of-this-post" class="section level1">
 <h1><span class="header-section-number">2</span> Purpose of this post</h1>
@@ -388,7 +389,7 @@ $ date               &lt;date&gt; 2014-01-01, 2014-01-01, 2014-01-01, 2014-0...<
 <h1><span class="header-section-number">5</span> Exploratory data analysis</h1>
 <p>Now, let’s describe the data starting with some plots and tables to understand it.</p>
 <div class="figure"><span id="fig:continent-and-borrower-genders-plots"></span>
-<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/continent-and-borrower-genders-plots-1.png" alt="Four continents in descending order from the continent that requests the most loans (Asia). Notice Europe and North America do not appear. `mult_females` or `mult_males` means more than one female or male." width="1440" />
+<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/continent-and-borrower-genders-plots-1.png" alt="Four continents in descending order from the continent that requests the most loans (Asia). Notice Europe and North America do not appear. `mult_females` or `mult_males` means more than one female or male." width="960" />
 <p class="caption">
 Figure 5.1: Four continents in descending order from the continent that requests the most loans (Asia). Notice Europe and North America do not appear. <code>mult_females</code> or <code>mult_males</code> means more than one female or male.
 </p>
@@ -452,7 +453,7 @@ mult_males
 </table>
 <p>In all continents, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it’s mixed genders.</p>
 <div class="figure"><span id="fig:repayment-interval-and-continent"></span>
-<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/repayment-interval-and-continent-1.png" alt="In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it's monthly." width="1440" />
+<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/repayment-interval-and-continent-1.png" alt="In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it's monthly." width="960" />
 <p class="caption">
 Figure 5.2: In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it’s monthly.
 </p>
@@ -499,7 +500,7 @@ bullet
 </tbody>
 </table>
 <div class="figure"><span id="fig:sectors-and-continents"></span>
-<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/sectors-and-continents-1.png" alt="In every continent, the three most popular sectors are agriculture, retail, and food." width="1440" />
+<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/sectors-and-continents-1.png" alt="In every continent, the three most popular sectors are agriculture, retail, and food." width="960" />
 <p class="caption">
 Figure 5.3: In every continent, the three most popular sectors are agriculture, retail, and food.
 </p>
@@ -660,7 +661,7 @@ OC
 </table>
 <p>Notice most loans are requested by single females, the least amount of loans are given in the EU, weekly repayment is an unpopular form of paying loans back and entertainment, wholesale, manufacturing, and construction amount less than 2.2% of sectors.</p>
 <div class="figure"><span id="fig:countries-plot"></span>
-<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries-plot-1.png" alt="Philippines requests the mosts loans with over double as the second country, Kenya `KE`. Other top countries in this ranking are Cambodia `KH`, Pakistan `PK`, Peru `PE`, Colombia `CO`, Uganda `UG`, Tajikistan `TJ`, Ecuador `EC`, and Paraguay `PY`." width="1632" />
+<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries-plot-1.png" alt="Philippines requests the mosts loans with over double as the second country, Kenya `KE`. Other top countries in this ranking are Cambodia `KH`, Pakistan `PK`, Peru `PE`, Colombia `CO`, Uganda `UG`, Tajikistan `TJ`, Ecuador `EC`, and Paraguay `PY`." width="768" />
 <p class="caption">
 Figure 5.4: Philippines requests the mosts loans with over double as the second country, Kenya <code>KE</code>. Other top countries in this ranking are Cambodia <code>KH</code>, Pakistan <code>PK</code>, Peru <code>PE</code>, Colombia <code>CO</code>, Uganda <code>UG</code>, Tajikistan <code>TJ</code>, Ecuador <code>EC</code>, and Paraguay <code>PY</code>.
 </p>

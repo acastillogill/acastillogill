@@ -11,11 +11,11 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Exploring Kiva loans</title>
-      <link>/post/exploring-kiva-loans/</link>
-      <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
+      <title>Spanish trade over time</title>
+      <link>/post/spanish-trade-over-time/</link>
+      <pubDate>Mon, 24 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/exploring-kiva-loans/</guid>
+      <guid>/post/spanish-trade-over-time/</guid>
       <description>&lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
 
 &lt;div id=&#34;TOC&#34;&gt;
@@ -32,7 +32,8 @@
 
 &lt;div id=&#34;summary&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Summary&lt;/h1&gt;
-&lt;p&gt;To see the code used in this post, visit my &lt;a href=&#34;https://www.kaggle.com/adcastillogill/exploring-kiva-loans&#34;&gt;kernel on kaggle in R Markdown format&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;To see the code used in this post, visit my &lt;a href=&#34;https://www.kaggle.com/adcastillogill/exploring-kiva-loans&#34;&gt;kernel on kaggle in R Markdown format&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;In this post, I analyse 671,205 observations. Each represents a &lt;a href=&#34;www.kiva.org&#34;&gt;Kiva&lt;/a&gt; loan. I find that the gender that requests the most loans is female with single females being the most responsible. The main uses for these loans are agriculture, retail, and food with some variations amongst continents. Half of the loans are 4.22 USD or less and are funded by 12 or less contributers. The median time between posting a loan online and disbursing it to the borrower is 16.89 days. I mainly use the &lt;code&gt;tidyverse&lt;/code&gt;, &lt;code&gt;stringr&lt;/code&gt;, and &lt;code&gt;quantmode&lt;/code&gt; packages.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;purpose-of-this-post&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; Purpose of this post&lt;/h1&gt;
@@ -113,7 +114,7 @@ $ date               &amp;lt;date&amp;gt; 2014-01-01, 2014-01-01, 2014-01-01, 20
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;5&lt;/span&gt; Exploratory data analysis&lt;/h1&gt;
 &lt;p&gt;Now, let’s describe the data starting with some plots and tables to understand it.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:continent-and-borrower-genders-plots&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/continent-and-borrower-genders-plots-1.png&#34; alt=&#34;Four continents in descending order from the continent that requests the most loans (Asia). Notice Europe and North America do not appear. `mult_females` or `mult_males` means more than one female or male.&#34; width=&#34;1440&#34; /&gt;
+&lt;img src=&#34;/post/2018-09-24-spanish-trade-over-time_files/figure-html/continent-and-borrower-genders-plots-1.png&#34; alt=&#34;Four continents in descending order from the continent that requests the most loans (Asia). Notice Europe and North America do not appear. `mult_females` or `mult_males` means more than one female or male.&#34; width=&#34;960&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 5.1: Four continents in descending order from the continent that requests the most loans (Asia). Notice Europe and North America do not appear. &lt;code&gt;mult_females&lt;/code&gt; or &lt;code&gt;mult_males&lt;/code&gt; means more than one female or male.
 &lt;/p&gt;
@@ -177,7 +178,7 @@ mult_males
 &lt;/table&gt;
 &lt;p&gt;In all continents, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it’s mixed genders.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:repayment-interval-and-continent&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/repayment-interval-and-continent-1.png&#34; alt=&#34;In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it&#39;s monthly.&#34; width=&#34;1440&#34; /&gt;
+&lt;img src=&#34;/post/2018-09-24-spanish-trade-over-time_files/figure-html/repayment-interval-and-continent-1.png&#34; alt=&#34;In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it&#39;s monthly.&#34; width=&#34;960&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 5.2: In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it’s monthly.
 &lt;/p&gt;
@@ -224,7 +225,7 @@ bullet
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:sectors-and-continents&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/sectors-and-continents-1.png&#34; alt=&#34;In every continent, the three most popular sectors are agriculture, retail, and food.&#34; width=&#34;1440&#34; /&gt;
+&lt;img src=&#34;/post/2018-09-24-spanish-trade-over-time_files/figure-html/sectors-and-continents-1.png&#34; alt=&#34;In every continent, the three most popular sectors are agriculture, retail, and food.&#34; width=&#34;960&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 5.3: In every continent, the three most popular sectors are agriculture, retail, and food.
 &lt;/p&gt;
@@ -385,7 +386,452 @@ OC
 &lt;/table&gt;
 &lt;p&gt;Notice most loans are requested by single females, the least amount of loans are given in the EU, weekly repayment is an unpopular form of paying loans back and entertainment, wholesale, manufacturing, and construction amount less than 2.2% of sectors.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:countries-plot&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries-plot-1.png&#34; alt=&#34;Philippines requests the mosts loans with over double as the second country, Kenya `KE`. Other top countries in this ranking are Cambodia `KH`, Pakistan `PK`, Peru `PE`, Colombia `CO`, Uganda `UG`, Tajikistan `TJ`, Ecuador `EC`, and Paraguay `PY`.&#34; width=&#34;1632&#34; /&gt;
+&lt;img src=&#34;/post/2018-09-24-spanish-trade-over-time_files/figure-html/countries-plot-1.png&#34; alt=&#34;Philippines requests the mosts loans with over double as the second country, Kenya `KE`. Other top countries in this ranking are Cambodia `KH`, Pakistan `PK`, Peru `PE`, Colombia `CO`, Uganda `UG`, Tajikistan `TJ`, Ecuador `EC`, and Paraguay `PY`.&#34; width=&#34;768&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 5.4: Philippines requests the mosts loans with over double as the second country, Kenya &lt;code&gt;KE&lt;/code&gt;. Other top countries in this ranking are Cambodia &lt;code&gt;KH&lt;/code&gt;, Pakistan &lt;code&gt;PK&lt;/code&gt;, Peru &lt;code&gt;PE&lt;/code&gt;, Colombia &lt;code&gt;CO&lt;/code&gt;, Uganda &lt;code&gt;UG&lt;/code&gt;, Tajikistan &lt;code&gt;TJ&lt;/code&gt;, Ecuador &lt;code&gt;EC&lt;/code&gt;, and Paraguay &lt;code&gt;PY&lt;/code&gt;.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Now I’m curious to look at the top 10 countries requesting Kiva loans but per capita and per number of internet users.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:countries-plot-capita&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2018-09-24-spanish-trade-over-time_files/figure-html/countries-plot-capita-1.png&#34; alt=&#34;Interesting to see how the ranking changed! The island of Samoa `WS` is leading, followed by Armenia `AM`. Countries that remain in the top 10 are Cambodia `KH`, Philippines `PH`, Kenya `KE`, and Tajikstan `TJ`. Other new countries are Timor-Leste `TL`, Paraguay `PY`, Palestine `PS`, and Lebanon `LB`.&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 5.5: Interesting to see how the ranking changed! The island of Samoa &lt;code&gt;WS&lt;/code&gt; is leading, followed by Armenia &lt;code&gt;AM&lt;/code&gt;. Countries that remain in the top 10 are Cambodia &lt;code&gt;KH&lt;/code&gt;, Philippines &lt;code&gt;PH&lt;/code&gt;, Kenya &lt;code&gt;KE&lt;/code&gt;, and Tajikstan &lt;code&gt;TJ&lt;/code&gt;. Other new countries are Timor-Leste &lt;code&gt;TL&lt;/code&gt;, Paraguay &lt;code&gt;PY&lt;/code&gt;, Palestine &lt;code&gt;PS&lt;/code&gt;, and Lebanon &lt;code&gt;LB&lt;/code&gt;.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Let’s see how the top 10 changes when it comes to internet users. I used the ranking based on numbers published by the International Telecommunications Union available &lt;a href=&#34;https://en.wikipedia.org/wiki/List_of_countries_by_number_of_Internet_users&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:countries-plot-users&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2018-09-24-spanish-trade-over-time_files/figure-html/countries-plot-users-1.png&#34; alt=&#34;Interesting to see how the ranking changed! Leading the charts is the island of Samoa, followed by Armenia. Countries that remain in the top 10 are Cambodia `KH`, Philippines `PH`, Kenya `KE`, and Tajikstan `TJ`. Other new countries are Timor-Leste `TL`, Paraguay `PY`, Palestine `PS`, and Lebanon `LB`.&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 5.6: Interesting to see how the ranking changed! Leading the charts is the island of Samoa, followed by Armenia. Countries that remain in the top 10 are Cambodia &lt;code&gt;KH&lt;/code&gt;, Philippines &lt;code&gt;PH&lt;/code&gt;, Kenya &lt;code&gt;KE&lt;/code&gt;, and Tajikstan &lt;code&gt;TJ&lt;/code&gt;. Other new countries are Timor-Leste &lt;code&gt;TL&lt;/code&gt;, Paraguay &lt;code&gt;PY&lt;/code&gt;, Palestine &lt;code&gt;PS&lt;/code&gt;, and Lebanon &lt;code&gt;LB&lt;/code&gt;.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Now let’s look at the distributions of our numeric variables.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:loan-usd-distribution&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2018-09-24-spanish-trade-over-time_files/figure-html/loan-usd-distribution-1.png&#34; alt=&#34;Half of Kiva loans are 4.22 USD or less. Although the maximum loan is 100,000 USD, 75% of loans are equal to or less than 89.79 USD.&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 5.7: Half of Kiva loans are 4.22 USD or less. Although the maximum loan is 100,000 USD, 75% of loans are equal to or less than 89.79 USD.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:term-in-months-distribution&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2018-09-24-spanish-trade-over-time_files/figure-html/term-in-months-distribution-1.png&#34; alt=&#34;The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median.&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 5.8: The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:lender-count&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2018-09-24-spanish-trade-over-time_files/figure-html/lender-count-1.png&#34; alt=&#34;The lender count has a text book right-skewed distribution with a median of 12 lenders.&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 5.9: The lender count has a text book right-skewed distribution with a median of 12 lenders.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:giving-time&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2018-09-24-spanish-trade-over-time_files/figure-html/giving-time-1.png&#34; alt=&#34;The median time between posting the loan and the loan being fully funded is about 9.2 days. It is a bimodal distribution with its first peak around 6 days and its second peak around 30 days.&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 5.10: The median time between posting the loan and the loan being fully funded is about 9.2 days. It is a bimodal distribution with its first peak around 6 days and its second peak around 30 days.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:total-time&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2018-09-24-spanish-trade-over-time_files/figure-html/total-time-1.png&#34; alt=&#34;The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days.&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 5.11: The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;techniques-used&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;6&lt;/span&gt; Techniques used&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;I used the &lt;code&gt;quantmode&lt;/code&gt; package to convert all loans into a unique currency (US dollars) for comparison. There were two currencies that were unavailable.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Taking all the different levels that came in the &lt;code&gt;borrower_genders&lt;/code&gt; variable and creating five neat categories to better understand who are the borrowers was good practice with lists and the &lt;code&gt;stringr&lt;/code&gt; package.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;questions-from-this-analysis&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;7&lt;/span&gt; Questions from this analysis&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Why is &lt;code&gt;Retail&lt;/code&gt; and not &lt;code&gt;Food&lt;/code&gt; (as in other regions) the second most common use for loans in Asia.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Who are the givers? Where are they? Does proximity of the lender to the borrower have anything to do with funding times?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Does the Kiva website have anything to do with funding times? For example, &lt;code&gt;giving_time&lt;/code&gt;, the time between posting the loan and the loan being fully funded, has two peaks, at around one week and one month. Is this due to the platform and the promotion of loans that have been posted for a certain amount of time?&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Exploring Kiva loans</title>
+      <link>/post/exploring-kiva-loans/</link>
+      <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/exploring-kiva-loans/</guid>
+      <description>&lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#summary&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Summary&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#purpose-of-this-post&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Purpose of this post&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#the-data&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; The data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#data-cleaning&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Data cleaning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#exploratory-data-analysis&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Exploratory data analysis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#techniques-used&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; Techniques used&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#questions-from-this-analysis&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;7&lt;/span&gt; Questions from this analysis&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;summary&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Summary&lt;/h1&gt;
+&lt;p&gt;&lt;em&gt;To see the code used in this post, visit my &lt;a href=&#34;https://www.kaggle.com/adcastillogill/exploring-kiva-loans&#34;&gt;kernel on kaggle in R Markdown format&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;In this post, I analyse 671,205 observations. Each represents a &lt;a href=&#34;www.kiva.org&#34;&gt;Kiva&lt;/a&gt; loan. I find that the gender that requests the most loans is female with single females being the most responsible. The main uses for these loans are agriculture, retail, and food with some variations amongst continents. Half of the loans are 4.22 USD or less and are funded by 12 or less contributers. The median time between posting a loan online and disbursing it to the borrower is 16.89 days. I mainly use the &lt;code&gt;tidyverse&lt;/code&gt;, &lt;code&gt;stringr&lt;/code&gt;, and &lt;code&gt;quantmode&lt;/code&gt; packages.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;purpose-of-this-post&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; Purpose of this post&lt;/h1&gt;
+&lt;p&gt;Muhammad Yunus and the Grameen Bank won the &lt;a href=&#34;https://www.nobelpeaceprize.org/Prize-winners/Winners/2006&#34;&gt;Nobel Peace Prize&lt;/a&gt; in 2006 for “their efforts through microcredit to create economic and social development from below.”&lt;/p&gt;
+&lt;p&gt;Back in 1976, Yunus, at the time a professor at the University of Chittagong (Bangladesh), &lt;a href=&#34;https://www.bbc.co.uk/news/world-south-asia-11901625&#34;&gt;noticed that small amounts of money could make a substantial difference to people living in poverty&lt;/a&gt;. He started to loan money to people that didn’t meet the requirements listed by the mainstream banking system. It was reported that these type of loans were effective to &lt;a href=&#34;https://www.nobelpeaceprize.org/Prize-winners/Prizewinner-documentation/Muhammad-Yunus-Grameen-Bank&#34;&gt;“emerge” from poverty&lt;/a&gt; using default rates lower than those of commercial banks, &lt;a href=&#34;https://www.gdrc.org/icm/grameen-article4.html&#34;&gt;reported at 2%&lt;/a&gt;. Eventually, in October 1983, Muhammad Yunus founded &lt;a href=&#34;https://grameenfoundation.org/about/history&#34;&gt;Grameen Bank&lt;/a&gt;, considered to be the first microfinance institution.&lt;/p&gt;
+&lt;p&gt;Founded in 2005, &lt;a href=&#34;www.kiva.org&#34;&gt;Kiva&lt;/a&gt;, has the same mission as Grameen Bank except that anyone can become a Kiva banker. This online platform enables microcredit lending to help low-income entrepreneurs around the world with a couple of clicks. Pretty neat, huh? In this post, I unpack a large dataset published by &lt;a href=&#34;https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding&#34;&gt;Kiva on the Kaggle platform&lt;/a&gt; and explore these microloans.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-data&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; The data&lt;/h1&gt;
+&lt;p&gt;The dataset was published during the first months of 2018 on the &lt;a href=&#34;https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding&#34;&gt;Kaggle platform&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The complete dataset was a zip file with size 232.7 MB containing four files: &lt;code&gt;kiva_loans.csv&lt;/code&gt;, &lt;code&gt;kiva_mpi_region_locations.csv&lt;/code&gt;,&lt;code&gt;loan_theme_ids.csv&lt;/code&gt;, and &lt;code&gt;loan_themes_by_region.csv&lt;/code&gt;. After I looked at the contents, I chose to work with the first one &lt;code&gt;kiva_loans.csv&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The dataset had 671,205 observations and 20 variables.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Observations: 671,205
+Variables: 20
+$ id                 &amp;lt;int&amp;gt; 653051, 653053, 653068, 653063, 653084, 108...
+$ funded_amount      &amp;lt;dbl&amp;gt; 300, 575, 150, 200, 400, 250, 200, 400, 475...
+$ loan_amount        &amp;lt;dbl&amp;gt; 300, 575, 150, 200, 400, 250, 200, 400, 475...
+$ activity           &amp;lt;chr&amp;gt; &amp;quot;Fruits &amp;amp; Vegetables&amp;quot;, &amp;quot;Rickshaw&amp;quot;, &amp;quot;Transpo...
+$ sector             &amp;lt;chr&amp;gt; &amp;quot;Food&amp;quot;, &amp;quot;Transportation&amp;quot;, &amp;quot;Transportation&amp;quot;,...
+$ use                &amp;lt;chr&amp;gt; &amp;quot;To buy seasonal, fresh fruits to sell.&amp;quot;, &amp;quot;...
+$ country_code       &amp;lt;chr&amp;gt; &amp;quot;PK&amp;quot;, &amp;quot;PK&amp;quot;, &amp;quot;IN&amp;quot;, &amp;quot;PK&amp;quot;, &amp;quot;PK&amp;quot;, &amp;quot;KE&amp;quot;, &amp;quot;IN&amp;quot;, &amp;quot;...
+$ country            &amp;lt;chr&amp;gt; &amp;quot;Pakistan&amp;quot;, &amp;quot;Pakistan&amp;quot;, &amp;quot;India&amp;quot;, &amp;quot;Pakistan&amp;quot;...
+$ region             &amp;lt;chr&amp;gt; &amp;quot;Lahore&amp;quot;, &amp;quot;Lahore&amp;quot;, &amp;quot;Maynaguri&amp;quot;, &amp;quot;Lahore&amp;quot;, ...
+$ currency           &amp;lt;chr&amp;gt; &amp;quot;PKR&amp;quot;, &amp;quot;PKR&amp;quot;, &amp;quot;INR&amp;quot;, &amp;quot;PKR&amp;quot;, &amp;quot;PKR&amp;quot;, &amp;quot;KES&amp;quot;, &amp;quot;...
+$ partner_id         &amp;lt;dbl&amp;gt; 247, 247, 334, 247, 245, NA, 334, 245, 245,...
+$ posted_time        &amp;lt;dttm&amp;gt; 2014-01-01 06:12:39, 2014-01-01 06:51:08, ...
+$ disbursed_time     &amp;lt;dttm&amp;gt; 2013-12-17 08:00:00, 2013-12-17 08:00:00, ...
+$ funded_time        &amp;lt;dttm&amp;gt; 2014-01-02 10:06:32, 2014-01-02 09:17:23, ...
+$ term_in_months     &amp;lt;dbl&amp;gt; 12, 11, 43, 11, 14, 4, 43, 14, 14, 11, 11, ...
+$ lender_count       &amp;lt;int&amp;gt; 12, 14, 6, 8, 16, 6, 8, 8, 19, 24, 3, 16, 1...
+$ tags               &amp;lt;chr&amp;gt; NA, NA, &amp;quot;user_favorite, user_favorite&amp;quot;, NA,...
+$ borrower_genders   &amp;lt;chr&amp;gt; &amp;quot;female&amp;quot;, &amp;quot;female, female&amp;quot;, &amp;quot;female&amp;quot;, &amp;quot;fema...
+$ repayment_interval &amp;lt;chr&amp;gt; &amp;quot;irregular&amp;quot;, &amp;quot;irregular&amp;quot;, &amp;quot;bullet&amp;quot;, &amp;quot;irregu...
+$ date               &amp;lt;date&amp;gt; 2014-01-01, 2014-01-01, 2014-01-01, 2014-0...&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Some of the codebook came with the dataset and some I researched to make assumptions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;funded_amount&lt;/code&gt;: “The amount disbursed by Kiva to the field agent(USD)”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;loan_amount&lt;/code&gt;: “The amount disbursed by the field agent to the borrower(USD)”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;activity&lt;/code&gt;: “More granular category”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sector&lt;/code&gt;: “High level category”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;use&lt;/code&gt;: “Exact usage of loan amount”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;country_code&lt;/code&gt;: “ISO country code of country in which loan was disbursed”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;country&lt;/code&gt;: “Full country name of country in which loan was disbursed”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;region&lt;/code&gt;: “Full region name within the country”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;currency&lt;/code&gt;: “The currency in which the loan was disbursed”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;partner_id&lt;/code&gt;: “ID of partner organization”&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This variable has a lot of missing values and the Kiva explanation on Kaggle doesn’t go much further. For now, I will exclude &lt;code&gt;partner_id&lt;/code&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;posted_time&lt;/code&gt;: “The time at which the loan is posted on Kiva by the field agent”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;disbursed_time&lt;/code&gt;: “The time at which the loan is disbursed by the field agent to the borrower”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;funded_time&lt;/code&gt;: “The time at which the loan posted to Kiva gets funded by lenders completely”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;term_in_months&lt;/code&gt;: “The duration for which the loan was disbursed in months”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lender_count&lt;/code&gt;: “The total number of lenders that contributed to this loan”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;borrower_genders&lt;/code&gt;: “Comma separated M,F letters, where each instance represents a single male/female in the group”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;repayment_interval&lt;/code&gt;: Not specified so we’ll assume that it means the standard definition of when the loan is repaid back to the lender.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;data-cleaning&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;4&lt;/span&gt; Data cleaning&lt;/h1&gt;
+&lt;p&gt;From at the structure of our data, we can soon see there are a few bits that don’t make sense and need to be fixed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;a. Missing values&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;We will leave missing values in for now.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;b.&lt;code&gt;borrower_genders&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;From the variable descriptions, we expected &lt;code&gt;borrower_genders&lt;/code&gt;to have only two levels, &lt;code&gt;male&lt;/code&gt;or &lt;code&gt;female&lt;/code&gt;. Here we see many more levels, 11,298 to be precise. This isn’t very clear so we’ll fix that first by creating five levels:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[1] &amp;quot;mixed_genders&amp;quot; &amp;quot;mult_females&amp;quot;  &amp;quot;mult_males&amp;quot;    &amp;quot;single_female&amp;quot;
+[5] &amp;quot;single_male&amp;quot;  &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;c.&lt;code&gt;loan_amounts&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Now, since we’re trying to make sense of all loans, it’s better if &lt;code&gt;loan_amounts&lt;/code&gt; is in the same currency. Let’s translate it to USD.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;d.&lt;code&gt;country_codes&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Finally, with 86 countries, we have 86 levels. Perhaps it would be interesting to create another category called continent to produce less levels and have a better understanding of the overall function of regional distributions.&lt;/p&gt;
+&lt;p&gt;Our country codes are in the ISO3166 format, so we will use the associated continent code found &lt;a href=&#34;https://dev.maxmind.com/geoip/legacy/codes/country_continent/&#34;&gt;here&lt;/a&gt;. And make five continents. Africa, Asia, Europe, Oceania, and South America.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[1] &amp;quot;AF&amp;quot; &amp;quot;AS&amp;quot; &amp;quot;EU&amp;quot; &amp;quot;OC&amp;quot; &amp;quot;SA&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;e. Dates&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Let’s calculate two lengths of time that I think are interesting. First, how much time passes from the moment the loan is posted to the moment it’s disbursed (&lt;code&gt;total_time&lt;/code&gt;). Second, how long does a loan take to get funded (&lt;code&gt;giving_time&lt;/code&gt;)?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;exploratory-data-analysis&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;5&lt;/span&gt; Exploratory data analysis&lt;/h1&gt;
+&lt;p&gt;Now, let’s describe the data starting with some plots and tables to understand it.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:continent-and-borrower-genders-plots&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/continent-and-borrower-genders-plots-1.png&#34; alt=&#34;Four continents in descending order from the continent that requests the most loans (Asia). Notice Europe and North America do not appear. `mult_females` or `mult_males` means more than one female or male.&#34; width=&#34;960&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 5.1: Four continents in descending order from the continent that requests the most loans (Asia). Notice Europe and North America do not appear. &lt;code&gt;mult_females&lt;/code&gt; or &lt;code&gt;mult_males&lt;/code&gt; means more than one female or male.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;caption&gt;
+&lt;span id=&#34;tab:borrower-genders-table&#34;&gt;Table 5.1: &lt;/span&gt;A single female is the most common type of borrower gender with over half of all Kiva loans requested.
+&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+Gender
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Percentage
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+single_female
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+65.82
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+single_male
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+17.43
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+mult_females
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+9.58
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+mixed_genders
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+6.58
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+mult_males
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.59
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;In all continents, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it’s mixed genders.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:repayment-interval-and-continent&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/repayment-interval-and-continent-1.png&#34; alt=&#34;In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it&#39;s monthly.&#34; width=&#34;960&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 5.2: In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it’s monthly.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;caption&gt;
+&lt;span id=&#34;tab:repayment-interval-table&#34;&gt;Table 5.2: &lt;/span&gt;The most popular type of repayment interval is monthly.
+&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+Repayment interval
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Percentage
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+monthly
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+47
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+irregular
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+43
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+bullet
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+10
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:sectors-and-continents&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/sectors-and-continents-1.png&#34; alt=&#34;In every continent, the three most popular sectors are agriculture, retail, and food.&#34; width=&#34;960&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 5.3: In every continent, the three most popular sectors are agriculture, retail, and food.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;caption&gt;
+&lt;span id=&#34;tab:sector-table&#34;&gt;Table 5.3: &lt;/span&gt;Generally, the most frequent use of loans is agriculture, followed by food and retail.
+&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+Sector
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Percentage
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Agriculture
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+27.5
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Food
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+20.8
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Retail
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+19.5
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Services
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+6.9
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Personal Use
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+5.9
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Education
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+5.1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Clothing
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+4.7
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Housing
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+4.1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Transportation
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2.6
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Arts
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1.7
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Health
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1.2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;caption&gt;
+&lt;span id=&#34;tab:continent-table&#34;&gt;Table 5.4: &lt;/span&gt;Half of all Kiva loans are requested in Asia followed by Africa, South America, Oceania and finally the European Union.
+&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+Continents
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Percentage
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+AS
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+55.4
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+AF
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+29.8
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+SA
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+13.5
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+OC
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1.4
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Notice most loans are requested by single females, the least amount of loans are given in the EU, weekly repayment is an unpopular form of paying loans back and entertainment, wholesale, manufacturing, and construction amount less than 2.2% of sectors.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:countries-plot&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries-plot-1.png&#34; alt=&#34;Philippines requests the mosts loans with over double as the second country, Kenya `KE`. Other top countries in this ranking are Cambodia `KH`, Pakistan `PK`, Peru `PE`, Colombia `CO`, Uganda `UG`, Tajikistan `TJ`, Ecuador `EC`, and Paraguay `PY`.&#34; width=&#34;768&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 5.4: Philippines requests the mosts loans with over double as the second country, Kenya &lt;code&gt;KE&lt;/code&gt;. Other top countries in this ranking are Cambodia &lt;code&gt;KH&lt;/code&gt;, Pakistan &lt;code&gt;PK&lt;/code&gt;, Peru &lt;code&gt;PE&lt;/code&gt;, Colombia &lt;code&gt;CO&lt;/code&gt;, Uganda &lt;code&gt;UG&lt;/code&gt;, Tajikistan &lt;code&gt;TJ&lt;/code&gt;, Ecuador &lt;code&gt;EC&lt;/code&gt;, and Paraguay &lt;code&gt;PY&lt;/code&gt;.
 &lt;/p&gt;
