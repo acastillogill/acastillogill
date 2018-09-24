@@ -49,21 +49,22 @@ opts_chunk$set(echo = FALSE,
 ```
 
 # Summary
-If you would like to have a look at all the code used in this post, feel free to visit my [kernel on kaggle in R Markdown format](https://www.kaggle.com/adcastillogill/exploring-kiva-loans). 
+
+To see the code used in this post, visit my [kernel on kaggle in R Markdown format](https://www.kaggle.com/adcastillogill/exploring-kiva-loans). 
 
 # Purpose of this post
 
 Muhammad Yunus and the Grameen Bank won the [Nobel Peace Prize](https://www.nobelpeaceprize.org/Prize-winners/Winners/2006) in 2006 for "their efforts through microcredit to create economic and social development from below."
 
-Back in 1976, Yunus, a professor at the University of Chittagong (Bangladesh) at the time, [noticed that small amounts of money could make a substantial difference to people living in poverty](https://www.bbc.co.uk/news/world-south-asia-11901625). He started to loan money to people that didn't meet the requirements listed by the mainstream banking system. Not only did these type of loans turn out to be effective to ["emerge" from poverty](https://www.nobelpeaceprize.org/Prize-winners/Prizewinner-documentation/Muhammad-Yunus-Grameen-Bank), but default rates were lower than those of commercial banks, [reported at 2%](https://www.gdrc.org/icm/grameen-article4.html). Eventually, in October 1983, Muhammad Yunus founded [Grameen Bank](https://grameenfoundation.org/about/history), considered to be the first microfinance institution. 
+Back in 1976, Yunus, at the time a professor at the University of Chittagong (Bangladesh), [noticed that small amounts of money could make a substantial difference to people living in poverty](https://www.bbc.co.uk/news/world-south-asia-11901625). He started to loan money to people that didn't meet the requirements listed by the mainstream banking system. It was reported that these type of loans were effective to ["emerge" from poverty](https://www.nobelpeaceprize.org/Prize-winners/Prizewinner-documentation/Muhammad-Yunus-Grameen-Bank) using default rates lower than those of commercial banks, [reported at 2%](https://www.gdrc.org/icm/grameen-article4.html). Eventually, in October 1983, Muhammad Yunus founded [Grameen Bank](https://grameenfoundation.org/about/history), considered to be the first microfinance institution. 
 
-Founded in 2005, [Kiva](www.kiva.org), has the same mission as Grameen Bank except that anyone can become a Kiva banker. This online platform enables microcredit lending to help low-income entrepreneurs around the world with a couple of cliks. Pretty neat, huh? In this post, I unpack a large dataset published by [Kiva on the Kaggle platform](https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding) and explore these cool microloans.
+Founded in 2005, [Kiva](www.kiva.org), has the same mission as Grameen Bank except that anyone can become a Kiva banker. This online platform enables microcredit lending to help low-income entrepreneurs around the world with a couple of clicks. Pretty neat, huh? In this post, I unpack a large dataset published by [Kiva on the Kaggle platform](https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding) and explore these microloans. 
 
 # The data
 
 The dataset was published during the first months of 2018 on the [Kaggle platform](https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding). 
 
-The complete dataset was a zip file with size 232.7 MB containing four files: `kiva_loans.csv`, `kiva_mpi_region_locations.csv`,`loan_theme_ids.csv`, and `loan_themes_by_region.csv`. After I looked at the contents, I chose to work with the first one `kiva_loans.csv.
+The complete dataset was a zip file with size 232.7 MB containing four files: `kiva_loans.csv`, `kiva_mpi_region_locations.csv`,`loan_theme_ids.csv`, and `loan_themes_by_region.csv`. After I looked at the contents, I chose to work with the first one `kiva_loans.csv`.
 
 ```{r results='hide', message=FALSE}
 path <- "/Volumes/TOSHIBAEXT/RStudio/blog/content/post/kiva_data/"
@@ -133,11 +134,11 @@ From  at the structure of our data, we can soon see there are a few bits that do
 
 **a. Missing values**
 
-Missing values, aka `NA's`, we could simply remove them since we have plenty of observations. But what if by removing them we introduce some bias. For example, `borrower_genders` has plenty of missing values, but what if this could say something about certain types of loans. For now we will leave them in.
+We will leave missing values in for now. 
 
 **b.`borrower_genders`**
 
-From the variable descriptions, we expected `borrower_genders`to have only two levels, `male`or `female`. Here we see there are many more levels, 11,298 to be precise. We know something is wrong here. So we'll fix that first. 
+From the variable descriptions, we expected `borrower_genders`to have only two levels, `male`or `female`. Here we see many more levels, 11,298 to be precise. This isn't very clear so we'll fix that first by creating five levels:
 
 ```{r }
 
@@ -176,7 +177,6 @@ compare_genders <- function(females_count, females_sum){
 kiva_loans$borrower_genders <- mapply(compare_genders,females_count,females_sum)
 ```
 
-Let's see if all is well...
 ```{r}
 
 #Make kiva_loans$borrower_genders a factor again
@@ -185,11 +185,10 @@ kiva_loans$borrower_genders <- as.factor(kiva_loans$borrower_genders)
 #Check levels
 levels(kiva_loans$borrower_genders)
 ```
-Nothing `strange`! Five levels as we wanted - fabulous! Onwards. 
 
 **c.`loan_amounts`**
 
-Now, since we're trying to predict `loan_amounts`, it's better if they're all in the same currency. Let's translate them to USD.
+Now, since we're trying to make sense of all loans, it's better if `loan_amounts` is in the same currency. Let's translate it to USD.
 
 ```{r eval=FALSE}
 
@@ -199,10 +198,9 @@ for (curr in levels(kiva_loans$currency))
   tryCatch(quantmod::getQuote(paste0(curr, "=X")), error = print)
 ```
 
-It seems like two currencies are returning an error. Let's filter them out. 
 
 ```{r}
-
+## It seems like two currencies are returning an error. Let's filter them out. 
 #Turning kiva_loans back into a character vector
 kiva_loans$currency <- as.character(kiva_loans$currency)
 
@@ -253,14 +251,13 @@ kiva_loans%>%
 
 Finally, with 86 countries, we have 86 levels. Perhaps it would be interesting to create another category called continent to produce less levels and have a better understanding of the overall function of regional distributions.
 
-Our country codes are in the ISO3166 format, so we will use the associated continent code found [here](https://dev.maxmind.com/geoip/legacy/codes/country_continent/).
+Our country codes are in the ISO3166 format, so we will use the associated continent code found [here](https://dev.maxmind.com/geoip/legacy/codes/country_continent/). And make five continents. Africa, Asia, Europe, Oceania, and South America.
 
 ```{r}
 #Read `country_continent.csv`
 continents <- read_csv(paste(path,"country_continent.csv",sep = ""))
 ```
 
-We will do what we previously did for currencies, which is to join both tables. 
 
 ```{r}
 kiva_loans%>%
@@ -269,17 +266,15 @@ kiva_loans%>%
 
 ```
 
-Let's see what happened...
 ```{r}
 kiva_loans$continent <- as.factor(kiva_loans$continent)
 levels(kiva_loans$continent)
 ```
-5 continents! Africa, Asia, Europe, Oceania, and South America. Granted, we've lost spacial resolution. However, for our initial purpose, this is exactly what we wanted. 
+
 
 **e. Dates**
 
-Dates aren't numeric, but we can make them. Let's calculate two lengths of time that I think are interesting. 
-First, how much time passes from the moment the loan is posted to the moment it's disbursed (`total_time`). Second, how long does a loan take to get funded (`giving_time`)? 
+Let's calculate two lengths of time that I think are interesting. First, how much time passes from the moment the loan is posted to the moment it's disbursed (`total_time`). Second, how long does a loan take to get funded (`giving_time`)? 
 
 ```{r total_time_creation}
 kiva_loans%>%
@@ -316,66 +311,9 @@ kiva_loans$id <- as.character(kiva_loans$id)
 skim(kiva_loans)
 ```
 
-
 # Exploratory data analysis
 
-Now let's describe the data. We could jump into the regression trees but exploring the data will help us interpret our predictions better. Do some extra work now and enjoy the benefits later. 
-
-
-Let's make some tables to understand our factors.
-
-```{r borrower-genders-table}
-options("digits"=2)
-prop.table(table(kiva_loans$borrower_genders))%>%
-  as.tibble()%>%
-  mutate(n=n*100)%>%
-  arrange(desc(n))%>%
-  kable(caption="A single female is the most common type of borrower gender with over half of all Kiva loans requested.",
-        col.names = c("Gender","Percentage")) %>%
- kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
-
-```
-
-```{r continent-table}
-
-
-prop.table(table(kiva_loans$continent))%>%
-  as.tibble()%>%
-  mutate(n=n*100)%>%
-  arrange(desc(n))%>%
-  kable(format="html",
-          caption="Half of all Kiva loans are requested in Asia followed by Africa, South America, Oceania and finally the European Union.",
-        col.names = c("Continents","Percentage")) %>%
- kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
-
-
-```
-
-
-```{r repayment-interval-table}
-
-prop.table(table(kiva_loans$repayment_interval))%>%
-  as.tibble()%>%
-  mutate(n=n*100)%>%
-  arrange(desc(n))%>%
-  kable(caption="The most popular type of repayment interval is monthly.",
-        col.names = c("Repayment interval","Percentage")) %>%
- kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
-
-```
-
-```{r sector-table}
-
-prop.table(table(kiva_loans$sector))%>%
-  as.tibble()%>%
-  mutate(n=n*100)%>%
-  arrange(desc(n))%>%
-  kable(caption="Generally, the most frequent use of loans is agriculture, followed by food and retail.",
-        col.names = c("Sector","Percentage")) %>%
- kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
-```
-
-Notice most loans are requested by single females, that the least amount of loans are given in the EU, that weekly repayment is an unpopular form of paying the loan back and that entertainment, wholesale, manufacturing, and construction amount less than 2.2% of sectors. Let's remove these categories that are not representative of the data. 
+Now, let's describe the data starting with some plots and tables to understand it.
 
 ```{r}
 kiva_loans <-  kiva_loans%>%
@@ -387,8 +325,6 @@ kiva_loans <-  kiva_loans%>%
             sector!= "Wholesale")%>%
   droplevels()
 ```
-
-Ideal. Now let's look at our factors in an easier way to parse. Let's compare genders by continents to see if we can spot anything worth noting.
 
 ```{r continent-and-borrower-genders-plots, fig.cap="Four continents in descending order from the continent that requests the most loans (Asia). Notice Europe and North America do not appear. `mult_females` or `mult_males` means more than one female or male.",fig.width=15}
 AF_borrower_genders <- na.omit(kiva_loans) %>%
@@ -498,6 +434,18 @@ grid.arrange(
 )
 ```
 
+```{r borrower-genders-table}
+options("digits"=2)
+prop.table(table(kiva_loans$borrower_genders))%>%
+  as.tibble()%>%
+  mutate(n=n*100)%>%
+  arrange(desc(n))%>%
+  kable(caption="A single female is the most common type of borrower gender with over half of all Kiva loans requested.",
+        col.names = c("Gender","Percentage")) %>%
+ kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+
+```
+
 In all continents, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it's mixed genders. 
 
 ```{r repayment-interval-and-continent, fig.cap="In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it's monthly.",fig.width=15}
@@ -601,7 +549,17 @@ grid.arrange(AS_repayment_interval,
 
 ```
 
+```{r repayment-interval-table}
 
+prop.table(table(kiva_loans$repayment_interval))%>%
+  as.tibble()%>%
+  mutate(n=n*100)%>%
+  arrange(desc(n))%>%
+  kable(caption="The most popular type of repayment interval is monthly.",
+        col.names = c("Repayment interval","Percentage")) %>%
+ kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+
+```
 
 ```{r sectors-and-continents, fig.cap="In every continent, the three most popular sectors are agriculture, retail, and food.",fig.width=12}
 AF_sector <- kiva_loans %>%
@@ -701,8 +659,35 @@ grid.arrange(AS_sector,
 )
 ```
 
+```{r sector-table}
 
-```{r countries-plot, fig.cap="Philippines is the country that requests the mosts loans with over double as the second country Kenya `KE`. Other top countries are Cambodia `KH`, Pakistan `PK`, Peru `PE`, Colombia `CO`, Uganda `UG`, Tajikistan `TJ`, Ecuador `EC`, and Paraguay `PY`."}
+prop.table(table(kiva_loans$sector))%>%
+  as.tibble()%>%
+  mutate(n=n*100)%>%
+  arrange(desc(n))%>%
+  kable(caption="Generally, the most frequent use of loans is agriculture, followed by food and retail.",
+        col.names = c("Sector","Percentage")) %>%
+ kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+
+```{r continent-table}
+
+
+prop.table(table(kiva_loans$continent))%>%
+  as.tibble()%>%
+  mutate(n=n*100)%>%
+  arrange(desc(n))%>%
+  kable(format="html",
+          caption="Half of all Kiva loans are requested in Asia followed by Africa, South America, Oceania and finally the European Union.",
+        col.names = c("Continents","Percentage")) %>%
+ kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+
+
+```
+
+Notice most loans are requested by single females, the least amount of loans are given in the EU, weekly repayment is an unpopular form of paying loans back and entertainment, wholesale, manufacturing, and construction amount less than 2.2% of sectors.
+
+```{r countries-plot, fig.cap="Philippines requests the mosts loans with over double as the second country, Kenya `KE`. Other top countries in this ranking are Cambodia `KH`, Pakistan `PK`, Peru `PE`, Colombia `CO`, Uganda `UG`, Tajikistan `TJ`, Ecuador `EC`, and Paraguay `PY`."}
 
 kiva_loans %>%
   group_by(country_code) %>%
@@ -719,7 +704,7 @@ kiva_loans %>%
   labs(title = "Top 10 countries requesting Kiva loans",
   x = "",
   y = "Number of loans")+
- geom_label(aes(label=n), nudge_x = -0.5)
+ geom_label(aes(label=n), nudge_y = 0.1)
 ```
 
 Now I'm curious to look at the top 10 countries requesting Kiva loans but per capita and per number of internet users.
@@ -737,7 +722,6 @@ population <- read_csv(paste0(path,"country_populations.csv"))
 iso <- read_csv(paste0(path,"iso_countries.csv"))
 users <- read_csv(paste0(path,"internet_users.csv"))
 ```
-
 
 ```{r}
 #Left join country codes with population amounts
@@ -761,7 +745,7 @@ pop_iso_loans <- pop_iso_loans %>%
 pop_iso_loans <- pop_iso_loans[-1,]
 ```
 
-```{r countries-plot-capita, fig.cap="Interesting to see how the ranking changed! Leading the charts is the island of Samoa, followed by Armenia. Countries that remain in the top 10 are Cambodia, Philippines, Kenia, and Tajikstan. Other new countries are Timor-Leste, Paraguay, Palestine, and Lebanon"}
+```{r countries-plot-capita, fig.cap="Interesting to see how the ranking changed! The island of Samoa `WS` is leading, followed by Armenia `AM`. Countries that remain in the top 10 are Cambodia `KH`, Philippines `PH`, Kenya `KE`, and Tajikstan `TJ`. Other new countries are Timor-Leste `TL`, Paraguay `PY`, Palestine `PS`, and Lebanon `LB`."}
 pop_iso_loans %>%
   top_n(10) %>%
   ggplot(aes(reorder(x = country_code,
@@ -802,7 +786,7 @@ users_iso_loans$n_per_users <- users_iso_loans$n/users_iso_loans$users*1000
    arrange(desc(n_per_users))
 ```
 
-```{r countries-plot-users, fig.cap="Interesting to see how the ranking changed! Leading the charts is the island of Samoa, followed by Armenia. Countries that remain in the top 10 are Cambodia, Philippines, Kenia, and Tajikstan. Other new countries are Timor-Leste, Paraguay, Palestine, and Lebanon"}
+```{r countries-plot-users, fig.cap="Interesting to see how the ranking changed! Leading the charts is the island of Samoa, followed by Armenia. Countries that remain in the top 10 are Cambodia `KH`, Philippines `PH`, Kenya `KE`, and Tajikstan `TJ`. Other new countries are Timor-Leste `TL`, Paraguay `PY`, Palestine `PS`, and Lebanon `LB`."}
 users_iso_loans %>%
   top_n(10) %>%
   ggplot(aes(reorder(x = country_code, n_per_users), y = n_per_users)) +
@@ -818,7 +802,6 @@ users_iso_loans %>%
  geom_label(aes(label=round(n_per_users,
                             digits = 2)))
 ```
-
 
 Now let's look at the distributions of our numeric variables.
 
@@ -933,14 +916,14 @@ ggplot(kiva_loans,
 
 
 
-# Skills practiced in this post 
+# Techniques used
 
-- The `quantmode` package was new to me. I used this to convert all loans into a unique currency (US dollars) for comparison. There were two currencies that were unavailable and because I hadn't seen the warnings, the whole chunk kept throwing an error that was a bit frustrating. 
+- I used the `quantmode` package to convert all loans into a unique currency (US dollars) for comparison. There were two currencies that were unavailable.
 
 - Taking all the different levels that came in the `borrower_genders` variable and creating five neat categories to better understand who are the borrowers was good practice with lists and the `stringr` package. 
 
 
-# What I'm curious about
+# Questions that came from this analysis
 
 - Why is `Retail` and not `Food` (as in other regions) the second most common use for loans in Asia. 
 
