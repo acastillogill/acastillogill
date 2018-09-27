@@ -1,0 +1,138 @@
+---
+title: Bayesian Regression vs. Frequentist Regression
+author: Ángela Castillo-Gill
+date: '2018-05-28'
+slug: bayesian-regression-vs-frequentist-regression
+categories: []
+tags: []
+---
+
+
+
+<p>So I thought, I need to get to the bottom of this, what is indeed the difference between Frequentist and Bayesian regression beyond the distinction of what probability, as a whole, means to both sides.</p>
+<div id="ordinary-least-squared-ols-errors-regression" class="section level4">
+<h4>Ordinary Least Squared (OLS) Errors Regression</h4>
+<p>With OLS, our best estimate of the line that describes the relationship between the explanatory and response variable is ordinary least squared (OLS) estimates of alpha and beta to obtain the “fitted” values of predictions. What are those fitted values? They can also be called the “predicted” values. The equation for the model is:</p>
+<p><span class="math display">\[Model: \hat{y_i}=\hat{\alpha}+\hat{\beta_i}*x_i\]</span></p>
+<p>Then we have the residuals which are the difference between the observed and predicted values.</p>
+<p><span class="math display">\[Residuals: \hat{\epsilon_i}=y_i-\hat{y_i}\]</span></p>
+<p>Finally, we have the mean squared error (<span class="math inline">\(MSE\)</span>) or <span class="math inline">\(\sigma^2\)</span>, which are the sum of the squared errors divided by the degrees of freedom.</p>
+<p><span class="math display">\[MSE=\sum\limits_{n=1}^{n} \frac{\hat{\epsilon_i}}{n-2}\]</span></p>
+<p>Squared errors we already know, but the degrees of freedom is the sample size minus the number of regression coefficients in the model. What are the regression coefficients in a model?</p>
+</div>
+<div id="bayesian-regression" class="section level4">
+<h4>Bayesian Regression</h4>
+<p>In Bayesian regression, the model is similar to OLS, but there is an additional assumption: errors are normally distributed and have constant variance.</p>
+<p><span class="math display">\[Model:  \hat{Y_i}=\alpha+\beta x_i*\epsilon_i\]</span></p>
+<p><span class="math display">\[Assumption: \epsilon_i\stackrel{iid}\sim{}N(0,\sigma^2)\]</span></p>
+<p>Now, in Bayesian statistics there is something called <strong>conjugate analysis</strong>.
+Now here is where we need to brush up on priors, likelihoods and posteriors. Recall that a <strong>prior</strong> is a state of believe in a model before the current experiment, that <strong>likelihood</strong> is the probability of obtaining certain data given the model and that the posterior is the probability of the model given the data.</p>
+<p><span class="math display">\[Prior: p(Model)\]</span></p>
+<p><span class="math display">\[Likelihood: p(Data|Model)\]</span></p>
+<p><span class="math display">\[Posterior: p(Model|Data)\]</span></p>
+<p>Using <a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes’ rule</a>, the posterior can also be written as:
+<span class="math display">\[p(Model|Data)=\frac{p(Model\&amp;Data)}{p(Data)}\]</span></p>
+<p><span class="math display">\[=\frac{p(Data|Model)*p(Model)}{p(Data)}\]</span></p>
+<p><span class="math display">\[=\frac{Likelihood*prior}{p(Data)}\]</span></p>
+<p><span class="math inline">\(p(Data)\)</span> is the sum of the <span class="math inline">\(Likelihood*prior\)</span> for all models:</p>
+<p><span class="math display">\[p(Data)=\sum\limits_{Model=1}^{Model} p(Data|Model)*p(Model)\]</span></p>
+<p>So in the end the posterior for a discrete case can be written as:</p>
+<p><span class="math display">\[p(Model|Data)=\frac{p(Data|Model)*p(Model)}{\sum p(Data|Model)*p(Model)}\]</span></p>
+<p>All that re-written for the continous case where instead of <span class="math inline">\(Model\)</span> we have <span class="math inline">\(\theta\)</span> meaning a probability distribution and instead of <span class="math inline">\(Data\)</span> we have <span class="math inline">\(x\)</span> (still data), leaves us with:</p>
+<p><span class="math display">\[p(\theta|x)=\frac{p(x|\theta)p(\theta)}{\int p(x|\theta&#39;)p(\theta&#39;)d\theta&#39;}\]</span></p>
+<p>Now! Back to <strong>conjugate analysis</strong>. In Bayesian statistics, if the posterior and prior distributions belong to the same probability distribution families, they are called conjugate distributions. A list of conjugate distributions can be found <a href="https://en.wikipedia.org/wiki/Conjugate_prior">here</a>.</p>
+<p>And back to <strong>Bayesian regression</strong>.</p>
+</div>
+<div id="what-is-bayesian-linear-regression" class="section level4">
+<h4>What is Bayesian linear regression?</h4>
+</div>
+<div id="what-are-application-examples-of-bayesian-linear-regression" class="section level4">
+<h4>What are application examples of Bayesian linear regression?</h4>
+</div>
+<div id="how-is-bayesian-linear-regression-different-than-frequentist-linear-regression" class="section level4">
+<h4>How is Bayesian linear regression different than frequentist linear regression?</h4>
+<ul>
+<li>In Bayesian linear regression, instead of point estimate for each coefficient, there is a distribution.</li>
+</ul>
+</div>
+<div id="how-is-bayesian-linear-regression-similar-to-frequentist-linear-regression" class="section level4">
+<h4>How is Bayesian linear regression similar to frequentist linear regression?</h4>
+<ul>
+<li>Under the reference prior, the values of a 95% credible interval for a regression coefficient compared to a frequentist 95% confidence interval will be the same.</li>
+<li>Under the reference prior, the posterior mean for the regression coefficients is the same as the OLS estimate.</li>
+</ul>
+</div>
+<div id="in-what-cases-could-bayesian-linear-regression-be-more-helpful-than-frequentist-linear-regression" class="section level4">
+<h4>In what cases could Bayesian linear regression be more helpful than frequentist linear regression?</h4>
+</div>
+<div id="what-are-the-model-assumptions-of-bayesian-regression" class="section level4">
+<h4>What are the model assumptions of Bayesian Regression?</h4>
+<ul>
+<li>Errors are normally distributed with constant variance.</li>
+</ul>
+</div>
+<div id="how-do-we-determine-what-is-an-outlier-in-bayesian-linear-regression" class="section level4">
+<h4>How do we determine what is an outlier in Bayesian Linear Regression?</h4>
+<p>My prediction in Bayes is <span class="math inline">\(\hat{Y_i}=\alpha+\beta x_i*\epsilon_i\)</span>, if I rearrange that, then my unobserved deviation is <span class="math inline">\(\epsilon_i=\hat{Y_i}-(\alpha+\beta x_i)\)</span>.</p>
+<p>Based on the posterior distribution for the parameters, we can find the posterior distribution of the deviation, a Student T distribution.</p>
+<p><span class="math inline">\(t={\frac {\mu -{\bar {x}}}{s/{\sqrt {n}}}}\)</span></p>
+<p>Here the mean is the ordinary residual or observed value, minus the fitted value. The scale is a function of the levarage of that case.</p>
+<p>Based on the empirical rule, 95% of the errors will be within plus or minus two standard deviations from the mean. Under this logic, deviations that exceed <span class="math inline">\(k\)</span> standard deviation could be considered as potential outliers.</p>
+</div>
+<div id="what-is-the-bayesian-information-criterion-bic-and-what-is-it-used-for" class="section level4">
+<h4>What is the Bayesian Information Criterion (BIC) and what is it used for?</h4>
+<p>This is equivalent to using the P-value and R squared in frequentist statistics.
+There are other Bayesian criteria.
+<span class="math display">\[BIC= -2*log(likelihood)+log(n)*\#Parameters\]</span>
+Where <span class="math inline">\(n\)</span> is the sample size. We choose the model that has the smallest BIC.
+BIC can also be written as
+<span class="math display">\[BIC=n*log(1-R^2)+log(n)*\#parameters\]</span>
+We can increase the <span class="math inline">\(R^2\)</span> by adding another variable to the model, because this may result in overfitting, BIC penalizes the number of parameters inclding the intercept.</p>
+<p>We will have a tradeoff between the goodness of fit (the extent to which observed data matches the values expected by theory) <span class="math inline">\(n*log(1-R^2)\)</span> and the model complexity represented with <span class="math inline">\(log(n)*\#parameters\)</span>.</p>
+<p>After backward elimination, the credible intervals are similar to the ones before but not the same. If the credible interval excludes zero, it suggests that we have created a parsimonious model (accomplishes the desired level of explanation or prediction with as few predictor variables as possible).</p>
+<p>There are other criteria for model selection include variations on the values of <span class="math inline">\(k\)</span>, such as IIC. <span class="math display">\[IIC=-2*log(likelihood)+k*\#parameters\]</span></p>
+</div>
+<div id="how-can-i-calculate-the-posterior-probabilities-of-many-models" class="section level4">
+<h4>How can I calculate the posterior probabilities of many models?</h4>
+<p>-Narrow intervals are not always better if they miss the truth!
+Recall the the Bayes factor is the marginal likelihood of one model against the other:</p>
+<p><span class="math display">\[BF[M_m:M_b]=\frac{marginal likelihood of model M_m}{marginal likelihood of model M_b}\]</span>
+which has odds against a base model <span class="math inline">\(M_b\)</span>:
+<span class="math display">\[O[M_m:M_b]=\frac{p(M_m)}{p(M_b)}\]</span></p>
+</div>
+<div id="how-does-bayesian-model-averaging-work" class="section level4">
+<h4>How does Bayesian model averaging work?</h4>
+<p>Bayesian model averaging (BMA) multiplies the posterior probabilities of each model, by the predictions of the model.</p>
+<p><span class="math display">\[BMA predictions \hat{Y^*}=\sum {\hat{Y^*_m}*p(M_m|Data)}\]</span></p>
+</div>
+<div id="what-is-stochastic-exploration-and-what-is-it-for" class="section level4">
+<h4>What is stochastic exploration and what is it for?</h4>
+<p>Stochastic is when something has a random probability distribution or pattern that may be analysed statistically but may not be predicted precisely.</p>
+<p>What if we have A LOT of predictor variables? Here is where stochastic methods of implementing Bayesian model averaging may come in handy.</p>
+</div>
+<div id="what-is-markov-chain-monte-carlo-sampling-and-how-does-it-work" class="section level4">
+<h4>What is Markov Chain Monte Carlo sampling and how does it work?</h4>
+<ul>
+<li>There’s a bunch of models but I am going to start at model 0. For models <span class="math inline">\(i=1\)</span> throught <span class="math inline">\(I\)</span> we will do the following steps.</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Randomly select another model (our proposed model).</li>
+<li>Next, we are going to compare it to our current model by looking at the posterior odds of the proposed model compared to our current model. We can use the odds if we don’t have the posterior probabilities because odds can be expressed as the product of the Bayes factor.</li>
+</ol>
+<p><span class="math display">\[BF[M^{*(i+1)}:M^{(i)}]*O[M^{*(i+1)}:M^{(i)}]&gt;1\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>If the result of the comparison is more than, we accept the new model. If it is less than one, then we randomly decide to accept the proposed model. We then incremement <span class="math inline">\(i\)</span> by 1 and repeat until <span class="math inline">\(i\)</span> iterations of the model have been done.</li>
+</ol>
+<p>There are two reasons for using Markov Chain Monte Carlo when implementing Bayesian Model Averaging.</p>
+<ul>
+<li><p>One, it can be used to sample models according to their posterior model probabilities, even when the posterior model probabilities are unknown.</p></li>
+<li><p>Two, it is useful when there are so many predictors that not all models can be enumerated.</p></li>
+</ul>
+</div>
+<div id="priors-for-bayesian-model-uncertainty" class="section level4">
+<h4>Priors for Bayesian model uncertainty</h4>
+<ul>
+<li>So far we have used BIC to determine Bayes’ factors.</li>
+<li>There is another prior distribution called Zellner’s g prior.</li>
+</ul>
+</div>
