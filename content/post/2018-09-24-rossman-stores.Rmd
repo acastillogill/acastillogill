@@ -1,0 +1,248 @@
+---
+title: Rossman stores sales
+author: Ángela D. Castillo-Gill
+date: '2018-09-24'
+slug: rossman-stores-sales
+categories:
+  - R
+  - EDA
+tags: 
+  - Kaggle
+  - Rossman
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+    toc_depth: 2
+  fig_caption: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r setup, include=FALSE}
+x <-
+  c("tidyverse",
+    "knitr",
+    "formatR",
+    "stringr",
+    "quantmode",
+    "skimr",
+    "lubridate",
+    "tidyr",
+    "formattable",
+    "grid",
+    "gridExtra",
+    "kableExtra",
+    "corrplot",
+    "rms")
+
+lapply(x, require, character.only = TRUE)
+
+
+opts_chunk$set(echo = FALSE,
+               warning = FALSE,
+               error = FALSE,
+               message = FALSE,
+               collapse= TRUE,
+               comment = NA,
+               tidy = TRUE)
+```
+
+# Summary
+
+
+
+# Purpose of this post
+
+
+# The data
+
+The data was obtained from the [Kaggle platform](https://www.kaggle.com/c/rossmann-store-sales/kernels?sortBy=hotness&group=everyone&pageSize=20&language=R&outputType=Data&competitionId=4594&kernelType=all).
+
+```{r results='hide', message=FALSE}
+path <- "/Volumes/TOSHIBAEXT/RStudio/blog/content/post/rossman_sales/"
+#Read `trained_filled_gap.csv`
+rossman <- read_csv(paste0(path,"train.csv"))
+#Read `store.csv`
+store <- read_csv(paste0(path,"store.csv"))
+```
+
+```{r}
+#Making big dataset
+full_store <- left_join(rossman,store,by="Store")
+```
+
+
+```{r}
+#See dataset structure
+str(full_store, give.attr = FALSE)
+```
+
+```{r}
+#Removing NA's
+full_store <- na.omit(full_store)
+```
+
+```{r}
+# Visualization of correlations
+full_store %>% select_if(is.numeric) %>%
+  dplyr::select(-Store)%>%
+  cor()%>%
+  corrplot()
+```
+
+```{r}
+#Making model
+simple_model <- lm(Sales  ~ . - Store - StateHoliday - Promo2 - Date, 
+                       data = full_store)
+summary(simple_model)
+```
+
+```{r}
+#Checking for multicollinearity
+vif(simple_model)
+```
+
+
+```{r}
+# Frequent days of week
+ggplot(rossman) +
+    geom_boxplot(aes(x = as.character(DayOfWeek), y = Sales))
+```
+
+```{r}
+# Frequent days of week
+ggplot(rossman) +
+    geom_boxplot(aes(x = as.character(Promo), y = Sales))
+```
+
+```{r}
+# Plot a histogram
+ggplot(rossman) +
+  geom_histogram(aes(x = Customers,
+                     fill = factor(Open))) +
+  facet_grid( ~ Open) + # Separate plots for Open = 1 vs. 0
+  theme(legend.position = "none") # Don't show legend
+```
+
+```{r}
+# Plot a histogram
+ggplot(rossman) +
+  geom_histogram(aes(x = Customers,
+                     fill = factor(Promo))) +
+  facet_grid( ~ Promo) + # Separate plots for Promo = 1 vs. 0
+  theme(legend.position = "none") # Don't show legend
+```
+
+```{r}
+# Plot a histogram
+ggplot(rossman) +
+  geom_histogram(aes(x = Customers,
+                     fill = factor(StateHoliday))) +
+  facet_grid( ~ StateHoliday) + # Separate plots for StateHoliday = 1 vs. 0
+  theme(legend.position = "none") # Don't show legend
+```
+
+```{r}
+# Plot a histogram
+ggplot(rossman) +
+  geom_histogram(aes(x = Customers,
+                     fill = factor(SchoolHoliday))) +
+  facet_grid( ~ SchoolHoliday) + # Separate plots for SchoolHoliday = 1 vs. 0
+  theme(legend.position = "none") # Don't show legend
+```
+
+
+The codebook was included in the Kaggle description: 
+
+- `customerID`: "Customer ID"
+- `gender`: "The amount disbursed by the field agent to the borrower(USD)"
+- `SeniorCitizen`: "More granular category"
+- `sector`: "High level category"
+- `use`: "Exact usage of loan amount"
+- `country_code`: "ISO country code of country in which loan was disbursed"
+- `country`: "Full country name of country in which loan was disbursed"
+- `region`: "Full region name within the country"
+- `currency`: "The currency in which the loan was disbursed"
+- `partner_id`: "ID of partner organization"
+
+
+
+# Data cleaning 
+```{r}
+#Separate Date into Year Month Day
+
+rossman_date <- cbind(rossman, year=year(rossman$Date),
+                      month=month(rossman$Date),
+                      day=day(rossman$Date))
+
+```
+
+From  at the structure of our data, we can soon see there are a few bits that don't make sense and need to be fixed. 
+
+**a. Missing values**
+
+
+
+
+# Exploratory data analysis
+
+
+
+# Techniques used
+
+
+
+# Questions from this analysis
+
+```{r}
+#Calculating annual sales and customers per per store
+annual_sales <-  aggregate (Sales ~ year + Store,
+                            data = rossman_date,
+                            sum)%>%
+  spread(key=year,
+         value = Sales)
+
+#Changing names to R friendly names
+
+colnames(annual_sales) <- c("Store",
+                            "sales_2013",
+                            "sales_2014",
+                            "sales_2015")
+```
+
+```{r}
+#Joining store characteristics with sales data
+full_store <- left_join(annual_sales,store,by="Store")
+```
+
+
+```{r}
+#Checking linear relationship
+ggplot(annual_sales, aes(x=sales_2013,
+                         y=sales_2014))+geom_point()
+
+```
+
+```{r}
+#Predicting sales one year based on the previous years
+salesSimpleModel <- lm(sales_2014 ~ sales_2013, 
+                       data = annual_sales)
+```
+
+```{r}
+#Looking at the distribution of each variable
+ggplot(full_store,aes(x=CompetitionDistance,y=sales_2015))+
+  geom_point()
+```
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+

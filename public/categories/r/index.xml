@@ -13,13 +13,13 @@
     
     
     <item>
-      <title>Spanish trade over time</title>
-      <link>/post/spanish-trade-over-time/</link>
+      <title>Rossman stores sales</title>
+      <link>/post/rossman-stores-sales/</link>
       <pubDate>Mon, 24 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/spanish-trade-over-time/</guid>
-      <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 5 Exploratory data analysis 6 Techniques used 7 Questions from this analysis   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
- 2 Purpose of this post  3 The data Observations: 671,205 Variables: 20 $ id &amp;lt;int&amp;gt; 653051, 653053, 653068, 653063, 653084, 108.</description>
+      <guid>/post/rossman-stores-sales/</guid>
+      <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 5 Exploratory data analysis 6 Techniques used 7 Questions from this analysis   1 Summary  2 Purpose of this post  3 The data The data was obtained from the Kaggle platform.
+Classes &amp;#39;tbl_df&amp;#39;, &amp;#39;tbl&amp;#39; and &amp;#39;data.frame&amp;#39;: 1017209 obs. of 18 variables: $ Store : int 1 2 3 4 5 6 7 8 9 10 .</description>
     </item>
     
     <item>

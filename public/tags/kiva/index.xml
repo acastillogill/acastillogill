@@ -7,20 +7,10 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Ángela D. Castillo-Gill</copyright>
-    <lastBuildDate>Mon, 24 Sep 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 07 Jul 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/kiva/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Spanish trade over time</title>
-      <link>/post/spanish-trade-over-time/</link>
-      <pubDate>Mon, 24 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/spanish-trade-over-time/</guid>
-      <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 5 Exploratory data analysis 6 Techniques used 7 Questions from this analysis   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
- 2 Purpose of this post  3 The data Observations: 671,205 Variables: 20 $ id &amp;lt;int&amp;gt; 653051, 653053, 653068, 653063, 653084, 108.</description>
-    </item>
     
     <item>
       <title>Exploring Kiva loans</title>

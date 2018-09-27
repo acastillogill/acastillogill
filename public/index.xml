@@ -11,14 +11,12 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Spanish trade over time</title>
-      <link>/post/spanish-trade-over-time/</link>
+      <title>Rossman stores sales</title>
+      <link>/post/rossman-stores-sales/</link>
       <pubDate>Mon, 24 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/spanish-trade-over-time/</guid>
-      <description>&lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
-
-&lt;div id=&#34;TOC&#34;&gt;
+      <guid>/post/rossman-stores-sales/</guid>
+      <description>&lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#summary&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Summary&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#purpose-of-this-post&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Purpose of this post&lt;/a&gt;&lt;/li&gt;
@@ -32,399 +30,117 @@
 
 &lt;div id=&#34;summary&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Summary&lt;/h1&gt;
-&lt;p&gt;&lt;em&gt;To see the code used in this post, visit my &lt;a href=&#34;https://www.kaggle.com/adcastillogill/exploring-kiva-loans&#34;&gt;kernel on kaggle in R Markdown format&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;purpose-of-this-post&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; Purpose of this post&lt;/h1&gt;
 &lt;/div&gt;
 &lt;div id=&#34;the-data&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; The data&lt;/h1&gt;
-&lt;pre&gt;&lt;code&gt;Observations: 671,205
-Variables: 20
-$ id                 &amp;lt;int&amp;gt; 653051, 653053, 653068, 653063, 653084, 108...
-$ funded_amount      &amp;lt;dbl&amp;gt; 300, 575, 150, 200, 400, 250, 200, 400, 475...
-$ loan_amount        &amp;lt;dbl&amp;gt; 300, 575, 150, 200, 400, 250, 200, 400, 475...
-$ activity           &amp;lt;chr&amp;gt; &amp;quot;Fruits &amp;amp; Vegetables&amp;quot;, &amp;quot;Rickshaw&amp;quot;, &amp;quot;Transpo...
-$ sector             &amp;lt;chr&amp;gt; &amp;quot;Food&amp;quot;, &amp;quot;Transportation&amp;quot;, &amp;quot;Transportation&amp;quot;,...
-$ use                &amp;lt;chr&amp;gt; &amp;quot;To buy seasonal, fresh fruits to sell.&amp;quot;, &amp;quot;...
-$ country_code       &amp;lt;chr&amp;gt; &amp;quot;PK&amp;quot;, &amp;quot;PK&amp;quot;, &amp;quot;IN&amp;quot;, &amp;quot;PK&amp;quot;, &amp;quot;PK&amp;quot;, &amp;quot;KE&amp;quot;, &amp;quot;IN&amp;quot;, &amp;quot;...
-$ country            &amp;lt;chr&amp;gt; &amp;quot;Pakistan&amp;quot;, &amp;quot;Pakistan&amp;quot;, &amp;quot;India&amp;quot;, &amp;quot;Pakistan&amp;quot;...
-$ region             &amp;lt;chr&amp;gt; &amp;quot;Lahore&amp;quot;, &amp;quot;Lahore&amp;quot;, &amp;quot;Maynaguri&amp;quot;, &amp;quot;Lahore&amp;quot;, ...
-$ currency           &amp;lt;chr&amp;gt; &amp;quot;PKR&amp;quot;, &amp;quot;PKR&amp;quot;, &amp;quot;INR&amp;quot;, &amp;quot;PKR&amp;quot;, &amp;quot;PKR&amp;quot;, &amp;quot;KES&amp;quot;, &amp;quot;...
-$ partner_id         &amp;lt;dbl&amp;gt; 247, 247, 334, 247, 245, NA, 334, 245, 245,...
-$ posted_time        &amp;lt;dttm&amp;gt; 2014-01-01 06:12:39, 2014-01-01 06:51:08, ...
-$ disbursed_time     &amp;lt;dttm&amp;gt; 2013-12-17 08:00:00, 2013-12-17 08:00:00, ...
-$ funded_time        &amp;lt;dttm&amp;gt; 2014-01-02 10:06:32, 2014-01-02 09:17:23, ...
-$ term_in_months     &amp;lt;dbl&amp;gt; 12, 11, 43, 11, 14, 4, 43, 14, 14, 11, 11, ...
-$ lender_count       &amp;lt;int&amp;gt; 12, 14, 6, 8, 16, 6, 8, 8, 19, 24, 3, 16, 1...
-$ tags               &amp;lt;chr&amp;gt; NA, NA, &amp;quot;user_favorite, user_favorite&amp;quot;, NA,...
-$ borrower_genders   &amp;lt;chr&amp;gt; &amp;quot;female&amp;quot;, &amp;quot;female, female&amp;quot;, &amp;quot;female&amp;quot;, &amp;quot;fema...
-$ repayment_interval &amp;lt;chr&amp;gt; &amp;quot;irregular&amp;quot;, &amp;quot;irregular&amp;quot;, &amp;quot;bullet&amp;quot;, &amp;quot;irregu...
-$ date               &amp;lt;date&amp;gt; 2014-01-01, 2014-01-01, 2014-01-01, 2014-0...&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Some of the codebook came with the dataset and some I researched to make assumptions:&lt;/p&gt;
+&lt;p&gt;The data was obtained from the &lt;a href=&#34;https://www.kaggle.com/c/rossmann-store-sales/kernels?sortBy=hotness&amp;amp;group=everyone&amp;amp;pageSize=20&amp;amp;language=R&amp;amp;outputType=Data&amp;amp;competitionId=4594&amp;amp;kernelType=all&#34;&gt;Kaggle platform&lt;/a&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Classes &amp;#39;tbl_df&amp;#39;, &amp;#39;tbl&amp;#39; and &amp;#39;data.frame&amp;#39;:   1017209 obs. of  18 variables:
+ $ Store                    : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ DayOfWeek                : int  5 5 5 5 5 5 5 5 5 5 ...
+ $ Date                     : Date, format: &amp;quot;2015-07-31&amp;quot; &amp;quot;2015-07-31&amp;quot; ...
+ $ Sales                    : int  5263 6064 8314 13995 4822 5651 15344 8492 8565 7185 ...
+ $ Customers                : int  555 625 821 1498 559 589 1414 833 687 681 ...
+ $ Open                     : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ Promo                    : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ StateHoliday             : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ SchoolHoliday            : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ StoreType                : chr  &amp;quot;c&amp;quot; &amp;quot;a&amp;quot; &amp;quot;a&amp;quot; &amp;quot;c&amp;quot; ...
+ $ Assortment               : chr  &amp;quot;a&amp;quot; &amp;quot;a&amp;quot; &amp;quot;a&amp;quot; &amp;quot;c&amp;quot; ...
+ $ CompetitionDistance      : int  1270 570 14130 620 29910 310 24000 7520 2030 3160 ...
+ $ CompetitionOpenSinceMonth: int  9 11 12 9 4 12 4 10 8 9 ...
+ $ CompetitionOpenSinceYear : int  2008 2007 2006 2009 2015 2013 2013 2014 2000 2009 ...
+ $ Promo2                   : int  0 1 1 0 0 0 0 0 0 0 ...
+ $ Promo2SinceWeek          : int  NA 13 14 NA NA NA NA NA NA NA ...
+ $ Promo2SinceYear          : int  NA 2010 2011 NA NA NA NA NA NA NA ...
+ $ PromoInterval            : chr  NA &amp;quot;Jan,Apr,Jul,Oct&amp;quot; &amp;quot;Jan,Apr,Jul,Oct&amp;quot; NA ...&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+Call:
+lm(formula = Sales ~ . - Store - StateHoliday - Promo2 - Date, 
+    data = full_store)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-9207.0  -710.8   -43.3   591.6 26314.6 
+
+Coefficients:
+                                Estimate Std. Error t value Pr(&amp;gt;|t|)    
+(Intercept)                    4.839e+04  2.551e+03  18.973  &amp;lt; 2e-16 ***
+DayOfWeek                     -3.488e+01  1.328e+00 -26.262  &amp;lt; 2e-16 ***
+Customers                      7.933e+00  8.306e-03 955.105  &amp;lt; 2e-16 ***
+Open                           5.791e+02  8.571e+00  67.568  &amp;lt; 2e-16 ***
+Promo                          1.144e+03  4.678e+00 244.504  &amp;lt; 2e-16 ***
+SchoolHoliday                  4.660e+01  5.518e+00   8.445  &amp;lt; 2e-16 ***
+StoreTypec                    -1.983e+02  6.346e+00 -31.250  &amp;lt; 2e-16 ***
+StoreTyped                     9.045e+02  4.874e+00 185.596  &amp;lt; 2e-16 ***
+Assortmentc                    4.038e+02  4.304e+00  93.822  &amp;lt; 2e-16 ***
+CompetitionDistance            5.178e-02  3.999e-04 129.472  &amp;lt; 2e-16 ***
+CompetitionOpenSinceMonth     -9.902e+00  6.274e-01 -15.783  &amp;lt; 2e-16 ***
+CompetitionOpenSinceYear      -1.378e+00  2.720e-01  -5.065 4.08e-07 ***
+Promo2SinceWeek                1.230e+01  1.510e-01  81.472  &amp;lt; 2e-16 ***
+Promo2SinceYear               -2.300e+01  1.236e+00 -18.608  &amp;lt; 2e-16 ***
+PromoIntervalJan,Apr,Jul,Oct   5.264e+01  5.090e+00  10.341  &amp;lt; 2e-16 ***
+PromoIntervalMar,Jun,Sept,Dec -3.816e+01  6.522e+00  -5.851 4.90e-09 ***
+---
+Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+
+Residual standard error: 1120 on 313898 degrees of freedom
+Multiple R-squared:  0.8923,    Adjusted R-squared:  0.8923 
+F-statistic: 1.733e+05 on 15 and 313898 DF,  p-value: &amp;lt; 2.2e-16&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;                    DayOfWeek                     Customers 
+                     1.779624                      2.154468 
+                         Open                         Promo 
+                     2.308740                      1.292454 
+                SchoolHoliday                    StoreTypec 
+                     1.049520                      1.150770 
+                   StoreTyped                   Assortmentc 
+                     1.293282                      1.126712 
+          CompetitionDistance     CompetitionOpenSinceMonth 
+                     1.102877                      1.041017 
+     CompetitionOpenSinceYear               Promo2SinceWeek 
+                     1.017733                      1.047114 
+              Promo2SinceYear  PromoIntervalJan,Apr,Jul,Oct 
+                     1.071063                      1.544484 
+PromoIntervalMar,Jun,Sept,Dec 
+                     1.526166 &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The codebook was included in the Kaggle description:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;funded_amount&lt;/code&gt;: “The amount disbursed by Kiva to the field agent(USD)”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;customerID&lt;/code&gt;: “Customer ID”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;gender&lt;/code&gt;: “The amount disbursed by the field agent to the borrower(USD)”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SeniorCitizen&lt;/code&gt;: “More granular category”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sector&lt;/code&gt;: “High level category”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;use&lt;/code&gt;: “Exact usage of loan amount”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;country_code&lt;/code&gt;: “ISO country code of country in which loan was disbursed”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;country&lt;/code&gt;: “Full country name of country in which loan was disbursed”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;region&lt;/code&gt;: “Full region name within the country”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;currency&lt;/code&gt;: “The currency in which the loan was disbursed”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;partner_id&lt;/code&gt;: “ID of partner organization”&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&#34;data-cleaning&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;4&lt;/span&gt; Data cleaning&lt;/h1&gt;
 &lt;p&gt;From at the structure of our data, we can soon see there are a few bits that don’t make sense and need to be fixed.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;a. Missing values&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;We will leave missing values in for now.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;b.&lt;code&gt;borrower_genders&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;From the variable descriptions, we expected &lt;code&gt;borrower_genders&lt;/code&gt;to have only two levels, &lt;code&gt;male&lt;/code&gt;or &lt;code&gt;female&lt;/code&gt;. Here we see many more levels, 11,298 to be precise. This isn’t very clear so we’ll fix that first by creating five levels:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[1] &amp;quot;mixed_genders&amp;quot; &amp;quot;mult_females&amp;quot;  &amp;quot;mult_males&amp;quot;    &amp;quot;single_female&amp;quot;
-[5] &amp;quot;single_male&amp;quot;  &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;c.&lt;code&gt;loan_amounts&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Now, since we’re trying to make sense of all loans, it’s better if &lt;code&gt;loan_amounts&lt;/code&gt; is in the same currency. Let’s translate it to USD.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;d.&lt;code&gt;country_codes&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Finally, with 86 countries, we have 86 levels. Perhaps it would be interesting to create another category called continent to produce less levels and have a better understanding of the overall function of regional distributions.&lt;/p&gt;
-&lt;p&gt;Our country codes are in the ISO3166 format, so we will use the associated continent code found &lt;a href=&#34;https://dev.maxmind.com/geoip/legacy/codes/country_continent/&#34;&gt;here&lt;/a&gt;. And make five continents. Africa, Asia, Europe, Oceania, and South America.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[1] &amp;quot;AF&amp;quot; &amp;quot;AS&amp;quot; &amp;quot;EU&amp;quot; &amp;quot;OC&amp;quot; &amp;quot;SA&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;e. Dates&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Let’s calculate two lengths of time that I think are interesting. First, how much time passes from the moment the loan is posted to the moment it’s disbursed (&lt;code&gt;total_time&lt;/code&gt;). Second, how long does a loan take to get funded (&lt;code&gt;giving_time&lt;/code&gt;)?&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;exploratory-data-analysis&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;5&lt;/span&gt; Exploratory data analysis&lt;/h1&gt;
-&lt;p&gt;Now, let’s describe the data starting with some plots and tables to understand it.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:continent-and-borrower-genders-plots&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-09-24-spanish-trade-over-time_files/figure-html/continent-and-borrower-genders-plots-1.png&#34; alt=&#34;Four continents in descending order from the continent that requests the most loans (Asia). Notice Europe and North America do not appear. `mult_females` or `mult_males` means more than one female or male.&#34; width=&#34;960&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.1: Four continents in descending order from the continent that requests the most loans (Asia). Notice Europe and North America do not appear. &lt;code&gt;mult_females&lt;/code&gt; or &lt;code&gt;mult_males&lt;/code&gt; means more than one female or male.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
-&lt;caption&gt;
-&lt;span id=&#34;tab:borrower-genders-table&#34;&gt;Table 5.1: &lt;/span&gt;A single female is the most common type of borrower gender with over half of all Kiva loans requested.
-&lt;/caption&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&#34;text-align:left;&#34;&gt;
-Gender
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-Percentage
-&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-single_female
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-65.82
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-single_male
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-17.43
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-mult_females
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-9.58
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-mixed_genders
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-6.58
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-mult_males
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.59
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;In all continents, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it’s mixed genders.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:repayment-interval-and-continent&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-09-24-spanish-trade-over-time_files/figure-html/repayment-interval-and-continent-1.png&#34; alt=&#34;In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it&#39;s monthly.&#34; width=&#34;960&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.2: In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it’s monthly.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
-&lt;caption&gt;
-&lt;span id=&#34;tab:repayment-interval-table&#34;&gt;Table 5.2: &lt;/span&gt;The most popular type of repayment interval is monthly.
-&lt;/caption&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&#34;text-align:left;&#34;&gt;
-Repayment interval
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-Percentage
-&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-monthly
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-47
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-irregular
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-43
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-bullet
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-10
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:sectors-and-continents&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-09-24-spanish-trade-over-time_files/figure-html/sectors-and-continents-1.png&#34; alt=&#34;In every continent, the three most popular sectors are agriculture, retail, and food.&#34; width=&#34;960&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.3: In every continent, the three most popular sectors are agriculture, retail, and food.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
-&lt;caption&gt;
-&lt;span id=&#34;tab:sector-table&#34;&gt;Table 5.3: &lt;/span&gt;Generally, the most frequent use of loans is agriculture, followed by food and retail.
-&lt;/caption&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&#34;text-align:left;&#34;&gt;
-Sector
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-Percentage
-&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Agriculture
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-27.5
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Food
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-20.8
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Retail
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-19.5
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Services
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-6.9
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Personal Use
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-5.9
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Education
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-5.1
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Clothing
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4.7
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Housing
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4.1
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Transportation
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.6
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Arts
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.7
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Health
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.2
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
-&lt;caption&gt;
-&lt;span id=&#34;tab:continent-table&#34;&gt;Table 5.4: &lt;/span&gt;Half of all Kiva loans are requested in Asia followed by Africa, South America, Oceania and finally the European Union.
-&lt;/caption&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&#34;text-align:left;&#34;&gt;
-Continents
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-Percentage
-&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-AS
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-55.4
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-AF
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-29.8
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-SA
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-13.5
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-OC
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.4
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;Notice most loans are requested by single females, the least amount of loans are given in the EU, weekly repayment is an unpopular form of paying loans back and entertainment, wholesale, manufacturing, and construction amount less than 2.2% of sectors.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:countries-plot&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-09-24-spanish-trade-over-time_files/figure-html/countries-plot-1.png&#34; alt=&#34;Philippines requests the mosts loans with over double as the second country, Kenya `KE`. Other top countries in this ranking are Cambodia `KH`, Pakistan `PK`, Peru `PE`, Colombia `CO`, Uganda `UG`, Tajikistan `TJ`, Ecuador `EC`, and Paraguay `PY`.&#34; width=&#34;768&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.4: Philippines requests the mosts loans with over double as the second country, Kenya &lt;code&gt;KE&lt;/code&gt;. Other top countries in this ranking are Cambodia &lt;code&gt;KH&lt;/code&gt;, Pakistan &lt;code&gt;PK&lt;/code&gt;, Peru &lt;code&gt;PE&lt;/code&gt;, Colombia &lt;code&gt;CO&lt;/code&gt;, Uganda &lt;code&gt;UG&lt;/code&gt;, Tajikistan &lt;code&gt;TJ&lt;/code&gt;, Ecuador &lt;code&gt;EC&lt;/code&gt;, and Paraguay &lt;code&gt;PY&lt;/code&gt;.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;Now I’m curious to look at the top 10 countries requesting Kiva loans but per capita and per number of internet users.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:countries-plot-capita&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-09-24-spanish-trade-over-time_files/figure-html/countries-plot-capita-1.png&#34; alt=&#34;Interesting to see how the ranking changed! The island of Samoa `WS` is leading, followed by Armenia `AM`. Countries that remain in the top 10 are Cambodia `KH`, Philippines `PH`, Kenya `KE`, and Tajikstan `TJ`. Other new countries are Timor-Leste `TL`, Paraguay `PY`, Palestine `PS`, and Lebanon `LB`.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.5: Interesting to see how the ranking changed! The island of Samoa &lt;code&gt;WS&lt;/code&gt; is leading, followed by Armenia &lt;code&gt;AM&lt;/code&gt;. Countries that remain in the top 10 are Cambodia &lt;code&gt;KH&lt;/code&gt;, Philippines &lt;code&gt;PH&lt;/code&gt;, Kenya &lt;code&gt;KE&lt;/code&gt;, and Tajikstan &lt;code&gt;TJ&lt;/code&gt;. Other new countries are Timor-Leste &lt;code&gt;TL&lt;/code&gt;, Paraguay &lt;code&gt;PY&lt;/code&gt;, Palestine &lt;code&gt;PS&lt;/code&gt;, and Lebanon &lt;code&gt;LB&lt;/code&gt;.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;Let’s see how the top 10 changes when it comes to internet users. I used the ranking based on numbers published by the International Telecommunications Union available &lt;a href=&#34;https://en.wikipedia.org/wiki/List_of_countries_by_number_of_Internet_users&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:countries-plot-users&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-09-24-spanish-trade-over-time_files/figure-html/countries-plot-users-1.png&#34; alt=&#34;Interesting to see how the ranking changed! Leading the charts is the island of Samoa, followed by Armenia. Countries that remain in the top 10 are Cambodia `KH`, Philippines `PH`, Kenya `KE`, and Tajikstan `TJ`. Other new countries are Timor-Leste `TL`, Paraguay `PY`, Palestine `PS`, and Lebanon `LB`.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.6: Interesting to see how the ranking changed! Leading the charts is the island of Samoa, followed by Armenia. Countries that remain in the top 10 are Cambodia &lt;code&gt;KH&lt;/code&gt;, Philippines &lt;code&gt;PH&lt;/code&gt;, Kenya &lt;code&gt;KE&lt;/code&gt;, and Tajikstan &lt;code&gt;TJ&lt;/code&gt;. Other new countries are Timor-Leste &lt;code&gt;TL&lt;/code&gt;, Paraguay &lt;code&gt;PY&lt;/code&gt;, Palestine &lt;code&gt;PS&lt;/code&gt;, and Lebanon &lt;code&gt;LB&lt;/code&gt;.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;Now let’s look at the distributions of our numeric variables.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:loan-usd-distribution&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-09-24-spanish-trade-over-time_files/figure-html/loan-usd-distribution-1.png&#34; alt=&#34;Half of Kiva loans are 4.22 USD or less. Although the maximum loan is 100,000 USD, 75% of loans are equal to or less than 89.79 USD.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.7: Half of Kiva loans are 4.22 USD or less. Although the maximum loan is 100,000 USD, 75% of loans are equal to or less than 89.79 USD.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:term-in-months-distribution&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-09-24-spanish-trade-over-time_files/figure-html/term-in-months-distribution-1.png&#34; alt=&#34;The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.8: The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:lender-count&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-09-24-spanish-trade-over-time_files/figure-html/lender-count-1.png&#34; alt=&#34;The lender count has a text book right-skewed distribution with a median of 12 lenders.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.9: The lender count has a text book right-skewed distribution with a median of 12 lenders.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:giving-time&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-09-24-spanish-trade-over-time_files/figure-html/giving-time-1.png&#34; alt=&#34;The median time between posting the loan and the loan being fully funded is about 9.2 days. It is a bimodal distribution with its first peak around 6 days and its second peak around 30 days.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.10: The median time between posting the loan and the loan being fully funded is about 9.2 days. It is a bimodal distribution with its first peak around 6 days and its second peak around 30 days.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:total-time&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-09-24-spanish-trade-over-time_files/figure-html/total-time-1.png&#34; alt=&#34;The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.11: The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days.
-&lt;/p&gt;
-&lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;techniques-used&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;6&lt;/span&gt; Techniques used&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;I used the &lt;code&gt;quantmode&lt;/code&gt; package to convert all loans into a unique currency (US dollars) for comparison. There were two currencies that were unavailable.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Taking all the different levels that came in the &lt;code&gt;borrower_genders&lt;/code&gt; variable and creating five neat categories to better understand who are the borrowers was good practice with lists and the &lt;code&gt;stringr&lt;/code&gt; package.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&#34;questions-from-this-analysis&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;7&lt;/span&gt; Questions from this analysis&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Why is &lt;code&gt;Retail&lt;/code&gt; and not &lt;code&gt;Food&lt;/code&gt; (as in other regions) the second most common use for loans in Asia.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Who are the givers? Where are they? Does proximity of the lender to the borrower have anything to do with funding times?&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Does the Kiva website have anything to do with funding times? For example, &lt;code&gt;giving_time&lt;/code&gt;, the time between posting the loan and the loan being fully funded, has two peaks, at around one week and one month. Is this due to the platform and the promotion of loans that have been posted for a certain amount of time?&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/unnamed-chunk-17-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/unnamed-chunk-19-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>
@@ -881,6 +597,142 @@ Figure 5.11: The total time between posting the loan and it being disbursed has 
       
       <guid>/privacy/</guid>
       <description>&lt;p&gt;&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Bayesian Regression vs. Frequentist Regression</title>
+      <link>/post/bayesian-regression-vs-frequentist-regression/</link>
+      <pubDate>Mon, 28 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/bayesian-regression-vs-frequentist-regression/</guid>
+      <description>&lt;p&gt;So I thought, I need to get to the bottom of this, what is indeed the difference between Frequentist and Bayesian regression beyond the distinction of what probability, as a whole, means to both sides.&lt;/p&gt;
+&lt;div id=&#34;ordinary-least-squared-ols-errors-regression&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Ordinary Least Squared (OLS) Errors Regression&lt;/h4&gt;
+&lt;p&gt;With OLS, our best estimate of the line that describes the relationship between the explanatory and response variable is ordinary least squared (OLS) estimates of alpha and beta to obtain the “fitted” values of predictions. What are those fitted values? They can also be called the “predicted” values. The equation for the model is:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Model: \hat{y_i}=\hat{\alpha}+\hat{\beta_i}*x_i\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Then we have the residuals which are the difference between the observed and predicted values.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Residuals: \hat{\epsilon_i}=y_i-\hat{y_i}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Finally, we have the mean squared error (&lt;span class=&#34;math inline&#34;&gt;\(MSE\)&lt;/span&gt;) or &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;, which are the sum of the squared errors divided by the degrees of freedom.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[MSE=\sum\limits_{n=1}^{n} \frac{\hat{\epsilon_i}}{n-2}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Squared errors we already know, but the degrees of freedom is the sample size minus the number of regression coefficients in the model. What are the regression coefficients in a model?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;bayesian-regression&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Bayesian Regression&lt;/h4&gt;
+&lt;p&gt;In Bayesian regression, the model is similar to OLS, but there is an additional assumption: errors are normally distributed and have constant variance.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Model:  \hat{Y_i}=\alpha+\beta x_i*\epsilon_i\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Assumption: \epsilon_i\stackrel{iid}\sim{}N(0,\sigma^2)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Now, in Bayesian statistics there is something called &lt;strong&gt;conjugate analysis&lt;/strong&gt;.
+Now here is where we need to brush up on priors, likelihoods and posteriors. Recall that a &lt;strong&gt;prior&lt;/strong&gt; is a state of believe in a model before the current experiment, that &lt;strong&gt;likelihood&lt;/strong&gt; is the probability of obtaining certain data given the model and that the posterior is the probability of the model given the data.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Prior: p(Model)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Likelihood: p(Data|Model)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Posterior: p(Model|Data)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Using &lt;a href=&#34;https://en.wikipedia.org/wiki/Bayes%27_theorem&#34;&gt;Bayes’ rule&lt;/a&gt;, the posterior can also be written as:
+&lt;span class=&#34;math display&#34;&gt;\[p(Model|Data)=\frac{p(Model\&amp;amp;Data)}{p(Data)}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[=\frac{p(Data|Model)*p(Model)}{p(Data)}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[=\frac{Likelihood*prior}{p(Data)}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(p(Data)\)&lt;/span&gt; is the sum of the &lt;span class=&#34;math inline&#34;&gt;\(Likelihood*prior\)&lt;/span&gt; for all models:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[p(Data)=\sum\limits_{Model=1}^{Model} p(Data|Model)*p(Model)\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;So in the end the posterior for a discrete case can be written as:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[p(Model|Data)=\frac{p(Data|Model)*p(Model)}{\sum p(Data|Model)*p(Model)}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;All that re-written for the continous case where instead of &lt;span class=&#34;math inline&#34;&gt;\(Model\)&lt;/span&gt; we have &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt; meaning a probability distribution and instead of &lt;span class=&#34;math inline&#34;&gt;\(Data\)&lt;/span&gt; we have &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; (still data), leaves us with:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[p(\theta|x)=\frac{p(x|\theta)p(\theta)}{\int p(x|\theta&amp;#39;)p(\theta&amp;#39;)d\theta&amp;#39;}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Now! Back to &lt;strong&gt;conjugate analysis&lt;/strong&gt;. In Bayesian statistics, if the posterior and prior distributions belong to the same probability distribution families, they are called conjugate distributions. A list of conjugate distributions can be found &lt;a href=&#34;https://en.wikipedia.org/wiki/Conjugate_prior&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;And back to &lt;strong&gt;Bayesian regression&lt;/strong&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;what-is-bayesian-linear-regression&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;What is Bayesian linear regression?&lt;/h4&gt;
+&lt;/div&gt;
+&lt;div id=&#34;what-are-application-examples-of-bayesian-linear-regression&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;What are application examples of Bayesian linear regression?&lt;/h4&gt;
+&lt;/div&gt;
+&lt;div id=&#34;how-is-bayesian-linear-regression-different-than-frequentist-linear-regression&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;How is Bayesian linear regression different than frequentist linear regression?&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;In Bayesian linear regression, instead of point estimate for each coefficient, there is a distribution.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;how-is-bayesian-linear-regression-similar-to-frequentist-linear-regression&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;How is Bayesian linear regression similar to frequentist linear regression?&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Under the reference prior, the values of a 95% credible interval for a regression coefficient compared to a frequentist 95% confidence interval will be the same.&lt;/li&gt;
+&lt;li&gt;Under the reference prior, the posterior mean for the regression coefficients is the same as the OLS estimate.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;in-what-cases-could-bayesian-linear-regression-be-more-helpful-than-frequentist-linear-regression&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;In what cases could Bayesian linear regression be more helpful than frequentist linear regression?&lt;/h4&gt;
+&lt;/div&gt;
+&lt;div id=&#34;what-are-the-model-assumptions-of-bayesian-regression&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;What are the model assumptions of Bayesian Regression?&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Errors are normally distributed with constant variance.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;how-do-we-determine-what-is-an-outlier-in-bayesian-linear-regression&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;How do we determine what is an outlier in Bayesian Linear Regression?&lt;/h4&gt;
+&lt;p&gt;My prediction in Bayes is &lt;span class=&#34;math inline&#34;&gt;\(\hat{Y_i}=\alpha+\beta x_i*\epsilon_i\)&lt;/span&gt;, if I rearrange that, then my unobserved deviation is &lt;span class=&#34;math inline&#34;&gt;\(\epsilon_i=\hat{Y_i}-(\alpha+\beta x_i)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Based on the posterior distribution for the parameters, we can find the posterior distribution of the deviation, a Student T distribution.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(t={\frac {\mu -{\bar {x}}}{s/{\sqrt {n}}}}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Here the mean is the ordinary residual or observed value, minus the fitted value. The scale is a function of the levarage of that case.&lt;/p&gt;
+&lt;p&gt;Based on the empirical rule, 95% of the errors will be within plus or minus two standard deviations from the mean. Under this logic, deviations that exceed &lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt; standard deviation could be considered as potential outliers.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;what-is-the-bayesian-information-criterion-bic-and-what-is-it-used-for&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;What is the Bayesian Information Criterion (BIC) and what is it used for?&lt;/h4&gt;
+&lt;p&gt;This is equivalent to using the P-value and R squared in frequentist statistics.
+There are other Bayesian criteria.
+&lt;span class=&#34;math display&#34;&gt;\[BIC= -2*log(likelihood)+log(n)*\#Parameters\]&lt;/span&gt;
+Where &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; is the sample size. We choose the model that has the smallest BIC.
+BIC can also be written as
+&lt;span class=&#34;math display&#34;&gt;\[BIC=n*log(1-R^2)+log(n)*\#parameters\]&lt;/span&gt;
+We can increase the &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; by adding another variable to the model, because this may result in overfitting, BIC penalizes the number of parameters inclding the intercept.&lt;/p&gt;
+&lt;p&gt;We will have a tradeoff between the goodness of fit (the extent to which observed data matches the values expected by theory) &lt;span class=&#34;math inline&#34;&gt;\(n*log(1-R^2)\)&lt;/span&gt; and the model complexity represented with &lt;span class=&#34;math inline&#34;&gt;\(log(n)*\#parameters\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;After backward elimination, the credible intervals are similar to the ones before but not the same. If the credible interval excludes zero, it suggests that we have created a parsimonious model (accomplishes the desired level of explanation or prediction with as few predictor variables as possible).&lt;/p&gt;
+&lt;p&gt;There are other criteria for model selection include variations on the values of &lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;, such as IIC. &lt;span class=&#34;math display&#34;&gt;\[IIC=-2*log(likelihood)+k*\#parameters\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;how-can-i-calculate-the-posterior-probabilities-of-many-models&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;How can I calculate the posterior probabilities of many models?&lt;/h4&gt;
+&lt;p&gt;-Narrow intervals are not always better if they miss the truth!
+Recall the the Bayes factor is the marginal likelihood of one model against the other:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[BF[M_m:M_b]=\frac{marginal likelihood of model M_m}{marginal likelihood of model M_b}\]&lt;/span&gt;
+which has odds against a base model &lt;span class=&#34;math inline&#34;&gt;\(M_b\)&lt;/span&gt;:
+&lt;span class=&#34;math display&#34;&gt;\[O[M_m:M_b]=\frac{p(M_m)}{p(M_b)}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;how-does-bayesian-model-averaging-work&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;How does Bayesian model averaging work?&lt;/h4&gt;
+&lt;p&gt;Bayesian model averaging (BMA) multiplies the posterior probabilities of each model, by the predictions of the model.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[BMA predictions \hat{Y^*}=\sum {\hat{Y^*_m}*p(M_m|Data)}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;what-is-stochastic-exploration-and-what-is-it-for&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;What is stochastic exploration and what is it for?&lt;/h4&gt;
+&lt;p&gt;Stochastic is when something has a random probability distribution or pattern that may be analysed statistically but may not be predicted precisely.&lt;/p&gt;
+&lt;p&gt;What if we have A LOT of predictor variables? Here is where stochastic methods of implementing Bayesian model averaging may come in handy.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;what-is-markov-chain-monte-carlo-sampling-and-how-does-it-work&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;What is Markov Chain Monte Carlo sampling and how does it work?&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;There’s a bunch of models but I am going to start at model 0. For models &lt;span class=&#34;math inline&#34;&gt;\(i=1\)&lt;/span&gt; throught &lt;span class=&#34;math inline&#34;&gt;\(I\)&lt;/span&gt; we will do the following steps.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Randomly select another model (our proposed model).&lt;/li&gt;
+&lt;li&gt;Next, we are going to compare it to our current model by looking at the posterior odds of the proposed model compared to our current model. We can use the odds if we don’t have the posterior probabilities because odds can be expressed as the product of the Bayes factor.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[BF[M^{*(i+1)}:M^{(i)}]*O[M^{*(i+1)}:M^{(i)}]&amp;gt;1\]&lt;/span&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;If the result of the comparison is more than, we accept the new model. If it is less than one, then we randomly decide to accept the proposed model. We then incremement &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; by 1 and repeat until &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; iterations of the model have been done.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;There are two reasons for using Markov Chain Monte Carlo when implementing Bayesian Model Averaging.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;One, it can be used to sample models according to their posterior model probabilities, even when the posterior model probabilities are unknown.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Two, it is useful when there are so many predictors that not all models can be enumerated.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;priors-for-bayesian-model-uncertainty&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Priors for Bayesian model uncertainty&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;So far we have used BIC to determine Bayes’ factors.&lt;/li&gt;
+&lt;li&gt;There is another prior distribution called Zellner’s g prior.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
 </description>
     </item>
     
