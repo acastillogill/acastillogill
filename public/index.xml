@@ -36,8 +36,8 @@
 &lt;/div&gt;
 &lt;div id=&#34;the-data&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; The data&lt;/h1&gt;
-&lt;p&gt;The data was obtained from the &lt;a href=&#34;https://www.kaggle.com/c/rossmann-store-sales/kernels?sortBy=hotness&amp;amp;group=everyone&amp;amp;pageSize=20&amp;amp;language=R&amp;amp;outputType=Data&amp;amp;competitionId=4594&amp;amp;kernelType=all&#34;&gt;Kaggle platform&lt;/a&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Classes &amp;#39;tbl_df&amp;#39;, &amp;#39;tbl&amp;#39; and &amp;#39;data.frame&amp;#39;:   1017209 obs. of  18 variables:
+&lt;p&gt;The data was obtained from the &lt;a href=&#34;https://www.kaggle.com/c/rossmann-store-sales/kernels?sortBy=hotness&amp;amp;group=everyone&amp;amp;pageSize=20&amp;amp;language=R&amp;amp;outputType=Data&amp;amp;competitionId=4594&amp;amp;kernelType=all&#34;&gt;Kaggle platform&lt;/a&gt;. After sales data with unique store data, the final data set is 986,159 observations with 18 variables. Each observation correponds to the turnover for a given day.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Classes &amp;#39;tbl_df&amp;#39;, &amp;#39;tbl&amp;#39; and &amp;#39;data.frame&amp;#39;:   986159 obs. of  18 variables:
  $ Store                    : int  1 2 3 4 5 6 7 8 9 10 ...
  $ DayOfWeek                : int  5 5 5 5 5 5 5 5 5 5 ...
  $ Date                     : Date, format: &amp;quot;2015-07-31&amp;quot; &amp;quot;2015-07-31&amp;quot; ...
@@ -56,91 +56,50 @@
  $ Promo2SinceWeek          : int  NA 13 14 NA NA NA NA NA NA NA ...
  $ Promo2SinceYear          : int  NA 2010 2011 NA NA NA NA NA NA NA ...
  $ PromoInterval            : chr  NA &amp;quot;Jan,Apr,Jul,Oct&amp;quot; &amp;quot;Jan,Apr,Jul,Oct&amp;quot; NA ...&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-Call:
-lm(formula = Sales ~ . - Store - StateHoliday - Promo2 - Date, 
-    data = full_store)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--9207.0  -710.8   -43.3   591.6 26314.6 
-
-Coefficients:
-                                Estimate Std. Error t value Pr(&amp;gt;|t|)    
-(Intercept)                    4.839e+04  2.551e+03  18.973  &amp;lt; 2e-16 ***
-DayOfWeek                     -3.488e+01  1.328e+00 -26.262  &amp;lt; 2e-16 ***
-Customers                      7.933e+00  8.306e-03 955.105  &amp;lt; 2e-16 ***
-Open                           5.791e+02  8.571e+00  67.568  &amp;lt; 2e-16 ***
-Promo                          1.144e+03  4.678e+00 244.504  &amp;lt; 2e-16 ***
-SchoolHoliday                  4.660e+01  5.518e+00   8.445  &amp;lt; 2e-16 ***
-StoreTypec                    -1.983e+02  6.346e+00 -31.250  &amp;lt; 2e-16 ***
-StoreTyped                     9.045e+02  4.874e+00 185.596  &amp;lt; 2e-16 ***
-Assortmentc                    4.038e+02  4.304e+00  93.822  &amp;lt; 2e-16 ***
-CompetitionDistance            5.178e-02  3.999e-04 129.472  &amp;lt; 2e-16 ***
-CompetitionOpenSinceMonth     -9.902e+00  6.274e-01 -15.783  &amp;lt; 2e-16 ***
-CompetitionOpenSinceYear      -1.378e+00  2.720e-01  -5.065 4.08e-07 ***
-Promo2SinceWeek                1.230e+01  1.510e-01  81.472  &amp;lt; 2e-16 ***
-Promo2SinceYear               -2.300e+01  1.236e+00 -18.608  &amp;lt; 2e-16 ***
-PromoIntervalJan,Apr,Jul,Oct   5.264e+01  5.090e+00  10.341  &amp;lt; 2e-16 ***
-PromoIntervalMar,Jun,Sept,Dec -3.816e+01  6.522e+00  -5.851 4.90e-09 ***
----
-Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
-
-Residual standard error: 1120 on 313898 degrees of freedom
-Multiple R-squared:  0.8923,    Adjusted R-squared:  0.8923 
-F-statistic: 1.733e+05 on 15 and 313898 DF,  p-value: &amp;lt; 2.2e-16&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;                    DayOfWeek                     Customers 
-                     1.779624                      2.154468 
-                         Open                         Promo 
-                     2.308740                      1.292454 
-                SchoolHoliday                    StoreTypec 
-                     1.049520                      1.150770 
-                   StoreTyped                   Assortmentc 
-                     1.293282                      1.126712 
-          CompetitionDistance     CompetitionOpenSinceMonth 
-                     1.102877                      1.041017 
-     CompetitionOpenSinceYear               Promo2SinceWeek 
-                     1.017733                      1.047114 
-              Promo2SinceYear  PromoIntervalJan,Apr,Jul,Oct 
-                     1.071063                      1.544484 
-PromoIntervalMar,Jun,Sept,Dec 
-                     1.526166 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;The codebook was included in the Kaggle description:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Codebook&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The codebook was included in the Kaggle description but I’m including them here for clarity.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;customerID&lt;/code&gt;: “Customer ID”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;gender&lt;/code&gt;: “The amount disbursed by the field agent to the borrower(USD)”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;SeniorCitizen&lt;/code&gt;: “More granular category”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;sector&lt;/code&gt;: “High level category”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;use&lt;/code&gt;: “Exact usage of loan amount”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;country_code&lt;/code&gt;: “ISO country code of country in which loan was disbursed”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;country&lt;/code&gt;: “Full country name of country in which loan was disbursed”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;region&lt;/code&gt;: “Full region name within the country”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;currency&lt;/code&gt;: “The currency in which the loan was disbursed”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;partner_id&lt;/code&gt;: “ID of partner organization”&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Store&lt;/strong&gt;: A unique I for each store&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DayOfWeek&lt;/strong&gt;: Day of the week&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Date&lt;/strong&gt;: Date&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sales&lt;/strong&gt;: Turnover for any given day&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Customers&lt;/strong&gt;: The number of customers on a given day&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Open&lt;/strong&gt;: An indicator for whether the store was open (0 for closed, 1 for open)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Promo&lt;/strong&gt;: Indicates whether a store is running a promo on that day&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;StateHoliday&lt;/strong&gt;: Indicates if the store, on a day, was open or closed&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SchoolHoliday&lt;/strong&gt;: Indicates if the store, on a day, was open or closed&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;StoreType&lt;/strong&gt;: Differentiates between four differente store models: a, b, c, and d.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Assortment&lt;/strong&gt;: Describes an assortment level: a = basic, b = extra, c = extended&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CompetitionDistance&lt;/strong&gt;: Distance in meters to the nearest competitor store&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CompetitionOpenSince [month/year]&lt;/strong&gt;: Gives the approximate year and month of the time the nearest competitor was opened&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Promo&lt;/strong&gt;: Indicates whether a store is running a promo on that day&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Promo2&lt;/strong&gt;: A continuing and consecutive promotion for some stores (0 not participating, 1 yes)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Promo2Since [year/week]&lt;/strong&gt; - Describes the year and calendar week when the store started participating in Promo2&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PromoInterval&lt;/strong&gt;: Describes the consecutive intervals Promo2 started, naming the months the promotion is started anew. E.g. “Feb,May,Aug,Nov” means each round starts in February, May, August, November of any given year for that store&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&#34;data-cleaning&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;4&lt;/span&gt; Data cleaning&lt;/h1&gt;
-&lt;p&gt;From at the structure of our data, we can soon see there are a few bits that don’t make sense and need to be fixed.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;a. Missing values&lt;/strong&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;exploratory-data-analysis&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;5&lt;/span&gt; Exploratory data analysis&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Factors&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/sales-per-day-of-week-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/sales-on-open-days-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/sales-on-promo-days-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/sales-on-school-holidays-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/sales-per-store-type-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/sales-per-assortment-type-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/sales-per-ongoing-promotion-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Numerical variables&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/sales-vs-customers-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/sales-vs-competitor-distance-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;techniques-used&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;6&lt;/span&gt; Techniques used&lt;/h1&gt;
 &lt;/div&gt;
 &lt;div id=&#34;questions-from-this-analysis&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;7&lt;/span&gt; Questions from this analysis&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/unnamed-chunk-17-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/unnamed-chunk-19-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>

@@ -9,6 +9,7 @@ categories:
 tags: 
   - Kaggle
   - Rossman
+summary: Which stores are the most profitable?
 output:
   blogdown::html_page:
     toc: true
@@ -58,7 +59,7 @@ opts_chunk$set(echo = FALSE,
 
 # The data
 
-The data was obtained from the [Kaggle platform](https://www.kaggle.com/c/rossmann-store-sales/kernels?sortBy=hotness&group=everyone&pageSize=20&language=R&outputType=Data&competitionId=4594&kernelType=all).
+
 
 ```{r results='hide', message=FALSE}
 path <- "/Volumes/TOSHIBAEXT/RStudio/blog/content/post/rossman_sales/"
@@ -69,124 +70,278 @@ store <- read_csv(paste0(path,"store.csv"))
 ```
 
 ```{r}
-#Making big dataset
-full_store <- left_join(rossman,store,by="Store")
+#Make big dataset and omit NA's
+full_store <- na.omit(rossman)%>%
+  left_join(store,by="Store")
 ```
 
+The data was obtained from the [Kaggle platform](https://www.kaggle.com/c/rossmann-store-sales/kernels?sortBy=hotness&group=everyone&pageSize=20&language=R&outputType=Data&competitionId=4594&kernelType=all). After sales data with unique store data, the final data set is 986,159 observations with 18 variables. Each observation correponds to the turnover for a given day.
 
 ```{r}
 #See dataset structure
 str(full_store, give.attr = FALSE)
 ```
 
-```{r}
-#Removing NA's
-full_store <- na.omit(full_store)
+
+
+**Codebook**
+
+The codebook was included in the Kaggle description but I'm including them here for clarity. 
+
+- **Store**: A unique I for each store
+- **DayOfWeek**: Day of the week
+- **Date**: Date
+- **Sales**: Turnover for any given day
+- **Customers**: The number of customers on a given day
+- **Open**: An indicator for whether the store was open (0 for closed, 1 for open)
+- **Promo**: Indicates whether a store is running a promo on that day
+- **StateHoliday**: Indicates if the store, on a day, was open or closed
+- **SchoolHoliday**: Indicates if the store, on a day, was open or closed
+- **StoreType**: Differentiates between four differente store models: a, b, c, and d.
+- **Assortment**: Describes an assortment level: a = basic, b = extra, c = extended
+- **CompetitionDistance**: Distance in meters to the nearest competitor store
+- **CompetitionOpenSince [month/year]**: Gives the approximate year and month of the time the nearest competitor was opened
+- **Promo**: Indicates whether a store is running a promo on that day
+- **Promo2**: A continuing and consecutive promotion for some stores (0 not participating, 1 yes)
+- **Promo2Since [year/week]** - Describes the year and calendar week when the store started participating in Promo2
+- **PromoInterval**: Describes the consecutive intervals Promo2 started, naming the months the promotion is started anew. E.g. "Feb,May,Aug,Nov" means each round starts in February, May, August, November of any given year for that store
+
+```{r declaring variables}
+
+#Declare factors
+cols <-c("DayOfWeek",
+         "Open",
+         "Promo",
+         "StateHoliday",
+         "SchoolHoliday",
+         "StoreType",
+         "Assortment",
+         "Promo2")
+
+#Make factors
+full_store[cols] <- lapply(full_store[cols], factor)
 ```
 
-```{r}
-# Visualization of correlations
-full_store %>% select_if(is.numeric) %>%
-  dplyr::select(-Store)%>%
-  cor()%>%
-  corrplot()
-```
+
 
 ```{r}
-#Making model
-simple_model <- lm(Sales  ~ . - Store - StateHoliday - Promo2 - Date, 
-                       data = full_store)
-summary(simple_model)
+# # Visualization of correlations
+# full_store %>% select_if(is.numeric) %>%
+#   dplyr::select(-Store)%>%
+#   cor()%>%
+#   corrplot()
 ```
+
+
 
 ```{r}
 #Checking for multicollinearity
-vif(simple_model)
+#vif(simple_model)
 ```
 
 
 ```{r}
 # Frequent days of week
-ggplot(rossman) +
-    geom_boxplot(aes(x = as.character(DayOfWeek), y = Sales))
+# ggplot(rossman) +
+#     geom_boxplot(aes(x = as.character(DayOfWeek), y = Sales))
 ```
 
 ```{r}
 # Frequent days of week
-ggplot(rossman) +
-    geom_boxplot(aes(x = as.character(Promo), y = Sales))
+# ggplot(rossman) +
+#     geom_boxplot(aes(x = as.character(Promo), y = Sales))
 ```
 
 ```{r}
 # Plot a histogram
-ggplot(rossman) +
-  geom_histogram(aes(x = Customers,
-                     fill = factor(Open))) +
-  facet_grid( ~ Open) + # Separate plots for Open = 1 vs. 0
-  theme(legend.position = "none") # Don't show legend
+# ggplot(rossman) +
+#   geom_histogram(aes(x = Customers,
+#                      fill = factor(Open))) +
+#   facet_grid( ~ Open) + # Separate plots for Open = 1 vs. 0
+#   theme(legend.position = "none") # Don't show legend
 ```
 
 ```{r}
 # Plot a histogram
-ggplot(rossman) +
-  geom_histogram(aes(x = Customers,
-                     fill = factor(Promo))) +
-  facet_grid( ~ Promo) + # Separate plots for Promo = 1 vs. 0
-  theme(legend.position = "none") # Don't show legend
+# ggplot(rossman) +
+#   geom_histogram(aes(x = Customers,
+#                      fill = factor(Promo))) +
+#   facet_grid( ~ Promo) + # Separate plots for Promo = 1 vs. 0
+#   theme(legend.position = "none") # Don't show legend
 ```
 
 ```{r}
 # Plot a histogram
-ggplot(rossman) +
-  geom_histogram(aes(x = Customers,
-                     fill = factor(StateHoliday))) +
-  facet_grid( ~ StateHoliday) + # Separate plots for StateHoliday = 1 vs. 0
-  theme(legend.position = "none") # Don't show legend
+# ggplot(rossman) +
+#   geom_histogram(aes(x = Customers,
+#                      fill = factor(StateHoliday))) +
+#   facet_grid( ~ StateHoliday) + # Separate plots for StateHoliday = 1 vs. 0
+#   theme(legend.position = "none") # Don't show legend
 ```
 
 ```{r}
 # Plot a histogram
-ggplot(rossman) +
-  geom_histogram(aes(x = Customers,
-                     fill = factor(SchoolHoliday))) +
-  facet_grid( ~ SchoolHoliday) + # Separate plots for SchoolHoliday = 1 vs. 0
-  theme(legend.position = "none") # Don't show legend
+# ggplot(rossman) +
+#   geom_histogram(aes(x = Customers,
+#                      fill = factor(SchoolHoliday))) +
+#   facet_grid( ~ SchoolHoliday) + # Separate plots for SchoolHoliday = 1 vs. 0
+#   theme(legend.position = "none") # Don't show legend
 ```
 
 
-The codebook was included in the Kaggle description: 
-
-- `customerID`: "Customer ID"
-- `gender`: "The amount disbursed by the field agent to the borrower(USD)"
-- `SeniorCitizen`: "More granular category"
-- `sector`: "High level category"
-- `use`: "Exact usage of loan amount"
-- `country_code`: "ISO country code of country in which loan was disbursed"
-- `country`: "Full country name of country in which loan was disbursed"
-- `region`: "Full region name within the country"
-- `currency`: "The currency in which the loan was disbursed"
-- `partner_id`: "ID of partner organization"
 
 
 
 # Data cleaning 
 ```{r}
 #Separate Date into Year Month Day
-
-rossman_date <- cbind(rossman, year=year(rossman$Date),
-                      month=month(rossman$Date),
-                      day=day(rossman$Date))
+# 
+# rossman_date <- cbind(rossman, year=year(rossman$Date),
+#                       month=month(rossman$Date),
+#                       day=day(rossman$Date))
 
 ```
-
-From  at the structure of our data, we can soon see there are a few bits that don't make sense and need to be fixed. 
-
-**a. Missing values**
 
 
 
 
 # Exploratory data analysis
+
+**Dates**
+
+```{r sales-time-series}
+
+ggplot(full_store, aes(x = Date, y = Sales)) + 
+  geom_area(aes(color = Sales,
+                fill = Sales), 
+            alpha = 0.4,
+            position = position_dodge(0.7)) +
+  scale_color_manual(values = c("#00AFBB")) +
+  scale_fill_manual(values = c("#00AFBB"))+
+  stat_smooth(
+  color = "#FC4E07", fill = "#FC4E07",
+  method = "loess")
+  
+```
+
+
+**Factors**
+
+```{r sales-per-day-of-week}
+# Plot a histogram for DayOfWeek
+ggplot(full_store) +
+  geom_histogram(aes(x = Sales,
+                     fill = DayOfWeek)) +
+  facet_wrap(~ DayOfWeek,  ncol = 2) + # Separate plots for DayOfWeek
+  theme_minimal()+
+  theme(legend.position = "none")+
+  labs(title="Sales per day of the week",
+       x="Sales",
+       y="Count") # Don't show legend
+```
+
+```{r sales-on-open-days}
+# Plot a histogram for Open
+ggplot(full_store) +
+  geom_histogram(aes(x = Sales,
+                     fill = Open)) +
+  facet_wrap(~ Open,  ncol = 2) + # Separate plots for Open
+  theme_minimal()+
+  theme(legend.position = "none")+
+  labs(title="Sales on open days",
+       x="Sales",
+       y="Count") # Don't show legend
+```
+
+```{r sales-on-promo-days}
+# Plot a histogram for Promo
+ggplot(full_store) +
+  geom_histogram(aes(x = Sales,
+                     fill = Promo)) +
+  facet_wrap(~ Promo,  ncol = 2) + # Separate plots for Promo
+  theme_minimal()+
+  theme(legend.position = "none")+
+  labs(title="Sales per promotion day",
+       x="Sales",
+       y="Count") # Don't show legend
+```
+
+```{r sales-on-school-holidays}
+# Plot a histogram for SchoolHoliday
+ggplot(full_store) +
+  geom_histogram(aes(x = Sales,
+                     fill = SchoolHoliday)) +
+  facet_wrap(~ SchoolHoliday,  ncol = 2) + # Separate plots for SchoolHoliday
+  theme_minimal()+
+  theme(legend.position = "none")+
+  labs(title="Sales on school holidays",
+       x="Sales",
+       y="Count") # Don't show legend
+```
+
+```{r sales-per-store-type}
+# Plot a histogram for StoreType
+ggplot(full_store) +
+  geom_histogram(aes(x = Sales,
+                     fill = StoreType)) +
+  facet_wrap(~ StoreType,  ncol = 2) + # Separate plots for StoreType
+  theme_minimal()+
+  theme(legend.position = "none")+
+  labs(title="Sales per store type",
+       x="Sales",
+       y="Count") # Don't show legend
+```
+
+```{r sales-per-assortment-type}
+# Plot a histogram for Assortment
+ggplot(full_store) +
+  geom_histogram(aes(x = Sales,
+                     fill = Assortment)) +
+  facet_wrap(~ Assortment,  ncol = 3) + # Separate plots for Assortment
+  theme_minimal()+
+  theme(legend.position = "none")+
+  labs(title="Sales per assortment type",
+       x="Sales",
+       y="Count") # Don't show legend
+```
+
+```{r sales-per-ongoing-promotion}
+# Plot a histogram for Promo2
+ggplot(full_store) +
+  geom_histogram(aes(x = Sales,
+                     fill = Promo2)) +
+  facet_wrap(~ Promo2,  ncol = 2) + # Separate plots for Promo2
+  theme_minimal()+
+  theme(legend.position = "none")+
+  labs(title="Sales per ongoing promotion",
+       x="Sales",
+       y="Count") # Don't show legend
+```
+
+**Numerical variables**
+
+```{r sales-vs-customers}
+ggplot(full_store)+
+  geom_point(aes(x=Customers,
+                 y=Sales),
+             alpha=0.3)+
+  theme_minimal()+
+  labs(title="Sales vs. Customers",
+       x="Customers",
+       y="Sales") # Don't show legend
+```
+
+```{r sales-vs-competitor-distance}
+ggplot(full_store)+
+  geom_point(aes(x=CompetitionDistance,
+                 y=Sales),
+             alpha=0.3)+
+  theme_minimal()+
+  labs(title="Sales vs. competitor distance",
+       x="Competitor distance",
+       y="Sales") # Don't show legend
+```
+
 
 
 
@@ -197,52 +352,41 @@ From  at the structure of our data, we can soon see there are a few bits that do
 # Questions from this analysis
 
 ```{r}
-#Calculating annual sales and customers per per store
-annual_sales <-  aggregate (Sales ~ year + Store,
-                            data = rossman_date,
-                            sum)%>%
-  spread(key=year,
-         value = Sales)
-
-#Changing names to R friendly names
-
-colnames(annual_sales) <- c("Store",
-                            "sales_2013",
-                            "sales_2014",
-                            "sales_2015")
+# #Calculating annual sales and customers per per store
+# annual_sales <-  aggregate (Sales ~ year + Store,
+#                             data = rossman_date,
+#                             sum)%>%
+#   spread(key=year,
+#          value = Sales)
+# 
+# #Changing names to R friendly names
+# 
+# colnames(annual_sales) <- c("Store",
+#                             "sales_2013",
+#                             "sales_2014",
+#                             "sales_2015")
 ```
 
 ```{r}
-#Joining store characteristics with sales data
-full_store <- left_join(annual_sales,store,by="Store")
-```
-
-
-```{r}
-#Checking linear relationship
-ggplot(annual_sales, aes(x=sales_2013,
-                         y=sales_2014))+geom_point()
-
+# #Joining store characteristics with sales data
+# full_store <- left_join(annual_sales,store,by="Store")
 ```
 
 ```{r}
-#Predicting sales one year based on the previous years
-salesSimpleModel <- lm(sales_2014 ~ sales_2013, 
-                       data = annual_sales)
+# #Checking linear relationship
+# ggplot(annual_sales, aes(x=sales_2013,
+#                          y=sales_2014))+geom_point()
+# 
 ```
 
 ```{r}
-#Looking at the distribution of each variable
-ggplot(full_store,aes(x=CompetitionDistance,y=sales_2015))+
-  geom_point()
+# #Predicting sales one year based on the previous years
+# salesSimpleModel <- lm(sales_2014 ~ sales_2013, 
+#                        data = annual_sales)
 ```
 
 ```{r}
-
+# #Looking at the distribution of each variable
+# ggplot(full_store,aes(x=CompetitionDistance,y=sales_2015))+
+#   geom_point()
 ```
-
-
-```{r}
-
-```
-
