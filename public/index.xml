@@ -83,6 +83,7 @@
 &lt;/div&gt;
 &lt;div id=&#34;exploratory-data-analysis&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;5&lt;/span&gt; Exploratory data analysis&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Dates&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Factors&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/sales-per-day-of-week-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/sales-on-open-days-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
