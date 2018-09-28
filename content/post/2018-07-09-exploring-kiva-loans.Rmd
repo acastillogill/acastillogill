@@ -764,7 +764,7 @@ pop_iso_loans %>%
                             digits = 2)))
 ```
 
-Let's see how the top 10 changes when it comes to internet users. I used the ranking based on numbers published by the International Telecommunications Union available [here](https://en.wikipedia.org/wiki/List_of_countries_by_number_of_Internet_users).
+Let's see how the top 10 changes when it comes to internet users. I used [this ranking](https://en.wikipedia.org/wiki/List_of_countries_by_number_of_Internet_users), which is based on numbers published by the [International Telecommunications Union](https://www.itu.int/en/Pages/default.aspx).
 
 ```{r}
 #Left join country codes with users
