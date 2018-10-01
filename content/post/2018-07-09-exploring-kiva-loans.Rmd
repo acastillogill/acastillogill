@@ -34,7 +34,8 @@ x <-
     "formattable",
     "grid",
     "gridExtra",
-    "kableExtra")
+    "kableExtra",
+    "here")
 
 lapply(x, require, character.only = TRUE)
 
@@ -73,9 +74,10 @@ path <- "/Volumes/TOSHIBAEXT/RStudio/blog/content/post/kiva_data/"
 #Read `kiva_loans.csv`
 kiva_loans <- read_csv(paste0(path,"kiva_loans.csv"))
 ```
+
 The dataset had 671,205 observations and 20 variables.
 
-```{r}
+```{r results='hide'}
 #Get a glimpse of kiva_loans
 glimpse(kiva_loans)
 ```
@@ -927,3 +929,9 @@ ggplot(kiva_loans,
 - Who are the givers? Where are they? Does proximity of the lender to the borrower have anything to do with funding times?
 
 - Does the Kiva website have anything to do with funding times? For example, `giving_time`, the time between posting the loan and the loan being fully funded, has two peaks, at around one week and one month. Is this due to the platform and the promotion of loans that have been posted for a certain amount of time?
+
+```{r eval=FALSE}
+#Save cleaned data for future posts.
+saveRDS(kiva_loans,paste0(path,"kiva_loans.rds"))
+```
+
