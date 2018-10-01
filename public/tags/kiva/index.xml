@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Ángela D. Castillo-Gill</copyright>
-    <lastBuildDate>Sat, 07 Jul 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 Aug 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/kiva/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Exploring Kiva loans</title>
+      <link>/post/clustering-kiva-loans/</link>
+      <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/clustering-kiva-loans/</guid>
+      <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 5 Clustering 6 Techniques used 7 Questions from this analysis   1 Summary  2 Purpose of this post While looking at the distributions for variables like loan amounts loan_usd or loan term term_in_months, I realised that there are many types of loans represented in that plot. Therefore, I thought it would be interesting to cluster the data.</description>
+    </item>
     
     <item>
       <title>Exploring Kiva loans</title>
@@ -20,15 +29,6 @@
       <guid>/post/exploring-kiva-loans/</guid>
       <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 5 Exploratory data analysis 6 Techniques used 7 Questions from this analysis   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
 In this post, I analyse 671,205 observations. Each represents a Kiva loan. I find that the gender that requests the most loans is female with single females being the most responsible.</description>
-    </item>
-    
-    <item>
-      <title>Exploring Kiva loans</title>
-      <link>/post/exploring-kiva-loans/</link>
-      <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/exploring-kiva-loans/</guid>
-      <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 5 Clustering 6 Techniques used 7 Questions from this analysis   1 Summary  2 Purpose of this post While looking at the distributions for variables like loan amounts loan_usd or loan term term_in_months, I realised that there are many types of loans represented in that plot. Therefore, I thought it would be interesting to cluster the data.</description>
     </item>
     
   </channel>
