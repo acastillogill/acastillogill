@@ -1,5 +1,5 @@
 ---
-title: Exploring Kiva loans
+title: Clustering Kiva loans
 author: Ángela D. Castillo-Gill
 date: '2018-08-09'
 slug: clustering-kiva-loans
@@ -103,13 +103,13 @@ kiva_loans_clust <- dummy.data.frame(kiva_loans_dummy)
 
 I need to make sure that the variables are on similar scales. That is not the case. Using the `scale()` I will scale each feature so that it has mean 0 and standard deviation of 1. 
 
-```{r}
+```{r results='hide'}
 #Scale all variables
 kiva_loans_scale <- kiva_loans_clust%>%
   mutate_all(funs(scale))
 ```
 
-```{r}
+```{r results='hide'}
 #Examine structure of scaled data
 str(kiva_loans_scale, give.attr=FALSE)
 ```
@@ -122,7 +122,7 @@ sample <- kiva_loans_scale[sample(nrow(kiva_loans_scale),100),]
 
 # Clustering
 
-```{r}
+```{r results='hide'}
 #Create distance matrix
 dist(sample, method="euclidean")
 ```

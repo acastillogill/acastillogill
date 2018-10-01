@@ -674,7 +674,6 @@ prop.table(table(kiva_loans$sector))%>%
 
 ```{r continent-table}
 
-
 prop.table(table(kiva_loans$continent))%>%
   as.tibble()%>%
   mutate(n=n*100)%>%
