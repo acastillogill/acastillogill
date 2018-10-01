@@ -828,6 +828,61 @@ ggplot(kiva_loans, aes(x = loan_usd)) +
   y = "Density")
 ```
 
+```{r }
+#Create ranking of countries that request the most loans
+kiva_loans_top_16 <-kiva_loans%>%
+  group_by(country_code)%>%
+  dplyr::count(country_code, sort = TRUE)%>%
+  ungroup()%>%
+  top_n(16)
+
+#Save as a vector
+wanted_countries <- as.vector(kiva_loans_top_16$country_code)
+
+#Filter countries from the above top 16 countries
+kiva_16 <-  kiva_loans%>%
+  filter(country_code %in% wanted_countries)%>%
+  droplevels.data.frame()
+
+```
+
+
+
+```{r lenders-per-country, fig.cap="Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans."}
+
+#Create plot faceted by the median loan amount amongst the countries that request the most loans
+kiva_16%>%
+  group_by(country_code)%>%
+  mutate(country_lender_median = median(lender_count),
+         nobs=n())%>%
+  ungroup()%>%
+  mutate(label_lender = paste(country_code,
+                           "\n",
+                           "Median = ",
+                           round(country_lender_median,
+                                 digits = 2),
+                           "\n",
+                           "N = ",
+                           nobs),
+         label=reorder(label_lender, -nobs))%>%
+  ggplot(aes(lender_count)) +
+  geom_histogram(alpha = 0.1,
+                 fill = "#84628e",
+                 colour = "#84628e",
+                 binwidth = 1) +
+  facet_wrap( ~ label,
+              ncol = 4,
+              scales="free",) +
+  geom_vline(aes(xintercept = country_lender_median)) +
+  theme_minimal() +
+  xlim(0,70)+
+  theme(axis.text.x = element_blank())+
+  labs(x = "Lender count",
+       y = "Frenquency",
+       title = "How many lenders fund a single Kiva microloan per country? Top 16 countries borrowing countries included.")
+```
+
+
 ```{r term-in-months-distribution, fig.cap="The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median."}
 ggplot(kiva_loans,
        aes(x=term_in_months))+
