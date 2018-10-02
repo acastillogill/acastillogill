@@ -9,6 +9,7 @@ categories:
 tags: 
   - Kaggle
   - Kiva
+draft: TRUE
 summary: What are the main types of Kiva loan groups?
 output:
   blogdown::html_page:
