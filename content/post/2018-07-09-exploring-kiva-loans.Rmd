@@ -893,10 +893,13 @@ kiva_16 <-  kiva_loans%>%
 
 #Create plot faceted by the median loan amount amongst the countries that request the most loans
 kiva_16%>%
+  #Group by countries
   group_by(country_code)%>%
-  mutate(country_lender_median = median(lender_count),
-         nobs=n())%>%
+  #Create a variable median lender count and how many loans per country
+  mutate(country_lender_median = median(lender_count), nobs=n())%>%
+  #Ungroup the dataset
   ungroup()%>%
+  #Create a label with information
   mutate(label_lender = paste(country_code,
                            "\n",
                            "Median = ",
@@ -905,20 +908,24 @@ kiva_16%>%
                            "\n",
                            "N = ",
                            nobs),
+         #Organise that label accourding to the most borrowing countries
          label=reorder(label_lender, -nobs))%>%
+  #Create a plot
   ggplot(aes(lender_count)) +
-  geom_histogram(alpha = 0.1,
-                 colour = "#84628e",
-                 binwidth = 1) +
-  facet_wrap( ~ label,
-              ncol = 4,
-              scales="free") +
+  #Select histograph
+  geom_histogram(color="#84628e", alpha=0.3, fill="white", binwidth = 1) +
+  #Facet per country
+  facet_wrap( ~ label, ncol = 4, scales="free") +
+  #Add median line
   geom_vline(aes(xintercept = country_lender_median)) +
+  #Minimal theme
   theme_minimal() +
+  #Add limits to the x axis
   xlim(0,70) +
+  #Remove x axis labels
   theme(axis.text.x = element_blank())+
-  labs(x = "Lender count",
-       y = "Frenquency",
+  #Add labels to all the plot
+  labs(x = "Lenders", y = "Frequency",
        title = "How many lenders fund a single Kiva microloan per country?",
        subtitle="Top 16 countries borrowing countries included.")
 
