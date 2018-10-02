@@ -539,6 +539,42 @@ Figure 5.7: Half of Kiva loans are 4.22 USD or less. Although the maximum loan i
 Figure 5.8: Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans.
 &lt;/p&gt;
 &lt;/div&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:lenders-per-country&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/lenders-per-country-2.png&#34; alt=&#34;Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans.&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 5.8: Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:lenders-per-country&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/lenders-per-country-3.png&#34; alt=&#34;Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans.&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 5.8: Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:lenders-per-country&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/lenders-per-country-4.png&#34; alt=&#34;Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans.&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 5.8: Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:lenders-per-country&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/lenders-per-country-5.png&#34; alt=&#34;Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans.&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 5.8: Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:lenders-per-country&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/lenders-per-country-6.png&#34; alt=&#34;Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans.&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 5.8: Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:lenders-per-country&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/lenders-per-country-7.png&#34; alt=&#34;Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans.&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 5.8: Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans.
+&lt;/p&gt;
+&lt;/div&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:term-in-months-distribution&#34;&gt;&lt;/span&gt;
 &lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/term-in-months-distribution-1.png&#34; alt=&#34;The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median.&#34; width=&#34;672&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
