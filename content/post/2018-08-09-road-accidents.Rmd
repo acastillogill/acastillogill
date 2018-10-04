@@ -59,38 +59,41 @@ opts_chunk$set(echo = FALSE,
 
 # Purpose of this post
 
-While looking at the distributions for variables like loan amounts `loan_usd` or loan term `term_in_months`, I realised that there are many types of loans represented in that plot. Therefore, I thought it would be interesting to cluster the data. To what? To divide the large dataset into groups that share similar characteristics.  
+ 
 
 # The data
 
-The dataset I'll be using is the Kaggle dataset [UK Accidents 10 years history with many variables](https://www.kaggle.com/benoit72/uk-accidents-10-years-history-with-many-variables).
-
-```{r}
-path <- "/Volumes/TOSHIBAEXT/RStudio/blog/content/post/accidents/"
-files = list.files(path=path, pattern="*.csv")
-```
-
+The dataset I'll be using is the Kaggle dataset [UK Accidents 10 years history with many variables](https://www.kaggle.com/benoit72/uk-accidents-10-years-history-with-many-variables). T
 
 ```{r results='hide', message=FALSE}
-
-#Read `kiva_loans.csv`
-accidents <- read_csv(paste0(path,"kiva_loans.csv"))
+path <- "/Volumes/TOSHIBAEXT/RStudio/blog/content/post/accidents/"
+accidents <- read_csv(paste0(path,"Accidents0514.csv"))
+vehicles <- read_csv(paste0(path,"Vehicles0514.csv"))
 ```
-The cleaned dataset has 568,943 observations and 15 variables.
+
+```{r}
+#Look at dataset
+str(vehicles, give.attr=FALSE)
+```
+
+```{r}
+#Maximum date
+
+```
+
+
+
 
 ```{r results='hide'}
-#Get a glimpse of kiva_loans
-glimpse(kiva_loans)
+
 ```
 
 # Data cleaning 
 
-For the technique I'll be using, I need to have a clean dataset. For that I will remove all missing values. After using the `summary()` function, I see that most missing values are in the `giving_time_num` and `funded_time` which are variables that I created to see specific intervals between requesting the loan and it being funded. 
-
 ```{r}
-#Remove missing values
-kiva_loans <- na.omit(kiva_loans)
+
 ```
+
 
 Since I will the k-means algorithm, I need all my variables to be numerical. I have several important categorical variables. To give them a numerical value, I will dummify them. To what? To make an additional column for each category level (example: Asia, Africa, South America, and Oceania) and then assign them a value of 1 or 0 depending on the category they belong to. An observation that belongs to Asia, would have a 1 in the asia column and a 0 in the rest. 
 
