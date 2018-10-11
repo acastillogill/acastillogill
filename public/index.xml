@@ -11,144 +11,174 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Rossman stores sales</title>
-      <link>/post/rossman-stores-sales/</link>
-      <pubDate>Mon, 24 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/rossman-stores-sales/</guid>
-      <description>&lt;div id=&#34;TOC&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#summary&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Summary&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#purpose-of-this-post&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Purpose of this post&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#the-data&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; The data&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#data-cleaning&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Data cleaning&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#exploratory-data-analysis&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Exploratory data analysis&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#techniques-used&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; Techniques used&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#questions-from-this-analysis&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;7&lt;/span&gt; Questions from this analysis&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-
-&lt;div id=&#34;summary&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Summary&lt;/h1&gt;
-&lt;/div&gt;
-&lt;div id=&#34;purpose-of-this-post&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; Purpose of this post&lt;/h1&gt;
-&lt;/div&gt;
-&lt;div id=&#34;the-data&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; The data&lt;/h1&gt;
-&lt;p&gt;The data was obtained from the &lt;a href=&#34;https://www.kaggle.com/c/rossmann-store-sales/kernels?sortBy=hotness&amp;amp;group=everyone&amp;amp;pageSize=20&amp;amp;language=R&amp;amp;outputType=Data&amp;amp;competitionId=4594&amp;amp;kernelType=all&#34;&gt;Kaggle platform&lt;/a&gt;. After sales data with unique store data, the final data set is 986,159 observations with 18 variables. Each observation correponds to the turnover for a given day.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Classes &amp;#39;tbl_df&amp;#39;, &amp;#39;tbl&amp;#39; and &amp;#39;data.frame&amp;#39;:   986159 obs. of  18 variables:
- $ Store                    : int  1 2 3 4 5 6 7 8 9 10 ...
- $ DayOfWeek                : int  5 5 5 5 5 5 5 5 5 5 ...
- $ Date                     : Date, format: &amp;quot;2015-07-31&amp;quot; &amp;quot;2015-07-31&amp;quot; ...
- $ Sales                    : int  5263 6064 8314 13995 4822 5651 15344 8492 8565 7185 ...
- $ Customers                : int  555 625 821 1498 559 589 1414 833 687 681 ...
- $ Open                     : int  1 1 1 1 1 1 1 1 1 1 ...
- $ Promo                    : int  1 1 1 1 1 1 1 1 1 1 ...
- $ StateHoliday             : int  0 0 0 0 0 0 0 0 0 0 ...
- $ SchoolHoliday            : int  1 1 1 1 1 1 1 1 1 1 ...
- $ StoreType                : chr  &amp;quot;c&amp;quot; &amp;quot;a&amp;quot; &amp;quot;a&amp;quot; &amp;quot;c&amp;quot; ...
- $ Assortment               : chr  &amp;quot;a&amp;quot; &amp;quot;a&amp;quot; &amp;quot;a&amp;quot; &amp;quot;c&amp;quot; ...
- $ CompetitionDistance      : int  1270 570 14130 620 29910 310 24000 7520 2030 3160 ...
- $ CompetitionOpenSinceMonth: int  9 11 12 9 4 12 4 10 8 9 ...
- $ CompetitionOpenSinceYear : int  2008 2007 2006 2009 2015 2013 2013 2014 2000 2009 ...
- $ Promo2                   : int  0 1 1 0 0 0 0 0 0 0 ...
- $ Promo2SinceWeek          : int  NA 13 14 NA NA NA NA NA NA NA ...
- $ Promo2SinceYear          : int  NA 2010 2011 NA NA NA NA NA NA NA ...
- $ PromoInterval            : chr  NA &amp;quot;Jan,Apr,Jul,Oct&amp;quot; &amp;quot;Jan,Apr,Jul,Oct&amp;quot; NA ...&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Codebook&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;The codebook was included in the Kaggle description but I’m including them here for clarity.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Store&lt;/strong&gt;: A unique I for each store&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;DayOfWeek&lt;/strong&gt;: Day of the week&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Date&lt;/strong&gt;: Date&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Sales&lt;/strong&gt;: Turnover for any given day&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Customers&lt;/strong&gt;: The number of customers on a given day&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Open&lt;/strong&gt;: An indicator for whether the store was open (0 for closed, 1 for open)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Promo&lt;/strong&gt;: Indicates whether a store is running a promo on that day&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;StateHoliday&lt;/strong&gt;: Indicates if the store, on a day, was open or closed&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;SchoolHoliday&lt;/strong&gt;: Indicates if the store, on a day, was open or closed&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;StoreType&lt;/strong&gt;: Differentiates between four differente store models: a, b, c, and d.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Assortment&lt;/strong&gt;: Describes an assortment level: a = basic, b = extra, c = extended&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;CompetitionDistance&lt;/strong&gt;: Distance in meters to the nearest competitor store&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;CompetitionOpenSince [month/year]&lt;/strong&gt;: Gives the approximate year and month of the time the nearest competitor was opened&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Promo&lt;/strong&gt;: Indicates whether a store is running a promo on that day&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Promo2&lt;/strong&gt;: A continuing and consecutive promotion for some stores (0 not participating, 1 yes)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Promo2Since [year/week]&lt;/strong&gt; - Describes the year and calendar week when the store started participating in Promo2&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;PromoInterval&lt;/strong&gt;: Describes the consecutive intervals Promo2 started, naming the months the promotion is started anew. E.g. “Feb,May,Aug,Nov” means each round starts in February, May, August, November of any given year for that store&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;data-cleaning&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;4&lt;/span&gt; Data cleaning&lt;/h1&gt;
-&lt;/div&gt;
-&lt;div id=&#34;exploratory-data-analysis&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;5&lt;/span&gt; Exploratory data analysis&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;Dates&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Factors&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/sales-per-day-of-week-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/sales-on-open-days-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/sales-on-promo-days-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/sales-on-school-holidays-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/sales-per-store-type-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/sales-per-assortment-type-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/sales-per-ongoing-promotion-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Numerical variables&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/sales-vs-customers-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-09-24-rossman-stores_files/figure-html/sales-vs-competitor-distance-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;techniques-used&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;6&lt;/span&gt; Techniques used&lt;/h1&gt;
-&lt;/div&gt;
-&lt;div id=&#34;questions-from-this-analysis&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;7&lt;/span&gt; Questions from this analysis&lt;/h1&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Clustering Kiva loans</title>
-      <link>/post/clustering-kiva-loans/</link>
+      <title>Predicting property prices</title>
+      <link>/post/predicting-property-prices/</link>
       <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/clustering-kiva-loans/</guid>
-      <description>&lt;div id=&#34;TOC&#34;&gt;
+      <guid>/post/predicting-property-prices/</guid>
+      <description>&lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#summary&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Summary&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#purpose-of-this-post&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Purpose of this post&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#the-data&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; The data&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#data-cleaning&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Data cleaning&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#clustering&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Clustering&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#techniques-used&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; Techniques used&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#questions-from-this-analysis&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;7&lt;/span&gt; Questions from this analysis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#data-exploration&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Data exploration&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#techniques-used&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Techniques used&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 
 &lt;div id=&#34;summary&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Summary&lt;/h1&gt;
+&lt;p&gt;&lt;em&gt;To see the code used in this post, visit my &lt;a href=&#34;https://www.kaggle.com/adcastillogill/exploring-kiva-loans&#34;&gt;kernel on kaggle in R Markdown format&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;purpose-of-this-post&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; Purpose of this post&lt;/h1&gt;
-&lt;p&gt;While looking at the distributions for variables like loan amounts &lt;code&gt;loan_usd&lt;/code&gt; or loan term &lt;code&gt;term_in_months&lt;/code&gt;, I realised that there are many types of loans represented in that plot. Therefore, I thought it would be interesting to cluster the data. To what? To divide the large dataset into groups that share similar characteristics.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;the-data&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; The data&lt;/h1&gt;
-&lt;p&gt;The dataset I’ll be using is the one I cleaned and used for the exploratory data analysis in the &lt;a href=&#34;https://www.ad-castillogill.com/post/exploring-kiva-loans/&#34;&gt;previous post.&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;The cleaned dataset has 568,943 observations and 15 variables.&lt;/p&gt;
+&lt;p&gt;The dataset &lt;a href=&#34;https://www.kaggle.com/c/house-prices-advanced-regression-techniques&#34;&gt;House Prices: Advanced Regression Techniques&lt;/a&gt; was downloaded from Kaggle and put together by [Dean De Cock.]&lt;a href=&#34;https://ww2.amstat.org/publications/jse/v19n3/decock.pdf&#34; class=&#34;uri&#34;&gt;https://ww2.amstat.org/publications/jse/v19n3/decock.pdf&lt;/a&gt; It has 79 explanatory variables describing 1,460 homes in Ames, Iowa. The codebook for all the variables can be &lt;a href=&#34;https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data&#34;&gt;found here.&lt;/a&gt; As I go along, I’ll explain the most releveant ones.&lt;/p&gt;
+&lt;p&gt;First we will see how many numerical vs. categorical variables there are.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[1] 38
+[1] 43&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Our dataset has 38 numeric and 43 categorical variables. Next, since we are interested in estimating sales prices &lt;code&gt;SalePrice&lt;/code&gt;, we will see which numeric variables are most correlated to &lt;code&gt;SalePrice&lt;/code&gt;.&lt;/p&gt;
+&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;caption&gt;
+(#tab:correlation with sales price)Top 10 correlations with SalePrice
+&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+Variable
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Correlation
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+OverallQual
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.7909816
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+GrLivArea
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.7086245
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+GarageCars
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.6404092
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+GarageArea
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.6234314
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+TotalBsmtSF
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.6135806
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+X1stFlrSF
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.6058522
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+FullBath
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.5606638
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+TotRmsAbvGrd
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.5337232
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+YearBuilt
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.5228973
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+YearRemodAdd
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.5071010
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The variables that are most correlated to &lt;code&gt;SalePrice&lt;/code&gt; are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;OverallQual&lt;/code&gt;: Rates the overall material and finish of the house&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;GrLivArea&lt;/code&gt;: Above grade (ground) living area square feet&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;GarageCars&lt;/code&gt;: Size of garage in car capacity&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;GarageArea&lt;/code&gt;: Size of garage in square feet&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;TotalBsmtSF&lt;/code&gt;: Total square feet of basement area&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;X1stFlrSF&lt;/code&gt;: First Floor square feet&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;FullBath&lt;/code&gt;: Full bathrooms above grade&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;TotRmsAbvGrd&lt;/code&gt;: Total rooms above grade (does not include bathrooms)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;YearBuilt&lt;/code&gt;: Original construction date&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;YearRemodAdd&lt;/code&gt;: Remodel date (same as construction date if no remodelling or additions)&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/div&gt;
-&lt;div id=&#34;data-cleaning&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;4&lt;/span&gt; Data cleaning&lt;/h1&gt;
-&lt;p&gt;For the technique I’ll be using, I need to have a clean dataset. For that I will remove all missing values. After using the &lt;code&gt;summary()&lt;/code&gt; function, I see that most missing values are in the &lt;code&gt;giving_time_num&lt;/code&gt; and &lt;code&gt;funded_time&lt;/code&gt; which are variables that I created to see specific intervals between requesting the loan and it being funded.&lt;/p&gt;
-&lt;p&gt;Since I will the k-means algorithm, I need all my variables to be numerical. I have several important categorical variables. To give them a numerical value, I will dummify them. To what? To make an additional column for each category level (example: Asia, Africa, South America, and Oceania) and then assign them a value of 1 or 0 depending on the category they belong to. An observation that belongs to Asia, would have a 1 in the asia column and a 0 in the rest.&lt;/p&gt;
-&lt;p&gt;I need to make sure that the variables are on similar scales. That is not the case. Using the &lt;code&gt;scale()&lt;/code&gt; I will scale each feature so that it has mean 0 and standard deviation of 1.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;clustering&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;5&lt;/span&gt; Clustering&lt;/h1&gt;
+&lt;div id=&#34;data-exploration&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;4&lt;/span&gt; Data exploration&lt;/h1&gt;
+&lt;p&gt;First we will check that there is no multicolinearity amongst highly correlated variables. &lt;em&gt;explain here what is multicolinearity&lt;/em&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; OverallQual    GrLivArea   GarageCars   GarageArea  TotalBsmtSF 
+    2.748629     5.018752     5.250959     4.931012     3.602674 
+   X1stFlrSF     FullBath TotRmsAbvGrd    YearBuilt YearRemodAdd 
+    3.684726     2.215500     3.356517     2.345827     1.751047 &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can see that the variables related to garage show some signs of multicolinearity so I will take 2 out, &lt;code&gt;GrLivArea&lt;/code&gt; and &lt;code&gt;GarageCars&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; OverallQual   GarageArea  TotalBsmtSF    X1stFlrSF     FullBath 
+    2.459487     1.733709     3.581058     3.538262     2.045025 
+TotRmsAbvGrd    YearBuilt YearRemodAdd 
+    1.801294     2.182687     1.750625 &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now all numeric variables left do not have a high VIF amongst each other. We will inspect scatter plots against the response variable &lt;code&gt;SalePrice&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-2.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-3.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-4.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-5.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-6.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-7.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-8.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Some numeric variables can actually be seen as factors, these are: &lt;code&gt;OverallQual&lt;/code&gt;, &lt;code&gt;FullBath&lt;/code&gt;, and &lt;code&gt;TotRmsAbvGrd&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-6-2.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-6-3.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;techniques-used&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;6&lt;/span&gt; Techniques used&lt;/h1&gt;
-&lt;/div&gt;
-&lt;div id=&#34;questions-from-this-analysis&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;7&lt;/span&gt; Questions from this analysis&lt;/h1&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;5&lt;/span&gt; Techniques used&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;I
+# Questions from this analysis&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/div&gt;
 </description>
     </item>
@@ -176,7 +206,7 @@
 &lt;div id=&#34;summary&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Summary&lt;/h1&gt;
 &lt;p&gt;&lt;em&gt;To see the code used in this post, visit my &lt;a href=&#34;https://www.kaggle.com/adcastillogill/exploring-kiva-loans&#34;&gt;kernel on kaggle in R Markdown format&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;In this post, I analyse 671,205 observations. Each represents a &lt;a href=&#34;www.kiva.org&#34;&gt;Kiva&lt;/a&gt; loan. I find that the gender that requests the most loans is female with single females being the most responsible. The main uses for these loans are agriculture, retail, and food with some variations amongst continents. Half of the loans are 4.22 USD or less and are funded by 12 or less contributers. The median time between posting a loan online and disbursing it to the borrower is 16.89 days. I mainly use the &lt;code&gt;tidyverse&lt;/code&gt;, &lt;code&gt;stringr&lt;/code&gt;, and &lt;code&gt;quantmode&lt;/code&gt; packages.&lt;/p&gt;
+&lt;p&gt;In this post, I analyse 671,205 observations. Each represents a &lt;a href=&#34;www.kiva.org&#34;&gt;Kiva&lt;/a&gt; loan. I find that the gender that requests the most loans is female with single females being the most frequent borrowers. The main uses for these loans are agriculture, retail, and food with some variations amongst continents. Half of the loans are 4.22 USD or less and are funded by 12 or less contributers. The median time between posting a loan online and disbursing it to the borrower is 16.89 days. I mainly use the &lt;code&gt;tidyverse&lt;/code&gt;, &lt;code&gt;stringr&lt;/code&gt;, and &lt;code&gt;quantmode&lt;/code&gt; packages.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;purpose-of-this-post&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; Purpose of this post&lt;/h1&gt;

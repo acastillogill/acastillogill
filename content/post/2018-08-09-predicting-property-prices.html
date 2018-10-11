@@ -1,0 +1,187 @@
+---
+title: Predicting property prices
+author: Ángela D. Castillo-Gill
+date: '2018-08-09'
+slug: predicting-property-prices
+categories:
+  - R
+  - EDA
+tags: 
+  - Kaggle
+  - Home sales prices
+draft: TRUE
+summary: What factors most affect sales prices for homes?
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+    toc_depth: 2
+  fig_caption: true
+editor_options: 
+  chunk_output_type: inline
+---
+
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#summary"><span class="toc-section-number">1</span> Summary</a></li>
+<li><a href="#purpose-of-this-post"><span class="toc-section-number">2</span> Purpose of this post</a></li>
+<li><a href="#the-data"><span class="toc-section-number">3</span> The data</a></li>
+<li><a href="#data-exploration"><span class="toc-section-number">4</span> Data exploration</a></li>
+<li><a href="#techniques-used"><span class="toc-section-number">5</span> Techniques used</a></li>
+</ul>
+</div>
+
+<div id="summary" class="section level1">
+<h1><span class="header-section-number">1</span> Summary</h1>
+<p><em>To see the code used in this post, visit my <a href="https://www.kaggle.com/adcastillogill/exploring-kiva-loans">kernel on kaggle in R Markdown format</a>.</em></p>
+</div>
+<div id="purpose-of-this-post" class="section level1">
+<h1><span class="header-section-number">2</span> Purpose of this post</h1>
+</div>
+<div id="the-data" class="section level1">
+<h1><span class="header-section-number">3</span> The data</h1>
+<p>The dataset <a href="https://www.kaggle.com/c/house-prices-advanced-regression-techniques">House Prices: Advanced Regression Techniques</a> was downloaded from Kaggle and put together by [Dean De Cock.]<a href="https://ww2.amstat.org/publications/jse/v19n3/decock.pdf" class="uri">https://ww2.amstat.org/publications/jse/v19n3/decock.pdf</a> It has 79 explanatory variables describing 1,460 homes in Ames, Iowa. The codebook for all the variables can be <a href="https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data">found here.</a> As I go along, I’ll explain the most releveant ones.</p>
+<p>First we will see how many numerical vs. categorical variables there are.</p>
+<pre><code>[1] 38
+[1] 43</code></pre>
+<p>Our dataset has 38 numeric and 43 categorical variables. Next, since we are interested in estimating sales prices <code>SalePrice</code>, we will see which numeric variables are most correlated to <code>SalePrice</code>.</p>
+<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
+<caption>
+(#tab:correlation with sales price)Top 10 correlations with SalePrice
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Variable
+</th>
+<th style="text-align:right;">
+Correlation
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+OverallQual
+</td>
+<td style="text-align:right;">
+0.7909816
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GrLivArea
+</td>
+<td style="text-align:right;">
+0.7086245
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GarageCars
+</td>
+<td style="text-align:right;">
+0.6404092
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GarageArea
+</td>
+<td style="text-align:right;">
+0.6234314
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TotalBsmtSF
+</td>
+<td style="text-align:right;">
+0.6135806
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+X1stFlrSF
+</td>
+<td style="text-align:right;">
+0.6058522
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FullBath
+</td>
+<td style="text-align:right;">
+0.5606638
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TotRmsAbvGrd
+</td>
+<td style="text-align:right;">
+0.5337232
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+YearBuilt
+</td>
+<td style="text-align:right;">
+0.5228973
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+YearRemodAdd
+</td>
+<td style="text-align:right;">
+0.5071010
+</td>
+</tr>
+</tbody>
+</table>
+<p>The variables that are most correlated to <code>SalePrice</code> are:</p>
+<ul>
+<li><code>OverallQual</code>: Rates the overall material and finish of the house</li>
+<li><code>GrLivArea</code>: Above grade (ground) living area square feet<br />
+</li>
+<li><code>GarageCars</code>: Size of garage in car capacity</li>
+<li><code>GarageArea</code>: Size of garage in square feet</li>
+<li><code>TotalBsmtSF</code>: Total square feet of basement area</li>
+<li><code>X1stFlrSF</code>: First Floor square feet</li>
+<li><code>FullBath</code>: Full bathrooms above grade</li>
+<li><code>TotRmsAbvGrd</code>: Total rooms above grade (does not include bathrooms)</li>
+<li><code>YearBuilt</code>: Original construction date<br />
+</li>
+<li><code>YearRemodAdd</code>: Remodel date (same as construction date if no remodelling or additions)</li>
+</ul>
+</div>
+<div id="data-exploration" class="section level1">
+<h1><span class="header-section-number">4</span> Data exploration</h1>
+<p>First we will check that there is no multicolinearity amongst highly correlated variables. <em>explain here what is multicolinearity</em>.</p>
+<pre><code> OverallQual    GrLivArea   GarageCars   GarageArea  TotalBsmtSF 
+    2.748629     5.018752     5.250959     4.931012     3.602674 
+   X1stFlrSF     FullBath TotRmsAbvGrd    YearBuilt YearRemodAdd 
+    3.684726     2.215500     3.356517     2.345827     1.751047 </code></pre>
+<p>We can see that the variables related to garage show some signs of multicolinearity so I will take 2 out, <code>GrLivArea</code> and <code>GarageCars</code>.</p>
+<pre><code> OverallQual   GarageArea  TotalBsmtSF    X1stFlrSF     FullBath 
+    2.459487     1.733709     3.581058     3.538262     2.045025 
+TotRmsAbvGrd    YearBuilt YearRemodAdd 
+    1.801294     2.182687     1.750625 </code></pre>
+<p>Now all numeric variables left do not have a high VIF amongst each other. We will inspect scatter plots against the response variable <code>SalePrice</code>.</p>
+<p><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-1.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-2.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-3.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-4.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-5.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-6.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-7.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-8.png" width="672" /></p>
+<p>Some numeric variables can actually be seen as factors, these are: <code>OverallQual</code>, <code>FullBath</code>, and <code>TotRmsAbvGrd</code>.</p>
+<p><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-6-1.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-6-2.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-6-3.png" width="672" /></p>
+</div>
+<div id="techniques-used" class="section level1">
+<h1><span class="header-section-number">5</span> Techniques used</h1>
+<ul>
+<li><p>I
+# Questions from this analysis</p></li>
+<li></li>
+</ul>
+</div>

@@ -7,27 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Ángela D. Castillo-Gill</copyright>
-    <lastBuildDate>Mon, 24 Sep 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 Aug 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Rossman stores sales</title>
-      <link>/post/rossman-stores-sales/</link>
-      <pubDate>Mon, 24 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/rossman-stores-sales/</guid>
-      <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 5 Exploratory data analysis 6 Techniques used 7 Questions from this analysis   1 Summary  2 Purpose of this post  3 The data The data was obtained from the Kaggle platform. After sales data with unique store data, the final data set is 986,159 observations with 18 variables. Each observation correponds to the turnover for a given day.</description>
-    </item>
-    
-    <item>
-      <title>Clustering Kiva loans</title>
-      <link>/post/clustering-kiva-loans/</link>
+      <title>Predicting property prices</title>
+      <link>/post/predicting-property-prices/</link>
       <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/clustering-kiva-loans/</guid>
-      <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 5 Clustering 6 Techniques used 7 Questions from this analysis   1 Summary  2 Purpose of this post While looking at the distributions for variables like loan amounts loan_usd or loan term term_in_months, I realised that there are many types of loans represented in that plot. Therefore, I thought it would be interesting to cluster the data.</description>
+      <guid>/post/predicting-property-prices/</guid>
+      <description>1 Summary 2 Purpose of this post 3 The data 4 Data exploration 5 Techniques used   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
+ 2 Purpose of this post  3 The data The dataset House Prices: Advanced Regression Techniques was downloaded from Kaggle and put together by [Dean De Cock.]https://ww2.amstat.org/publications/jse/v19n3/decock.pdf It has 79 explanatory variables describing 1,460 homes in Ames, Iowa.</description>
     </item>
     
     <item>
@@ -37,7 +29,7 @@
       
       <guid>/post/exploring-kiva-loans/</guid>
       <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 5 Exploratory data analysis 6 Techniques used 7 Questions from this analysis   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
-In this post, I analyse 671,205 observations. Each represents a Kiva loan. I find that the gender that requests the most loans is female with single females being the most responsible.</description>
+In this post, I analyse 671,205 observations. Each represents a Kiva loan. I find that the gender that requests the most loans is female with single females being the most frequent borrowers.</description>
     </item>
     
     <item>

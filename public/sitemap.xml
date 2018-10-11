@@ -5,16 +5,7 @@
     
     <url>
     
-      <loc>/post/rossman-stores-sales/</loc>
-      <lastmod>2018-09-24T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/post/clustering-kiva-loans/</loc>
+      <loc>/post/predicting-property-prices/</loc>
       <lastmod>2018-08-09T00:00:00+00:00</lastmod>
     </url>
     
@@ -172,26 +163,6 @@
     <url>
     
       <loc>/categories/eda/</loc>
-      <lastmod>2018-09-24T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/tags/kaggle/</loc>
-      <lastmod>2018-09-24T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/tags/kiva/</loc>
       <lastmod>2018-08-09T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -201,8 +172,38 @@
     
     <url>
     
+      <loc>/tags/home-sales-prices/</loc>
+      <lastmod>2018-08-09T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/kaggle/</loc>
+      <lastmod>2018-08-09T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/kiva/</loc>
+      <lastmod>2018-07-07T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/post/</loc>
-      <lastmod>2018-09-24T00:00:00+00:00</lastmod>
+      <lastmod>2018-08-09T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -232,17 +233,7 @@
     <url>
     
       <loc>/categories/r/</loc>
-      <lastmod>2018-09-24T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/tags/rossman/</loc>
-      <lastmod>2018-09-24T00:00:00+00:00</lastmod>
+      <lastmod>2018-08-09T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     

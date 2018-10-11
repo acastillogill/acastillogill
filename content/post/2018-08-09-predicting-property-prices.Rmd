@@ -1,16 +1,16 @@
 ---
-title: Exploring Kiva loans
+title: Predicting property prices
 author: Ángela D. Castillo-Gill
-date: '2018-07-07'
-slug: exploring-kiva-loans
+date: '2018-08-09'
+slug: predicting-property-prices
 categories:
   - R
   - EDA
 tags: 
   - Kaggle
-  - Kiva
+  - Home sales prices
 draft: TRUE
-summary: What do Kiva loans around the world look like?
+summary: What factors most affect sales prices for homes?
 output:
   blogdown::html_page:
     toc: true
@@ -18,7 +18,7 @@ output:
     toc_depth: 2
   fig_caption: true
 editor_options: 
-  chunk_output_type: console
+  chunk_output_type: inline
 ---
 
 
@@ -98,7 +98,7 @@ Our dataset has 38 numeric and 43 categorical variables. Next, since we are inte
 #Create object cor_homes
 cor_homes <-homes%>%
   #Select only numeric variables
-  select_if (is.numeric)%>%
+  select_if(is.numeric)%>%
   #Remove the Id variable
    dplyr::select(-Id)%>%
   #Compute correlation of complete observations
@@ -138,22 +138,9 @@ The variables that are most correlated to `SalePrice` are:
 - `YearBuilt`: Original construction date  
 - `YearRemodAdd`: Remodel date (same as construction date if no remodelling or additions)
 
-```{r}
-#Select significant numeric values
-homes%>%
-  dplyr::select(SalePrice,OverallQual, GrLivArea, GarageCars, GarageArea, TotalBsmtSF, X1stFlrSF, FullBath, TotRmsAbvGrd, YearBuilt, YearRemodAdd)%>%str()
-```
-
-```{r}
-plot_sales <- function(x)
-```
-
-
 # Data exploration
 
-
-
-# Linearity
+First we will check that there is no multicolinearity amongst highly correlated variables. *explain here what is multicolinearity*.
 
 ```{r}
 #Make a simple model
@@ -163,7 +150,7 @@ simple_model <- lm(SalePrice ~ OverallQual + GrLivArea + GarageCars + GarageArea
 vif(simple_model)
 ```
 
-We can see that the variables related to garage show some signs of multicolinearity so I will take 2 out. 
+We can see that the variables related to garage show some signs of multicolinearity so I will take 2 out, `GrLivArea` and `GarageCars`. 
 
 ```{r}
 #Make a corrected_model
@@ -173,8 +160,98 @@ corrected_model <- lm(SalePrice ~ OverallQual + GarageArea + TotalBsmtSF + X1stF
 vif(corrected_model)
 ```
 
+Now all numeric variables left do not have a high VIF amongst each other. We will inspect scatter plots against the response variable `SalePrice`. 
+
+```{r}
+#Select significant numeric values
+high_cor_vars <- homes%>%
+  dplyr::select(
+                OverallQual,
+                GarageArea,
+                TotalBsmtSF,
+                X1stFlrSF,
+                FullBath,
+                TotRmsAbvGrd,
+                YearBuilt,
+                YearRemodAdd)
+
+#Create name list of high_cor_vars
+names_high_cor_vars <- names(high_cor_vars)
+```
 
 
+
+```{r high-cor-geompoint} 
+
+#For each variable that is highly correlated
+for (var in names_high_cor_vars){
+  
+#ggplot with the dataframe with values
+plot <- ggplot(high_cor_vars, aes_string(x=var, y=homes$SalePrice))+
+#geom_point to see distribution
+    geom_jitter(alpha=0.1)+
+#Add labels
+    labs(title=paste("Sales price vs.",var),
+       x=var,
+       y="Sales price")+ theme_minimal()+
+#Add neat scales for price
+scale_y_continuous(breaks= seq(0, 800000, by=100000),
+                   labels = comma)
+
+#Print the plot after each loop
+print(plot)
+
+} 
+
+```
+
+
+
+Some numeric variables can actually be seen as factors, these are: `OverallQual`, `FullBath`, and `TotRmsAbvGrd`.
+
+```{r high-cor-factors}
+#Save column names
+cols <- c("OverallQual", "FullBath", "TotRmsAbvGrd")
+#Convert OverallQual, FullBath and TotRmsAbvGrd to a factor
+high_cor_vars[cols] <- lapply(high_cor_vars[cols], factor)
+```
+
+```{r}
+
+#Select significant numeric values
+high_cor_vars_fact <- high_cor_vars%>%
+  dplyr::select(OverallQual,
+                FullBath,
+                TotRmsAbvGrd)
+
+#Create name list of high_cor_vars
+names_high_cor_vars_fact <- names(high_cor_vars_fact)
+
+#For each variable that is highly correlated
+for (var in names_high_cor_vars_fact){
+  
+#ggplot with the dataframe with values
+plot <- ggplot(high_cor_vars_fact, aes_string(x=var, y=homes$SalePrice))+
+#geom_point to see distribution
+    geom_boxplot(alpha=0.1)+
+#Add labels
+    labs(title=paste("Sales price vs.",var),
+       x=var,
+       y="Sales price") + theme_minimal() +
+#Add neat scales for price
+scale_y_continuous(breaks= seq(0, 800000, by=100000),
+                   labels = comma)
+
+#Print the plot after each loop
+print(plot)
+
+} 
+```
+
+
+```{r}
+
+```
 
 # Techniques used
 
