@@ -21,5 +21,5 @@ HUGO_VERSION = "0.42"
 
 # A basic redirects rule
 [[redirects]]
-from = "https://ad-castillogill.netlify.com/*"
+from = "https://acastillogill.netlify.com/*"
 to = "https://acastillogill.com/:splat 301!"
