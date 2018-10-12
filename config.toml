@@ -6,14 +6,14 @@
 
 # The URL of your website.
 # End your URL with a `/` trailing slash, e.g. `https://example.com/`.
-baseurl = "https://ad-castillogill.com/"
+baseurl = "https://acastillogill.com/"
 
 # Title of your site
-title = "Ángela D. Castillo-Gill"
+title = "Ángela Castillo-Gill"
 
 # Your copyright notice - appears in site footer.
 # To display a copyright symbol, type `&copy;`.
-copyright = "&copy; 2018 Ángela D. Castillo-Gill"
+copyright = "&copy; 2018 Ángela Castillo-Gill"
 
 theme = "hugo-academic"
 enableEmoji = true
@@ -57,7 +57,7 @@ enableGitInfo = false
   font = "default"
 
   # Your details.
-  name = "Ángela D. Castillo-Gill"
+  name = "Ángela Castillo-Gill"
   description = "Welcome my data science journal!"
   role = "Data Analyst"
 
@@ -67,14 +67,14 @@ enableGitInfo = false
 
   gravatar = false  # Get your avatar from Gravatar.com? (true/false)
   avatar = "angela.jpeg"  # Specify an avatar image (in `static/img/` folder) or delete value to disable avatar.
-  email = "ad.castillogill@gmail.com"
+  email = "acastillogill@gmail.com"
   address = ""
   office_hours = ""
   phone = ""
   skype = ""
   telegram = ""
-  twitter = "ad_castillogill"
-  github = "ad-castillogill"
+  twitter = "acastillogill"
+  github = "acastillogill"
 
   # Enable Keybase in Contact widget by entering your keybase.io username.
   keybase = ""
@@ -232,22 +232,22 @@ enableGitInfo = false
   [[params.social]]
     icon = "paper-plane"
     icon_pack = "fa"
-    link = "mailto:ad.castillogill@gmail.com"
+    link = "mailto:acastillogill@gmail.com"
 
   [[params.social]]
     icon = "twitter"
     icon_pack = "fa"
-    link = "//twitter.com/ad_castillogill"
+    link = "//twitter.com/acastillogill"
 
   [[params.social]]
     icon = "github"
     icon_pack = "fa"
-    link = "//github.com/ad-castillogill"
+    link = "//github.com/acastillogill"
     
      [[params.social]]
     icon = "linkedin"
     icon_pack = "fa"
-    link = "https://www.linkedin.com/in/adcastillogill/"
+    link = "https://www.linkedin.com/in/acastillogill/"
 
 
 # Navigation Links

@@ -32,4 +32,4 @@ weight = 1
 
 # Biography
 
-Ángela D. Castillo-Gill is a data analyst and aspiring data scientist. She is currently researching the relationship between green spaces and property prices in Catalonia, Spain.
+Ángela Castillo-Gill is a data analyst and aspiring data scientist. She is currently researching the relationship between green spaces and property prices in Catalonia, Spain.
