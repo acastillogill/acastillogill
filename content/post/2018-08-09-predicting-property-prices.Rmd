@@ -9,7 +9,7 @@ categories:
 tags: 
   - Kaggle
   - Home sales prices
-draft: TRUE
+draft: FALSE
 summary: What factors most affect sales prices for homes?
 output:
   blogdown::html_page:
@@ -64,7 +64,7 @@ opts_chunk$set(echo = FALSE,
 
 # The data
 
-The dataset [House Prices: Advanced Regression Techniques](https://www.kaggle.com/c/house-prices-advanced-regression-techniques) was downloaded from Kaggle and put together by [Dean De Cock.]https://ww2.amstat.org/publications/jse/v19n3/decock.pdf It has 79 explanatory variables describing 1,460 homes in Ames, Iowa. The codebook for all the variables can be [found here.](https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data) As I go along, I'll explain the most releveant ones. 
+The dataset [House Prices: Advanced Regression Techniques](https://www.kaggle.com/c/house-prices-advanced-regression-techniques) was downloaded from Kaggle and put together by [Dean De Cock.](https://ww2.amstat.org/publications/jse/v19n3/decock.pdf) It has 79 explanatory variables describing 1,460 homes in Ames, Iowa. The codebook for all the variables can be [found here.](https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data) As I go along, I'll explain the most releveant ones. 
 
 
 ```{r results='hide', message=FALSE}

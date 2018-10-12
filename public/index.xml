@@ -37,7 +37,7 @@
 &lt;/div&gt;
 &lt;div id=&#34;the-data&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; The data&lt;/h1&gt;
-&lt;p&gt;The dataset &lt;a href=&#34;https://www.kaggle.com/c/house-prices-advanced-regression-techniques&#34;&gt;House Prices: Advanced Regression Techniques&lt;/a&gt; was downloaded from Kaggle and put together by [Dean De Cock.]&lt;a href=&#34;https://ww2.amstat.org/publications/jse/v19n3/decock.pdf&#34; class=&#34;uri&#34;&gt;https://ww2.amstat.org/publications/jse/v19n3/decock.pdf&lt;/a&gt; It has 79 explanatory variables describing 1,460 homes in Ames, Iowa. The codebook for all the variables can be &lt;a href=&#34;https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data&#34;&gt;found here.&lt;/a&gt; As I go along, I’ll explain the most releveant ones.&lt;/p&gt;
+&lt;p&gt;The dataset &lt;a href=&#34;https://www.kaggle.com/c/house-prices-advanced-regression-techniques&#34;&gt;House Prices: Advanced Regression Techniques&lt;/a&gt; was downloaded from Kaggle and put together by &lt;a href=&#34;https://ww2.amstat.org/publications/jse/v19n3/decock.pdf&#34;&gt;Dean De Cock.&lt;/a&gt; It has 79 explanatory variables describing 1,460 homes in Ames, Iowa. The codebook for all the variables can be &lt;a href=&#34;https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data&#34;&gt;found here.&lt;/a&gt; As I go along, I’ll explain the most releveant ones.&lt;/p&gt;
 &lt;p&gt;First we will see how many numerical vs. categorical variables there are.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;[1] 38
 [1] 43&lt;/code&gt;&lt;/pre&gt;
