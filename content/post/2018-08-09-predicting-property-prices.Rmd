@@ -54,7 +54,7 @@ opts_chunk$set(echo = FALSE,
 
 # Summary
 
-*To see the code used in this post, visit my [kernel on kaggle in R Markdown format](https://www.kaggle.com/acastillogill/exploring-kiva-loans).* 
+*To see the code used in this post, visit my [kernel on kaggle in R Markdown format](https://www.kaggle.com/adcastillogill/exploring-kiva-loans).* 
 
 
 
