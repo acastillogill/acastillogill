@@ -1,6 +1,6 @@
 ---
 title: Exploring Kiva loans
-author: Ángela D. Castillo-Gill
+author: Ángela Castillo-Gill
 date: '2018-07-07'
 slug: exploring-kiva-loans
 categories:
@@ -52,7 +52,7 @@ opts_chunk$set(echo = FALSE,
 
 # Summary
 
-*To see the code used in this post, visit my [kernel on kaggle in R Markdown format](https://www.kaggle.com/adcastillogill/exploring-kiva-loans).* 
+*To see the code used in this post, visit my [kernel on kaggle in R Markdown format](https://www.kaggle.com/acastillogill/exploring-kiva-loans).* 
 
 In this post, I analyse 671,205 observations. Each represents a [Kiva](www.kiva.org) loan. I find that the gender that requests the most loans is female with single females being the most frequent borrowers. The main uses for these loans are agriculture, retail, and food with some variations amongst continents. Half of the loans are 4.22 USD or less and are funded by 12 or less contributers. The median time between posting a loan online and disbursing it to the borrower is 16.89 days. I mainly use the `tidyverse`, `stringr`, and `quantmode` packages. 
 
