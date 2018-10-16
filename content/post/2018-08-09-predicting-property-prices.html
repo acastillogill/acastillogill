@@ -46,10 +46,10 @@ editor_options:
 <p>First we will see how many numerical vs. categorical variables there are.</p>
 <pre><code>[1] 38
 [1] 43</code></pre>
-<p>Our dataset has 38 numeric and 43 categorical variables. Next, since we are interested in estimating sales prices <code>SalePrice</code>, we will see which numeric variables are most correlated to <code>SalePrice</code>.</p>
+<p>Our dataset has 38 numeric and 43 categorical variables. Next, since we are interested in estimating sales prices <code>SalePrice</code>, we will recode categorical variables and see the most strongly correlated variables. There are 43 categorical variables available. I want to recode them, that is to make dummy variables (1 has that factor level, 0 doesn’t) to see a correlation table with the most correlated variables to <code>SalesPrice</code>.</p>
 <table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
 <caption>
-(#tab:correlation with sales price)Top 10 correlations with SalePrice
+<span id="tab:unnamed-chunk-4">Table 3.1: </span>Top 14 correlations with SalePrice
 </caption>
 <thead>
 <tr>
@@ -120,6 +120,14 @@ FullBath
 </tr>
 <tr>
 <td style="text-align:left;">
+BsmtQualEx
+</td>
+<td style="text-align:right;">
+0.5531048
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 TotRmsAbvGrd
 </td>
 <td style="text-align:right;">
@@ -142,13 +150,36 @@ YearRemodAdd
 0.5071010
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+KitchenQualEx
+</td>
+<td style="text-align:right;">
+0.5040937
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KitchenQualTA
+</td>
+<td style="text-align:right;">
+-0.5192979
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ExterQualTA
+</td>
+<td style="text-align:right;">
+-0.5890435
+</td>
+</tr>
 </tbody>
 </table>
 <p>The variables that are most correlated to <code>SalePrice</code> are:</p>
 <ul>
 <li><code>OverallQual</code>: Rates the overall material and finish of the house</li>
-<li><code>GrLivArea</code>: Above grade (ground) living area square feet<br />
-</li>
+<li><code>GrLivArea</code>: Above grade (ground) living area square feet</li>
 <li><code>GarageCars</code>: Size of garage in car capacity</li>
 <li><code>GarageArea</code>: Size of garage in square feet</li>
 <li><code>TotalBsmtSF</code>: Total square feet of basement area</li>
@@ -158,24 +189,37 @@ YearRemodAdd
 <li><code>YearBuilt</code>: Original construction date<br />
 </li>
 <li><code>YearRemodAdd</code>: Remodel date (same as construction date if no remodelling or additions)</li>
+<li><code>ExterQual</code>: Evaluates the quality of the material on the exterior</li>
+<li><code>ExterCond</code>: Evaluates the present condition of the material on the exterior</li>
+<li><code>BsmtQual</code>: Evaluates the height of the basement</li>
+<li><code>KitchenQual</code>: Kitchen quality</li>
+<li><code>FireplaceQu</code>: Fireplace quality</li>
+<li><code>GarageQual</code>: Garage quality</li>
+<li><code>GarageCond</code>: Garage condition</li>
+<li><code>PoolQC</code>: Pool quality</li>
+<li><code>Fence</code>: Fence quality</li>
 </ul>
 </div>
 <div id="data-exploration" class="section level1">
 <h1><span class="header-section-number">4</span> Data exploration</h1>
 <p>First we will check that there is no multicolinearity amongst highly correlated variables. <em>explain here what is multicolinearity</em>.</p>
-<pre><code> OverallQual    GrLivArea   GarageCars   GarageArea  TotalBsmtSF 
-    2.748629     5.018752     5.250959     4.931012     3.602674 
-   X1stFlrSF     FullBath TotRmsAbvGrd    YearBuilt YearRemodAdd 
-    3.684726     2.215500     3.356517     2.345827     1.751047 </code></pre>
+<pre><code>  OverallQual     GrLivArea    GarageCars    GarageArea   TotalBsmtSF 
+     3.188492      5.084395      5.259511      4.953950      3.635031 
+    X1stFlrSF      FullBath    BsmtQualEx  TotRmsAbvGrd     YearBuilt 
+     3.730712      2.265751      1.592110      3.427834      2.463106 
+ YearRemodAdd KitchenQualEx KitchenQualTA   ExterQualTA 
+     1.983189      1.513045      2.107762      2.524197 </code></pre>
 <p>We can see that the variables related to garage show some signs of multicolinearity so I will take 2 out, <code>GrLivArea</code> and <code>GarageCars</code>.</p>
-<pre><code> OverallQual   GarageArea  TotalBsmtSF    X1stFlrSF     FullBath 
-    2.459487     1.733709     3.581058     3.538262     2.045025 
-TotRmsAbvGrd    YearBuilt YearRemodAdd 
-    1.801294     2.182687     1.750625 </code></pre>
+<pre><code>  OverallQual    GarageArea   TotalBsmtSF     X1stFlrSF      FullBath 
+     2.929619      1.748546      3.614102      3.573497      2.113724 
+   BsmtQualEx  TotRmsAbvGrd     YearBuilt  YearRemodAdd KitchenQualEx 
+     1.590545      1.822771      2.290153      1.980998      1.511142 
+KitchenQualTA   ExterQualTA 
+     2.100161      2.515708 </code></pre>
 <p>Now all numeric variables left do not have a high VIF amongst each other. We will inspect scatter plots against the response variable <code>SalePrice</code>.</p>
-<p><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-1.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-2.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-3.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-4.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-5.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-6.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-7.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-8.png" width="672" /></p>
+<p><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-1.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-2.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-3.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-4.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-5.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-6.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-7.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-8.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-9.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-10.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-11.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-12.png" width="672" /></p>
 <p>Some numeric variables can actually be seen as factors, these are: <code>OverallQual</code>, <code>FullBath</code>, and <code>TotRmsAbvGrd</code>.</p>
-<p><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-6-1.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-6-2.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-6-3.png" width="672" /></p>
+<p><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-8-1.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-8-2.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-8-3.png" width="672" /></p>
 </div>
 <div id="techniques-used" class="section level1">
 <h1><span class="header-section-number">5</span> Techniques used</h1>

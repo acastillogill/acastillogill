@@ -41,10 +41,10 @@
 &lt;p&gt;First we will see how many numerical vs. categorical variables there are.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;[1] 38
 [1] 43&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Our dataset has 38 numeric and 43 categorical variables. Next, since we are interested in estimating sales prices &lt;code&gt;SalePrice&lt;/code&gt;, we will see which numeric variables are most correlated to &lt;code&gt;SalePrice&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Our dataset has 38 numeric and 43 categorical variables. Next, since we are interested in estimating sales prices &lt;code&gt;SalePrice&lt;/code&gt;, we will recode categorical variables and see the most strongly correlated variables. There are 43 categorical variables available. I want to recode them, that is to make dummy variables (1 has that factor level, 0 doesn’t) to see a correlation table with the most correlated variables to &lt;code&gt;SalesPrice&lt;/code&gt;.&lt;/p&gt;
 &lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
 &lt;caption&gt;
-(#tab:correlation with sales price)Top 10 correlations with SalePrice
+&lt;span id=&#34;tab:unnamed-chunk-4&#34;&gt;Table 3.1: &lt;/span&gt;Top 14 correlations with SalePrice
 &lt;/caption&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -115,6 +115,14 @@ FullBath
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&#34;text-align:left;&#34;&gt;
+BsmtQualEx
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.5531048
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
 TotRmsAbvGrd
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
@@ -137,13 +145,36 @@ YearRemodAdd
 0.5071010
 &lt;/td&gt;
 &lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+KitchenQualEx
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.5040937
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+KitchenQualTA
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+-0.5192979
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+ExterQualTA
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+-0.5890435
+&lt;/td&gt;
+&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;The variables that are most correlated to &lt;code&gt;SalePrice&lt;/code&gt; are:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;OverallQual&lt;/code&gt;: Rates the overall material and finish of the house&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;GrLivArea&lt;/code&gt;: Above grade (ground) living area square feet&lt;br /&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;GrLivArea&lt;/code&gt;: Above grade (ground) living area square feet&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;GarageCars&lt;/code&gt;: Size of garage in car capacity&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;GarageArea&lt;/code&gt;: Size of garage in square feet&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;TotalBsmtSF&lt;/code&gt;: Total square feet of basement area&lt;/li&gt;
@@ -153,24 +184,37 @@ YearRemodAdd
 &lt;li&gt;&lt;code&gt;YearBuilt&lt;/code&gt;: Original construction date&lt;br /&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;code&gt;YearRemodAdd&lt;/code&gt;: Remodel date (same as construction date if no remodelling or additions)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ExterQual&lt;/code&gt;: Evaluates the quality of the material on the exterior&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ExterCond&lt;/code&gt;: Evaluates the present condition of the material on the exterior&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;BsmtQual&lt;/code&gt;: Evaluates the height of the basement&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;KitchenQual&lt;/code&gt;: Kitchen quality&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;FireplaceQu&lt;/code&gt;: Fireplace quality&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;GarageQual&lt;/code&gt;: Garage quality&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;GarageCond&lt;/code&gt;: Garage condition&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;PoolQC&lt;/code&gt;: Pool quality&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Fence&lt;/code&gt;: Fence quality&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&#34;data-exploration&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;4&lt;/span&gt; Data exploration&lt;/h1&gt;
 &lt;p&gt;First we will check that there is no multicolinearity amongst highly correlated variables. &lt;em&gt;explain here what is multicolinearity&lt;/em&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; OverallQual    GrLivArea   GarageCars   GarageArea  TotalBsmtSF 
-    2.748629     5.018752     5.250959     4.931012     3.602674 
-   X1stFlrSF     FullBath TotRmsAbvGrd    YearBuilt YearRemodAdd 
-    3.684726     2.215500     3.356517     2.345827     1.751047 &lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;  OverallQual     GrLivArea    GarageCars    GarageArea   TotalBsmtSF 
+     3.188492      5.084395      5.259511      4.953950      3.635031 
+    X1stFlrSF      FullBath    BsmtQualEx  TotRmsAbvGrd     YearBuilt 
+     3.730712      2.265751      1.592110      3.427834      2.463106 
+ YearRemodAdd KitchenQualEx KitchenQualTA   ExterQualTA 
+     1.983189      1.513045      2.107762      2.524197 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;We can see that the variables related to garage show some signs of multicolinearity so I will take 2 out, &lt;code&gt;GrLivArea&lt;/code&gt; and &lt;code&gt;GarageCars&lt;/code&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; OverallQual   GarageArea  TotalBsmtSF    X1stFlrSF     FullBath 
-    2.459487     1.733709     3.581058     3.538262     2.045025 
-TotRmsAbvGrd    YearBuilt YearRemodAdd 
-    1.801294     2.182687     1.750625 &lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;  OverallQual    GarageArea   TotalBsmtSF     X1stFlrSF      FullBath 
+     2.929619      1.748546      3.614102      3.573497      2.113724 
+   BsmtQualEx  TotRmsAbvGrd     YearBuilt  YearRemodAdd KitchenQualEx 
+     1.590545      1.822771      2.290153      1.980998      1.511142 
+KitchenQualTA   ExterQualTA 
+     2.100161      2.515708 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Now all numeric variables left do not have a high VIF amongst each other. We will inspect scatter plots against the response variable &lt;code&gt;SalePrice&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-2.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-3.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-4.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-5.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-6.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-7.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-8.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-2.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-3.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-4.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-5.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-6.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-7.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-8.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-9.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-10.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-11.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-12.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Some numeric variables can actually be seen as factors, these are: &lt;code&gt;OverallQual&lt;/code&gt;, &lt;code&gt;FullBath&lt;/code&gt;, and &lt;code&gt;TotRmsAbvGrd&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-6-2.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-6-3.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-8-2.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-8-3.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;techniques-used&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;5&lt;/span&gt; Techniques used&lt;/h1&gt;
