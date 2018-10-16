@@ -50,6 +50,9 @@ opts_chunk$set(echo = FALSE,
                collapse= TRUE,
                comment = NA,
                tidy = TRUE)
+
+#Clear Global Environment
+rm(list = ls())
 ```
 
 # Summary
