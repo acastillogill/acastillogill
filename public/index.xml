@@ -267,16 +267,37 @@ ExterQualTA
        3.427834        2.463106        1.983189        1.513045 
   KitchenQualTA     ExterQualTA 
        2.107762        2.524197 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;We can see that the variables related to garage show some signs of multicolinearity so I will take 2 out, &lt;code&gt;GrLivArea&lt;/code&gt; and &lt;code&gt;GarageCars&lt;/code&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;    OverallQual      GarageArea     TotalBsmtSF       X1stFlrSF 
-       2.929619        1.748546        3.614102        3.573497 
-       FullBath      BsmtQualEx    TotRmsAbvGrd YearsSinceBuilt 
-       2.113724        1.590545        1.822771        2.290153 
-YearsSinceRemod   KitchenQualEx   KitchenQualTA     ExterQualTA 
-       1.980998        1.511142        2.100161        2.515708 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now all numeric variables left do not have a high VIF amongst each other. We will inspect scatter plots against the response variable &lt;code&gt;SalePrice&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;We can see that the variables related to garage show some signs of multicolinearity so I will take out &lt;code&gt;GarageCars&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    OverallQual       GrLivArea      GarageArea     TotalBsmtSF 
+       3.135769        5.072554        1.773379        3.614166 
+      X1stFlrSF        FullBath      BsmtQualEx    TotRmsAbvGrd 
+       3.729697        2.250221        1.592101        3.402346 
+YearsSinceBuilt YearsSinceRemod   KitchenQualEx   KitchenQualTA 
+       2.410529        1.982792        1.511303        2.107737 
+    ExterQualTA 
+       2.523620 &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After removing predictors that were related amongst themselves, the top 13 variables most (above 0.5) correlated are:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Positive correlation&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;OverallQual&lt;/code&gt;: Rates the overall material and finish of the house&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;GarageArea&lt;/code&gt;: Size of garage in square feet&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;TotalBsmtSF&lt;/code&gt;: Total square feet of basement area&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;X1stFlrSF&lt;/code&gt;: First Floor square feet&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;FullBath&lt;/code&gt;: Full bathrooms above grade&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;BsmtQualEx&lt;/code&gt;: Height of basement 100+ inches&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;TotRmsAbvGrd&lt;/code&gt;: Total rooms above grade (does not include bathrooms)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;KitchenQualEx&lt;/code&gt;: Excellent kitchen quality&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Negative correlation&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;YearsSinceRemod&lt;/code&gt;: Years since remodel date (same as construction date if no remodelling or additions)
+_ &lt;code&gt;KitchenQualTA&lt;/code&gt;: Typical/Average kitchen quality&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;YearsSinceBuilt&lt;/code&gt;: Years since construction date&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ExterQualTA&lt;/code&gt;: Typical/Average quality of the material on the exterior&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We will inspect scatter plots against the response variable &lt;code&gt;SalePrice&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-2.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-3.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-4.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-5.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-6.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-7.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-8.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-9.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-10.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-11.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-12.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Some numeric variables can actually be seen as factors, these are: &lt;code&gt;OverallQual&lt;/code&gt;, &lt;code&gt;FullBath&lt;/code&gt;, and &lt;code&gt;TotRmsAbvGrd&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Some numeric variables can actually be better interpreted as factors, these are: &lt;code&gt;OverallQual&lt;/code&gt;, &lt;code&gt;FullBath&lt;/code&gt;, &lt;code&gt;TotRmsAbvGrd&lt;/code&gt;, &lt;code&gt;BsmtQualEx&lt;/code&gt;, &lt;code&gt;KitchenQualEx&lt;/code&gt;, &lt;code&gt;KitchenQualTA&lt;/code&gt;, and &lt;code&gt;ExterQualTA&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-10-2.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-10-3.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-10-4.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-10-5.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-10-6.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-10-7.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
 &lt;caption&gt;
@@ -299,6 +320,14 @@ OverallQual
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
 0.7909816
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+GarageCars
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.6404092
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -391,26 +420,6 @@ ExterQualTA
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;After removing predictors that were related amongst themselves, the top 12 variables most (above 0.5) correlated are:&lt;/p&gt;
-&lt;p&gt;The variables that are most correlated to are:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Positive correlation&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;OverallQual&lt;/code&gt;: Rates the overall material and finish of the house&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;GarageArea&lt;/code&gt;: Size of garage in square feet&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;TotalBsmtSF&lt;/code&gt;: Total square feet of basement area&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;X1stFlrSF&lt;/code&gt;: First Floor square feet&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;FullBath&lt;/code&gt;: Full bathrooms above grade&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;BsmtQualEx&lt;/code&gt;: Height of basement 100+ inches&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;TotRmsAbvGrd&lt;/code&gt;: Total rooms above grade (does not include bathrooms)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;KitchenQualEx&lt;/code&gt;: Excellent kitchen quality&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Negative correlation&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;YearsSinceRemod&lt;/code&gt;: Years since remodel date (same as construction date if no remodelling or additions)
-_ &lt;code&gt;KitchenQualTA&lt;/code&gt;: Typical/Average kitchen quality&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;YearsSinceBuilt&lt;/code&gt;: Years since construction date&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;ExterQualTA&lt;/code&gt;: Typical/Average quality of the material on the exterior&lt;/li&gt;
-&lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&#34;techniques-used&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;5&lt;/span&gt; Techniques used&lt;/h1&gt;

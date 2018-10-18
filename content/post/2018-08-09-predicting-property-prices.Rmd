@@ -178,17 +178,38 @@ simple_model <- lm(SalePrice ~ OverallQual + GrLivArea + GarageCars + GarageArea
 vif(simple_model)
 ```
 
-We can see that the variables related to garage show some signs of multicolinearity so I will take 2 out, `GrLivArea` and `GarageCars`. 
+We can see that the variables related to garage show some signs of multicolinearity so I will take out `GarageCars`. 
 
 ```{r}
 #Make a corrected_model
-corrected_model <- lm(SalePrice ~ OverallQual + GarageArea + TotalBsmtSF + X1stFlrSF + FullBath + BsmtQualEx + TotRmsAbvGrd + YearsSinceBuilt + YearsSinceRemod + KitchenQualEx + KitchenQualTA + ExterQualTA, data = homes_num)
+corrected_model <- lm(SalePrice ~ OverallQual + GrLivArea + GarageArea + TotalBsmtSF + X1stFlrSF + FullBath + BsmtQualEx + TotRmsAbvGrd + YearsSinceBuilt + YearsSinceRemod + KitchenQualEx + KitchenQualTA + ExterQualTA, data = homes_num)
 
 #Checking for multicolinearity
 vif(corrected_model)
 ```
 
-Now all numeric variables left do not have a high VIF amongst each other. We will inspect scatter plots against the response variable `SalePrice`. 
+After removing predictors that were related amongst themselves, the top 13 variables most (above 0.5) correlated are: 
+
+**Positive correlation**
+
+- `OverallQual`: Rates the overall material and finish of the house
+- `GarageArea`: Size of garage in square feet
+- `TotalBsmtSF`: Total square feet of basement area
+- `X1stFlrSF`: First Floor square feet
+- `FullBath`: Full bathrooms above grade
+- `BsmtQualEx`: Height of basement 100+ inches
+- `TotRmsAbvGrd`: Total rooms above grade (does not include bathrooms)
+- `KitchenQualEx`: Excellent kitchen quality
+
+**Negative correlation**
+
+- `YearsSinceRemod`: Years since remodel date (same as construction date if no remodelling or additions)
+_ `KitchenQualTA`: Typical/Average kitchen quality
+- `YearsSinceBuilt`: Years since construction date
+- `ExterQualTA`: Typical/Average quality of the material on the exterior 
+
+
+We will inspect scatter plots against the response variable `SalePrice`. 
 
 ```{r}
 #Select significant variables
@@ -205,7 +226,6 @@ high_cor_vars <- homes_num%>%
                 KitchenQualEx,
                 KitchenQualTA,
                 ExterQualTA,
-                -GrLivArea,
                 -GarageCars)
 
 #Create name list of high_cor_vars
@@ -238,7 +258,7 @@ print(plot)
 
 ```
 
-Some numeric variables can actually be seen as factors, these are: `OverallQual`, `FullBath`, and `TotRmsAbvGrd`.
+Some numeric variables can actually be better interpreted as factors, these are: `OverallQual`, `FullBath`, `TotRmsAbvGrd`, `BsmtQualEx`, `KitchenQualEx`, `KitchenQualTA`, and `ExterQualTA`.
 
 ```{r high-cor-factors}
 #Save column names
@@ -281,8 +301,7 @@ print(plot)
 
 ```{r}
 complete_cor <- homes_num%>%
-  select(-GarageCars,
-         -GrLivArea)%>%
+  select(-GrLivArea)%>%
 #Compute correlation of complete observations
    cor(use = "pairwise.complete.obs")
 
@@ -303,31 +322,6 @@ complete_cor_tibble %>%
   #Style table
  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 ```
-
-After removing predictors that were related amongst themselves, the top 12 variables most (above 0.5) correlated are: 
-
-
-The variables that are most correlated to  are:
-
-**Positive correlation**
-
-- `OverallQual`: Rates the overall material and finish of the house
-- `GarageArea`: Size of garage in square feet
-- `TotalBsmtSF`: Total square feet of basement area
-- `X1stFlrSF`: First Floor square feet
-- `FullBath`: Full bathrooms above grade
-- `BsmtQualEx`: Height of basement 100+ inches
-- `TotRmsAbvGrd`: Total rooms above grade (does not include bathrooms)
-- `KitchenQualEx`: Excellent kitchen quality
-
-**Negative correlation**
-
-- `YearsSinceRemod`: Years since remodel date (same as construction date if no remodelling or additions)
-_ `KitchenQualTA`: Typical/Average kitchen quality
-- `YearsSinceBuilt`: Years since construction date
-- `ExterQualTA`: Typical/Average quality of the material on the exterior 
-
-
 
 
 # Techniques used
