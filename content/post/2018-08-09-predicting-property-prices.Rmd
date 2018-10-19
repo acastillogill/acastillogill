@@ -74,7 +74,7 @@ The dataset [House Prices: Advanced Regression Techniques](https://www.kaggle.co
 ```{r results='hide', message=FALSE}
 path <- "/Volumes/TOSHIBAEXT/RStudio/blog/content/post/house_prices/"
 #Read `train.csv` as homes
-homes <- read.csv(paste0(path,"train.csv"), stringsAsFactors = TRUE)
+homes <- read.csv(paste0(path,"train.csv"), stringsAsFactors = FALSE)
 ```
 
 ```{r results='hide'}
@@ -89,60 +89,157 @@ First we will see how many numerical vs. categorical variables there are.
 #Which gives the indices that were TRUE
 num_var <- which(sapply(homes, is.numeric))
 #Count how many variables are numeric
-length(num_var)
-#Return a vector with categorical variables
-cat_var <- which(sapply(homes, is.factor))
-#Count how many variables are categorical
-length(cat_var)
+length_num_var <- length(num_var)
+#Return a vector with character variables
+car_var <- which(sapply(homes, is.character))
+#Count how many variables are characters
+length_car_var <- length(car_var)
 ```
 
-Our dataset has 38 numeric and 43 categorical variables. Next, since we are interested in estimating sales prices `SalePrice`, we will recode categorical variables and see the most strongly correlated variables. There are 43 categorical variables available. I want to recode them, that is to make dummy variables (1 has that factor level, 0 doesn't) to see a correlation table with the most correlated variables to `SalesPrice`. 
+Our dataset has `r length_num_var` numeric and `r length_car_var` character variables. Next, since we are interested in estimating sales prices `SalePrice`, we will recode character variables and see the most strongly correlated variables. There are 43 character variables available. I want to recode them where there is ordinality and where there isn't dummify them.
 
 There are two numerical variables that are actually date related: `YearBuilt`and `YearRemodAdd` (remodelled date). It makes more sense to make two new variables that relate the build and remodelled dates with the present. In other words, I will create the years since built and years since remodelled date variables, this will help interpret the results better. 
 
 ```{r}
 homes<-homes%>%
-  #Mutate to create `YearsSinceBuilt` and `YearsSinceRemod`
+  #Mutate to create `YearsSinceBuilt`, `YearsSinceGarageBuilt`, and `YearsSinceRemod`
   #It will be the difference of the present year - YearBuilt
   mutate(YearsSinceBuilt = year(Sys.Date())-YearBuilt,
          #Same for YearsSinceRemod
-         YearsSinceRemod = year(Sys.Date())-YearRemodAdd)%>%
-  #Remove `YearBuilt` and `YearRemodAdd`
+         YearsSinceRemod = year(Sys.Date())-YearRemodAdd,
+         #Same for GarageYrBlt
+         YearsSinceGarageBuilt = year(Sys.Date())-GarageYrBlt)%>%
+  #Remove `YearsSinceBuilt`, `YearsSinceGarageBuilt`, and `YearsSinceRemod`
   select(-YearBuilt,
-         -YearRemodAdd)
-```
-
-```{r}
-glimpse(homes)
-```
-
-
-```{r}
-#Select categorical variables
-cat_var_values <- homes%>%
-  select(names(cat_var))
-
-#Dummify categorical values
-dummy_cat_var <- dummy.data.frame(cat_var_values)
-
-#Select numeric
-
-cor_num<-homes%>%
-  #Select only numeric variables
-  select_if(is.numeric)%>%
-  #Remove the Id variable
-   dplyr::select(-Id)
-
-
-#Bind cor_num with dummy_cat_var creating homes_num
-
-homes_num <- cbind.data.frame(cor_num,dummy_cat_var)
-
+         -YearRemodAdd,
+         -GarageYrBlt,
+         -Id)
 ```
 
 
 
 ```{r}
+#Which variables have missingness in data
+
+homes%>%
+  select_if(function (x) any(is.na(x)))%>%
+  summarise_each(funs(sum(is.na(.))))%>%
+  gather()%>%
+  arrange(desc(value))->missing_columns
+
+missing_columns%>%
+#Make table
+  kable(caption="Variables with missing values in descending order",
+        #Add column names
+        col.names = c("Variable","Number of NAs")) %>%
+  #Style table
+ kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+
+```
+
+`r nrow(missing_columns)` variables have missing values. 
+
+```{r missingness and recoding ordinal variables}
+
+#Vector for ordinal values
+ordinal_scale <- c("Ex"=5, "Gd"=4, "TA"=3, "Fa"=2, "Po"=1, "No"=0)
+
+#Missingness PoolQC
+homes$PoolQC[is.na(homes$PoolQC)] <- "No"
+
+#Recode PoolQC
+homes$PoolQC<-as.integer(plyr::revalue(homes$PoolQC, ordinal_scale))
+
+#Missingness MiscFeature
+homes$MiscFeature[is.na(homes$MiscFeature)] <- "No"
+
+#Recode MiscFeature
+homes$MiscFeature <- as.factor(homes$MiscFeature)
+
+#Missingness Alley
+homes$Alley[is.na(homes$Alley)] <- "No"
+
+#Recode Alley
+homes$Alley <- as.factor(homes$Alley)
+
+#Missingness Fence
+homes$Fence[is.na(homes$Fence)] <- "No"
+
+#Checking if Fence is ordinal
+homes%>%
+  filter(!is.na(SalePrice))%>%
+  group_by(Fence) %>%
+  summarise(median = median(SalePrice), counts=n())
+
+#Fence is not ordinal
+
+#Recode Fence
+homes$Fence <- as.factor(homes$Fence)
+
+#Missingness FireplaceQu
+homes$FireplaceQu[is.na(homes$FireplaceQu)] <- "No"
+
+#Checking if FireplaceQu is ordinal
+homes%>%
+  filter(!is.na(SalePrice))%>%
+  group_by(FireplaceQu) %>%
+  summarise(median = median(SalePrice), counts=n())
+
+#Recode FireplaceQu
+homes$FireplaceQu<-as.integer(plyr::revalue(homes$FireplaceQu, ordinal_scale))
+
+
+#LotFrontage is the linear feet of street connnected to property
+#Missing values will be replaced by neighborhood average
+
+for (i in 1:nrow(homes)){
+        if(is.na(homes$LotFrontage[i])){
+               homes$LotFrontage[i] <-
+                 as.integer(median(homes$LotFrontage[homes$Neighborhood==homes$Neighborhood[i]], na.rm=TRUE)) 
+        }
+}
+
+#Missingness GarageType
+homes$GarageType[is.na(homes$GarageType)] <- "No"
+
+#Recode GarageType
+homes$GarageType <- as.factor(homes$GarageType)
+
+#Checking if GarageFinish is ordinal
+homes%>%
+  filter(!is.na(SalePrice))%>%
+  group_by(GarageFinish) %>%
+  summarise(median = median(SalePrice), counts=n())
+
+#It is ordinal
+
+#Missingness GarageFinish
+homes$GarageFinish[is.na(homes$GarageFinish)] <- "No"
+
+#GarageFinish ordinal vector
+Finish <- c('No'=0, 'Unf'=1, 'RFn'=2, 'Fin'=3)
+
+#Recode GarageFinish
+homes$GarageFinish<-as.integer(plyr::revalue(homes$GarageFinish, Finish))
+table(homes$GarageFinish)
+
+#Missingness GarageQual
+homes$GarageQual[is.na(homes$GarageQual)] <- "No"
+
+#Recode GarageQual
+homes$GarageQual<-as.integer(plyr::revalue(homes$GarageQual, ordinal_scale))
+
+#Missingness GarageCond
+homes$GarageCond[is.na(homes$GarageCond)] <- "No"
+
+#Recode GarageCond
+homes$GarageCond<-as.integer(plyr::revalue(homes$GarageCond, ordinal_scale))
+
+
+```
+
+
+```{r eval=FALSE}
 complete_cor <- homes_num%>%
 #Compute correlation of complete observations
    cor(use = "pairwise.complete.obs")
@@ -170,7 +267,7 @@ complete_cor_tibble %>%
 
 First we will check that there is no multicolinearity amongst highly correlated variables. *explain here what is multicolinearity*.
 
-```{r}
+```{r eval=FALSE}
 #Make a simple model
 simple_model <- lm(SalePrice ~ OverallQual + GrLivArea + GarageCars + GarageArea + TotalBsmtSF + X1stFlrSF + FullBath + BsmtQualEx + TotRmsAbvGrd + YearsSinceBuilt + YearsSinceRemod + KitchenQualEx + KitchenQualTA + ExterQualTA, data = homes_num)
 
@@ -180,7 +277,7 @@ vif(simple_model)
 
 We can see that the variables related to garage show some signs of multicolinearity so I will take out `GarageCars`. 
 
-```{r}
+```{r eval=FALSE}
 #Make a corrected_model
 corrected_model <- lm(SalePrice ~ OverallQual + GrLivArea + GarageArea + TotalBsmtSF + X1stFlrSF + FullBath + BsmtQualEx + TotRmsAbvGrd + YearsSinceBuilt + YearsSinceRemod + KitchenQualEx + KitchenQualTA + ExterQualTA, data = homes_num)
 
@@ -211,7 +308,7 @@ _ `KitchenQualTA`: Typical/Average kitchen quality
 
 We will inspect scatter plots against the response variable `SalePrice`. 
 
-```{r}
+```{r eval=FALSE}
 #Select significant variables
 high_cor_vars <- homes_num%>%
   dplyr::select(OverallQual,
@@ -234,7 +331,7 @@ names_high_cor_vars <- names(high_cor_vars)
 
 
 
-```{r high-cor-geompoint} 
+```{r high-cor-geompoint, eval=FALSE} 
 
 #For each variable that is highly correlated
 for (var in names_high_cor_vars){
@@ -260,7 +357,7 @@ print(plot)
 
 Some numeric variables can actually be better interpreted as factors, these are: `OverallQual`, `FullBath`, `TotRmsAbvGrd`, `BsmtQualEx`, `KitchenQualEx`, `KitchenQualTA`, and `ExterQualTA`.
 
-```{r high-cor-factors}
+```{r high-cor-factors, eval=FALSE}
 #Save column names
 cols <- c("OverallQual", "FullBath", "TotRmsAbvGrd", "BsmtQualEx", "KitchenQualEx", "KitchenQualTA", "ExterQualTA")
 #Convert OverallQual, FullBath and TotRmsAbvGrd to a factor
@@ -268,7 +365,7 @@ high_cor_vars[cols] <- lapply(high_cor_vars[cols], factor)
 ```
 
 
-```{r}
+```{r eval=FALSE}
 
 #Select significant numeric values
 high_cor_vars_fact <- high_cor_vars%>%
@@ -299,7 +396,7 @@ print(plot)
 
 ```
 
-```{r}
+```{r eval=FALSE}
 complete_cor <- homes_num%>%
   select(-GrLivArea)%>%
 #Compute correlation of complete observations
