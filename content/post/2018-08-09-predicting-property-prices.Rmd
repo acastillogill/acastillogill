@@ -100,22 +100,6 @@ Our dataset has `r length_num_var` numeric and `r length_car_var` character vari
 
 There are two numerical variables that are actually date related: `YearBuilt`and `YearRemodAdd` (remodelled date). It makes more sense to make two new variables that relate the build and remodelled dates with the present. In other words, I will create the years since built and years since remodelled date variables, this will help interpret the results better. 
 
-```{r}
-homes<-homes%>%
-  #Mutate to create `YearsSinceBuilt`, `YearsSinceGarageBuilt`, and `YearsSinceRemod`
-  #It will be the difference of the present year - YearBuilt
-  mutate(YearsSinceBuilt = year(Sys.Date())-YearBuilt,
-         #Same for YearsSinceRemod
-         YearsSinceRemod = year(Sys.Date())-YearRemodAdd,
-         #Same for GarageYrBlt
-         YearsSinceGarageBuilt = year(Sys.Date())-GarageYrBlt)%>%
-  #Remove `YearsSinceBuilt`, `YearsSinceGarageBuilt`, and `YearsSinceRemod`
-  select(-YearBuilt,
-         -YearRemodAdd,
-         -GarageYrBlt,
-         -Id)
-```
-
 
 
 ```{r}
@@ -236,10 +220,158 @@ homes$GarageCond[is.na(homes$GarageCond)] <- "No"
 homes$GarageCond<-as.integer(plyr::revalue(homes$GarageCond, ordinal_scale))
 
 
+#Missingness GarageYrBlt will be substituted for YearBuilt
+
+#For all rows in homes
+for (i in 1:nrow(homes)){
+  #If observation i of column GarageYrBlt is NA
+        if(is.na(homes$GarageYrBlt[i])){
+          #Change observation for observation i of column YearBuilt
+               homes$GarageYrBlt[i] <- homes$YearBuilt[i] 
+        }
+}
+
+#Checking if BsmtExposure is ordinal
+homes%>%
+  filter(!is.na(SalePrice))%>%
+  group_by(BsmtExposure) %>%
+  summarise(median = median(SalePrice), counts=n())
+
+#Missingness BsmtExposure
+homes$BsmtExposure[is.na(homes$BsmtExposure)] <- "None"
+
+#It is ordinal, create vector substitute vector
+exposure_ordinal <- c("Gd"= 4,"Av"= 3,"Mn"=2,"No"=1, "None"=0)
+
+#Recode BsmtExposure
+homes$BsmtExposure<-as.integer(plyr::revalue(homes$BsmtExposure, exposure_ordinal))
+table(homes$BsmtExposure)
+
+#Checking if BsmtFinType2 is ordinal
+homes%>%
+  filter(!is.na(SalePrice))%>%
+  group_by(BsmtFinType2) %>%
+  summarise(median = median(SalePrice), counts=n())
+
+#Missingness BsmtFinType2
+homes$BsmtFinType2[is.na(homes$BsmtFinType2)] <- "No"
+
+#It is ordinal, create vector substitute vector
+FinType_ordinal <- c('No'=0, 'Unf'=1, 'LwQ'=2, 'Rec'=3, 'BLQ'=4, 'ALQ'=5, 'GLQ'=6)
+
+#Recode BsmtFinType2
+homes$BsmtFinType2<-as.integer(plyr::revalue(homes$BsmtFinType2, FinType_ordinal))
+table(homes$BsmtFinType2)
+
+#Missingness BsmtQual
+homes$BsmtQual[is.na(homes$BsmtQual)] <- "No"
+
+#Recode BsmtQual
+homes$BsmtQual<-as.integer(plyr::revalue(homes$BsmtQual, ordinal_scale))
+
+#Missingness BsmtCond
+homes$BsmtCond[is.na(homes$BsmtCond)] <- "No"
+
+#Recode BsmtCond
+homes$BsmtCond<-as.integer(plyr::revalue(homes$BsmtCond, ordinal_scale))
+
+#Missingness BsmtFinType1
+homes$BsmtFinType1[is.na(homes$BsmtFinType1)] <- "No"
+
+#Recode BsmtFinType1
+homes$BsmtFinType1<-as.integer(plyr::revalue(homes$BsmtFinType1, FinType_ordinal))
+table(homes$BsmtFinType1)
+
+#Checking if MasVnrType is ordinal
+homes%>%
+  filter(!is.na(SalePrice))%>%
+  group_by(MasVnrType) %>%
+  summarise(median = median(SalePrice), counts=n())
+
+#Missingness MasVnrType
+homes$MasVnrType[is.na(homes$MasVnrType)] <- "None"
+
+#Create ordinality vector
+mas_ordinality <- c('None'=0, 'BrkCmn'=0, 'BrkFace'=1, 'Stone'=2)
+
+#Recode MasVnrType
+homes$MasVnrType<-as.integer(plyr::revalue(homes$MasVnrType, mas_ordinality))
+table(homes$MasVnrType)
+
+#Missingness MasVnrArea
+homes$MasVnrArea[is.na(homes$MasVnrArea)] <- 0
+
+#Missingness Electrical
+homes%>%
+  group_by(Electrical)%>%
+  count()%>%
+  arrange(desc(n))%>%
+  select(Electrical)%>%
+  head(n=1)->replacement_Electrical
+
+homes$Electrical[is.na(homes$Electrical)] <- unlist(replacement_Electrical)
+
+#Recode Electrical
+homes$Electrical <- as.factor(homes$Electrical)
+
+#Recode MSZoning 
+homes$MSZoning  <- as.factor(homes$MSZoning)
+
+#Recode MSSubClass
+homes$MSSubClass  <- as.factor(homes$MSSubClass)
+
+#Recode Street     
+homes$Street  <- as.factor(homes$Street)
+
+#Recode LotShape   
+#Recode LandContour     
+#Recode Utilities 
+
+#Recode LotConfig     
+#Recode LandSlope  
+#Recode Neighborhood    
+#Recode Condition1    
+#Recode Condition2 
+
+#Recode BldgType    
+#Recode HouseStyle     
+#Recode RoofStyle      
+#Recode RoofMatl   
+#Recode Exterior1st 
+#Recode Exterior2nd     
+#Recode ExterQual     
+#Recode ExterCond    
+#Recode Foundation       
+#Recode Heating 
+#Recode HeatingQC    
+#Recode CentralAir   
+#Recode KitchenQual    
+#Recode Functional    
+#Recode PavedDrive 
+#Recode SaleType 
+#Recode SaleCondition 
+
+```
+
+```{r}
+homes<-homes%>%
+  #Mutate to create `YearsSinceBuilt`, `YearsSinceGarageBuilt`, and `YearsSinceRemod`
+  #It will be the difference of the present year - YearBuilt
+  mutate(YearsSinceBuilt = year(Sys.Date())-YearBuilt,
+         #Same for YearsSinceRemod
+         YearsSinceRemod = year(Sys.Date())-YearRemodAdd,
+         #Same for GarageYrBlt
+         YearsSinceGarageBuilt = year(Sys.Date())-GarageYrBlt)%>%
+  #Remove `YearsSinceBuilt`, `YearsSinceGarageBuilt`, and `YearsSinceRemod`
+  select(-YearBuilt,
+         -YearRemodAdd,
+         -GarageYrBlt,
+         -Id)
 ```
 
 
-```{r eval=FALSE}
+
+```{r }
 complete_cor <- homes_num%>%
 #Compute correlation of complete observations
    cor(use = "pairwise.complete.obs")
