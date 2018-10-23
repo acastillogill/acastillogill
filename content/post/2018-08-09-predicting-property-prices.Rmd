@@ -99,7 +99,7 @@ There are two numerical variables that are actually date related: `YearBuilt`and
 
 
 
-```{r deal with missigness}
+```{r missigness-table}
 
 #Which variables have missingness in data
 homes%>%
@@ -120,7 +120,7 @@ missing_columns%>%
 
 `r nrow(missing_columns)` variables have missing values. 
 
-```{r missingness and recoding ordinal variables}
+```{r missingness and recoding ordinal variables, results='hide', include=FALSE}
 
 #Vector for ordinal values
 ordinal_scale <- c("Ex"=5, "Gd"=4, "TA"=3, "Fa"=2, "Po"=1, "No"=0)
@@ -461,7 +461,7 @@ all_homes <- homes%>%
 ```
 
 
-```{r compute correlations with response variable}
+```{r correlations-table}
 complete_cor <- all_homes%>%
 #Compute correlation of complete observations
    cor(use = "pairwise.complete.obs")
@@ -555,21 +555,12 @@ After removing predictors that were related amongst themselves, the top 13 varia
 - `YearsSinceGarageBuilt`: Years since the garage was built 
 - `YearsSinceBuilt`: Years since construction date
 
-Now we will look at the 
-
-```{r select significant variables}
+**Numeric variables**
+```{r select significant numeric variables}
 #select significant variables
 high_cor_vars <- all_homes%>%
-  dplyr::select(OverallQual,
-                       ExterQual,
-                       KitchenQual,
-                GarageArea,
+  dplyr::select(GarageArea,
                 X1stFlrSF,
-                BsmtQual,
-                FullBath,
-                GarageFinish,
-                TotRmsAbvGrd,
-                FireplaceQu,
                 YearsSinceRemod,
                 YearsSinceGarageBuilt, 
                 YearsSinceBuilt)
@@ -577,8 +568,6 @@ high_cor_vars <- all_homes%>%
 #Create name list of high_cor_vars
 names_high_cor_vars <- names(high_cor_vars)
 ```
-
-
 
 ```{r high-cor-geompoint} 
 
@@ -605,7 +594,7 @@ print(plot)
 
 ```
 
-Some numeric variables can actually be better interpreted as factors, these are: `OverallQual`, `ExterQual`, `KitchenQual`, `BsmtQual`, `FullBath`, `GarageFinish`, `TotRmsAbvGrd`, and `FireplaceQu`.
+**Categorical variables**
 
 ```{r high-cor-factors}
 #Save column names
@@ -613,7 +602,6 @@ cols <- c("OverallQual", "ExterQual", "KitchenQual", "BsmtQual", "FullBath", "Ga
 #Convert OverallQual, FullBath and TotRmsAbvGrd to a factor
 high_cor_vars[cols] <- lapply(high_cor_vars[cols], factor)
 ```
-
 
 ```{r plotting categorical variables}
 
@@ -647,11 +635,10 @@ print(plot)
 ```
 
 
-
-
 # Techniques used
 
 - I 
+
 # Questions from this analysis
 
 - 
