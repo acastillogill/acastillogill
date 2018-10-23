@@ -18,7 +18,7 @@ output:
     toc_depth: 2
   fig_caption: true
 editor_options: 
-  chunk_output_type: inline
+  chunk_output_type: console
 ---
 
 
@@ -39,7 +39,9 @@ x <-
     "here",
     "corrplot",
     "rms",
-    "dummies")
+    "dummies",
+    "sjmisc",
+    "car")
 
 lapply(x, require, character.only = TRUE)
 
@@ -71,15 +73,10 @@ rm(list = ls())
 The dataset [House Prices: Advanced Regression Techniques](https://www.kaggle.com/c/house-prices-advanced-regression-techniques) was downloaded from Kaggle and put together by [Dean De Cock.](https://ww2.amstat.org/publications/jse/v19n3/decock.pdf) It has 79 explanatory variables describing 1,460 homes in Ames, Iowa. The codebook for all the variables can be [found here.](https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data) As I go along, I'll explain the most releveant ones. 
 
 
-```{r results='hide', message=FALSE}
+```{r reading data, results='hide', message=FALSE}
 path <- "/Volumes/TOSHIBAEXT/RStudio/blog/content/post/house_prices/"
 #Read `train.csv` as homes
 homes <- read.csv(paste0(path,"train.csv"), stringsAsFactors = FALSE)
-```
-
-```{r results='hide'}
-#Get a glimpse of homes
-glimpse(homes)
 ```
 
 First we will see how many numerical vs. categorical variables there are. 
@@ -102,12 +99,12 @@ There are two numerical variables that are actually date related: `YearBuilt`and
 
 
 
-```{r}
-#Which variables have missingness in data
+```{r deal with missigness}
 
+#Which variables have missingness in data
 homes%>%
-  select_if(function (x) any(is.na(x)))%>%
-  summarise_each(funs(sum(is.na(.))))%>%
+  dplyr::select_if(function (x) any(is.na(x)))%>%
+  dplyr::summarise_all(funs(sum(is.na(.))))%>%
   gather()%>%
   arrange(desc(value))->missing_columns
 
@@ -153,7 +150,7 @@ homes$Fence[is.na(homes$Fence)] <- "No"
 homes%>%
   filter(!is.na(SalePrice))%>%
   group_by(Fence) %>%
-  summarise(median = median(SalePrice), counts=n())
+  dplyr::summarise(median = median(SalePrice), counts=n())
 
 #Fence is not ordinal
 
@@ -167,7 +164,7 @@ homes$FireplaceQu[is.na(homes$FireplaceQu)] <- "No"
 homes%>%
   filter(!is.na(SalePrice))%>%
   group_by(FireplaceQu) %>%
-  summarise(median = median(SalePrice), counts=n())
+  dplyr::summarise(median = median(SalePrice), counts=n())
 
 #Recode FireplaceQu
 homes$FireplaceQu<-as.integer(plyr::revalue(homes$FireplaceQu, ordinal_scale))
@@ -193,7 +190,7 @@ homes$GarageType <- as.factor(homes$GarageType)
 homes%>%
   filter(!is.na(SalePrice))%>%
   group_by(GarageFinish) %>%
-  summarise(median = median(SalePrice), counts=n())
+  dplyr::summarise(median = median(SalePrice), counts=n())
 
 #It is ordinal
 
@@ -235,7 +232,7 @@ for (i in 1:nrow(homes)){
 homes%>%
   filter(!is.na(SalePrice))%>%
   group_by(BsmtExposure) %>%
-  summarise(median = median(SalePrice), counts=n())
+  dplyr::summarise(median = median(SalePrice), counts=n())
 
 #Missingness BsmtExposure
 homes$BsmtExposure[is.na(homes$BsmtExposure)] <- "None"
@@ -251,7 +248,7 @@ table(homes$BsmtExposure)
 homes%>%
   filter(!is.na(SalePrice))%>%
   group_by(BsmtFinType2) %>%
-  summarise(median = median(SalePrice), counts=n())
+  dplyr::summarise(median = median(SalePrice), counts=n())
 
 #Missingness BsmtFinType2
 homes$BsmtFinType2[is.na(homes$BsmtFinType2)] <- "No"
@@ -286,7 +283,7 @@ table(homes$BsmtFinType1)
 homes%>%
   filter(!is.na(SalePrice))%>%
   group_by(MasVnrType) %>%
-  summarise(median = median(SalePrice), counts=n())
+  dplyr::summarise(median = median(SalePrice), counts=n())
 
 #Missingness MasVnrType
 homes$MasVnrType[is.na(homes$MasVnrType)] <- "None"
@@ -304,9 +301,9 @@ homes$MasVnrArea[is.na(homes$MasVnrArea)] <- 0
 #Missingness Electrical
 homes%>%
   group_by(Electrical)%>%
-  count()%>%
+  dplyr::count()%>%
   arrange(desc(n))%>%
-  select(Electrical)%>%
+  dplyr::select(Electrical)%>%
   head(n=1)->replacement_Electrical
 
 homes$Electrical[is.na(homes$Electrical)] <- unlist(replacement_Electrical)
@@ -324,36 +321,114 @@ homes$MSSubClass  <- as.factor(homes$MSSubClass)
 homes$Street  <- as.factor(homes$Street)
 
 #Recode LotShape   
-#Recode LandContour     
+
+homes$LotShape   <- as.factor(homes$LotShape)
+
+#Recode LandContour   
+
+homes$LandContour   <- as.factor(homes$LandContour)
+
+
 #Recode Utilities 
 
-#Recode LotConfig     
+homes$Utilities    <- as.factor(homes$Utilities)
+
+#Recode LotConfig    
+
+homes$LotConfig     <- as.factor(homes$LotConfig)
+
 #Recode LandSlope  
+
+homes$LandSlope     <- as.factor(homes$LandSlope)
+
 #Recode Neighborhood    
-#Recode Condition1    
+
+homes$Neighborhood     <- as.factor(homes$Neighborhood)
+
+#Recode Condition1   
+
+homes$Condition1     <- as.factor(homes$Condition1)
+
+
 #Recode Condition2 
 
+homes$Condition2     <- as.factor(homes$Condition2)
+
 #Recode BldgType    
-#Recode HouseStyle     
-#Recode RoofStyle      
+
+homes$BldgType      <- as.factor(homes$BldgType)
+
+#Recode HouseStyle 
+
+homes$HouseStyle       <- as.factor(homes$HouseStyle)
+
+#Recode RoofStyle    
+
+homes$RoofStyle       <- as.factor(homes$RoofStyle)
+
 #Recode RoofMatl   
+
+homes$RoofMatl      <- as.factor(homes$RoofMatl)
+
 #Recode Exterior1st 
+
+homes$Exterior1st       <- as.factor(homes$Exterior1st)
+
 #Recode Exterior2nd     
-#Recode ExterQual     
+
+homes$Exterior2nd       <- as.factor(homes$Exterior2nd)
+
+#Recode ExterQual 
+
+homes$ExterQual<-as.integer(plyr::revalue(homes$ExterQual, ordinal_scale))
+
 #Recode ExterCond    
-#Recode Foundation       
+
+homes$ExterCond<-as.integer(plyr::revalue(homes$ExterCond, ordinal_scale))
+
+#Recode Foundation    
+
+homes$Foundation      <- as.factor(homes$Foundation)
+
 #Recode Heating 
+
+homes$Heating       <- as.factor(homes$Heating)
+
 #Recode HeatingQC    
+
+homes$HeatingQC<-as.integer(plyr::revalue(homes$HeatingQC, ordinal_scale))
+
 #Recode CentralAir   
-#Recode KitchenQual    
+
+boolean <- c("Y"=1,"N"=0)
+
+homes$CentralAir<-as.integer(plyr::revalue(homes$CentralAir, boolean))
+
+table(homes$CentralAir)
+
+#Recode KitchenQual   
+
+
+homes$KitchenQual<-as.integer(plyr::revalue(homes$KitchenQual, ordinal_scale))
+
+
 #Recode Functional    
+
+homes$Functional      <- as.factor(homes$Functional)
+
 #Recode PavedDrive 
+
+homes$PavedDrive       <- as.factor(homes$PavedDrive)
+
 #Recode SaleType 
+homes$SaleType        <- as.factor(homes$SaleType)
+
 #Recode SaleCondition 
 
+homes$SaleCondition     <- as.factor(homes$SaleCondition)
 ```
 
-```{r}
+```{r create time variables}
 homes<-homes%>%
   #Mutate to create `YearsSinceBuilt`, `YearsSinceGarageBuilt`, and `YearsSinceRemod`
   #It will be the difference of the present year - YearBuilt
@@ -363,16 +438,31 @@ homes<-homes%>%
          #Same for GarageYrBlt
          YearsSinceGarageBuilt = year(Sys.Date())-GarageYrBlt)%>%
   #Remove `YearsSinceBuilt`, `YearsSinceGarageBuilt`, and `YearsSinceRemod`
-  select(-YearBuilt,
+  dplyr::select(-YearBuilt,
          -YearRemodAdd,
          -GarageYrBlt,
          -Id)
 ```
 
+```{r create dummy variables}
+#Select factor variables
+homes_factor <- homes %>%
+  dplyr::select_if(is.factor)
+
+#Create dummy dataframe
+homes_dummies <- dummy.data.frame(homes_factor)
+
+#Bind numeric and dummy variables
+
+all_homes <- homes%>%
+  select_if(is.numeric)%>%
+  cbind(homes_dummies)
+
+```
 
 
-```{r }
-complete_cor <- homes_num%>%
+```{r compute correlations with response variable}
+complete_cor <- all_homes%>%
 #Compute correlation of complete observations
    cor(use = "pairwise.complete.obs")
 
@@ -384,78 +474,105 @@ complete_cor_tibble %>%
   arrange(desc(n))%>%
   #Filter variables that have an absolute value correlation higher than 0.5 with SalePrice
   filter(Var1=="SalePrice"&abs(n)>0.5&Var2!="SalePrice")%>%
-  #Select variable and correlation
+  #dplyr::select variable and correlation
   dplyr::select(Var2,n)%>%
   #Make table
-  kable(caption="Top 14 correlations with SalePrice",
+  kable(caption="Top 16 correlations with SalePrice",
         #Add column names
         col.names = c("Variable","Correlation")) %>%
   #Style table
  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 ```
 
-
 # Data exploration
 
 First we will check that there is no multicolinearity amongst highly correlated variables. *explain here what is multicolinearity*.
 
-```{r eval=FALSE}
+```{r checking for multicolinearity}
 #Make a simple model
-simple_model <- lm(SalePrice ~ OverallQual + GrLivArea + GarageCars + GarageArea + TotalBsmtSF + X1stFlrSF + FullBath + BsmtQualEx + TotRmsAbvGrd + YearsSinceBuilt + YearsSinceRemod + KitchenQualEx + KitchenQualTA + ExterQualTA, data = homes_num)
+simple_model <- lm(SalePrice ~ OverallQual +
+GrLivArea   +
+ExterQual   +
+KitchenQual +
+GarageCars  +
+GarageArea  +
+TotalBsmtSF +
+X1stFlrSF   +
+BsmtQual    +
+FullBath    +
+GarageFinish +
+TotRmsAbvGrd +
+FireplaceQu +
+YearsSinceRemod +
+YearsSinceGarageBuilt+
+YearsSinceBuilt , data = all_homes)
 
 #Checking for multicolinearity
 vif(simple_model)
 ```
 
-We can see that the variables related to garage show some signs of multicolinearity so I will take out `GarageCars`. 
+Variables with a vif above 5 are multicolinear with other explanatory variables. These were `GrLiveArea`, `GarageCars`, and `TotalBsmtSF`.
 
-```{r eval=FALSE}
+```{r corrected model}
 #Make a corrected_model
-corrected_model <- lm(SalePrice ~ OverallQual + GrLivArea + GarageArea + TotalBsmtSF + X1stFlrSF + FullBath + BsmtQualEx + TotRmsAbvGrd + YearsSinceBuilt + YearsSinceRemod + KitchenQualEx + KitchenQualTA + ExterQualTA, data = homes_num)
+corrected_model <- lm(SalePrice ~ OverallQual +
+ExterQual   +
+KitchenQual +
+GarageArea  +
+X1stFlrSF   +
+BsmtQual    +
+FullBath    +
+GarageFinish +
+TotRmsAbvGrd +
+FireplaceQu +
+YearsSinceRemod +
+YearsSinceGarageBuilt +
+YearsSinceBuilt , data = all_homes)
+
 
 #Checking for multicolinearity
 vif(corrected_model)
 ```
 
-After removing predictors that were related amongst themselves, the top 13 variables most (above 0.5) correlated are: 
+After removing predictors that were related amongst themselves, the top 13 variables most (above 0.5) correlated with `SalesPrice` were: 
 
 **Positive correlation**
 
 - `OverallQual`: Rates the overall material and finish of the house
+- `ExterQual`: Exterior quality
+- `KitchenQual`: Kitchen quality
 - `GarageArea`: Size of garage in square feet
-- `TotalBsmtSF`: Total square feet of basement area
-- `X1stFlrSF`: First Floor square feet
+- `X1stFlrSF`: First floor square feet
+- `BsmtQual`: Height of basement
 - `FullBath`: Full bathrooms above grade
-- `BsmtQualEx`: Height of basement 100+ inches
+- `GarageFinish`: Interior finish of the garage
 - `TotRmsAbvGrd`: Total rooms above grade (does not include bathrooms)
-- `KitchenQualEx`: Excellent kitchen quality
+- `FireplaceQu`: Fireplace quality
 
 **Negative correlation**
 
 - `YearsSinceRemod`: Years since remodel date (same as construction date if no remodelling or additions)
-_ `KitchenQualTA`: Typical/Average kitchen quality
+- `YearsSinceGarageBuilt`: Years since the garage was built 
 - `YearsSinceBuilt`: Years since construction date
-- `ExterQualTA`: Typical/Average quality of the material on the exterior 
 
+Now we will look at the 
 
-We will inspect scatter plots against the response variable `SalePrice`. 
-
-```{r eval=FALSE}
-#Select significant variables
-high_cor_vars <- homes_num%>%
+```{r select significant variables}
+#select significant variables
+high_cor_vars <- all_homes%>%
   dplyr::select(OverallQual,
+                       ExterQual,
+                       KitchenQual,
                 GarageArea,
-                TotalBsmtSF,
                 X1stFlrSF,
+                BsmtQual,
                 FullBath,
-                BsmtQualEx,
+                GarageFinish,
                 TotRmsAbvGrd,
-                YearsSinceBuilt,
+                FireplaceQu,
                 YearsSinceRemod,
-                KitchenQualEx,
-                KitchenQualTA,
-                ExterQualTA,
-                -GarageCars)
+                YearsSinceGarageBuilt, 
+                YearsSinceBuilt)
 
 #Create name list of high_cor_vars
 names_high_cor_vars <- names(high_cor_vars)
@@ -463,19 +580,20 @@ names_high_cor_vars <- names(high_cor_vars)
 
 
 
-```{r high-cor-geompoint, eval=FALSE} 
+```{r high-cor-geompoint} 
 
 #For each variable that is highly correlated
 for (var in names_high_cor_vars){
   
 #ggplot with the dataframe with values
-plot <- ggplot(high_cor_vars, aes_string(x=var, y=homes_num$SalePrice))+
+plot <- ggplot(high_cor_vars, aes_string(x=var, y=all_homes$SalePrice))+
 #geom_point to see distribution
     geom_jitter(alpha=0.1)+
 #Add labels
     labs(title=paste("Sales price vs.",var),
        x=var,
-       y="Sales price")+ theme_minimal()+
+       y="Sales price")+ 
+  theme_minimal()+
 #Add neat scales for price
 scale_y_continuous(breaks= seq(0, 800000, by=100000),
                    labels = comma)
@@ -487,17 +605,17 @@ print(plot)
 
 ```
 
-Some numeric variables can actually be better interpreted as factors, these are: `OverallQual`, `FullBath`, `TotRmsAbvGrd`, `BsmtQualEx`, `KitchenQualEx`, `KitchenQualTA`, and `ExterQualTA`.
+Some numeric variables can actually be better interpreted as factors, these are: `OverallQual`, `ExterQual`, `KitchenQual`, `BsmtQual`, `FullBath`, `GarageFinish`, `TotRmsAbvGrd`, and `FireplaceQu`.
 
-```{r high-cor-factors, eval=FALSE}
+```{r high-cor-factors}
 #Save column names
-cols <- c("OverallQual", "FullBath", "TotRmsAbvGrd", "BsmtQualEx", "KitchenQualEx", "KitchenQualTA", "ExterQualTA")
+cols <- c("OverallQual", "ExterQual", "KitchenQual", "BsmtQual", "FullBath", "GarageFinish", "TotRmsAbvGrd", "FireplaceQu")
 #Convert OverallQual, FullBath and TotRmsAbvGrd to a factor
 high_cor_vars[cols] <- lapply(high_cor_vars[cols], factor)
 ```
 
 
-```{r eval=FALSE}
+```{r plotting categorical variables}
 
 #Select significant numeric values
 high_cor_vars_fact <- high_cor_vars%>%
@@ -510,7 +628,7 @@ names_high_cor_vars_fact <- names(high_cor_vars_fact)
 for (var in names_high_cor_vars_fact){
   
 #ggplot with the dataframe with values
-plot <- ggplot(high_cor_vars_fact, aes_string(x=var, y=homes_num$SalePrice))+
+plot <- ggplot(high_cor_vars_fact, aes_string(x=var, y=all_homes$SalePrice))+
 #geom_point to see distribution
     geom_boxplot(alpha=0.1)+
 #Add labels
@@ -528,29 +646,7 @@ print(plot)
 
 ```
 
-```{r eval=FALSE}
-complete_cor <- homes_num%>%
-  select(-GrLivArea)%>%
-#Compute correlation of complete observations
-   cor(use = "pairwise.complete.obs")
 
-#Make the correlation matrix a tibble
-complete_cor_tibble <- as.tibble(as.table(complete_cor))
-
-complete_cor_tibble %>%
-  #Sort the tibble by descending correlations
-  arrange(desc(n))%>%
-  #Filter variables that have an absolute value correlation higher than 0.5 with SalePrice
-  filter(Var1=="SalePrice"&abs(n)>0.5&Var2!="SalePrice")%>%
-  #Select variable and correlation
-  dplyr::select(Var2,n)%>%
-  #Make table
-  kable(caption="Top 12 correlations with SalePrice",
-        #Add column names
-        col.names = c("Variable","Correlation")) %>%
-  #Style table
- kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
-```
 
 
 # Techniques used
