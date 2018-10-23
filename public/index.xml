@@ -25,6 +25,7 @@
 &lt;li&gt;&lt;a href=&#34;#the-data&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; The data&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#data-exploration&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Data exploration&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#techniques-used&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Techniques used&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#questions-from-this-analysis&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; Questions from this analysis&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 
@@ -43,7 +44,7 @@
 &lt;p&gt;There are two numerical variables that are actually date related: &lt;code&gt;YearBuilt&lt;/code&gt;and &lt;code&gt;YearRemodAdd&lt;/code&gt; (remodelled date). It makes more sense to make two new variables that relate the build and remodelled dates with the present. In other words, I will create the years since built and years since remodelled date variables, this will help interpret the results better.&lt;/p&gt;
 &lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
 &lt;caption&gt;
-(#tab:deal with missigness)Variables with missing values in descending order
+&lt;span id=&#34;tab:missigness-table&#34;&gt;Table 3.1: &lt;/span&gt;Variables with missing values in descending order
 &lt;/caption&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -211,77 +212,9 @@ Electrical
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;19 variables have missing values.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# A tibble: 5 x 3
-  Fence median counts
-  &amp;lt;chr&amp;gt;  &amp;lt;dbl&amp;gt;  &amp;lt;int&amp;gt;
-1 GdPrv 167500     59
-2 GdWo  138750     54
-3 MnPrv 137450    157
-4 MnWw  130000     11
-5 No    173000   1179
-# A tibble: 6 x 3
-  FireplaceQu median counts
-  &amp;lt;chr&amp;gt;        &amp;lt;dbl&amp;gt;  &amp;lt;int&amp;gt;
-1 Ex          314250     24
-2 Fa          158000     33
-3 Gd          206950    380
-4 No          135000    690
-5 Po          131500     20
-6 TA          187500    313
-# A tibble: 4 x 3
-  GarageFinish median counts
-  &amp;lt;chr&amp;gt;         &amp;lt;dbl&amp;gt;  &amp;lt;int&amp;gt;
-1 Fin          215000    352
-2 RFn          190000    422
-3 Unf          135000    605
-4 &amp;lt;NA&amp;gt;         100000     81
-
-  0   1   2   3 
- 81 605 422 352 
-# A tibble: 5 x 3
-  BsmtExposure median counts
-  &amp;lt;chr&amp;gt;         &amp;lt;dbl&amp;gt;  &amp;lt;int&amp;gt;
-1 Av           185850    221
-2 Gd           226975    134
-3 Mn           182450    114
-4 No           154000    953
-5 &amp;lt;NA&amp;gt;         104025     38
-
-  0   1   2   3   4 
- 38 953 114 221 134 
-# A tibble: 7 x 3
-  BsmtFinType2 median counts
-  &amp;lt;chr&amp;gt;         &amp;lt;dbl&amp;gt;  &amp;lt;int&amp;gt;
-1 ALQ          174900     19
-2 BLQ          143000     33
-3 GLQ          203125     14
-4 LwQ          154000     46
-5 Rec          148750     54
-6 Unf          167000   1256
-7 &amp;lt;NA&amp;gt;         104025     38
-
-   0    1    2    3    4    5    6 
-  38 1256   46   54   33   19   14 
-
-  0   1   2   3   4   5   6 
- 37 430  74 133 148 220 418 
-# A tibble: 5 x 3
-  MasVnrType median counts
-  &amp;lt;chr&amp;gt;       &amp;lt;dbl&amp;gt;  &amp;lt;int&amp;gt;
-1 BrkCmn     139000     15
-2 BrkFace    181000    445
-3 None       143000    864
-4 Stone      246839    128
-5 &amp;lt;NA&amp;gt;       203287      8
-
-  0   1   2 
-887 445 128 
-
-   0    1 
-  95 1365 &lt;/code&gt;&lt;/pre&gt;
 &lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
 &lt;caption&gt;
-(#tab:compute correlations with response variable)Top 16 correlations with SalePrice
+&lt;span id=&#34;tab:correlations-table&#34;&gt;Table 3.2: &lt;/span&gt;Top 16 correlations with SalePrice
 &lt;/caption&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -471,16 +404,20 @@ YearsSinceBuilt
 &lt;li&gt;&lt;code&gt;YearsSinceGarageBuilt&lt;/code&gt;: Years since the garage was built&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;YearsSinceBuilt&lt;/code&gt;: Years since construction date&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Now we will look at the&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-2.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-3.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-4.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-5.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-6.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-7.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-8.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-9.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-10.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-11.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-12.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-13.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Some numeric variables can actually be better interpreted as factors, these are: &lt;code&gt;OverallQual&lt;/code&gt;, &lt;code&gt;ExterQual&lt;/code&gt;, &lt;code&gt;KitchenQual&lt;/code&gt;, &lt;code&gt;BsmtQual&lt;/code&gt;, &lt;code&gt;FullBath&lt;/code&gt;, &lt;code&gt;GarageFinish&lt;/code&gt;, &lt;code&gt;TotRmsAbvGrd&lt;/code&gt;, and &lt;code&gt;FireplaceQu&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Numeric variables&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-2.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-3.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-4.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-5.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Categorical variables&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/plotting%20categorical%20variables-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/plotting%20categorical%20variables-2.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/plotting%20categorical%20variables-3.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/plotting%20categorical%20variables-4.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/plotting%20categorical%20variables-5.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/plotting%20categorical%20variables-6.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/plotting%20categorical%20variables-7.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/plotting%20categorical%20variables-8.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;techniques-used&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;5&lt;/span&gt; Techniques used&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;I
-# Questions from this analysis&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;I&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;questions-from-this-analysis&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;6&lt;/span&gt; Questions from this analysis&lt;/h1&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;

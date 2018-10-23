@@ -18,8 +18,8 @@
       <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/predicting-property-prices/</guid>
-      <description>1 Summary 2 Purpose of this post 3 The data 4 Data exploration 5 Techniques used   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
- 2 Purpose of this post  3 The data The dataset House Prices: Advanced Regression Techniques was downloaded from Kaggle and put together by Dean De Cock. It has 79 explanatory variables describing 1,460 homes in Ames, Iowa.</description>
+      <description>1 Summary 2 Purpose of this post 3 The data 4 Data exploration 5 Techniques used 6 Questions from this analysis   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
+ 2 Purpose of this post  3 The data The dataset House Prices: Advanced Regression Techniques was downloaded from Kaggle and put together by Dean De Cock.</description>
     </item>
     
     <item>

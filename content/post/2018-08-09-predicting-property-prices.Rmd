@@ -73,7 +73,7 @@ rm(list = ls())
 The dataset [House Prices: Advanced Regression Techniques](https://www.kaggle.com/c/house-prices-advanced-regression-techniques) was downloaded from Kaggle and put together by [Dean De Cock.](https://ww2.amstat.org/publications/jse/v19n3/decock.pdf) It has 79 explanatory variables describing 1,460 homes in Ames, Iowa. The codebook for all the variables can be [found here.](https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data) As I go along, I'll explain the most releveant ones. 
 
 
-```{r reading data, results='hide', message=FALSE}
+```{r reading data, results='hide'}
 path <- "/Volumes/TOSHIBAEXT/RStudio/blog/content/post/house_prices/"
 #Read `train.csv` as homes
 homes <- read.csv(paste0(path,"train.csv"), stringsAsFactors = FALSE)
@@ -120,7 +120,7 @@ missing_columns%>%
 
 `r nrow(missing_columns)` variables have missing values. 
 
-```{r missingness and recoding ordinal variables, results='hide', include=FALSE}
+```{r missingness and recoding ordinal variables, results='hide'}
 
 #Vector for ordinal values
 ordinal_scale <- c("Ex"=5, "Gd"=4, "TA"=3, "Fa"=2, "Po"=1, "No"=0)
@@ -599,8 +599,10 @@ print(plot)
 ```{r high-cor-factors}
 #Save column names
 cols <- c("OverallQual", "ExterQual", "KitchenQual", "BsmtQual", "FullBath", "GarageFinish", "TotRmsAbvGrd", "FireplaceQu")
+
 #Convert OverallQual, FullBath and TotRmsAbvGrd to a factor
-high_cor_vars[cols] <- lapply(high_cor_vars[cols], factor)
+high_cor_vars[cols] <- lapply(all_homes[cols], factor)
+
 ```
 
 ```{r plotting categorical variables}
@@ -608,6 +610,7 @@ high_cor_vars[cols] <- lapply(high_cor_vars[cols], factor)
 #Select significant numeric values
 high_cor_vars_fact <- high_cor_vars%>%
   dplyr::select(cols)
+
 
 #Create name list of high_cor_vars
 names_high_cor_vars_fact <- names(high_cor_vars_fact)
