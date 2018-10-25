@@ -70,7 +70,7 @@ rm(list = ls())
 
 # The data
 
-The dataset [House Prices: Advanced Regression Techniques](https://www.kaggle.com/c/house-prices-advanced-regression-techniques) was downloaded from Kaggle and put together by [Dean De Cock.](https://ww2.amstat.org/publications/jse/v19n3/decock.pdf) It has 79 explanatory variables describing 1,460 homes in Ames, Iowa. The codebook for all the variables can be [found here.](https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data) As I go along, I'll explain the most releveant ones. 
+The dataset [House Prices: Advanced Regression Techniques](https://www.kaggle.com/c/house-prices-advanced-regression-techniques) was downloaded from Kaggle and put together by [Dean De Cock.](https://ww2.amstat.org/publications/jse/v19n3/decock.pdf) It has 79 explanatory variables describing 1,460 homes in Ames, Iowa. The codebook for all the variables can be [found here.](https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data) As I go along, I'll explain the most relevant ones. 
 
 
 ```{r reading data, results='hide'}
@@ -97,7 +97,17 @@ Our dataset has `r length_num_var` numeric and `r length_car_var` character vari
 
 There are two numerical variables that are actually date related: `YearBuilt`and `YearRemodAdd` (remodelled date). It makes more sense to make two new variables that relate the build and remodelled dates with the present. In other words, I will create the years since built and years since remodelled date variables, this will help interpret the results better. 
 
+## Missing values
 
+As it more common than not, the dataset contains missing values. Missing values need to be dealt with because regression (and other models) requires complete observations. 
+
+Dealing with missing data depends on *why the data are missing*. [This article](http://www.stat.columbia.edu/~gelman/arm/missing.pdf) explains four reasons why data could be missing. When the data are missing at random (MAR) or completely at random (MCAR), observations with missing values can be removed without introducing bias into the model.  
+
+Sometimes, however, if the dataset is not too big and we don't want to lose observations, or even if it is big, yet we still don't want to remove observations, we can impute data. Imputing means replacing missing values by doing some educated guesses. [This article](https://towardsdatascience.com/how-to-handle-missing-data-8646b18db0d4) summarises how to impute data depending on why it is missing. 
+
+If the data are not missing at random, then the imputation mechanism has to modelled.
+
+Let's look at which variables are missing:
 
 ```{r missigness-table}
 
@@ -118,7 +128,7 @@ missing_columns%>%
 
 ```
 
-`r nrow(missing_columns)` variables have missing values. 
+`r nrow(missing_columns)` variables have missing values. Based on the codebook, the reason why so many houses have `PoolQC` missing is because `NA`, means there is no pool. Since this variable is ordinal, I can revalue it to make it numerical and `0` will mean the property has no pool. `MiscFeature`, `Alley`, `Fence`, and `FireplaceQu` are missing because of similar reasons. We don't know why `LotFrontage` is missing but we will impute as the median for properties in the same neighborhood. [Erik Bruin's kernel on Kaggle](https://www.kaggle.com/erikbruin/house-prices-lasso-xgboost-and-a-detailed-eda/code) with this dataset, was a great guideline for what to do in each missing value case. 
 
 ```{r missingness and recoding ordinal variables, results='hide'}
 
@@ -428,6 +438,8 @@ homes$SaleType        <- as.factor(homes$SaleType)
 homes$SaleCondition     <- as.factor(homes$SaleCondition)
 ```
 
+## Variable creation
+
 ```{r create time variables}
 homes<-homes%>%
   #Mutate to create `YearsSinceBuilt`, `YearsSinceGarageBuilt`, and `YearsSinceRemod`
@@ -443,6 +455,8 @@ homes<-homes%>%
          -GarageYrBlt,
          -Id)
 ```
+
+## Revaluing categorical variables
 
 ```{r create dummy variables}
 #Select factor variables
@@ -460,6 +474,11 @@ all_homes <- homes%>%
 
 ```
 
+# Data exploration
+
+## Correlation
+
+Correlation, Cor\left(X,Y\right), measures the strength of the linear relationship between two variables $X$ and $Y$.
 
 ```{r correlations-table}
 complete_cor <- all_homes%>%
@@ -484,9 +503,9 @@ complete_cor_tibble %>%
  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 ```
 
-# Data exploration
+## Multi
 
-First we will check that there is no multicolinearity amongst highly correlated variables. *explain here what is multicolinearity*.
+We will check that there is no multicolinearity amongst highly correlated variables. *explain here what is multicolinearity*.
 
 ```{r checking for multicolinearity}
 #Make a simple model
