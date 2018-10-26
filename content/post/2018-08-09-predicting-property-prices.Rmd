@@ -28,8 +28,6 @@ x <-
     "knitr",
     "formatR",
     "stringr",
-    "quantmode",
-    "skimr",
     "lubridate",
     "tidyr",
     "formattable",
@@ -41,7 +39,15 @@ x <-
     "rms",
     "dummies",
     "sjmisc",
-    "car")
+    "car",
+    "DescTools",
+    "gvlma",
+    "MASS",
+    "QuantPsyc",
+    "Hmisc",
+    "GGally",
+    "lm.beta",
+    "MuMIn")
 
 lapply(x, require, character.only = TRUE)
 
@@ -480,78 +486,106 @@ all_homes <- homes%>%
 
 Correlation, Cor\left(X,Y\right), measures the strength of the linear relationship between two variables $X$ and $Y$.
 
-```{r correlations-table}
-complete_cor <- all_homes%>%
-#Compute correlation of complete observations
-   cor(use = "pairwise.complete.obs")
+```{r flattenCorrMatrix function, include=FALSE}
+#https://github.com/anthonypc/mulitpleLinearRegression/blob/master/iris-multiple-variable-regression-example.R
+## Create a matrix for correlations and significance
+## Based on output from rcorr
+flattenCorrMatrix <- function(cormat, pmat, nmat) {
+  ut <- upper.tri(cormat)
+  data.frame(
+    row = rownames(cormat)[row(cormat)[ut]],
+    column = rownames(cormat)[col(cormat)[ut]],
+    cor  = (cormat)[ut],
+    p = pmat[ut],
+    n = nmat[ut]
+  )
+}
+```
 
-#Make the correlation matrix a tibble
-complete_cor_tibble <- as.tibble(as.table(complete_cor))
+```{r correlations table, include=FALSE}
+#rcorr is a function from the Hmisc library. 
+#It takes a numeric matrix
+corMatrix <- rcorr(as.matrix(all_homes), type = "pearson")
+#Returns an rcorr object where rcorr$r is the matrix of correlations, rcorr$n is the matrix of number observations used in analysing each pair of variables, and rcorr$P, the asymptotic P-values 
 
-complete_cor_tibble %>%
-  #Sort the tibble by descending correlations
-  arrange(desc(n))%>%
-  #Filter variables that have an absolute value correlation higher than 0.5 with SalePrice
-  filter(Var1=="SalePrice"&abs(n)>0.5&Var2!="SalePrice")%>%
-  #dplyr::select variable and correlation
-  dplyr::select(Var2,n)%>%
-  #Make table
-  kable(caption="Top 16 correlations with SalePrice",
-        #Add column names
-        col.names = c("Variable","Correlation")) %>%
-  #Style table
- kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+# Correlation matrix and scatter plots.
+flatcorrmatrix.df <- as.data.frame( flattenCorrMatrix(corMatrix$r, corMatrix$P, corMatrix$n))
+
+flatcorrmatrix.df%>%
+  filter(abs(cor)>0.5&column=="SalePrice"|abs(cor)>0.5&row=="SalePrice")%>%
+  arrange(desc(cor))%>%
+#Make table
+kable(caption="Top 16 correlations with SalePrice",
+#Add column names
+col.names = c("Variable 1","Variable 2",
+              "Correlation","Asymptotic P-value",
+              "Number of observations"))%>%
+#Style table
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+
+```
+
+## Model selection
+
+```{r fit model}
+fit <- lm(SalePrice ~ . 
+          , data = all_homes, na.action = "na.fail")
+
+anova_table <- anova(fit)%>% 
+  unnest()
+
+anova_table <-  rownames_to_column(anova_table)
+
+colnames(anova_table) <- c("Variable","DF","SumSq","MeanSq","FValue","PValue")
+
+anova_table <- anova_table%>%
+  dplyr::select(-DF)%>%
+  filter(PValue<0.000000000005)%>%
+  arrange(PValue)
+  
+  anova_table%>%
+  dplyr::select(Variable)
+
+
+
+```
+
+```{r}
+fit_21 <-  lm(SalePrice ~ OverallQual+
+                LotFrontage+
+                X2ndFlrSF+
+                LotArea+
+                ExterQual+
+                RoofMatlClyTile+
+                MasVnrArea+
+                X1stFlrSF+
+                NeighborhoodNridgHt+
+                BsmtQual+
+                MasVnrType+
+                BsmtFinSF1+
+                GarageCars+
+                BsmtExposure+
+                MSSubClass20+
+                BsmtUnfSF+
+                BsmtCond+
+                NeighborhoodStoneBr+
+                KitchenQual+
+                BsmtFinType1+
+                Condition2PosN
+          , data = all_homes, na.action = "na.fail")
+  
+all_models <- dredge(fit_21)
+
+all_models%>%
+  arrange(AICc)%>%
+  top_n(5)#%>%
+  #dplyr::select(logLik, AICc, delta, weight)%>%
 ```
 
 ## Multi
 
 We will check that there is no multicolinearity amongst highly correlated variables. *explain here what is multicolinearity*.
 
-```{r checking for multicolinearity}
-#Make a simple model
-simple_model <- lm(SalePrice ~ OverallQual +
-GrLivArea   +
-ExterQual   +
-KitchenQual +
-GarageCars  +
-GarageArea  +
-TotalBsmtSF +
-X1stFlrSF   +
-BsmtQual    +
-FullBath    +
-GarageFinish +
-TotRmsAbvGrd +
-FireplaceQu +
-YearsSinceRemod +
-YearsSinceGarageBuilt+
-YearsSinceBuilt , data = all_homes)
-
-#Checking for multicolinearity
-vif(simple_model)
-```
-
-Variables with a vif above 5 are multicolinear with other explanatory variables. These were `GrLiveArea`, `GarageCars`, and `TotalBsmtSF`.
-
-```{r corrected model}
-#Make a corrected_model
-corrected_model <- lm(SalePrice ~ OverallQual +
-ExterQual   +
-KitchenQual +
-GarageArea  +
-X1stFlrSF   +
-BsmtQual    +
-FullBath    +
-GarageFinish +
-TotRmsAbvGrd +
-FireplaceQu +
-YearsSinceRemod +
-YearsSinceGarageBuilt +
-YearsSinceBuilt , data = all_homes)
-
-
-#Checking for multicolinearity
-vif(corrected_model)
-```
 
 After removing predictors that were related amongst themselves, the top 13 variables most (above 0.5) correlated with `SalesPrice` were: 
 
