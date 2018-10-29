@@ -235,8 +235,19 @@ Electrical
 &lt;div id=&#34;correlation&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3&lt;/span&gt; Correlation&lt;/h2&gt;
 &lt;p&gt;Correlation, &lt;span class=&#34;math inline&#34;&gt;\(Cor(X,Y)\)&lt;/span&gt;, measures the strength of the linear relationship between two variables &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;If I were just to create a model with numeric variables, let’s see which ones are significant.&lt;/p&gt;
+&lt;p&gt;The correlation between &lt;code&gt;SalePrice&lt;/code&gt; and another variable, let’s say, &lt;code&gt;OverallQual&lt;/code&gt;, is the covariance of the separately normalised data between the two variables.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cov(scale(homes$SalePrice), scale(homes$OverallQual))
+          [,1]
+[1,] 0.7909816&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Since covariance units are &lt;code&gt;OverallQual&lt;/code&gt; * &lt;code&gt;SalePrice&lt;/code&gt;, calculating the correlation is instead more helpful since it is unit free.&lt;/p&gt;
+&lt;p&gt;If we created a model with only variable as the predictor of &lt;code&gt;SalesPrice&lt;/code&gt;, let’s say, &lt;code&gt;KitchenQual&lt;/code&gt; and normalised the data, the regression slope would be the correlation between the two variables.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;norm_fit &amp;lt;- lm(scale(SalePrice) ~ scale(KitchenQual), data = homes)
+round(coefficients(norm_fit), digits = 2)
+       (Intercept) scale(KitchenQual) 
+              0.00               0.66 &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here is the correlation matrix for variables that have a relationship stronger than 0.5 with &lt;code&gt;SalePrice&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/correlation_matrix-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;There are 17 variables that have a correlation stronger than 0.5. They are arranged in descending order. It is interesting to note the high correlation that exists amongst variables. The correlation plot highlights some obvious ones, &lt;code&gt;GarageArea&lt;/code&gt; and &lt;code&gt;GarageCars&lt;/code&gt;. Makes sense, a bigger garage can hold more cars. &lt;code&gt;X1stFlrSF&lt;/code&gt; and &lt;code&gt;TotalBsmtSF&lt;/code&gt;, the total area of the first floor and basement, this also seems reasonable since basements are underneath the same floor and would tend to have a similar area. &lt;code&gt;TotRmsAbvGrd&lt;/code&gt; and &lt;code&gt;GrLivArea&lt;/code&gt;, the total number of rooms and area above ground, again ok, more rooms would be linked to a bigger living area. Finally, &lt;code&gt;YearsSinceBuilt&lt;/code&gt; and &lt;code&gt;YearsSinceGarageBuilt&lt;/code&gt; since garages are usually built at the same time as the house.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;model-with-numeric-variables&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.4&lt;/span&gt; Model with numeric variables&lt;/h2&gt;

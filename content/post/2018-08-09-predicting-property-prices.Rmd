@@ -473,80 +473,53 @@ homes<-homes%>%
 
 Correlation, $Cor(X,Y)$, measures the strength of the linear relationship between two variables $X$ and $Y$.
 
-If I were just to create a model with numeric variables, let's see which ones are significant. 
+The correlation between `SalePrice` and another variable, let's say, `OverallQual`, is the covariance of the separately normalised data between the two variables.
 
+```{r covariance-example, echo=TRUE}
+cov(scale(homes$SalePrice), scale(homes$OverallQual))
+```
 
+Since covariance units are `OverallQual` * `SalePrice`, calculating the correlation is instead more helpful since it is unit free. 
+
+If we created a model with only variable as the predictor of `SalesPrice`, let's say, `KitchenQual` and normalised the data, the regression slope would be the correlation between the two variables.
+
+```{r single-regression-normalised-data, echo=TRUE}
+norm_fit <- lm(scale(SalePrice) ~ scale(KitchenQual), data = homes)
+round(coefficients(norm_fit), digits = 2)
+```
+
+Here is the correlation matrix for variables that have a relationship stronger than 0.5 with `SalePrice`. 
 
 ```{r correlation_matrix}
-
+#Select numeric variables
 homes_num <- homes%>%
   select_if(is.numeric)
-
+#Create tidy correlation matrix
 cor_homes <- tidy(cor(homes_num))
-
+#Arrange correlations with SalePrice in descending order
 high_cor_names <- cor_homes%>%
   arrange(desc(SalePrice))%>%
-  filter(abs(SalePrice)>0.5)%>%
-  pull(.rownames)
-
+  filter(abs(SalePrice)>0.5)%>%#Filter variables that have relationship >0.5
+  pull(.rownames)#Pull names of variables
+#Filter entire correlation matrix for the variables
 high_cor <- cor(homes_num)[high_cor_names,high_cor_names]
-
-corrplot.mixed(high_cor, tl.col="black", tl.pos = "lt",cl.ratio=0.1,number.cex=.5, cl.cex = .6, tl.cex = 0.8)
+#Create correlation matrix
+corrplot.mixed(high_cor, tl.col="black", tl.pos = "lt",cl.ratio=0.1,number.cex=.8, cl.cex = .6, tl.cex = 0.8)
 ```
 
+There are 17 variables that have a correlation stronger than 0.5. They are arranged in descending order. It is interesting to note the high correlation that exists amongst variables. The correlation plot highlights some obvious ones, `GarageArea` and `GarageCars`. Makes sense, a bigger garage can hold more cars. `X1stFlrSF` and `TotalBsmtSF`, the total area of the first floor and basement, this also seems reasonable since basements are underneath the same floor and would tend to have a similar area. `TotRmsAbvGrd` and `GrLivArea`, the total number of rooms and area above ground, again ok, more rooms would be linked to a bigger living area. Finally, `YearsSinceBuilt` and `YearsSinceGarageBuilt` since garages are usually built at the same time as the house.
 
-
-## Model with numeric variables
-
-
-
-
-## Revaluing categorical variables
-
-```{r create dummy variables}
-#Select factor variables
-homes_factor <- homes %>%
-  dplyr::select_if(is.factor)
-
-#Create dummy dataframe
-homes_dummies <- dummy.data.frame(homes_factor)
-
-
-
-#Bind numeric and dummy variables
-
-all_homes <- homes%>%
-  select_if(is.numeric)%>%
-  cbind(homes_dummies)
-
-```
-
-# Data exploration
-
-
-
-
-## Model selection
-
-
-
-```{r}
-
-```
-
-## Multi
-
-We will check that there is no multicolinearity amongst highly correlated variables. *explain here what is multicolinearity*.
-
-
-After removing predictors that were related amongst themselves, the top 13 variables most (above 0.5) correlated with `SalesPrice` were: 
+Here is the codebook for all the variables featured in the correlation matrix in case they come up later and we need to interpret what they mean.
 
 **Positive correlation**
 
 - `OverallQual`: Rates the overall material and finish of the house
+- `GrLivArea`: Above grade (ground) living area square feet.
 - `ExterQual`: Exterior quality
 - `KitchenQual`: Kitchen quality
+- `GarageCars`: Size of garage in car capacity
 - `GarageArea`: Size of garage in square feet
+- `TotalBsmtSF`: Total square feet of basement area
 - `X1stFlrSF`: First floor square feet
 - `BsmtQual`: Height of basement
 - `FullBath`: Full bathrooms above grade
@@ -559,6 +532,9 @@ After removing predictors that were related amongst themselves, the top 13 varia
 - `YearsSinceRemod`: Years since remodel date (same as construction date if no remodelling or additions)
 - `YearsSinceGarageBuilt`: Years since the garage was built 
 - `YearsSinceBuilt`: Years since construction date
+
+
+
 
 **Numeric variables**
 ```{r select significant numeric variables}
