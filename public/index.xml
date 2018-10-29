@@ -26,13 +26,8 @@
 &lt;li&gt;&lt;a href=&#34;#missing-values&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.1&lt;/span&gt; Missing values&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#variable-creation&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.2&lt;/span&gt; Variable creation&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#correlation&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.3&lt;/span&gt; Correlation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#model-with-numeric-variables&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.4&lt;/span&gt; Model with numeric variables&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#revaluing-categorical-variables&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.5&lt;/span&gt; Revaluing categorical variables&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#data-exploration&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Data exploration&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#model-selection&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.1&lt;/span&gt; Model selection&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#multi&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.2&lt;/span&gt; Multi&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#random-forest-time&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Random forest time&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#techniques-used&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Techniques used&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#questions-from-this-analysis&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; Questions from this analysis&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -248,29 +243,16 @@ round(coefficients(norm_fit), digits = 2)
 &lt;p&gt;Here is the correlation matrix for variables that have a relationship stronger than 0.5 with &lt;code&gt;SalePrice&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/correlation_matrix-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;There are 17 variables that have a correlation stronger than 0.5. They are arranged in descending order. It is interesting to note the high correlation that exists amongst variables. The correlation plot highlights some obvious ones, &lt;code&gt;GarageArea&lt;/code&gt; and &lt;code&gt;GarageCars&lt;/code&gt;. Makes sense, a bigger garage can hold more cars. &lt;code&gt;X1stFlrSF&lt;/code&gt; and &lt;code&gt;TotalBsmtSF&lt;/code&gt;, the total area of the first floor and basement, this also seems reasonable since basements are underneath the same floor and would tend to have a similar area. &lt;code&gt;TotRmsAbvGrd&lt;/code&gt; and &lt;code&gt;GrLivArea&lt;/code&gt;, the total number of rooms and area above ground, again ok, more rooms would be linked to a bigger living area. Finally, &lt;code&gt;YearsSinceBuilt&lt;/code&gt; and &lt;code&gt;YearsSinceGarageBuilt&lt;/code&gt; since garages are usually built at the same time as the house.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;model-with-numeric-variables&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.4&lt;/span&gt; Model with numeric variables&lt;/h2&gt;
-&lt;/div&gt;
-&lt;div id=&#34;revaluing-categorical-variables&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.5&lt;/span&gt; Revaluing categorical variables&lt;/h2&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;data-exploration&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;4&lt;/span&gt; Data exploration&lt;/h1&gt;
-&lt;div id=&#34;model-selection&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.1&lt;/span&gt; Model selection&lt;/h2&gt;
-&lt;/div&gt;
-&lt;div id=&#34;multi&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.2&lt;/span&gt; Multi&lt;/h2&gt;
-&lt;p&gt;We will check that there is no multicolinearity amongst highly correlated variables. &lt;em&gt;explain here what is multicolinearity&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;After removing predictors that were related amongst themselves, the top 13 variables most (above 0.5) correlated with &lt;code&gt;SalesPrice&lt;/code&gt; were:&lt;/p&gt;
+&lt;p&gt;Here is the codebook for all the variables featured in the correlation matrix in case they come up later and we need to interpret what they mean.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Positive correlation&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;OverallQual&lt;/code&gt;: Rates the overall material and finish of the house&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;GrLivArea&lt;/code&gt;: Above grade (ground) living area square feet.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;ExterQual&lt;/code&gt;: Exterior quality&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;KitchenQual&lt;/code&gt;: Kitchen quality&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;GarageCars&lt;/code&gt;: Size of garage in car capacity&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;GarageArea&lt;/code&gt;: Size of garage in square feet&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;TotalBsmtSF&lt;/code&gt;: Total square feet of basement area&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;X1stFlrSF&lt;/code&gt;: First floor square feet&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;BsmtQual&lt;/code&gt;: Height of basement&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;FullBath&lt;/code&gt;: Full bathrooms above grade&lt;/li&gt;
@@ -284,11 +266,267 @@ round(coefficients(norm_fit), digits = 2)
 &lt;li&gt;&lt;code&gt;YearsSinceGarageBuilt&lt;/code&gt;: Years since the garage was built&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;YearsSinceBuilt&lt;/code&gt;: Years since construction date&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Numeric variables&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-2.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-3.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-4.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/high-cor-geompoint-5.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Categorical variables&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/plotting%20categorical%20variables-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/plotting%20categorical%20variables-2.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/plotting%20categorical%20variables-3.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/plotting%20categorical%20variables-4.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/plotting%20categorical%20variables-5.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/plotting%20categorical%20variables-6.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/plotting%20categorical%20variables-7.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/plotting%20categorical%20variables-8.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;random-forest-time&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;4&lt;/span&gt; Random forest time&lt;/h1&gt;
+&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;caption&gt;
+&lt;span id=&#34;tab:variable-importance-table&#34;&gt;Table 4.1: &lt;/span&gt;Top 30 variables in order of importance
+&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+Variable
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Percentage
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+OverallQual
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+20.2881958
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Neighborhood
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+13.8292678
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+TotalBsmtSF
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+8.6078376
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+BsmtQual
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+8.1265399
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+GarageCars
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+7.8028308
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+GarageArea
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+7.2956063
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+GrLivArea
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+4.7334142
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+X1stFlrSF
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+4.2245809
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+FullBath
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+3.6685198
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+YearsSinceBuilt
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+3.1868448
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+YearsSinceGarageBuilt
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2.5644295
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+TotRmsAbvGrd
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2.4496070
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+ExterQual
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2.4189322
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+LotArea
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1.6004963
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+X2ndFlrSF
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1.4798477
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+BedroomAbvGr
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1.4488343
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+MSSubClass
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1.2739904
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+BsmtFinSF1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1.1689013
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+HouseStyle
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.7356457
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+BsmtUnfSF
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.7099965
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Condition1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.5471333
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+OpenPorchSF
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.5471333
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+LotFrontage
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.3274190
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+LandContour
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.2735666
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+LotShape
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.2735666
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+MasVnrArea
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.1600470
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+MSZoning
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.0954188
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Foundation
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.0581028
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+BsmtCond
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.0516470
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+BsmtExposure
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.0516470
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 &lt;/div&gt;
 &lt;div id=&#34;techniques-used&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;5&lt;/span&gt; Techniques used&lt;/h1&gt;

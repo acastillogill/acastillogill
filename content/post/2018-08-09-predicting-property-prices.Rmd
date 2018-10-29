@@ -539,7 +539,7 @@ Here is the codebook for all the variables featured in the correlation matrix in
 # Random forest time
 
 
-```{r split-data}
+```{r split-data, include=FALSE}
 # Randomly assign rows to ids (1/2/3 represents train/valid/test)
 # This will generate a vector of ids of length equal to the number of rows
 # The train/valid/test split will be approximately 70% / 15% / 15% 
@@ -554,7 +554,7 @@ homes_valid <- homes[assignment == 2, ]  # subset the homes data frame to valida
 homes_test <- homes[assignment == 3, ]   # subset the homes data frame to test indices only
 ```
 
-```{r train the model}
+```{r train the model, include=FALSE}
 # Train the model
 homes_model <- rpart(formula = SalePrice ~ ., 
                      data = homes_train, 
