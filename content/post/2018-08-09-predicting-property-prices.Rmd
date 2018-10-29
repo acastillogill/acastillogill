@@ -49,7 +49,9 @@ x <-
     "lm.beta",
     "MuMIn",
     "broom",
-    "corrplot")
+    "corrplot",
+    "rpart",
+    "rpart.plot")
 
 lapply(x, require, character.only = TRUE)
 
@@ -534,89 +536,50 @@ Here is the codebook for all the variables featured in the correlation matrix in
 - `YearsSinceBuilt`: Years since construction date
 
 
+# Random forest time
 
 
-**Numeric variables**
-```{r select significant numeric variables}
-#select significant variables
-high_cor_vars <- all_homes%>%
-  dplyr::select(GarageArea,
-                X1stFlrSF,
-                YearsSinceRemod,
-                YearsSinceGarageBuilt, 
-                YearsSinceBuilt)
+```{r split-data}
+# Randomly assign rows to ids (1/2/3 represents train/valid/test)
+# This will generate a vector of ids of length equal to the number of rows
+# The train/valid/test split will be approximately 70% / 15% / 15% 
+set.seed(1)
+assignment <- sample(1:3, size = nrow(homes),
+                     prob = c(0.7,0.15,0.15),
+                     replace = TRUE)
 
-#Create name list of high_cor_vars
-names_high_cor_vars <- names(high_cor_vars)
+# Create a train, validation and tests from the original data frame 
+homes_train <- homes[assignment == 1, ]    # subset the homes data frame to training indices only
+homes_valid <- homes[assignment == 2, ]  # subset the homes data frame to validation indices only
+homes_test <- homes[assignment == 3, ]   # subset the homes data frame to test indices only
 ```
 
-```{r high-cor-geompoint} 
+```{r train the model}
+# Train the model
+homes_model <- rpart(formula = SalePrice ~ ., 
+                     data = homes_train, 
+                     method = "anova")
 
-#For each variable that is highly correlated
-for (var in names_high_cor_vars){
-  
-#ggplot with the dataframe with values
-plot <- ggplot(high_cor_vars, aes_string(x=var, y=all_homes$SalePrice))+
-#geom_point to see distribution
-    geom_jitter(alpha=0.1)+
-#Add labels
-    labs(title=paste("Sales price vs.",var),
-       x=var,
-       y="Sales price")+ 
-  theme_minimal()+
-#Add neat scales for price
-scale_y_continuous(breaks= seq(0, 800000, by=100000),
-                   labels = comma)
-
-#Print the plot after each loop
-print(plot)
-
-}
-
+# Look at the model output                      
+print(homes_model)
 ```
 
-**Categorical variables**
+```{r variable-importance-table}
+#Look at variable importance
 
-```{r high-cor-factors}
-#Save column names
-cols <- c("OverallQual", "ExterQual", "KitchenQual", "BsmtQual", "FullBath", "GarageFinish", "TotRmsAbvGrd", "FireplaceQu")
+var_importance <- tidy(homes_model$variable.importance)
 
-#Convert OverallQual, FullBath and TotRmsAbvGrd to a factor
-high_cor_vars[cols] <- lapply(all_homes[cols], factor)
+total_importance <- sum(var_importance$x)
 
+var_importance%>%
+mutate(x=x/total_importance*100)%>%
+kable(caption="Top 30 variables in order of importance",
+        #Add column names
+        col.names = c("Variable","Percentage")) %>%
+  #Style table
+ kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 ```
 
-```{r plotting categorical variables}
-
-#Select significant numeric values
-high_cor_vars_fact <- high_cor_vars%>%
-  dplyr::select(cols)
-
-
-#Create name list of high_cor_vars
-names_high_cor_vars_fact <- names(high_cor_vars_fact)
-
-#For each variable that is highly correlated
-for (var in names_high_cor_vars_fact){
-  
-#ggplot with the dataframe with values
-plot <- ggplot(high_cor_vars_fact, aes_string(x=var, y=all_homes$SalePrice))+
-#geom_point to see distribution
-    geom_boxplot(alpha=0.1)+
-#Add labels
-    labs(title=paste("Sales price vs.",var),
-       x=var,
-       y="Sales price") + theme_minimal() +
-#Add neat scales for price
-scale_y_continuous(breaks= seq(0, 800000, by=100000),
-                   labels = comma)
-
-#Print the plot after each loop
-print(plot)
-
-} 
-
-```
 
 
 # Techniques used
