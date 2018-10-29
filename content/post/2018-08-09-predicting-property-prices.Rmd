@@ -471,7 +471,7 @@ homes<-homes%>%
 
 ## Correlation
 
-Correlation, Cor\left(X,Y\right), measures the strength of the linear relationship between two variables $X$ and $Y$.
+Correlation, $Cor(X,Y)$, measures the strength of the linear relationship between two variables $X$ and $Y$.
 
 If I were just to create a model with numeric variables, let's see which ones are significant. 
 
@@ -491,7 +491,7 @@ high_cor_names <- cor_homes%>%
 
 high_cor <- cor(homes_num)[high_cor_names,high_cor_names]
 
-corrplot.mixed(high_cor, tl.col="black", tl.pos = "lt",cl.ratio=0.1,number.cex=.5, cl.cex = .6, tl.cex = 0.5)
+corrplot.mixed(high_cor, tl.col="black", tl.pos = "lt",cl.ratio=0.1,number.cex=.5, cl.cex = .6, tl.cex = 0.8)
 ```
 
 

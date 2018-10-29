@@ -234,7 +234,7 @@ Electrical
 &lt;/div&gt;
 &lt;div id=&#34;correlation&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3&lt;/span&gt; Correlation&lt;/h2&gt;
-&lt;p&gt;Correlation, Cor(X,Y), measures the strength of the linear relationship between two variables &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Correlation, &lt;span class=&#34;math inline&#34;&gt;\(Cor(X,Y)\)&lt;/span&gt;, measures the strength of the linear relationship between two variables &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;If I were just to create a model with numeric variables, let’s see which ones are significant.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/correlation_matrix-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
