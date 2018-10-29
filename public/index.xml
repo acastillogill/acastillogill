@@ -25,10 +25,12 @@
 &lt;li&gt;&lt;a href=&#34;#the-data&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; The data&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#missing-values&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.1&lt;/span&gt; Missing values&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#variable-creation&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.2&lt;/span&gt; Variable creation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#revaluing-categorical-variables&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.3&lt;/span&gt; Revaluing categorical variables&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#correlation&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.3&lt;/span&gt; Correlation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#model-with-numeric-variables&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.4&lt;/span&gt; Model with numeric variables&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#revaluing-categorical-variables&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.5&lt;/span&gt; Revaluing categorical variables&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#data-exploration&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Data exploration&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#correlation&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.1&lt;/span&gt; Correlation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#model-selection&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.1&lt;/span&gt; Model selection&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#multi&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.2&lt;/span&gt; Multi&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#techniques-used&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Techniques used&lt;/a&gt;&lt;/li&gt;
@@ -230,187 +232,27 @@ Electrical
 &lt;div id=&#34;variable-creation&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.2&lt;/span&gt; Variable creation&lt;/h2&gt;
 &lt;/div&gt;
+&lt;div id=&#34;correlation&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3&lt;/span&gt; Correlation&lt;/h2&gt;
+&lt;p&gt;Correlation, Cor(X,Y), measures the strength of the linear relationship between two variables &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;If I were just to create a model with numeric variables, let’s see which ones are significant.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/correlation_matrix-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;model-with-numeric-variables&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.4&lt;/span&gt; Model with numeric variables&lt;/h2&gt;
+&lt;/div&gt;
 &lt;div id=&#34;revaluing-categorical-variables&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3&lt;/span&gt; Revaluing categorical variables&lt;/h2&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.5&lt;/span&gt; Revaluing categorical variables&lt;/h2&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;data-exploration&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;4&lt;/span&gt; Data exploration&lt;/h1&gt;
-&lt;div id=&#34;correlation&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.1&lt;/span&gt; Correlation&lt;/h2&gt;
-&lt;p&gt;Correlation, Cor(X,Y), measures the strength of the linear relationship between two variables &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt;.&lt;/p&gt;
-&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
-&lt;caption&gt;
-&lt;span id=&#34;tab:correlations-table&#34;&gt;Table 4.1: &lt;/span&gt;Top 16 correlations with SalePrice
-&lt;/caption&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&#34;text-align:left;&#34;&gt;
-Variable
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-Correlation
-&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-OverallQual
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.7909816
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-GrLivArea
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.7086245
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-ExterQual
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.6826392
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-KitchenQual
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.6595997
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-GarageCars
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.6404092
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-GarageArea
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.6234314
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-TotalBsmtSF
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.6135806
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-X1stFlrSF
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.6058522
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtQual
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.5852072
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-FullBath
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.5606638
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-GarageFinish
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.5492468
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-TotRmsAbvGrd
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.5337232
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-FireplaceQu
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.5204376
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-YearsSinceRemod
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
--0.5071010
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-YearsSinceGarageBuilt
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
--0.5080433
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-YearsSinceBuilt
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
--0.5228973
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+&lt;div id=&#34;model-selection&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.1&lt;/span&gt; Model selection&lt;/h2&gt;
 &lt;/div&gt;
 &lt;div id=&#34;multi&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.2&lt;/span&gt; Multi&lt;/h2&gt;
 &lt;p&gt;We will check that there is no multicolinearity amongst highly correlated variables. &lt;em&gt;explain here what is multicolinearity&lt;/em&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;          OverallQual             GrLivArea             ExterQual 
-             3.597804              5.196407              2.893796 
-          KitchenQual            GarageCars            GarageArea 
-             2.598119              5.474476              5.427985 
-          TotalBsmtSF             X1stFlrSF              BsmtQual 
-             5.184842              4.686977              2.862181 
-             FullBath          GarageFinish          TotRmsAbvGrd 
-             2.249522              1.981747              3.367677 
-          FireplaceQu       YearsSinceRemod YearsSinceGarageBuilt 
-             1.562849              2.165483              4.730174 
-      YearsSinceBuilt 
-             4.542988 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Variables with a vif above 5 are multicolinear with other explanatory variables. These were &lt;code&gt;GrLiveArea&lt;/code&gt;, &lt;code&gt;GarageCars&lt;/code&gt;, and &lt;code&gt;TotalBsmtSF&lt;/code&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;          OverallQual             ExterQual           KitchenQual 
-             3.448267              2.884464              2.596205 
-           GarageArea             X1stFlrSF              BsmtQual 
-             2.206103              1.603596              2.002222 
-             FullBath          GarageFinish          TotRmsAbvGrd 
-             2.043929              1.932250              1.813619 
-          FireplaceQu       YearsSinceRemod YearsSinceGarageBuilt 
-             1.512568              2.136858              4.670829 
-      YearsSinceBuilt 
-             4.411479 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;After removing predictors that were related amongst themselves, the top 13 variables most (above 0.5) correlated with &lt;code&gt;SalesPrice&lt;/code&gt; were:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Positive correlation&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;

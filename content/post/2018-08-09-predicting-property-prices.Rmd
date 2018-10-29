@@ -48,7 +48,8 @@ x <-
     "GGally",
     "lm.beta",
     "MuMIn",
-    "broom")
+    "broom",
+    "corrplot")
 
 lapply(x, require, character.only = TRUE)
 
@@ -449,6 +450,7 @@ homes$SaleType        <- as.factor(homes$SaleType)
 homes$SaleCondition     <- as.factor(homes$SaleCondition)
 ```
 
+
 ## Variable creation
 
 ```{r create time variables}
@@ -466,64 +468,36 @@ homes<-homes%>%
          -GarageYrBlt,
          -Id)
 ```
+
 ## Correlation
 
 Correlation, Cor\left(X,Y\right), measures the strength of the linear relationship between two variables $X$ and $Y$.
-```{r correlations table, include=FALSE}
-#rcorr is a function from the Hmisc library. 
-#It takes a numeric matrix
-corMatrix <- rcorr(as.matrix(homes), type = "pearson")
-#Returns an rcorr object where rcorr$r is the matrix of correlations, rcorr$n is the matrix of number observations used in analysing each pair of variables, and rcorr$P, the asymptotic P-values 
-
-# Correlation matrix and scatter plots.
-flatcorrmatrix.df <- as.data.frame( flattenCorrMatrix(corMatrix$r, corMatrix$P, corMatrix$n))
-
-flatcorrmatrix.df%>%
-  filter(abs(cor)>0.5&column=="SalePrice"|abs(cor)>0.5&row=="SalePrice")%>%
-  arrange(desc(cor))%>%
-#Make table
-kable(caption="Top 16 correlations with SalePrice for numeric variables",
-#Add column names
-col.names = c("Variable 1","Variable 2",
-              "Correlation","Asymptotic P-value",
-              "Number of observations"))%>%
-#Style table
-kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
-
-```
 
 If I were just to create a model with numeric variables, let's see which ones are significant. 
 
+
+
+```{r correlation_matrix}
+
+homes_num <- homes%>%
+  select_if(is.numeric)
+
+cor_homes <- tidy(cor(homes_num))
+
+high_cor_names <- cor_homes%>%
+  arrange(desc(SalePrice))%>%
+  filter(abs(SalePrice)>0.5)%>%
+  pull(.rownames)
+
+high_cor <- cor(homes_num)[high_cor_names,high_cor_names]
+
+corrplot.mixed(high_cor, tl.col="black", tl.pos = "lt",cl.ratio=0.1,number.cex=.5, cl.cex = .6, tl.cex = 0.5)
+```
+
+
+
 ## Model with numeric variables
 
-```{r all fit}
-
-#Creating a fit with categorical variables
-num_fit <- lm(SalePrice ~ . 
-          , data = homes, na.action = "na.fail")
-#Tidying Anova table
-tidy(anova(num_fit))%>%
-#Arranging by p-value
-  arrange(p.value)%>%
-#Leaving only variables that are significant p value<5%
-  filter(p.value<0.05)%>%
-  kable(caption="Anova table for 79 variables",
-#Add column names
-col.names = c("Variable","Degrees of freedom","Sum of squares",
-              "Means squared","F-statistic",
-              "P-value"))%>%
-#Style table
-kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
-  
-```   
-I am looking at the ANOVA table output. The Analysis of Variance (ANOVA) provides information about the levels of variable in the model and help us identify significant variables.
-
-The hypothesis being tested is that $Beta_1=0$
-
-
-There are 50 variables that are significant. The homes dataset has 79 variables. So there are 29 the model does not consider significant. 
-
-Let's separate numeric from categorical variables. 
 
 
 
@@ -554,16 +528,7 @@ all_homes <- homes%>%
 
 ## Model selection
 
-```{r fit model}
-fit <- lm(SalePrice ~ . 
-          , data = all_homes, na.action = "na.fail")
 
-tidy(anova(fit))%>%
-  arrange(p.value)%>%
-  filter(p.value<0.05)%>%
-  dplyr::select(term, statistic, p.value)
-
-```
 
 ```{r}
 
