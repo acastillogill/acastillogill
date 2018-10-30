@@ -51,7 +51,8 @@ x <-
     "broom",
     "corrplot",
     "rpart",
-    "rpart.plot")
+    "rpart.plot",
+    "Metrics")
 
 lapply(x, require, character.only = TRUE)
 
@@ -538,7 +539,7 @@ Here is the codebook for all the variables featured in the correlation matrix in
 
 # Random forest time
 
-
+## Splitting the data
 ```{r split-data, include=FALSE}
 # Randomly assign rows to ids (1/2/3 represents train/valid/test)
 # This will generate a vector of ids of length equal to the number of rows
@@ -554,6 +555,7 @@ homes_valid <- homes[assignment == 2, ]  # subset the homes data frame to valida
 homes_test <- homes[assignment == 3, ]   # subset the homes data frame to test indices only
 ```
 
+## Training the model
 ```{r train the model, include=FALSE}
 # Train the model
 homes_model <- rpart(formula = SalePrice ~ ., 
@@ -564,6 +566,7 @@ homes_model <- rpart(formula = SalePrice ~ .,
 print(homes_model)
 ```
 
+##Revising variable importance
 ```{r variable-importance-table}
 #Look at variable importance
 
@@ -580,7 +583,56 @@ kable(caption="Top 30 variables in order of importance",
  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 ```
 
+## Evaluating the model
 
+```{r prediction}
+#Computing predicted values 
+pred <- predict(object=homes_model,
+                newdata = homes_test)
+
+#Compute RMSE
+rmse(actual=homes_test$SalePrice, #Actual values
+     predicted = pred) #Predicted values
+
+#Compute MAE
+mae(actual=homes_test$SalePrice, #Actual values
+     predicted = pred) #Predicted values
+```
+
+## Tuning hyperparameters
+
+```{r tuning-hyperparameters}
+# Plot the "CP Table"
+plotcp(homes_model)
+
+# Print the "CP Table"
+print(homes_model$cptable)
+
+# Retrieve optimal cp value based on cross-validated error
+opt_index <- which.min(homes_model$cptable[, "xerror"])
+cp_opt <- homes_model$cptable[opt_index, "CP"]
+
+# Prune the model (to optimized cp value)
+homes_model_opt <- prune(tree = homes_model, 
+                         cp = cp_opt)
+                          
+# Plot the optimized model
+rpart.plot(x = homes_model_opt, yesno = 2, type = 0, extra = 0)
+```
+## Checking the error on the optimised model
+```{r prediction}
+#Computing predicted values 
+pred <- predict(object=homes_model_opt,
+                newdata = homes_test)
+
+#Compute RMSE
+rmse(actual=homes_test$SalePrice, #Actual values
+     predicted = pred) #Predicted values
+
+#Compute MAE
+mae(actual=homes_test$SalePrice, #Actual values
+    predicted = pred) #Predicted values
+```
 
 # Techniques used
 
