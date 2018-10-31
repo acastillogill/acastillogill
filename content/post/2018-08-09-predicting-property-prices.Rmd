@@ -587,16 +587,16 @@ kable(caption="Top 30 variables in order of importance",
 
 ```{r prediction}
 #Computing predicted values 
-pred <- predict(object=homes_model,
+pred_base <- predict(object=homes_model,
                 newdata = homes_test)
 
 #Compute RMSE
 rmse(actual=homes_test$SalePrice, #Actual values
-     predicted = pred) #Predicted values
+     predicted = pred_base ) #Predicted values
 
 #Compute MAE
 mae(actual=homes_test$SalePrice, #Actual values
-     predicted = pred) #Predicted values
+     predicted = pred_base ) #Predicted values
 ```
 
 ## Tuning hyperparameters
@@ -622,18 +622,124 @@ rpart.plot(x = homes_model_opt, yesno = 2, type = 0, extra = 0)
 ## Checking the error on the optimised model
 ```{r prediction}
 #Computing predicted values 
-pred <- predict(object=homes_model_opt,
+pred_opt <- predict(object=homes_model_opt,
                 newdata = homes_test)
 
 #Compute RMSE
 rmse(actual=homes_test$SalePrice, #Actual values
-     predicted = pred) #Predicted values
+     predicted = pred_opt) #Predicted values
 
 #Compute MAE
 mae(actual=homes_test$SalePrice, #Actual values
-    predicted = pred) #Predicted values
+    predicted = pred_opt) #Predicted values
 ```
 
+## Grid search for best hyperparameters
+
+```{r set up the grid}
+#Establish a list of possible values for minsplit and maxdepth
+#From 1 to 30 by 5
+min_split <- seq(1,5,1)
+#From 5 to 30 by 10
+max_depth <- seq(1, 5, 0.5)
+
+#Create a dataframe containing all combinations
+hyper_grid <- expand.grid(min_split=min_split,
+                          max_depth=max_depth)
+
+#Check dimensions
+dim(hyper_grid)
+```
+
+```{r create models}
+#Create an empty list to store the models
+
+models <- list()
+
+#Execute the grid search
+
+for (i in 1:nrow(hyper_grid)){
+  
+  #Get min_split, max_depth values at row i
+  
+  minsplit <- hyper_grid$min_split[i]
+  max_depth <- hyper_grid$max_depth[i]
+  
+  #Train the model and store in the list
+  
+  models[[i]] <- rpart(formula = SalePrice~.,
+                       data = homes_train,
+                       method = "anova",
+                       minsplit=min_split,
+                       maxdepth=max_depth)
+  
+}
+```
+
+```{r evaluating models in grid}
+#Create an empty vector to store RMSE values
+rmse_values <- c()
+#Create an empty vector to store MAE values
+mae_values <- c()
+
+#Compute validation RMSE 
+for (i in 1:length(models)){
+  
+  #Retrieve the ith model from the list
+  
+  model <- models[[i]]
+  
+  #Generate predictions on homes_valid validation set
+  
+  pred_grid <- predict(object=model,
+                       newdata=homes_valid)
+  
+  #Compute validation RMSE and add to the 
+  
+  rmse_values[i] <- rmse(actual = homes_valid$SalePrice,
+                         predicted = pred_grid)
+  
+    mae_values[i] <- mae(actual = homes_valid$SalePrice,
+                         predicted = pred_grid)
+  
+  
+}
+```
+
+```{r picking best model}
+#Identifying the model with smallest validation set RMSE
+best_model_RMSE <- models[[which.min(rmse_values)]]
+#Print the model parameters of the best_model_RMSE
+best_model_RMSE$control
+#Compute test set RMSE on best_model_RMSE
+pred <- predict(object=best_model_RMSE,
+                newdata=homes_test)
+
+rmse(actual = homes_test$SalePrice,
+     predicted = pred)
+
+#Identifying the model with smallest validation set MAE
+best_model_MAE <- models[[which.min(mae_values)]]
+#Print the model parameters of the best_model_MAE
+best_model_MAE$control
+#Compute test set MAE on best_model_MAE
+pred <- predict(object=best_model_MAE,
+                newdata=homes_test)
+
+mae(actual = homes_test$SalePrice,
+     predicted = pred)
+```
+
+
+#Remove variables with minimum variance with the caret package
+
+#https://www.kaggle.com/general/23243
+
+https://stats.stackexchange.com/questions/172842/best-practices-with-data-wrangling-before-running-random-forest-predictions
+
+https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf
+
+https://stackoverflow.com/questions/29702890/data-preparation-for-random-forest-and-predictive-modeling-in-python
 # Techniques used
 
 - I 
@@ -642,3 +748,5 @@ mae(actual=homes_test$SalePrice, #Actual values
 
 - 
 
+
+#https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf
