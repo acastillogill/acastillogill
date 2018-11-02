@@ -52,7 +52,9 @@ x <-
     "corrplot",
     "rpart",
     "rpart.plot",
-    "Metrics")
+    "Metrics",
+    "caret",
+    "psych")
 
 lapply(x, require, character.only = TRUE)
 
@@ -465,12 +467,13 @@ homes<-homes%>%
          YearsSinceRemod = year(Sys.Date())-YearRemodAdd,
          #Same for GarageYrBlt
          YearsSinceGarageBuilt = year(Sys.Date())-GarageYrBlt)%>%
-  #Remove `YearsSinceBuilt`, `YearsSinceGarageBuilt`, and `YearsSinceRemod`
-  dplyr::select(-YearBuilt,
-         -YearRemodAdd,
-         -GarageYrBlt,
-         -Id)
+  #Remove old variables
+  dplyr::select(-GarageYrBlt,
+                -YearRemodAdd,
+                -YearBuilt)
 ```
+
+
 
 ## Correlation
 
@@ -494,7 +497,6 @@ round(coefficients(norm_fit), digits = 2)
 Here is the correlation matrix for variables that have a relationship stronger than 0.5 with `SalePrice`. 
 
 ```{r correlation_matrix}
-#Select numeric variables
 homes_num <- homes%>%
   select_if(is.numeric)
 #Create tidy correlation matrix
@@ -508,6 +510,7 @@ high_cor_names <- cor_homes%>%
 high_cor <- cor(homes_num)[high_cor_names,high_cor_names]
 #Create correlation matrix
 corrplot.mixed(high_cor, tl.col="black", tl.pos = "lt",cl.ratio=0.1,number.cex=.8, cl.cex = .6, tl.cex = 0.8)
+
 ```
 
 There are 17 variables that have a correlation stronger than 0.5. They are arranged in descending order. It is interesting to note the high correlation that exists amongst variables. The correlation plot highlights some obvious ones, `GarageArea` and `GarageCars`. Makes sense, a bigger garage can hold more cars. `X1stFlrSF` and `TotalBsmtSF`, the total area of the first floor and basement, this also seems reasonable since basements are underneath the same floor and would tend to have a similar area. `TotRmsAbvGrd` and `GrLivArea`, the total number of rooms and area above ground, again ok, more rooms would be linked to a bigger living area. Finally, `YearsSinceBuilt` and `YearsSinceGarageBuilt` since garages are usually built at the same time as the house.
@@ -535,6 +538,23 @@ Here is the codebook for all the variables featured in the correlation matrix in
 - `YearsSinceRemod`: Years since remodel date (same as construction date if no remodelling or additions)
 - `YearsSinceGarageBuilt`: Years since the garage was built 
 - `YearsSinceBuilt`: Years since construction date
+
+## Removing correlated variables
+
+```{r removing correlated variables}
+homes <- homes%>%
+  dplyr::select(-GarageCars,
+                -TotalBsmtSF,
+                -TotRmsAbvGrd,
+                -YearsSinceGarageBuilt)
+```
+
+## Removing variables that have low variance
+
+```{r low var}
+homes <- homes[,-nearZeroVar(homes)]
+```
+
 
 
 # Random forest time
@@ -639,9 +659,9 @@ mae(actual=homes_test$SalePrice, #Actual values
 ```{r set up the grid}
 #Establish a list of possible values for minsplit and maxdepth
 #From 1 to 30 by 5
-min_split <- seq(1,5,1)
+min_split <- seq(10,20,2)
 #From 5 to 30 by 10
-max_depth <- seq(1, 5, 0.5)
+max_depth <- seq(2, 30, 2)
 
 #Create a dataframe containing all combinations
 hyper_grid <- expand.grid(min_split=min_split,
@@ -730,16 +750,25 @@ mae(actual = homes_test$SalePrice,
      predicted = pred)
 ```
 
+```{r}
+rpart.plot(best_model_MAE)
+rpart.plot(best_model_RMSE)
 
-#Remove variables with minimum variance with the caret package
+rpart.plot(homes_model)
+rpart.plot(homes_model_opt)
+```
 
-#https://www.kaggle.com/general/23243
+
+
+
 
 https://stats.stackexchange.com/questions/172842/best-practices-with-data-wrangling-before-running-random-forest-predictions
 
 https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf
 
 https://stackoverflow.com/questions/29702890/data-preparation-for-random-forest-and-predictive-modeling-in-python
+
+
 # Techniques used
 
 - I 
@@ -749,4 +778,4 @@ https://stackoverflow.com/questions/29702890/data-preparation-for-random-forest-
 - 
 
 
-#https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf
+https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf
