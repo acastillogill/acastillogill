@@ -6,7 +6,7 @@ google_fonts = "Merriweather|Merriweather+Sans"
 
 # Font families
 heading_font = "Merriweather Sans"
-body_font = "Merriweather"
+body_font = "Merriweather Sans"
 nav_font = "Merriweather Sans"
 mono_font = "Merriweather"
 
