@@ -15,35 +15,16 @@
   {{ end }}
   {{ end }}
 
-  {{ $pubs_len := len (where .Site.RegularPages "Section" "publication") }}
-  {{ if gt $pubs_len 0 }}
-  <h2>{{ i18n "publications" }}</h2>
-  {{ range first 5 (where .Site.RegularPages "Section" "publication") }}
-  <ul>
+{{ $journal_len := len (where .Site.RegularPages "Section" "journal") }}
+{{ if gt $journal_len 0 }}
+<h2>{{ i18n "journal" }}</h2>
+{{ range first 5 (where .Site.RegularPages "Section" "journal") }}
+<ul>
     <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
-  </ul>
-  {{ end }}
-  {{ end }}
+</ul>
+{{ end }}
+{{ end }}
 
-  {{ $talks_len := len (where .Site.RegularPages "Section" "talk") }}
-  {{ if gt $talks_len 0 }}
-  <h2>{{ i18n "talks" }}</h2>
-  {{ range first 5 (sort (where .Site.RegularPages "Type" "talk") ".Params.time_start" "desc") }}
-  <ul>
-    <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
-  </ul>
-  {{ end }}
-  {{ end }}
-
-  {{ $projects_len := len (where .Site.RegularPages "Section" "project") }}
-  {{ if gt $projects_len 0 }}
-  <h2>{{ i18n "projects" }}</h2>
-  {{ range first 5 (where .Site.RegularPages "Section" "project") }}
-  <ul>
-    <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
-  </ul>
-  {{ end }}
-  {{ end }}
 
 </div>
 {{ partial "footer_container.html" . }}
