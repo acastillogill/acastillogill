@@ -11,5 +11,5 @@ nav_font = "Oswald:600"
 mono_font = "Oswald:600"
 
 # Font size
-font_size = "20"
-font_size_small = "18"
+font_size = "18"
+font_size_small = "16"
