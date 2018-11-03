@@ -7,8 +7,8 @@ google_fonts = "Merriweather|Muli"
 # Font families
 heading_font = "Muli"
 body_font = "Merriweather"
-nav_font = "Merriweather"
-mono_font = "Merriweather"
+nav_font = "Muli"
+mono_font = "Muli"
 
 # Font size
 font_size = "20"
