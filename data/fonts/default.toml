@@ -8,7 +8,7 @@ google_fonts = "Cardo|Muli"
 heading_font = "Muli"
 body_font = "Cardo"
 nav_font = "Muli"
-mono_font = "Cardo"
+mono_font = "Muli"
 
 # Font size
 font_size = "20"
