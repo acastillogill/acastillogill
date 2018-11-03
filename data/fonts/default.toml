@@ -2,7 +2,7 @@
 name = "Default"
 
 # Optional Google font URL
-google_fonts = "Muli:400,700|Muli+Roboto"
+google_fonts = "Merriweather|Merriweather+Sans"
 
 # Font families
 heading_font = "Muli"
