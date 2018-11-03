@@ -26,7 +26,7 @@ paginate = 10
 disqusShortname = ""
 
 # Enable analytics by entering your Google Analytics tracking ID
-googleAnalytics = ""
+googleAnalytics = "UA-128625006-1"
 
 # Default language to use (if you setup multilingual support)
 defaultContentLanguage = "en"
@@ -34,7 +34,7 @@ hasCJKLanguage = false  # Set `true` for Chinese/Japanese/Korean languages.
 defaultContentLanguageInSubdir = false
 
 # Get last modified date for content from Git?
-enableGitInfo = false
+enableGitInfo = true
 
 [outputs]
   home = [ "HTML", "CSS", "RSS" ]
