@@ -11,6 +11,33 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Recent Posts</title>
+      <link>/posts/</link>
+      <pubDate>Wed, 20 Apr 2016 00:00:00 +0200</pubDate>
+      
+      <guid>/posts/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/journal/sat-third-nov-eighteen/</link>
+      <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/journal/sat-third-nov-eighteen/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/journal/journal-template/</link>
+      <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/journal/journal-template/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Predicting property prices</title>
       <link>/post/predicting-property-prices/</link>
       <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
@@ -26,8 +53,16 @@
 &lt;li&gt;&lt;a href=&#34;#missing-values&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.1&lt;/span&gt; Missing values&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#variable-creation&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.2&lt;/span&gt; Variable creation&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#correlation&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.3&lt;/span&gt; Correlation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#removing-correlated-variables&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.4&lt;/span&gt; Removing correlated variables&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#removing-variables-that-have-low-variance&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.5&lt;/span&gt; Removing variables that have low variance&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#random-forest-time&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Random forest time&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#random-forest-time&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Random forest time&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#splitting-the-data&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.1&lt;/span&gt; Splitting the data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#training-the-model&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.2&lt;/span&gt; Training the model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#evaluating-the-model&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.3&lt;/span&gt; Evaluating the model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#tuning-hyperparameters&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.4&lt;/span&gt; Tuning hyperparameters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#grid-search-for-best-hyperparameters&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.5&lt;/span&gt; Grid search for best hyperparameters&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#techniques-used&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Techniques used&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#questions-from-this-analysis&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; Questions from this analysis&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -267,9 +302,21 @@ round(coefficients(norm_fit), digits = 2)
 &lt;li&gt;&lt;code&gt;YearsSinceBuilt&lt;/code&gt;: Years since construction date&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
+&lt;div id=&#34;removing-correlated-variables&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.4&lt;/span&gt; Removing correlated variables&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div id=&#34;removing-variables-that-have-low-variance&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.5&lt;/span&gt; Removing variables that have low variance&lt;/h2&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;random-forest-time&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;4&lt;/span&gt; Random forest time&lt;/h1&gt;
+&lt;div id=&#34;splitting-the-data&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.1&lt;/span&gt; Splitting the data&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div id=&#34;training-the-model&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.2&lt;/span&gt; Training the model&lt;/h2&gt;
+##Revising variable importance
 &lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
 &lt;caption&gt;
 &lt;span id=&#34;tab:variable-importance-table&#34;&gt;Table 4.1: &lt;/span&gt;Top 30 variables in order of importance
@@ -290,7 +337,7 @@ Percentage
 OverallQual
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-20.2881958
+23.0908253
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -298,15 +345,7 @@ OverallQual
 Neighborhood
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-13.8292678
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-TotalBsmtSF
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8.6078376
+16.3698416
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -314,15 +353,7 @@ TotalBsmtSF
 BsmtQual
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-8.1265399
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-GarageCars
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-7.8028308
+9.2890273
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -330,31 +361,7 @@ GarageCars
 GarageArea
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-7.2956063
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-GrLivArea
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4.7334142
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-X1stFlrSF
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4.2245809
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-FullBath
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3.6685198
+8.2814844
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -362,23 +369,39 @@ FullBath
 YearsSinceBuilt
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-3.1868448
+7.2565730
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&#34;text-align:left;&#34;&gt;
-YearsSinceGarageBuilt
+X1stFlrSF
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-2.5644295
+5.4789109
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&#34;text-align:left;&#34;&gt;
-TotRmsAbvGrd
+KitchenQual
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-2.4496070
+5.3443726
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+GrLivArea
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+4.9747246
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+FullBath
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2.8691439
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -386,119 +409,7 @@ TotRmsAbvGrd
 ExterQual
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-2.4189322
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-LotArea
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.6004963
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-X2ndFlrSF
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.4798477
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BedroomAbvGr
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.4488343
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-MSSubClass
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.2739904
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtFinSF1
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.1689013
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-HouseStyle
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.7356457
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtUnfSF
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.7099965
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Condition1
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.5471333
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-OpenPorchSF
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.5471333
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-LotFrontage
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.3274190
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-LandContour
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.2735666
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-LotShape
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.2735666
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-MasVnrArea
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.1600470
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-MSZoning
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.0954188
+2.7649563
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -506,15 +417,143 @@ MSZoning
 Foundation
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.0581028
+2.6696773
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtCond
+BsmtFinSF1
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.0516470
+2.1033008
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+X2ndFlrSF
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1.8597701
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+MSSubClass
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1.3109361
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+LotArea
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.9052501
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+HouseStyle
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.6418588
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+BsmtUnfSF
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.6373275
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Fireplaces
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.6114288
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+BedroomAbvGr
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.5967665
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+LotFrontage
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.5341481
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+YearsSinceRemod
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.5114995
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Exterior1st
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.4076192
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Condition1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.3409997
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+HeatingQC
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.3409997
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+HalfBath
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.3059286
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+MasVnrArea
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.1991437
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+MSZoning
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.1090683
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Fence
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.0763478
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -522,11 +561,107 @@ BsmtCond
 BsmtExposure
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.0516470
+0.0590350
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+BsmtFinType1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.0590350
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;evaluating-the-model&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.3&lt;/span&gt; Evaluating the model&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;[1] 46379.54
+[1] 31179.09&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;tuning-hyperparameters&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.4&lt;/span&gt; Tuning hyperparameters&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/tuning-hyperparameters-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;           CP nsplit rel error    xerror       xstd
+1  0.44576120      0 1.0000000 1.0034376 0.09648934
+2  0.11980464      1 0.5542388 0.5578944 0.05448931
+3  0.07227853      2 0.4344342 0.4383458 0.05343974
+4  0.03113653      3 0.3621556 0.3953313 0.04125842
+5  0.02840259      4 0.3310191 0.3972113 0.04398518
+6  0.01998604      6 0.2742139 0.3739279 0.04374764
+7  0.01893938      7 0.2542279 0.3649156 0.04025849
+8  0.01351892      8 0.2352885 0.3400398 0.03717158
+9  0.01198871      9 0.2217696 0.3296234 0.03704446
+10 0.01182315     10 0.2097809 0.3195743 0.03702275
+11 0.01000000     11 0.1979577 0.3039500 0.03505641&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/tuning-hyperparameters-2.png&#34; width=&#34;672&#34; /&gt;
+## Checking the error on the optimised model&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[1] 46379.54
+[1] 31179.09&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;grid-search-for-best-hyperparameters&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.5&lt;/span&gt; Grid search for best hyperparameters&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;[1] 90  2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;$minsplit
+[1] 10 12 14 16 18 20
+
+$minbucket
+[1] 3 4 5 5 6 7
+
+$cp
+[1] 0.01
+
+$maxcompete
+[1] 4
+
+$maxsurrogate
+[1] 5
+
+$usesurrogate
+[1] 2
+
+$surrogatestyle
+[1] 0
+
+$maxdepth
+[1] 2
+
+$xval
+[1] 10
+[1] 81900.42
+$minsplit
+[1] 10 12 14 16 18 20
+
+$minbucket
+[1] 3 4 5 5 6 7
+
+$cp
+[1] 0.01
+
+$maxcompete
+[1] 4
+
+$maxsurrogate
+[1] 5
+
+$usesurrogate
+[1] 2
+
+$surrogatestyle
+[1] 0
+
+$maxdepth
+[1] 2
+
+$xval
+[1] 10
+[1] 58664.27&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-1-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://stats.stackexchange.com/questions/172842/best-practices-with-data-wrangling-before-running-random-forest-predictions&#34; class=&#34;uri&#34;&gt;https://stats.stackexchange.com/questions/172842/best-practices-with-data-wrangling-before-running-random-forest-predictions&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf&#34; class=&#34;uri&#34;&gt;https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/29702890/data-preparation-for-random-forest-and-predictive-modeling-in-python&#34; class=&#34;uri&#34;&gt;https://stackoverflow.com/questions/29702890/data-preparation-for-random-forest-and-predictive-modeling-in-python&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;techniques-used&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;5&lt;/span&gt; Techniques used&lt;/h1&gt;
@@ -539,6 +674,7 @@ BsmtExposure
 &lt;ul&gt;
 &lt;li&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf&#34; class=&#34;uri&#34;&gt;https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>

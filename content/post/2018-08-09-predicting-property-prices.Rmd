@@ -605,7 +605,7 @@ kable(caption="Top 30 variables in order of importance",
 
 ## Evaluating the model
 
-```{r prediction}
+```{r initial-prediction}
 #Computing predicted values 
 pred_base <- predict(object=homes_model,
                 newdata = homes_test)

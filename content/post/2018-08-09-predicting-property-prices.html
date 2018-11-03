@@ -31,8 +31,16 @@ editor_options:
 <li><a href="#missing-values"><span class="toc-section-number">3.1</span> Missing values</a></li>
 <li><a href="#variable-creation"><span class="toc-section-number">3.2</span> Variable creation</a></li>
 <li><a href="#correlation"><span class="toc-section-number">3.3</span> Correlation</a></li>
+<li><a href="#removing-correlated-variables"><span class="toc-section-number">3.4</span> Removing correlated variables</a></li>
+<li><a href="#removing-variables-that-have-low-variance"><span class="toc-section-number">3.5</span> Removing variables that have low variance</a></li>
 </ul></li>
-<li><a href="#random-forest-time"><span class="toc-section-number">4</span> Random forest time</a></li>
+<li><a href="#random-forest-time"><span class="toc-section-number">4</span> Random forest time</a><ul>
+<li><a href="#splitting-the-data"><span class="toc-section-number">4.1</span> Splitting the data</a></li>
+<li><a href="#training-the-model"><span class="toc-section-number">4.2</span> Training the model</a></li>
+<li><a href="#evaluating-the-model"><span class="toc-section-number">4.3</span> Evaluating the model</a></li>
+<li><a href="#tuning-hyperparameters"><span class="toc-section-number">4.4</span> Tuning hyperparameters</a></li>
+<li><a href="#grid-search-for-best-hyperparameters"><span class="toc-section-number">4.5</span> Grid search for best hyperparameters</a></li>
+</ul></li>
 <li><a href="#techniques-used"><span class="toc-section-number">5</span> Techniques used</a></li>
 <li><a href="#questions-from-this-analysis"><span class="toc-section-number">6</span> Questions from this analysis</a></li>
 </ul>
@@ -272,9 +280,21 @@ round(coefficients(norm_fit), digits = 2)
 <li><code>YearsSinceBuilt</code>: Years since construction date</li>
 </ul>
 </div>
+<div id="removing-correlated-variables" class="section level2">
+<h2><span class="header-section-number">3.4</span> Removing correlated variables</h2>
+</div>
+<div id="removing-variables-that-have-low-variance" class="section level2">
+<h2><span class="header-section-number">3.5</span> Removing variables that have low variance</h2>
+</div>
 </div>
 <div id="random-forest-time" class="section level1">
 <h1><span class="header-section-number">4</span> Random forest time</h1>
+<div id="splitting-the-data" class="section level2">
+<h2><span class="header-section-number">4.1</span> Splitting the data</h2>
+</div>
+<div id="training-the-model" class="section level2">
+<h2><span class="header-section-number">4.2</span> Training the model</h2>
+##Revising variable importance
 <table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:variable-importance-table">Table 4.1: </span>Top 30 variables in order of importance
@@ -295,7 +315,7 @@ Percentage
 OverallQual
 </td>
 <td style="text-align:right;">
-20.2881958
+23.0908253
 </td>
 </tr>
 <tr>
@@ -303,15 +323,7 @@ OverallQual
 Neighborhood
 </td>
 <td style="text-align:right;">
-13.8292678
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-TotalBsmtSF
-</td>
-<td style="text-align:right;">
-8.6078376
+16.3698416
 </td>
 </tr>
 <tr>
@@ -319,15 +331,7 @@ TotalBsmtSF
 BsmtQual
 </td>
 <td style="text-align:right;">
-8.1265399
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-GarageCars
-</td>
-<td style="text-align:right;">
-7.8028308
+9.2890273
 </td>
 </tr>
 <tr>
@@ -335,31 +339,7 @@ GarageCars
 GarageArea
 </td>
 <td style="text-align:right;">
-7.2956063
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-GrLivArea
-</td>
-<td style="text-align:right;">
-4.7334142
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-X1stFlrSF
-</td>
-<td style="text-align:right;">
-4.2245809
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-FullBath
-</td>
-<td style="text-align:right;">
-3.6685198
+8.2814844
 </td>
 </tr>
 <tr>
@@ -367,23 +347,39 @@ FullBath
 YearsSinceBuilt
 </td>
 <td style="text-align:right;">
-3.1868448
+7.2565730
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-YearsSinceGarageBuilt
+X1stFlrSF
 </td>
 <td style="text-align:right;">
-2.5644295
+5.4789109
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-TotRmsAbvGrd
+KitchenQual
 </td>
 <td style="text-align:right;">
-2.4496070
+5.3443726
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GrLivArea
+</td>
+<td style="text-align:right;">
+4.9747246
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FullBath
+</td>
+<td style="text-align:right;">
+2.8691439
 </td>
 </tr>
 <tr>
@@ -391,119 +387,7 @@ TotRmsAbvGrd
 ExterQual
 </td>
 <td style="text-align:right;">
-2.4189322
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-LotArea
-</td>
-<td style="text-align:right;">
-1.6004963
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-X2ndFlrSF
-</td>
-<td style="text-align:right;">
-1.4798477
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-BedroomAbvGr
-</td>
-<td style="text-align:right;">
-1.4488343
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-MSSubClass
-</td>
-<td style="text-align:right;">
-1.2739904
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-BsmtFinSF1
-</td>
-<td style="text-align:right;">
-1.1689013
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-HouseStyle
-</td>
-<td style="text-align:right;">
-0.7356457
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-BsmtUnfSF
-</td>
-<td style="text-align:right;">
-0.7099965
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Condition1
-</td>
-<td style="text-align:right;">
-0.5471333
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-OpenPorchSF
-</td>
-<td style="text-align:right;">
-0.5471333
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-LotFrontage
-</td>
-<td style="text-align:right;">
-0.3274190
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-LandContour
-</td>
-<td style="text-align:right;">
-0.2735666
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-LotShape
-</td>
-<td style="text-align:right;">
-0.2735666
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-MasVnrArea
-</td>
-<td style="text-align:right;">
-0.1600470
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-MSZoning
-</td>
-<td style="text-align:right;">
-0.0954188
+2.7649563
 </td>
 </tr>
 <tr>
@@ -511,15 +395,143 @@ MSZoning
 Foundation
 </td>
 <td style="text-align:right;">
-0.0581028
+2.6696773
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-BsmtCond
+BsmtFinSF1
 </td>
 <td style="text-align:right;">
-0.0516470
+2.1033008
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+X2ndFlrSF
+</td>
+<td style="text-align:right;">
+1.8597701
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MSSubClass
+</td>
+<td style="text-align:right;">
+1.3109361
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LotArea
+</td>
+<td style="text-align:right;">
+0.9052501
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HouseStyle
+</td>
+<td style="text-align:right;">
+0.6418588
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BsmtUnfSF
+</td>
+<td style="text-align:right;">
+0.6373275
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fireplaces
+</td>
+<td style="text-align:right;">
+0.6114288
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BedroomAbvGr
+</td>
+<td style="text-align:right;">
+0.5967665
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LotFrontage
+</td>
+<td style="text-align:right;">
+0.5341481
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+YearsSinceRemod
+</td>
+<td style="text-align:right;">
+0.5114995
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Exterior1st
+</td>
+<td style="text-align:right;">
+0.4076192
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Condition1
+</td>
+<td style="text-align:right;">
+0.3409997
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HeatingQC
+</td>
+<td style="text-align:right;">
+0.3409997
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HalfBath
+</td>
+<td style="text-align:right;">
+0.3059286
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MasVnrArea
+</td>
+<td style="text-align:right;">
+0.1991437
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MSZoning
+</td>
+<td style="text-align:right;">
+0.1090683
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fence
+</td>
+<td style="text-align:right;">
+0.0763478
 </td>
 </tr>
 <tr>
@@ -527,11 +539,107 @@ BsmtCond
 BsmtExposure
 </td>
 <td style="text-align:right;">
-0.0516470
+0.0590350
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BsmtFinType1
+</td>
+<td style="text-align:right;">
+0.0590350
 </td>
 </tr>
 </tbody>
 </table>
+</div>
+<div id="evaluating-the-model" class="section level2">
+<h2><span class="header-section-number">4.3</span> Evaluating the model</h2>
+<pre><code>[1] 46379.54
+[1] 31179.09</code></pre>
+</div>
+<div id="tuning-hyperparameters" class="section level2">
+<h2><span class="header-section-number">4.4</span> Tuning hyperparameters</h2>
+<p><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/tuning-hyperparameters-1.png" width="672" /></p>
+<pre><code>           CP nsplit rel error    xerror       xstd
+1  0.44576120      0 1.0000000 1.0034376 0.09648934
+2  0.11980464      1 0.5542388 0.5578944 0.05448931
+3  0.07227853      2 0.4344342 0.4383458 0.05343974
+4  0.03113653      3 0.3621556 0.3953313 0.04125842
+5  0.02840259      4 0.3310191 0.3972113 0.04398518
+6  0.01998604      6 0.2742139 0.3739279 0.04374764
+7  0.01893938      7 0.2542279 0.3649156 0.04025849
+8  0.01351892      8 0.2352885 0.3400398 0.03717158
+9  0.01198871      9 0.2217696 0.3296234 0.03704446
+10 0.01182315     10 0.2097809 0.3195743 0.03702275
+11 0.01000000     11 0.1979577 0.3039500 0.03505641</code></pre>
+<p><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/tuning-hyperparameters-2.png" width="672" />
+## Checking the error on the optimised model</p>
+<pre><code>[1] 46379.54
+[1] 31179.09</code></pre>
+</div>
+<div id="grid-search-for-best-hyperparameters" class="section level2">
+<h2><span class="header-section-number">4.5</span> Grid search for best hyperparameters</h2>
+<pre><code>[1] 90  2</code></pre>
+<pre><code>$minsplit
+[1] 10 12 14 16 18 20
+
+$minbucket
+[1] 3 4 5 5 6 7
+
+$cp
+[1] 0.01
+
+$maxcompete
+[1] 4
+
+$maxsurrogate
+[1] 5
+
+$usesurrogate
+[1] 2
+
+$surrogatestyle
+[1] 0
+
+$maxdepth
+[1] 2
+
+$xval
+[1] 10
+[1] 81900.42
+$minsplit
+[1] 10 12 14 16 18 20
+
+$minbucket
+[1] 3 4 5 5 6 7
+
+$cp
+[1] 0.01
+
+$maxcompete
+[1] 4
+
+$maxsurrogate
+[1] 5
+
+$usesurrogate
+[1] 2
+
+$surrogatestyle
+[1] 0
+
+$maxdepth
+[1] 2
+
+$xval
+[1] 10
+[1] 58664.27</code></pre>
+<p><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-1-1.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+<p><a href="https://stats.stackexchange.com/questions/172842/best-practices-with-data-wrangling-before-running-random-forest-predictions" class="uri">https://stats.stackexchange.com/questions/172842/best-practices-with-data-wrangling-before-running-random-forest-predictions</a></p>
+<p><a href="https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf" class="uri">https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf</a></p>
+<p><a href="https://stackoverflow.com/questions/29702890/data-preparation-for-random-forest-and-predictive-modeling-in-python" class="uri">https://stackoverflow.com/questions/29702890/data-preparation-for-random-forest-and-predictive-modeling-in-python</a></p>
+</div>
 </div>
 <div id="techniques-used" class="section level1">
 <h1><span class="header-section-number">5</span> Techniques used</h1>
@@ -544,4 +652,5 @@ BsmtExposure
 <ul>
 <li></li>
 </ul>
+<p><a href="https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf" class="uri">https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf</a></p>
 </div>

@@ -1,0 +1,21 @@
+---
+title: hello
+author: Ángela Castillo-Gill
+date: '2018-11-03'
+slug: hello
+categories:
+  - Journal
+tags: 
+  - Pre processing data
+  - Learning
+draft: FALSE
+summary: this is a test
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+    toc_depth: 2
+  fig_caption: true
+editor_options: 
+  chunk_output_type: console
+---
