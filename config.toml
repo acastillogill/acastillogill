@@ -273,11 +273,6 @@ name = "Journal"
 url = "#journal"
 weight = 3
 
-[[menu.main]]
-name = "Contact"
-url = "#contact"
-weight = 4
-
 
 # Taxonomies.
 [taxonomies]
