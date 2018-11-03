@@ -551,11 +551,6 @@ homes <- homes%>%
 
 ## Removing variables that have low variance
 
-```{r low var}
-homes <- homes[,-nearZeroVar(homes)]
-```
-
-
 
 # Random forest time
 
@@ -586,7 +581,7 @@ homes_model <- rpart(formula = SalePrice ~ .,
 print(homes_model)
 ```
 
-##Revising variable importance
+## Revising variable importance
 ```{r variable-importance-table}
 #Look at variable importance
 

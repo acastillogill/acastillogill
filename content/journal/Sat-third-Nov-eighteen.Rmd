@@ -1,15 +1,16 @@
 ---
-title: hello
+title: Pre-processing to what extent?
 author: Ángela Castillo-Gill
 date: '2018-11-03'
-slug: hello
+slug: pre-processing-to what-extent
 categories:
   - Journal
 tags: 
-  - Pre processing data
+  - Pre -processing-data
   - Learning
+  - CART
 draft: FALSE
-summary: this is a test
+summary: Trying to figure out if I should further pre-process the data or not.
 output:
   blogdown::html_page:
     toc: true
@@ -19,3 +20,14 @@ output:
 editor_options: 
   chunk_output_type: console
 ---
+
+
+The goal of today's session was to learn how to preprocess the homes dataset I've been working with. The missing values have been filled and now I have a few questions about whether I should perform or not, additional pre-processing steps before I can implement the CART algorithm.
+
+- Should I remove highly correlated variables? I have three and I don't know what to do with them?
+- Should I remove levels within factor variables with few observations?
+- Should I bin variables with lots of factors like neighboorhoods?
+- Should I bin numeric variables that related to the same metric? (i.e. square feet)
+- What about outliers? 
+
+So for now I'm reading the introduction to [Recursive Partioning document that comes with the R Part package](https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf). 

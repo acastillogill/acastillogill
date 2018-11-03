@@ -23,7 +23,7 @@
     
     <url>
     
-      <loc>/journal/hello/</loc>
+      <loc>/journal/pre-processing-to-what-extent/</loc>
       <lastmod>2018-11-03T00:00:00+00:00</lastmod>
     </url>
     
@@ -160,6 +160,16 @@
     
     <url>
     
+      <loc>/tags/cart/</loc>
+      <lastmod>2018-11-03T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/categories/</loc>
       <priority>0</priority>
     </url>
@@ -261,6 +271,16 @@
     
       <loc>/post/</loc>
       <lastmod>2018-08-09T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/pre--processing-data/</loc>
+      <lastmod>2018-11-03T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     

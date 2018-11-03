@@ -22,6 +22,15 @@
     </item>
     
     <item>
+      <title>CART</title>
+      <link>/tags/cart/</link>
+      <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/cart/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Deep-learning</title>
       <link>/tags/deep-learning/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0200</pubDate>
@@ -72,6 +81,15 @@
       <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pre -processing-data</title>
+      <link>/tags/pre--processing-data/</link>
+      <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/pre--processing-data/</guid>
       <description></description>
     </item>
     

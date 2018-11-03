@@ -37,9 +37,10 @@ editor_options:
 <li><a href="#random-forest-time"><span class="toc-section-number">4</span> Random forest time</a><ul>
 <li><a href="#splitting-the-data"><span class="toc-section-number">4.1</span> Splitting the data</a></li>
 <li><a href="#training-the-model"><span class="toc-section-number">4.2</span> Training the model</a></li>
-<li><a href="#evaluating-the-model"><span class="toc-section-number">4.3</span> Evaluating the model</a></li>
-<li><a href="#tuning-hyperparameters"><span class="toc-section-number">4.4</span> Tuning hyperparameters</a></li>
-<li><a href="#grid-search-for-best-hyperparameters"><span class="toc-section-number">4.5</span> Grid search for best hyperparameters</a></li>
+<li><a href="#revising-variable-importance"><span class="toc-section-number">4.3</span> Revising variable importance</a></li>
+<li><a href="#evaluating-the-model"><span class="toc-section-number">4.4</span> Evaluating the model</a></li>
+<li><a href="#tuning-hyperparameters"><span class="toc-section-number">4.5</span> Tuning hyperparameters</a></li>
+<li><a href="#grid-search-for-best-hyperparameters"><span class="toc-section-number">4.6</span> Grid search for best hyperparameters</a></li>
 </ul></li>
 <li><a href="#techniques-used"><span class="toc-section-number">5</span> Techniques used</a></li>
 <li><a href="#questions-from-this-analysis"><span class="toc-section-number">6</span> Questions from this analysis</a></li>
@@ -294,7 +295,9 @@ round(coefficients(norm_fit), digits = 2)
 </div>
 <div id="training-the-model" class="section level2">
 <h2><span class="header-section-number">4.2</span> Training the model</h2>
-##Revising variable importance
+</div>
+<div id="revising-variable-importance" class="section level2">
+<h2><span class="header-section-number">4.3</span> Revising variable importance</h2>
 <table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:variable-importance-table">Table 4.1: </span>Top 30 variables in order of importance
@@ -315,7 +318,7 @@ Percentage
 OverallQual
 </td>
 <td style="text-align:right;">
-23.0908253
+23.0515224
 </td>
 </tr>
 <tr>
@@ -323,7 +326,7 @@ OverallQual
 Neighborhood
 </td>
 <td style="text-align:right;">
-16.3698416
+16.3419785
 </td>
 </tr>
 <tr>
@@ -331,7 +334,7 @@ Neighborhood
 BsmtQual
 </td>
 <td style="text-align:right;">
-9.2890273
+9.2732165
 </td>
 </tr>
 <tr>
@@ -339,7 +342,7 @@ BsmtQual
 GarageArea
 </td>
 <td style="text-align:right;">
-8.2814844
+8.2673885
 </td>
 </tr>
 <tr>
@@ -347,15 +350,7 @@ GarageArea
 YearsSinceBuilt
 </td>
 <td style="text-align:right;">
-7.2565730
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-X1stFlrSF
-</td>
-<td style="text-align:right;">
-5.4789109
+7.2442216
 </td>
 </tr>
 <tr>
@@ -363,7 +358,15 @@ X1stFlrSF
 KitchenQual
 </td>
 <td style="text-align:right;">
-5.3443726
+5.3352759
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+X1stFlrSF
+</td>
+<td style="text-align:right;">
+5.1291660
 </td>
 </tr>
 <tr>
@@ -371,7 +374,7 @@ KitchenQual
 GrLivArea
 </td>
 <td style="text-align:right;">
-4.9747246
+4.9662571
 </td>
 </tr>
 <tr>
@@ -379,7 +382,7 @@ GrLivArea
 FullBath
 </td>
 <td style="text-align:right;">
-2.8691439
+2.8642603
 </td>
 </tr>
 <tr>
@@ -387,7 +390,7 @@ FullBath
 ExterQual
 </td>
 <td style="text-align:right;">
-2.7649563
+2.7602501
 </td>
 </tr>
 <tr>
@@ -395,7 +398,7 @@ ExterQual
 Foundation
 </td>
 <td style="text-align:right;">
-2.6696773
+2.6651332
 </td>
 </tr>
 <tr>
@@ -403,7 +406,7 @@ Foundation
 BsmtFinSF1
 </td>
 <td style="text-align:right;">
-2.1033008
+2.0997208
 </td>
 </tr>
 <tr>
@@ -411,7 +414,7 @@ BsmtFinSF1
 X2ndFlrSF
 </td>
 <td style="text-align:right;">
-1.8597701
+1.8566046
 </td>
 </tr>
 <tr>
@@ -419,7 +422,7 @@ X2ndFlrSF
 MSSubClass
 </td>
 <td style="text-align:right;">
-1.3109361
+1.3087047
 </td>
 </tr>
 <tr>
@@ -427,7 +430,7 @@ MSSubClass
 LotArea
 </td>
 <td style="text-align:right;">
-0.9052501
+0.9037093
 </td>
 </tr>
 <tr>
@@ -435,7 +438,7 @@ LotArea
 HouseStyle
 </td>
 <td style="text-align:right;">
-0.6418588
+0.6407663
 </td>
 </tr>
 <tr>
@@ -443,7 +446,7 @@ HouseStyle
 BsmtUnfSF
 </td>
 <td style="text-align:right;">
-0.6373275
+0.6362427
 </td>
 </tr>
 <tr>
@@ -451,7 +454,7 @@ BsmtUnfSF
 Fireplaces
 </td>
 <td style="text-align:right;">
-0.6114288
+0.6103881
 </td>
 </tr>
 <tr>
@@ -459,7 +462,7 @@ Fireplaces
 BedroomAbvGr
 </td>
 <td style="text-align:right;">
-0.5967665
+0.5957507
 </td>
 </tr>
 <tr>
@@ -467,7 +470,15 @@ BedroomAbvGr
 LotFrontage
 </td>
 <td style="text-align:right;">
-0.5341481
+0.5332390
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RoofMatl
+</td>
+<td style="text-align:right;">
+0.5106289
 </td>
 </tr>
 <tr>
@@ -475,7 +486,7 @@ LotFrontage
 YearsSinceRemod
 </td>
 <td style="text-align:right;">
-0.5114995
+0.5106289
 </td>
 </tr>
 <tr>
@@ -483,7 +494,7 @@ YearsSinceRemod
 Exterior1st
 </td>
 <td style="text-align:right;">
-0.4076192
+0.4069254
 </td>
 </tr>
 <tr>
@@ -491,15 +502,15 @@ Exterior1st
 Condition1
 </td>
 <td style="text-align:right;">
-0.3409997
+0.3404193
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-HeatingQC
+LandContour
 </td>
 <td style="text-align:right;">
-0.3409997
+0.3404193
 </td>
 </tr>
 <tr>
@@ -507,7 +518,7 @@ HeatingQC
 HalfBath
 </td>
 <td style="text-align:right;">
-0.3059286
+0.3054079
 </td>
 </tr>
 <tr>
@@ -515,7 +526,7 @@ HalfBath
 MasVnrArea
 </td>
 <td style="text-align:right;">
-0.1991437
+0.1988047
 </td>
 </tr>
 <tr>
@@ -523,7 +534,7 @@ MasVnrArea
 MSZoning
 </td>
 <td style="text-align:right;">
-0.1090683
+0.1088826
 </td>
 </tr>
 <tr>
@@ -531,7 +542,15 @@ MSZoning
 Fence
 </td>
 <td style="text-align:right;">
-0.0763478
+0.0762178
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BsmtCond
+</td>
+<td style="text-align:right;">
+0.0589345
 </td>
 </tr>
 <tr>
@@ -539,47 +558,39 @@ Fence
 BsmtExposure
 </td>
 <td style="text-align:right;">
-0.0590350
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-BsmtFinType1
-</td>
-<td style="text-align:right;">
-0.0590350
+0.0589345
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 <div id="evaluating-the-model" class="section level2">
-<h2><span class="header-section-number">4.3</span> Evaluating the model</h2>
+<h2><span class="header-section-number">4.4</span> Evaluating the model</h2>
 <pre><code>[1] 46379.54
 [1] 31179.09</code></pre>
 </div>
 <div id="tuning-hyperparameters" class="section level2">
-<h2><span class="header-section-number">4.4</span> Tuning hyperparameters</h2>
+<h2><span class="header-section-number">4.5</span> Tuning hyperparameters</h2>
 <p><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/tuning-hyperparameters-1.png" width="672" /></p>
 <pre><code>           CP nsplit rel error    xerror       xstd
 1  0.44576120      0 1.0000000 1.0034376 0.09648934
 2  0.11980464      1 0.5542388 0.5578944 0.05448931
 3  0.07227853      2 0.4344342 0.4383458 0.05343974
 4  0.03113653      3 0.3621556 0.3953313 0.04125842
-5  0.02840259      4 0.3310191 0.3972113 0.04398518
-6  0.01998604      6 0.2742139 0.3739279 0.04374764
-7  0.01893938      7 0.2542279 0.3649156 0.04025849
-8  0.01351892      8 0.2352885 0.3400398 0.03717158
-9  0.01198871      9 0.2217696 0.3296234 0.03704446
-10 0.01182315     10 0.2097809 0.3195743 0.03702275
-11 0.01000000     11 0.1979577 0.3039500 0.03505641</code></pre>
+5  0.02840259      4 0.3310191 0.4006663 0.04426050
+6  0.01998604      6 0.2742139 0.3773829 0.04402623
+7  0.01893938      7 0.2542279 0.3683706 0.04056180
+8  0.01351892      8 0.2352885 0.3434948 0.03750211
+9  0.01198871      9 0.2217696 0.3330784 0.03737704
+10 0.01182315     10 0.2097809 0.3230293 0.03735644
+11 0.01000000     11 0.1979577 0.3074050 0.03541012</code></pre>
 <p><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/tuning-hyperparameters-2.png" width="672" />
 ## Checking the error on the optimised model</p>
 <pre><code>[1] 46379.54
 [1] 31179.09</code></pre>
 </div>
 <div id="grid-search-for-best-hyperparameters" class="section level2">
-<h2><span class="header-section-number">4.5</span> Grid search for best hyperparameters</h2>
+<h2><span class="header-section-number">4.6</span> Grid search for best hyperparameters</h2>
 <pre><code>[1] 90  2</code></pre>
 <pre><code>$minsplit
 [1] 10 12 14 16 18 20

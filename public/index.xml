@@ -29,12 +29,21 @@
     </item>
     
     <item>
-      <title>hello</title>
-      <link>/journal/hello/</link>
+      <title>Pre-processing to what extent?</title>
+      <link>/journal/pre-processing-to-what-extent/</link>
       <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>/journal/hello/</guid>
-      <description></description>
+      <guid>/journal/pre-processing-to-what-extent/</guid>
+      <description>&lt;p&gt;The goal of today’s session was to learn how to preprocess the homes dataset I’ve been working with. The missing values have been filled and now I have a few questions about whether I should perform or not, additional pre-processing steps before I can implement the CART algorithm.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Should I remove highly correlated variables? I have three and I don’t know what to do with them?&lt;/li&gt;
+&lt;li&gt;Should I remove levels within factor variables with few observations?&lt;/li&gt;
+&lt;li&gt;Should I bin variables with lots of factors like neighboorhoods?&lt;/li&gt;
+&lt;li&gt;Should I bin numeric variables that related to the same metric? (i.e. square feet)&lt;/li&gt;
+&lt;li&gt;What about outliers?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So for now I’m reading the introduction to &lt;a href=&#34;https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf&#34;&gt;Recursive Partioning document that comes with the R Part package&lt;/a&gt;.&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -59,9 +68,10 @@
 &lt;li&gt;&lt;a href=&#34;#random-forest-time&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Random forest time&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#splitting-the-data&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.1&lt;/span&gt; Splitting the data&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#training-the-model&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.2&lt;/span&gt; Training the model&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#evaluating-the-model&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.3&lt;/span&gt; Evaluating the model&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#tuning-hyperparameters&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.4&lt;/span&gt; Tuning hyperparameters&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#grid-search-for-best-hyperparameters&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.5&lt;/span&gt; Grid search for best hyperparameters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#revising-variable-importance&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.3&lt;/span&gt; Revising variable importance&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#evaluating-the-model&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.4&lt;/span&gt; Evaluating the model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#tuning-hyperparameters&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.5&lt;/span&gt; Tuning hyperparameters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#grid-search-for-best-hyperparameters&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.6&lt;/span&gt; Grid search for best hyperparameters&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#techniques-used&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Techniques used&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#questions-from-this-analysis&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; Questions from this analysis&lt;/a&gt;&lt;/li&gt;
@@ -316,7 +326,9 @@ round(coefficients(norm_fit), digits = 2)
 &lt;/div&gt;
 &lt;div id=&#34;training-the-model&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.2&lt;/span&gt; Training the model&lt;/h2&gt;
-##Revising variable importance
+&lt;/div&gt;
+&lt;div id=&#34;revising-variable-importance&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.3&lt;/span&gt; Revising variable importance&lt;/h2&gt;
 &lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
 &lt;caption&gt;
 &lt;span id=&#34;tab:variable-importance-table&#34;&gt;Table 4.1: &lt;/span&gt;Top 30 variables in order of importance
@@ -337,7 +349,7 @@ Percentage
 OverallQual
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-23.0908253
+23.0515224
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -345,7 +357,7 @@ OverallQual
 Neighborhood
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-16.3698416
+16.3419785
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -353,7 +365,7 @@ Neighborhood
 BsmtQual
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-9.2890273
+9.2732165
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -361,7 +373,7 @@ BsmtQual
 GarageArea
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-8.2814844
+8.2673885
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -369,15 +381,7 @@ GarageArea
 YearsSinceBuilt
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-7.2565730
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-X1stFlrSF
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-5.4789109
+7.2442216
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -385,7 +389,15 @@ X1stFlrSF
 KitchenQual
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-5.3443726
+5.3352759
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+X1stFlrSF
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+5.1291660
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -393,7 +405,7 @@ KitchenQual
 GrLivArea
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-4.9747246
+4.9662571
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -401,7 +413,7 @@ GrLivArea
 FullBath
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-2.8691439
+2.8642603
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -409,7 +421,7 @@ FullBath
 ExterQual
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-2.7649563
+2.7602501
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -417,7 +429,7 @@ ExterQual
 Foundation
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-2.6696773
+2.6651332
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -425,7 +437,7 @@ Foundation
 BsmtFinSF1
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-2.1033008
+2.0997208
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -433,7 +445,7 @@ BsmtFinSF1
 X2ndFlrSF
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-1.8597701
+1.8566046
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -441,7 +453,7 @@ X2ndFlrSF
 MSSubClass
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-1.3109361
+1.3087047
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -449,7 +461,7 @@ MSSubClass
 LotArea
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.9052501
+0.9037093
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -457,7 +469,7 @@ LotArea
 HouseStyle
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.6418588
+0.6407663
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -465,7 +477,7 @@ HouseStyle
 BsmtUnfSF
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.6373275
+0.6362427
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -473,7 +485,7 @@ BsmtUnfSF
 Fireplaces
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.6114288
+0.6103881
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -481,7 +493,7 @@ Fireplaces
 BedroomAbvGr
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.5967665
+0.5957507
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -489,7 +501,15 @@ BedroomAbvGr
 LotFrontage
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.5341481
+0.5332390
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+RoofMatl
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.5106289
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -497,7 +517,7 @@ LotFrontage
 YearsSinceRemod
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.5114995
+0.5106289
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -505,7 +525,7 @@ YearsSinceRemod
 Exterior1st
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.4076192
+0.4069254
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -513,15 +533,15 @@ Exterior1st
 Condition1
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.3409997
+0.3404193
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&#34;text-align:left;&#34;&gt;
-HeatingQC
+LandContour
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.3409997
+0.3404193
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -529,7 +549,7 @@ HeatingQC
 HalfBath
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.3059286
+0.3054079
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -537,7 +557,7 @@ HalfBath
 MasVnrArea
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.1991437
+0.1988047
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -545,7 +565,7 @@ MasVnrArea
 MSZoning
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.1090683
+0.1088826
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -553,7 +573,15 @@ MSZoning
 Fence
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.0763478
+0.0762178
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+BsmtCond
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.0589345
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -561,47 +589,39 @@ Fence
 BsmtExposure
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.0590350
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtFinType1
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.0590350
+0.0589345
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;
 &lt;div id=&#34;evaluating-the-model&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.3&lt;/span&gt; Evaluating the model&lt;/h2&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.4&lt;/span&gt; Evaluating the model&lt;/h2&gt;
 &lt;pre&gt;&lt;code&gt;[1] 46379.54
 [1] 31179.09&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;tuning-hyperparameters&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.4&lt;/span&gt; Tuning hyperparameters&lt;/h2&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.5&lt;/span&gt; Tuning hyperparameters&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/tuning-hyperparameters-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;           CP nsplit rel error    xerror       xstd
 1  0.44576120      0 1.0000000 1.0034376 0.09648934
 2  0.11980464      1 0.5542388 0.5578944 0.05448931
 3  0.07227853      2 0.4344342 0.4383458 0.05343974
 4  0.03113653      3 0.3621556 0.3953313 0.04125842
-5  0.02840259      4 0.3310191 0.3972113 0.04398518
-6  0.01998604      6 0.2742139 0.3739279 0.04374764
-7  0.01893938      7 0.2542279 0.3649156 0.04025849
-8  0.01351892      8 0.2352885 0.3400398 0.03717158
-9  0.01198871      9 0.2217696 0.3296234 0.03704446
-10 0.01182315     10 0.2097809 0.3195743 0.03702275
-11 0.01000000     11 0.1979577 0.3039500 0.03505641&lt;/code&gt;&lt;/pre&gt;
+5  0.02840259      4 0.3310191 0.4006663 0.04426050
+6  0.01998604      6 0.2742139 0.3773829 0.04402623
+7  0.01893938      7 0.2542279 0.3683706 0.04056180
+8  0.01351892      8 0.2352885 0.3434948 0.03750211
+9  0.01198871      9 0.2217696 0.3330784 0.03737704
+10 0.01182315     10 0.2097809 0.3230293 0.03735644
+11 0.01000000     11 0.1979577 0.3074050 0.03541012&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/tuning-hyperparameters-2.png&#34; width=&#34;672&#34; /&gt;
 ## Checking the error on the optimised model&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;[1] 46379.54
 [1] 31179.09&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;grid-search-for-best-hyperparameters&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.5&lt;/span&gt; Grid search for best hyperparameters&lt;/h2&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.6&lt;/span&gt; Grid search for best hyperparameters&lt;/h2&gt;
 &lt;pre&gt;&lt;code&gt;[1] 90  2&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;$minsplit
 [1] 10 12 14 16 18 20
