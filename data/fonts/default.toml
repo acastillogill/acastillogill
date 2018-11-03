@@ -2,10 +2,10 @@
 name = "Default"
 
 # Optional Google font URL
-google_fonts = "Cardo|Muli"
+google_fonts = "Neuton:200|Oswald:700"
 
 # Font families
-heading_font = "Muli"
+heading_font = "Oswald:700"
 body_font = "Cardo"
 nav_font = "Muli"
 mono_font = "Muli"
