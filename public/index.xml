@@ -43,6 +43,7 @@
 &lt;li&gt;What about outliers?&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;So for now I’m reading the introduction to &lt;a href=&#34;https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf&#34;&gt;Recursive Partioning document that comes with the R Part package&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I am also trying to figure out what constitutes improvements in the branch-splitting algorithm to know why it stops when it does.&lt;/p&gt;
 </description>
     </item>
     
@@ -324,9 +325,16 @@ round(coefficients(norm_fit), digits = 2)
 &lt;p&gt;In this post I am using the recursing and partitioning (RPART) algorithm also known as classification and regression trees (CART). It will be implemented with the &lt;code&gt;rpart&lt;/code&gt; package in R.&lt;/p&gt;
 &lt;p&gt;Rpart, builds a model in two stages:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;First stage:&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;First stage&lt;/strong&gt;:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;A single variable is identified which can best s&lt;/p&gt;
+&lt;p&gt;A single variable is identified which can best split the data into two groups. The data is then separated intwo two groups and the whole process is repeated &lt;em&gt;recursively&lt;/em&gt; or indefinitely until the sub groups reach a minimum size, or until no further improvements can be made.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;To be defined later&lt;/strong&gt;
+- What constitutes as the variable that BEST splits the data?
+- What are the further improvements that the algorithm can make?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Second stage&lt;/strong&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The tree is trimmed back or prunned using cross-validation.&lt;/p&gt;
 &lt;div id=&#34;splitting-the-data&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.1&lt;/span&gt; Splitting the data&lt;/h2&gt;
 &lt;/div&gt;

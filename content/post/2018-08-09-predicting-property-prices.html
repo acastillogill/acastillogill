@@ -9,7 +9,7 @@ categories:
 tags: 
   - Kaggle
   - Home sales prices
-draft: TRUE
+draft: FALSE
 summary: What factors most affect sales prices for homes?
 output:
   blogdown::html_page:
@@ -293,9 +293,16 @@ round(coefficients(norm_fit), digits = 2)
 <p>In this post I am using the recursing and partitioning (RPART) algorithm also known as classification and regression trees (CART). It will be implemented with the <code>rpart</code> package in R.</p>
 <p>Rpart, builds a model in two stages:</p>
 <ul>
-<li>First stage:</li>
+<li><strong>First stage</strong>:</li>
 </ul>
-<p>A single variable is identified which can best s</p>
+<p>A single variable is identified which can best split the data into two groups. The data is then separated intwo two groups and the whole process is repeated <em>recursively</em> or indefinitely until the sub groups reach a minimum size, or until no further improvements can be made.</p>
+<p><strong>To be defined later</strong>
+- What constitutes as the variable that BEST splits the data?
+- What are the further improvements that the algorithm can make?</p>
+<ul>
+<li><strong>Second stage</strong>:</li>
+</ul>
+<p>The tree is trimmed back or prunned using cross-validation.</p>
 <div id="splitting-the-data" class="section level2">
 <h2><span class="header-section-number">4.1</span> Splitting the data</h2>
 </div>
