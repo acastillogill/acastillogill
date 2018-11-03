@@ -21,19 +21,19 @@
     
     <item>
       <title></title>
-      <link>/journal/sat-third-nov-eighteen/</link>
-      <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/journal/sat-third-nov-eighteen/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title></title>
       <link>/journal/journal-template/</link>
       <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/journal/journal-template/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hello</title>
+      <link>/journal/hello/</link>
+      <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/journal/hello/</guid>
       <description></description>
     </item>
     
