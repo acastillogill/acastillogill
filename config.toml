@@ -57,7 +57,7 @@ enableGitInfo = false
   font = "default"
 
   # Your details.
-  name = "Welcome my data science journal"
+  name = "Welcome my data science journey"
   description = ""
   role = "Let's connect!"
 

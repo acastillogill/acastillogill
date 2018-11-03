@@ -5,11 +5,11 @@ widget = "journal"
 active = true
 date = 2016-04-20T00:00:00
 
-title = "Journal"
+title = "Recent journal entries"
 subtitle = ""
 
 # Order that this section will appear in.
-weight = 60
+weight = 40
 
 # Filter journal by tag.
 #  By default, show all recent journal.
