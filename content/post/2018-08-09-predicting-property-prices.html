@@ -34,7 +34,7 @@ editor_options:
 <li><a href="#removing-correlated-variables"><span class="toc-section-number">3.4</span> Removing correlated variables</a></li>
 <li><a href="#removing-variables-that-have-low-variance"><span class="toc-section-number">3.5</span> Removing variables that have low variance</a></li>
 </ul></li>
-<li><a href="#random-forest-time"><span class="toc-section-number">4</span> Random forest time</a><ul>
+<li><a href="#classification-and-regression-trees-cart-time"><span class="toc-section-number">4</span> Classification and Regression Trees (CART) time</a><ul>
 <li><a href="#splitting-the-data"><span class="toc-section-number">4.1</span> Splitting the data</a></li>
 <li><a href="#training-the-model"><span class="toc-section-number">4.2</span> Training the model</a></li>
 <li><a href="#revising-variable-importance"><span class="toc-section-number">4.3</span> Revising variable importance</a></li>
@@ -255,7 +255,7 @@ round(coefficients(norm_fit), digits = 2)
        (Intercept) scale(KitchenQual) 
               0.00               0.66 </code></pre>
 <p>Here is the correlation matrix for variables that have a relationship stronger than 0.5 with <code>SalePrice</code>.</p>
-<p><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/correlation_matrix-1.png" width="672" /></p>
+<p><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/correlation-matrix-1.png" width="1920" /></p>
 <p>There are 17 variables that have a correlation stronger than 0.5. They are arranged in descending order. It is interesting to note the high correlation that exists amongst variables. The correlation plot highlights some obvious ones, <code>GarageArea</code> and <code>GarageCars</code>. Makes sense, a bigger garage can hold more cars. <code>X1stFlrSF</code> and <code>TotalBsmtSF</code>, the total area of the first floor and basement, this also seems reasonable since basements are underneath the same floor and would tend to have a similar area. <code>TotRmsAbvGrd</code> and <code>GrLivArea</code>, the total number of rooms and area above ground, again ok, more rooms would be linked to a bigger living area. Finally, <code>YearsSinceBuilt</code> and <code>YearsSinceGarageBuilt</code> since garages are usually built at the same time as the house.</p>
 <p>Here is the codebook for all the variables featured in the correlation matrix in case they come up later and we need to interpret what they mean.</p>
 <p><strong>Positive correlation</strong></p>
@@ -288,8 +288,14 @@ round(coefficients(norm_fit), digits = 2)
 <h2><span class="header-section-number">3.5</span> Removing variables that have low variance</h2>
 </div>
 </div>
-<div id="random-forest-time" class="section level1">
-<h1><span class="header-section-number">4</span> Random forest time</h1>
+<div id="classification-and-regression-trees-cart-time" class="section level1">
+<h1><span class="header-section-number">4</span> Classification and Regression Trees (CART) time</h1>
+<p>In this post I am using the recursing and partitioning (RPART) algorithm also known as classification and regression trees (CART). It will be implemented with the <code>rpart</code> package in R.</p>
+<p>Rpart, builds a model in two stages:</p>
+<ul>
+<li>First stage:</li>
+</ul>
+<p>A single variable is identified which can best s</p>
 <div id="splitting-the-data" class="section level2">
 <h2><span class="header-section-number">4.1</span> Splitting the data</h2>
 </div>
@@ -646,10 +652,7 @@ $maxdepth
 $xval
 [1] 10
 [1] 58664.27</code></pre>
-<p><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-1-1.png" width="672" /><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
-<p><a href="https://stats.stackexchange.com/questions/172842/best-practices-with-data-wrangling-before-running-random-forest-predictions" class="uri">https://stats.stackexchange.com/questions/172842/best-practices-with-data-wrangling-before-running-random-forest-predictions</a></p>
-<p><a href="https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf" class="uri">https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf</a></p>
-<p><a href="https://stackoverflow.com/questions/29702890/data-preparation-for-random-forest-and-predictive-modeling-in-python" class="uri">https://stackoverflow.com/questions/29702890/data-preparation-for-random-forest-and-predictive-modeling-in-python</a></p>
+<p><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 </div>
 </div>
 <div id="techniques-used" class="section level1">
@@ -663,5 +666,4 @@ $xval
 <ul>
 <li></li>
 </ul>
-<p><a href="https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf" class="uri">https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf</a></p>
 </div>

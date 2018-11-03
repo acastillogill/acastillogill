@@ -9,7 +9,7 @@ categories:
 tags: 
   - Kaggle
   - Home sales prices
-draft: TRUE
+draft: FALSE
 summary: What factors most affect sales prices for homes?
 output:
   blogdown::html_page:
@@ -496,7 +496,7 @@ round(coefficients(norm_fit), digits = 2)
 
 Here is the correlation matrix for variables that have a relationship stronger than 0.5 with `SalePrice`. 
 
-```{r correlation_matrix}
+```{r correlation-matrix, fig.width=20}
 homes_num <- homes%>%
   select_if(is.numeric)
 #Create tidy correlation matrix
@@ -552,7 +552,25 @@ homes <- homes%>%
 ## Removing variables that have low variance
 
 
-# Random forest time
+# Classification and Regression Trees (CART) time
+
+In this post I am using the recursing and partitioning (RPART) algorithm also known as classification and regression trees (CART). It will be implemented with the `rpart` package in R. 
+
+Rpart, builds a model in two stages:
+
+- **First stage**:
+
+A single variable is identified which can best split the data into two groups. The data is then separated intwo two groups and the whole process is repeated *recursively* or indefinitely until the sub groups reach a minimum size, or until no further improvements can be made. 
+
+**To be defined later**
+- What constitutes as the variable that BEST splits the data?
+- What are the further improvements that the algorithm can make? 
+
+
+- **Second stage**:
+
+The tree is trimmed back or prunned using cross-validation. 
+
 
 ## Splitting the data
 ```{r split-data, include=FALSE}
@@ -748,20 +766,7 @@ mae(actual = homes_test$SalePrice,
 ```{r}
 rpart.plot(best_model_MAE)
 rpart.plot(best_model_RMSE)
-
-rpart.plot(homes_model)
-rpart.plot(homes_model_opt)
 ```
-
-
-
-
-
-https://stats.stackexchange.com/questions/172842/best-practices-with-data-wrangling-before-running-random-forest-predictions
-
-https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf
-
-https://stackoverflow.com/questions/29702890/data-preparation-for-random-forest-and-predictive-modeling-in-python
 
 
 # Techniques used
@@ -773,4 +778,3 @@ https://stackoverflow.com/questions/29702890/data-preparation-for-random-forest-
 - 
 
 
-https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf
