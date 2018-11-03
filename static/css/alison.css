@@ -138,7 +138,7 @@ a:focus {
  **************************************************/
 
 html {
-    font-family: 'Oswald', light;
+    font-family: 'Oswald';
     font-weight: 300;
     font-size: 16px;
     color: rgba(0,0,0,0.8);
