@@ -1,27 +1,4 @@
----
-title: Predicting property prices
-author: Ángela Castillo-Gill
-date: '2018-08-09'
-slug: predicting-property-prices
-categories:
-  - R
-  - EDA
-tags: 
-  - Kaggle
-  - Home sales prices
-draft: FALSE
-summary: What factors most affect sales prices for homes?
-output:
-  blogdown::html_page:
-    toc: true
-    number_sections: true
-    toc_depth: 2
-  fig_caption: true
-editor_options: 
-  chunk_output_type: console
----
-
-<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+<script src="2018-08-09-predicting-property-prices_files/kePrint-0.0.1/kePrint.js"></script>
 
 <div id="TOC">
 <ul>
@@ -255,7 +232,7 @@ round(coefficients(norm_fit), digits = 2)
        (Intercept) scale(KitchenQual) 
               0.00               0.66 </code></pre>
 <p>Here is the correlation matrix for variables that have a relationship stronger than 0.5 with <code>SalePrice</code>.</p>
-<p><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/correlation-matrix-1.png" width="1920" /></p>
+<p><img src="2018-08-09-predicting-property-prices_files/figure-html/correlation-matrix-1.png" width="672" /></p>
 <p>There are 17 variables that have a correlation stronger than 0.5. They are arranged in descending order. It is interesting to note the high correlation that exists amongst variables. The correlation plot highlights some obvious ones, <code>GarageArea</code> and <code>GarageCars</code>. Makes sense, a bigger garage can hold more cars. <code>X1stFlrSF</code> and <code>TotalBsmtSF</code>, the total area of the first floor and basement, this also seems reasonable since basements are underneath the same floor and would tend to have a similar area. <code>TotRmsAbvGrd</code> and <code>GrLivArea</code>, the total number of rooms and area above ground, again ok, more rooms would be linked to a bigger living area. Finally, <code>YearsSinceBuilt</code> and <code>YearsSinceGarageBuilt</code> since garages are usually built at the same time as the house.</p>
 <p>Here is the codebook for all the variables featured in the correlation matrix in case they come up later and we need to interpret what they mean.</p>
 <p><strong>Positive correlation</strong></p>
@@ -584,7 +561,7 @@ BsmtExposure
 </div>
 <div id="tuning-hyperparameters" class="section level2">
 <h2><span class="header-section-number">4.5</span> Tuning hyperparameters</h2>
-<p><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/tuning-hyperparameters-1.png" width="672" /></p>
+<p><img src="2018-08-09-predicting-property-prices_files/figure-html/tuning-hyperparameters-1.png" width="672" /></p>
 <pre><code>           CP nsplit rel error    xerror       xstd
 1  0.44576120      0 1.0000000 1.0034376 0.09648934
 2  0.11980464      1 0.5542388 0.5578944 0.05448931
@@ -597,7 +574,7 @@ BsmtExposure
 9  0.01198871      9 0.2217696 0.3330784 0.03737704
 10 0.01182315     10 0.2097809 0.3230293 0.03735644
 11 0.01000000     11 0.1979577 0.3074050 0.03541012</code></pre>
-<p><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/tuning-hyperparameters-2.png" width="672" />
+<p><img src="2018-08-09-predicting-property-prices_files/figure-html/tuning-hyperparameters-2.png" width="672" />
 ## Checking the error on the optimised model</p>
 <pre><code>[1] 46379.54
 [1] 31179.09</code></pre>
@@ -659,7 +636,7 @@ $maxdepth
 $xval
 [1] 10
 [1] 58664.27</code></pre>
-<p><img src="/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 </div>
 </div>
 <div id="techniques-used" class="section level1">

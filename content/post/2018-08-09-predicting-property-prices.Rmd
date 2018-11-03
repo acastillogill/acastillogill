@@ -496,7 +496,7 @@ round(coefficients(norm_fit), digits = 2)
 
 Here is the correlation matrix for variables that have a relationship stronger than 0.5 with `SalePrice`. 
 
-```{r correlation-matrix, fig.width=20}
+```{r correlation-matrix}
 homes_num <- homes%>%
   select_if(is.numeric)
 #Create tidy correlation matrix
@@ -509,7 +509,7 @@ high_cor_names <- cor_homes%>%
 #Filter entire correlation matrix for the variables
 high_cor <- cor(homes_num)[high_cor_names,high_cor_names]
 #Create correlation matrix
-corrplot.mixed(high_cor, tl.col="black", tl.pos = "lt",cl.ratio=0.1,number.cex=.8, cl.cex = .6, tl.cex = 0.8)
+corrplot.mixed(high_cor, tl.col="black", tl.pos = "lt",cl.ratio=0.1,number.cex=.6, cl.cex = .6, tl.cex = 0.6)
 
 ```
 
