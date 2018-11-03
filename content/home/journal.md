@@ -9,7 +9,7 @@ title = "Journal"
 subtitle = ""
 
 # Order that this section will appear in.
-weight = 40
+weight = 60
 
 # Filter journal by tag.
 #  By default, show all recent journal.
