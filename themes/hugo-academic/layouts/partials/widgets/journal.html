@@ -1,6 +1,6 @@
 {{ $ := .root }}
 {{ $page := .page }}
-{{ $journal_len := len (where (where $.Site.RegularPages "Type" "post") ".Params.notonhomepage" nil) }}
+{{ $journal_len := len (where (where $.Site.RegularPages "Type" "journal") ".Params.notonhomepage" nil) }}
 
 <!-- Blog journal widget -->
 <div class="row">
@@ -10,7 +10,7 @@
     {{ with $page.Params.subtitle }}<p>{{ . | markdownify }}</p>{{ end }}
     {{ if gt $journal_len $page.Params.count }}
     <p class="view-all">
-      <a href="{{ ($.Site.GetPage "section" "post").Permalink }}">
+      <a href="{{ ($.Site.GetPage "section" "journal").Permalink }}">
         {{ i18n "more_journal" | markdownify }}
         <i class="fa fa-angle-double-right"></i>
       </a>
@@ -23,63 +23,63 @@
     {{ with $page.Content }}<p>{{ . | markdownify }}</p>{{ end }}
 
     {{ if gt (len $page.Params.tags_include) 0 }}
-      {{ $journal := where (where (where $.Site.RegularPages "Type" "post") ".Params.tags" "intersect" $page.Params.tags_include) ".Params.notonhomepage" nil }}
+      {{ $journal := where (where (where $.Site.RegularPages "Type" "journal") ".Params.tags" "intersect" $page.Params.tags_include) ".Params.notonhomepage" nil }}
 
-      {{ $.Scratch.Add "show_post" "1" }}
-      {{ range $post := first $page.Params.count $journal }}
+      {{ $.Scratch.Add "show_journal" "1" }}
+      {{ range $journal := first $page.Params.count $journal }}
 
-        {{ $.Scratch.Set "show_post" "1" }}
+        {{ $.Scratch.Set "show_journal" "1" }}
 
         {{/* If `tags_include` is set, exclude journal with no tags. */}}
         {{ if and ($page.Params.tags_include) (lt (len .Params.tags) 1) }}
-          {{ $.Scratch.Set "show_post" "0" }}
+          {{ $.Scratch.Set "show_journal" "0" }}
         {{end}}
 
         {{/* If `tags_exclude` is set, exclude journal. */}}
         {{ range $key, $val := .Params.tags }}
           {{ if in $page.Params.tags_exclude $val }}
-          {{ $.Scratch.Set "show_post" "0" }}
+          {{ $.Scratch.Set "show_journal" "0" }}
         {{end}}
       {{end}}
 
-      {{ $show_post := $.Scratch.Get "show_post" }}
-      {{ if ne $show_post "0" }}
-        {{ $params := dict "post" . }}
+      {{ $show_journal := $.Scratch.Get "show_journal" }}
+      {{ if ne $show_journal "0" }}
+        {{ $params := dict "journal" . }}
         {{ if eq $page.Params.list_format 0 }}
-          {{ partial "post_li_simple" $params }}
+          {{ partial "journal_li_simple" $params }}
         {{ else }}
-          {{ partial "post_li_detailed" $params }}
+          {{ partial "journal_li_detailed" $params }}
         {{ end }}
       {{end}}
 
       {{ end }}
     {{ else}}
-      {{ $journal := where (where $.Site.RegularPages "Type" "post") ".Params.notonhomepage" nil }}
+      {{ $journal := where (where $.Site.RegularPages "Type" "journal") ".Params.notonhomepage" nil }}
 
-      {{ $.Scratch.Add "show_post" "1" }}
-      {{ range $post := first $page.Params.count $journal }}
+      {{ $.Scratch.Add "show_journal" "1" }}
+      {{ range $journal := first $page.Params.count $journal }}
 
-        {{ $.Scratch.Set "show_post" "1" }}
+        {{ $.Scratch.Set "show_journal" "1" }}
 
         {{/* If `tags_include` is set, exclude journal with no tags. */}}
         {{ if and ($page.Params.tags_include) (lt (len .Params.tags) 1) }}
-          {{ $.Scratch.Set "show_post" "0" }}
+          {{ $.Scratch.Set "show_journal" "0" }}
         {{end}}
 
         {{/* If `tags_exclude` is set, exclude journal. */}}
         {{ range $key, $val := .Params.tags }}
           {{ if in $page.Params.tags_exclude $val }}
-          {{ $.Scratch.Set "show_post" "0" }}
+          {{ $.Scratch.Set "show_journal" "0" }}
         {{end}}
       {{end}}
 
-      {{ $show_post := $.Scratch.Get "show_post" }}
-      {{ if ne $show_post "0" }}
-        {{ $params := dict "post" . }}
+      {{ $show_journal := $.Scratch.Get "show_journal" }}
+      {{ if ne $show_journal "0" }}
+        {{ $params := dict "journal" . }}
         {{ if eq $page.Params.list_format 0 }}
-          {{ partial "post_li_simple" $params }}
+          {{ partial "journal_li_simple" $params }}
         {{ else }}
-          {{ partial "post_li_detailed" $params }}
+          {{ partial "journal_li_detailed" $params }}
         {{ end }}
       {{end}}
 
