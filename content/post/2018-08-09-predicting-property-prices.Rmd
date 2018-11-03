@@ -496,7 +496,7 @@ round(coefficients(norm_fit), digits = 2)
 
 Here is the correlation matrix for variables that have a relationship stronger than 0.5 with `SalePrice`. 
 
-```{r correlation-matrix}
+```{r correlation-matrix, fig.retina=10}
 homes_num <- homes%>%
   select_if(is.numeric)
 #Create tidy correlation matrix
