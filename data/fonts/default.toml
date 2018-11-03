@@ -5,10 +5,10 @@ name = "Default"
 google_fonts = "Merriweather|Merriweather+Sans"
 
 # Font families
-heading_font = "Muli"
-body_font = "Roboto"
-nav_font = "Roboto"
-mono_font = "Roboto Mono"
+heading_font = "Merriweather Sans"
+body_font = "Merriweather"
+nav_font = "Merriweather Sans"
+mono_font = "Merriweather"
 
 # Font size
 font_size = "20"
