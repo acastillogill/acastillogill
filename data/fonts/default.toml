@@ -2,13 +2,13 @@
 name = "Default"
 
 # Optional Google font URL
-google_fonts = "Merriweather|Muli"
+google_fonts = "Cardo|Muli"
 
 # Font families
 heading_font = "Muli"
-body_font = "Merriweather"
+body_font = "Cardo"
 nav_font = "Muli"
-mono_font = "Muli"
+mono_font = "Cardo"
 
 # Font size
 font_size = "20"
