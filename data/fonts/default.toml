@@ -2,12 +2,12 @@
 name = "Default"
 
 # Optional Google font URL
-google_fonts = "Merriweather|Merriweather+Sans"
+google_fonts = "Merriweather|Muli"
 
 # Font families
-heading_font = "Merriweather Sans"
-body_font = "Merriweather Sans"
-nav_font = "Merriweather Sans"
+heading_font = "Muli"
+body_font = "Merriweather"
+nav_font = "Merriweather"
 mono_font = "Merriweather"
 
 # Font size

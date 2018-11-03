@@ -138,8 +138,8 @@ a:focus {
  **************************************************/
 
 html {
-    font-family: 'Merriweather Sans', sans-serif;
     font-family: 'Merriweather', serif;
+    font-family: 'Muli', sans-serif;
     font-weight: 300;
     font-size: 18 px;
     color: rgba(0,0,0,0.8);
