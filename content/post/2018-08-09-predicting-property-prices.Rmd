@@ -564,6 +564,9 @@ A single variable is identified which can best split the data into two groups. T
 
 **To be defined later**
 - What constitutes as the variable that BEST splits the data?
+
+When the split is made, similarity amongst the observations can more or less homogenous. This homogeneity is also called purity and it can be measured. The impurity measure of a node specifies how mixed the resulting subset is.
+
 - What are the further improvements that the algorithm can make? 
 
 

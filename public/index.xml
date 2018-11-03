@@ -21,11 +21,39 @@
     
     <item>
       <title></title>
+      <link>/journal/sun-04-11-2018/</link>
+      <pubDate>Sun, 04 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/journal/sun-04-11-2018/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>/journal/journal-template/</link>
       <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/journal/journal-template/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Pre-processing to what extent?</title>
+      <link>/journal/pre-processing-to-what-extent/</link>
+      <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/journal/pre-processing-to-what-extent/</guid>
+      <description>&lt;p&gt;The goal of today’s session was to learn how to preprocess the homes dataset I’ve been working with. The missing values have been filled and now I have a few questions about whether I should perform or not, additional pre-processing steps before I can implement the CART algorithm.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Should I remove highly correlated variables? I have three and I don’t know what to do with them?&lt;/li&gt;
+&lt;li&gt;Should I remove levels within factor variables with few observations?&lt;/li&gt;
+&lt;li&gt;Should I bin variables with lots of factors like neighboorhoods?&lt;/li&gt;
+&lt;li&gt;Should I bin numeric variables that related to the same metric? (i.e. square feet)&lt;/li&gt;
+&lt;li&gt;What about outliers?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So for now I’m reading the introduction to &lt;a href=&#34;https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf&#34;&gt;Recursive Partioning document that comes with the R Part package&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I am also trying to figure out what constitutes improvements in the branch-splitting algorithm to know why it stops when it does.&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -329,10 +357,11 @@ round(coefficients(norm_fit), digits = 2)
 &lt;/ul&gt;
 &lt;p&gt;A single variable is identified which can best split the data into two groups. The data is then separated intwo two groups and the whole process is repeated &lt;em&gt;recursively&lt;/em&gt; or indefinitely until the sub groups reach a minimum size, or until no further improvements can be made.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;To be defined later&lt;/strong&gt;
-- What constitutes as the variable that BEST splits the data?
-- What are the further improvements that the algorithm can make?&lt;/p&gt;
+- What constitutes as the variable that BEST splits the data?&lt;/p&gt;
+&lt;p&gt;When the split is made, similarity amongst the observations can more or less homogenous. This homogeneity is also called purity and it can be measured. The impurity measure of a node specifies how mixed the resulting subset is.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Second stage&lt;/strong&gt;:&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;What are the further improvements that the algorithm can make?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Second stage&lt;/strong&gt;:&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The tree is trimmed back or prunned using cross-validation.&lt;/p&gt;
 &lt;div id=&#34;splitting-the-data&#34; class=&#34;section level2&#34;&gt;

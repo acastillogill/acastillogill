@@ -297,10 +297,11 @@ round(coefficients(norm_fit), digits = 2)
 </ul>
 <p>A single variable is identified which can best split the data into two groups. The data is then separated intwo two groups and the whole process is repeated <em>recursively</em> or indefinitely until the sub groups reach a minimum size, or until no further improvements can be made.</p>
 <p><strong>To be defined later</strong>
-- What constitutes as the variable that BEST splits the data?
-- What are the further improvements that the algorithm can make?</p>
+- What constitutes as the variable that BEST splits the data?</p>
+<p>When the split is made, similarity amongst the observations can more or less homogenous. This homogeneity is also called purity and it can be measured. The impurity measure of a node specifies how mixed the resulting subset is.</p>
 <ul>
-<li><strong>Second stage</strong>:</li>
+<li><p>What are the further improvements that the algorithm can make?</p></li>
+<li><p><strong>Second stage</strong>:</p></li>
 </ul>
 <p>The tree is trimmed back or prunned using cross-validation.</p>
 <div id="splitting-the-data" class="section level2">

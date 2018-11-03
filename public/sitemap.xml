@@ -14,7 +14,25 @@
     
     <url>
     
+      <loc>/journal/sun-04-11-2018/</loc>
+      <lastmod>2018-11-04T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/journal/journal-template/</loc>
+      <lastmod>2018-11-03T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/journal/pre-processing-to-what-extent/</loc>
       <lastmod>2018-11-03T00:00:00+00:00</lastmod>
     </url>
     
@@ -220,7 +238,7 @@
     <url>
     
       <loc>/categories/journal/</loc>
-      <lastmod>2018-11-03T00:00:00+00:00</lastmod>
+      <lastmod>2018-11-04T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -230,7 +248,7 @@
     <url>
     
       <loc>/journal/</loc>
-      <lastmod>2018-11-03T00:00:00+00:00</lastmod>
+      <lastmod>2018-11-04T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -260,7 +278,7 @@
     <url>
     
       <loc>/tags/learning/</loc>
-      <lastmod>2018-11-03T00:00:00+00:00</lastmod>
+      <lastmod>2018-11-04T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -321,6 +339,16 @@
     
       <loc>/categories/r/</loc>
       <lastmod>2018-08-09T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/rest-day/</loc>
+      <lastmod>2018-11-04T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
