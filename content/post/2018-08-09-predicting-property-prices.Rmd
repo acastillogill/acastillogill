@@ -9,7 +9,7 @@ categories:
 tags: 
   - Kaggle
   - Home sales prices
-draft: FALSE
+draft: TRUE
 summary: What factors most affect sales prices for homes?
 output:
   blogdown::html_page:
