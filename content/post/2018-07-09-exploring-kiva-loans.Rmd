@@ -12,7 +12,7 @@ tags:
 draft: FALSE
 summary: What do Kiva loans around the world look like?
 header: 
-  image: "lenders-per-country-1.png"
+  image: "headers/lenders-per-country-1.png"
   caption: "Lender counts per country for top borrowing countries."
 output:
   blogdown::html_page:
