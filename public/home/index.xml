@@ -31,20 +31,11 @@
     </item>
     
     <item>
-      <title>Journal</title>
+      <title>Recent Journal Entries</title>
       <link>/home/journal/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0200</pubDate>
       
       <guid>/home/journal/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Contact</title>
-      <link>/home/contact/</link>
-      <pubDate>Wed, 20 Apr 2016 00:00:00 +0200</pubDate>
-      
-      <guid>/home/contact/</guid>
       <description></description>
     </item>
     
