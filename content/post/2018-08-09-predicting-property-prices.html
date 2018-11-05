@@ -5,12 +5,15 @@ date: '2018-08-09'
 slug: predicting-property-prices
 categories:
   - R
-  - EDA
+  - RPART
 tags: 
   - Kaggle
   - Home sales prices
 draft: FALSE
 summary: What factors most affect sales prices for homes?
+header: 
+  image: ""
+  caption: "Test"
 output:
   blogdown::html_page:
     toc: true
@@ -292,17 +295,16 @@ round(coefficients(norm_fit), digits = 2)
 <h1><span class="header-section-number">4</span> Classification and Regression Trees (CART) time</h1>
 <p>In this post I am using the recursing and partitioning (RPART) algorithm also known as classification and regression trees (CART). It will be implemented with the <code>rpart</code> package in R.</p>
 <p>Rpart, builds a model in two stages:</p>
-<ul>
-<li><strong>First stage</strong>:</li>
-</ul>
+<p><strong>First stage</strong>:</p>
 <p>A single variable is identified which can best split the data into two groups. The data is then separated intwo two groups and the whole process is repeated <em>recursively</em> or indefinitely until the sub groups reach a minimum size, or until no further improvements can be made.</p>
 <p><strong>To be defined later</strong>
 - What constitutes as the variable that BEST splits the data?</p>
 <p>When the split is made, similarity amongst the observations can more or less homogenous. This homogeneity is also called purity and it can be measured. The impurity measure of a node specifies how mixed the resulting subset is.</p>
 <ul>
-<li><p>What are the further improvements that the algorithm can make?</p></li>
-<li><p><strong>Second stage</strong>:</p></li>
+<li>What are the further improvements that the algorithm can make?</li>
 </ul>
+<p>These are further splits that reduce the homogeneity of the subgroups.</p>
+<p><strong>Second stage</strong>:</p>
 <p>The tree is trimmed back or prunned using cross-validation.</p>
 <div id="splitting-the-data" class="section level2">
 <h2><span class="header-section-number">4.1</span> Splitting the data</h2>

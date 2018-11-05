@@ -29,6 +29,39 @@
     </item>
     
     <item>
+      <title>Understanding output tables</title>
+      <link>/journal/understanding-output-tables/</link>
+      <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/journal/understanding-output-tables/</guid>
+      <description>&lt;p&gt;I’ve been able to answer quite a few of the questions that I asked before. For example, I don’t have to remove outliers because the algorithm is robust to outliers. No centering and scaling needs to be done to the variables. I can leave factors as factors, but the issue with with a lot of levels is that the tree can get quite wide which reduces its interpretability, which is after all, one of the advantages of using binary trees.
+I’ve also answered what constitutes an improvemment in the branch-splitting algorithm, which is finding a variable that can produce the most homogenous subgroups after a split.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;rpart&lt;/code&gt; function has several hyperparameters I would like to really understand before I modify the variables.
+Today I set out to understand these hyperparameters but instead got caught up understanding the, “five additional ingredients” that need be specified to “generalise”extend&amp;quot; the algorithm.
+These are:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;Splitting criterion, in ANOVA, this is maximising the between-groups sum-of-squares in a simple analysis of variance.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(SS_T-(SS_L+SS_R)\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Where &lt;span class=&#34;math inline&#34;&gt;\(SS_T\)&lt;/span&gt; is the sum of squares for the node; SS_L is the sum of squares for the left son; and &lt;span class=&#34;math inline&#34;&gt;\(SS_R\)&lt;/span&gt; is the sum of squares for the right son.&lt;/p&gt;
+&lt;ol start=&#34;2&#34; style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;&lt;p&gt;A summary statistic or vector to describe a node. The first element is considered to be the fitted value. For ANOVA or regression, this the mean of the node.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Error of the node: Variance of &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; for ANOVA.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The prediction error for a new observation, assigned to the node (&lt;span class=&#34;math inline&#34;&gt;\(Y_{new}-Y_{bar}\)&lt;/span&gt;).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Any initalisation parameter.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I was also trying to understand the output of &lt;code&gt;printcp()&lt;/code&gt; which shows the complexity parameter in descending order.&lt;/p&gt;
+&lt;p&gt;It shows the columns: &lt;code&gt;cp&lt;/code&gt;, &lt;code&gt;nsplit&lt;/code&gt;, &lt;code&gt;rel error&lt;/code&gt;, &lt;code&gt;Xerror&lt;/code&gt;, and &lt;code&gt;Xstd&lt;/code&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;rel error&lt;/code&gt;: is defined as &lt;span class=&#34;math inline&#34;&gt;\(1-R^2\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Xerror&lt;/code&gt;: “related to the PRESS statistic”. What is the PRESS statistic?&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Xstd&lt;/code&gt;: cross-validated error.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Also, when reading the &lt;code&gt;rpart&lt;/code&gt; documentation, the authors constantly refer to a surrogate split. Which I’m having a bit of trouble trying to understand.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Memorising tip</title>
       <link>/journal/memorising-tip/</link>
       <pubDate>Sun, 04 Nov 2018 00:00:00 +0000</pubDate>
@@ -344,17 +377,16 @@ round(coefficients(norm_fit), digits = 2)
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;4&lt;/span&gt; Classification and Regression Trees (CART) time&lt;/h1&gt;
 &lt;p&gt;In this post I am using the recursing and partitioning (RPART) algorithm also known as classification and regression trees (CART). It will be implemented with the &lt;code&gt;rpart&lt;/code&gt; package in R.&lt;/p&gt;
 &lt;p&gt;Rpart, builds a model in two stages:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;First stage&lt;/strong&gt;:&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;First stage&lt;/strong&gt;:&lt;/p&gt;
 &lt;p&gt;A single variable is identified which can best split the data into two groups. The data is then separated intwo two groups and the whole process is repeated &lt;em&gt;recursively&lt;/em&gt; or indefinitely until the sub groups reach a minimum size, or until no further improvements can be made.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;To be defined later&lt;/strong&gt;
 - What constitutes as the variable that BEST splits the data?&lt;/p&gt;
 &lt;p&gt;When the split is made, similarity amongst the observations can more or less homogenous. This homogeneity is also called purity and it can be measured. The impurity measure of a node specifies how mixed the resulting subset is.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;What are the further improvements that the algorithm can make?&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Second stage&lt;/strong&gt;:&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;What are the further improvements that the algorithm can make?&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;These are further splits that reduce the homogeneity of the subgroups.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Second stage&lt;/strong&gt;:&lt;/p&gt;
 &lt;p&gt;The tree is trimmed back or prunned using cross-validation.&lt;/p&gt;
 &lt;div id=&#34;splitting-the-data&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.1&lt;/span&gt; Splitting the data&lt;/h2&gt;

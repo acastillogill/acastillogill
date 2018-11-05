@@ -60,7 +60,7 @@
     <item>
       <title>Learning</title>
       <link>/tags/learning/</link>
-      <pubDate>Sun, 04 Nov 2018 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/learning/</guid>
       <description></description>
@@ -81,6 +81,15 @@
       <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/pre-processing-data/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RPart</title>
+      <link>/tags/rpart/</link>
+      <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/rpart/</guid>
       <description></description>
     </item>
     

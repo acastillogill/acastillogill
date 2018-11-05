@@ -23,6 +23,15 @@
     
     <url>
     
+      <loc>/journal/understanding-output-tables/</loc>
+      <lastmod>2018-11-05T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/journal/memorising-tip/</loc>
       <lastmod>2018-11-04T00:00:00+00:00</lastmod>
     </url>
@@ -114,16 +123,6 @@
     
     <url>
     
-      <loc>/categories/eda/</loc>
-      <lastmod>2018-08-09T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
       <loc>/categories/end-to-end/</loc>
       <lastmod>2018-07-07T00:00:00+00:00</lastmod>
       <priority>0</priority>
@@ -155,7 +154,7 @@
     <url>
     
       <loc>/categories/journal/</loc>
-      <lastmod>2018-11-04T00:00:00+00:00</lastmod>
+      <lastmod>2018-11-05T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -165,7 +164,7 @@
     <url>
     
       <loc>/journal/</loc>
-      <lastmod>2018-11-04T00:00:00+00:00</lastmod>
+      <lastmod>2018-11-05T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -195,7 +194,7 @@
     <url>
     
       <loc>/tags/learning/</loc>
-      <lastmod>2018-11-04T00:00:00+00:00</lastmod>
+      <lastmod>2018-11-05T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -245,6 +244,26 @@
     
       <loc>/categories/r/</loc>
       <lastmod>2018-08-09T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/categories/rpart/</loc>
+      <lastmod>2018-08-09T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/rpart/</loc>
+      <lastmod>2018-11-05T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
