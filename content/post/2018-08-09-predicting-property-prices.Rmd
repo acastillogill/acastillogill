@@ -5,12 +5,15 @@ date: '2018-08-09'
 slug: predicting-property-prices
 categories:
   - R
-  - EDA
+  - RPART
 tags: 
   - Kaggle
   - Home sales prices
 draft: FALSE
 summary: What factors most affect sales prices for homes?
+header: 
+  image: ""
+  caption: "Test"
 output:
   blogdown::html_page:
     toc: true
@@ -558,7 +561,7 @@ In this post I am using the recursing and partitioning (RPART) algorithm also kn
 
 Rpart, builds a model in two stages:
 
-- **First stage**:
+**First stage**:
 
 A single variable is identified which can best split the data into two groups. The data is then separated intwo two groups and the whole process is repeated *recursively* or indefinitely until the sub groups reach a minimum size, or until no further improvements can be made. 
 
@@ -569,11 +572,11 @@ When the split is made, similarity amongst the observations can more or less hom
 
 - What are the further improvements that the algorithm can make? 
 
+These are further splits that reduce the homogeneity of the subgroups.
 
-- **Second stage**:
+**Second stage**:
 
 The tree is trimmed back or prunned using cross-validation. 
-
 
 ## Splitting the data
 ```{r split-data, include=FALSE}
