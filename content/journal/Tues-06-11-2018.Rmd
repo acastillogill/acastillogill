@@ -8,7 +8,7 @@ categories:
 tags: 
   - Prioritising
   - Learning
-draft: TRUE
+draft: FALSE
 summary: Prioritising tips 
 output:
   blogdown::html_page:
