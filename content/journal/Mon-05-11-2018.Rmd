@@ -31,13 +31,13 @@ a. Splitting criterion, in ANOVA, this is maximising the between-groups sum-of-s
 
 $SS_T-(SS_L+SS_R)$
 
-Where $SS_T$ is the sum of squares for the node; SS_L is the sum of squares for the left son; and $SS_R$ is the sum of squares for the right son.
+Where $SS_T$ is the sum of squares for the node; $SS_L$ is the sum of squares for the left son; and $SS_R$ is the sum of squares for the right son.
 
 b. A summary statistic or vector to describe a node. The first element is considered to be the fitted value. For ANOVA or regression, this the mean of the node. 
 
 c. Error of the node: Variance of $Y$ for ANOVA.
 
-d. The prediction error for a new observation, assigned to the node ($Y_{new}-Y_{bar}$).
+d. The prediction error for a new observation, assigned to the node ($y_{new}-\bar{y}$).
 
 e. Any initalisation parameter. 
 
@@ -47,6 +47,6 @@ It shows the columns: `cp`, `nsplit`, `rel error`, `Xerror`, and `Xstd`.
 
 - `rel error`: is defined as $1-R^2$
 - `Xerror`: "related to the PRESS statistic". What is the PRESS statistic?
-- `Xstd`: cross-validated error. 
+- `Xstd`: related to the cross validation error.
 
 Also, when reading the `rpart` documentation, the authors constantly refer to a surrogate split. Which I'm having a bit of trouble trying to understand. 

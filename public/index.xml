@@ -29,6 +29,16 @@
     </item>
     
     <item>
+      <title>Choosing the best tree</title>
+      <link>/journal/objectives-key-results-tasks/</link>
+      <pubDate>Wed, 07 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/journal/objectives-key-results-tasks/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/29197213/what-is-the-difference-between-rel-error-and-x-error-in-a-rpart-decision-tree&#34; class=&#34;uri&#34;&gt;https://stackoverflow.com/questions/29197213/what-is-the-difference-between-rel-error-and-x-error-in-a-rpart-decision-tree&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Objectives, key results, tasks.</title>
       <link>/journal/objectives-key-results-tasks/</link>
       <pubDate>Tue, 06 Nov 2018 00:00:00 +0000</pubDate>
@@ -39,6 +49,12 @@
 &lt;img src=&#34;/journal/journal-template_files/okrs.png&#34; alt=&#34;Mission &amp;amp; vission, objectives, key results, and tasks.&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;Mission &amp;amp; vission, objectives, key results, and tasks.&lt;/p&gt;
 &lt;/div&gt;
+&lt;p&gt;So today we continue trying to understand all the &lt;code&gt;rpart()&lt;/code&gt; function and algorithm.&lt;/p&gt;
+&lt;p&gt;In response to one of yesterday’s questions, the PRESS statistic is the predicted residual error sum of squares:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\sum_{i=1}^{n} (y_i-\hat{y}_{i,-i})^2\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;According to trusty &lt;a href=&#34;https://en.wikipedia.org/wiki/PRESS_statistic&#34;&gt;Wikipedia&lt;/a&gt;, the PRESS statistic is a form of cross validation derived from comparing the model’s predictions vs. actual values on a dataset that was not used for fitting the model.&lt;/p&gt;
+&lt;p&gt;A model that is overfitted would give small residuals using the observations with which the model was fitted and larger residuals with observations that were not used to fit the model. This makes sense.&lt;/p&gt;
+&lt;p&gt;Now that I understand the PRESS statistic which is called &lt;code&gt;xerror&lt;/code&gt; in the &lt;code&gt;rpart&lt;/code&gt; output table. I still didn’t understand the &lt;code&gt;xstd&lt;/code&gt;. I assumed it was the standard deviation of the &lt;code&gt;xerror&lt;/code&gt; but after some manual attempts at calculating &lt;code&gt;xstd&lt;/code&gt; based on &lt;code&gt;xerror&lt;/code&gt; and having no luck. I took to Cross Validated to sort me out. According to user bearoak on &lt;a href=&#34;https://stats.stackexchange.com/questions/92547/r-rpart-cross-validation-and-1-se-rule-why-is-the-column-in-cptable-called-xst&#34;&gt;this thread&lt;/a&gt;, it is not the standard deviation as one would think because of the &lt;code&gt;std&lt;/code&gt; bit of &lt;code&gt;xstd&lt;/code&gt;, but it is actually the standard error which is the standard deviation divided by the number of observations.&lt;/p&gt;
 </description>
     </item>
     
@@ -71,11 +87,11 @@ These are:&lt;/p&gt;
 &lt;li&gt;Splitting criterion, in ANOVA, this is maximising the between-groups sum-of-squares in a simple analysis of variance.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(SS_T-(SS_L+SS_R)\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Where &lt;span class=&#34;math inline&#34;&gt;\(SS_T\)&lt;/span&gt; is the sum of squares for the node; SS_L is the sum of squares for the left son; and &lt;span class=&#34;math inline&#34;&gt;\(SS_R\)&lt;/span&gt; is the sum of squares for the right son.&lt;/p&gt;
+&lt;p&gt;Where &lt;span class=&#34;math inline&#34;&gt;\(SS_T\)&lt;/span&gt; is the sum of squares for the node; &lt;span class=&#34;math inline&#34;&gt;\(SS_L\)&lt;/span&gt; is the sum of squares for the left son; and &lt;span class=&#34;math inline&#34;&gt;\(SS_R\)&lt;/span&gt; is the sum of squares for the right son.&lt;/p&gt;
 &lt;ol start=&#34;2&#34; style=&#34;list-style-type: lower-alpha&#34;&gt;
 &lt;li&gt;&lt;p&gt;A summary statistic or vector to describe a node. The first element is considered to be the fitted value. For ANOVA or regression, this the mean of the node.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Error of the node: Variance of &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; for ANOVA.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;The prediction error for a new observation, assigned to the node (&lt;span class=&#34;math inline&#34;&gt;\(Y_{new}-Y_{bar}\)&lt;/span&gt;).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The prediction error for a new observation, assigned to the node (&lt;span class=&#34;math inline&#34;&gt;\(y_{new}-\bar{y}\)&lt;/span&gt;).&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Any initalisation parameter.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;I was also trying to understand the output of &lt;code&gt;printcp()&lt;/code&gt; which shows the complexity parameter in descending order.&lt;/p&gt;
@@ -83,7 +99,7 @@ These are:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;rel error&lt;/code&gt;: is defined as &lt;span class=&#34;math inline&#34;&gt;\(1-R^2\)&lt;/span&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Xerror&lt;/code&gt;: “related to the PRESS statistic”. What is the PRESS statistic?&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Xstd&lt;/code&gt;: cross-validated error.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Xstd&lt;/code&gt;: related to the cross validation error.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Also, when reading the &lt;code&gt;rpart&lt;/code&gt; documentation, the authors constantly refer to a surrogate split. Which I’m having a bit of trouble trying to understand.&lt;/p&gt;
 </description>
