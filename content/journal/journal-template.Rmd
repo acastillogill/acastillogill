@@ -1,15 +1,15 @@
 ---
-title: 
+title: Objectives, key results, tasks.
 author: Ángela Castillo-Gill
-date: '2018-11-03'
-slug: 
+date: '2018-11-06'
+slug: objectives-key-results-tasks
 categories:
   - Journal
 tags: 
-  - Pre processing data
+  - Prioritising
   - Learning
-draft: TRUE
-summary: 
+draft: FALSE
+summary: Prioritising tips 
 output:
   blogdown::html_page:
     toc: true
@@ -19,3 +19,8 @@ output:
 editor_options: 
   chunk_output_type: console
 ---
+
+Yesterday I went to a talk by a woman that worked at Facebook helping startups scale. One of slides was about prioritisation at Facebook. It was something like [this](https://www.scrumdesk.com/wp-content/uploads/okr-1.png): 
+
+![Mission & vission, objectives, key results, and tasks.](/journal/journal-template_files/okrs.png)
+

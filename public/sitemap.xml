@@ -23,6 +23,15 @@
     
     <url>
     
+      <loc>/journal/objectives-key-results-tasks/</loc>
+      <lastmod>2018-11-06T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/journal/understanding-output-tables/</loc>
       <lastmod>2018-11-05T00:00:00+00:00</lastmod>
     </url>
@@ -34,15 +43,6 @@
     
       <loc>/journal/memorising-tip/</loc>
       <lastmod>2018-11-04T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>/journal/journal-template/</loc>
-      <lastmod>2018-11-03T00:00:00+00:00</lastmod>
     </url>
     
   
@@ -154,7 +154,7 @@
     <url>
     
       <loc>/categories/journal/</loc>
-      <lastmod>2018-11-05T00:00:00+00:00</lastmod>
+      <lastmod>2018-11-06T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -164,7 +164,7 @@
     <url>
     
       <loc>/journal/</loc>
-      <lastmod>2018-11-05T00:00:00+00:00</lastmod>
+      <lastmod>2018-11-06T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -194,7 +194,7 @@
     <url>
     
       <loc>/tags/learning/</loc>
-      <lastmod>2018-11-05T00:00:00+00:00</lastmod>
+      <lastmod>2018-11-06T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -223,8 +223,8 @@
     
     <url>
     
-      <loc>/tags/pre-processing-data/</loc>
-      <lastmod>2018-11-03T00:00:00+00:00</lastmod>
+      <loc>/tags/prioritising/</loc>
+      <lastmod>2018-11-06T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
