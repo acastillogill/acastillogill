@@ -2,14 +2,14 @@
 title: Choosing the best tree
 author: Ángela Castillo-Gill
 date: '2018-11-07'
-slug: objectives-key-results-tasks
+slug: choosing-the-best-tree
 categories:
   - Journal
 tags: 
-  - Prioritising
+  - Rpart
   - Learning
-draft: TRUE
-summary: Prioritising tips 
+draft: FALSE
+summary: How to choose the best tree using the output tables.
 output:
   blogdown::html_page:
     toc: true
@@ -20,5 +20,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-https://stackoverflow.com/questions/29197213/what-is-the-difference-between-rel-error-and-x-error-in-a-rpart-decision-tree
+According to user Harold Ship in [this post](https://stackoverflow.com/questions/29197213/what-is-the-difference-between-rel-error-and-x-error-in-a-rpart-decision-tree
+), we should pick the tree with that keeps this relationship but has the tallest (that's what he means with the lowest level, since each row represents a tree with more splits):
 
+$rel_error$ $+$ $xstd$ $<$ $xerror$
