@@ -1,15 +1,15 @@
 ---
-title: Communicating science
+title: Surrogate who?
 author: Ángela Castillo-Gill
 date: '2018-11-08'
-slug: communicating-science
+slug: surrogate-who
 categories:
   - Journal
 tags: 
-  - Prioritising
+  - Rpart
   - Learning
 draft: FALSE
-summary: Coming up with an engaging story.
+summary: More jargon clarified!
 output:
   blogdown::html_page:
     toc: true
@@ -22,9 +22,16 @@ editor_options:
 
 
 
-<p>Today I am at a science communication workshop. This is what my story would be like.</p>
-<p><strong>Title:</strong> So, you want to make your property more valuable. What factors actually make a difference.</p>
-<p><strong>Short description:</strong> After processing 2000 + observations from the IDEALISTA database to really reveal what contributes to property prices, I will reveal whether or not forestry in your backyard make a difference to your property prices. And if it does, what kind of trees make a difference?</p>
-<p><strong>Exhaustive description:</strong> A cost-benefit analysis on a conservation policy to preserve palm trees in Catalonia shows negative results. Benefits derived from the conservation of palm trees pale in comparison to the policy’s costs.</p>
-<p>Should the public spend that much from their taxes preserve trees that aren’t generating that much economic value? Taxpayers, palm trees, property owners in Europe all have a say. The benefits were studied in Catalonia but can potentially be extended to the rest of Europe where the policy is in place. The policy came into place in 2007 till now.</p>
-<p>By estimating the number of palm trees in Catalonia and then quantifying their benefits in contrast to the associated benefits.</p>
+<p>I hope the authors of the <code>Rpart</code> documentation don’t take it personally but they mention surrogate variables starting on page 11 and they don’t properly define what surrogate variables mean until page 18. Maybe it’s just me.</p>
+<p>Anyway! So here is another response to a previous question: what is a surrogate variable?</p>
+<p>So the <code>Rpart</code> algorithm deals with missing data. The way it does this is when it’s doing its thing and determining the next variable and split point and comes across an observation that does not have a that variable, it figures out which variables can act as a replacement for that variable. Surrogate variable mystery solved. N</p>
+<p>Now I’m having a bit of trouble figuring out if all the rules I’ve read for choosing the best tree are the same. In the DataCamp course we pick the tree that minimises <code>xerror</code>. Yesterday I posted this rule I found on Cross Validated:</p>
+<p><span class="math inline">\(rel_{error}\)</span> <span class="math inline">\(+\)</span> <span class="math inline">\(xstd\)</span> <span class="math inline">\(&lt;\)</span> <span class="math inline">\(xerror\)</span></p>
+<p>In the documentation this is a rule:</p>
+<p><span class="math inline">\(1-SE\)</span></p>
+<p>In my next post I’m going to get to the bottom of this. I’m particularly confused because if we want to minimise the <code>xerror</code>, why does page 16 of the documentation show a cptable with 27 splits and says: we see that the best tree has 10 terminal nodes, 9 splits, based on cross-validation. It has <code>xerror</code> 0.3944.</p>
+<div class="figure">
+<img src="/journal/Thurs-08-11-2018_files/cptable.png" alt="CP table on page 16 from the Rpart documentation." />
+<p class="caption">CP table on page 16 from the Rpart documentation.</p>
+</div>
+<p>Doesn’t the tree with 11 splits and 12 nodes have the first smallest error with 0.36667?</p>

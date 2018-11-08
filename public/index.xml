@@ -34,26 +34,33 @@
       <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/journal/communicating-science/</guid>
-      <description>&lt;p&gt;Today I am at a science communication workshop. This is what my story would be like.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Title:&lt;/strong&gt; So, you want to make your property more valuable. What factors actually make a difference.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Short description:&lt;/strong&gt; After processing 2000 + observations from the IDEALISTA database to really reveal what contributes to property prices, I will reveal whether or not forestry in your backyard make a difference to your property prices. And if it does, what kind of trees make a difference?&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Exhaustive description:&lt;/strong&gt; A cost-benefit analysis on a conservation policy to preserve palm trees in Catalonia shows negative results. Benefits derived from the conservation of palm trees pale in comparison to the policy’s costs.&lt;/p&gt;
-&lt;p&gt;Should the public spend that much from their taxes preserve trees that aren’t generating that much economic value? Taxpayers, palm trees, property owners in Europe all have a say. The benefits were studied in Catalonia but can potentially be extended to the rest of Europe where the policy is in place. The policy came into place in 2007 till now.&lt;/p&gt;
-&lt;p&gt;By estimating the number of palm trees in Catalonia and then quantifying their benefits in contrast to the associated benefits.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Communicating science</title>
-      <link>/journal/communicating-science/</link>
-      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/journal/communicating-science/</guid>
       <description>&lt;p&gt;Yesterday I went to a talk by a woman that worked at Facebook helping startups scale. One of slides was about prioritisation at Facebook. It was something like &lt;a href=&#34;https://www.scrumdesk.com/wp-content/uploads/okr-1.png&#34;&gt;this&lt;/a&gt;:&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;
 &lt;img src=&#34;/journal/journal-template_files/okrs.png&#34; alt=&#34;Mission &amp;amp; vission, objectives, key results, and tasks.&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;Mission &amp;amp; vission, objectives, key results, and tasks.&lt;/p&gt;
 &lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Surrogate who?</title>
+      <link>/journal/surrogate-who/</link>
+      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/journal/surrogate-who/</guid>
+      <description>&lt;p&gt;I hope the authors of the &lt;code&gt;Rpart&lt;/code&gt; documentation don’t take it personally but they mention surrogate variables starting on page 11 and they don’t properly define what surrogate variables mean until page 18. Maybe it’s just me.&lt;/p&gt;
+&lt;p&gt;Anyway! So here is another response to a previous question: what is a surrogate variable?&lt;/p&gt;
+&lt;p&gt;So the &lt;code&gt;Rpart&lt;/code&gt; algorithm deals with missing data. The way it does this is when it’s doing its thing and determining the next variable and split point and comes across an observation that does not have a that variable, it figures out which variables can act as a replacement for that variable. Surrogate variable mystery solved. N&lt;/p&gt;
+&lt;p&gt;Now I’m having a bit of trouble figuring out if all the rules I’ve read for choosing the best tree are the same. In the DataCamp course we pick the tree that minimises &lt;code&gt;xerror&lt;/code&gt;. Yesterday I posted this rule I found on Cross Validated:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(rel_{error}\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(+\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xstd\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(&amp;lt;\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xerror\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;In the documentation this is a rule:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(1-SE\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;In my next post I’m going to get to the bottom of this. I’m particularly confused because if we want to minimise the &lt;code&gt;xerror&lt;/code&gt;, why does page 16 of the documentation show a cptable with 27 splits and says: we see that the best tree has 10 terminal nodes, 9 splits, based on cross-validation. It has &lt;code&gt;xerror&lt;/code&gt; 0.3944.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;/journal/Thurs-08-11-2018_files/cptable.png&#34; alt=&#34;CP table on page 16 from the Rpart documentation.&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;CP table on page 16 from the Rpart documentation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Doesn’t the tree with 11 splits and 12 nodes have the first smallest error with 0.36667?&lt;/p&gt;
 </description>
     </item>
     
@@ -64,7 +71,7 @@
       
       <guid>/journal/choosing-the-best-tree/</guid>
       <description>&lt;p&gt;According to user Harold Ship in &lt;a href=&#34;https://stackoverflow.com/questions/29197213/what-is-the-difference-between-rel-error-and-x-error-in-a-rpart-decision-tree&#34;&gt;this post&lt;/a&gt;, we should pick the tree with that keeps this relationship but has the tallest (that’s what he means with the lowest level, since each row represents a tree with more splits):&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(rel_error\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(+\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xstd\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(&amp;lt;\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xerror\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(rel_{error}\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(+\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xstd\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(&amp;lt;\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xerror\)&lt;/span&gt;&lt;/p&gt;
 </description>
     </item>
     

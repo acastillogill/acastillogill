@@ -23,4 +23,4 @@ editor_options:
 According to user Harold Ship in [this post](https://stackoverflow.com/questions/29197213/what-is-the-difference-between-rel-error-and-x-error-in-a-rpart-decision-tree
 ), we should pick the tree with that keeps this relationship but has the tallest (that's what he means with the lowest level, since each row represents a tree with more splits):
 
-$rel_error$ $+$ $xstd$ $<$ $xerror$
+$rel_{error}$ $+$ $xstd$ $<$ $xerror$
