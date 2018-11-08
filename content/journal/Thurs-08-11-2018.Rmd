@@ -9,7 +9,7 @@ tags:
   - Prioritising
   - Learning
 draft: FALSE
-summary: Prioritising tips 
+summary: Coming up with an engaging story.
 output:
   blogdown::html_page:
     toc: true
