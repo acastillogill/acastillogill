@@ -15,7 +15,7 @@ title = "Ángela Castillo-Gill"
 # To display a copyright symbol, type `&copy;`.
 copyright = "&copy; 2018 Ángela Castillo-Gill"
 
-theme = "hugo-academic"
+theme = "academic"
 enableEmoji = true
 footnotereturnlinkcontents = "<sup>^</sup>"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
@@ -37,7 +37,7 @@ defaultContentLanguageInSubdir = false
 enableGitInfo = false
 
 [outputs]
-  home = [ "HTML", "CSS", "RSS" ]
+  home = [ "HTML", "CSS", "RSS", "JSON" ]
   section = [ "HTML", "RSS" ]
 
 # Configure BlackFriday Markdown rendering.
@@ -57,9 +57,9 @@ enableGitInfo = false
   font = "default"
 
   # Your details.
-  name = "Welcome my data science journey"
-  description = ""
-  role = "Let's connect!"
+  name = "Ángela Castillo-Gill"
+  description = "Let's connect!"
+  role = "Researcher and Data Analyst"
 
   # Organizations/Affiliations.
   #   Separate multiple entries with a comma, using the form: `[ {name="Org1", url=""}, {name="Org2", url=""} ]`.
@@ -231,22 +231,22 @@ enableGitInfo = false
 
   [[params.social]]
     icon = "paper-plane"
-    icon_pack = "fa"
+    icon_pack = "fas"
     link = "mailto:acastillogill@gmail.com"
 
   [[params.social]]
     icon = "twitter"
-    icon_pack = "fa"
+    icon_pack = "fas"
     link = "//twitter.com/acastillogill"
 
   [[params.social]]
     icon = "github"
-    icon_pack = "fa"
+    icon_pack = "fas"
     link = "//github.com/acastillogill"
     
      [[params.social]]
     icon = "linkedin"
-    icon_pack = "fa"
+    icon_pack = "fas"
     link = "https://www.linkedin.com/in/acastillogill/"
 
 
