@@ -10,7 +10,7 @@
    * --------------------------------------------------------------------------- */
 
   // Dynamically get responsive navigation bar offset.
-  let $navbar = $('.navbar-header');
+  let $navbar = $('.navbar');
   let navbar_offset = $navbar.innerHeight();
 
   /**
@@ -41,7 +41,7 @@
     let $body = $('body');
     let data = $body.data('bs.scrollspy');
     if (data) {
-      data.options.offset = navbar_offset;
+      data._config.offset = navbar_offset;
       $body.data('bs.scrollspy', data);
       $body.scrollspy('refresh');
     }
@@ -54,7 +54,7 @@
    * Add smooth scrolling to all links inside the main navbar.
    * --------------------------------------------------------------------------- */
 
-  $('#navbar-main li.nav-item a').on('click', function(event) {
+  $('#navbar-main li.nav-item a.nav-link').on('click', function(event) {
     // Store requested URL hash.
     let hash = this.hash;
 
@@ -88,7 +88,7 @@
    * Hide mobile collapsable menu on clicking a link.
    * --------------------------------------------------------------------------- */
 
-  $(document).on('click', '.navbar-collapse.in', function(e) {
+  $(document).on('click', '.navbar-collapse.show', function(e) {
     //get the <a> element that was clicked, even if the <span> element that is inside the <a> element is e.target
     let targetElement = $(e.target).is('a') ? $(e.target) : $(e.target).parent();
 
@@ -184,7 +184,7 @@
       let zoom = parseInt($('#map-zoom').val());
       let address = $('#map-dir').val();
       let api_key = $('#map-api-key').val();
-      
+
       if ( map_provider == 1 ) {
         let map = new GMaps({
           div: '#map',
@@ -236,6 +236,20 @@
   }
 
   /* ---------------------------------------------------------------------------
+   * GitHub API.
+   * --------------------------------------------------------------------------- */
+
+  function printLatestRelease(selector, repo) {
+    $.getJSON('https://api.github.com/repos/' + repo + '/tags').done(function (json) {
+      let release = json[0];
+      $(selector).append(release.name);
+    }).fail(function( jqxhr, textStatus, error ) {
+      let err = textStatus + ", " + error;
+      console.log( "Request Failed: " + err );
+    });
+  }
+
+  /* ---------------------------------------------------------------------------
    * On window load.
    * --------------------------------------------------------------------------- */
 
@@ -244,8 +258,11 @@
       // When accessing homepage from another page and `#top` hash is set, show top of page (no hash).
       if (window.location.hash == "#top") {
         window.location.hash = ""
-      } else {
-        // If URL contains a hash, scroll to target ID taking into account responsive offset.
+      } else if (!$('.projects-container').length) {
+        // If URL contains a hash and there are no dynamically loaded images on the page,
+        // immediately scroll to target ID taking into account responsive offset.
+        // Otherwise, wait for `imagesLoaded()` to complete before scrolling to hash to prevent scrolling to wrong
+        // location.
         scrollToAnchor();
       }
     }
@@ -277,6 +294,7 @@
           layoutMode: layout,
           filter: $section.find('.default-project-filter').text()
         });
+
         // Filter items when filter link is clicked.
         $section.find('.project-filters a').click(function() {
           let selector = $(this).attr('data-filter');
@@ -284,6 +302,15 @@
           $(this).removeClass('active').addClass('active').siblings().removeClass('active all');
           return false;
         });
+
+        // If window hash is set, scroll to hash.
+        // Placing this within `imagesLoaded` prevents scrolling to the wrong location due to dynamic image loading
+        // affecting page layout and position of the target anchor ID.
+        // Note: If there are multiple project widgets on a page, ideally only perform this once after images
+        // from *all* project widgets have finished loading.
+        if (window.location.hash) {
+          scrollToAnchor();
+        }
       });
     });
 
@@ -299,7 +326,7 @@
       e.preventDefault();
       let filename = $(this).attr('data-filename');
       let modal = $('#modal');
-      modal.find('.modal-body').load( filename , function( response, status, xhr ) {
+      modal.find('.modal-body code').load( filename , function( response, status, xhr ) {
         if ( status == 'error' ) {
           let msg = "Error: ";
           $('#modal-error').html( msg + xhr.status + " " + xhr.statusText );
@@ -330,6 +357,13 @@
 
     // Initialise Google Maps if necessary.
     initMap();
+
+    // Fix Hugo's inbuilt Table of Contents.
+    $('#TableOfContents > ul > li > ul').unwrap().unwrap();
+
+    // Print latest Academic version if necessary.
+    if ($('#academic-release').length > 0)
+      printLatestRelease('#academic-release', $('#academic-release').data('repo'));
   });
 
 })(jQuery);

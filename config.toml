@@ -156,7 +156,7 @@ enableGitInfo = false
   #   https://sourcethemes.com/academic/post/writing-markdown-latex/#highlighting-options
   highlight = true
   highlight_languages = ["r", "yaml"]
-  highlight_style = "xcode"
+  highlight_style = "github"
   highlight_version = "9.12.0"
   # Enable native social sharing buttons?
   sharing = true
@@ -250,6 +250,13 @@ enableGitInfo = false
     link = "https://www.linkedin.com/in/acastillogill/"
 
 
+ # Link to a PDF of your resume/CV from the About widget.
+  # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
+  # [[params.social]]
+  #   icon = "cv"
+  #   icon_pack = "ai"
+  #   link = "files/cv.pdf"
+
 # Navigation Links
 #   To link a homepage widget, specify the URL as a hash `#` followed by the filename of the
 #     desired widget in your `content/home/` folder.
@@ -264,20 +271,52 @@ enableGitInfo = false
   weight = 1
 
 [[menu.main]]
-  name = "Posts"
-  url = "#posts"
+  name = "Publications"
+  url = "#publications_selected"
   weight = 2
 
 [[menu.main]]
-name = "Journal"
-url = "#journal"
-weight = 3
+  name = "Posts"
+  url = "#posts"
+  weight = 3
 
 [[menu.main]]
-name = "Tags"
-url = "#tags"
-weight = 4
+  name = "Projects"
+  url = "#projects"
+  weight = 4
 
+[[menu.main]]
+  name = "Tutorials"
+  url = "/tutorial/"
+  weight = 5
+
+[[menu.main]]
+  name = "Contact"
+  url = "#contact"
+  weight = 6
+
+# Link to a PDF of your resume/CV from the menu.
+# To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
+# [[menu.main]]
+#    name = "CV"
+#    url = "files/cv.pdf"
+#    weight = 7
+
+# Search.
+[params.search]
+  # Search provider:
+  #   0: No search engine
+  #   1: Built-in (Fuse)
+  #   2: Algolia (https://www.algolia.com)
+  engine = 1
+
+  # Configuration of Algolia search engine.
+  # Paste the values from your Algolia dashboard.
+  [params.search.algolia]
+    app_id = ""
+    api_key = ""
+    index_name = ""
+    show_logo = false
 
 # Taxonomies.
 [taxonomies]
@@ -287,7 +326,20 @@ weight = 4
 
 # Languages
 #   Create a [languages.X] block for each language you want, where X is the language ID.
+#   Refer to https://sourcethemes.com/academic/docs/language/
 
 # Configure the English version of the website.
-[Languages.en]
+[languages.en]
   languageCode = "en-us"
+
+# Uncomment the lines below to configure your website in a second language.
+#[languages.zh]
+#  languageCode = "zh-Hans"
+#  title = "Chinese website title..."
+#  [languages.zh.params]
+#    name = "Your name in Chinese..."
+#    role = "Your role in Chinese..."
+#  [[languages.zh.menu.main]]
+#    name = "Wo"
+#    url = "#about"
+#    weight = 1
