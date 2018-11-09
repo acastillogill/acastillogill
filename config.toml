@@ -273,6 +273,11 @@ name = "Journal"
 url = "#journal"
 weight = 3
 
+[[menu.main]]
+name = "Tags"
+url = "#tags"
+weight = 4
+
 
 # Taxonomies.
 [taxonomies]
