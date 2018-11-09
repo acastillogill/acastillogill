@@ -9,7 +9,7 @@
  **************************************************/
 
 html {
-  font-family: '{{ .Get "body_font" }}', sans-serif;
+  font-family: '{{ .Get "body_font" }}', serif;
   font-size: {{ .Get "font_size_small" }}px;
   color: rgba(0,0,0,0.8);
   line-height: 1.65;

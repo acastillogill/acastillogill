@@ -6,10 +6,10 @@
  **************************************************/
 
 /* from blue to red */
-/*  change all rgb(198,33,104) --> to rgb(198,33,104) */
-/*  change all rgb(97,16,51) --> to rgb(97,16,51) */
-/*  change all rgba(198,33,104,0.6) --> rgba(198,33,104,0.6) */
-/*  change all rgba(97,16,51,1) --> rgba(97,16,51,1) */
+/*  change all rgb(20,128,151) --> to rgb(20,128,151) */
+/*  change all rgb(20,128,151) --> to rgb(20,128,151) */
+/*  change all rgba(20,128,151,0.6) --> rgba(20,128,151,0.6) */
+/*  change all rgba(20,128,151,1) --> rgba(20,128,151,1) */
 
 /*************************************************
  *  Core
@@ -20,13 +20,13 @@
 
 a,
 h3.article-title a:hover {
-  color: rgb(198,33,104); 
+  color: rgb(20,128,151); 
 }
 
 
 a:hover,
 a:focus {
-  color: rgb(97,16,51);
+  color: rgb(20,128,151);
 }
 
 /*************************************************
@@ -34,7 +34,7 @@ a:focus {
  **************************************************/
 
 .article-metadata a:hover {
-  color: rgb(198,33,104);
+  color: rgb(20,128,151);
 }
 
 /*************************************************
@@ -42,8 +42,8 @@ a:focus {
  **************************************************/
 
 .btn-primary {
-  border-color: rgb(198,33,104);
-  /*background: rgb(198,33,104);*/
+  border-color: rgb(20,128,151);
+  /*background: rgb(20,128,151);*/
 }
 
 .btn-primary:hover,
@@ -51,7 +51,7 @@ a:focus {
 .btn-primary:active,
 .btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
-  background: rgb(198,33,104);
+  background: rgb(20,128,151);
 }
 
 
@@ -61,8 +61,8 @@ a:focus {
 
 
 .btn-primary.btn-outline {
-  color: rgb(198,33,104);
-  border-color: rgb(198,33,104);
+  color: rgb(20,128,151);
+  border-color: rgb(20,128,151);
 }
 
 /*************************************************
@@ -72,7 +72,7 @@ a:focus {
 .navbar-default .navbar-nav>.active>a,
 .navbar-default .navbar-nav>.active>a:focus,
 .navbar-default .navbar-nav>.active>a:hover {
-  color: rgb(198,33,104);
+  color: rgb(20,128,151);
   font-weight: 700;
   background-color: transparent !important; /* Override Bootstrap. */
 }
@@ -82,7 +82,7 @@ a:focus {
 .dropdown-menu > .active > a:hover {
   color: #fff;
   text-decoration: none;
-  background-color: rgb(198,33,104);
+  background-color: rgb(20,128,151);
   outline: 0;
 }
 
@@ -91,7 +91,7 @@ a:focus {
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus,
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover {
-    color: rgb(198,33,104);
+    color: rgb(20,128,151);
     background-color: transparent;
   }
 
@@ -103,17 +103,17 @@ a:focus {
  
 
 .btn-toolbar .btn.btn-primary {
-  background: rgb(198,33,104);
+  background: rgb(20,128,151);
 }
 
 .btn-toolbar .btn.btn-primary:hover,
 .btn-toolbar .btn.btn-primary:focus {
-  background-color: rgba(198,33,104,0.6);
+  background-color: rgba(20,128,151,0.6);
 }
 
 .btn-toolbar .btn.btn-primary:active,
 .btn-toolbar .btn.btn-primary.active {
-  background-color: rgba(97,16,51,1);
+  background-color: rgba(20,128,151,1);
 }
 
 /*************************************************
@@ -121,13 +121,13 @@ a:focus {
  **************************************************/
 
 .pub-icon {
-  color: rgb(97,16,51);
+  color: rgb(20,128,151);
   font-size: 0.81em;
   padding-top: 6px;
 }
 
 .pub-list-item .pub-publication {
-  color: rgb(132, 214, 211);
+  color: rgb(20,128,151);
   font-size: 1rem;
 }
 
@@ -137,7 +137,7 @@ a:focus {
  **************************************************/
 
 html {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Merriweather', serif;
   font-weight: 300;
   font-size: 16px;
   color: rgba(0,0,0,0.8);
@@ -151,7 +151,7 @@ html {
 
 .alert-note {
   color: #fff;
-  background-color: rgb(198,33,104); 
+  background-color: rgb(20,128,151); 
   border-color: #bce8f1;
 }
 
@@ -160,4 +160,3 @@ html {
   background-color: rgb(238, 88, 99); 
   border-color: #ebccd1;
 }
-  
