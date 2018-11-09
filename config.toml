@@ -272,7 +272,7 @@ enableGitInfo = false
 
   [[menu.main]]
   name = "Tutorials"
-  url = "tutorial"
+  url = "#tutorials"
   weight = 2
 
 [[menu.main]]
