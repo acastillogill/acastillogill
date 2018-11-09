@@ -22,11 +22,20 @@
     </item>
     
     <item>
-      <title>CART</title>
-      <link>/tags/cart/</link>
-      <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
+      <title>Deep Learning</title>
+      <link>/tags/deep-learning/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0200</pubDate>
       
-      <guid>/tags/cart/</guid>
+      <guid>/tags/deep-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Demo</title>
+      <link>/tags/demo/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0200</pubDate>
+      
+      <guid>/tags/demo/</guid>
       <description></description>
     </item>
     
@@ -54,60 +63,6 @@
       <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/kiva/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Learning</title>
-      <link>/tags/learning/</link>
-      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/learning/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Pre -processing-data</title>
-      <link>/tags/pre--processing-data/</link>
-      <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/pre--processing-data/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Prioritising</title>
-      <link>/tags/prioritising/</link>
-      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/prioritising/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>RPart</title>
-      <link>/tags/rpart/</link>
-      <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/rpart/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Rest day</title>
-      <link>/tags/rest-day/</link>
-      <pubDate>Sun, 04 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/rest-day/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Rpart</title>
-      <link>/tags/rpart/</link>
-      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/rpart/</guid>
       <description></description>
     </item>
     

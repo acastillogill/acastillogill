@@ -7,154 +7,26 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Ángela Castillo-Gill</copyright>
-    <lastBuildDate>Wed, 20 Apr 2016 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 15 Oct 2017 00:00:00 +0200</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Recent Posts</title>
-      <link>/posts/</link>
-      <pubDate>Wed, 20 Apr 2016 00:00:00 +0200</pubDate>
+      <title>Example Page</title>
+      <link>/tutorial/example/</link>
+      <pubDate>Sun, 09 Sep 2018 00:00:00 +0200</pubDate>
       
-      <guid>/posts/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Recent journal entries</title>
-      <link>/journal/</link>
-      <pubDate>Wed, 20 Apr 2016 00:00:00 +0200</pubDate>
-      
-      <guid>/journal/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Communicating science</title>
-      <link>/journal/communicating-science/</link>
-      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/journal/communicating-science/</guid>
-      <description>&lt;p&gt;Yesterday I went to a talk by a woman that worked at Facebook helping startups scale. One of slides was about prioritisation at Facebook. It was something like &lt;a href=&#34;https://www.scrumdesk.com/wp-content/uploads/okr-1.png&#34;&gt;this&lt;/a&gt;:&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;/journal/journal-template_files/okrs.png&#34; alt=&#34;Mission &amp;amp; vission, objectives, key results, and tasks.&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;Mission &amp;amp; vission, objectives, key results, and tasks.&lt;/p&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Surrogate who?</title>
-      <link>/journal/surrogate-who/</link>
-      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/journal/surrogate-who/</guid>
-      <description>&lt;p&gt;I hope the authors of the &lt;code&gt;Rpart&lt;/code&gt; documentation don’t take it personally but they mention surrogate variables starting on page 11 and they don’t properly define what surrogate variables mean until page 18. Maybe it’s just me.&lt;/p&gt;
-&lt;p&gt;Anyway! So here is another response to a previous question: what is a surrogate variable?&lt;/p&gt;
-&lt;p&gt;So the &lt;code&gt;Rpart&lt;/code&gt; algorithm deals with missing data. The way it does this is when it’s doing its thing and determining the next variable and split point and comes across an observation that does not have a that variable, it figures out which variables can act as a replacement for that variable. Surrogate variable mystery solved. N&lt;/p&gt;
-&lt;p&gt;Now I’m having a bit of trouble figuring out if all the rules I’ve read for choosing the best tree are the same. In the DataCamp course we pick the tree that minimises &lt;code&gt;xerror&lt;/code&gt;. Yesterday I posted this rule I found on Cross Validated:&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(rel_{error}\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(+\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xstd\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(&amp;lt;\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xerror\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;In the documentation this is a rule:&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(1-SE\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;In my next post I’m going to get to the bottom of this. I’m particularly confused because if we want to minimise the &lt;code&gt;xerror&lt;/code&gt;, why does page 16 of the documentation show a cptable with 27 splits and says: we see that the best tree has 10 terminal nodes, 9 splits, based on cross-validation. It has &lt;code&gt;xerror&lt;/code&gt; 0.3944.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;/journal/Thurs-08-11-2018_files/cptable.png&#34; alt=&#34;CP table on page 16 from the Rpart documentation.&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;CP table on page 16 from the Rpart documentation.&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;Doesn’t the tree with 11 splits and 12 nodes have the first smallest error with 0.36667?&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Choosing the best tree</title>
-      <link>/journal/choosing-the-best-tree/</link>
-      <pubDate>Wed, 07 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/journal/choosing-the-best-tree/</guid>
-      <description>&lt;p&gt;According to user Harold Ship in &lt;a href=&#34;https://stackoverflow.com/questions/29197213/what-is-the-difference-between-rel-error-and-x-error-in-a-rpart-decision-tree&#34;&gt;this post&lt;/a&gt;, we should pick the tree with that keeps this relationship but has the tallest (that’s what he means with the lowest level, since each row represents a tree with more splits):&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(rel_{error}\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(+\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xstd\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(&amp;lt;\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xerror\)&lt;/span&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Objectives, key results, tasks</title>
-      <link>/journal/objectives-key-results-tasks/</link>
-      <pubDate>Tue, 06 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/journal/objectives-key-results-tasks/</guid>
-      <description>&lt;p&gt;Yesterday I went to a talk by a woman that worked at Facebook helping startups scale. One of slides was about prioritisation at Facebook. It was something like &lt;a href=&#34;https://www.scrumdesk.com/wp-content/uploads/okr-1.png&#34;&gt;this&lt;/a&gt;:&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;/journal/journal-template_files/okrs.png&#34; alt=&#34;Mission &amp;amp; vission, objectives, key results, and tasks.&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;Mission &amp;amp; vission, objectives, key results, and tasks.&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;So today we continue trying to understand all the &lt;code&gt;rpart()&lt;/code&gt; function and algorithm.&lt;/p&gt;
-&lt;p&gt;In response to one of yesterday’s questions, the PRESS statistic is the predicted residual error sum of squares:&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\sum_{i=1}^{n} (y_i-\hat{y}_{i,-i})^2\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;According to trusty &lt;a href=&#34;https://en.wikipedia.org/wiki/PRESS_statistic&#34;&gt;Wikipedia&lt;/a&gt;, the PRESS statistic is a form of cross validation derived from comparing the model’s predictions vs. actual values on a dataset that was not used for fitting the model.&lt;/p&gt;
-&lt;p&gt;A model that is overfitted would give small residuals using the observations with which the model was fitted and larger residuals with observations that were not used to fit the model. This makes sense.&lt;/p&gt;
-&lt;p&gt;Now that I understand the PRESS statistic which is called &lt;code&gt;xerror&lt;/code&gt; in the &lt;code&gt;rpart&lt;/code&gt; output table. I still didn’t understand the &lt;code&gt;xstd&lt;/code&gt;. I assumed it was the standard deviation of the &lt;code&gt;xerror&lt;/code&gt; but after some manual attempts at calculating &lt;code&gt;xstd&lt;/code&gt; based on &lt;code&gt;xerror&lt;/code&gt; and having no luck. I took to Cross Validated to sort me out. According to user bearoak on &lt;a href=&#34;https://stats.stackexchange.com/questions/92547/r-rpart-cross-validation-and-1-se-rule-why-is-the-column-in-cptable-called-xst&#34;&gt;this thread&lt;/a&gt;, it is not the standard deviation as one would think because of the &lt;code&gt;std&lt;/code&gt; bit of &lt;code&gt;xstd&lt;/code&gt;, but it is actually the standard error which is the standard deviation divided by the number of observations.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Understanding output tables</title>
-      <link>/journal/understanding-output-tables/</link>
-      <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/journal/understanding-output-tables/</guid>
-      <description>&lt;p&gt;I’ve been able to answer quite a few of the questions that I asked before. For example, I don’t have to remove outliers because the algorithm is robust to outliers. No centering and scaling needs to be done to the variables. I can leave factors as factors, but the issue with with a lot of levels is that the tree can get quite wide which reduces its interpretability, which is after all, one of the advantages of using binary trees.
-I’ve also answered what constitutes an improvemment in the branch-splitting algorithm, which is finding a variable that can produce the most homogenous subgroups after a split.&lt;/p&gt;
-&lt;p&gt;The &lt;code&gt;rpart&lt;/code&gt; function has several hyperparameters I would like to really understand before I modify the variables.
-Today I set out to understand these hyperparameters but instead got caught up understanding the, “five additional ingredients” that need be specified to “generalise”extend&amp;quot; the algorithm.
-These are:&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
-&lt;li&gt;Splitting criterion, in ANOVA, this is maximising the between-groups sum-of-squares in a simple analysis of variance.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(SS_T-(SS_L+SS_R)\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Where &lt;span class=&#34;math inline&#34;&gt;\(SS_T\)&lt;/span&gt; is the sum of squares for the node; &lt;span class=&#34;math inline&#34;&gt;\(SS_L\)&lt;/span&gt; is the sum of squares for the left son; and &lt;span class=&#34;math inline&#34;&gt;\(SS_R\)&lt;/span&gt; is the sum of squares for the right son.&lt;/p&gt;
-&lt;ol start=&#34;2&#34; style=&#34;list-style-type: lower-alpha&#34;&gt;
-&lt;li&gt;&lt;p&gt;A summary statistic or vector to describe a node. The first element is considered to be the fitted value. For ANOVA or regression, this the mean of the node.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Error of the node: Variance of &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; for ANOVA.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;The prediction error for a new observation, assigned to the node (&lt;span class=&#34;math inline&#34;&gt;\(y_{new}-\bar{y}\)&lt;/span&gt;).&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Any initalisation parameter.&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;I was also trying to understand the output of &lt;code&gt;printcp()&lt;/code&gt; which shows the complexity parameter in descending order.&lt;/p&gt;
-&lt;p&gt;It shows the columns: &lt;code&gt;cp&lt;/code&gt;, &lt;code&gt;nsplit&lt;/code&gt;, &lt;code&gt;rel error&lt;/code&gt;, &lt;code&gt;Xerror&lt;/code&gt;, and &lt;code&gt;Xstd&lt;/code&gt;.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;rel error&lt;/code&gt;: is defined as &lt;span class=&#34;math inline&#34;&gt;\(1-R^2\)&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Xerror&lt;/code&gt;: “related to the PRESS statistic”. What is the PRESS statistic?&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Xstd&lt;/code&gt;: related to the cross validation error.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Also, when reading the &lt;code&gt;rpart&lt;/code&gt; documentation, the authors constantly refer to a surrogate split. Which I’m having a bit of trouble trying to understand.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Memorising tip</title>
-      <link>/journal/memorising-tip/</link>
-      <pubDate>Sun, 04 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/journal/memorising-tip/</guid>
-      <description>&lt;p&gt;Today I went to a poetry competition and heard a useful tip for memorising a poem, or in my case, speeches. Sometimes when we can’t memorise certain part of a text, after trying many times, maybe whatever is written down there, should go on the final version. Memorising can be a tool for editing the final text. When you read the text aloud, it’s own cadence and rhythm will point out that that word shouldn’t be there.&lt;/p&gt;
-&lt;p&gt;I’ve joined the local chapter of Toastmasters and this recently happened to me with a speech. There were two lines in the third paragraph that I just couldn’t remember. After trying to memorise them over and over, I realised that actually the bit I was struggling with could have been said in another way. In a way that was more memorable for the audience and that made more sense within the text. Changed it and voila! Same idea expressed differently and it was easy to memorise and it made a bigger impact.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Pre-processing to what extent?</title>
-      <link>/journal/pre-processing-to-what-extent/</link>
-      <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/journal/pre-processing-to-what-extent/</guid>
-      <description>&lt;p&gt;The goal of today’s session was to learn how to preprocess the homes dataset I’ve been working with. The missing values have been filled and now I have a few questions about whether I should perform or not, additional pre-processing steps before I can implement the CART algorithm.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Should I remove highly correlated variables? I have three and I don’t know what to do with them?&lt;/li&gt;
-&lt;li&gt;Should I remove levels within factor variables with few observations?&lt;/li&gt;
-&lt;li&gt;Should I bin variables with lots of factors like neighboorhoods?&lt;/li&gt;
-&lt;li&gt;Should I bin numeric variables that related to the same metric? (i.e. square feet)&lt;/li&gt;
-&lt;li&gt;What about outliers?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;So for now I’m reading the introduction to &lt;a href=&#34;https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf&#34;&gt;Recursive Partioning document that comes with the R Part package&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;I am also trying to figure out what constitutes improvements in the branch-splitting algorithm to know why it stops when it does.&lt;/p&gt;
+      <guid>/tutorial/example/</guid>
+      <description>
+
+&lt;p&gt;In this tutorial, I&amp;rsquo;ll share my top 10 tips for getting started with Academic:&lt;/p&gt;
+
+&lt;h2 id=&#34;tip-1&#34;&gt;Tip 1&lt;/h2&gt;
+
+&lt;p&gt;&amp;hellip;&lt;/p&gt;
+
+&lt;h2 id=&#34;tip-2&#34;&gt;Tip 2&lt;/h2&gt;
+
+&lt;p&gt;&amp;hellip;&lt;/p&gt;
 </description>
     </item>
     
@@ -164,7 +36,8 @@ These are:&lt;/p&gt;
       <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/predicting-property-prices/</guid>
-      <description>&lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+      <description>
+&lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
 
 &lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
@@ -826,7 +699,8 @@ $xval
       <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/exploring-kiva-loans/</guid>
-      <description>&lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+      <description>
+&lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
 
 &lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
@@ -1265,7 +1139,10 @@ Figure 5.12: The total time between posting the loan and it being disbursed has 
       <pubDate>Mon, 28 May 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/bayesian-regression-vs-frequentist-regression/</guid>
-      <description>&lt;p&gt;So I thought, I need to get to the bottom of this, what is indeed the difference between Frequentist and Bayesian regression beyond the distinction of what probability, as a whole, means to both sides.&lt;/p&gt;
+      <description>
+
+
+&lt;p&gt;So I thought, I need to get to the bottom of this, what is indeed the difference between Frequentist and Bayesian regression beyond the distinction of what probability, as a whole, means to both sides.&lt;/p&gt;
 &lt;div id=&#34;ordinary-least-squared-ols-errors-regression&#34; class=&#34;section level4&#34;&gt;
 &lt;h4&gt;Ordinary Least Squared (OLS) Errors Regression&lt;/h4&gt;
 &lt;p&gt;With OLS, our best estimate of the line that describes the relationship between the explanatory and response variable is ordinary least squared (OLS) estimates of alpha and beta to obtain the “fitted” values of predictions. What are those fitted values? They can also be called the “predicted” values. The equation for the model is:&lt;/p&gt;
@@ -1392,6 +1269,260 @@ which has odds against a base model &lt;span class=&#34;math inline&#34;&gt;\(M_
 &lt;li&gt;There is another prior distribution called Zellner’s g prior.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Example Talk</title>
+      <link>/talk/example/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0100</pubDate>
+      
+      <guid>/talk/example/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;p&gt;Click on the &lt;strong&gt;Slides&lt;/strong&gt; button above to view the built-in slides feature.&lt;/p&gt;
+
+&lt;/div&gt;
+
+
+&lt;p&gt;Slides can be added in a few ways:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Create&lt;/strong&gt; slides using Academic&amp;rsquo;s &lt;em&gt;Slides&lt;/em&gt; feature and link using &lt;code&gt;url_slides&lt;/code&gt; parameter in the front matter of the talk file&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Upload&lt;/strong&gt; an existing slide deck to &lt;code&gt;static/&lt;/code&gt; and link using &lt;code&gt;url_slides&lt;/code&gt; parameter in the front matter of the talk file&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Embed&lt;/strong&gt; your slides (e.g. Google Slides) or presentation video on this page using &lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34;&gt;shortcodes&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Further talk details can easily be added to this page using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>External Project</title>
+      <link>/project/external-project/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0200</pubDate>
+      
+      <guid>/project/external-project/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Internal Project</title>
+      <link>/project/internal-project/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0200</pubDate>
+      
+      <guid>/project/internal-project/</guid>
+      <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
+
+&lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
+
+&lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
+
+&lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
+
+&lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A Person Re-Identification System For Mobile Devices</title>
+      <link>/publication/person-re-id/</link>
+      <pubDate>Tue, 01 Sep 2015 00:00:00 +0200</pubDate>
+      
+      <guid>/publication/person-re-id/</guid>
+      <description>&lt;p&gt;More detail can easily be written here using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Mobile visual clothing search</title>
+      <link>/publication/clothing-search/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0200</pubDate>
+      
+      <guid>/publication/clothing-search/</guid>
+      <description>&lt;p&gt;More detail can easily be written here using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Slides</title>
+      <link>/slides/example-slides/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/slides/example-slides/</guid>
+      <description>
+
+&lt;h1 id=&#34;welcome-to-slides&#34;&gt;Welcome to Slides&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sourcethemes.com/academic/&#34; target=&#34;_blank&#34;&gt;Academic&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;features&#34;&gt;Features&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Efficiently write slides in Markdown&lt;/li&gt;
+&lt;li&gt;3-in-1: Create, Present, and Publish your slides&lt;/li&gt;
+&lt;li&gt;Supports speaker notes&lt;/li&gt;
+&lt;li&gt;Mobile friendly slides&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;controls&#34;&gt;Controls&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Next: &lt;code&gt;Right Arrow&lt;/code&gt; or &lt;code&gt;Space&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Previous: &lt;code&gt;Left Arrow&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Start: &lt;code&gt;Home&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Finish: &lt;code&gt;End&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Overview: &lt;code&gt;Esc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Speaker notes: &lt;code&gt;S&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Fullscreen: &lt;code&gt;F&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Zoom: &lt;code&gt;Alt + Click&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/hakimel/reveal.js#pdf-export&#34; target=&#34;_blank&#34;&gt;PDF Export&lt;/a&gt;: &lt;code&gt;E&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;code-highlighting&#34;&gt;Code Highlighting&lt;/h2&gt;
+
+&lt;p&gt;Inline code: &lt;code&gt;variable&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Code block:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;porridge = &amp;quot;blueberry&amp;quot;
+if porridge == &amp;quot;blueberry&amp;quot;:
+    print(&amp;quot;Eating...&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;math&#34;&gt;Math&lt;/h2&gt;
+
+&lt;p&gt;In-line math: $x + y = z$&lt;/p&gt;
+
+&lt;p&gt;Block math:&lt;/p&gt;
+
+&lt;p&gt;$$
+f\left( x \right) = \;\frac{{2\left( {x + 4} \right)\left( {x - 4} \right)}}{{\left( {x + 4} \right)\left( {x + 1} \right)}}
+$$&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;fragments&#34;&gt;Fragments&lt;/h2&gt;
+
+&lt;p&gt;Make content appear incrementally&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{% fragment %}} One {{% /fragment %}}
+{{% fragment %}} **Two** {{% /fragment %}}
+{{% fragment %}} Three {{% /fragment %}}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Press &lt;code&gt;Space&lt;/code&gt; to play!&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
+  One
+&lt;/span&gt;
+&lt;span class=&#34;fragment &#34; &gt;
+  &lt;strong&gt;Two&lt;/strong&gt;
+&lt;/span&gt;
+&lt;span class=&#34;fragment &#34; &gt;
+  Three
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;A fragment can accept two optional parameters:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;class&lt;/code&gt;: use a custom style (requires definition in custom CSS)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;weight&lt;/code&gt;: sets the order in which a fragment appears&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;speaker-notes&#34;&gt;Speaker Notes&lt;/h2&gt;
+
+&lt;p&gt;Add speaker notes to your presentation&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{% speaker_note %}}
+- Only the speaker can read these notes
+- Press `S` key to view
+{{% /speaker_note %}}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Press the &lt;code&gt;S&lt;/code&gt; key to view the speaker notes!&lt;/p&gt;
+
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;Only the speaker can read these notes&lt;/li&gt;
+&lt;li&gt;Press &lt;code&gt;S&lt;/code&gt; key to view&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/aside&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;themes&#34;&gt;Themes&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;black: Black background, white text, blue links (default)&lt;/li&gt;
+&lt;li&gt;white: White background, black text, blue links&lt;/li&gt;
+&lt;li&gt;league: Gray background, white text, blue links&lt;/li&gt;
+&lt;li&gt;beige: Beige background, dark text, brown links&lt;/li&gt;
+&lt;li&gt;sky: Blue background, thin dark text, blue links&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;night: Black background, thick white text, orange links&lt;/li&gt;
+&lt;li&gt;serif: Cappuccino background, gray text, brown links&lt;/li&gt;
+&lt;li&gt;simple: White background, black text, blue links&lt;/li&gt;
+&lt;li&gt;solarized: Cream-colored background, dark green text, blue links&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+
+&lt;section data-noprocess data-shortcode-slide
+  
+      
+      data-background-image=&#34;/img/boards.jpg&#34;
+  &gt;
+
+
+&lt;h2 id=&#34;custom-slide&#34;&gt;Custom Slide&lt;/h2&gt;
+
+&lt;p&gt;Customize the slide style and background&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{&amp;lt; slide background-image=&amp;quot;/img/boards.jpg&amp;quot; &amp;gt;}}
+{{&amp;lt; slide background-color=&amp;quot;#0000FF&amp;quot; &amp;gt;}}
+{{&amp;lt; slide class=&amp;quot;my-style&amp;quot; &amp;gt;}}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;custom-css-example&#34;&gt;Custom CSS Example&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s make headers navy colored.&lt;/p&gt;
+
+&lt;p&gt;Create &lt;code&gt;assets/css/reveal_custom.css&lt;/code&gt; with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.reveal section h1,
+.reveal section h2,
+.reveal section h3 {
+  color: navy;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;questions&#34;&gt;Questions?&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://discourse.gohugo.io&#34; target=&#34;_blank&#34;&gt;Ask&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sourcethemes.com/academic/docs/&#34; target=&#34;_blank&#34;&gt;Documentation&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
