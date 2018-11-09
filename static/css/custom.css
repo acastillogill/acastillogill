@@ -1,15 +1,15 @@
 /*************************************************
  *  A custom theme for Hugo Academic
- *  Set `custom_css = ["blue.css"] in `config.toml`.
+ *  Set `custom_css = ["custom.css"] in `config.toml`.
  *  Then save this file as `/static/css/blue.css` relative to your website root (i.e. not in `themes/academic` directory).
  *  https://github.com/gcushen/hugo-academic
  **************************************************/
 
-/* from blue to red */
-/*  change all rgb(20,128,151) --> to rgb(20,128,151) */
-/*  change all rgb(20,128,151) --> to rgb(20,128,151) */
-/*  change all rgba(20,128,151,0.6) --> rgba(20,128,151,0.6) */
-/*  change all rgba(20,128,151,1) --> rgba(20,128,151,1) */
+/* from green to blue */
+/*  change all rgb(144,107,89) --> to rgb(144,107,89) */
+/*  change all rgba(52,60,86,1) --> to rgba(52,60,86,1) */
+/*  change all  rgba(144,107,89,0.6) --> rgba(144,107,89,0.6) */
+/*  change all rgba(113,84,70,1) --> rgba(52,60,86,1) */
 
 /*************************************************
  *  Core
@@ -20,13 +20,13 @@
 
 a,
 h3.article-title a:hover {
-  color: rgb(20,128,151); 
+  color: rgb(144,107,89); 
 }
 
 
 a:hover,
 a:focus {
-  color: rgb(20,128,151);
+  color: rgba(52,60,86,1);
 }
 
 /*************************************************
@@ -34,7 +34,7 @@ a:focus {
  **************************************************/
 
 .article-metadata a:hover {
-  color: rgb(20,128,151);
+  color: rgb(144,107,89);
 }
 
 /*************************************************
@@ -42,8 +42,8 @@ a:focus {
  **************************************************/
 
 .btn-primary {
-  border-color: rgb(20,128,151);
-  /*background: rgb(20,128,151);*/
+  border-color: rgb(144,107,89);
+  /*background: rgb(144,107,89);*/
 }
 
 .btn-primary:hover,
@@ -51,7 +51,7 @@ a:focus {
 .btn-primary:active,
 .btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
-  background: rgb(20,128,151);
+  background: rgb(144,107,89);
 }
 
 
@@ -61,8 +61,8 @@ a:focus {
 
 
 .btn-primary.btn-outline {
-  color: rgb(20,128,151);
-  border-color: rgb(20,128,151);
+  color: rgb(144,107,89);
+  border-color: rgb(144,107,89);
 }
 
 /*************************************************
@@ -72,7 +72,7 @@ a:focus {
 .navbar-default .navbar-nav>.active>a,
 .navbar-default .navbar-nav>.active>a:focus,
 .navbar-default .navbar-nav>.active>a:hover {
-  color: rgb(20,128,151);
+  color: rgb(144,107,89);
   font-weight: 700;
   background-color: transparent !important; /* Override Bootstrap. */
 }
@@ -82,7 +82,7 @@ a:focus {
 .dropdown-menu > .active > a:hover {
   color: #fff;
   text-decoration: none;
-  background-color: rgb(20,128,151);
+  background-color: rgb(144,107,89);
   outline: 0;
 }
 
@@ -91,37 +91,10 @@ a:focus {
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus,
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover {
-    color: rgb(20,128,151);
+    color: rgb(144,107,89);
     background-color: transparent;
   }
 
-}
-.navbar-light .navbar-nav>.active>a,
-.navbar-light .navbar-nav>.active>a:focus,
-.navbar-light .navbar-nav>.active>a:hover {
-  color: rgb(20,128,151);
-  font-weight: 700;
-  background-color: transparent !important; /* Override Bootstrap. */
-}
-
-.dropdown-menu > .active > a,
-.dropdown-menu > .active > a:focus,
-.dropdown-menu > .active > a:hover {
-  color: #fff;
-    text-decoration: none;
-  background-color: rgb(20,128,151);
-  outline: 0;
-}
-
-@media screen and (max-width: 1200px) {
-  
-  .navbar-light .navbar-nav .open .dropdown-menu > .active > a,
-  .navbar-light .navbar-nav .open .dropdown-menu > .active > a:focus,
-  .navbar-light .navbar-nav .open .dropdown-menu > .active > a:hover {
-    color: rgb(20,128,151);
-    background-color: transparent;
-  }
-  
 }
 
 /*************************************************
@@ -130,17 +103,17 @@ a:focus {
  
 
 .btn-toolbar .btn.btn-primary {
-  background: rgb(20,128,151);
+  background: rgb(144,107,89);
 }
 
 .btn-toolbar .btn.btn-primary:hover,
 .btn-toolbar .btn.btn-primary:focus {
-  background-color: rgba(20,128,151,0.6);
+  background-color:  rgba(144,107,89,0.6);
 }
 
 .btn-toolbar .btn.btn-primary:active,
 .btn-toolbar .btn.btn-primary.active {
-  background-color: rgba(20,128,151,1);
+  background-color: rgba(52,60,86,1);
 }
 
 /*************************************************
@@ -148,13 +121,13 @@ a:focus {
  **************************************************/
 
 .pub-icon {
-  color: rgb(20,128,151);
+  color: rgba(52,60,86,1);
   font-size: 0.81em;
   padding-top: 6px;
 }
 
 .pub-list-item .pub-publication {
-  color: rgb(20,128,151);
+  color: rgb(132, 214, 211);
   font-size: 1rem;
 }
 
@@ -165,7 +138,7 @@ a:focus {
 
 html {
   font-family: 'Lora', serif;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 18px;
   color: rgba(0,0,0,0.8);
   line-height: 1.65;
@@ -178,7 +151,7 @@ html {
 
 .alert-note {
   color: #fff;
-  background-color: rgb(20,128,151); 
+  background-color: rgb(144,107,89); 
   border-color: #bce8f1;
 }
 
@@ -187,3 +160,4 @@ html {
   background-color: rgb(238, 88, 99); 
   border-color: #ebccd1;
 }
+  
