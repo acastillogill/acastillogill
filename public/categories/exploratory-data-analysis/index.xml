@@ -18,8 +18,8 @@
       <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
       
       <guid>/tutorial/exploring-kiva-loans/</guid>
-      <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 5 Exploratory data analysis 6 Techniques used 7 Questions from this analysis   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
-In this post, I analyse 671,205 observations. Each represents a Kiva loan. I find that the gender that requests the most loans is female with single females being the most frequent borrowers.</description>
+      <description>x &amp;lt;- c(&amp;quot;tidyverse&amp;quot;, &amp;quot;knitr&amp;quot;, &amp;quot;formatR&amp;quot;, &amp;quot;stringr&amp;quot;, &amp;quot;quantmode&amp;quot;, &amp;quot;skimr&amp;quot;, &amp;quot;lubridate&amp;quot;, &amp;quot;tidyr&amp;quot;, &amp;quot;formattable&amp;quot;, &amp;quot;grid&amp;quot;, &amp;quot;gridExtra&amp;quot;, &amp;quot;kableExtra&amp;quot;, &amp;quot;here&amp;quot;) lapply(x, require, character.only = TRUE) opts_chunk$set(echo = FALSE, warning = FALSE, error = FALSE, message = FALSE, collapse= TRUE, comment = NA, tidy = TRUE)  Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
+In this post, I analyse 671,205 observations. Each represents a Kiva loan.</description>
     </item>
     
   </channel>

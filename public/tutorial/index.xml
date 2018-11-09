@@ -24,43 +24,23 @@ Tip 2 &amp;hellip;</description>
     </item>
     
     <item>
-      <title>Exploring Kiva Loans</title>
-      <link>/tutorial/2018-07-09-exploring-kiva-loans/</link>
-      <pubDate>Sun, 09 Sep 2018 00:00:00 +0200</pubDate>
-      
-      <guid>/tutorial/2018-07-09-exploring-kiva-loans/</guid>
-      <description>In this tutorial, I&amp;rsquo;ll share my top 10 tips for getting started with Academic:
-Tip 1 &amp;hellip;
-Tip 2 &amp;hellip;</description>
-    </item>
-    
-    <item>
-      <title>Predicting property prices</title>
-      <link>/tutorial/predicting-property-prices/</link>
-      <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tutorial/predicting-property-prices/</guid>
-      <description>1 Summary 2 Purpose of this post 3 The data 3.1 Missing values 3.2 Variable creation 3.3 Correlation 3.4 Removing correlated variables 3.5 Removing variables that have low variance  4 Classification and Regression Trees (CART) time 4.1 Splitting the data 4.2 Training the model 4.3 Revising variable importance 4.4 Evaluating the model 4.5 Tuning hyperparameters 4.6 Grid search for best hyperparameters  5 Techniques used 6 Questions from this analysis   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.</description>
-    </item>
-    
-    <item>
       <title>Exploring Kiva loans</title>
       <link>/tutorial/exploring-kiva-loans/</link>
       <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
       
       <guid>/tutorial/exploring-kiva-loans/</guid>
-      <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 5 Exploratory data analysis 6 Techniques used 7 Questions from this analysis   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
-In this post, I analyse 671,205 observations. Each represents a Kiva loan. I find that the gender that requests the most loans is female with single females being the most frequent borrowers.</description>
+      <description>x &amp;lt;- c(&amp;quot;tidyverse&amp;quot;, &amp;quot;knitr&amp;quot;, &amp;quot;formatR&amp;quot;, &amp;quot;stringr&amp;quot;, &amp;quot;quantmode&amp;quot;, &amp;quot;skimr&amp;quot;, &amp;quot;lubridate&amp;quot;, &amp;quot;tidyr&amp;quot;, &amp;quot;formattable&amp;quot;, &amp;quot;grid&amp;quot;, &amp;quot;gridExtra&amp;quot;, &amp;quot;kableExtra&amp;quot;, &amp;quot;here&amp;quot;) lapply(x, require, character.only = TRUE) opts_chunk$set(echo = FALSE, warning = FALSE, error = FALSE, message = FALSE, collapse= TRUE, comment = NA, tidy = TRUE)  Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
+In this post, I analyse 671,205 observations. Each represents a Kiva loan.</description>
     </item>
     
     <item>
-      <title>Bayesian Regression vs. Frequentist Regression</title>
-      <link>/tutorial/bayesian-regression-vs-frequentist-regression/</link>
-      <pubDate>Mon, 28 May 2018 00:00:00 +0000</pubDate>
+      <title></title>
+      <link>/tutorial/2018-07-09-exploring-kiva-loans/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/tutorial/bayesian-regression-vs-frequentist-regression/</guid>
-      <description>So I thought, I need to get to the bottom of this, what is indeed the difference between Frequentist and Bayesian regression beyond the distinction of what probability, as a whole, means to both sides.
-Ordinary Least Squared (OLS) Errors Regression With OLS, our best estimate of the line that describes the relationship between the explanatory and response variable is ordinary least squared (OLS) estimates of alpha and beta to obtain the “fitted” values of predictions.</description>
+      <guid>/tutorial/2018-07-09-exploring-kiva-loans/</guid>
+      <description>Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
+In this post, I analyse 671,205 observations. Each represents a Kiva loan. I find that the gender that requests the most loans is female with single females being the most frequent borrowers. The main uses for these loans are agriculture, retail, and food with some variations amongst continents. Half of the loans are 4.</description>
     </item>
     
     <item>
