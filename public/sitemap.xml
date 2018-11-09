@@ -136,6 +136,22 @@
     
     <url>
     
+      <loc>/post/predicting-property-prices/</loc>
+      <lastmod>2018-08-09T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/exploring-kiva-loans/</loc>
+      <lastmod>2018-07-07T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/tutorial/exploring-kiva-loans/</loc>
       <lastmod>2018-07-07T00:00:00+00:00</lastmod>
     </url>
@@ -244,6 +260,15 @@
     
     <url>
     
+      <loc>/tags/home-sales-prices/</loc>
+      <lastmod>2018-08-09T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/categories/journal/</loc>
       <lastmod>2018-11-08T00:00:00+00:00</lastmod>
       <priority>0</priority>
@@ -263,7 +288,7 @@
     <url>
     
       <loc>/tags/kaggle/</loc>
-      <lastmod>2018-07-07T00:00:00+00:00</lastmod>
+      <lastmod>2018-08-09T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -326,7 +351,16 @@
     <url>
     
       <loc>/categories/r/</loc>
-      <lastmod>2018-07-07T00:00:00+00:00</lastmod>
+      <lastmod>2018-08-09T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/categories/rpart/</loc>
+      <lastmod>2018-08-09T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
