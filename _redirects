@@ -1,0 +1,2 @@
+# Redirect default Netlify subdomain to primary domain
+https://acastillogill.netlify.com/post* https://www.acastillogill.com/post:splat 301!
