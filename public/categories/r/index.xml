@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R on Ángela Castillo-Gill</title>
+    <link>/categories/r/</link>
+    <description>Recent content in R on Ángela Castillo-Gill</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018 Ángela Castillo-Gill</copyright>
+    <lastBuildDate>Thu, 09 Aug 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Predicting property prices</title>
+      <link>/post/predicting-property-prices/</link>
+      <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/predicting-property-prices/</guid>
+      <description>1 Summary 2 Purpose of this post 3 The data 3.1 Missing values 3.2 Variable creation 3.3 Correlation 3.4 Removing correlated variables 3.5 Removing variables that have low variance  4 Classification and Regression Trees (CART) time 4.1 Splitting the data 4.2 Training the model 4.3 Revising variable importance 4.4 Evaluating the model 4.5 Tuning hyperparameters 4.6 Grid search for best hyperparameters  5 Techniques used 6 Questions from this analysis   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.</description>
+    </item>
+    
+    <item>
+      <title>Exploring Kiva loans</title>
+      <link>/post/exploring-kiva-loans/</link>
+      <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/exploring-kiva-loans/</guid>
+      <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 5 Exploratory data analysis 6 Techniques used 7 Questions from this analysis   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
+In this post, I analyse 671,205 observations. Each represents a Kiva loan. I find that the gender that requests the most loans is female with single females being the most frequent borrowers.</description>
+    </item>
+    
+  </channel>
+</rss>
