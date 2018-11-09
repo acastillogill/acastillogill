@@ -1,57 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Rpart on Ángela Castillo-Gill</title>
+    <title>RPart on Ángela Castillo-Gill</title>
     <link>/tags/rpart/</link>
-    <description>Recent content in Rpart on Ángela Castillo-Gill</description>
+    <description>Recent content in RPart on Ángela Castillo-Gill</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Ángela Castillo-Gill</copyright>
-    <lastBuildDate>Thu, 08 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 05 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/rpart/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Surrogate who?</title>
-      <link>/journal/surrogate-who/</link>
-      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
+      <title>Understanding output tables</title>
+      <link>/journal/understanding-output-tables/</link>
+      <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>/journal/surrogate-who/</guid>
-      <description>I hope the authors of the Rpart documentation don’t take it personally but they mention surrogate variables starting on page 11 and they don’t properly define what surrogate variables mean until page 18. Maybe it’s just me.
-Anyway! So here is another response to a previous question: what is a surrogate variable?
-So the Rpart algorithm deals with missing data. The way it does this is when it’s doing its thing and determining the next variable and split point and comes across an observation that does not have a that variable, it figures out which variables can act as a replacement for that variable.</description>
+      <guid>/journal/understanding-output-tables/</guid>
+      <description>I’ve been able to answer quite a few of the questions that I asked before. For example, I don’t have to remove outliers because the algorithm is robust to outliers. No centering and scaling needs to be done to the variables. I can leave factors as factors, but the issue with with a lot of levels is that the tree can get quite wide which reduces its interpretability, which is after all, one of the advantages of using binary trees.</description>
     </item>
     
     <item>
-      <title>Surrogate who?</title>
-      <link>/post/surrogate-who/</link>
-      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
+      <title>Understanding output tables</title>
+      <link>/post/understanding-output-tables/</link>
+      <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/surrogate-who/</guid>
-      <description>I hope the authors of the Rpart documentation don’t take it personally but they mention surrogate variables starting on page 11 and they don’t properly define what surrogate variables mean until page 18. Maybe it’s just me.
-Anyway! So here is another response to a previous question: what is a surrogate variable?
-So the Rpart algorithm deals with missing data. The way it does this is when it’s doing its thing and determining the next variable and split point and comes across an observation that does not have a that variable, it figures out which variables can act as a replacement for that variable.</description>
-    </item>
-    
-    <item>
-      <title>Choosing the best tree</title>
-      <link>/journal/choosing-the-best-tree/</link>
-      <pubDate>Wed, 07 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/journal/choosing-the-best-tree/</guid>
-      <description>According to user Harold Ship in this post, we should pick the tree with that keeps this relationship but has the tallest (that’s what he means with the lowest level, since each row represents a tree with more splits):
-\(rel_{error}\) \(+\) \(xstd\) \(&amp;lt;\) \(xerror\)</description>
-    </item>
-    
-    <item>
-      <title>Choosing the best tree</title>
-      <link>/post/choosing-the-best-tree/</link>
-      <pubDate>Wed, 07 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/choosing-the-best-tree/</guid>
-      <description>According to user Harold Ship in this post, we should pick the tree with that keeps this relationship but has the tallest (that’s what he means with the lowest level, since each row represents a tree with more splits):
-\(rel_{error}\) \(+\) \(xstd\) \(&amp;lt;\) \(xerror\)</description>
+      <guid>/post/understanding-output-tables/</guid>
+      <description>I’ve been able to answer quite a few of the questions that I asked before. For example, I don’t have to remove outliers because the algorithm is robust to outliers. No centering and scaling needs to be done to the variables. I can leave factors as factors, but the issue with with a lot of levels is that the tree can get quite wide which reduces its interpretability, which is after all, one of the advantages of using binary trees.</description>
     </item>
     
   </channel>

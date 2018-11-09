@@ -236,17 +236,17 @@ enableGitInfo = false
 
   [[params.social]]
     icon = "twitter"
-    icon_pack = "fas"
+    icon_pack = "fab"
     link = "//twitter.com/acastillogill"
 
   [[params.social]]
     icon = "github"
-    icon_pack = "fas"
+    icon_pack = "fab"
     link = "//github.com/acastillogill"
     
      [[params.social]]
     icon = "linkedin"
-    icon_pack = "fas"
+    icon_pack = "fab"
     link = "https://www.linkedin.com/in/acastillogill/"
 
 
