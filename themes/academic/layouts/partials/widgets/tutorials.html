@@ -1,0 +1,95 @@
+{{ $ := .root }}
+{{ $page := .page }}
+{{ $tutorials_len := len (where (where $.Site.RegularPages "Type" "tutorial") ".Params.notonhomepage" nil) }}
+
+<!-- Blog Posts widget -->
+<div class="row">
+  <div class="col-12 col-lg-4 section-heading">
+
+    <h1>{{ with $page.Title }}{{ . | markdownify }}{{ end }}</h1>
+    {{ with $page.Params.subtitle }}<p>{{ . | markdownify }}</p>{{ end }}
+    {{ if gt $tutorials_len $page.Params.count }}
+    <p class="view-all">
+      <a href="{{ ($.Site.GetPage "section" "tutorial").RelPermalink }}">
+        {{ i18n "more_tutorials" | markdownify }}
+        <i class="fas fa-angle-double-right"></i>
+      </a>
+    </p>
+    {{ end }}
+
+  </div>
+  <div class="col-12 col-lg-8">
+
+    {{ with $page.Content }}<p>{{ . | markdownify }}</p>{{ end }}
+
+    {{ if gt (len $page.Params.tags_include) 0 }}
+      {{ $tutorials := where (where (where $.Site.RegularPages "Type" "tutorial") ".Params.tags" "intersect" $page.Params.tags_include) ".Params.notonhomepage" nil }}
+
+      {{ $.Scratch.Add "show_tutorial" "1" }}
+      {{ range $tutorial := first $page.Params.count $tutorials }}
+
+        {{ $.Scratch.Set "show_tutorial" "1" }}
+
+        {{/* If `tags_include` is set, exclude tutorials with no tags. */}}
+        {{ with (not .Params.tags) }}
+          {{ with $page.Params.tags_include }}
+            {{ $.Scratch.Set "show_tutorial" "0" }}
+          {{end}}
+        {{end}}
+        {{/* If `tags_exclude` is set, exclude tutorials. */}}
+        {{ range $key, $val := .Params.tags }}
+          {{ if in $page.Params.tags_exclude $val }}
+          {{ $.Scratch.Set "show_tutorial" "0" }}
+        {{end}}
+      {{end}}
+
+      {{ $show_tutorial := $.Scratch.Get "show_tutorial" }}
+      {{ if ne $show_tutorial "0" }}
+        {{ if eq $page.Params.list_format 0 }}
+          {{ partial "tutorial_li_simple" . }}
+        {{ else if eq $page.Params.list_format 1 }}
+          {{ partial "tutorial_li_detailed" . }}
+        {{ else }}
+          {{ partial "tutorial_li_stream" . }}
+        {{ end }}
+      {{end}}
+
+      {{ end }}
+    {{ else}}
+      {{ $tutorials := where (where $.Site.RegularPages "Type" "tutorial") ".Params.notonhomepage" nil }}
+
+      {{ $.Scratch.Add "show_tutorial" "1" }}
+      {{ range $tutorial := first $page.Params.count $tutorials }}
+
+        {{ $.Scratch.Set "show_tutorial" "1" }}
+
+        {{/* If `tags_include` is set, exclude tutorials with no tags. */}}
+        {{ with (not .Params.tags) }}
+          {{ with $page.Params.tags_include }}
+            {{ $.Scratch.Set "show_tutorial" "0" }}
+          {{end}}
+        {{end}}
+
+        {{/* If `tags_exclude` is set, exclude tutorials. */}}
+        {{ range $key, $val := .Params.tags }}
+          {{ if in $page.Params.tags_exclude $val }}
+          {{ $.Scratch.Set "show_tutorial" "0" }}
+        {{end}}
+      {{end}}
+
+      {{ $show_tutorial := $.Scratch.Get "show_tutorial" }}
+      {{ if ne $show_tutorial "0" }}
+        {{ if eq $page.Params.list_format 0 }}
+          {{ partial "tutorial_li_simple" . }}
+        {{ else if eq $page.Params.list_format 1 }}
+          {{ partial "tutorial_li_detailed" . }}
+        {{ else }}
+          {{ partial "tutorial_li_stream" . }}
+        {{ end }}
+      {{end}}
+
+      {{ end }}
+    {{ end }}
+
+  </div>
+</div>

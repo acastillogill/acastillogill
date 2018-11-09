@@ -1,0 +1,36 @@
+{{ $tutorial := . }}
+
+<div class="media stream-item" itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0" itemprop="headline">
+      <a href="{{ $tutorial.RelPermalink }}" itemprop="url">{{ $tutorial.Title }}</a>
+    </h3>
+
+    {{ $summary := "" }}
+    {{ if $tutorial.Params.summary }}
+      {{ $summary = $tutorial.Params.summary | markdownify }}
+    {{ else if $tutorial.Truncated }}
+      {{ $summary = $tutorial.Summary }}
+    {{ end }}
+    {{ with $summary }}
+    <div class="article-style" itemprop="articleBody">
+      {{ . | truncate 135 }}
+    </div>
+    {{ end }}
+
+    <div class="stream-meta">
+    {{ partial "page_metadata" (dict "content" $tutorial "is_list" 1) }}
+    </div>
+
+  </div>
+  <div class="ml-3">
+    {{ $resource := ($tutorial.Resources.ByType "image").GetMatch "*featured*" }}
+    {{ with $resource }}
+    {{ $image := .Resize "150x" }}
+    <a href="{{ $tutorial.RelPermalink }}">
+      <img src="{{ $image.RelPermalink }}" itemprop="image">
+    </a>
+    {{end}}
+  </div>
+</div>
