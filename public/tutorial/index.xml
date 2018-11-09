@@ -24,16 +24,6 @@ Tip 2 &amp;hellip;</description>
     </item>
     
     <item>
-      <title>Exploring Kiva loans</title>
-      <link>/tutorial/exploring-kiva-loans/</link>
-      <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tutorial/exploring-kiva-loans/</guid>
-      <description>Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
-In this post, I analyse 671,205 observations. Each represents a Kiva loan. I find that the gender that requests the most loans is female with single females being the most frequent borrowers. The main uses for these loans are agriculture, retail, and food with some variations amongst continents. Half of the loans are 4.</description>
-    </item>
-    
-    <item>
       <title></title>
       <link>/tutorial/example/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
