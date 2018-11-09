@@ -31,28 +31,4 @@
     </item>
     
   </channel>
-</rss>n it’s doing its thing and determining the next variable and split point and comes across an observation that does not have a that variable, it figures out which variables can act as a replacement for that variable.</description>
-    </item>
-    
-    <item>
-      <title>Choosing the best tree</title>
-      <link>/journal/choosing-the-best-tree/</link>
-      <pubDate>Wed, 07 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/journal/choosing-the-best-tree/</guid>
-      <description>According to user Harold Ship in this post, we should pick the tree with that keeps this relationship but has the tallest (that’s what he means with the lowest level, since each row represents a tree with more splits):
-\(rel_{error}\) \(+\) \(xstd\) \(&amp;lt;\) \(xerror\)</description>
-    </item>
-    
-    <item>
-      <title>Choosing the best tree</title>
-      <link>/post/choosing-the-best-tree/</link>
-      <pubDate>Wed, 07 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/choosing-the-best-tree/</guid>
-      <description>According to user Harold Ship in this post, we should pick the tree with that keeps this relationship but has the tallest (that’s what he means with the lowest level, since each row represents a tree with more splits):
-\(rel_{error}\) \(+\) \(xstd\) \(&amp;lt;\) \(xerror\)</description>
-    </item>
-    
-  </channel>
 </rss>
