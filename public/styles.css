@@ -17,14 +17,14 @@
  **************************************************/
 
 html {
-  font-family: 'Old+Standard+TT:300', serif;
-  font-size: 20px;
+  font-family: 'Lora:400', serif;
+  font-size: 18px;
   color: rgba(0,0,0,0.8);
   line-height: 1.65;
 }
 @media screen and (min-width: 58em) {
   html {
-    font-size: 18px;
+    font-size: 20px;
   }
 }
 
@@ -1449,7 +1449,7 @@ a.badge:hover {
 
 .dropdown-menu,
 nav#navbar-main li.nav-item {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .navbar-light .navbar-nav>.nav-item>.nav-link,

@@ -137,9 +137,9 @@ a:focus {
  **************************************************/
 
 html {
-  font-family: 'Old Standard TT', serif;
-  font-weight: 300;
-  font-size: 16px;
+  font-family: 'Lora', serif;
+  font-weight: 400;
+  font-size: 18px;
   color: rgba(0,0,0,0.8);
   line-height: 1.65;
 }

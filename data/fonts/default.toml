@@ -2,14 +2,14 @@
 name = "Default"
 
 # Optional Google font URL
-google_fonts = "Anton|Old+Standard+TT"
+google_fonts = "Anton|Lora"
 
 # Font families
 heading_font = "Anton:400"
-body_font = "Old+Standard+TT:300"
+body_font = "Lora:400"
 nav_font = "Anton:400"
 mono_font = "Anton:400"
 
 # Font size
-font_size = "18"
-font_size_small = "20"
+font_size = "20"
+font_size_small = "18"
