@@ -23,7 +23,7 @@ output:
   fig_caption: true
 editor_options: 
   chunk_output_type: console
-featuredImage: "headers/lenders-per-country-1.png"
+featuredImage: "static/img/headers/lenders-per-country-1.png"
 ---
 
 
