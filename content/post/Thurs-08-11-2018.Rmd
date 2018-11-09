@@ -18,6 +18,7 @@ output:
   fig_caption: true
 editor_options: 
   chunk_output_type: console
+image_preview: "/post/Thurs-08-11-2018_files/cptable.png"
 ---
 
 I hope the authors of the `Rpart` documentation don't take it personally but they mention surrogate variables starting on page 11 and they don't properly define what surrogate variables mean until page 18. Maybe it's just me.
