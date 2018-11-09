@@ -1,0 +1,35 @@
+---
+title: Objectives, key results, tasks
+author: Ángela Castillo-Gill
+date: '2018-11-06'
+slug: objectives-key-results-tasks
+categories:
+  - Journal
+tags: 
+  - Prioritising
+  - Learning
+draft: FALSE
+summary: Prioritising tips. 
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+    toc_depth: 2
+  fig_caption: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+
+<p>Yesterday I went to a talk by a woman that worked at Facebook helping startups scale. One of slides was about prioritisation at Facebook. It was something like <a href="https://www.scrumdesk.com/wp-content/uploads/okr-1.png">this</a>:</p>
+<div class="figure">
+<img src="/journal/journal-template_files/okrs.png" alt="Mission &amp; vission, objectives, key results, and tasks." />
+<p class="caption">Mission &amp; vission, objectives, key results, and tasks.</p>
+</div>
+<p>So today we continue trying to understand all the <code>rpart()</code> function and algorithm.</p>
+<p>In response to one of yesterday’s questions, the PRESS statistic is the predicted residual error sum of squares:</p>
+<p><span class="math inline">\(\sum_{i=1}^{n} (y_i-\hat{y}_{i,-i})^2\)</span></p>
+<p>According to trusty <a href="https://en.wikipedia.org/wiki/PRESS_statistic">Wikipedia</a>, the PRESS statistic is a form of cross validation derived from comparing the model’s predictions vs. actual values on a dataset that was not used for fitting the model.</p>
+<p>A model that is overfitted would give small residuals using the observations with which the model was fitted and larger residuals with observations that were not used to fit the model. This makes sense.</p>
+<p>Now that I understand the PRESS statistic which is called <code>xerror</code> in the <code>rpart</code> output table. I still didn’t understand the <code>xstd</code>. I assumed it was the standard deviation of the <code>xerror</code> but after some manual attempts at calculating <code>xstd</code> based on <code>xerror</code> and having no luck. I took to Cross Validated to sort me out. According to user bearoak on <a href="https://stats.stackexchange.com/questions/92547/r-rpart-cross-validation-and-1-se-rule-why-is-the-column-in-cptable-called-xst">this thread</a>, it is not the standard deviation as one would think because of the <code>std</code> bit of <code>xstd</code>, but it is actually the standard error which is the standard deviation divided by the number of observations.</p>
