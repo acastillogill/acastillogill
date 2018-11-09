@@ -22,5 +22,15 @@
  Should I remove highly correlated variables? I have three and I don’t know what to do with them? Should I remove levels within factor variables with few observations?</description>
     </item>
     
+    <item>
+      <title>Pre-processing to what extent?</title>
+      <link>/post/pre-processing-to-what-extent/</link>
+      <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/pre-processing-to-what-extent/</guid>
+      <description>The goal of today’s session was to learn how to preprocess the homes dataset I’ve been working with. The missing values have been filled and now I have a few questions about whether I should perform or not, additional pre-processing steps before I can implement the CART algorithm.
+ Should I remove highly correlated variables? I have three and I don’t know what to do with them? Should I remove levels within factor variables with few observations?</description>
+    </item>
+    
   </channel>
 </rss>

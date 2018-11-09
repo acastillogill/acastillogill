@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Overview on Ángela Castillo-Gill</title>
+    <link>/tutorial/</link>
+    <description>Recent content in Overview on Ángela Castillo-Gill</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018 Ángela Castillo-Gill</copyright>
+    <lastBuildDate>Sun, 09 Sep 2018 00:00:00 +0200</lastBuildDate>
+    
+	<atom:link href="/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Example Page</title>
+      <link>/tutorial/example/</link>
+      <pubDate>Sun, 09 Sep 2018 00:00:00 +0200</pubDate>
+      
+      <guid>/tutorial/example/</guid>
+      <description>In this tutorial, I&amp;rsquo;ll share my top 10 tips for getting started with Academic:
+Tip 1 &amp;hellip;
+Tip 2 &amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>Predicting property prices</title>
+      <link>/tutorial/predicting-property-prices/</link>
+      <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tutorial/predicting-property-prices/</guid>
+      <description>1 Summary 2 Purpose of this post 3 The data 3.1 Missing values 3.2 Variable creation 3.3 Correlation 3.4 Removing correlated variables 3.5 Removing variables that have low variance  4 Classification and Regression Trees (CART) time 4.1 Splitting the data 4.2 Training the model 4.3 Revising variable importance 4.4 Evaluating the model 4.5 Tuning hyperparameters 4.6 Grid search for best hyperparameters  5 Techniques used 6 Questions from this analysis   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.</description>
+    </item>
+    
+    <item>
+      <title>Exploring Kiva loans</title>
+      <link>/tutorial/exploring-kiva-loans/</link>
+      <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tutorial/exploring-kiva-loans/</guid>
+      <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 5 Exploratory data analysis 6 Techniques used 7 Questions from this analysis   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
+In this post, I analyse 671,205 observations. Each represents a Kiva loan. I find that the gender that requests the most loans is female with single females being the most frequent borrowers.</description>
+    </item>
+    
+    <item>
+      <title>Bayesian Regression vs. Frequentist Regression</title>
+      <link>/tutorial/bayesian-regression-vs-frequentist-regression/</link>
+      <pubDate>Mon, 28 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tutorial/bayesian-regression-vs-frequentist-regression/</guid>
+      <description>So I thought, I need to get to the bottom of this, what is indeed the difference between Frequentist and Bayesian regression beyond the distinction of what probability, as a whole, means to both sides.
+Ordinary Least Squared (OLS) Errors Regression With OLS, our best estimate of the line that describes the relationship between the explanatory and response variable is ordinary least squared (OLS) estimates of alpha and beta to obtain the “fitted” values of predictions.</description>
+    </item>
+    
+  </channel>
+</rss>

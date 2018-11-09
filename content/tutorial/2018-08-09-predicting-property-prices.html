@@ -1,0 +1,679 @@
+---
+title: Predicting property prices
+author: Ángela Castillo-Gill
+date: '2018-08-09'
+slug: predicting-property-prices
+categories:
+  - R
+  - RPART
+tags: 
+  - Kaggle
+  - Home sales prices
+draft: FALSE
+summary: What factors most affect sales prices for homes?
+header: 
+  image: ""
+  caption: "Test"
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+    toc_depth: 2
+  fig_caption: true
+editor_options: 
+  chunk_output_type: console
+---
+
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#summary"><span class="toc-section-number">1</span> Summary</a></li>
+<li><a href="#purpose-of-this-post"><span class="toc-section-number">2</span> Purpose of this post</a></li>
+<li><a href="#the-data"><span class="toc-section-number">3</span> The data</a><ul>
+<li><a href="#missing-values"><span class="toc-section-number">3.1</span> Missing values</a></li>
+<li><a href="#variable-creation"><span class="toc-section-number">3.2</span> Variable creation</a></li>
+<li><a href="#correlation"><span class="toc-section-number">3.3</span> Correlation</a></li>
+<li><a href="#removing-correlated-variables"><span class="toc-section-number">3.4</span> Removing correlated variables</a></li>
+<li><a href="#removing-variables-that-have-low-variance"><span class="toc-section-number">3.5</span> Removing variables that have low variance</a></li>
+</ul></li>
+<li><a href="#classification-and-regression-trees-cart-time"><span class="toc-section-number">4</span> Classification and Regression Trees (CART) time</a><ul>
+<li><a href="#splitting-the-data"><span class="toc-section-number">4.1</span> Splitting the data</a></li>
+<li><a href="#training-the-model"><span class="toc-section-number">4.2</span> Training the model</a></li>
+<li><a href="#revising-variable-importance"><span class="toc-section-number">4.3</span> Revising variable importance</a></li>
+<li><a href="#evaluating-the-model"><span class="toc-section-number">4.4</span> Evaluating the model</a></li>
+<li><a href="#tuning-hyperparameters"><span class="toc-section-number">4.5</span> Tuning hyperparameters</a></li>
+<li><a href="#grid-search-for-best-hyperparameters"><span class="toc-section-number">4.6</span> Grid search for best hyperparameters</a></li>
+</ul></li>
+<li><a href="#techniques-used"><span class="toc-section-number">5</span> Techniques used</a></li>
+<li><a href="#questions-from-this-analysis"><span class="toc-section-number">6</span> Questions from this analysis</a></li>
+</ul>
+</div>
+
+<div id="summary" class="section level1">
+<h1><span class="header-section-number">1</span> Summary</h1>
+<p><em>To see the code used in this post, visit my <a href="https://www.kaggle.com/adcastillogill/exploring-kiva-loans">kernel on kaggle in R Markdown format</a>.</em></p>
+</div>
+<div id="purpose-of-this-post" class="section level1">
+<h1><span class="header-section-number">2</span> Purpose of this post</h1>
+</div>
+<div id="the-data" class="section level1">
+<h1><span class="header-section-number">3</span> The data</h1>
+<p>The dataset <a href="https://www.kaggle.com/c/house-prices-advanced-regression-techniques">House Prices: Advanced Regression Techniques</a> was downloaded from Kaggle and put together by <a href="https://ww2.amstat.org/publications/jse/v19n3/decock.pdf">Dean De Cock.</a> It has 79 explanatory variables describing 1,460 homes in Ames, Iowa. The codebook for all the variables can be <a href="https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data">found here.</a> As I go along, I’ll explain the most relevant ones.</p>
+<p>First we will see how many numerical vs. categorical variables there are.</p>
+<p>Our dataset has 38 numeric and 43 character variables. Next, since we are interested in estimating sales prices <code>SalePrice</code>, we will recode character variables and see the most strongly correlated variables. There are 43 character variables available. I want to recode them where there is ordinality and where there isn’t dummify them.</p>
+<p>There are two numerical variables that are actually date related: <code>YearBuilt</code>and <code>YearRemodAdd</code> (remodelled date). It makes more sense to make two new variables that relate the build and remodelled dates with the present. In other words, I will create the years since built and years since remodelled date variables, this will help interpret the results better.</p>
+<div id="missing-values" class="section level2">
+<h2><span class="header-section-number">3.1</span> Missing values</h2>
+<p>As it more common than not, the dataset contains missing values. Missing values need to be dealt with because regression (and other models) requires complete observations.</p>
+<p>Dealing with missing data depends on <em>why the data are missing</em>. <a href="http://www.stat.columbia.edu/~gelman/arm/missing.pdf">This article</a> explains four reasons why data could be missing. When the data are missing at random (MAR) or completely at random (MCAR), observations with missing values can be removed without introducing bias into the model.</p>
+<p>Sometimes, however, if the dataset is not too big and we don’t want to lose observations, or even if it is big, yet we still don’t want to remove observations, we can impute data. Imputing means replacing missing values by doing some educated guesses. <a href="https://towardsdatascience.com/how-to-handle-missing-data-8646b18db0d4">This article</a> summarises how to impute data depending on why it is missing.</p>
+<p>If the data are not missing at random, then the imputation mechanism has to modelled.</p>
+<p>Let’s look at which variables are missing:</p>
+<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:missigness-table">Table 3.1: </span>Variables with missing values in descending order
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Variable
+</th>
+<th style="text-align:right;">
+Number of NAs
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+PoolQC
+</td>
+<td style="text-align:right;">
+1453
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MiscFeature
+</td>
+<td style="text-align:right;">
+1406
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Alley
+</td>
+<td style="text-align:right;">
+1369
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fence
+</td>
+<td style="text-align:right;">
+1179
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FireplaceQu
+</td>
+<td style="text-align:right;">
+690
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LotFrontage
+</td>
+<td style="text-align:right;">
+259
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GarageType
+</td>
+<td style="text-align:right;">
+81
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GarageYrBlt
+</td>
+<td style="text-align:right;">
+81
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GarageFinish
+</td>
+<td style="text-align:right;">
+81
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GarageQual
+</td>
+<td style="text-align:right;">
+81
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GarageCond
+</td>
+<td style="text-align:right;">
+81
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BsmtExposure
+</td>
+<td style="text-align:right;">
+38
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BsmtFinType2
+</td>
+<td style="text-align:right;">
+38
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BsmtQual
+</td>
+<td style="text-align:right;">
+37
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BsmtCond
+</td>
+<td style="text-align:right;">
+37
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BsmtFinType1
+</td>
+<td style="text-align:right;">
+37
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MasVnrType
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MasVnrArea
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Electrical
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<p>19 variables have missing values. Based on the codebook, the reason why so many houses have <code>PoolQC</code> missing is because <code>NA</code>, means there is no pool. Since this variable is ordinal, I can revalue it to make it numerical and <code>0</code> will mean the property has no pool. <code>MiscFeature</code>, <code>Alley</code>, <code>Fence</code>, and <code>FireplaceQu</code> are missing because of similar reasons. We don’t know why <code>LotFrontage</code> is missing but we will impute as the median for properties in the same neighborhood. <a href="https://www.kaggle.com/erikbruin/house-prices-lasso-xgboost-and-a-detailed-eda/code">Erik Bruin’s kernel on Kaggle</a> with this dataset, was a great guideline for what to do in each missing value case.</p>
+</div>
+<div id="variable-creation" class="section level2">
+<h2><span class="header-section-number">3.2</span> Variable creation</h2>
+</div>
+<div id="correlation" class="section level2">
+<h2><span class="header-section-number">3.3</span> Correlation</h2>
+<p>Correlation, <span class="math inline">\(Cor(X,Y)\)</span>, measures the strength of the linear relationship between two variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.</p>
+<p>The correlation between <code>SalePrice</code> and another variable, let’s say, <code>OverallQual</code>, is the covariance of the separately normalised data between the two variables.</p>
+<pre class="r"><code>cov(scale(homes$SalePrice), scale(homes$OverallQual))
+          [,1]
+[1,] 0.7909816</code></pre>
+<p>Since covariance units are <code>OverallQual</code> * <code>SalePrice</code>, calculating the correlation is instead more helpful since it is unit free.</p>
+<p>If we created a model with only variable as the predictor of <code>SalesPrice</code>, let’s say, <code>KitchenQual</code> and normalised the data, the regression slope would be the correlation between the two variables.</p>
+<pre class="r"><code>norm_fit &lt;- lm(scale(SalePrice) ~ scale(KitchenQual), data = homes)
+round(coefficients(norm_fit), digits = 2)
+       (Intercept) scale(KitchenQual) 
+              0.00               0.66 </code></pre>
+<p>Here is the correlation matrix for variables that have a relationship stronger than 0.5 with <code>SalePrice</code>.</p>
+<p><img src="/tutorial/2018-08-09-predicting-property-prices_files/figure-html/correlation-matrix-1.png" width="672" /></p>
+<p>There are 17 variables that have a correlation stronger than 0.5. They are arranged in descending order. It is interesting to note the high correlation that exists amongst variables. The correlation plot highlights some obvious ones, <code>GarageArea</code> and <code>GarageCars</code>. Makes sense, a bigger garage can hold more cars. <code>X1stFlrSF</code> and <code>TotalBsmtSF</code>, the total area of the first floor and basement, this also seems reasonable since basements are underneath the same floor and would tend to have a similar area. <code>TotRmsAbvGrd</code> and <code>GrLivArea</code>, the total number of rooms and area above ground, again ok, more rooms would be linked to a bigger living area. Finally, <code>YearsSinceBuilt</code> and <code>YearsSinceGarageBuilt</code> since garages are usually built at the same time as the house.</p>
+<p>Here is the codebook for all the variables featured in the correlation matrix in case they come up later and we need to interpret what they mean.</p>
+<p><strong>Positive correlation</strong></p>
+<ul>
+<li><code>OverallQual</code>: Rates the overall material and finish of the house</li>
+<li><code>GrLivArea</code>: Above grade (ground) living area square feet.</li>
+<li><code>ExterQual</code>: Exterior quality</li>
+<li><code>KitchenQual</code>: Kitchen quality</li>
+<li><code>GarageCars</code>: Size of garage in car capacity</li>
+<li><code>GarageArea</code>: Size of garage in square feet</li>
+<li><code>TotalBsmtSF</code>: Total square feet of basement area</li>
+<li><code>X1stFlrSF</code>: First floor square feet</li>
+<li><code>BsmtQual</code>: Height of basement</li>
+<li><code>FullBath</code>: Full bathrooms above grade</li>
+<li><code>GarageFinish</code>: Interior finish of the garage</li>
+<li><code>TotRmsAbvGrd</code>: Total rooms above grade (does not include bathrooms)</li>
+<li><code>FireplaceQu</code>: Fireplace quality</li>
+</ul>
+<p><strong>Negative correlation</strong></p>
+<ul>
+<li><code>YearsSinceRemod</code>: Years since remodel date (same as construction date if no remodelling or additions)</li>
+<li><code>YearsSinceGarageBuilt</code>: Years since the garage was built</li>
+<li><code>YearsSinceBuilt</code>: Years since construction date</li>
+</ul>
+</div>
+<div id="removing-correlated-variables" class="section level2">
+<h2><span class="header-section-number">3.4</span> Removing correlated variables</h2>
+</div>
+<div id="removing-variables-that-have-low-variance" class="section level2">
+<h2><span class="header-section-number">3.5</span> Removing variables that have low variance</h2>
+</div>
+</div>
+<div id="classification-and-regression-trees-cart-time" class="section level1">
+<h1><span class="header-section-number">4</span> Classification and Regression Trees (CART) time</h1>
+<p>In this post I am using the recursing and partitioning (RPART) algorithm also known as classification and regression trees (CART). It will be implemented with the <code>rpart</code> package in R.</p>
+<p>Rpart, builds a model in two stages:</p>
+<p><strong>First stage</strong>:</p>
+<p>A single variable is identified which can best split the data into two groups. The data is then separated intwo two groups and the whole process is repeated <em>recursively</em> or indefinitely until the sub groups reach a minimum size, or until no further improvements can be made.</p>
+<p><strong>To be defined later</strong>
+- What constitutes as the variable that BEST splits the data?</p>
+<p>When the split is made, similarity amongst the observations can more or less homogenous. This homogeneity is also called purity and it can be measured. The impurity measure of a node specifies how mixed the resulting subset is.</p>
+<ul>
+<li>What are the further improvements that the algorithm can make?</li>
+</ul>
+<p>These are further splits that reduce the homogeneity of the subgroups.</p>
+<p><strong>Second stage</strong>:</p>
+<p>The tree is trimmed back or prunned using cross-validation.</p>
+<div id="splitting-the-data" class="section level2">
+<h2><span class="header-section-number">4.1</span> Splitting the data</h2>
+</div>
+<div id="training-the-model" class="section level2">
+<h2><span class="header-section-number">4.2</span> Training the model</h2>
+</div>
+<div id="revising-variable-importance" class="section level2">
+<h2><span class="header-section-number">4.3</span> Revising variable importance</h2>
+<table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:variable-importance-table">Table 4.1: </span>Top 30 variables in order of importance
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Variable
+</th>
+<th style="text-align:right;">
+Percentage
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+OverallQual
+</td>
+<td style="text-align:right;">
+23.0515224
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Neighborhood
+</td>
+<td style="text-align:right;">
+16.3419785
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BsmtQual
+</td>
+<td style="text-align:right;">
+9.2732165
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GarageArea
+</td>
+<td style="text-align:right;">
+8.2673885
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+YearsSinceBuilt
+</td>
+<td style="text-align:right;">
+7.2442216
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KitchenQual
+</td>
+<td style="text-align:right;">
+5.3352759
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+X1stFlrSF
+</td>
+<td style="text-align:right;">
+5.1291660
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GrLivArea
+</td>
+<td style="text-align:right;">
+4.9662571
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FullBath
+</td>
+<td style="text-align:right;">
+2.8642603
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ExterQual
+</td>
+<td style="text-align:right;">
+2.7602501
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Foundation
+</td>
+<td style="text-align:right;">
+2.6651332
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BsmtFinSF1
+</td>
+<td style="text-align:right;">
+2.0997208
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+X2ndFlrSF
+</td>
+<td style="text-align:right;">
+1.8566046
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MSSubClass
+</td>
+<td style="text-align:right;">
+1.3087047
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LotArea
+</td>
+<td style="text-align:right;">
+0.9037093
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HouseStyle
+</td>
+<td style="text-align:right;">
+0.6407663
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BsmtUnfSF
+</td>
+<td style="text-align:right;">
+0.6362427
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fireplaces
+</td>
+<td style="text-align:right;">
+0.6103881
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BedroomAbvGr
+</td>
+<td style="text-align:right;">
+0.5957507
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LotFrontage
+</td>
+<td style="text-align:right;">
+0.5332390
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RoofMatl
+</td>
+<td style="text-align:right;">
+0.5106289
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+YearsSinceRemod
+</td>
+<td style="text-align:right;">
+0.5106289
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Exterior1st
+</td>
+<td style="text-align:right;">
+0.4069254
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Condition1
+</td>
+<td style="text-align:right;">
+0.3404193
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LandContour
+</td>
+<td style="text-align:right;">
+0.3404193
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HalfBath
+</td>
+<td style="text-align:right;">
+0.3054079
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MasVnrArea
+</td>
+<td style="text-align:right;">
+0.1988047
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MSZoning
+</td>
+<td style="text-align:right;">
+0.1088826
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fence
+</td>
+<td style="text-align:right;">
+0.0762178
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BsmtCond
+</td>
+<td style="text-align:right;">
+0.0589345
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BsmtExposure
+</td>
+<td style="text-align:right;">
+0.0589345
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="evaluating-the-model" class="section level2">
+<h2><span class="header-section-number">4.4</span> Evaluating the model</h2>
+<pre><code>[1] 46379.54
+[1] 31179.09</code></pre>
+</div>
+<div id="tuning-hyperparameters" class="section level2">
+<h2><span class="header-section-number">4.5</span> Tuning hyperparameters</h2>
+<p><img src="/tutorial/2018-08-09-predicting-property-prices_files/figure-html/tuning-hyperparameters-1.png" width="672" /></p>
+<pre><code>           CP nsplit rel error    xerror       xstd
+1  0.44576120      0 1.0000000 1.0034376 0.09648934
+2  0.11980464      1 0.5542388 0.5578944 0.05448931
+3  0.07227853      2 0.4344342 0.4383458 0.05343974
+4  0.03113653      3 0.3621556 0.3953313 0.04125842
+5  0.02840259      4 0.3310191 0.4006663 0.04426050
+6  0.01998604      6 0.2742139 0.3773829 0.04402623
+7  0.01893938      7 0.2542279 0.3683706 0.04056180
+8  0.01351892      8 0.2352885 0.3434948 0.03750211
+9  0.01198871      9 0.2217696 0.3330784 0.03737704
+10 0.01182315     10 0.2097809 0.3230293 0.03735644
+11 0.01000000     11 0.1979577 0.3074050 0.03541012</code></pre>
+<p><img src="/tutorial/2018-08-09-predicting-property-prices_files/figure-html/tuning-hyperparameters-2.png" width="672" />
+## Checking the error on the optimised model</p>
+<pre><code>[1] 46379.54
+[1] 31179.09</code></pre>
+</div>
+<div id="grid-search-for-best-hyperparameters" class="section level2">
+<h2><span class="header-section-number">4.6</span> Grid search for best hyperparameters</h2>
+<pre><code>[1] 90  2</code></pre>
+<pre><code>$minsplit
+[1] 10 12 14 16 18 20
+
+$minbucket
+[1] 3 4 5 5 6 7
+
+$cp
+[1] 0.01
+
+$maxcompete
+[1] 4
+
+$maxsurrogate
+[1] 5
+
+$usesurrogate
+[1] 2
+
+$surrogatestyle
+[1] 0
+
+$maxdepth
+[1] 2
+
+$xval
+[1] 10
+[1] 81900.42
+$minsplit
+[1] 10 12 14 16 18 20
+
+$minbucket
+[1] 3 4 5 5 6 7
+
+$cp
+[1] 0.01
+
+$maxcompete
+[1] 4
+
+$maxsurrogate
+[1] 5
+
+$usesurrogate
+[1] 2
+
+$surrogatestyle
+[1] 0
+
+$maxdepth
+[1] 2
+
+$xval
+[1] 10
+[1] 58664.27</code></pre>
+<p><img src="/tutorial/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+</div>
+<div id="techniques-used" class="section level1">
+<h1><span class="header-section-number">5</span> Techniques used</h1>
+<ul>
+<li>I</li>
+</ul>
+</div>
+<div id="questions-from-this-analysis" class="section level1">
+<h1><span class="header-section-number">6</span> Questions from this analysis</h1>
+<ul>
+<li></li>
+</ul>
+</div>

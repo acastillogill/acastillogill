@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Ángela Castillo-Gill</copyright>
-    <lastBuildDate>Wed, 20 Apr 2016 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 15 Oct 2017 00:00:00 +0200</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
@@ -46,11 +46,53 @@
     </item>
     
     <item>
+      <title>Communicating science</title>
+      <link>/post/communicating-science/</link>
+      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/communicating-science/</guid>
+      <description>
+
+
+&lt;p&gt;Yesterday I went to a talk by a woman that worked at Facebook helping startups scale. One of slides was about prioritisation at Facebook. It was something like &lt;a href=&#34;https://www.scrumdesk.com/wp-content/uploads/okr-1.png&#34;&gt;this&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;/journal/journal-template_files/okrs.png&#34; alt=&#34;Mission &amp;amp; vission, objectives, key results, and tasks.&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Mission &amp;amp; vission, objectives, key results, and tasks.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Surrogate who?</title>
       <link>/journal/surrogate-who/</link>
       <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/journal/surrogate-who/</guid>
+      <description>
+
+
+&lt;p&gt;I hope the authors of the &lt;code&gt;Rpart&lt;/code&gt; documentation don’t take it personally but they mention surrogate variables starting on page 11 and they don’t properly define what surrogate variables mean until page 18. Maybe it’s just me.&lt;/p&gt;
+&lt;p&gt;Anyway! So here is another response to a previous question: what is a surrogate variable?&lt;/p&gt;
+&lt;p&gt;So the &lt;code&gt;Rpart&lt;/code&gt; algorithm deals with missing data. The way it does this is when it’s doing its thing and determining the next variable and split point and comes across an observation that does not have a that variable, it figures out which variables can act as a replacement for that variable. Surrogate variable mystery solved. N&lt;/p&gt;
+&lt;p&gt;Now I’m having a bit of trouble figuring out if all the rules I’ve read for choosing the best tree are the same. In the DataCamp course we pick the tree that minimises &lt;code&gt;xerror&lt;/code&gt;. Yesterday I posted this rule I found on Cross Validated:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(rel_{error}\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(+\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xstd\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(&amp;lt;\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xerror\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;In the documentation this is a rule:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(1-SE\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;In my next post I’m going to get to the bottom of this. I’m particularly confused because if we want to minimise the &lt;code&gt;xerror&lt;/code&gt;, why does page 16 of the documentation show a cptable with 27 splits and says: we see that the best tree has 10 terminal nodes, 9 splits, based on cross-validation. It has &lt;code&gt;xerror&lt;/code&gt; 0.3944.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;/journal/Thurs-08-11-2018_files/cptable.png&#34; alt=&#34;CP table on page 16 from the Rpart documentation.&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;CP table on page 16 from the Rpart documentation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Doesn’t the tree with 11 splits and 12 nodes have the first smallest error with 0.36667?&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Surrogate who?</title>
+      <link>/post/surrogate-who/</link>
+      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/surrogate-who/</guid>
       <description>
 
 
@@ -85,11 +127,48 @@
     </item>
     
     <item>
+      <title>Choosing the best tree</title>
+      <link>/post/choosing-the-best-tree/</link>
+      <pubDate>Wed, 07 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/choosing-the-best-tree/</guid>
+      <description>
+
+
+&lt;p&gt;According to user Harold Ship in &lt;a href=&#34;https://stackoverflow.com/questions/29197213/what-is-the-difference-between-rel-error-and-x-error-in-a-rpart-decision-tree&#34;&gt;this post&lt;/a&gt;, we should pick the tree with that keeps this relationship but has the tallest (that’s what he means with the lowest level, since each row represents a tree with more splits):&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(rel_{error}\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(+\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xstd\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(&amp;lt;\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xerror\)&lt;/span&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Objectives, key results, tasks</title>
       <link>/journal/objectives-key-results-tasks/</link>
       <pubDate>Tue, 06 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/journal/objectives-key-results-tasks/</guid>
+      <description>
+
+
+&lt;p&gt;Yesterday I went to a talk by a woman that worked at Facebook helping startups scale. One of slides was about prioritisation at Facebook. It was something like &lt;a href=&#34;https://www.scrumdesk.com/wp-content/uploads/okr-1.png&#34;&gt;this&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;/journal/journal-template_files/okrs.png&#34; alt=&#34;Mission &amp;amp; vission, objectives, key results, and tasks.&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Mission &amp;amp; vission, objectives, key results, and tasks.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;So today we continue trying to understand all the &lt;code&gt;rpart()&lt;/code&gt; function and algorithm.&lt;/p&gt;
+&lt;p&gt;In response to one of yesterday’s questions, the PRESS statistic is the predicted residual error sum of squares:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\sum_{i=1}^{n} (y_i-\hat{y}_{i,-i})^2\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;According to trusty &lt;a href=&#34;https://en.wikipedia.org/wiki/PRESS_statistic&#34;&gt;Wikipedia&lt;/a&gt;, the PRESS statistic is a form of cross validation derived from comparing the model’s predictions vs. actual values on a dataset that was not used for fitting the model.&lt;/p&gt;
+&lt;p&gt;A model that is overfitted would give small residuals using the observations with which the model was fitted and larger residuals with observations that were not used to fit the model. This makes sense.&lt;/p&gt;
+&lt;p&gt;Now that I understand the PRESS statistic which is called &lt;code&gt;xerror&lt;/code&gt; in the &lt;code&gt;rpart&lt;/code&gt; output table. I still didn’t understand the &lt;code&gt;xstd&lt;/code&gt;. I assumed it was the standard deviation of the &lt;code&gt;xerror&lt;/code&gt; but after some manual attempts at calculating &lt;code&gt;xstd&lt;/code&gt; based on &lt;code&gt;xerror&lt;/code&gt; and having no luck. I took to Cross Validated to sort me out. According to user bearoak on &lt;a href=&#34;https://stats.stackexchange.com/questions/92547/r-rpart-cross-validation-and-1-se-rule-why-is-the-column-in-cptable-called-xst&#34;&gt;this thread&lt;/a&gt;, it is not the standard deviation as one would think because of the &lt;code&gt;std&lt;/code&gt; bit of &lt;code&gt;xstd&lt;/code&gt;, but it is actually the standard error which is the standard deviation divided by the number of observations.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Objectives, key results, tasks</title>
+      <link>/post/objectives-key-results-tasks/</link>
+      <pubDate>Tue, 06 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/objectives-key-results-tasks/</guid>
       <description>
 
 
@@ -144,11 +223,61 @@ These are:&lt;/p&gt;
     </item>
     
     <item>
+      <title>Understanding output tables</title>
+      <link>/post/understanding-output-tables/</link>
+      <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/understanding-output-tables/</guid>
+      <description>
+
+
+&lt;p&gt;I’ve been able to answer quite a few of the questions that I asked before. For example, I don’t have to remove outliers because the algorithm is robust to outliers. No centering and scaling needs to be done to the variables. I can leave factors as factors, but the issue with with a lot of levels is that the tree can get quite wide which reduces its interpretability, which is after all, one of the advantages of using binary trees.
+I’ve also answered what constitutes an improvemment in the branch-splitting algorithm, which is finding a variable that can produce the most homogenous subgroups after a split.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;rpart&lt;/code&gt; function has several hyperparameters I would like to really understand before I modify the variables.
+Today I set out to understand these hyperparameters but instead got caught up understanding the, “five additional ingredients” that need be specified to “generalise”extend&amp;quot; the algorithm.
+These are:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;Splitting criterion, in ANOVA, this is maximising the between-groups sum-of-squares in a simple analysis of variance.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(SS_T-(SS_L+SS_R)\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Where &lt;span class=&#34;math inline&#34;&gt;\(SS_T\)&lt;/span&gt; is the sum of squares for the node; &lt;span class=&#34;math inline&#34;&gt;\(SS_L\)&lt;/span&gt; is the sum of squares for the left son; and &lt;span class=&#34;math inline&#34;&gt;\(SS_R\)&lt;/span&gt; is the sum of squares for the right son.&lt;/p&gt;
+&lt;ol start=&#34;2&#34; style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;&lt;p&gt;A summary statistic or vector to describe a node. The first element is considered to be the fitted value. For ANOVA or regression, this the mean of the node.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Error of the node: Variance of &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; for ANOVA.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The prediction error for a new observation, assigned to the node (&lt;span class=&#34;math inline&#34;&gt;\(y_{new}-\bar{y}\)&lt;/span&gt;).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Any initalisation parameter.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I was also trying to understand the output of &lt;code&gt;printcp()&lt;/code&gt; which shows the complexity parameter in descending order.&lt;/p&gt;
+&lt;p&gt;It shows the columns: &lt;code&gt;cp&lt;/code&gt;, &lt;code&gt;nsplit&lt;/code&gt;, &lt;code&gt;rel error&lt;/code&gt;, &lt;code&gt;Xerror&lt;/code&gt;, and &lt;code&gt;Xstd&lt;/code&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;rel error&lt;/code&gt;: is defined as &lt;span class=&#34;math inline&#34;&gt;\(1-R^2\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Xerror&lt;/code&gt;: “related to the PRESS statistic”. What is the PRESS statistic?&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Xstd&lt;/code&gt;: related to the cross validation error.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Also, when reading the &lt;code&gt;rpart&lt;/code&gt; documentation, the authors constantly refer to a surrogate split. Which I’m having a bit of trouble trying to understand.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Memorising tip</title>
       <link>/journal/memorising-tip/</link>
       <pubDate>Sun, 04 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/journal/memorising-tip/</guid>
+      <description>
+
+
+&lt;p&gt;Today I went to a poetry competition and heard a useful tip for memorising a poem, or in my case, speeches. Sometimes when we can’t memorise certain part of a text, after trying many times, maybe whatever is written down there, should go on the final version. Memorising can be a tool for editing the final text. When you read the text aloud, it’s own cadence and rhythm will point out that that word shouldn’t be there.&lt;/p&gt;
+&lt;p&gt;I’ve joined the local chapter of Toastmasters and this recently happened to me with a speech. There were two lines in the third paragraph that I just couldn’t remember. After trying to memorise them over and over, I realised that actually the bit I was struggling with could have been said in another way. In a way that was more memorable for the audience and that made more sense within the text. Changed it and voila! Same idea expressed differently and it was easy to memorise and it made a bigger impact.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Memorising tip</title>
+      <link>/post/memorising-tip/</link>
+      <pubDate>Sun, 04 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/memorising-tip/</guid>
       <description>
 
 
@@ -176,1248 +305,6 @@ These are:&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;So for now I’m reading the introduction to &lt;a href=&#34;https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf&#34;&gt;Recursive Partioning document that comes with the R Part package&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I am also trying to figure out what constitutes improvements in the branch-splitting algorithm to know why it stops when it does.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Predicting property prices</title>
-      <link>/post/predicting-property-prices/</link>
-      <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/predicting-property-prices/</guid>
-      <description>
-&lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
-
-&lt;div id=&#34;TOC&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#summary&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Summary&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#purpose-of-this-post&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Purpose of this post&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#the-data&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; The data&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#missing-values&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.1&lt;/span&gt; Missing values&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#variable-creation&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.2&lt;/span&gt; Variable creation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#correlation&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.3&lt;/span&gt; Correlation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#removing-correlated-variables&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.4&lt;/span&gt; Removing correlated variables&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#removing-variables-that-have-low-variance&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.5&lt;/span&gt; Removing variables that have low variance&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#classification-and-regression-trees-cart-time&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Classification and Regression Trees (CART) time&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#splitting-the-data&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.1&lt;/span&gt; Splitting the data&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#training-the-model&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.2&lt;/span&gt; Training the model&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#revising-variable-importance&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.3&lt;/span&gt; Revising variable importance&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#evaluating-the-model&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.4&lt;/span&gt; Evaluating the model&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#tuning-hyperparameters&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.5&lt;/span&gt; Tuning hyperparameters&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#grid-search-for-best-hyperparameters&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.6&lt;/span&gt; Grid search for best hyperparameters&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#techniques-used&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Techniques used&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#questions-from-this-analysis&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; Questions from this analysis&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-
-&lt;div id=&#34;summary&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Summary&lt;/h1&gt;
-&lt;p&gt;&lt;em&gt;To see the code used in this post, visit my &lt;a href=&#34;https://www.kaggle.com/adcastillogill/exploring-kiva-loans&#34;&gt;kernel on kaggle in R Markdown format&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;purpose-of-this-post&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; Purpose of this post&lt;/h1&gt;
-&lt;/div&gt;
-&lt;div id=&#34;the-data&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; The data&lt;/h1&gt;
-&lt;p&gt;The dataset &lt;a href=&#34;https://www.kaggle.com/c/house-prices-advanced-regression-techniques&#34;&gt;House Prices: Advanced Regression Techniques&lt;/a&gt; was downloaded from Kaggle and put together by &lt;a href=&#34;https://ww2.amstat.org/publications/jse/v19n3/decock.pdf&#34;&gt;Dean De Cock.&lt;/a&gt; It has 79 explanatory variables describing 1,460 homes in Ames, Iowa. The codebook for all the variables can be &lt;a href=&#34;https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data&#34;&gt;found here.&lt;/a&gt; As I go along, I’ll explain the most relevant ones.&lt;/p&gt;
-&lt;p&gt;First we will see how many numerical vs. categorical variables there are.&lt;/p&gt;
-&lt;p&gt;Our dataset has 38 numeric and 43 character variables. Next, since we are interested in estimating sales prices &lt;code&gt;SalePrice&lt;/code&gt;, we will recode character variables and see the most strongly correlated variables. There are 43 character variables available. I want to recode them where there is ordinality and where there isn’t dummify them.&lt;/p&gt;
-&lt;p&gt;There are two numerical variables that are actually date related: &lt;code&gt;YearBuilt&lt;/code&gt;and &lt;code&gt;YearRemodAdd&lt;/code&gt; (remodelled date). It makes more sense to make two new variables that relate the build and remodelled dates with the present. In other words, I will create the years since built and years since remodelled date variables, this will help interpret the results better.&lt;/p&gt;
-&lt;div id=&#34;missing-values&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.1&lt;/span&gt; Missing values&lt;/h2&gt;
-&lt;p&gt;As it more common than not, the dataset contains missing values. Missing values need to be dealt with because regression (and other models) requires complete observations.&lt;/p&gt;
-&lt;p&gt;Dealing with missing data depends on &lt;em&gt;why the data are missing&lt;/em&gt;. &lt;a href=&#34;http://www.stat.columbia.edu/~gelman/arm/missing.pdf&#34;&gt;This article&lt;/a&gt; explains four reasons why data could be missing. When the data are missing at random (MAR) or completely at random (MCAR), observations with missing values can be removed without introducing bias into the model.&lt;/p&gt;
-&lt;p&gt;Sometimes, however, if the dataset is not too big and we don’t want to lose observations, or even if it is big, yet we still don’t want to remove observations, we can impute data. Imputing means replacing missing values by doing some educated guesses. &lt;a href=&#34;https://towardsdatascience.com/how-to-handle-missing-data-8646b18db0d4&#34;&gt;This article&lt;/a&gt; summarises how to impute data depending on why it is missing.&lt;/p&gt;
-&lt;p&gt;If the data are not missing at random, then the imputation mechanism has to modelled.&lt;/p&gt;
-&lt;p&gt;Let’s look at which variables are missing:&lt;/p&gt;
-&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
-&lt;caption&gt;
-&lt;span id=&#34;tab:missigness-table&#34;&gt;Table 3.1: &lt;/span&gt;Variables with missing values in descending order
-&lt;/caption&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&#34;text-align:left;&#34;&gt;
-Variable
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-Number of NAs
-&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-PoolQC
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1453
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-MiscFeature
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1406
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Alley
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1369
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Fence
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1179
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-FireplaceQu
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-690
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-LotFrontage
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-259
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-GarageType
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-81
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-GarageYrBlt
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-81
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-GarageFinish
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-81
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-GarageQual
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-81
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-GarageCond
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-81
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtExposure
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-38
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtFinType2
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-38
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtQual
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-37
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtCond
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-37
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtFinType1
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-37
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-MasVnrType
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-MasVnrArea
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Electrical
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;19 variables have missing values. Based on the codebook, the reason why so many houses have &lt;code&gt;PoolQC&lt;/code&gt; missing is because &lt;code&gt;NA&lt;/code&gt;, means there is no pool. Since this variable is ordinal, I can revalue it to make it numerical and &lt;code&gt;0&lt;/code&gt; will mean the property has no pool. &lt;code&gt;MiscFeature&lt;/code&gt;, &lt;code&gt;Alley&lt;/code&gt;, &lt;code&gt;Fence&lt;/code&gt;, and &lt;code&gt;FireplaceQu&lt;/code&gt; are missing because of similar reasons. We don’t know why &lt;code&gt;LotFrontage&lt;/code&gt; is missing but we will impute as the median for properties in the same neighborhood. &lt;a href=&#34;https://www.kaggle.com/erikbruin/house-prices-lasso-xgboost-and-a-detailed-eda/code&#34;&gt;Erik Bruin’s kernel on Kaggle&lt;/a&gt; with this dataset, was a great guideline for what to do in each missing value case.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;variable-creation&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.2&lt;/span&gt; Variable creation&lt;/h2&gt;
-&lt;/div&gt;
-&lt;div id=&#34;correlation&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3&lt;/span&gt; Correlation&lt;/h2&gt;
-&lt;p&gt;Correlation, &lt;span class=&#34;math inline&#34;&gt;\(Cor(X,Y)\)&lt;/span&gt;, measures the strength of the linear relationship between two variables &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;The correlation between &lt;code&gt;SalePrice&lt;/code&gt; and another variable, let’s say, &lt;code&gt;OverallQual&lt;/code&gt;, is the covariance of the separately normalised data between the two variables.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cov(scale(homes$SalePrice), scale(homes$OverallQual))
-          [,1]
-[1,] 0.7909816&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Since covariance units are &lt;code&gt;OverallQual&lt;/code&gt; * &lt;code&gt;SalePrice&lt;/code&gt;, calculating the correlation is instead more helpful since it is unit free.&lt;/p&gt;
-&lt;p&gt;If we created a model with only variable as the predictor of &lt;code&gt;SalesPrice&lt;/code&gt;, let’s say, &lt;code&gt;KitchenQual&lt;/code&gt; and normalised the data, the regression slope would be the correlation between the two variables.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;norm_fit &amp;lt;- lm(scale(SalePrice) ~ scale(KitchenQual), data = homes)
-round(coefficients(norm_fit), digits = 2)
-       (Intercept) scale(KitchenQual) 
-              0.00               0.66 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Here is the correlation matrix for variables that have a relationship stronger than 0.5 with &lt;code&gt;SalePrice&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/correlation-matrix-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;There are 17 variables that have a correlation stronger than 0.5. They are arranged in descending order. It is interesting to note the high correlation that exists amongst variables. The correlation plot highlights some obvious ones, &lt;code&gt;GarageArea&lt;/code&gt; and &lt;code&gt;GarageCars&lt;/code&gt;. Makes sense, a bigger garage can hold more cars. &lt;code&gt;X1stFlrSF&lt;/code&gt; and &lt;code&gt;TotalBsmtSF&lt;/code&gt;, the total area of the first floor and basement, this also seems reasonable since basements are underneath the same floor and would tend to have a similar area. &lt;code&gt;TotRmsAbvGrd&lt;/code&gt; and &lt;code&gt;GrLivArea&lt;/code&gt;, the total number of rooms and area above ground, again ok, more rooms would be linked to a bigger living area. Finally, &lt;code&gt;YearsSinceBuilt&lt;/code&gt; and &lt;code&gt;YearsSinceGarageBuilt&lt;/code&gt; since garages are usually built at the same time as the house.&lt;/p&gt;
-&lt;p&gt;Here is the codebook for all the variables featured in the correlation matrix in case they come up later and we need to interpret what they mean.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Positive correlation&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;OverallQual&lt;/code&gt;: Rates the overall material and finish of the house&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;GrLivArea&lt;/code&gt;: Above grade (ground) living area square feet.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;ExterQual&lt;/code&gt;: Exterior quality&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;KitchenQual&lt;/code&gt;: Kitchen quality&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;GarageCars&lt;/code&gt;: Size of garage in car capacity&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;GarageArea&lt;/code&gt;: Size of garage in square feet&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;TotalBsmtSF&lt;/code&gt;: Total square feet of basement area&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;X1stFlrSF&lt;/code&gt;: First floor square feet&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;BsmtQual&lt;/code&gt;: Height of basement&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;FullBath&lt;/code&gt;: Full bathrooms above grade&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;GarageFinish&lt;/code&gt;: Interior finish of the garage&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;TotRmsAbvGrd&lt;/code&gt;: Total rooms above grade (does not include bathrooms)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;FireplaceQu&lt;/code&gt;: Fireplace quality&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Negative correlation&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;YearsSinceRemod&lt;/code&gt;: Years since remodel date (same as construction date if no remodelling or additions)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;YearsSinceGarageBuilt&lt;/code&gt;: Years since the garage was built&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;YearsSinceBuilt&lt;/code&gt;: Years since construction date&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;removing-correlated-variables&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.4&lt;/span&gt; Removing correlated variables&lt;/h2&gt;
-&lt;/div&gt;
-&lt;div id=&#34;removing-variables-that-have-low-variance&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.5&lt;/span&gt; Removing variables that have low variance&lt;/h2&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;classification-and-regression-trees-cart-time&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;4&lt;/span&gt; Classification and Regression Trees (CART) time&lt;/h1&gt;
-&lt;p&gt;In this post I am using the recursing and partitioning (RPART) algorithm also known as classification and regression trees (CART). It will be implemented with the &lt;code&gt;rpart&lt;/code&gt; package in R.&lt;/p&gt;
-&lt;p&gt;Rpart, builds a model in two stages:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;First stage&lt;/strong&gt;:&lt;/p&gt;
-&lt;p&gt;A single variable is identified which can best split the data into two groups. The data is then separated intwo two groups and the whole process is repeated &lt;em&gt;recursively&lt;/em&gt; or indefinitely until the sub groups reach a minimum size, or until no further improvements can be made.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;To be defined later&lt;/strong&gt;
-- What constitutes as the variable that BEST splits the data?&lt;/p&gt;
-&lt;p&gt;When the split is made, similarity amongst the observations can more or less homogenous. This homogeneity is also called purity and it can be measured. The impurity measure of a node specifies how mixed the resulting subset is.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;What are the further improvements that the algorithm can make?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;These are further splits that reduce the homogeneity of the subgroups.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Second stage&lt;/strong&gt;:&lt;/p&gt;
-&lt;p&gt;The tree is trimmed back or prunned using cross-validation.&lt;/p&gt;
-&lt;div id=&#34;splitting-the-data&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.1&lt;/span&gt; Splitting the data&lt;/h2&gt;
-&lt;/div&gt;
-&lt;div id=&#34;training-the-model&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.2&lt;/span&gt; Training the model&lt;/h2&gt;
-&lt;/div&gt;
-&lt;div id=&#34;revising-variable-importance&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.3&lt;/span&gt; Revising variable importance&lt;/h2&gt;
-&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
-&lt;caption&gt;
-&lt;span id=&#34;tab:variable-importance-table&#34;&gt;Table 4.1: &lt;/span&gt;Top 30 variables in order of importance
-&lt;/caption&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&#34;text-align:left;&#34;&gt;
-Variable
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-Percentage
-&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-OverallQual
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-23.0515224
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Neighborhood
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-16.3419785
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtQual
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-9.2732165
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-GarageArea
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8.2673885
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-YearsSinceBuilt
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-7.2442216
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-KitchenQual
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-5.3352759
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-X1stFlrSF
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-5.1291660
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-GrLivArea
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4.9662571
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-FullBath
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.8642603
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-ExterQual
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.7602501
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Foundation
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.6651332
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtFinSF1
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.0997208
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-X2ndFlrSF
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.8566046
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-MSSubClass
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.3087047
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-LotArea
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.9037093
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-HouseStyle
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.6407663
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtUnfSF
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.6362427
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Fireplaces
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.6103881
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BedroomAbvGr
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.5957507
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-LotFrontage
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.5332390
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-RoofMatl
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.5106289
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-YearsSinceRemod
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.5106289
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Exterior1st
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.4069254
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Condition1
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.3404193
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-LandContour
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.3404193
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-HalfBath
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.3054079
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-MasVnrArea
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.1988047
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-MSZoning
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.1088826
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Fence
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.0762178
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtCond
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.0589345
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtExposure
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.0589345
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;div id=&#34;evaluating-the-model&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.4&lt;/span&gt; Evaluating the model&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;[1] 46379.54
-[1] 31179.09&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;tuning-hyperparameters&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.5&lt;/span&gt; Tuning hyperparameters&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/tuning-hyperparameters-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;           CP nsplit rel error    xerror       xstd
-1  0.44576120      0 1.0000000 1.0034376 0.09648934
-2  0.11980464      1 0.5542388 0.5578944 0.05448931
-3  0.07227853      2 0.4344342 0.4383458 0.05343974
-4  0.03113653      3 0.3621556 0.3953313 0.04125842
-5  0.02840259      4 0.3310191 0.4006663 0.04426050
-6  0.01998604      6 0.2742139 0.3773829 0.04402623
-7  0.01893938      7 0.2542279 0.3683706 0.04056180
-8  0.01351892      8 0.2352885 0.3434948 0.03750211
-9  0.01198871      9 0.2217696 0.3330784 0.03737704
-10 0.01182315     10 0.2097809 0.3230293 0.03735644
-11 0.01000000     11 0.1979577 0.3074050 0.03541012&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/tuning-hyperparameters-2.png&#34; width=&#34;672&#34; /&gt;
-## Checking the error on the optimised model&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[1] 46379.54
-[1] 31179.09&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;grid-search-for-best-hyperparameters&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.6&lt;/span&gt; Grid search for best hyperparameters&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;[1] 90  2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;$minsplit
-[1] 10 12 14 16 18 20
-
-$minbucket
-[1] 3 4 5 5 6 7
-
-$cp
-[1] 0.01
-
-$maxcompete
-[1] 4
-
-$maxsurrogate
-[1] 5
-
-$usesurrogate
-[1] 2
-
-$surrogatestyle
-[1] 0
-
-$maxdepth
-[1] 2
-
-$xval
-[1] 10
-[1] 81900.42
-$minsplit
-[1] 10 12 14 16 18 20
-
-$minbucket
-[1] 3 4 5 5 6 7
-
-$cp
-[1] 0.01
-
-$maxcompete
-[1] 4
-
-$maxsurrogate
-[1] 5
-
-$usesurrogate
-[1] 2
-
-$surrogatestyle
-[1] 0
-
-$maxdepth
-[1] 2
-
-$xval
-[1] 10
-[1] 58664.27&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;techniques-used&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;5&lt;/span&gt; Techniques used&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;I&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;questions-from-this-analysis&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;6&lt;/span&gt; Questions from this analysis&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Exploring Kiva loans</title>
-      <link>/post/exploring-kiva-loans/</link>
-      <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/exploring-kiva-loans/</guid>
-      <description>
-&lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
-
-&lt;div id=&#34;TOC&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#summary&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Summary&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#purpose-of-this-post&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Purpose of this post&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#the-data&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; The data&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#data-cleaning&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Data cleaning&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#exploratory-data-analysis&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Exploratory data analysis&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#techniques-used&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; Techniques used&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#questions-from-this-analysis&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;7&lt;/span&gt; Questions from this analysis&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-
-&lt;div id=&#34;summary&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Summary&lt;/h1&gt;
-&lt;p&gt;&lt;em&gt;To see the code used in this post, visit my &lt;a href=&#34;https://www.kaggle.com/adcastillogill/exploring-kiva-loans&#34;&gt;kernel on kaggle in R Markdown format&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;In this post, I analyse 671,205 observations. Each represents a &lt;a href=&#34;www.kiva.org&#34;&gt;Kiva&lt;/a&gt; loan. I find that the gender that requests the most loans is female with single females being the most frequent borrowers. The main uses for these loans are agriculture, retail, and food with some variations amongst continents. Half of the loans are 4.22 USD or less and are funded by 12 or less contributers. The median time between posting a loan online and disbursing it to the borrower is 16.89 days. I mainly use the &lt;code&gt;tidyverse&lt;/code&gt;, &lt;code&gt;stringr&lt;/code&gt;, and &lt;code&gt;quantmode&lt;/code&gt; packages.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;purpose-of-this-post&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; Purpose of this post&lt;/h1&gt;
-&lt;p&gt;Muhammad Yunus and the Grameen Bank won the &lt;a href=&#34;https://www.nobelpeaceprize.org/Prize-winners/Winners/2006&#34;&gt;Nobel Peace Prize&lt;/a&gt; in 2006 for “their efforts through microcredit to create economic and social development from below.”&lt;/p&gt;
-&lt;p&gt;Back in 1976, Yunus, at the time a professor at the University of Chittagong (Bangladesh), &lt;a href=&#34;https://www.bbc.co.uk/news/world-south-asia-11901625&#34;&gt;noticed that small amounts of money could make a substantial difference to people living in poverty&lt;/a&gt;. He started to loan money to people that didn’t meet the requirements listed by the mainstream banking system. It was reported that these type of loans were effective to &lt;a href=&#34;https://www.nobelpeaceprize.org/Prize-winners/Prizewinner-documentation/Muhammad-Yunus-Grameen-Bank&#34;&gt;“emerge” from poverty&lt;/a&gt; using default rates lower than those of commercial banks, &lt;a href=&#34;https://www.gdrc.org/icm/grameen-article4.html&#34;&gt;reported at 2%&lt;/a&gt;. Eventually, in October 1983, Muhammad Yunus founded &lt;a href=&#34;https://grameenfoundation.org/about/history&#34;&gt;Grameen Bank&lt;/a&gt;, considered to be the first microfinance institution.&lt;/p&gt;
-&lt;p&gt;Founded in 2005, &lt;a href=&#34;www.kiva.org&#34;&gt;Kiva&lt;/a&gt;, has the same mission as Grameen Bank except that anyone can become a Kiva banker. This online platform enables microcredit lending to help low-income entrepreneurs around the world with a couple of clicks. Pretty neat, huh? In this post, I unpack a large dataset published by &lt;a href=&#34;https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding&#34;&gt;Kiva on the Kaggle platform&lt;/a&gt; and explore these microloans.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;the-data&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; The data&lt;/h1&gt;
-&lt;p&gt;The dataset was published during the first months of 2018 on the &lt;a href=&#34;https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding&#34;&gt;Kaggle platform&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The complete dataset was a zip file with size 232.7 MB containing four files: &lt;code&gt;kiva_loans.csv&lt;/code&gt;, &lt;code&gt;kiva_mpi_region_locations.csv&lt;/code&gt;,&lt;code&gt;loan_theme_ids.csv&lt;/code&gt;, and &lt;code&gt;loan_themes_by_region.csv&lt;/code&gt;. After I looked at the contents, I chose to work with the first one &lt;code&gt;kiva_loans.csv&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;The dataset had 671,205 observations and 20 variables.&lt;/p&gt;
-&lt;p&gt;Some of the codebook came with the dataset and some I researched to make assumptions:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;funded_amount&lt;/code&gt;: “The amount disbursed by Kiva to the field agent(USD)”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;loan_amount&lt;/code&gt;: “The amount disbursed by the field agent to the borrower(USD)”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;activity&lt;/code&gt;: “More granular category”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;sector&lt;/code&gt;: “High level category”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;use&lt;/code&gt;: “Exact usage of loan amount”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;country_code&lt;/code&gt;: “ISO country code of country in which loan was disbursed”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;country&lt;/code&gt;: “Full country name of country in which loan was disbursed”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;region&lt;/code&gt;: “Full region name within the country”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;currency&lt;/code&gt;: “The currency in which the loan was disbursed”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;partner_id&lt;/code&gt;: “ID of partner organization”&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;This variable has a lot of missing values and the Kiva explanation on Kaggle doesn’t go much further. For now, I will exclude &lt;code&gt;partner_id&lt;/code&gt;.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;posted_time&lt;/code&gt;: “The time at which the loan is posted on Kiva by the field agent”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;disbursed_time&lt;/code&gt;: “The time at which the loan is disbursed by the field agent to the borrower”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;funded_time&lt;/code&gt;: “The time at which the loan posted to Kiva gets funded by lenders completely”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;term_in_months&lt;/code&gt;: “The duration for which the loan was disbursed in months”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;lender_count&lt;/code&gt;: “The total number of lenders that contributed to this loan”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;borrower_genders&lt;/code&gt;: “Comma separated M,F letters, where each instance represents a single male/female in the group”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;repayment_interval&lt;/code&gt;: Not specified so we’ll assume that it means the standard definition of when the loan is repaid back to the lender.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;data-cleaning&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;4&lt;/span&gt; Data cleaning&lt;/h1&gt;
-&lt;p&gt;From at the structure of our data, we can soon see there are a few bits that don’t make sense and need to be fixed.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;a. Missing values&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;We will leave missing values in for now.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;b.&lt;code&gt;borrower_genders&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;From the variable descriptions, we expected &lt;code&gt;borrower_genders&lt;/code&gt;to have only two levels, &lt;code&gt;male&lt;/code&gt;or &lt;code&gt;female&lt;/code&gt;. Here we see many more levels, 11,298 to be precise. This isn’t very clear so we’ll fix that first by creating five levels:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[1] &amp;quot;mixed_genders&amp;quot; &amp;quot;mult_females&amp;quot;  &amp;quot;mult_males&amp;quot;    &amp;quot;single_female&amp;quot;
-[5] &amp;quot;single_male&amp;quot;  &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;c.&lt;code&gt;loan_amounts&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Now, since we’re trying to make sense of all loans, it’s better if &lt;code&gt;loan_amounts&lt;/code&gt; is in the same currency. Let’s translate it to USD.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;d.&lt;code&gt;country_codes&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Finally, with 86 countries, we have 86 levels. Perhaps it would be interesting to create another category called continent to produce less levels and have a better understanding of the overall function of regional distributions.&lt;/p&gt;
-&lt;p&gt;Our country codes are in the ISO3166 format, so we will use the associated continent code found &lt;a href=&#34;https://dev.maxmind.com/geoip/legacy/codes/country_continent/&#34;&gt;here&lt;/a&gt;. And make five continents. Africa, Asia, Europe, Oceania, and South America.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[1] &amp;quot;AF&amp;quot; &amp;quot;AS&amp;quot; &amp;quot;EU&amp;quot; &amp;quot;OC&amp;quot; &amp;quot;SA&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;e. Dates&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Let’s calculate two lengths of time that I think are interesting. First, how much time passes from the moment the loan is posted to the moment it’s disbursed (&lt;code&gt;total_time&lt;/code&gt;). Second, how long does a loan take to get funded (&lt;code&gt;giving_time&lt;/code&gt;)?&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;exploratory-data-analysis&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;5&lt;/span&gt; Exploratory data analysis&lt;/h1&gt;
-&lt;p&gt;Now, let’s describe the data starting with some plots and tables to understand it.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:continent-and-borrower-genders-plots&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/continent-and-borrower-genders-plots-1.png&#34; alt=&#34;Four continents in descending order from the continent that requests the most loans (Asia). Notice Europe and North America do not appear. `mult_females` or `mult_males` means more than one female or male.&#34; width=&#34;960&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.1: Four continents in descending order from the continent that requests the most loans (Asia). Notice Europe and North America do not appear. &lt;code&gt;mult_females&lt;/code&gt; or &lt;code&gt;mult_males&lt;/code&gt; means more than one female or male.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
-&lt;caption&gt;
-&lt;span id=&#34;tab:borrower-genders-table&#34;&gt;Table 5.1: &lt;/span&gt;A single female is the most common type of borrower gender with over half of all Kiva loans requested.
-&lt;/caption&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&#34;text-align:left;&#34;&gt;
-Gender
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-Percentage
-&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-single_female
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-65.82
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-single_male
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-17.43
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-mult_females
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-9.58
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-mixed_genders
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-6.58
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-mult_males
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.59
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;In all continents, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it’s mixed genders.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:repayment-interval-and-continent&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/repayment-interval-and-continent-1.png&#34; alt=&#34;In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it&#39;s monthly.&#34; width=&#34;960&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.2: In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it’s monthly.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
-&lt;caption&gt;
-&lt;span id=&#34;tab:repayment-interval-table&#34;&gt;Table 5.2: &lt;/span&gt;The most popular type of repayment interval is monthly.
-&lt;/caption&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&#34;text-align:left;&#34;&gt;
-Repayment interval
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-Percentage
-&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-monthly
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-47
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-irregular
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-43
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-bullet
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-10
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:sectors-and-continents&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/sectors-and-continents-1.png&#34; alt=&#34;In every continent, the three most popular sectors are agriculture, retail, and food.&#34; width=&#34;960&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.3: In every continent, the three most popular sectors are agriculture, retail, and food.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
-&lt;caption&gt;
-&lt;span id=&#34;tab:sector-table&#34;&gt;Table 5.3: &lt;/span&gt;Generally, the most frequent use of loans is agriculture, followed by food and retail.
-&lt;/caption&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&#34;text-align:left;&#34;&gt;
-Sector
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-Percentage
-&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Agriculture
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-27.5
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Food
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-20.8
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Retail
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-19.5
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Services
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-6.9
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Personal Use
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-5.9
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Education
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-5.1
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Clothing
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4.7
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Housing
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4.1
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Transportation
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.6
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Arts
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.7
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Health
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.2
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
-&lt;caption&gt;
-&lt;span id=&#34;tab:continent-table&#34;&gt;Table 5.4: &lt;/span&gt;Half of all Kiva loans are requested in Asia followed by Africa, South America, Oceania and finally the European Union.
-&lt;/caption&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&#34;text-align:left;&#34;&gt;
-Continents
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-Percentage
-&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-AS
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-55.4
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-AF
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-29.8
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-SA
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-13.5
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-OC
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.4
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;Notice most loans are requested by single females, the least amount of loans are given in the EU, weekly repayment is an unpopular form of paying loans back and entertainment, wholesale, manufacturing, and construction amount less than 2.2% of sectors.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:countries-plot&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries-plot-1.png&#34; alt=&#34;Philippines requests the mosts loans with over double as the second country, Kenya `KE`. Other top countries in this ranking are Cambodia `KH`, Pakistan `PK`, Peru `PE`, Colombia `CO`, Uganda `UG`, Tajikistan `TJ`, Ecuador `EC`, and Paraguay `PY`.&#34; width=&#34;768&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.4: Philippines requests the mosts loans with over double as the second country, Kenya &lt;code&gt;KE&lt;/code&gt;. Other top countries in this ranking are Cambodia &lt;code&gt;KH&lt;/code&gt;, Pakistan &lt;code&gt;PK&lt;/code&gt;, Peru &lt;code&gt;PE&lt;/code&gt;, Colombia &lt;code&gt;CO&lt;/code&gt;, Uganda &lt;code&gt;UG&lt;/code&gt;, Tajikistan &lt;code&gt;TJ&lt;/code&gt;, Ecuador &lt;code&gt;EC&lt;/code&gt;, and Paraguay &lt;code&gt;PY&lt;/code&gt;.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;Now I’m curious to look at the top 10 countries requesting Kiva loans but per capita and per number of internet users.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:countries-plot-capita&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries-plot-capita-1.png&#34; alt=&#34;Interesting to see how the ranking changed! The island of Samoa `WS` is leading, followed by Armenia `AM`. Countries that remain in the top 10 are Cambodia `KH`, Philippines `PH`, Kenya `KE`, and Tajikstan `TJ`. Other new countries are Timor-Leste `TL`, Paraguay `PY`, Palestine `PS`, and Lebanon `LB`.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.5: Interesting to see how the ranking changed! The island of Samoa &lt;code&gt;WS&lt;/code&gt; is leading, followed by Armenia &lt;code&gt;AM&lt;/code&gt;. Countries that remain in the top 10 are Cambodia &lt;code&gt;KH&lt;/code&gt;, Philippines &lt;code&gt;PH&lt;/code&gt;, Kenya &lt;code&gt;KE&lt;/code&gt;, and Tajikstan &lt;code&gt;TJ&lt;/code&gt;. Other new countries are Timor-Leste &lt;code&gt;TL&lt;/code&gt;, Paraguay &lt;code&gt;PY&lt;/code&gt;, Palestine &lt;code&gt;PS&lt;/code&gt;, and Lebanon &lt;code&gt;LB&lt;/code&gt;.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;Let’s see how the top 10 changes when it comes to internet users. I used &lt;a href=&#34;https://en.wikipedia.org/wiki/List_of_countries_by_number_of_Internet_users&#34;&gt;this ranking&lt;/a&gt;, which is based on numbers published by the &lt;a href=&#34;https://www.itu.int/en/Pages/default.aspx&#34;&gt;International Telecommunications Union&lt;/a&gt;.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:countries-plot-users&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries-plot-users-1.png&#34; alt=&#34;Interesting to see how the ranking changed! Leading the charts is the island of Samoa, followed by Armenia. Countries that remain in the top 10 are Cambodia `KH`, Philippines `PH`, Kenya `KE`, and Tajikstan `TJ`. Other new countries are Timor-Leste `TL`, Paraguay `PY`, Palestine `PS`, and Lebanon `LB`.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.6: Interesting to see how the ranking changed! Leading the charts is the island of Samoa, followed by Armenia. Countries that remain in the top 10 are Cambodia &lt;code&gt;KH&lt;/code&gt;, Philippines &lt;code&gt;PH&lt;/code&gt;, Kenya &lt;code&gt;KE&lt;/code&gt;, and Tajikstan &lt;code&gt;TJ&lt;/code&gt;. Other new countries are Timor-Leste &lt;code&gt;TL&lt;/code&gt;, Paraguay &lt;code&gt;PY&lt;/code&gt;, Palestine &lt;code&gt;PS&lt;/code&gt;, and Lebanon &lt;code&gt;LB&lt;/code&gt;.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;Now let’s look at the distributions of our numeric variables.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:loan-usd-distribution&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/loan-usd-distribution-1.png&#34; alt=&#34;Half of Kiva loans are 4.22 USD or less. Although the maximum loan is 100,000 USD, 75% of loans are equal to or less than 89.79 USD.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.7: Half of Kiva loans are 4.22 USD or less. Although the maximum loan is 100,000 USD, 75% of loans are equal to or less than 89.79 USD.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:term-in-months-distribution&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/term-in-months-distribution-1.png&#34; alt=&#34;The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.8: The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:lender-count&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/lender-count-1.png&#34; alt=&#34;The lender count has a text book right-skewed distribution with a median of 12 lenders.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.9: The lender count has a text book right-skewed distribution with a median of 12 lenders.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:lenders-per-country&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/lenders-per-country-1.png&#34; alt=&#34;Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.10: Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:giving-time&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/giving-time-1.png&#34; alt=&#34;The median time between posting the loan and the loan being fully funded is about 9.2 days. It is a bimodal distribution with its first peak around 6 days and its second peak around 30 days.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.11: The median time between posting the loan and the loan being fully funded is about 9.2 days. It is a bimodal distribution with its first peak around 6 days and its second peak around 30 days.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:total-time&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans_files/figure-html/total-time-1.png&#34; alt=&#34;The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.12: The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;techniques-used&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;6&lt;/span&gt; Techniques used&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;I used the &lt;code&gt;quantmode&lt;/code&gt; package to convert all loans into a unique currency (US dollars) for comparison. There were two currencies that were unavailable.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Taking all the different levels that came in the &lt;code&gt;borrower_genders&lt;/code&gt; variable and creating five neat categories to better understand who are the borrowers was good practice with lists and the &lt;code&gt;stringr&lt;/code&gt; package.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;questions-from-this-analysis&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;7&lt;/span&gt; Questions from this analysis&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Why is &lt;code&gt;Retail&lt;/code&gt; and not &lt;code&gt;Food&lt;/code&gt; (as in other regions) the second most common use for loans in Asia.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Who are the givers? Where are they? Does proximity of the lender to the borrower have anything to do with funding times?&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Does the Kiva website have anything to do with funding times? For example, &lt;code&gt;giving_time&lt;/code&gt;, the time between posting the loan and the loan being fully funded, has two peaks, at around one week and one month. Is this due to the platform and the promotion of loans that have been posted for a certain amount of time?&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Privacy Policy</title>
-      <link>/privacy/</link>
-      <pubDate>Thu, 28 Jun 2018 00:00:00 +0200</pubDate>
-      
-      <guid>/privacy/</guid>
-      <description>&lt;p&gt;&amp;hellip;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Bayesian Regression vs. Frequentist Regression</title>
-      <link>/post/bayesian-regression-vs-frequentist-regression/</link>
-      <pubDate>Mon, 28 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/bayesian-regression-vs-frequentist-regression/</guid>
-      <description>
-
-
-&lt;p&gt;So I thought, I need to get to the bottom of this, what is indeed the difference between Frequentist and Bayesian regression beyond the distinction of what probability, as a whole, means to both sides.&lt;/p&gt;
-&lt;div id=&#34;ordinary-least-squared-ols-errors-regression&#34; class=&#34;section level4&#34;&gt;
-&lt;h4&gt;Ordinary Least Squared (OLS) Errors Regression&lt;/h4&gt;
-&lt;p&gt;With OLS, our best estimate of the line that describes the relationship between the explanatory and response variable is ordinary least squared (OLS) estimates of alpha and beta to obtain the “fitted” values of predictions. What are those fitted values? They can also be called the “predicted” values. The equation for the model is:&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Model: \hat{y_i}=\hat{\alpha}+\hat{\beta_i}*x_i\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Then we have the residuals which are the difference between the observed and predicted values.&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Residuals: \hat{\epsilon_i}=y_i-\hat{y_i}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Finally, we have the mean squared error (&lt;span class=&#34;math inline&#34;&gt;\(MSE\)&lt;/span&gt;) or &lt;span class=&#34;math inline&#34;&gt;\(\sigma^2\)&lt;/span&gt;, which are the sum of the squared errors divided by the degrees of freedom.&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[MSE=\sum\limits_{n=1}^{n} \frac{\hat{\epsilon_i}}{n-2}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Squared errors we already know, but the degrees of freedom is the sample size minus the number of regression coefficients in the model. What are the regression coefficients in a model?&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;bayesian-regression&#34; class=&#34;section level4&#34;&gt;
-&lt;h4&gt;Bayesian Regression&lt;/h4&gt;
-&lt;p&gt;In Bayesian regression, the model is similar to OLS, but there is an additional assumption: errors are normally distributed and have constant variance.&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Model:  \hat{Y_i}=\alpha+\beta x_i*\epsilon_i\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Assumption: \epsilon_i\stackrel{iid}\sim{}N(0,\sigma^2)\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Now, in Bayesian statistics there is something called &lt;strong&gt;conjugate analysis&lt;/strong&gt;.
-Now here is where we need to brush up on priors, likelihoods and posteriors. Recall that a &lt;strong&gt;prior&lt;/strong&gt; is a state of believe in a model before the current experiment, that &lt;strong&gt;likelihood&lt;/strong&gt; is the probability of obtaining certain data given the model and that the posterior is the probability of the model given the data.&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Prior: p(Model)\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Likelihood: p(Data|Model)\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Posterior: p(Model|Data)\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Using &lt;a href=&#34;https://en.wikipedia.org/wiki/Bayes%27_theorem&#34;&gt;Bayes’ rule&lt;/a&gt;, the posterior can also be written as:
-&lt;span class=&#34;math display&#34;&gt;\[p(Model|Data)=\frac{p(Model\&amp;amp;Data)}{p(Data)}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[=\frac{p(Data|Model)*p(Model)}{p(Data)}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[=\frac{Likelihood*prior}{p(Data)}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(p(Data)\)&lt;/span&gt; is the sum of the &lt;span class=&#34;math inline&#34;&gt;\(Likelihood*prior\)&lt;/span&gt; for all models:&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[p(Data)=\sum\limits_{Model=1}^{Model} p(Data|Model)*p(Model)\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;So in the end the posterior for a discrete case can be written as:&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[p(Model|Data)=\frac{p(Data|Model)*p(Model)}{\sum p(Data|Model)*p(Model)}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;All that re-written for the continous case where instead of &lt;span class=&#34;math inline&#34;&gt;\(Model\)&lt;/span&gt; we have &lt;span class=&#34;math inline&#34;&gt;\(\theta\)&lt;/span&gt; meaning a probability distribution and instead of &lt;span class=&#34;math inline&#34;&gt;\(Data\)&lt;/span&gt; we have &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; (still data), leaves us with:&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[p(\theta|x)=\frac{p(x|\theta)p(\theta)}{\int p(x|\theta&amp;#39;)p(\theta&amp;#39;)d\theta&amp;#39;}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Now! Back to &lt;strong&gt;conjugate analysis&lt;/strong&gt;. In Bayesian statistics, if the posterior and prior distributions belong to the same probability distribution families, they are called conjugate distributions. A list of conjugate distributions can be found &lt;a href=&#34;https://en.wikipedia.org/wiki/Conjugate_prior&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;And back to &lt;strong&gt;Bayesian regression&lt;/strong&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;what-is-bayesian-linear-regression&#34; class=&#34;section level4&#34;&gt;
-&lt;h4&gt;What is Bayesian linear regression?&lt;/h4&gt;
-&lt;/div&gt;
-&lt;div id=&#34;what-are-application-examples-of-bayesian-linear-regression&#34; class=&#34;section level4&#34;&gt;
-&lt;h4&gt;What are application examples of Bayesian linear regression?&lt;/h4&gt;
-&lt;/div&gt;
-&lt;div id=&#34;how-is-bayesian-linear-regression-different-than-frequentist-linear-regression&#34; class=&#34;section level4&#34;&gt;
-&lt;h4&gt;How is Bayesian linear regression different than frequentist linear regression?&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;In Bayesian linear regression, instead of point estimate for each coefficient, there is a distribution.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;how-is-bayesian-linear-regression-similar-to-frequentist-linear-regression&#34; class=&#34;section level4&#34;&gt;
-&lt;h4&gt;How is Bayesian linear regression similar to frequentist linear regression?&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Under the reference prior, the values of a 95% credible interval for a regression coefficient compared to a frequentist 95% confidence interval will be the same.&lt;/li&gt;
-&lt;li&gt;Under the reference prior, the posterior mean for the regression coefficients is the same as the OLS estimate.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;in-what-cases-could-bayesian-linear-regression-be-more-helpful-than-frequentist-linear-regression&#34; class=&#34;section level4&#34;&gt;
-&lt;h4&gt;In what cases could Bayesian linear regression be more helpful than frequentist linear regression?&lt;/h4&gt;
-&lt;/div&gt;
-&lt;div id=&#34;what-are-the-model-assumptions-of-bayesian-regression&#34; class=&#34;section level4&#34;&gt;
-&lt;h4&gt;What are the model assumptions of Bayesian Regression?&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Errors are normally distributed with constant variance.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;how-do-we-determine-what-is-an-outlier-in-bayesian-linear-regression&#34; class=&#34;section level4&#34;&gt;
-&lt;h4&gt;How do we determine what is an outlier in Bayesian Linear Regression?&lt;/h4&gt;
-&lt;p&gt;My prediction in Bayes is &lt;span class=&#34;math inline&#34;&gt;\(\hat{Y_i}=\alpha+\beta x_i*\epsilon_i\)&lt;/span&gt;, if I rearrange that, then my unobserved deviation is &lt;span class=&#34;math inline&#34;&gt;\(\epsilon_i=\hat{Y_i}-(\alpha+\beta x_i)\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;Based on the posterior distribution for the parameters, we can find the posterior distribution of the deviation, a Student T distribution.&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(t={\frac {\mu -{\bar {x}}}{s/{\sqrt {n}}}}\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Here the mean is the ordinary residual or observed value, minus the fitted value. The scale is a function of the levarage of that case.&lt;/p&gt;
-&lt;p&gt;Based on the empirical rule, 95% of the errors will be within plus or minus two standard deviations from the mean. Under this logic, deviations that exceed &lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt; standard deviation could be considered as potential outliers.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;what-is-the-bayesian-information-criterion-bic-and-what-is-it-used-for&#34; class=&#34;section level4&#34;&gt;
-&lt;h4&gt;What is the Bayesian Information Criterion (BIC) and what is it used for?&lt;/h4&gt;
-&lt;p&gt;This is equivalent to using the P-value and R squared in frequentist statistics.
-There are other Bayesian criteria.
-&lt;span class=&#34;math display&#34;&gt;\[BIC= -2*log(likelihood)+log(n)*\#Parameters\]&lt;/span&gt;
-Where &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; is the sample size. We choose the model that has the smallest BIC.
-BIC can also be written as
-&lt;span class=&#34;math display&#34;&gt;\[BIC=n*log(1-R^2)+log(n)*\#parameters\]&lt;/span&gt;
-We can increase the &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt; by adding another variable to the model, because this may result in overfitting, BIC penalizes the number of parameters inclding the intercept.&lt;/p&gt;
-&lt;p&gt;We will have a tradeoff between the goodness of fit (the extent to which observed data matches the values expected by theory) &lt;span class=&#34;math inline&#34;&gt;\(n*log(1-R^2)\)&lt;/span&gt; and the model complexity represented with &lt;span class=&#34;math inline&#34;&gt;\(log(n)*\#parameters\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;After backward elimination, the credible intervals are similar to the ones before but not the same. If the credible interval excludes zero, it suggests that we have created a parsimonious model (accomplishes the desired level of explanation or prediction with as few predictor variables as possible).&lt;/p&gt;
-&lt;p&gt;There are other criteria for model selection include variations on the values of &lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;, such as IIC. &lt;span class=&#34;math display&#34;&gt;\[IIC=-2*log(likelihood)+k*\#parameters\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;how-can-i-calculate-the-posterior-probabilities-of-many-models&#34; class=&#34;section level4&#34;&gt;
-&lt;h4&gt;How can I calculate the posterior probabilities of many models?&lt;/h4&gt;
-&lt;p&gt;-Narrow intervals are not always better if they miss the truth!
-Recall the the Bayes factor is the marginal likelihood of one model against the other:&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[BF[M_m:M_b]=\frac{marginal likelihood of model M_m}{marginal likelihood of model M_b}\]&lt;/span&gt;
-which has odds against a base model &lt;span class=&#34;math inline&#34;&gt;\(M_b\)&lt;/span&gt;:
-&lt;span class=&#34;math display&#34;&gt;\[O[M_m:M_b]=\frac{p(M_m)}{p(M_b)}\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;how-does-bayesian-model-averaging-work&#34; class=&#34;section level4&#34;&gt;
-&lt;h4&gt;How does Bayesian model averaging work?&lt;/h4&gt;
-&lt;p&gt;Bayesian model averaging (BMA) multiplies the posterior probabilities of each model, by the predictions of the model.&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[BMA predictions \hat{Y^*}=\sum {\hat{Y^*_m}*p(M_m|Data)}\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;what-is-stochastic-exploration-and-what-is-it-for&#34; class=&#34;section level4&#34;&gt;
-&lt;h4&gt;What is stochastic exploration and what is it for?&lt;/h4&gt;
-&lt;p&gt;Stochastic is when something has a random probability distribution or pattern that may be analysed statistically but may not be predicted precisely.&lt;/p&gt;
-&lt;p&gt;What if we have A LOT of predictor variables? Here is where stochastic methods of implementing Bayesian model averaging may come in handy.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;what-is-markov-chain-monte-carlo-sampling-and-how-does-it-work&#34; class=&#34;section level4&#34;&gt;
-&lt;h4&gt;What is Markov Chain Monte Carlo sampling and how does it work?&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;There’s a bunch of models but I am going to start at model 0. For models &lt;span class=&#34;math inline&#34;&gt;\(i=1\)&lt;/span&gt; throught &lt;span class=&#34;math inline&#34;&gt;\(I\)&lt;/span&gt; we will do the following steps.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;Randomly select another model (our proposed model).&lt;/li&gt;
-&lt;li&gt;Next, we are going to compare it to our current model by looking at the posterior odds of the proposed model compared to our current model. We can use the odds if we don’t have the posterior probabilities because odds can be expressed as the product of the Bayes factor.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[BF[M^{*(i+1)}:M^{(i)}]*O[M^{*(i+1)}:M^{(i)}]&amp;gt;1\]&lt;/span&gt;&lt;/p&gt;
-&lt;ol start=&#34;3&#34; style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;If the result of the comparison is more than, we accept the new model. If it is less than one, then we randomly decide to accept the proposed model. We then incremement &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; by 1 and repeat until &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; iterations of the model have been done.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;There are two reasons for using Markov Chain Monte Carlo when implementing Bayesian Model Averaging.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;One, it can be used to sample models according to their posterior model probabilities, even when the posterior model probabilities are unknown.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Two, it is useful when there are so many predictors that not all models can be enumerated.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;priors-for-bayesian-model-uncertainty&#34; class=&#34;section level4&#34;&gt;
-&lt;h4&gt;Priors for Bayesian model uncertainty&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;So far we have used BIC to determine Bayes’ factors.&lt;/li&gt;
-&lt;li&gt;There is another prior distribution called Zellner’s g prior.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
 </description>
     </item>
     

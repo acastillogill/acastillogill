@@ -101,7 +101,7 @@ editor_options:
 <h1><span class="header-section-number">5</span> Exploratory data analysis</h1>
 <p>Now, let’s describe the data starting with some plots and tables to understand it.</p>
 <div class="figure"><span id="fig:continent-and-borrower-genders-plots"></span>
-<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/continent-and-borrower-genders-plots-1.png" alt="Four continents in descending order from the continent that requests the most loans (Asia). Notice Europe and North America do not appear. `mult_females` or `mult_males` means more than one female or male." width="960" />
+<img src="/tutorial/2018-07-09-exploring-kiva-loans_files/figure-html/continent-and-borrower-genders-plots-1.png" alt="Four continents in descending order from the continent that requests the most loans (Asia). Notice Europe and North America do not appear. `mult_females` or `mult_males` means more than one female or male." width="960" />
 <p class="caption">
 Figure 5.1: Four continents in descending order from the continent that requests the most loans (Asia). Notice Europe and North America do not appear. <code>mult_females</code> or <code>mult_males</code> means more than one female or male.
 </p>
@@ -165,7 +165,7 @@ mult_males
 </table>
 <p>In all continents, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it’s mixed genders.</p>
 <div class="figure"><span id="fig:repayment-interval-and-continent"></span>
-<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/repayment-interval-and-continent-1.png" alt="In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it's monthly." width="960" />
+<img src="/tutorial/2018-07-09-exploring-kiva-loans_files/figure-html/repayment-interval-and-continent-1.png" alt="In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it's monthly." width="960" />
 <p class="caption">
 Figure 5.2: In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it’s monthly.
 </p>
@@ -212,7 +212,7 @@ bullet
 </tbody>
 </table>
 <div class="figure"><span id="fig:sectors-and-continents"></span>
-<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/sectors-and-continents-1.png" alt="In every continent, the three most popular sectors are agriculture, retail, and food." width="960" />
+<img src="/tutorial/2018-07-09-exploring-kiva-loans_files/figure-html/sectors-and-continents-1.png" alt="In every continent, the three most popular sectors are agriculture, retail, and food." width="960" />
 <p class="caption">
 Figure 5.3: In every continent, the three most popular sectors are agriculture, retail, and food.
 </p>
@@ -373,58 +373,58 @@ OC
 </table>
 <p>Notice most loans are requested by single females, the least amount of loans are given in the EU, weekly repayment is an unpopular form of paying loans back and entertainment, wholesale, manufacturing, and construction amount less than 2.2% of sectors.</p>
 <div class="figure"><span id="fig:countries-plot"></span>
-<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries-plot-1.png" alt="Philippines requests the mosts loans with over double as the second country, Kenya `KE`. Other top countries in this ranking are Cambodia `KH`, Pakistan `PK`, Peru `PE`, Colombia `CO`, Uganda `UG`, Tajikistan `TJ`, Ecuador `EC`, and Paraguay `PY`." width="768" />
+<img src="/tutorial/2018-07-09-exploring-kiva-loans_files/figure-html/countries-plot-1.png" alt="Philippines requests the mosts loans with over double as the second country, Kenya `KE`. Other top countries in this ranking are Cambodia `KH`, Pakistan `PK`, Peru `PE`, Colombia `CO`, Uganda `UG`, Tajikistan `TJ`, Ecuador `EC`, and Paraguay `PY`." width="768" />
 <p class="caption">
 Figure 5.4: Philippines requests the mosts loans with over double as the second country, Kenya <code>KE</code>. Other top countries in this ranking are Cambodia <code>KH</code>, Pakistan <code>PK</code>, Peru <code>PE</code>, Colombia <code>CO</code>, Uganda <code>UG</code>, Tajikistan <code>TJ</code>, Ecuador <code>EC</code>, and Paraguay <code>PY</code>.
 </p>
 </div>
 <p>Now I’m curious to look at the top 10 countries requesting Kiva loans but per capita and per number of internet users.</p>
 <div class="figure"><span id="fig:countries-plot-capita"></span>
-<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries-plot-capita-1.png" alt="Interesting to see how the ranking changed! The island of Samoa `WS` is leading, followed by Armenia `AM`. Countries that remain in the top 10 are Cambodia `KH`, Philippines `PH`, Kenya `KE`, and Tajikstan `TJ`. Other new countries are Timor-Leste `TL`, Paraguay `PY`, Palestine `PS`, and Lebanon `LB`." width="672" />
+<img src="/tutorial/2018-07-09-exploring-kiva-loans_files/figure-html/countries-plot-capita-1.png" alt="Interesting to see how the ranking changed! The island of Samoa `WS` is leading, followed by Armenia `AM`. Countries that remain in the top 10 are Cambodia `KH`, Philippines `PH`, Kenya `KE`, and Tajikstan `TJ`. Other new countries are Timor-Leste `TL`, Paraguay `PY`, Palestine `PS`, and Lebanon `LB`." width="672" />
 <p class="caption">
 Figure 5.5: Interesting to see how the ranking changed! The island of Samoa <code>WS</code> is leading, followed by Armenia <code>AM</code>. Countries that remain in the top 10 are Cambodia <code>KH</code>, Philippines <code>PH</code>, Kenya <code>KE</code>, and Tajikstan <code>TJ</code>. Other new countries are Timor-Leste <code>TL</code>, Paraguay <code>PY</code>, Palestine <code>PS</code>, and Lebanon <code>LB</code>.
 </p>
 </div>
 <p>Let’s see how the top 10 changes when it comes to internet users. I used <a href="https://en.wikipedia.org/wiki/List_of_countries_by_number_of_Internet_users">this ranking</a>, which is based on numbers published by the <a href="https://www.itu.int/en/Pages/default.aspx">International Telecommunications Union</a>.</p>
 <div class="figure"><span id="fig:countries-plot-users"></span>
-<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/countries-plot-users-1.png" alt="Interesting to see how the ranking changed! Leading the charts is the island of Samoa, followed by Armenia. Countries that remain in the top 10 are Cambodia `KH`, Philippines `PH`, Kenya `KE`, and Tajikstan `TJ`. Other new countries are Timor-Leste `TL`, Paraguay `PY`, Palestine `PS`, and Lebanon `LB`." width="672" />
+<img src="/tutorial/2018-07-09-exploring-kiva-loans_files/figure-html/countries-plot-users-1.png" alt="Interesting to see how the ranking changed! Leading the charts is the island of Samoa, followed by Armenia. Countries that remain in the top 10 are Cambodia `KH`, Philippines `PH`, Kenya `KE`, and Tajikstan `TJ`. Other new countries are Timor-Leste `TL`, Paraguay `PY`, Palestine `PS`, and Lebanon `LB`." width="672" />
 <p class="caption">
 Figure 5.6: Interesting to see how the ranking changed! Leading the charts is the island of Samoa, followed by Armenia. Countries that remain in the top 10 are Cambodia <code>KH</code>, Philippines <code>PH</code>, Kenya <code>KE</code>, and Tajikstan <code>TJ</code>. Other new countries are Timor-Leste <code>TL</code>, Paraguay <code>PY</code>, Palestine <code>PS</code>, and Lebanon <code>LB</code>.
 </p>
 </div>
 <p>Now let’s look at the distributions of our numeric variables.</p>
 <div class="figure"><span id="fig:loan-usd-distribution"></span>
-<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/loan-usd-distribution-1.png" alt="Half of Kiva loans are 4.22 USD or less. Although the maximum loan is 100,000 USD, 75% of loans are equal to or less than 89.79 USD." width="672" />
+<img src="/tutorial/2018-07-09-exploring-kiva-loans_files/figure-html/loan-usd-distribution-1.png" alt="Half of Kiva loans are 4.22 USD or less. Although the maximum loan is 100,000 USD, 75% of loans are equal to or less than 89.79 USD." width="672" />
 <p class="caption">
 Figure 5.7: Half of Kiva loans are 4.22 USD or less. Although the maximum loan is 100,000 USD, 75% of loans are equal to or less than 89.79 USD.
 </p>
 </div>
 <div class="figure"><span id="fig:term-in-months-distribution"></span>
-<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/term-in-months-distribution-1.png" alt="The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median." width="672" />
+<img src="/tutorial/2018-07-09-exploring-kiva-loans_files/figure-html/term-in-months-distribution-1.png" alt="The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median." width="672" />
 <p class="caption">
 Figure 5.8: The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median.
 </p>
 </div>
 <div class="figure"><span id="fig:lender-count"></span>
-<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/lender-count-1.png" alt="The lender count has a text book right-skewed distribution with a median of 12 lenders." width="672" />
+<img src="/tutorial/2018-07-09-exploring-kiva-loans_files/figure-html/lender-count-1.png" alt="The lender count has a text book right-skewed distribution with a median of 12 lenders." width="672" />
 <p class="caption">
 Figure 5.9: The lender count has a text book right-skewed distribution with a median of 12 lenders.
 </p>
 </div>
 <div class="figure"><span id="fig:lenders-per-country"></span>
-<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/lenders-per-country-1.png" alt="Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans." width="672" />
+<img src="/tutorial/2018-07-09-exploring-kiva-loans_files/figure-html/lenders-per-country-1.png" alt="Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans." width="672" />
 <p class="caption">
 Figure 5.10: Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans.
 </p>
 </div>
 <div class="figure"><span id="fig:giving-time"></span>
-<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/giving-time-1.png" alt="The median time between posting the loan and the loan being fully funded is about 9.2 days. It is a bimodal distribution with its first peak around 6 days and its second peak around 30 days." width="672" />
+<img src="/tutorial/2018-07-09-exploring-kiva-loans_files/figure-html/giving-time-1.png" alt="The median time between posting the loan and the loan being fully funded is about 9.2 days. It is a bimodal distribution with its first peak around 6 days and its second peak around 30 days." width="672" />
 <p class="caption">
 Figure 5.11: The median time between posting the loan and the loan being fully funded is about 9.2 days. It is a bimodal distribution with its first peak around 6 days and its second peak around 30 days.
 </p>
 </div>
 <div class="figure"><span id="fig:total-time"></span>
-<img src="/post/2018-07-09-exploring-kiva-loans_files/figure-html/total-time-1.png" alt="The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days." width="672" />
+<img src="/tutorial/2018-07-09-exploring-kiva-loans_files/figure-html/total-time-1.png" alt="The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days." width="672" />
 <p class="caption">
 Figure 5.12: The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days.
 </p>
