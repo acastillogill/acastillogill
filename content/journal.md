@@ -18,7 +18,7 @@ tags_include = []
 tags_exclude = []
 
 # Number of journal to list.
-count = 5
+count = 100
 
 # List format.
 #   0 = Simple
