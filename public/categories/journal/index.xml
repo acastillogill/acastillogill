@@ -2,22 +2,44 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Journal on Ángela Castillo-Gill</title>
-    <link>https://acastillogill.com/categories/journal/</link>
+    <link>/categories/journal/</link>
     <description>Recent content in Journal on Ángela Castillo-Gill</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Ángela Castillo-Gill</copyright>
     <lastBuildDate>Thu, 08 Nov 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://acastillogill.com/categories/journal/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/journal/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Surrogate who?</title>
-      <link>https://acastillogill.com/journal/surrogate-who/</link>
+      <title>Communicating science</title>
+      <link>/journal/communicating-science/</link>
       <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://acastillogill.com/journal/surrogate-who/</guid>
+      <guid>/journal/communicating-science/</guid>
+      <description> Yesterday I went to a talk by a woman that worked at Facebook helping startups scale. One of slides was about prioritisation at Facebook. It was something like this:
+Mission &amp;amp; vission, objectives, key results, and tasks.
+ </description>
+    </item>
+    
+    <item>
+      <title>Communicating science</title>
+      <link>/post/communicating-science/</link>
+      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/communicating-science/</guid>
+      <description> Yesterday I went to a talk by a woman that worked at Facebook helping startups scale. One of slides was about prioritisation at Facebook. It was something like this:
+Mission &amp;amp; vission, objectives, key results, and tasks.
+ </description>
+    </item>
+    
+    <item>
+      <title>Surrogate who?</title>
+      <link>/journal/surrogate-who/</link>
+      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/journal/surrogate-who/</guid>
       <description>I hope the authors of the Rpart documentation don’t take it personally but they mention surrogate variables starting on page 11 and they don’t properly define what surrogate variables mean until page 18. Maybe it’s just me.
 Anyway! So here is another response to a previous question: what is a surrogate variable?
 So the Rpart algorithm deals with missing data. The way it does this is when it’s doing its thing and determining the next variable and split point and comes across an observation that does not have a that variable, it figures out which variables can act as a replacement for that variable.</description>
@@ -25,10 +47,10 @@ So the Rpart algorithm deals with missing data. The way it does this is when it�
     
     <item>
       <title>Surrogate who?</title>
-      <link>https://acastillogill.com/post/surrogate-who/</link>
+      <link>/post/surrogate-who/</link>
       <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://acastillogill.com/post/surrogate-who/</guid>
+      <guid>/post/surrogate-who/</guid>
       <description>I hope the authors of the Rpart documentation don’t take it personally but they mention surrogate variables starting on page 11 and they don’t properly define what surrogate variables mean until page 18. Maybe it’s just me.
 Anyway! So here is another response to a previous question: what is a surrogate variable?
 So the Rpart algorithm deals with missing data. The way it does this is when it’s doing its thing and determining the next variable and split point and comes across an observation that does not have a that variable, it figures out which variables can act as a replacement for that variable.</description>
@@ -36,30 +58,30 @@ So the Rpart algorithm deals with missing data. The way it does this is when it�
     
     <item>
       <title>Choosing the best tree</title>
-      <link>https://acastillogill.com/journal/choosing-the-best-tree/</link>
+      <link>/journal/choosing-the-best-tree/</link>
       <pubDate>Wed, 07 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://acastillogill.com/journal/choosing-the-best-tree/</guid>
+      <guid>/journal/choosing-the-best-tree/</guid>
       <description>According to user Harold Ship in this post, we should pick the tree with that keeps this relationship but has the tallest (that’s what he means with the lowest level, since each row represents a tree with more splits):
 \(rel_{error}\) \(+\) \(xstd\) \(&amp;lt;\) \(xerror\)</description>
     </item>
     
     <item>
       <title>Choosing the best tree</title>
-      <link>https://acastillogill.com/post/choosing-the-best-tree/</link>
+      <link>/post/choosing-the-best-tree/</link>
       <pubDate>Wed, 07 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://acastillogill.com/post/choosing-the-best-tree/</guid>
+      <guid>/post/choosing-the-best-tree/</guid>
       <description>According to user Harold Ship in this post, we should pick the tree with that keeps this relationship but has the tallest (that’s what he means with the lowest level, since each row represents a tree with more splits):
 \(rel_{error}\) \(+\) \(xstd\) \(&amp;lt;\) \(xerror\)</description>
     </item>
     
     <item>
       <title>Objectives, key results, tasks</title>
-      <link>https://acastillogill.com/journal/objectives-key-results-tasks/</link>
+      <link>/journal/objectives-key-results-tasks/</link>
       <pubDate>Tue, 06 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://acastillogill.com/journal/objectives-key-results-tasks/</guid>
+      <guid>/journal/objectives-key-results-tasks/</guid>
       <description>Yesterday I went to a talk by a woman that worked at Facebook helping startups scale. One of slides was about prioritisation at Facebook. It was something like this:
 Mission &amp;amp; vission, objectives, key results, and tasks.
  So today we continue trying to understand all the rpart() function and algorithm.
@@ -68,10 +90,10 @@ In response to one of yesterday’s questions, the PRESS statistic is the predic
     
     <item>
       <title>Objectives, key results, tasks</title>
-      <link>https://acastillogill.com/post/objectives-key-results-tasks/</link>
+      <link>/post/objectives-key-results-tasks/</link>
       <pubDate>Tue, 06 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://acastillogill.com/post/objectives-key-results-tasks/</guid>
+      <guid>/post/objectives-key-results-tasks/</guid>
       <description>Yesterday I went to a talk by a woman that worked at Facebook helping startups scale. One of slides was about prioritisation at Facebook. It was something like this:
 Mission &amp;amp; vission, objectives, key results, and tasks.
  So today we continue trying to understand all the rpart() function and algorithm.
@@ -80,56 +102,56 @@ In response to one of yesterday’s questions, the PRESS statistic is the predic
     
     <item>
       <title>Understanding output tables</title>
-      <link>https://acastillogill.com/journal/understanding-output-tables/</link>
+      <link>/journal/understanding-output-tables/</link>
       <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://acastillogill.com/journal/understanding-output-tables/</guid>
+      <guid>/journal/understanding-output-tables/</guid>
       <description>I’ve been able to answer quite a few of the questions that I asked before. For example, I don’t have to remove outliers because the algorithm is robust to outliers. No centering and scaling needs to be done to the variables. I can leave factors as factors, but the issue with with a lot of levels is that the tree can get quite wide which reduces its interpretability, which is after all, one of the advantages of using binary trees.</description>
     </item>
     
     <item>
       <title>Understanding output tables</title>
-      <link>https://acastillogill.com/post/understanding-output-tables/</link>
+      <link>/post/understanding-output-tables/</link>
       <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://acastillogill.com/post/understanding-output-tables/</guid>
+      <guid>/post/understanding-output-tables/</guid>
       <description>I’ve been able to answer quite a few of the questions that I asked before. For example, I don’t have to remove outliers because the algorithm is robust to outliers. No centering and scaling needs to be done to the variables. I can leave factors as factors, but the issue with with a lot of levels is that the tree can get quite wide which reduces its interpretability, which is after all, one of the advantages of using binary trees.</description>
     </item>
     
     <item>
       <title>Memorising tip</title>
-      <link>https://acastillogill.com/journal/memorising-tip/</link>
+      <link>/journal/memorising-tip/</link>
       <pubDate>Sun, 04 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://acastillogill.com/journal/memorising-tip/</guid>
+      <guid>/journal/memorising-tip/</guid>
       <description>Today I went to a poetry competition and heard a useful tip for memorising a poem, or in my case, speeches. Sometimes when we can’t memorise certain part of a text, after trying many times, maybe whatever is written down there, should go on the final version. Memorising can be a tool for editing the final text. When you read the text aloud, it’s own cadence and rhythm will point out that that word shouldn’t be there.</description>
     </item>
     
     <item>
       <title>Memorising tip</title>
-      <link>https://acastillogill.com/post/memorising-tip/</link>
+      <link>/post/memorising-tip/</link>
       <pubDate>Sun, 04 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://acastillogill.com/post/memorising-tip/</guid>
+      <guid>/post/memorising-tip/</guid>
       <description>Today I went to a poetry competition and heard a useful tip for memorising a poem, or in my case, speeches. Sometimes when we can’t memorise certain part of a text, after trying many times, maybe whatever is written down there, should go on the final version. Memorising can be a tool for editing the final text. When you read the text aloud, it’s own cadence and rhythm will point out that that word shouldn’t be there.</description>
     </item>
     
     <item>
       <title>Pre-processing to what extent?</title>
-      <link>https://acastillogill.com/journal/pre-processing-to-what-extent/</link>
+      <link>/journal/pre-processing-to-what-extent/</link>
       <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://acastillogill.com/journal/pre-processing-to-what-extent/</guid>
+      <guid>/journal/pre-processing-to-what-extent/</guid>
       <description>The goal of today’s session was to learn how to preprocess the homes dataset I’ve been working with. The missing values have been filled and now I have a few questions about whether I should perform or not, additional pre-processing steps before I can implement the CART algorithm.
  Should I remove highly correlated variables? I have three and I don’t know what to do with them? Should I remove levels within factor variables with few observations?</description>
     </item>
     
     <item>
       <title>Pre-processing to what extent?</title>
-      <link>https://acastillogill.com/post/pre-processing-to-what-extent/</link>
+      <link>/post/pre-processing-to-what-extent/</link>
       <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://acastillogill.com/post/pre-processing-to-what-extent/</guid>
+      <guid>/post/pre-processing-to-what-extent/</guid>
       <description>The goal of today’s session was to learn how to preprocess the homes dataset I’ve been working with. The missing values have been filled and now I have a few questions about whether I should perform or not, additional pre-processing steps before I can implement the CART algorithm.
  Should I remove highly correlated variables? I have three and I don’t know what to do with them? Should I remove levels within factor variables with few observations?</description>
     </item>
