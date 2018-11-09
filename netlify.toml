@@ -9,15 +9,15 @@ publish = "public"
 command = "hugo --buildFuture"
 
 [context.production.environment]
-HUGO_VERSION = "0.42"
+HUGO_VERSION = "0.51"
 
 # you can lock a version of hugo for a deploy preview
 [context.deploy-preview.environment]
-HUGO_VERSION = "0.42"
+HUGO_VERSION = "0.51"
 
 # you can lock a version of hugo for a branch-deploy (other than previews)
 [context.branch-deploy.environment]
-HUGO_VERSION = "0.42"
+HUGO_VERSION = "0.51"
 
 # A basic redirects rule
 [[redirects]]
