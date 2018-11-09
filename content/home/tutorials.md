@@ -1,7 +1,7 @@
 +++
 # Recent  widget.
 # This widget displays recent tutorials from `content/tutorial/`.
-widget = "tutorials"
+widget = "custom"
 active = true
 date = 2016-04-20T00:00:00
 
