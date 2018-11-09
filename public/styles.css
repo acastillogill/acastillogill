@@ -17,14 +17,14 @@
  **************************************************/
 
 html {
-  font-family: 'Neuton:300', sans-serif;
-  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
   color: rgba(0,0,0,0.8);
   line-height: 1.65;
 }
 @media screen and (min-width: 58em) {
   html {
-    font-size: 18px;
+    font-size: 20px;
   }
 }
 
@@ -71,7 +71,7 @@ ul, ol, dl {
 
 /* Navigation bar text */
 .navbar-light {
-  font-family: 'Oswald:600', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
   line-height: 1.25;
   text-rendering: optimizeLegibility;
@@ -79,7 +79,7 @@ ul, ol, dl {
 
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Oswald:600', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   margin-top: 1rem;
   margin-bottom: .5rem;
@@ -142,7 +142,7 @@ figcaption {
   line-height: 1.25;
   font-size: 1rem;
   margin-bottom: 1.65rem;
-  font-family: 'Oswald:600', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 figcaption.numbered:before {
@@ -164,7 +164,7 @@ figcaption h4 {
 
 pre,
 code {
-  font-family: 'Oswald:600', monospace;
+  font-family: 'Roboto Mono', monospace;
   color: #c7254e;
   background-color: #f9f2f4;
 }
@@ -1449,7 +1449,7 @@ a.badge:hover {
 
 .dropdown-menu,
 nav#navbar-main li.nav-item {
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .navbar-light .navbar-nav>.nav-item>.nav-link,

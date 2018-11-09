@@ -2,14 +2,14 @@
 name = "Default"
 
 # Optional Google font URL
-google_fonts = "Neuton:300|Oswald:600"
+google_fonts = "Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono"
 
 # Font families
-heading_font = "Oswald:600"
-body_font = "Neuton:300"
-nav_font = "Oswald:600"
-mono_font = "Oswald:600"
+heading_font = "Montserrat"
+body_font = "Roboto"
+nav_font = "Roboto"
+mono_font = "Roboto Mono"
 
 # Font size
-font_size = "18"
-font_size_small = "20"
+font_size = "20"
+font_size_small = "16"
