@@ -2,13 +2,13 @@
 name = "Default"
 
 # Optional Google font URL
-google_fonts = "Anton|Fjalla+One|Merriweather:300,400"
+google_fonts = "Anton|Old+Standard+TT"
 
 # Font families
 heading_font = "Anton:400"
-body_font = "Merriweather:300"
-nav_font = "Fjalla+One:400"
-mono_font = "Fjalla+One:400"
+body_font = "Old+Standard+TT:300"
+nav_font = "Anton:400"
+mono_font = "Anton:400"
 
 # Font size
 font_size = "18"

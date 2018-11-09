@@ -17,7 +17,7 @@
  **************************************************/
 
 html {
-  font-family: 'Merriweather:300', serif;
+  font-family: 'Old+Standard+TT:300', serif;
   font-size: 20px;
   color: rgba(0,0,0,0.8);
   line-height: 1.65;
@@ -71,7 +71,7 @@ ul, ol, dl {
 
 /* Navigation bar text */
 .navbar-light {
-  font-family: 'Fjalla+One:400', sans-serif;
+  font-family: 'Anton:400', sans-serif;
   font-weight: 400;
   line-height: 1.25;
   text-rendering: optimizeLegibility;
@@ -164,7 +164,7 @@ figcaption h4 {
 
 pre,
 code {
-  font-family: 'Fjalla+One:400', monospace;
+  font-family: 'Anton:400', monospace;
   color: #c7254e;
   background-color: #f9f2f4;
 }
