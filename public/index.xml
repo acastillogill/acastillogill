@@ -45,7 +45,7 @@
 &lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(1-SE\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;In my next post I’m going to get to the bottom of this. I’m particularly confused because if we want to minimise the &lt;code&gt;xerror&lt;/code&gt;, why does page 16 of the documentation show a cptable with 27 splits and says: we see that the best tree has 10 terminal nodes, 9 splits, based on cross-validation. It has &lt;code&gt;xerror&lt;/code&gt; 0.3944.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;static/img/cptable.png&#34; alt=&#34;CP table on page 16 from the Rpart documentation.&#34; /&gt;
+&lt;img src=&#34;/post/Thurs-08-11-2018_files/cptable.png&#34; alt=&#34;CP table on page 16 from the Rpart documentation.&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;CP table on page 16 from the Rpart documentation.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Doesn’t the tree with 11 splits and 12 nodes have the first smallest error with 0.36667?&lt;/p&gt;
@@ -62,7 +62,7 @@
 
 
 &lt;p&gt;According to user Harold Ship in &lt;a href=&#34;https://stackoverflow.com/questions/29197213/what-is-the-difference-between-rel-error-and-x-error-in-a-rpart-decision-tree&#34;&gt;this post&lt;/a&gt;, we should pick the tree with that keeps this relationship but has the tallest (that’s what he means with the lowest level, since each row represents a tree with more splits):&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(rel_{error}\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(+\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xstd\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(&amp;lt;\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xerror\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(rel\&amp;gt;error\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(+\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xstd\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(&amp;lt;\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xerror\)&lt;/span&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -77,7 +77,7 @@
 
 &lt;p&gt;Yesterday I went to a talk by a woman that worked at Facebook helping startups scale. One of slides was about prioritisation at Facebook. It was something like &lt;a href=&#34;https://www.scrumdesk.com/wp-content/uploads/okr-1.png&#34;&gt;this&lt;/a&gt;:&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;static/img/okrs.png&#34; alt=&#34;Mission &amp;amp; vission, objectives, key results, and tasks.&#34; /&gt;
+&lt;img src=&#34;/post/Tues-06-11-2018_files/okrs.png&#34; alt=&#34;Mission &amp;amp; vission, objectives, key results, and tasks.&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;Mission &amp;amp; vission, objectives, key results, and tasks.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;So today we continue trying to understand all the &lt;code&gt;rpart()&lt;/code&gt; function and algorithm.&lt;/p&gt;

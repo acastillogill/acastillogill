@@ -10,7 +10,6 @@ tags:
   - Learning
 draft: FALSE
 summary: Prioritising tips. 
-featuredImage: "static/img/okrs.png"
 output:
   blogdown::html_page:
     toc: true
@@ -19,11 +18,12 @@ output:
   fig_caption: true
 editor_options: 
   chunk_output_type: console
+featuredImage: "/post/Tues-06-11-2018_files/okrs.png"
 ---
 
 Yesterday I went to a talk by a woman that worked at Facebook helping startups scale. One of slides was about prioritisation at Facebook. It was something like [this](https://www.scrumdesk.com/wp-content/uploads/okr-1.png): 
 
-![Mission & vission, objectives, key results, and tasks.](static/img/okrs.png)
+![Mission & vission, objectives, key results, and tasks.](/post/Tues-06-11-2018_files/okrs.png)
 
 So today we continue trying to understand all the `rpart()` function and algorithm. 
 

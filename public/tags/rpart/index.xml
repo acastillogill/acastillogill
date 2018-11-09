@@ -30,7 +30,7 @@ So the Rpart algorithm deals with missing data. The way it does this is when itâ
       
       <guid>/post/choosing-the-best-tree/</guid>
       <description>According to user Harold Ship in this post, we should pick the tree with that keeps this relationship but has the tallest (thatâ€™s what he means with the lowest level, since each row represents a tree with more splits):
-\(rel_{error}\) \(+\) \(xstd\) \(&amp;lt;\) \(xerror\)</description>
+\(rel\&amp;gt;error\) \(+\) \(xstd\) \(&amp;lt;\) \(xerror\)</description>
     </item>
     
   </channel>
