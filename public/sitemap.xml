@@ -4,7 +4,7 @@
     
     <url>
     
-      <loc>/post/communicating-science/</loc>
+      <loc>/note/communicating-science/</loc>
       <lastmod>2018-11-08T00:00:00+00:00</lastmod>
     </url>
     
@@ -12,7 +12,7 @@
     
     <url>
     
-      <loc>/post/surrogate-who/</loc>
+      <loc>/note/surrogate-who/</loc>
       <lastmod>2018-11-08T00:00:00+00:00</lastmod>
     </url>
     
@@ -20,7 +20,7 @@
     
     <url>
     
-      <loc>/post/choosing-the-best-tree/</loc>
+      <loc>/note/choosing-the-best-tree/</loc>
       <lastmod>2018-11-07T00:00:00+00:00</lastmod>
     </url>
     
@@ -28,7 +28,7 @@
     
     <url>
     
-      <loc>/post/objectives-key-results-tasks/</loc>
+      <loc>/note/objectives-key-results-tasks/</loc>
       <lastmod>2018-11-06T00:00:00+00:00</lastmod>
     </url>
     
@@ -36,7 +36,7 @@
     
     <url>
     
-      <loc>/post/understanding-output-tables/</loc>
+      <loc>/note/understanding-output-tables/</loc>
       <lastmod>2018-11-05T00:00:00+00:00</lastmod>
     </url>
     
@@ -44,7 +44,7 @@
     
     <url>
     
-      <loc>/post/memorising-tip/</loc>
+      <loc>/note/memorising-tip/</loc>
       <lastmod>2018-11-04T00:00:00+00:00</lastmod>
     </url>
     
@@ -52,7 +52,7 @@
     
     <url>
     
-      <loc>/post/pre-processing-to-what-extent/</loc>
+      <loc>/note/pre-processing-to-what-extent/</loc>
       <lastmod>2018-11-03T00:00:00+00:00</lastmod>
     </url>
     
@@ -195,8 +195,17 @@
     
     <url>
     
-      <loc>/post/</loc>
+      <loc>/note/</loc>
       <lastmod>2018-11-08T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/</loc>
+      <lastmod>2018-08-09T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     

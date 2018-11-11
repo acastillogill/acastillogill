@@ -14,10 +14,10 @@
     
     <item>
       <title>Surrogate who?</title>
-      <link>/post/surrogate-who/</link>
+      <link>/note/surrogate-who/</link>
       <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/surrogate-who/</guid>
+      <guid>/note/surrogate-who/</guid>
       <description>I hope the authors of the Rpart documentation don’t take it personally but they mention surrogate variables starting on page 11 and they don’t properly define what surrogate variables mean until page 18. Maybe it’s just me.
 Anyway! So here is another response to a previous question: what is a surrogate variable?
 So the Rpart algorithm deals with missing data. The way it does this is when it’s doing its thing and determining the next variable and split point and comes across an observation that does not have a that variable, it figures out which variables can act as a replacement for that variable.</description>
@@ -25,10 +25,10 @@ So the Rpart algorithm deals with missing data. The way it does this is when it�
     
     <item>
       <title>Choosing the best tree</title>
-      <link>/post/choosing-the-best-tree/</link>
+      <link>/note/choosing-the-best-tree/</link>
       <pubDate>Wed, 07 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/choosing-the-best-tree/</guid>
+      <guid>/note/choosing-the-best-tree/</guid>
       <description>According to user Harold Ship in this post, we should pick the tree with that keeps this relationship but has the tallest (that’s what he means with the lowest level, since each row represents a tree with more splits):
 \(rel\&amp;gt;error\) \(+\) \(xstd\) \(&amp;lt;\) \(xerror\)</description>
     </item>

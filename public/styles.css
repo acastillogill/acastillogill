@@ -108,14 +108,14 @@ h4, h5, h6 {
 
 a,
 h3.article-title a:hover {
-  color: #dc443a;
+  color: #2962ff;
   text-decoration: none;
   transition: color 0.6s ease;
 }
 
 a:hover,
 a:focus {
-  color: #dc443a;
+  color: #2962ff;
 }
 
 img,
@@ -297,8 +297,8 @@ small,
 }
 
 .form-control:focus {
-  border-color: #dc443a;
-  box-shadow: 0 0 0 .2rem #e8827b;
+  border-color: #2962ff;
+  box-shadow: 0 0 0 .2rem #768fff;
 }
 
 /*************************************************
@@ -511,7 +511,7 @@ a[data-fancybox] img {
 .featurette-icon {
   display: block;
   width: 100%;
-  color: #dc443a;
+  color: #2962ff;
   font-size: 3rem;
   text-align: center;
 }
@@ -797,7 +797,7 @@ article .article-metadata {
 }
 
 .article-metadata a:hover {
-  color: #dc443a;
+  color: #2962ff;
 }
 
 .middot-divider {
@@ -1046,11 +1046,11 @@ article .article-metadata {
 
 .experience .m-2 .border,
 .experience .col.border-right {
-  border-color: #dc443a !important;
+  border-color: #2962ff !important;
 }
 
 .experience .m-2 .border.exp-fill {
-  background-color: #dc443a !important;
+  background-color: #2962ff !important;
 }
 
 /*************************************************
@@ -1340,13 +1340,13 @@ a.badge:hover {
  **************************************************/
 
 .btn-primary {
-  border-color: #dc443a;
-  background: #dc443a;
+  border-color: #2962ff;
+  background: #2962ff;
 }
 
 .btn-outline-primary {
-  border-color: #dc443a;
-  color: #dc443a;
+  border-color: #2962ff;
+  color: #2962ff;
 }
 
 .btn-primary:hover,
@@ -1354,7 +1354,7 @@ a.badge:hover {
 .btn-primary.active,
 .btn-primary:visited,
 .open > .dropdown-toggle.btn-primary {
-  background: #dc443a;
+  background: #2962ff;
 }
 
 .btn-outline-light:hover,
@@ -1367,8 +1367,8 @@ a.badge:hover {
 .btn-outline-primary:not(:disabled):not(.disabled):active,
 .show > .btn-outline-primary.dropdown-toggle {
   color: #fff;
-  background-color: #dc443a;
-  border-color: #dc443a;
+  background-color: #2962ff;
+  border-color: #2962ff;
 }
 
 .dark .btn-outline-primary:not(:disabled):not(.disabled).active,
@@ -1379,8 +1379,8 @@ a.badge:hover {
 
 .btn-outline-primary:hover {
   color: #fff;
-  background-color: #dc443a;
-  border-color: #dc443a;
+  background-color: #2962ff;
+  border-color: #2962ff;
 }
 
 .dark .btn-outline-primary:hover {
@@ -1407,18 +1407,18 @@ a.badge:hover {
 
 .btn-toolbar .btn.btn-primary:hover,
 .btn-toolbar .btn.btn-primary:focus {
-  background-color: #e8827b !important;
+  background-color: #768fff !important;
 }
 
 .btn-toolbar .btn.btn-primary:active,
 .btn-toolbar .btn.btn-primary.active {
-  background-color: #d83025 !important;
+  background-color: #0039cb !important;
 }
 
 .btn-primary:not(:disabled):not(.disabled).active:focus,
 .btn-primary:not(:disabled):not(.disabled):active:focus,
 .show > .btn-primary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 .2rem #e8827b;
+  box-shadow: 0 0 0 .2rem #768fff;
 }
 
 /*************************************************
@@ -1776,8 +1776,8 @@ div.alert a {
 }
 
 .docs-search .form-control:focus {
-  border-color: #dc443a;
-  box-shadow: 0 0 0 3px #e8827b;
+  border-color: #2962ff;
+  box-shadow: 0 0 0 3px #768fff;
 }
 
 /* Docs sidebar. */
@@ -1842,7 +1842,7 @@ div.alert a {
 .docs-sidebar .nav>.active:hover>a,
 .docs-sidebar .nav>.active>a {
   font-weight: bold;
-  color: #dc443a;
+  color: #2962ff;
   background-color: transparent;
 }
 
@@ -1851,7 +1851,7 @@ div.alert a {
 .docs-toggle {
   line-height: 1;
   font-size: 1.2rem;
-  color: #dc443a;
+  color: #2962ff;
   background-color: transparent;
 }
 
@@ -1968,7 +1968,7 @@ ul.toc-top {
 
 #TableOfContents li a:hover,
 .toc-top li a:hover {
-  color: #dc443a;
+  color: #2962ff;
   text-decoration: none;
 }
 
@@ -1976,12 +1976,12 @@ ul.toc-top {
 
 .anchorjs-link {
   font-weight: 400;
-  color: #d83025;
+  color: #0039cb;
   transition: color .16s linear;
 }
 
 .anchorjs-link:hover {
-  color: #dc443a;
+  color: #2962ff;
   text-decoration: none;
 }
 
@@ -2005,8 +2005,8 @@ body.dark,
 
 .dark .form-control:focus {
   background-color: rgb(68, 71, 90);
-  border-color: #dc443a;
-  box-shadow: 0 0 0 .2rem #d83025;
+  border-color: #2962ff;
+  box-shadow: 0 0 0 .2rem #0039cb;
 }
 
 .dark h1,
@@ -2038,7 +2038,7 @@ body.dark,
 }
 
 .dark ul.share li a {
-  background-color: #dc443a;
+  background-color: #2962ff;
 }
 
 .dark table table {
@@ -2091,7 +2091,7 @@ body.dark,
 }
 
 .dark .card h4 a {
-  color: #dc443a;
+  color: #2962ff;
   border-bottom: solid 1px transparent;
 }
 
