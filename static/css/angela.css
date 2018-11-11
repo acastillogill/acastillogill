@@ -17,6 +17,7 @@
  **************************************************/
 
 html {
+  font-family: 'Lora', serif;
   font-size: 16px;
   color: rgba(0,0,0,0.8);
   line-height: 1.65;
@@ -70,6 +71,7 @@ ul, ol, dl {
 
 /* Navigation bar text */
 .navbar-light {
+  font-family: 'Anton', sans-serif;
   font-weight: 400;
   line-height: 1.25;
   text-rendering: optimizeLegibility;
@@ -77,7 +79,8 @@ ul, ol, dl {
 
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 400;
+  font-family: 'Anton', sans-serif;
+  font-weight: 300;
   margin-top: 1rem;
   margin-bottom: .5rem;
   line-height: 1.25;
@@ -139,6 +142,7 @@ figcaption {
   line-height: 1.25;
   font-size: 1rem;
   margin-bottom: 1.65rem;
+  font-family: 'Anton', sans-serif;
 }
 
 figcaption.numbered:before {
@@ -160,6 +164,7 @@ figcaption h4 {
 
 pre,
 code {
+  font-family: 'Roboto Mono', monospace;
   color: #c7254e;
   background-color: #f9f2f4;
 }
@@ -293,7 +298,7 @@ small,
 
 .form-control:focus {
   border-color: #dd443a;
-  box-shadow: 0 0 0 .2rem #768fff;
+  box-shadow: 0 0 0 .2rem #e8827b;
 }
 
 /*************************************************
@@ -1402,7 +1407,7 @@ a.badge:hover {
 
 .btn-toolbar .btn.btn-primary:hover,
 .btn-toolbar .btn.btn-primary:focus {
-  background-color: #768fff !important;
+  background-color: #e8827b !important;
 }
 
 .btn-toolbar .btn.btn-primary:active,
@@ -1413,7 +1418,7 @@ a.badge:hover {
 .btn-primary:not(:disabled):not(.disabled).active:focus,
 .btn-primary:not(:disabled):not(.disabled):active:focus,
 .show > .btn-primary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 .2rem #768fff;
+  box-shadow: 0 0 0 .2rem #e8827b;
 }
 
 /*************************************************
@@ -1772,7 +1777,7 @@ div.alert a {
 
 .docs-search .form-control:focus {
   border-color: #dd443a;
-  box-shadow: 0 0 0 3px #768fff;
+  box-shadow: 0 0 0 3px #e8827b;
 }
 
 /* Docs sidebar. */
