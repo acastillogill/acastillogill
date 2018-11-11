@@ -14,10 +14,10 @@
     
     <item>
       <title>Exploring Kiva loans</title>
-      <link>/post/exploring-kiva-loans/</link>
+      <link>/post/exploring-kiva-loans/exploring-kiva-loans/</link>
       <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/exploring-kiva-loans/</guid>
+      <guid>/post/exploring-kiva-loans/exploring-kiva-loans/</guid>
       <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 5 Exploratory data analysis 6 Techniques used 7 Questions from this analysis   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
 In this post, I analyse 671,205 observations. Each represents a Kiva loan. I find that the gender that requests the most loans is female with single females being the most frequent borrowers.</description>
     </item>

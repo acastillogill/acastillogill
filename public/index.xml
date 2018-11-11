@@ -183,10 +183,10 @@ These are:&lt;/p&gt;
     
     <item>
       <title>Predicting property prices</title>
-      <link>/post/predicting-property-prices/</link>
+      <link>/post/property-prices/predicting-property-prices/</link>
       <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/predicting-property-prices/</guid>
+      <guid>/post/property-prices/predicting-property-prices/</guid>
       <description>
 &lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
 
@@ -846,10 +846,10 @@ $xval
     
     <item>
       <title>Exploring Kiva loans</title>
-      <link>/post/exploring-kiva-loans/</link>
+      <link>/post/exploring-kiva-loans/exploring-kiva-loans/</link>
       <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/exploring-kiva-loans/</guid>
+      <guid>/post/exploring-kiva-loans/exploring-kiva-loans/</guid>
       <description>
 &lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
 
@@ -910,13 +910,13 @@ $xval
 &lt;p&gt;From at the structure of our data, we can soon see there are a few bits that don’t make sense and need to be fixed.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;a. Missing values&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;We will leave missing values in for now.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;b.&lt;code&gt;borrower_genders&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;b. &lt;code&gt;borrower_genders&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;From the variable descriptions, we expected &lt;code&gt;borrower_genders&lt;/code&gt;to have only two levels, &lt;code&gt;male&lt;/code&gt;or &lt;code&gt;female&lt;/code&gt;. Here we see many more levels, 11,298 to be precise. This isn’t very clear so we’ll fix that first by creating five levels:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;[1] &amp;quot;mixed_genders&amp;quot; &amp;quot;mult_females&amp;quot;  &amp;quot;mult_males&amp;quot;    &amp;quot;single_female&amp;quot;
 [5] &amp;quot;single_male&amp;quot;  &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;c.&lt;code&gt;loan_amounts&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;c. &lt;code&gt;loan_amounts&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Now, since we’re trying to make sense of all loans, it’s better if &lt;code&gt;loan_amounts&lt;/code&gt; is in the same currency. Let’s translate it to USD.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;d.&lt;code&gt;country_codes&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;d. &lt;code&gt;country_codes&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Finally, with 86 countries, we have 86 levels. Perhaps it would be interesting to create another category called continent to produce less levels and have a better understanding of the overall function of regional distributions.&lt;/p&gt;
 &lt;p&gt;Our country codes are in the ISO3166 format, so we will use the associated continent code found &lt;a href=&#34;https://dev.maxmind.com/geoip/legacy/codes/country_continent/&#34;&gt;here&lt;/a&gt;. And make five continents. Africa, Asia, Europe, Oceania, and South America.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;[1] &amp;quot;AF&amp;quot; &amp;quot;AS&amp;quot; &amp;quot;EU&amp;quot; &amp;quot;OC&amp;quot; &amp;quot;SA&amp;quot;&lt;/code&gt;&lt;/pre&gt;

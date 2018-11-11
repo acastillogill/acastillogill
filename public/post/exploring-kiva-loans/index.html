@@ -491,13 +491,13 @@
 <p>From at the structure of our data, we can soon see there are a few bits that don’t make sense and need to be fixed.</p>
 <p><strong>a. Missing values</strong></p>
 <p>We will leave missing values in for now.</p>
-<p><strong>b.<code>borrower_genders</code></strong></p>
+<p><strong>b. <code>borrower_genders</code></strong></p>
 <p>From the variable descriptions, we expected <code>borrower_genders</code>to have only two levels, <code>male</code>or <code>female</code>. Here we see many more levels, 11,298 to be precise. This isn’t very clear so we’ll fix that first by creating five levels:</p>
 <pre><code>[1] &quot;mixed_genders&quot; &quot;mult_females&quot;  &quot;mult_males&quot;    &quot;single_female&quot;
 [5] &quot;single_male&quot;  </code></pre>
-<p><strong>c.<code>loan_amounts</code></strong></p>
+<p><strong>c. <code>loan_amounts</code></strong></p>
 <p>Now, since we’re trying to make sense of all loans, it’s better if <code>loan_amounts</code> is in the same currency. Let’s translate it to USD.</p>
-<p><strong>d.<code>country_codes</code></strong></p>
+<p><strong>d. <code>country_codes</code></strong></p>
 <p>Finally, with 86 countries, we have 86 levels. Perhaps it would be interesting to create another category called continent to produce less levels and have a better understanding of the overall function of regional distributions.</p>
 <p>Our country codes are in the ISO3166 format, so we will use the associated continent code found <a href="https://dev.maxmind.com/geoip/legacy/codes/country_continent/">here</a>. And make five continents. Africa, Asia, Europe, Oceania, and South America.</p>
 <pre><code>[1] &quot;AF&quot; &quot;AS&quot; &quot;EU&quot; &quot;OC&quot; &quot;SA&quot;</code></pre>
@@ -985,6 +985,11 @@ Figure 5.12: The total time between posting the loan and it being disbursed has 
     <a href="/post/predicting-property-prices/" rel="next">Predicting property prices</a>
   </div>
   
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/post/getting-started/" rel="prev">Academic: the website designer for Hugo</a>
+  </div>
   
 </div>
 
