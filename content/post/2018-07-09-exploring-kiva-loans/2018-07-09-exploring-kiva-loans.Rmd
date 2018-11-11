@@ -1,6 +1,7 @@
 ---
 title: Exploring Kiva loans
 author: Ángela Castillo-Gill
+profile: TRUE
 date: '2018-07-07'
 slug: exploring-kiva-loans
 categories:
@@ -12,11 +13,11 @@ tags:
   - Kiva
 draft: FALSE
 summary: What do Kiva loans around the world look like?
+image:
+  preview_only: FALSE
 header: 
   image: "headers/lenders-per-country-1.png"
   caption: "Lender counts per country for top borrowing countries."
-  preview: true
-image_preview: "headers/lenders-per-country-1.png"
 output:
   blogdown::html_page:
     toc: true
