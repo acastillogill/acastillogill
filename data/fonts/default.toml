@@ -2,14 +2,14 @@
 name = "Default"
 
 # Optional Google font URL
-google_fonts = "Anton|Lora"
+google_fonts = "Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono"
 
 # Font families
-heading_font = "Anton:400"
-body_font = "Lora:400"
-nav_font = "Anton:400"
-mono_font = "Anton:400"
+heading_font = "Montserrat"
+body_font = "Roboto"
+nav_font = "Roboto"
+mono_font = "Roboto Mono"
 
 # Font size
 font_size = "20"
-font_size_small = "18"
+font_size_small = "16"
