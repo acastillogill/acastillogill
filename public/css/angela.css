@@ -73,7 +73,7 @@ ul, ol, dl {
 .navbar-light {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
-  line-height: 1.25;
+  line-height: 2;
   text-rendering: optimizeLegibility;
 }
 
@@ -89,19 +89,19 @@ h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word; /* Ensures very long heading words do not overflow into content. */
 }
 h1 {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 h2 {
   margin-top: 1rem;
-  font-size: 1.5rem;
-}
-h3 {
-  font-weight: 700;
-  margin-top: 1.5rem;
   font-size: 1.25rem;
 }
+h3 {
+  font-weight: 300;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+}
 h4, h5, h6 {
-  font-weight: 700;
+  font-weight: 300;
   margin-top: 1rem;
   font-size: 1rem;
 }
@@ -142,7 +142,7 @@ figcaption {
   line-height: 1.25;
   font-size: 1rem;
   margin-bottom: 1.65rem;
-  font-family: 'Anton', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 figcaption.numbered:before {
