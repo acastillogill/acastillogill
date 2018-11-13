@@ -119,7 +119,7 @@
   <meta property="og:image" content="/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2018-11-12T00:00:00&#43;00:00">
+  <meta property="og:updated_time" content="2018-11-13T00:00:00&#43;00:00">
   
 
   
@@ -313,11 +313,23 @@
   
   
   <div>
+    <h2><a href="/note/applying-concepts-learned-to-property-prices/">Applying concepts learned to property prices</a></h2>
+    <div class="article-style">
+      
+      Goal’s for today’s session are: Interpret the cptable for the generic homes_model.
+ Interpret the rpart.plot associated to homes_model.
+ Bin the neighborhood variable and explain why I’m doing that.
+  Goal 1: Interpret the cptable for the generic homes_model. With the homes data as is (just removing missing values), I fited a model to predict SalesPrice using rpart():
+homes_model &lt;- rpart(formula = SalePrice ~ ., data = homes_train, method = &quot;anova&quot;) Looking at the cptable with homes_model$cptable, I’ll apply the \(1-SE\) rule I explained yesterday:
+      
+    </div>
+  </div>
+  
+  <div>
     <h2><a href="/note/hyperparameter-laundry-list/">Hyperparameter laundry list</a></h2>
     <div class="article-style">
       
-      Goal’s for today’s session are:
-Get clarity on how to pick the best tree. Make a laundry list of the algorithms hyperparameters.  Goal 1: Get clarity on how to pick the best tree. So far, my confusion stems from the \(1-SE\) (“one standard error” rule) vs. the \(rel\&gt;error\) \(+\) \(xstd\) \(&lt;\) \(xerror\) rule.
+      Goal’s for today’s session are: Get clarity on how to pick the best tree. Make a laundry list of the algorithms hyperparameters.  Goal 1: Get clarity on how to pick the best tree. So far, my confusion stems from the \(1-SE\) (“one standard error” rule) vs. the \(rel\&gt;error\) \(+\) \(xstd\) \(&lt;\) \(xerror\) rule.
 These two threads have helped me understand WHY they are the same:
  What’s the deal with this whole 1-SE rule.
       

@@ -11,6 +11,63 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Applying concepts learned to property prices</title>
+      <link>/note/applying-concepts-learned-to-property-prices/</link>
+      <pubDate>Tue, 13 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/note/applying-concepts-learned-to-property-prices/</guid>
+      <description>
+
+
+&lt;div id=&#34;goals-for-todays-session-are&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Goal’s for today’s session are:&lt;/h1&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;Interpret the &lt;code&gt;cptable&lt;/code&gt; for the generic &lt;code&gt;homes_model&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Interpret the &lt;code&gt;rpart.plot&lt;/code&gt; associated to &lt;code&gt;homes_model&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Bin the &lt;code&gt;neighborhood&lt;/code&gt; variable and explain why I’m doing that.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div id=&#34;goal-1-interpret-the-cptable-for-the-generic-homes_model.&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Goal 1: Interpret the &lt;code&gt;cptable&lt;/code&gt; for the generic &lt;code&gt;homes_model&lt;/code&gt;.&lt;/h2&gt;
+&lt;p&gt;With the &lt;code&gt;homes&lt;/code&gt; data as is (just removing missing values), I fited a model to predict &lt;code&gt;SalesPrice&lt;/code&gt; using &lt;code&gt;rpart()&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;homes_model &amp;lt;- rpart(formula = SalePrice ~ ., 
+                     data = homes_train, 
+                     method = &amp;quot;anova&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Looking at the &lt;code&gt;cptable&lt;/code&gt; with &lt;code&gt;homes_model$cptable&lt;/code&gt;, I’ll apply the &lt;span class=&#34;math inline&#34;&gt;\(1-SE\)&lt;/span&gt; rule I explained yesterday:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/note/Tues-13-11-2018_files/cptable_rawhomes.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;First, we can see that the smallest cross-validation &lt;code&gt;xerror&lt;/code&gt; appears on row 11. Now let’s add 1 standard error &lt;code&gt;xstd&lt;/code&gt;: &lt;span class=&#34;math inline&#34;&gt;\(0.3074050+0.03541012=0.3428151\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;The smallest tree with &lt;code&gt;xerror&lt;/code&gt; less than &lt;span class=&#34;math inline&#34;&gt;\(0.3428151\)&lt;/span&gt; is the tree appearing on row 8 with 8 splits and 9 nodes.&lt;/p&gt;
+&lt;p&gt;Now, I look at the &lt;code&gt;plotcp(homes_model)&lt;/code&gt;, I’m confused to whether size of the tree refers to nodes or splits:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/note/Tues-13-11-2018_files/cpplot_rawhomes.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;I think it refers to nodes because the &lt;code&gt;xerror&lt;/code&gt; for the tree with 9 nodes appears on the dotted line. A dotted line that intersects the 9-tree node must mean it’s the chosen one, right? :laughing:&lt;/p&gt;
+&lt;p&gt;Now, let’s run the model again, but specifying the best model, with 8 splits.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Hard code best tree based on above explained analysis
+opt_index &amp;lt;- 8
+#Retrieve cp_opt
+cp_opt &amp;lt;- homes_model$cptable[opt_index, &amp;quot;CP&amp;quot;]
+# Prune the model (to optimized cp value)
+homes_model_opt &amp;lt;- prune(tree = homes_model, 
+                         cp = cp_opt)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I suppose hard coding the number 8 instead of writing the code to pick the best tree isn’t too elegant, but bear with me. Writing clean code is not the priority right now. :hankey:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;goal-2-interpret-the-rpart.plot-associated-to-homes_model.&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Goal 2: Interpret the &lt;code&gt;rpart.plot&lt;/code&gt; associated to &lt;code&gt;homes_model&lt;/code&gt;.&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rpart.plot(x = homes_model_opt, type = 5, extra = 1)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That code produces this plot:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/note/Tues-13-11-2018_files/rpartplot_rawhomes.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;It has 8 splits and 9 nodes and we asked it to. Inside each terminal node is the number of observations which add up to 1025. Each split specifies the criteria for the observation being classified either into the left or right son.&lt;/p&gt;
+&lt;p&gt;If we go back and look at the numeric variables that had the highest correlation with &lt;code&gt;SalesPrice&lt;/code&gt;, &lt;code&gt;OverallQual&lt;/code&gt; was leading followed by &lt;code&gt;GrLivArea&lt;/code&gt;. In the tree we can see that these variables appear further below &lt;code&gt;X1stFlrSF&lt;/code&gt; and &lt;code&gt;GarageArea&lt;/code&gt; appear later down.&lt;/p&gt;
+&lt;p&gt;The plot show the &lt;code&gt;neighborhood&lt;/code&gt; variable twice and in the second level. So it’s an important variable.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;goal-3-bin-the-neighborhood-variable-and-explain-why-im-doing-that.&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Goal 3: Bin the &lt;code&gt;neighborhood&lt;/code&gt; variable and explain why I’m doing that.&lt;/h2&gt;
+&lt;p&gt;So today I don’t think I’ll be able to the binning since my alloted time for this is almost up. But I will explain the why since it appears clearly on the graph.&lt;/p&gt;
+&lt;p&gt;One of the advantages of regression trees is that they area easy to understand and visualise. Because the &lt;code&gt;neighborhood&lt;/code&gt; variable has so many levels, it is actually going against one of the reasons I picked it. The whole neighborhood variable is confusing. Explaining the key differences amongst neighborhoods is not straightforward using just the plot. So I’m going to explore what the relationship between those neighborhoods and price is tomorrow and see if I can create another variable that better reflects that relationship. Exciting! :sparkles:&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Hyperparameter laundry list</title>
       <link>/note/hyperparameter-laundry-list/</link>
       <pubDate>Mon, 12 Nov 2018 00:00:00 +0000</pubDate>
@@ -19,13 +76,14 @@
       <description>
 
 
-&lt;p&gt;&lt;strong&gt;Goal’s for today’s session are:&lt;/strong&gt;&lt;/p&gt;
+&lt;div id=&#34;goals-for-todays-session-are&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Goal’s for today’s session are:&lt;/h1&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;Get clarity on how to pick the best tree.&lt;/li&gt;
 &lt;li&gt;Make a laundry list of the algorithms hyperparameters.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div id=&#34;goal-1-get-clarity-on-how-to-pick-the-best-tree.&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Goal 1: Get clarity on how to pick the best tree.&lt;/h1&gt;
+&lt;div id=&#34;goal-1-get-clarity-on-how-to-pick-the-best-tree.&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Goal 1: Get clarity on how to pick the best tree.&lt;/h2&gt;
 &lt;p&gt;So far, my confusion stems from the &lt;span class=&#34;math inline&#34;&gt;\(1-SE\)&lt;/span&gt; (“one standard error” rule) vs. the &lt;span class=&#34;math inline&#34;&gt;\(rel\&amp;gt;error\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(+\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xstd\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(&amp;lt;\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xerror\)&lt;/span&gt; rule.&lt;/p&gt;
 &lt;p&gt;These two threads have helped me understand WHY they are the same:&lt;/p&gt;
 &lt;ul&gt;
@@ -44,15 +102,15 @@
 &lt;p&gt;The “best” tree appears in row 11 since it has the smallest &lt;code&gt;xerror&lt;/code&gt;, 0.36667.
 Let’s look at which trees are within one standard error &lt;code&gt;xstd&lt;/code&gt; of the best tree.&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(0.36667+0.03694=0.4036\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Which smaller tree has &lt;code&gt;xerror&lt;/code&gt; equal or less than 0.4036? The tree on row 9 with &lt;code&gt;xerror&lt;/code&gt;= 0.3944.&lt;/p&gt;
+&lt;p&gt;Which smaller tree has &lt;code&gt;xerror&lt;/code&gt; less than 0.4036? The tree on row 9 with &lt;code&gt;xerror&lt;/code&gt;= 0.3944.&lt;/p&gt;
 &lt;p&gt;Aha! Mystery solved on why the tree with 9 splits was the best.&lt;/p&gt;
 &lt;p&gt;Now, regarding the &lt;span class=&#34;math inline&#34;&gt;\(rel\&amp;gt;error\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(+\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xstd\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(&amp;lt;\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xerror\)&lt;/span&gt;, on the &lt;a href=&#34;https://stackoverflow.com/questions/29197213/what-is-the-difference-between-rel-error-and-x-error-in-a-rpart-decision-tree&#34;&gt;same thread&lt;/a&gt; where I found that rule, I found another comment saying that &lt;span class=&#34;math inline&#34;&gt;\(rel\&amp;gt;error\)&lt;/span&gt; should not be used for pruning and cited this rule:&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(xerror &amp;lt; min(xerror) + xstd\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Which is the &lt;span class=&#34;math inline&#34;&gt;\(1-SE\)&lt;/span&gt; which apparently is much quoted and standard. For now I will stick to that one.&lt;/p&gt;
 &lt;p&gt;As a final quick note on the &lt;code&gt;rpart&lt;/code&gt; documentation, I think it included a lot of terms that were not all defined within and expected some minimum statistical understanding from the reader. Just saying.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div id=&#34;goal-2-make-a-laundry-list-of-the-algorithms-hyperparameters.&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Goal 2: Make a laundry list of the algorithms hyperparameters.&lt;/h1&gt;
+&lt;div id=&#34;goal-2-make-a-laundry-list-of-the-algorithms-hyperparameters.&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Goal 2: Make a laundry list of the algorithms hyperparameters.&lt;/h2&gt;
 &lt;p&gt;So, as explained on the helpful DataFramed course I took on Machine Learning with Trees, hyperparameters are like knobs to tune the tree. That explanation intuitive enough for me to recall and understand what they are so I’ll leave at that for today.&lt;/p&gt;
 &lt;p&gt;Now, with &lt;code&gt;?rpart.control&lt;/code&gt;, let’s check what they are. Since the dataset I’ll use to try out this algorithm does not have missing values, I will not include surrogate-related hyperparameters.&lt;/p&gt;
 &lt;ul&gt;
@@ -64,6 +122,7 @@ Let’s look at which trees are within one standard error &lt;code&gt;xstd&lt;/c
 &lt;li&gt;&lt;code&gt;maxdepth&lt;/code&gt;: The maximum depth of the final tree with the root node being 0 and max=30. This means… 29 splits, right? I think so since there is always 1+&lt;code&gt;nsplits&lt;/code&gt; nodes.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;OK. So the goals for the day have been reached. Tomorrow I will do some variable bining and explain why, after that I think I am ready to apply the final iteration of the &lt;code&gt;rpart&lt;/code&gt; algorithm, interpret the results, and publish the post.&lt;/p&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 </description>
     </item>
@@ -267,7 +326,7 @@ These are:&lt;/p&gt;
 &lt;p&gt;The dataset &lt;a href=&#34;https://www.kaggle.com/c/house-prices-advanced-regression-techniques&#34;&gt;House Prices: Advanced Regression Techniques&lt;/a&gt; was downloaded from Kaggle and put together by &lt;a href=&#34;https://ww2.amstat.org/publications/jse/v19n3/decock.pdf&#34;&gt;Dean De Cock.&lt;/a&gt; It has 79 explanatory variables describing 1,460 homes in Ames, Iowa. The codebook for all the variables can be &lt;a href=&#34;https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data&#34;&gt;found here.&lt;/a&gt; As I go along, I’ll explain the most relevant ones.&lt;/p&gt;
 &lt;p&gt;First we will see how many numerical vs. categorical variables there are.&lt;/p&gt;
 &lt;p&gt;Our dataset has 38 numeric and 43 character variables. Next, since we are interested in estimating sales prices &lt;code&gt;SalePrice&lt;/code&gt;, we will recode character variables and see the most strongly correlated variables. There are 43 character variables available. I want to recode them where there is ordinality and where there isn’t dummify them.&lt;/p&gt;
-&lt;p&gt;There are two numerical variables that are actually date related: &lt;code&gt;YearBuilt&lt;/code&gt;and &lt;code&gt;YearRemodAdd&lt;/code&gt; (remodelled date). It makes more sense to make two new variables that relate the build and remodelled dates with the present. In other words, I will create the years since built and years since remodelled date variables, this will help interpret the results better.&lt;/p&gt;
+&lt;p&gt;There are two numerical variables that are actually date related: &lt;code&gt;YearBuilt&lt;/code&gt; and &lt;code&gt;YearRemodAdd&lt;/code&gt; (remodelled date). It makes more sense to make two new variables that relate the build and remodelled dates with the present. In other words, I will create the years since built and years since remodelled date variables, this will help interpret the results better.&lt;/p&gt;
 &lt;div id=&#34;missing-values&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.1&lt;/span&gt; Missing values&lt;/h2&gt;
 &lt;p&gt;As it more common than not, the dataset contains missing values. Missing values need to be dealt with because regression (and other models) requires complete observations.&lt;/p&gt;
@@ -807,8 +866,8 @@ BsmtExposure
 11 0.01000000     11 0.1979577 0.3074050 0.03541012&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices/2018-08-09-predicting-property-prices_files/figure-html/tuning-hyperparameters-2.png&#34; width=&#34;672&#34; /&gt;
 ## Checking the error on the optimised model&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[1] 46379.54
-[1] 31179.09&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;[1] 49255.6
+[1] 33487.16&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;grid-search-for-best-hyperparameters&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.6&lt;/span&gt; Grid search for best hyperparameters&lt;/h2&gt;

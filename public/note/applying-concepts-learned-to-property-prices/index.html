@@ -15,12 +15,14 @@
   
     
   
-  <meta name="description" content="Goal’s for today’s session are: Get clarity on how to pick the best tree. Make a laundry list of the algorithms hyperparameters.  Goal 1: Get clarity on how to pick the best tree. So far, my confusion stems from the \(1-SE\) (“one standard error” rule) vs. the \(rel\&gt;error\) \(&#43;\) \(xstd\) \(&lt;\) \(xerror\) rule.
-These two threads have helped me understand WHY they are the same:
- What’s the deal with this whole 1-SE rule.">
+  <meta name="description" content="Goal’s for today’s session are: Interpret the cptable for the generic homes_model.
+ Interpret the rpart.plot associated to homes_model.
+ Bin the neighborhood variable and explain why I’m doing that.
+  Goal 1: Interpret the cptable for the generic homes_model. With the homes data as is (just removing missing values), I fited a model to predict SalesPrice using rpart():
+homes_model &lt;- rpart(formula = SalePrice ~ ., data = homes_train, method = &quot;anova&quot;) Looking at the cptable with homes_model$cptable, I’ll apply the \(1-SE\) rule I explained yesterday:">
 
   
-  <link rel="alternate" hreflang="en-us" href="/note/hyperparameter-laundry-list/">
+  <link rel="alternate" hreflang="en-us" href="/note/applying-concepts-learned-to-property-prices/">
 
   
 
@@ -102,7 +104,7 @@ These two threads have helped me understand WHY they are the same:
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="/note/hyperparameter-laundry-list/">
+  <link rel="canonical" href="/note/applying-concepts-learned-to-property-prices/">
 
   <meta property="twitter:card" content="summary_large_image">
   
@@ -110,27 +112,29 @@ These two threads have helped me understand WHY they are the same:
   <meta property="twitter:creator" content="@acastillogill">
   
   <meta property="og:site_name" content="Ángela Castillo-Gill">
-  <meta property="og:url" content="/note/hyperparameter-laundry-list/">
-  <meta property="og:title" content="Hyperparameter laundry list | Ángela Castillo-Gill">
-  <meta property="og:description" content="Goal’s for today’s session are: Get clarity on how to pick the best tree. Make a laundry list of the algorithms hyperparameters.  Goal 1: Get clarity on how to pick the best tree. So far, my confusion stems from the \(1-SE\) (“one standard error” rule) vs. the \(rel\&gt;error\) \(&#43;\) \(xstd\) \(&lt;\) \(xerror\) rule.
-These two threads have helped me understand WHY they are the same:
- What’s the deal with this whole 1-SE rule.">
+  <meta property="og:url" content="/note/applying-concepts-learned-to-property-prices/">
+  <meta property="og:title" content="Applying concepts learned to property prices | Ángela Castillo-Gill">
+  <meta property="og:description" content="Goal’s for today’s session are: Interpret the cptable for the generic homes_model.
+ Interpret the rpart.plot associated to homes_model.
+ Bin the neighborhood variable and explain why I’m doing that.
+  Goal 1: Interpret the cptable for the generic homes_model. With the homes data as is (just removing missing values), I fited a model to predict SalesPrice using rpart():
+homes_model &lt;- rpart(formula = SalePrice ~ ., data = homes_train, method = &quot;anova&quot;) Looking at the cptable with homes_model$cptable, I’ll apply the \(1-SE\) rule I explained yesterday:">
   
   
     
   <meta property="og:image" content="/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2018-11-12T00:00:00&#43;00:00">
+  <meta property="article:published_time" content="2018-11-13T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2018-11-12T00:00:00&#43;00:00">
-  
-
+  <meta property="article:modified_time" content="2018-11-13T00:00:00&#43;00:00">
   
 
   
 
-  <title>Hyperparameter laundry list | Ángela Castillo-Gill</title>
+  
+
+  <title>Applying concepts learned to property prices | Ángela Castillo-Gill</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
@@ -302,10 +306,10 @@ These two threads have helped me understand WHY they are the same:
   
   
 <div class="article-container pt-3">
-  <h1 itemprop="name">Hyperparameter laundry list</h1>
+  <h1 itemprop="name">Applying concepts learned to property prices</h1>
 
   
-  <p class="page-subtitle">Getting to the bottom of this whole picking the best tree business 😅</p>
+  <p class="page-subtitle">and also, rpart plots and the problem with so many factors.</p>
   
 
   
@@ -322,9 +326,9 @@ These two threads have helped me understand WHY they are the same:
 
   <span class="article-date">
     
-    <meta content="2018-11-12 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-    <time datetime="2018-11-12 00:00:00 &#43;0000 UTC" itemprop="dateModified">
-      Nov 12, 2018
+    <meta content="2018-11-13 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+    <time datetime="2018-11-13 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+      Nov 13, 2018
     </time>
   </span>
   <span itemscope itemprop="publisher" itemtype="http://schema.org/Person">
@@ -355,35 +359,35 @@ These two threads have helped me understand WHY they are the same:
   <ul class="share">
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=Hyperparameter%20laundry%20list&amp;url=%2fnote%2fhyperparameter-laundry-list%2f"
+         href="https://twitter.com/intent/tweet?text=Applying%20concepts%20learned%20to%20property%20prices&amp;url=%2fnote%2fapplying-concepts-learned-to-property-prices%2f"
          target="_blank" rel="noopener">
         <i class="fab fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=%2fnote%2fhyperparameter-laundry-list%2f"
+         href="https://www.facebook.com/sharer.php?u=%2fnote%2fapplying-concepts-learned-to-property-prices%2f"
          target="_blank" rel="noopener">
         <i class="fab fa-facebook-f"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fnote%2fhyperparameter-laundry-list%2f&amp;title=Hyperparameter%20laundry%20list"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fnote%2fapplying-concepts-learned-to-property-prices%2f&amp;title=Applying%20concepts%20learned%20to%20property%20prices"
          target="_blank" rel="noopener">
         <i class="fab fa-linkedin-in"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=%2fnote%2fhyperparameter-laundry-list%2f&amp;title=Hyperparameter%20laundry%20list"
+         href="http://service.weibo.com/share/share.php?url=%2fnote%2fapplying-concepts-learned-to-property-prices%2f&amp;title=Applying%20concepts%20learned%20to%20property%20prices"
          target="_blank" rel="noopener">
         <i class="fab fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=Hyperparameter%20laundry%20list&amp;body=%2fnote%2fhyperparameter-laundry-list%2f">
+         href="mailto:?subject=Applying%20concepts%20learned%20to%20property%20prices&amp;body=%2fnote%2fapplying-concepts-learned-to-property-prices%2f">
         <i class="fas fa-envelope"></i>
       </a>
     </li>
@@ -425,49 +429,46 @@ These two threads have helped me understand WHY they are the same:
 <div id="goals-for-todays-session-are" class="section level1">
 <h1>Goal’s for today’s session are:</h1>
 <ol style="list-style-type: decimal">
-<li>Get clarity on how to pick the best tree.</li>
-<li>Make a laundry list of the algorithms hyperparameters.</li>
+<li><p>Interpret the <code>cptable</code> for the generic <code>homes_model</code>.</p></li>
+<li><p>Interpret the <code>rpart.plot</code> associated to <code>homes_model</code>.</p></li>
+<li><p>Bin the <code>neighborhood</code> variable and explain why I’m doing that.</p></li>
 </ol>
-<div id="goal-1-get-clarity-on-how-to-pick-the-best-tree." class="section level2">
-<h2>Goal 1: Get clarity on how to pick the best tree.</h2>
-<p>So far, my confusion stems from the <span class="math inline">\(1-SE\)</span> (“one standard error” rule) vs. the <span class="math inline">\(rel\&gt;error\)</span> <span class="math inline">\(+\)</span> <span class="math inline">\(xstd\)</span> <span class="math inline">\(&lt;\)</span> <span class="math inline">\(xerror\)</span> rule.</p>
-<p>These two threads have helped me understand WHY they are the same:</p>
-<ul>
-<li><a href="https://stats.stackexchange.com/questions/138569/why-is-lambda-within-one-standard-error-from-the-minimum-is-a-recommended-valu">What’s the deal with this whole 1-SE rule.</a></li>
-<li><a href="https://stats.stackexchange.com/questions/13471/how-to-choose-the-number-of-splits-in-rpart">Applying the 1-SE rule.</a></li>
-</ul>
-<p>So first of all, I didn’t even understand <span class="math inline">\(1-SE\)</span> when I read it in the Rpart documentation. What does it mean? I kept searching substracting <span class="math inline">\(SE\)</span> (which in the <code>cptable</code> appears as <code>xstd</code>) from 1 to see if I could get any number that vaguely resembled the ones that appeared in the table.</p>
-<p>Now all is clear. I think. Let me try to explain in my own words:</p>
-<p>The <span class="math inline">\(1-SE\)</span> rule refers to picking the “best” (defined as the one with lowest cross-validated error <code>xerror</code>) or the smallest (least splits) within one standard error <code>xstd</code> of the best tree.</p>
-<p>Let’s go back to the example I couldn’t understand in <a href="https://acastillogill.com/note/surrogate-who/">this entry</a> and try to figure out why they picked the tree they do.</p>
-<p>Here’s the table again:</p>
-<div class="figure">
-<img src="/note/Mon-12-11-2018_files/cptable.png" alt="CP table on page 16 from the Rpart documentation." />
-<p class="caption">CP table on page 16 from the Rpart documentation.</p>
+<div id="goal-1-interpret-the-cptable-for-the-generic-homes_model." class="section level2">
+<h2>Goal 1: Interpret the <code>cptable</code> for the generic <code>homes_model</code>.</h2>
+<p>With the <code>homes</code> data as is (just removing missing values), I fited a model to predict <code>SalesPrice</code> using <code>rpart()</code>:</p>
+<pre class="r"><code>homes_model &lt;- rpart(formula = SalePrice ~ ., 
+                     data = homes_train, 
+                     method = &quot;anova&quot;)</code></pre>
+<p>Looking at the <code>cptable</code> with <code>homes_model$cptable</code>, I’ll apply the <span class="math inline">\(1-SE\)</span> rule I explained yesterday:</p>
+<p><img src="/note/Tues-13-11-2018_files/cptable_rawhomes.png" /></p>
+<p>First, we can see that the smallest cross-validation <code>xerror</code> appears on row 11. Now let’s add 1 standard error <code>xstd</code>: <span class="math inline">\(0.3074050+0.03541012=0.3428151\)</span>.</p>
+<p>The smallest tree with <code>xerror</code> less than <span class="math inline">\(0.3428151\)</span> is the tree appearing on row 8 with 8 splits and 9 nodes.</p>
+<p>Now, I look at the <code>plotcp(homes_model)</code>, I’m confused to whether size of the tree refers to nodes or splits:</p>
+<p><img src="/note/Tues-13-11-2018_files/cpplot_rawhomes.png" /></p>
+<p>I think it refers to nodes because the <code>xerror</code> for the tree with 9 nodes appears on the dotted line. A dotted line that intersects the 9-tree node must mean it’s the chosen one, right? :laughing:</p>
+<p>Now, let’s run the model again, but specifying the best model, with 8 splits.</p>
+<pre class="r"><code># Hard code best tree based on above explained analysis
+opt_index &lt;- 8
+#Retrieve cp_opt
+cp_opt &lt;- homes_model$cptable[opt_index, &quot;CP&quot;]
+# Prune the model (to optimized cp value)
+homes_model_opt &lt;- prune(tree = homes_model, 
+                         cp = cp_opt)</code></pre>
+<p>I suppose hard coding the number 8 instead of writing the code to pick the best tree isn’t too elegant, but bear with me. Writing clean code is not the priority right now. :hankey:</p>
 </div>
-<p>The “best” tree appears in row 11 since it has the smallest <code>xerror</code>, 0.36667.
-Let’s look at which trees are within one standard error <code>xstd</code> of the best tree.</p>
-<p><span class="math inline">\(0.36667+0.03694=0.4036\)</span></p>
-<p>Which smaller tree has <code>xerror</code> less than 0.4036? The tree on row 9 with <code>xerror</code>= 0.3944.</p>
-<p>Aha! Mystery solved on why the tree with 9 splits was the best.</p>
-<p>Now, regarding the <span class="math inline">\(rel\&gt;error\)</span> <span class="math inline">\(+\)</span> <span class="math inline">\(xstd\)</span> <span class="math inline">\(&lt;\)</span> <span class="math inline">\(xerror\)</span>, on the <a href="https://stackoverflow.com/questions/29197213/what-is-the-difference-between-rel-error-and-x-error-in-a-rpart-decision-tree">same thread</a> where I found that rule, I found another comment saying that <span class="math inline">\(rel\&gt;error\)</span> should not be used for pruning and cited this rule:</p>
-<p><span class="math inline">\(xerror &lt; min(xerror) + xstd\)</span></p>
-<p>Which is the <span class="math inline">\(1-SE\)</span> which apparently is much quoted and standard. For now I will stick to that one.</p>
-<p>As a final quick note on the <code>rpart</code> documentation, I think it included a lot of terms that were not all defined within and expected some minimum statistical understanding from the reader. Just saying.</p>
+<div id="goal-2-interpret-the-rpart.plot-associated-to-homes_model." class="section level2">
+<h2>Goal 2: Interpret the <code>rpart.plot</code> associated to <code>homes_model</code>.</h2>
+<pre class="r"><code>rpart.plot(x = homes_model_opt, type = 5, extra = 1)</code></pre>
+<p>That code produces this plot:</p>
+<p><img src="/note/Tues-13-11-2018_files/rpartplot_rawhomes.png" /></p>
+<p>It has 8 splits and 9 nodes and we asked it to. Inside each terminal node is the number of observations which add up to 1025. Each split specifies the criteria for the observation being classified either into the left or right son.</p>
+<p>If we go back and look at the numeric variables that had the highest correlation with <code>SalesPrice</code>, <code>OverallQual</code> was leading followed by <code>GrLivArea</code>. In the tree we can see that these variables appear further below <code>X1stFlrSF</code> and <code>GarageArea</code> appear later down.</p>
+<p>The plot show the <code>neighborhood</code> variable twice and in the second level. So it’s an important variable.</p>
 </div>
-<div id="goal-2-make-a-laundry-list-of-the-algorithms-hyperparameters." class="section level2">
-<h2>Goal 2: Make a laundry list of the algorithms hyperparameters.</h2>
-<p>So, as explained on the helpful DataFramed course I took on Machine Learning with Trees, hyperparameters are like knobs to tune the tree. That explanation intuitive enough for me to recall and understand what they are so I’ll leave at that for today.</p>
-<p>Now, with <code>?rpart.control</code>, let’s check what they are. Since the dataset I’ll use to try out this algorithm does not have missing values, I will not include surrogate-related hyperparameters.</p>
-<ul>
-<li><code>minsplit</code>: “The minimum number of observations that must exist in a node in order for a split to be attempted.”</li>
-<li><code>minbucket</code>: &quot;The minimum number of observations in any terminal <leaf> node. If only one of minbucket or minsplit is specified, the code either sets <code>minsplit</code> to <code>minbucket</code>*3 or <code>minbucket</code> to `minsplit/3, as appropriate.&quot;</li>
-<li><code>cp</code>: Complexity parameter. “Any split that does not decrease the overall lack of fit by a factor of <code>cp</code> is not attempted. In anova, the overall R-squared must increase by <code>cp</code> at each step. Essentially, the user informs the program that any split which does not improve the fit by <code>cp</code> will likely be pruned off by cross-validation.” Interesting. Keen to see this in practice.</li>
-<li><code>maxcompete</code>: The number of competing splits in the output, this serves to know what variable came in second, third, for the chosen split.</li>
-<li><code>xval</code>: Number of cross-validations.</li>
-<li><code>maxdepth</code>: The maximum depth of the final tree with the root node being 0 and max=30. This means… 29 splits, right? I think so since there is always 1+<code>nsplits</code> nodes.</li>
-</ul>
-<p>OK. So the goals for the day have been reached. Tomorrow I will do some variable bining and explain why, after that I think I am ready to apply the final iteration of the <code>rpart</code> algorithm, interpret the results, and publish the post.</p>
+<div id="goal-3-bin-the-neighborhood-variable-and-explain-why-im-doing-that." class="section level2">
+<h2>Goal 3: Bin the <code>neighborhood</code> variable and explain why I’m doing that.</h2>
+<p>So today I don’t think I’ll be able to the binning since my alloted time for this is almost up. But I will explain the why since it appears clearly on the graph.</p>
+<p>One of the advantages of regression trees is that they area easy to understand and visualise. Because the <code>neighborhood</code> variable has so many levels, it is actually going against one of the reasons I picked it. The whole neighborhood variable is confusing. Explaining the key differences amongst neighborhoods is not straightforward using just the plot. So I’m going to explore what the relationship between those neighborhoods and price is tomorrow and see if I can create another variable that better reflects that relationship. Exciting! :sparkles:</p>
 </div>
 </div>
 
@@ -479,8 +480,6 @@ Let’s look at which trees are within one standard error <code>xstd</code> of t
 <div class="article-tags">
   
   <a class="badge badge-light" href="/tags/learning/">Learning</a>
-  
-  <a class="badge badge-light" href="/tags/rpart/">Rpart</a>
   
 </div>
 
@@ -598,6 +597,8 @@ Let’s look at which trees are within one standard error <code>xstd</code> of t
       <h3>Related</h3>
       <ul>
         
+        <li><a href="/note/hyperparameter-laundry-list/">Hyperparameter laundry list</a></li>
+        
         <li><a href="/note/surrogate-who/">Surrogate who?</a></li>
         
         <li><a href="/note/choosing-the-best-tree/">Choosing the best tree</a></li>
@@ -605,8 +606,6 @@ Let’s look at which trees are within one standard error <code>xstd</code> of t
         <li><a href="/note/objectives-key-results-tasks/">Objectives, key results, tasks</a></li>
         
         <li><a href="/note/understanding-output-tables/">Understanding output tables</a></li>
-        
-        <li><a href="/note/memorising-tip/">Memorising tip</a></li>
         
       </ul>
     </div>
@@ -616,15 +615,10 @@ Let’s look at which trees are within one standard error <code>xstd</code> of t
     <div class="article-widget">
       <div class="post-nav">
   
-  <div class="post-nav-item">
-    <div class="meta-nav">Next</div>
-    <a href="/note/applying-concepts-learned-to-property-prices/" rel="next">Applying concepts learned to property prices</a>
-  </div>
-  
   
   <div class="post-nav-item">
     <div class="meta-nav">Previous</div>
-    <a href="/note/surrogate-who/" rel="prev">Surrogate who?</a>
+    <a href="/note/hyperparameter-laundry-list/" rel="prev">Hyperparameter laundry list</a>
   </div>
   
 </div>

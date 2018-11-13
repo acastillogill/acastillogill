@@ -20,12 +20,12 @@ editor_options:
   chunk_output_type: console
 ---
 
-**Goal's for today's session are:**
+# Goal's for today's session are:
 
 1. Get clarity on how to pick the best tree. 
 2. Make a laundry list of the algorithms hyperparameters.
 
-# Goal 1: Get clarity on how to pick the best tree.
+## Goal 1: Get clarity on how to pick the best tree.
 
 So far, my confusion stems from the $1-SE$ ("one standard error" rule) vs. the $rel\>error$ $+$ $xstd$ $<$ $xerror$ rule.
 
@@ -51,7 +51,7 @@ Let's look at which trees are within one standard error `xstd` of the best tree.
 
 $0.36667+0.03694=0.4036$
 
-Which smaller tree has `xerror` equal or less than 0.4036? The tree on row 9 with `xerror`= 0.3944. 
+Which smaller tree has `xerror` less than 0.4036? The tree on row 9 with `xerror`= 0.3944. 
 
 Aha! Mystery solved on why the tree with 9 splits was the best. 
 
@@ -63,7 +63,7 @@ Which is the $1-SE$ which apparently is much quoted and standard. For now I will
 
 As a final quick note on the `rpart` documentation, I think it included a lot of terms that were not all defined within and expected some minimum statistical understanding from the reader. Just saying. 
 
-# Goal 2: Make a laundry list of the algorithms hyperparameters.
+## Goal 2: Make a laundry list of the algorithms hyperparameters.
 
 So, as explained on the helpful DataFramed course I took on Machine Learning with Trees, hyperparameters are like knobs to tune the tree. That explanation intuitive enough for me to recall and understand what they are so I'll leave at that for today. 
 

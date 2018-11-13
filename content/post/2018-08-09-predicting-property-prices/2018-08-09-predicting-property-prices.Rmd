@@ -111,7 +111,7 @@ length_car_var <- length(car_var)
 
 Our dataset has `r length_num_var` numeric and `r length_car_var` character variables. Next, since we are interested in estimating sales prices `SalePrice`, we will recode character variables and see the most strongly correlated variables. There are 43 character variables available. I want to recode them where there is ordinality and where there isn't dummify them.
 
-There are two numerical variables that are actually date related: `YearBuilt`and `YearRemodAdd` (remodelled date). It makes more sense to make two new variables that relate the build and remodelled dates with the present. In other words, I will create the years since built and years since remodelled date variables, this will help interpret the results better. 
+There are two numerical variables that are actually date related: `YearBuilt` and `YearRemodAdd` (remodelled date). It makes more sense to make two new variables that relate the build and remodelled dates with the present. In other words, I will create the years since built and years since remodelled date variables, this will help interpret the results better. 
 
 ## Missing values
 
@@ -648,7 +648,7 @@ plotcp(homes_model)
 print(homes_model$cptable)
 
 # Retrieve optimal cp value based on cross-validated error
-opt_index <- which.min(homes_model$cptable[, "xerror"])
+opt_index <- 8
 cp_opt <- homes_model$cptable[opt_index, "CP"]
 
 # Prune the model (to optimized cp value)
@@ -656,7 +656,7 @@ homes_model_opt <- prune(tree = homes_model,
                          cp = cp_opt)
                           
 # Plot the optimized model
-rpart.plot(x = homes_model_opt, yesno = 2, type = 0, extra = 0)
+ rpart.plot(x = homes_model_opt, type = 5, extra = 1)
 ```
 ## Checking the error on the optimised model
 ```{r prediction}
