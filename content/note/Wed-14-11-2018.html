@@ -1,0 +1,43 @@
+---
+title: "Binning the neighborhood variable"
+subtitle: "Understanding what value does this important variable add"
+author: Ángela Castillo-Gill
+date: '2018-11-14'
+slug: binning-the-neighborhood-variable
+categories:
+  - Journal
+tags: 
+  - Learning
+draft: FALSE
+summary: 
+output:
+ blogdown::html_page:
+  fig_caption: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+
+<div id="goals-for-todays-session-are" class="section level1">
+<h1>Goal’s for today’s session are:</h1>
+<ol style="list-style-type: decimal">
+<li><p>Understand what information is the <code>neighboorhood</code> variable providing</p></li>
+<li><p>Create a new variable that captures what the variable is providing without so many levels.</p></li>
+</ol>
+<div id="goal-1-understand-what-information-is-the-neighboorhood-variable-providing" class="section level2">
+<h2>Goal 1: Understand what information is the <code>neighboorhood</code> variable providing</h2>
+<pre class="r"><code>levels(homes$Neighborhood)</code></pre>
+<p>Shows that the variable has 25 levels. Let’s see the relationship between each level and the response variable <code>SalesPrice</code>.</p>
+<p>Plotting the <code>neighboorhood</code> variable shows:</p>
+<p><img src="/note/Wed-14-11-2018_files/neigh_salesprice.png" /></p>
+</div>
+<div id="goal-2-create-a-new-variable-that-captures-what-the-variable-is-providing-without-so-many-levels." class="section level2">
+<h2>Goal 2: Create a new variable that captures what the variable is providing without so many levels.</h2>
+<p>Let’s say we want to create a variable with four levels, these would be the quantile cuts:</p>
+<pre class="r"><code>    0%    25%    50%    75%   100% 
+ 34900 129975 163000 214000 755000 </code></pre>
+<p>This shows for example that only very few neighborhoods will be in the last quantile (above <code>$755,000</code>).</p>
+<p>Tomorrow I will do the rest cause right now I gotta go.</p>
+</div>
+</div>

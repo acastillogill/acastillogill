@@ -476,6 +476,16 @@ homes<-homes%>%
                 -YearBuilt)
 ```
 
+```{r understanding-neighborhood-var}
+ggplot(homes,
+       aes(x=reorder(Neighborhood, SalePrice, FUN = sum), y=SalePrice)) +
+  geom_col () +
+  theme_minimal() +
+  labs(title="Neighborhoods vs. SalePrice",
+       x="Neighborhood")+
+   scale_y_continuous(labels = scales::dollar_format(suffix = "", prefix = "$"))+
+    coord_flip()
+```
 
 
 ## Correlation
@@ -541,19 +551,6 @@ Here is the codebook for all the variables featured in the correlation matrix in
 - `YearsSinceRemod`: Years since remodel date (same as construction date if no remodelling or additions)
 - `YearsSinceGarageBuilt`: Years since the garage was built 
 - `YearsSinceBuilt`: Years since construction date
-
-## Removing correlated variables
-
-```{r removing correlated variables}
-homes <- homes%>%
-  dplyr::select(-GarageCars,
-                -TotalBsmtSF,
-                -TotRmsAbvGrd,
-                -YearsSinceGarageBuilt)
-```
-
-## Removing variables that have low variance
-
 
 # Classification and Regression Trees (CART) time
 
@@ -658,6 +655,7 @@ homes_model_opt <- prune(tree = homes_model,
 # Plot the optimized model
  rpart.plot(x = homes_model_opt, type = 5, extra = 1)
 ```
+
 ## Checking the error on the optimised model
 ```{r prediction}
 #Computing predicted values 

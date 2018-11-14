@@ -11,6 +11,40 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Binning the neighborhood variable</title>
+      <link>/note/binning-the-neighborhood-variable/</link>
+      <pubDate>Wed, 14 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/note/binning-the-neighborhood-variable/</guid>
+      <description>
+
+
+&lt;div id=&#34;goals-for-todays-session-are&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Goal’s for today’s session are:&lt;/h1&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;Understand what information is the &lt;code&gt;neighboorhood&lt;/code&gt; variable providing&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Create a new variable that captures what the variable is providing without so many levels.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div id=&#34;goal-1-understand-what-information-is-the-neighboorhood-variable-providing&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Goal 1: Understand what information is the &lt;code&gt;neighboorhood&lt;/code&gt; variable providing&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;levels(homes$Neighborhood)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Shows that the variable has 25 levels. Let’s see the relationship between each level and the response variable &lt;code&gt;SalesPrice&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Plotting the &lt;code&gt;neighboorhood&lt;/code&gt; variable shows:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/note/Wed-14-11-2018_files/neigh_salesprice.png&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;goal-2-create-a-new-variable-that-captures-what-the-variable-is-providing-without-so-many-levels.&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Goal 2: Create a new variable that captures what the variable is providing without so many levels.&lt;/h2&gt;
+&lt;p&gt;Let’s say we want to create a variable with four levels, these would be the quantile cuts:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;    0%    25%    50%    75%   100% 
+ 34900 129975 163000 214000 755000 &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This shows for example that only very few neighborhoods will be in the last quantile (above &lt;code&gt;$755,000&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Tomorrow I will do the rest cause right now I gotta go.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Applying concepts learned to property prices</title>
       <link>/note/applying-concepts-learned-to-property-prices/</link>
       <pubDate>Tue, 13 Nov 2018 00:00:00 +0000</pubDate>
@@ -56,7 +90,7 @@ homes_model_opt &amp;lt;- prune(tree = homes_model,
 &lt;p&gt;&lt;img src=&#34;/note/Tues-13-11-2018_files/rpartplot_rawhomes.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;It has 8 splits and 9 nodes and we asked it to. Inside each terminal node is the number of observations which add up to 1025. Each split specifies the criteria for the observation being classified either into the left or right son.&lt;/p&gt;
 &lt;p&gt;If we go back and look at the numeric variables that had the highest correlation with &lt;code&gt;SalesPrice&lt;/code&gt;, &lt;code&gt;OverallQual&lt;/code&gt; was leading followed by &lt;code&gt;GrLivArea&lt;/code&gt;. In the tree we can see that these variables appear further below &lt;code&gt;X1stFlrSF&lt;/code&gt; and &lt;code&gt;GarageArea&lt;/code&gt; appear later down.&lt;/p&gt;
-&lt;p&gt;The plot show the &lt;code&gt;neighborhood&lt;/code&gt; variable twice and in the second level. So it’s an important variable.&lt;/p&gt;
+&lt;p&gt;The plot shows the &lt;code&gt;neighborhood&lt;/code&gt; variable twice and in the second level. So it’s an important variable.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;goal-3-bin-the-neighborhood-variable-and-explain-why-im-doing-that.&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Goal 3: Bin the &lt;code&gt;neighborhood&lt;/code&gt; variable and explain why I’m doing that.&lt;/h2&gt;
@@ -298,8 +332,6 @@ These are:&lt;/p&gt;
 &lt;li&gt;&lt;a href=&#34;#missing-values&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.1&lt;/span&gt; Missing values&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#variable-creation&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.2&lt;/span&gt; Variable creation&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#correlation&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.3&lt;/span&gt; Correlation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#removing-correlated-variables&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.4&lt;/span&gt; Removing correlated variables&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#removing-variables-that-have-low-variance&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.5&lt;/span&gt; Removing variables that have low variance&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#classification-and-regression-trees-cart-time&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Classification and Regression Trees (CART) time&lt;/a&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#splitting-the-data&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.1&lt;/span&gt; Splitting the data&lt;/a&gt;&lt;/li&gt;
@@ -307,7 +339,8 @@ These are:&lt;/p&gt;
 &lt;li&gt;&lt;a href=&#34;#revising-variable-importance&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.3&lt;/span&gt; Revising variable importance&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#evaluating-the-model&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.4&lt;/span&gt; Evaluating the model&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#tuning-hyperparameters&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.5&lt;/span&gt; Tuning hyperparameters&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#grid-search-for-best-hyperparameters&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.6&lt;/span&gt; Grid search for best hyperparameters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#checking-the-error-on-the-optimised-model&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.6&lt;/span&gt; Checking the error on the optimised model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#grid-search-for-best-hyperparameters&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.7&lt;/span&gt; Grid search for best hyperparameters&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#techniques-used&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Techniques used&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#questions-from-this-analysis&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; Questions from this analysis&lt;/a&gt;&lt;/li&gt;
@@ -507,6 +540,7 @@ Electrical
 &lt;/div&gt;
 &lt;div id=&#34;variable-creation&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.2&lt;/span&gt; Variable creation&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices/2018-08-09-predicting-property-prices_files/figure-html/understanding-neighborhood-var-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;correlation&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3&lt;/span&gt; Correlation&lt;/h2&gt;
@@ -547,12 +581,6 @@ round(coefficients(norm_fit), digits = 2)
 &lt;li&gt;&lt;code&gt;YearsSinceGarageBuilt&lt;/code&gt;: Years since the garage was built&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;YearsSinceBuilt&lt;/code&gt;: Years since construction date&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;removing-correlated-variables&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.4&lt;/span&gt; Removing correlated variables&lt;/h2&gt;
-&lt;/div&gt;
-&lt;div id=&#34;removing-variables-that-have-low-variance&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.5&lt;/span&gt; Removing variables that have low variance&lt;/h2&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;classification-and-regression-trees-cart-time&#34; class=&#34;section level1&#34;&gt;
@@ -598,7 +626,7 @@ Percentage
 OverallQual
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-23.0515224
+20.2881958
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -606,7 +634,15 @@ OverallQual
 Neighborhood
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-16.3419785
+13.8292678
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+TotalBsmtSF
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+8.6078376
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -614,7 +650,15 @@ Neighborhood
 BsmtQual
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-9.2732165
+8.1265399
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+GarageCars
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+7.8028308
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -622,31 +666,7 @@ BsmtQual
 GarageArea
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-8.2673885
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-YearsSinceBuilt
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-7.2442216
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-KitchenQual
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-5.3352759
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-X1stFlrSF
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-5.1291660
+7.2956063
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -654,7 +674,15 @@ X1stFlrSF
 GrLivArea
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-4.9662571
+4.7334142
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+X1stFlrSF
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+4.2245809
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -662,7 +690,31 @@ GrLivArea
 FullBath
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-2.8642603
+3.6685198
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+YearsSinceBuilt
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+3.1868448
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+YearsSinceGarageBuilt
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2.5644295
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+TotRmsAbvGrd
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2.4496070
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -670,39 +722,7 @@ FullBath
 ExterQual
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-2.7602501
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Foundation
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.6651332
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtFinSF1
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.0997208
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-X2ndFlrSF
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.8566046
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-MSSubClass
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.3087047
+2.4189322
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -710,31 +730,15 @@ MSSubClass
 LotArea
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.9037093
+1.6004963
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&#34;text-align:left;&#34;&gt;
-HouseStyle
+X2ndFlrSF
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.6407663
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtUnfSF
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.6362427
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Fireplaces
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.6103881
+1.4798477
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -742,39 +746,39 @@ Fireplaces
 BedroomAbvGr
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.5957507
+1.4488343
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&#34;text-align:left;&#34;&gt;
-LotFrontage
+MSSubClass
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.5332390
+1.2739904
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&#34;text-align:left;&#34;&gt;
-RoofMatl
+BsmtFinSF1
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.5106289
+1.1689013
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&#34;text-align:left;&#34;&gt;
-YearsSinceRemod
+HouseStyle
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.5106289
+0.7356457
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&#34;text-align:left;&#34;&gt;
-Exterior1st
+BsmtUnfSF
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.4069254
+0.7099965
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -782,7 +786,23 @@ Exterior1st
 Condition1
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.3404193
+0.5471333
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+OpenPorchSF
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.5471333
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+LotFrontage
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.3274190
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -790,15 +810,15 @@ Condition1
 LandContour
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.3404193
+0.2735666
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&#34;text-align:left;&#34;&gt;
-HalfBath
+LotShape
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.3054079
+0.2735666
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -806,7 +826,7 @@ HalfBath
 MasVnrArea
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.1988047
+0.1600470
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -814,15 +834,15 @@ MasVnrArea
 MSZoning
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.1088826
+0.0954188
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&#34;text-align:left;&#34;&gt;
-Fence
+Foundation
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.0762178
+0.0581028
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -830,7 +850,7 @@ Fence
 BsmtCond
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.0589345
+0.0516470
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -838,7 +858,7 @@ BsmtCond
 BsmtExposure
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.0589345
+0.0516470
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
@@ -846,8 +866,8 @@ BsmtExposure
 &lt;/div&gt;
 &lt;div id=&#34;evaluating-the-model&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.4&lt;/span&gt; Evaluating the model&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;[1] 46379.54
-[1] 31179.09&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;[1] 46436.43
+[1] 31582.42&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;tuning-hyperparameters&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.5&lt;/span&gt; Tuning hyperparameters&lt;/h2&gt;
@@ -855,22 +875,25 @@ BsmtExposure
 &lt;pre&gt;&lt;code&gt;           CP nsplit rel error    xerror       xstd
 1  0.44576120      0 1.0000000 1.0034376 0.09648934
 2  0.11980464      1 0.5542388 0.5578944 0.05448931
-3  0.07227853      2 0.4344342 0.4383458 0.05343974
-4  0.03113653      3 0.3621556 0.3953313 0.04125842
-5  0.02840259      4 0.3310191 0.4006663 0.04426050
-6  0.01998604      6 0.2742139 0.3773829 0.04402623
-7  0.01893938      7 0.2542279 0.3683706 0.04056180
-8  0.01351892      8 0.2352885 0.3434948 0.03750211
-9  0.01198871      9 0.2217696 0.3330784 0.03737704
-10 0.01182315     10 0.2097809 0.3230293 0.03735644
-11 0.01000000     11 0.1979577 0.3074050 0.03541012&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices/2018-08-09-predicting-property-prices_files/figure-html/tuning-hyperparameters-2.png&#34; width=&#34;672&#34; /&gt;
-## Checking the error on the optimised model&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[1] 49255.6
-[1] 33487.16&lt;/code&gt;&lt;/pre&gt;
+3  0.07787835      2 0.4344342 0.4503269 0.05450477
+4  0.03113653      3 0.3565558 0.3834010 0.03648119
+5  0.03000655      4 0.3254193 0.3856174 0.04198517
+6  0.02116148      6 0.2654062 0.3713812 0.04396583
+7  0.01893938      7 0.2442447 0.3711622 0.04282617
+8  0.01351892      8 0.2253053 0.3477162 0.04243057
+9  0.01252567      9 0.2117864 0.3427903 0.04081490
+10 0.01198871     10 0.1992607 0.3392857 0.04098520
+11 0.01096188     11 0.1872720 0.3304686 0.04091332
+12 0.01000000     12 0.1763101 0.3172039 0.04072495&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices/2018-08-09-predicting-property-prices_files/figure-html/tuning-hyperparameters-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;checking-the-error-on-the-optimised-model&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.6&lt;/span&gt; Checking the error on the optimised model&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;[1] 49990.31
+[1] 33828.71&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;grid-search-for-best-hyperparameters&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.6&lt;/span&gt; Grid search for best hyperparameters&lt;/h2&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.7&lt;/span&gt; Grid search for best hyperparameters&lt;/h2&gt;
 &lt;pre&gt;&lt;code&gt;[1] 90  2&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;$minsplit
 [1] 10 12 14 16 18 20
@@ -1381,19 +1404,6 @@ Figure 5.12: The total time between posting the loan and it being disbursed has 
       
       <guid>/privacy/</guid>
       <description>&lt;p&gt;&amp;hellip;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>/note/journal-template/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/note/journal-template/</guid>
-      <description>
-
-
-
 </description>
     </item>
     

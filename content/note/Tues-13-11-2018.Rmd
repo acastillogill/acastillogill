@@ -78,7 +78,7 @@ It has 8 splits and 9 nodes and we asked it to. Inside each terminal node is the
 
 If we go back and look at the numeric variables that had the highest correlation with `SalesPrice`, `OverallQual` was leading followed by `GrLivArea`. In the tree we can see that these variables appear further below `X1stFlrSF` and `GarageArea` appear later down. 
 
-The plot show the `neighborhood` variable twice and in the second level. So it's an important variable. 
+The plot shows the `neighborhood` variable twice and in the second level. So it's an important variable. 
 
 ## Goal 3: Bin the `neighborhood` variable and explain why I'm doing that.
 

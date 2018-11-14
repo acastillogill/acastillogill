@@ -1,0 +1,51 @@
+---
+title: "Binning the neighborhood variable"
+subtitle: "Understanding what value does this important variable add"
+author: Ángela Castillo-Gill
+date: '2018-11-14'
+slug: binning-the-neighborhood-variable
+categories:
+  - Journal
+tags: 
+  - Learning
+draft: FALSE
+summary: 
+output:
+ blogdown::html_page:
+  fig_caption: true
+editor_options: 
+  chunk_output_type: console
+---
+
+# Goal's for today's session are:
+
+1. Understand what information is the `neighboorhood` variable providing
+
+2. Create a new variable that captures what the variable is providing without so many levels. 
+
+## Goal 1: Understand what information is the `neighboorhood` variable providing
+
+
+```{r, echo=TRUE, eval=FALSE}
+levels(homes$Neighborhood)
+```
+
+Shows that the variable has 25 levels. Let's see the relationship between each level and the response variable `SalesPrice`.
+
+Plotting the `neighboorhood` variable shows: 
+
+![](/note/Wed-14-11-2018_files/neigh_salesprice.png)
+
+## Goal 2: Create a new variable that captures what the variable is providing without so many levels. 
+
+Let's say we want to create a variable with four levels, these would be the quantile cuts:
+
+```{r echo=TRUE, eval=FALSE}
+    0%    25%    50%    75%   100% 
+ 34900 129975 163000 214000 755000 
+```
+
+ 
+This shows for example that only very few neighborhoods will be in the last quantile (above `$755,000`).
+
+Tomorrow I will do the rest cause right now I gotta go. 

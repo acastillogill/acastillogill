@@ -7,10 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Ángela Castillo-Gill</copyright>
-    <lastBuildDate>Tue, 13 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 14 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/learning/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Binning the neighborhood variable</title>
+      <link>/note/binning-the-neighborhood-variable/</link>
+      <pubDate>Wed, 14 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/note/binning-the-neighborhood-variable/</guid>
+      <description>Goal’s for today’s session are: Understand what information is the neighboorhood variable providing
+ Create a new variable that captures what the variable is providing without so many levels.
+  Goal 1: Understand what information is the neighboorhood variable providing levels(homes$Neighborhood) Shows that the variable has 25 levels. Let’s see the relationship between each level and the response variable SalesPrice.
+Plotting the neighboorhood variable shows:
+ Goal 2: Create a new variable that captures what the variable is providing without so many levels.</description>
+    </item>
     
     <item>
       <title>Applying concepts learned to property prices</title>
@@ -95,15 +108,6 @@ In response to one of yesterday’s questions, the PRESS statistic is the predic
       <guid>/note/pre-processing-to-what-extent/</guid>
       <description>The goal of today’s session was to learn how to preprocess the homes dataset I’ve been working with. The missing values have been filled and now I have a few questions about whether I should perform or not, additional pre-processing steps before I can implement the CART algorithm.
  Should I remove highly correlated variables? I have three and I don’t know what to do with them? Should I remove levels within factor variables with few observations?</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>/note/journal-template/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/note/journal-template/</guid>
-      <description></description>
     </item>
     
   </channel>

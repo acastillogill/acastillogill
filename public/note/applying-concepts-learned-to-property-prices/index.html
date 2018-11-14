@@ -463,7 +463,7 @@ homes_model_opt &lt;- prune(tree = homes_model,
 <p><img src="/note/Tues-13-11-2018_files/rpartplot_rawhomes.png" /></p>
 <p>It has 8 splits and 9 nodes and we asked it to. Inside each terminal node is the number of observations which add up to 1025. Each split specifies the criteria for the observation being classified either into the left or right son.</p>
 <p>If we go back and look at the numeric variables that had the highest correlation with <code>SalesPrice</code>, <code>OverallQual</code> was leading followed by <code>GrLivArea</code>. In the tree we can see that these variables appear further below <code>X1stFlrSF</code> and <code>GarageArea</code> appear later down.</p>
-<p>The plot show the <code>neighborhood</code> variable twice and in the second level. So it’s an important variable.</p>
+<p>The plot shows the <code>neighborhood</code> variable twice and in the second level. So it’s an important variable.</p>
 </div>
 <div id="goal-3-bin-the-neighborhood-variable-and-explain-why-im-doing-that." class="section level2">
 <h2>Goal 3: Bin the <code>neighborhood</code> variable and explain why I’m doing that.</h2>
@@ -614,6 +614,11 @@ homes_model_opt &lt;- prune(tree = homes_model,
     
     <div class="article-widget">
       <div class="post-nav">
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/note/binning-the-neighborhood-variable/" rel="next">Binning the neighborhood variable</a>
+  </div>
   
   
   <div class="post-nav-item">
