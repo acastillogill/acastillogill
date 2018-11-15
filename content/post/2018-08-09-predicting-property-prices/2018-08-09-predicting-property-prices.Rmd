@@ -501,7 +501,8 @@ homes <- homes%>%
                                         ifelse(Mean_neigh_price>100000&Mean_neigh_price<150000,"Not_fancy","OK"))))
   
 homes <- homes%>%
-  dplyr::select(-Neighborhood)
+  dplyr::select(-Neighborhood,
+                -Mean_neigh_price)
 ```
 
 
@@ -663,7 +664,7 @@ plotcp(homes_model)
 print(homes_model$cptable)
 
 # Retrieve optimal cp value based on cross-validated error
-opt_index <- 8
+opt_index <- 7
 cp_opt <- homes_model$cptable[opt_index, "CP"]
 
 # Prune the model (to optimized cp value)
