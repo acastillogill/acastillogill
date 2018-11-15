@@ -477,15 +477,33 @@ homes<-homes%>%
 ```
 
 ```{r understanding-neighborhood-var}
-ggplot(homes,
-       aes(x=reorder(Neighborhood, SalePrice, FUN = sum), y=SalePrice)) +
-  geom_col () +
+homes%>%
+  group_by(Neighborhood)%>%
+  summarise(mean=mean(SalePrice))%>%
+  arrange(desc(mean))%>%
+  ggplot(aes(x=reorder(Neighborhood, mean), y=mean))+
+  geom_col()+
   theme_minimal() +
-  labs(title="Neighborhoods vs. SalePrice",
+  labs(title="Neighborhoods vs. Average SalePrice",
        x="Neighborhood")+
    scale_y_continuous(labels = scales::dollar_format(suffix = "", prefix = "$"))+
     coord_flip()
+  
 ```
+
+```{r binning_neighboorhood}
+homes <- homes%>%
+   group_by(Neighborhood)%>%
+   mutate(Mean_neigh_price=mean(SalePrice))%>%
+   ungroup()%>%
+   mutate(Neighborhood_type=ifelse(Mean_neigh_price>200000,"Fancy",
+                                 ifelse(Mean_neigh_price>150000&Mean_neigh_price<200000,"Somewhat_fancy",
+                                        ifelse(Mean_neigh_price>100000&Mean_neigh_price<150000,"Not_fancy","OK"))))
+  
+homes <- homes%>%
+  dplyr::select(-Neighborhood)
+```
+
 
 
 ## Correlation
