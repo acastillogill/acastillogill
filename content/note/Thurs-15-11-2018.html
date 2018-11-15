@@ -26,5 +26,29 @@ editor_options:
 </ol>
 <div id="goal-1-create-a-new-variable-that-captures-what-the-variable-is-providing-without-so-many-levels." class="section level2">
 <h2>Goal 1: Create a new variable that captures what the variable is providing without so many levels.</h2>
+<p>As we saw yesterday from looking at the quantiles, we have 25 neighborhoods but very few houses are in the most expensive neighborhoods.</p>
+<p>I’m looking at the plot again and I realise there is something very odd with it. None of the homes costs more than <span class="math inline">\(755,000\)</span> and yet the plot goes up to <span class="math inline">\(30,000,000\)</span>. I realised that I was adding the <code>SalePrice</code> of individuals homes. Now here is another go with actual average <code>SalePrice</code>.</p>
+<p><img src="/note/Thurs-15-11-2018_files/Mean_sale_price.png" /></p>
+<p>Much better. Now we can see that <code>NoRidge</code> has the highest average <code>SalePrice</code>.</p>
+<p>Now, let’s look at this again in light of the quantiles,</p>
+<pre class="r"><code>&gt; neigh_quant
+# A tibble: 5 x 3
+  names      x incomes      
+  &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;        
+1 0%     34900 Lower        
+2 25%   129975 Middle_Lower 
+3 50%   163000 Lower        
+4 75%   214000 Middle_Higher
+5 100%  755000 Higher </code></pre>
+<p>It seems like the top 8 neighborhoods would go into the <code>Higher</code> bracket and none would go into the lowest.</p>
+<p>The way that I’m going to bin the neighborhoods is that I will create a variable called <code>Neighboord_type</code>:
+- Houses that have neighborhoods with average <code>SalePrice</code> above $200,000 will go into the level “Fancy”.
+- Houses that have neighborhoods with average <code>SalePrice</code> above $150,000 and below $200,000 will go into the level “Somewhat_fancy”.
+- Houses that have neighborhoods with average <code>SalePrice</code> above $100,000 and below $150,000 will go into the level “Not_fancy”.
+- The rest will go into the “OK” level. Because it’s ok if you don’t live in a fancy neighborhood.</p>
+<p>And this is what it looks like:</p>
+<p><img src="/note/Thurs-15-11-2018_files/New_var.png" /></p>
+<p>Job done I would say.</p>
+<p>Tomorrow I will do everything again with this new variable to see if the plot improves.</p>
 </div>
 </div>

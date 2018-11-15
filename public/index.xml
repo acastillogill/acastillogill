@@ -26,6 +26,30 @@
 &lt;/ol&gt;
 &lt;div id=&#34;goal-1-create-a-new-variable-that-captures-what-the-variable-is-providing-without-so-many-levels.&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Goal 1: Create a new variable that captures what the variable is providing without so many levels.&lt;/h2&gt;
+&lt;p&gt;As we saw yesterday from looking at the quantiles, we have 25 neighborhoods but very few houses are in the most expensive neighborhoods.&lt;/p&gt;
+&lt;p&gt;I’m looking at the plot again and I realise there is something very odd with it. None of the homes costs more than &lt;span class=&#34;math inline&#34;&gt;\(755,000\)&lt;/span&gt; and yet the plot goes up to &lt;span class=&#34;math inline&#34;&gt;\(30,000,000\)&lt;/span&gt;. I realised that I was adding the &lt;code&gt;SalePrice&lt;/code&gt; of individuals homes. Now here is another go with actual average &lt;code&gt;SalePrice&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/note/Thurs-15-11-2018_files/Mean_sale_price.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Much better. Now we can see that &lt;code&gt;NoRidge&lt;/code&gt; has the highest average &lt;code&gt;SalePrice&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Now, let’s look at this again in light of the quantiles,&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;&amp;gt; neigh_quant
+# A tibble: 5 x 3
+  names      x incomes      
+  &amp;lt;chr&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;        
+1 0%     34900 Lower        
+2 25%   129975 Middle_Lower 
+3 50%   163000 Lower        
+4 75%   214000 Middle_Higher
+5 100%  755000 Higher &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It seems like the top 8 neighborhoods would go into the &lt;code&gt;Higher&lt;/code&gt; bracket and none would go into the lowest.&lt;/p&gt;
+&lt;p&gt;The way that I’m going to bin the neighborhoods is that I will create a variable called &lt;code&gt;Neighboord_type&lt;/code&gt;:
+- Houses that have neighborhoods with average &lt;code&gt;SalePrice&lt;/code&gt; above $200,000 will go into the level “Fancy”.
+- Houses that have neighborhoods with average &lt;code&gt;SalePrice&lt;/code&gt; above $150,000 and below $200,000 will go into the level “Somewhat_fancy”.
+- Houses that have neighborhoods with average &lt;code&gt;SalePrice&lt;/code&gt; above $100,000 and below $150,000 will go into the level “Not_fancy”.
+- The rest will go into the “OK” level. Because it’s ok if you don’t live in a fancy neighborhood.&lt;/p&gt;
+&lt;p&gt;And this is what it looks like:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/note/Thurs-15-11-2018_files/New_var.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Job done I would say.&lt;/p&gt;
+&lt;p&gt;Tomorrow I will do everything again with this new variable to see if the plot improves.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>
@@ -647,23 +671,7 @@ Percentage
 OverallQual
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-20.2881958
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Neighborhood
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-13.8292678
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-TotalBsmtSF
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8.6078376
+23.2881205
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -671,7 +679,15 @@ TotalBsmtSF
 BsmtQual
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-8.1265399
+9.3219127
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+TotalBsmtSF
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+9.2963511
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -679,7 +695,7 @@ BsmtQual
 GarageCars
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-7.8028308
+8.9148899
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -687,7 +703,23 @@ GarageCars
 GarageArea
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-7.2956063
+8.3353758
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Neighborhood_type
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+5.5795851
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+KitchenQual
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+5.3419024
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -695,7 +727,7 @@ GarageArea
 GrLivArea
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-4.7334142
+4.9671386
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -703,7 +735,7 @@ GrLivArea
 X1stFlrSF
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-4.2245809
+3.9252303
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -711,7 +743,7 @@ X1stFlrSF
 FullBath
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-3.6685198
+3.7461030
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -719,7 +751,7 @@ FullBath
 YearsSinceBuilt
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-3.1868448
+3.7244438
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -727,135 +759,7 @@ YearsSinceBuilt
 YearsSinceGarageBuilt
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-2.5644295
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-TotRmsAbvGrd
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.4496070
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-ExterQual
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.4189322
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-LotArea
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.6004963
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-X2ndFlrSF
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.4798477
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BedroomAbvGr
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.4488343
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-MSSubClass
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.2739904
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtFinSF1
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.1689013
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-HouseStyle
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.7356457
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtUnfSF
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.7099965
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Condition1
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.5471333
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-OpenPorchSF
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.5471333
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-LotFrontage
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.3274190
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-LandContour
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.2735666
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-LotShape
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.2735666
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-MasVnrArea
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.1600470
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-MSZoning
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.0954188
+3.0305361
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -863,7 +767,87 @@ MSZoning
 Foundation
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.0581028
+2.6912965
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+TotRmsAbvGrd
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2.0111251
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+MSSubClass
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1.1734153
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+BsmtFinSF1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1.0429523
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+BsmtUnfSF
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.8111851
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+X2ndFlrSF
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.7053916
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+HouseStyle
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.6331315
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+LotArea
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.4572123
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+LotFrontage
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.3740828
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+MSZoning
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.1799967
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+BedroomAbvGr
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.1711556
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -871,7 +855,7 @@ Foundation
 BsmtCond
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.0516470
+0.0714405
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -879,7 +863,31 @@ BsmtCond
 BsmtExposure
 &lt;/td&gt;
 &lt;td style=&#34;text-align:right;&#34;&gt;
-0.0516470
+0.0714405
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+BsmtFinType1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.0714405
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Id
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.0315722
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+RoofStyle
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.0315722
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
@@ -887,31 +895,29 @@ BsmtExposure
 &lt;/div&gt;
 &lt;div id=&#34;evaluating-the-model&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.4&lt;/span&gt; Evaluating the model&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;[1] 46436.43
-[1] 31582.42&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;[1] 46893.56
+[1] 31678.89&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;tuning-hyperparameters&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.5&lt;/span&gt; Tuning hyperparameters&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices/2018-08-09-predicting-property-prices_files/figure-html/tuning-hyperparameters-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;           CP nsplit rel error    xerror       xstd
 1  0.44576120      0 1.0000000 1.0034376 0.09648934
-2  0.11980464      1 0.5542388 0.5578944 0.05448931
-3  0.07787835      2 0.4344342 0.4503269 0.05450477
-4  0.03113653      3 0.3565558 0.3834010 0.03648119
-5  0.03000655      4 0.3254193 0.3856174 0.04198517
-6  0.02116148      6 0.2654062 0.3713812 0.04396583
-7  0.01893938      7 0.2442447 0.3711622 0.04282617
-8  0.01351892      8 0.2253053 0.3477162 0.04243057
-9  0.01252567      9 0.2117864 0.3427903 0.04081490
-10 0.01198871     10 0.1992607 0.3392857 0.04098520
-11 0.01096188     11 0.1872720 0.3304686 0.04091332
-12 0.01000000     12 0.1763101 0.3172039 0.04072495&lt;/code&gt;&lt;/pre&gt;
+2  0.11362733      1 0.5542388 0.5578944 0.05448931
+3  0.07787835      2 0.4406115 0.4760270 0.05459581
+4  0.03461959      3 0.3627331 0.4091012 0.03666288
+5  0.02116148      4 0.3281135 0.3979878 0.04568692
+6  0.01818931      5 0.3069520 0.4082587 0.04732241
+7  0.01742778      6 0.2887627 0.3937271 0.04468678
+8  0.01671704      7 0.2713350 0.3939984 0.04468230
+9  0.01294838      8 0.2546179 0.3677683 0.04291999
+10 0.01000000      9 0.2416695 0.3524860 0.04281097&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices/2018-08-09-predicting-property-prices_files/figure-html/tuning-hyperparameters-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;checking-the-error-on-the-optimised-model&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.6&lt;/span&gt; Checking the error on the optimised model&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;[1] 49990.31
-[1] 33828.71&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;[1] 49963.95
+[1] 33909.8&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;grid-search-for-best-hyperparameters&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.7&lt;/span&gt; Grid search for best hyperparameters&lt;/h2&gt;
