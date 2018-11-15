@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Ángela Castillo-Gill</copyright>
-    <lastBuildDate>Wed, 14 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 15 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/note/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Binning the neighborhood variable (for real now)</title>
+      <link>/note/binning-the-neighborhood-variable-for-real-now/</link>
+      <pubDate>Thu, 15 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/note/binning-the-neighborhood-variable-for-real-now/</guid>
+      <description> Goal’s for today’s session are: Create a new variable that captures what the variable is providing without so many levels.  Goal 1: Create a new variable that captures what the variable is providing without so many levels.   </description>
+    </item>
     
     <item>
       <title>Binning the neighborhood variable</title>
