@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Ángela Castillo-Gill</copyright>
-    <lastBuildDate>Thu, 15 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 16 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/learning/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Did the tree improve?</title>
+      <link>/note/did-the-tree-improve/</link>
+      <pubDate>Fri, 16 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/note/did-the-tree-improve/</guid>
+      <description>Goal’s for today’s session are: Show if the variable change made the tree more interpretable.  #Splitting data # Randomly assign rows to ids (1/2/3 represents train/valid/test) # This will generate a vector of ids of length equal to the number of rows # The train/valid/test split will be approximately 70% / 15% / 15% set.seed(1) assignment &amp;lt;- sample(1:3, size = nrow(homes), prob = c(0.7,0.15,0.15), replace = TRUE) # Create a train, validation and tests from the original data frame homes_train &amp;lt;- homes[assignment == 1, ] # subset the homes data frame to training indices only homes_valid &amp;lt;- homes[assignment == 2, ] # subset the homes data frame to validation indices only homes_test &amp;lt;- homes[assignment == 3, ] # subset the homes data frame to test indices only # Train the model homes_model &amp;lt;- rpart(formula = SalePrice ~ .</description>
+    </item>
     
     <item>
       <title>Binning the neighborhood variable (for real now)</title>

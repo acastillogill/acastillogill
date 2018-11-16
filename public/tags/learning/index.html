@@ -119,7 +119,7 @@
   <meta property="og:image" content="/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2018-11-15T00:00:00&#43;00:00">
+  <meta property="og:updated_time" content="2018-11-16T00:00:00&#43;00:00">
   
 
   
@@ -311,6 +311,15 @@
   
 
   
+  
+  <div>
+    <h2><a href="/note/did-the-tree-improve/">Did the tree improve?</a></h2>
+    <div class="article-style">
+      
+      Goal’s for today’s session are: Show if the variable change made the tree more interpretable.  #Splitting data # Randomly assign rows to ids (1/2/3 represents train/valid/test) # This will generate a vector of ids of length equal to the number of rows # The train/valid/test split will be approximately 70% / 15% / 15% set.seed(1) assignment &lt;- sample(1:3, size = nrow(homes), prob = c(0.7,0.15,0.15), replace = TRUE) # Create a train, validation and tests from the original data frame homes_train &lt;- homes[assignment == 1, ] # subset the homes data frame to training indices only homes_valid &lt;- homes[assignment == 2, ] # subset the homes data frame to validation indices only homes_test &lt;- homes[assignment == 3, ] # subset the homes data frame to test indices only # Train the model homes_model &lt;- rpart(formula = SalePrice ~ .
+      
+    </div>
+  </div>
   
   <div>
     <h2><a href="/note/binning-the-neighborhood-variable-for-real-now/">Binning the neighborhood variable (for real now)</a></h2>

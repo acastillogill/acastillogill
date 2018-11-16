@@ -68,10 +68,9 @@ opts_chunk$set(echo = FALSE,
                message = FALSE,
                collapse= TRUE,
                comment = NA,
-               tidy = TRUE)
+               tidy = TRUE,
+               cache=FALSE)
 
-#Clear Global Environment
-rm(list = ls())
 
 here::here()
 ```
@@ -507,9 +506,9 @@ homes <- homes%>%
                 -Mean_neigh_price)
 ```
 
-```{r export the data set for posts, eval=FALSE}
+```{r export the data set for posts}
 #Save RDS
-saveRDS(homes, file="static/data/homes.rds")
+saveRDS(homes, file="../../homes.rds")
 ```
 
 

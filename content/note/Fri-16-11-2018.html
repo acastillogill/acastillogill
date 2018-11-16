@@ -1,0 +1,88 @@
+---
+title: "Did the tree improve?"
+subtitle: "Seems like it :smile:"
+author: Ángela Castillo-Gill
+date: '2018-11-16'
+slug: did-the-tree-improve
+categories:
+  - Journal
+tags: 
+  - Learning
+draft: FALSE
+summary: 
+output:
+ blogdown::html_page:
+  fig_caption: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+
+<div id="goals-for-todays-session-are" class="section level1">
+<h1>Goal’s for today’s session are:</h1>
+<ol style="list-style-type: decimal">
+<li>Show if the variable change made the tree more interpretable.</li>
+</ol>
+<pre class="r"><code>#Splitting data
+# Randomly assign rows to ids (1/2/3 represents train/valid/test)
+# This will generate a vector of ids of length equal to the number of rows
+# The train/valid/test split will be approximately 70% / 15% / 15% 
+set.seed(1)
+assignment &lt;- sample(1:3, size = nrow(homes),
+                     prob = c(0.7,0.15,0.15),
+                     replace = TRUE)
+
+# Create a train, validation and tests from the original data frame 
+homes_train &lt;- homes[assignment == 1, ]    # subset the homes data frame to training indices only
+homes_valid &lt;- homes[assignment == 2, ]  # subset the homes data frame to validation indices only
+homes_test &lt;- homes[assignment == 3, ]   # subset the homes data frame to test indices only</code></pre>
+<pre class="r"><code># Train the model
+homes_model &lt;- rpart(formula = SalePrice ~ ., 
+                     data = homes_train, 
+                     method = &quot;anova&quot;)
+
+# Plot the basic model
+rpart.plot(x = homes_model, type = 5, extra = 1)</code></pre>
+<div class="figure"><span id="fig:basic-model"></span>
+<img src="/note/Fri-16-11-2018_files/figure-html/basic-model-1.png" alt="A first model suggests 9 splits with 10 nodes." width="672" />
+<p class="caption">
+Figure 1: A first model suggests 9 splits with 10 nodes.
+</p>
+</div>
+<p>Now we are going to look at the CP table.</p>
+<pre class="r"><code># Plot the &quot;CP Table&quot;
+plotcp(homes_model)</code></pre>
+<p><img src="/note/Fri-16-11-2018_files/figure-html/tuning-hyperparameters-1.png" width="672" /></p>
+<pre class="r"><code># Print the &quot;CP Table&quot;
+print(homes_model$cptable)</code></pre>
+<pre><code>##            CP nsplit rel error    xerror       xstd
+## 1  0.44576120      0 1.0000000 1.0034376 0.09648934
+## 2  0.11362733      1 0.5542388 0.5578944 0.05448931
+## 3  0.07787835      2 0.4406115 0.4760270 0.05459581
+## 4  0.03461959      3 0.3627331 0.4091012 0.03666288
+## 5  0.02116148      4 0.3281135 0.3979878 0.04568692
+## 6  0.01818931      5 0.3069520 0.4082587 0.04732241
+## 7  0.01742778      6 0.2887627 0.3937271 0.04468678
+## 8  0.01671704      7 0.2713350 0.3939984 0.04468230
+## 9  0.01294838      8 0.2546179 0.3677683 0.04291999
+## 10 0.01000000      9 0.2416695 0.3524860 0.04281097</code></pre>
+<p>According the <code>cptable</code>, the lowest <code>xerror</code> is in row 10, to that we add the <code>xstd</code> error and obtain: <span class="math inline">\(0.39529\)</span>. We see that the smallest error with <code>xerror</code> below that is the tree with 7 splits and 8 nodes. I will use that in the improved plot.</p>
+<pre class="r"><code># Retrieve optimal cp value based on cross-validated error
+opt_index &lt;- 7
+cp_opt &lt;- homes_model$cptable[opt_index, &quot;CP&quot;]
+
+# Prune the model (to optimized cp value)
+homes_model_opt &lt;- prune(tree = homes_model, 
+                         cp = cp_opt)
+                          
+# Plot the optimized model
+ rpart.plot(x = homes_model_opt, type = 5, extra = 1)</code></pre>
+<div class="figure"><span id="fig:improved-model"></span>
+<img src="/note/Fri-16-11-2018_files/figure-html/improved-model-1.png" alt="Improved model has 7 splits and 8 nodes." width="672" />
+<p class="caption">
+Figure 2: Improved model has 7 splits and 8 nodes.
+</p>
+</div>
+<p>Tomorrow, I will look to see if there are any objective measures of error, clue, there are! And apply them to compare both models.</p>
+</div>

@@ -27,8 +27,8 @@ As we saw yesterday from looking at the quantiles, we have 25 neighborhoods but 
 
 I'm looking at the plot again and I realise there is something very odd with it. None of the homes costs more than 755,000 and yet the plot goes up to 30,000,000. I realised that I was adding the `SalePrice` of individuals homes. Now here is another go with actual average `SalePrice`.
 
-```{r read data, eval=FALSE}
-homes <- readRDS("static/data/homes.rds")
+```{r read data, echo=FALSE}
+homes <- readRDS(file="/Volumes/TOSHIBAEXT/google_drive/acastillogill/content/homes.rds")
 ```
 
 
