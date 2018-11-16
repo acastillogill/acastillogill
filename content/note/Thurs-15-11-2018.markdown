@@ -25,7 +25,7 @@ editor_options:
 
 As we saw yesterday from looking at the quantiles, we have 25 neighborhoods but very few houses are in the most expensive neighborhoods.
 
-I'm looking at the plot again and I realise there is something very odd with it. None of the homes costs more than `\(755,000\)` and yet the plot goes up to `\(30,000,000\)`. I realised that I was adding the `SalePrice` of individuals homes. Now here is another go with actual average `SalePrice`.
+I'm looking at the plot again and I realise there is something very odd with it. None of the homes costs more than 755,000 and yet the plot goes up to 30,000,000. I realised that I was adding the `SalePrice` of individuals homes. Now here is another go with actual average `SalePrice`.
 
 
 ```r
@@ -56,11 +56,11 @@ It seems like the top 8 neighborhoods would go into the `Higher` bracket and non
 
 The way that I'm going to bin the neighborhoods is that I will create a variable called `Neighboord_type`:
 
-* Houses that have neighborhoods with average `SalePrice` above `\(200,000\)` will go into the level "Fancy". 
+* Houses that have neighborhoods with average `SalePrice` above 200,000 will go into the level "Fancy". 
 
-* Houses that have neighborhoods with average `SalePrice` above `\(150,000\)` and below `\(200,000\)` will go into the level "Somewhat_fancy". 
+* Houses that have neighborhoods with average `SalePrice` above 150,000 and below 200,000 will go into the level "Somewhat_fancy". 
 
-* Houses that have neighborhoods with average `SalePrice` above `\(100,000\)` and below `\(150,000\)` will go into the level "Not_fancy". 
+* Houses that have neighborhoods with average `SalePrice` above 100,000 and below 150,000 will go into the level "Not_fancy". 
 
 * The rest will go into the "OK" level. Because it's ok if you don't live in a fancy neighborhood. 
 
