@@ -72,6 +72,8 @@ opts_chunk$set(echo = FALSE,
 
 #Clear Global Environment
 rm(list = ls())
+
+here::here()
 ```
 
 # Summary
@@ -505,6 +507,10 @@ homes <- homes%>%
                 -Mean_neigh_price)
 ```
 
+```{r export the data set for posts, eval=FALSE}
+#Save RDS
+saveRDS(homes, file="static/data/homes.rds")
+```
 
 
 ## Correlation

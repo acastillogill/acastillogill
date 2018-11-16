@@ -28,6 +28,7 @@
 &lt;h2&gt;Goal 1: Create a new variable that captures what the variable is providing without so many levels.&lt;/h2&gt;
 &lt;p&gt;As we saw yesterday from looking at the quantiles, we have 25 neighborhoods but very few houses are in the most expensive neighborhoods.&lt;/p&gt;
 &lt;p&gt;I’m looking at the plot again and I realise there is something very odd with it. None of the homes costs more than &lt;span class=&#34;math inline&#34;&gt;\(755,000\)&lt;/span&gt; and yet the plot goes up to &lt;span class=&#34;math inline&#34;&gt;\(30,000,000\)&lt;/span&gt;. I realised that I was adding the &lt;code&gt;SalePrice&lt;/code&gt; of individuals homes. Now here is another go with actual average &lt;code&gt;SalePrice&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;homes &amp;lt;- readRDS(&amp;quot;static/data/homes.rds&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/note/Thurs-15-11-2018_files/Mean_sale_price.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Much better. Now we can see that &lt;code&gt;NoRidge&lt;/code&gt; has the highest average &lt;code&gt;SalePrice&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Now, let’s look at this again in light of the quantiles,&lt;/p&gt;
@@ -41,11 +42,13 @@
 4 75%   214000 Middle_Higher
 5 100%  755000 Higher &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;It seems like the top 8 neighborhoods would go into the &lt;code&gt;Higher&lt;/code&gt; bracket and none would go into the lowest.&lt;/p&gt;
-&lt;p&gt;The way that I’m going to bin the neighborhoods is that I will create a variable called &lt;code&gt;Neighboord_type&lt;/code&gt;:
-- Houses that have neighborhoods with average &lt;code&gt;SalePrice&lt;/code&gt; above $200,000 will go into the level “Fancy”.
-- Houses that have neighborhoods with average &lt;code&gt;SalePrice&lt;/code&gt; above $150,000 and below $200,000 will go into the level “Somewhat_fancy”.
-- Houses that have neighborhoods with average &lt;code&gt;SalePrice&lt;/code&gt; above $100,000 and below $150,000 will go into the level “Not_fancy”.
-- The rest will go into the “OK” level. Because it’s ok if you don’t live in a fancy neighborhood.&lt;/p&gt;
+&lt;p&gt;The way that I’m going to bin the neighborhoods is that I will create a variable called &lt;code&gt;Neighboord_type&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Houses that have neighborhoods with average &lt;code&gt;SalePrice&lt;/code&gt; above &lt;span class=&#34;math inline&#34;&gt;\(200,000\)&lt;/span&gt; will go into the level “Fancy”.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Houses that have neighborhoods with average &lt;code&gt;SalePrice&lt;/code&gt; above &lt;span class=&#34;math inline&#34;&gt;\(150,000\)&lt;/span&gt; and below &lt;span class=&#34;math inline&#34;&gt;\(200,000\)&lt;/span&gt; will go into the level “Somewhat_fancy”.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Houses that have neighborhoods with average &lt;code&gt;SalePrice&lt;/code&gt; above &lt;span class=&#34;math inline&#34;&gt;\(100,000\)&lt;/span&gt; and below &lt;span class=&#34;math inline&#34;&gt;\(150,000\)&lt;/span&gt; will go into the level “Not_fancy”.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The rest will go into the “OK” level. Because it’s ok if you don’t live in a fancy neighborhood.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;And this is what it looks like:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/note/Thurs-15-11-2018_files/New_var.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Job done I would say.&lt;/p&gt;
