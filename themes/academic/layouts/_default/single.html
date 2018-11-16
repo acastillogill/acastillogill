@@ -7,6 +7,7 @@
 
   <div class="article-container">
 
+
     <div class="article-style" itemprop="articleBody">
       {{ .Content }}
     </div>
@@ -25,6 +26,10 @@
         {{ end }}
       </ul>
     </div>
+    {{ end }}
+    
+    {{ if .Params.toc }}
+    {{ .TableOfContents }}
     {{ end }}
 
     {{ if .Site.Params.section_pager }}
