@@ -49,6 +49,19 @@ homes_model &amp;lt;- rpart(formula = SalePrice ~ ., data = homes_train, method 
     </item>
     
     <item>
+      <title>Applying concepts learned to property prices</title>
+      <link>/note/applying-concepts-learned-to-property-prices/</link>
+      <pubDate>Tue, 13 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/note/applying-concepts-learned-to-property-prices/</guid>
+      <description>Goal&amp;rsquo;s for today&amp;rsquo;s session are:  Interpret the cptable for the generic homes_model.
+ Interpret the rpart.plot associated to homes_model.
+ Bin the neighborhood variable and explain why I&amp;rsquo;m doing that.
+  Goal 1: Interpret the cptable for the generic homes_model. With the homes data as is (just removing missing values), I fited a model to predict SalesPrice using rpart():
+homes_model &amp;lt;- rpart(formula = SalePrice ~ ., data = homes_train, method = &amp;quot;anova&amp;quot;)  Looking at the cptable with homes_model$cptable, I&amp;rsquo;ll apply the \(1-SE\) rule I explained yesterday:</description>
+    </item>
+    
+    <item>
       <title>Hyperparameter laundry list</title>
       <link>/note/hyperparameter-laundry-list/</link>
       <pubDate>Mon, 12 Nov 2018 00:00:00 +0000</pubDate>

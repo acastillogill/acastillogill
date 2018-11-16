@@ -1,6 +1,6 @@
 ---
 title: "Applying concepts learned to property prices"
-subtitle: "and also, rpart plots and the problem with so many factors."
+subtitle: "and also, rpart plots and the problem with so many factors"
 author: Ángela Castillo-Gill
 date: '2018-11-13'
 slug: applying-concepts-learned-to-property-prices
@@ -11,10 +11,7 @@ tags:
 draft: FALSE
 summary: 
 output:
- blogdown::html_page:
-  fig_caption: true
-editor_options: 
-  chunk_output_type: console
+ blogdown::html_page
 ---
 
 # Goal's for today's session are:
