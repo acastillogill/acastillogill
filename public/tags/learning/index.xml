@@ -18,8 +18,8 @@
       <pubDate>Thu, 15 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/note/binning-the-neighborhood-variable-for-real-now/</guid>
-      <description>Goal&amp;rsquo;s for today&amp;rsquo;s session are:  Create a new variable that captures what the variable is providing without so many levels.  Goal 1: Create a new variable that captures what the variable is providing without so many levels. As we saw yesterday from looking at the quantiles, we have 25 neighborhoods but very few houses are in the most expensive neighborhoods.
-I&amp;rsquo;m looking at the plot again and I realise there is something very odd with it.</description>
+      <description>Goal’s for today’s session are: Create a new variable that captures what the variable is providing without so many levels.  Goal 1: Create a new variable that captures what the variable is providing without so many levels. As we saw yesterday from looking at the quantiles, we have 25 neighborhoods but very few houses are in the most expensive neighborhoods.
+I’m looking at the plot again and I realise there is something very odd with it.</description>
     </item>
     
     <item>
@@ -28,11 +28,11 @@ I&amp;rsquo;m looking at the plot again and I realise there is something very od
       <pubDate>Wed, 14 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/note/binning-the-neighborhood-variable/</guid>
-      <description>Goal&amp;rsquo;s for today&amp;rsquo;s session are:  Understand what information is the neighboorhood variable providing
+      <description>Goal’s for today’s session are: Understand what information is the neighboorhood variable providing
  Create a new variable that captures what the variable is providing without so many levels.
-  Goal 1: Understand what information is the neighboorhood variable providing levels(homes$Neighborhood)  Shows that the variable has 25 levels. Let&amp;rsquo;s see the relationship between each level and the response variable SalesPrice.
+  Goal 1: Understand what information is the neighboorhood variable providing levels(homes$Neighborhood) Shows that the variable has 25 levels. Let’s see the relationship between each level and the response variable SalesPrice.
 Plotting the neighboorhood variable shows:
-Goal 2: Create a new variable that captures what the variable is providing without so many levels.</description>
+ Goal 2: Create a new variable that captures what the variable is providing without so many levels.</description>
     </item>
     
     <item>
@@ -41,11 +41,11 @@ Goal 2: Create a new variable that captures what the variable is providing witho
       <pubDate>Tue, 13 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/note/applying-concepts-learned-to-property-prices/</guid>
-      <description>Goal&amp;rsquo;s for today&amp;rsquo;s session are:  Interpret the cptable for the generic homes_model.
+      <description>Goal’s for today’s session are: Interpret the cptable for the generic homes_model.
  Interpret the rpart.plot associated to homes_model.
- Bin the neighborhood variable and explain why I&amp;rsquo;m doing that.
+ Bin the neighborhood variable and explain why I’m doing that.
   Goal 1: Interpret the cptable for the generic homes_model. With the homes data as is (just removing missing values), I fited a model to predict SalesPrice using rpart():
-homes_model &amp;lt;- rpart(formula = SalePrice ~ ., data = homes_train, method = &amp;quot;anova&amp;quot;)  Looking at the cptable with homes_model$cptable, I&amp;rsquo;ll apply the \(1-SE\) rule I explained yesterday:</description>
+homes_model &amp;lt;- rpart(formula = SalePrice ~ ., data = homes_train, method = &amp;quot;anova&amp;quot;) Looking at the cptable with homes_model$cptable, I’ll apply the \(1-SE\) rule I explained yesterday:</description>
     </item>
     
     <item>
@@ -54,9 +54,9 @@ homes_model &amp;lt;- rpart(formula = SalePrice ~ ., data = homes_train, method 
       <pubDate>Mon, 12 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/note/hyperparameter-laundry-list/</guid>
-      <description>Goal&amp;rsquo;s for today&amp;rsquo;s session are:  Get clarity on how to pick the best tree. Make a laundry list of the algorithms hyperparameters.  Goal 1: Get clarity on how to pick the best tree. So far, my confusion stems from the \(1-SE\) (&amp;ldquo;one standard error&amp;rdquo; rule) vs. the \(rel\&amp;gt;error\) \(+\) \(xstd\) \(&amp;lt;\) \(xerror\) rule.
+      <description>Goal’s for today’s session are: Get clarity on how to pick the best tree. Make a laundry list of the algorithms hyperparameters.  Goal 1: Get clarity on how to pick the best tree. So far, my confusion stems from the \(1-SE\) (“one standard error” rule) vs. the \(rel\&amp;gt;error\) \(+\) \(xstd\) \(&amp;lt;\) \(xerror\) rule.
 These two threads have helped me understand WHY they are the same:
- What&amp;rsquo;s the deal with this whole 1-SE rule.</description>
+ What’s the deal with this whole 1-SE rule.</description>
     </item>
     
     <item>
@@ -65,9 +65,9 @@ These two threads have helped me understand WHY they are the same:
       <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/note/surrogate-who/</guid>
-      <description>I hope the authors of the Rpart documentation don&amp;rsquo;t take it personally but they mention surrogate variables starting on page 11 and they don&amp;rsquo;t properly define what surrogate variables mean until page 18. Maybe it&amp;rsquo;s just me.
+      <description>I hope the authors of the Rpart documentation don’t take it personally but they mention surrogate variables starting on page 11 and they don’t properly define what surrogate variables mean until page 18. Maybe it’s just me.
 Anyway! So here is another response to a previous question: what is a surrogate variable?
-So the Rpart algorithm deals with missing data. The way it does this is when it&amp;rsquo;s doing its thing and determining the next variable and split point and comes across an observation that does not have a that variable, it figures out which variables can act as a replacement for that variable.</description>
+So the Rpart algorithm deals with missing data. The way it does this is when it’s doing its thing and determining the next variable and split point and comes across an observation that does not have a that variable, it figures out which variables can act as a replacement for that variable.</description>
     </item>
     
     <item>
@@ -76,21 +76,8 @@ So the Rpart algorithm deals with missing data. The way it does this is when it&
       <pubDate>Wed, 07 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/note/choosing-the-best-tree/</guid>
-      <description>According to user Harold Ship in this post, we should pick the tree with that keeps this relationship but has the tallest (that&amp;rsquo;s what he means with the lowest level, since each row represents a tree with more splits):
+      <description>According to user Harold Ship in this post, we should pick the tree with that keeps this relationship but has the tallest (that’s what he means with the lowest level, since each row represents a tree with more splits):
 \(rel\&amp;gt;error\) \(+\) \(xstd\) \(&amp;lt;\) \(xerror\)</description>
-    </item>
-    
-    <item>
-      <title>Objectives, key results, tasks</title>
-      <link>/note/objectives-key-results-tasks/</link>
-      <pubDate>Tue, 06 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/note/objectives-key-results-tasks/</guid>
-      <description>Yesterday I went to a talk by a woman that worked at Facebook helping startups scale. One of slides was about prioritisation at Facebook. It was something like this:
-So today we continue trying to understand all the rpart() function and algorithm.
-In response to one of yesterday&amp;rsquo;s questions, the PRESS statistic is the predicted residual error sum of squares:
-\(\sum_{i=1}^{n} (y_i-\hat{y}_{i,-i})^2\)
-According to trusty Wikipedia, the PRESS statistic is a form of cross validation derived from comparing the model&amp;rsquo;s predictions vs.</description>
     </item>
     
     <item>
@@ -99,7 +86,7 @@ According to trusty Wikipedia, the PRESS statistic is a form of cross validation
       <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/note/understanding-output-tables/</guid>
-      <description>I&amp;rsquo;ve been able to answer quite a few of the questions that I asked before. For example, I don&amp;rsquo;t have to remove outliers because the algorithm is robust to outliers. No centering and scaling needs to be done to the variables. I can leave factors as factors, but the issue with with a lot of levels is that the tree can get quite wide which reduces its interpretability, which is after all, one of the advantages of using binary trees.</description>
+      <description>I’ve been able to answer quite a few of the questions that I asked before. For example, I don’t have to remove outliers because the algorithm is robust to outliers. No centering and scaling needs to be done to the variables. I can leave factors as factors, but the issue with with a lot of levels is that the tree can get quite wide which reduces its interpretability, which is after all, one of the advantages of using binary trees.</description>
     </item>
     
     <item>
@@ -108,7 +95,7 @@ According to trusty Wikipedia, the PRESS statistic is a form of cross validation
       <pubDate>Sun, 04 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/note/memorising-tip/</guid>
-      <description>Today I went to a poetry competition and heard a useful tip for memorising a poem, or in my case, speeches. Sometimes when we can&amp;rsquo;t memorise certain part of a text, after trying many times, maybe whatever is written down there, should go on the final version. Memorising can be a tool for editing the final text. When you read the text aloud, it&amp;rsquo;s own cadence and rhythm will point out that that word shouldn&amp;rsquo;t be there.</description>
+      <description>Today I went to a poetry competition and heard a useful tip for memorising a poem, or in my case, speeches. Sometimes when we can’t memorise certain part of a text, after trying many times, maybe whatever is written down there, should go on the final version. Memorising can be a tool for editing the final text. When you read the text aloud, it’s own cadence and rhythm will point out that that word shouldn’t be there.</description>
     </item>
     
     <item>
@@ -117,8 +104,8 @@ According to trusty Wikipedia, the PRESS statistic is a form of cross validation
       <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/note/pre-processing-to-what-extent/</guid>
-      <description>The goal of today&amp;rsquo;s session was to learn how to preprocess the homes dataset I&amp;rsquo;ve been working with. The missing values have been filled and now I have a few questions about whether I should perform or not, additional pre-processing steps before I can implement the CART algorithm.
- Should I remove highly correlated variables? I have three and I don&amp;rsquo;t know what to do with them? Should I remove levels within factor variables with few observations?</description>
+      <description>The goal of today’s session was to learn how to preprocess the homes dataset I’ve been working with. The missing values have been filled and now I have a few questions about whether I should perform or not, additional pre-processing steps before I can implement the CART algorithm.
+ Should I remove highly correlated variables? I have three and I don’t know what to do with them? Should I remove levels within factor variables with few observations?</description>
     </item>
     
   </channel>

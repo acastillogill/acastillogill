@@ -18,9 +18,9 @@
       <pubDate>Mon, 12 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/note/hyperparameter-laundry-list/</guid>
-      <description>Goal&amp;rsquo;s for today&amp;rsquo;s session are:  Get clarity on how to pick the best tree. Make a laundry list of the algorithms hyperparameters.  Goal 1: Get clarity on how to pick the best tree. So far, my confusion stems from the \(1-SE\) (&amp;ldquo;one standard error&amp;rdquo; rule) vs. the \(rel\&amp;gt;error\) \(+\) \(xstd\) \(&amp;lt;\) \(xerror\) rule.
+      <description>Goal’s for today’s session are: Get clarity on how to pick the best tree. Make a laundry list of the algorithms hyperparameters.  Goal 1: Get clarity on how to pick the best tree. So far, my confusion stems from the \(1-SE\) (“one standard error” rule) vs. the \(rel\&amp;gt;error\) \(+\) \(xstd\) \(&amp;lt;\) \(xerror\) rule.
 These two threads have helped me understand WHY they are the same:
- What&amp;rsquo;s the deal with this whole 1-SE rule.</description>
+ What’s the deal with this whole 1-SE rule.</description>
     </item>
     
     <item>
@@ -29,9 +29,9 @@ These two threads have helped me understand WHY they are the same:
       <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/note/surrogate-who/</guid>
-      <description>I hope the authors of the Rpart documentation don&amp;rsquo;t take it personally but they mention surrogate variables starting on page 11 and they don&amp;rsquo;t properly define what surrogate variables mean until page 18. Maybe it&amp;rsquo;s just me.
+      <description>I hope the authors of the Rpart documentation don’t take it personally but they mention surrogate variables starting on page 11 and they don’t properly define what surrogate variables mean until page 18. Maybe it’s just me.
 Anyway! So here is another response to a previous question: what is a surrogate variable?
-So the Rpart algorithm deals with missing data. The way it does this is when it&amp;rsquo;s doing its thing and determining the next variable and split point and comes across an observation that does not have a that variable, it figures out which variables can act as a replacement for that variable.</description>
+So the Rpart algorithm deals with missing data. The way it does this is when it’s doing its thing and determining the next variable and split point and comes across an observation that does not have a that variable, it figures out which variables can act as a replacement for that variable.</description>
     </item>
     
     <item>
@@ -40,7 +40,7 @@ So the Rpart algorithm deals with missing data. The way it does this is when it&
       <pubDate>Wed, 07 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/note/choosing-the-best-tree/</guid>
-      <description>According to user Harold Ship in this post, we should pick the tree with that keeps this relationship but has the tallest (that&amp;rsquo;s what he means with the lowest level, since each row represents a tree with more splits):
+      <description>According to user Harold Ship in this post, we should pick the tree with that keeps this relationship but has the tallest (that’s what he means with the lowest level, since each row represents a tree with more splits):
 \(rel\&amp;gt;error\) \(+\) \(xstd\) \(&amp;lt;\) \(xerror\)</description>
     </item>
     

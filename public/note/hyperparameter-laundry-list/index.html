@@ -15,9 +15,9 @@
   
     
   
-  <meta name="description" content="Goal&rsquo;s for today&rsquo;s session are:  Get clarity on how to pick the best tree. Make a laundry list of the algorithms hyperparameters.  Goal 1: Get clarity on how to pick the best tree. So far, my confusion stems from the \(1-SE\) (&ldquo;one standard error&rdquo; rule) vs. the \(rel\&gt;error\) \(&#43;\) \(xstd\) \(&lt;\) \(xerror\) rule.
+  <meta name="description" content="Goal’s for today’s session are: Get clarity on how to pick the best tree. Make a laundry list of the algorithms hyperparameters.  Goal 1: Get clarity on how to pick the best tree. So far, my confusion stems from the \(1-SE\) (“one standard error” rule) vs. the \(rel\&gt;error\) \(&#43;\) \(xstd\) \(&lt;\) \(xerror\) rule.
 These two threads have helped me understand WHY they are the same:
- What&rsquo;s the deal with this whole 1-SE rule.">
+ What’s the deal with this whole 1-SE rule.">
 
   
   <link rel="alternate" hreflang="en-us" href="/note/hyperparameter-laundry-list/">
@@ -112,9 +112,9 @@ These two threads have helped me understand WHY they are the same:
   <meta property="og:site_name" content="Ángela Castillo-Gill">
   <meta property="og:url" content="/note/hyperparameter-laundry-list/">
   <meta property="og:title" content="Hyperparameter laundry list | Ángela Castillo-Gill">
-  <meta property="og:description" content="Goal&rsquo;s for today&rsquo;s session are:  Get clarity on how to pick the best tree. Make a laundry list of the algorithms hyperparameters.  Goal 1: Get clarity on how to pick the best tree. So far, my confusion stems from the \(1-SE\) (&ldquo;one standard error&rdquo; rule) vs. the \(rel\&gt;error\) \(&#43;\) \(xstd\) \(&lt;\) \(xerror\) rule.
+  <meta property="og:description" content="Goal’s for today’s session are: Get clarity on how to pick the best tree. Make a laundry list of the algorithms hyperparameters.  Goal 1: Get clarity on how to pick the best tree. So far, my confusion stems from the \(1-SE\) (“one standard error” rule) vs. the \(rel\&gt;error\) \(&#43;\) \(xstd\) \(&lt;\) \(xerror\) rule.
 These two threads have helped me understand WHY they are the same:
- What&rsquo;s the deal with this whole 1-SE rule.">
+ What’s the deal with this whole 1-SE rule.">
   
   
     
@@ -422,69 +422,55 @@ These two threads have helped me understand WHY they are the same:
     <div class="article-style" itemprop="articleBody">
       
 
-<h1 id="goal-s-for-today-s-session-are">Goal&rsquo;s for today&rsquo;s session are:</h1>
 
-<ol>
+<div id="goals-for-todays-session-are" class="section level1">
+<h1>Goal’s for today’s session are:</h1>
+<ol style="list-style-type: decimal">
 <li>Get clarity on how to pick the best tree.</li>
 <li>Make a laundry list of the algorithms hyperparameters.</li>
 </ol>
-
-<h2 id="goal-1-get-clarity-on-how-to-pick-the-best-tree">Goal 1: Get clarity on how to pick the best tree.</h2>
-
-<p>So far, my confusion stems from the <code>\(1-SE\)</code> (&ldquo;one standard error&rdquo; rule) vs. the <code>\(rel\&gt;error\)</code> <code>\(+\)</code> <code>\(xstd\)</code> <code>\(&lt;\)</code> <code>\(xerror\)</code> rule.</p>
-
+<div id="goal-1-get-clarity-on-how-to-pick-the-best-tree." class="section level2">
+<h2>Goal 1: Get clarity on how to pick the best tree.</h2>
+<p>So far, my confusion stems from the <span class="math inline">\(1-SE\)</span> (“one standard error” rule) vs. the <span class="math inline">\(rel\&gt;error\)</span> <span class="math inline">\(+\)</span> <span class="math inline">\(xstd\)</span> <span class="math inline">\(&lt;\)</span> <span class="math inline">\(xerror\)</span> rule.</p>
 <p>These two threads have helped me understand WHY they are the same:</p>
-
 <ul>
-<li><a href="https://stats.stackexchange.com/questions/138569/why-is-lambda-within-one-standard-error-from-the-minimum-is-a-recommended-valu" target="_blank">What&rsquo;s the deal with this whole 1-SE rule.</a></li>
-<li><a href="https://stats.stackexchange.com/questions/13471/how-to-choose-the-number-of-splits-in-rpart" target="_blank">Applying the 1-SE rule.</a></li>
+<li><a href="https://stats.stackexchange.com/questions/138569/why-is-lambda-within-one-standard-error-from-the-minimum-is-a-recommended-valu">What’s the deal with this whole 1-SE rule.</a></li>
+<li><a href="https://stats.stackexchange.com/questions/13471/how-to-choose-the-number-of-splits-in-rpart">Applying the 1-SE rule.</a></li>
 </ul>
-
-<p>So first of all, I didn&rsquo;t even understand <code>\(1-SE\)</code> when I read it in the Rpart documentation. What does it mean? I kept searching substracting <code>\(SE\)</code> (which in the <code>cptable</code> appears as <code>xstd</code>) from 1 to see if I could get any number that vaguely resembled the ones that appeared in the table.</p>
-
+<p>So first of all, I didn’t even understand <span class="math inline">\(1-SE\)</span> when I read it in the Rpart documentation. What does it mean? I kept searching substracting <span class="math inline">\(SE\)</span> (which in the <code>cptable</code> appears as <code>xstd</code>) from 1 to see if I could get any number that vaguely resembled the ones that appeared in the table.</p>
 <p>Now all is clear. I think. Let me try to explain in my own words:</p>
-
-<p>The <code>\(1-SE\)</code> rule refers to picking the &ldquo;best&rdquo; (defined as the one with lowest cross-validated error <code>xerror</code>) or the smallest (least splits) within one standard error <code>xstd</code> of the best tree.</p>
-
-<p>Let&rsquo;s go back to the example I couldn&rsquo;t understand in <a href="https://acastillogill.com/note/surrogate-who/" target="_blank">this entry</a> and try to figure out why they picked the tree they do.</p>
-
-<p>Here&rsquo;s the table again:</p>
-
-<p><img src="/note/Mon-12-11-2018_files/cptable.png" alt="CP table on page 16 from the Rpart documentation." /></p>
-
-<p>The &ldquo;best&rdquo; tree appears in row 11 since it has the smallest <code>xerror</code>, 0.36667.
-Let&rsquo;s look at which trees are within one standard error <code>xstd</code> of the best tree.</p>
-
-<p><code>\(0.36667+0.03694=0.4036\)</code></p>
-
+<p>The <span class="math inline">\(1-SE\)</span> rule refers to picking the “best” (defined as the one with lowest cross-validated error <code>xerror</code>) or the smallest (least splits) within one standard error <code>xstd</code> of the best tree.</p>
+<p>Let’s go back to the example I couldn’t understand in <a href="https://acastillogill.com/note/surrogate-who/">this entry</a> and try to figure out why they picked the tree they do.</p>
+<p>Here’s the table again:</p>
+<div class="figure">
+<img src="/note/Mon-12-11-2018_files/cptable.png" alt="CP table on page 16 from the Rpart documentation." />
+<p class="caption">CP table on page 16 from the Rpart documentation.</p>
+</div>
+<p>The “best” tree appears in row 11 since it has the smallest <code>xerror</code>, 0.36667.
+Let’s look at which trees are within one standard error <code>xstd</code> of the best tree.</p>
+<p><span class="math inline">\(0.36667+0.03694=0.4036\)</span></p>
 <p>Which smaller tree has <code>xerror</code> less than 0.4036? The tree on row 9 with <code>xerror</code>= 0.3944.</p>
-
 <p>Aha! Mystery solved on why the tree with 9 splits was the best.</p>
-
-<p>Now, regarding the <code>\(rel\&gt;error\)</code> <code>\(+\)</code> <code>\(xstd\)</code> <code>\(&lt;\)</code> <code>\(xerror\)</code>, on the <a href="https://stackoverflow.com/questions/29197213/what-is-the-difference-between-rel-error-and-x-error-in-a-rpart-decision-tree" target="_blank">same thread</a> where I found that rule, I found another comment saying that <code>\(rel\&gt;error\)</code> should not be used for pruning and cited this rule:</p>
-
-<p><code>\(xerror &lt; min(xerror) + xstd\)</code></p>
-
-<p>Which is the <code>\(1-SE\)</code> which apparently is much quoted and standard. For now I will stick to that one.</p>
-
+<p>Now, regarding the <span class="math inline">\(rel\&gt;error\)</span> <span class="math inline">\(+\)</span> <span class="math inline">\(xstd\)</span> <span class="math inline">\(&lt;\)</span> <span class="math inline">\(xerror\)</span>, on the <a href="https://stackoverflow.com/questions/29197213/what-is-the-difference-between-rel-error-and-x-error-in-a-rpart-decision-tree">same thread</a> where I found that rule, I found another comment saying that <span class="math inline">\(rel\&gt;error\)</span> should not be used for pruning and cited this rule:</p>
+<p><span class="math inline">\(xerror &lt; min(xerror) + xstd\)</span></p>
+<p>Which is the <span class="math inline">\(1-SE\)</span> which apparently is much quoted and standard. For now I will stick to that one.</p>
 <p>As a final quick note on the <code>rpart</code> documentation, I think it included a lot of terms that were not all defined within and expected some minimum statistical understanding from the reader. Just saying.</p>
-
-<h2 id="goal-2-make-a-laundry-list-of-the-algorithms-hyperparameters">Goal 2: Make a laundry list of the algorithms hyperparameters.</h2>
-
-<p>So, as explained on the helpful DataFramed course I took on Machine Learning with Trees, hyperparameters are like knobs to tune the tree. That explanation intuitive enough for me to recall and understand what they are so I&rsquo;ll leave at that for today.</p>
-
-<p>Now, with <code>?rpart.control</code>, let&rsquo;s check what they are. Since the dataset I&rsquo;ll use to try out this algorithm does not have missing values, I will not include surrogate-related hyperparameters.</p>
-
+</div>
+<div id="goal-2-make-a-laundry-list-of-the-algorithms-hyperparameters." class="section level2">
+<h2>Goal 2: Make a laundry list of the algorithms hyperparameters.</h2>
+<p>So, as explained on the helpful DataFramed course I took on Machine Learning with Trees, hyperparameters are like knobs to tune the tree. That explanation intuitive enough for me to recall and understand what they are so I’ll leave at that for today.</p>
+<p>Now, with <code>?rpart.control</code>, let’s check what they are. Since the dataset I’ll use to try out this algorithm does not have missing values, I will not include surrogate-related hyperparameters.</p>
 <ul>
-<li><code>minsplit</code>: &ldquo;The minimum number of observations that must exist in a node in order for a split to be attempted.&rdquo;</li>
-<li><code>minbucket</code>: &ldquo;The minimum number of observations in any terminal <leaf> node. If only one of minbucket or minsplit is specified, the code either sets <code>minsplit</code> to <code>minbucket</code>*3 or <code>minbucket</code> to `minsplit/3, as appropriate.&rdquo;</li>
-<li><code>cp</code>: Complexity parameter. &ldquo;Any split that does not decrease the overall lack of fit by a factor of <code>cp</code> is not attempted. In anova, the overall R-squared must increase by <code>cp</code> at each step. Essentially, the user informs the program that any split which does not improve the fit by <code>cp</code> will likely be pruned off by cross-validation.&rdquo; Interesting. Keen to see this in practice.</li>
+<li><code>minsplit</code>: “The minimum number of observations that must exist in a node in order for a split to be attempted.”</li>
+<li><code>minbucket</code>: &quot;The minimum number of observations in any terminal <leaf> node. If only one of minbucket or minsplit is specified, the code either sets <code>minsplit</code> to <code>minbucket</code>*3 or <code>minbucket</code> to `minsplit/3, as appropriate.&quot;</li>
+<li><code>cp</code>: Complexity parameter. “Any split that does not decrease the overall lack of fit by a factor of <code>cp</code> is not attempted. In anova, the overall R-squared must increase by <code>cp</code> at each step. Essentially, the user informs the program that any split which does not improve the fit by <code>cp</code> will likely be pruned off by cross-validation.” Interesting. Keen to see this in practice.</li>
 <li><code>maxcompete</code>: The number of competing splits in the output, this serves to know what variable came in second, third, for the chosen split.</li>
 <li><code>xval</code>: Number of cross-validations.</li>
-<li><code>maxdepth</code>: The maximum depth of the final tree with the root node being 0 and max=30. This means&hellip; 29 splits, right? I think so since there is always 1+<code>nsplits</code> nodes.</li>
+<li><code>maxdepth</code>: The maximum depth of the final tree with the root node being 0 and max=30. This means… 29 splits, right? I think so since there is always 1+<code>nsplits</code> nodes.</li>
 </ul>
-
 <p>OK. So the goals for the day have been reached. Tomorrow I will do some variable bining and explain why, after that I think I am ready to apply the final iteration of the <code>rpart</code> algorithm, interpret the results, and publish the post.</p>
+</div>
+</div>
 
     </div>
 
@@ -617,11 +603,11 @@ Let&rsquo;s look at which trees are within one standard error <code>xstd</code> 
         
         <li><a href="/note/choosing-the-best-tree/">Choosing the best tree</a></li>
         
-        <li><a href="/note/objectives-key-results-tasks/">Objectives, key results, tasks</a></li>
-        
         <li><a href="/note/understanding-output-tables/">Understanding output tables</a></li>
         
         <li><a href="/note/memorising-tip/">Memorising tip</a></li>
+        
+        <li><a href="/note/pre-processing-to-what-extent/">Pre-processing to what extent?</a></li>
         
       </ul>
     </div>
@@ -738,7 +724,7 @@ Let&rsquo;s look at which trees are within one standard error <code>xstd</code> 
     
     
     
-    <script src="/js/mathjax-config.c398fe0d309916d001585e64784f7d708d13ffb9b7141ea0e0a74787c27fbb092ae3c54f18c2a1de9b362819804d1eb11c6a1f7fbecfb0a6388e00b50ff5db50.js" integrity="sha512-w5j&#43;DTCZFtABWF5keE99cI0T/7m3FB6g4KdHh8J/uwkq48VPGMKh3ps2KBmATR6xHGoff77PsKY4jgC1D/XbUA=="></script>
+    <script src="/js/mathjax-config.c712bc2e0e4103caa3d2832ad42c817052567e1964a90005457344d5699157acf2c57e910a7b1b13bb9e6e3b2e5c4ba483e070aeb95a37131d7f7e17184ffe8a.js" integrity="sha512-xxK8Lg5BA8qj0oMq1CyBcFJWfhlkqQAFRXNE1WmRV6zyxX6RCnsbE7uebjsuXEukg&#43;BwrrlaNxMdf34XGE/&#43;ig=="></script>
     
 
     

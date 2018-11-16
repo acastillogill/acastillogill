@@ -414,38 +414,33 @@
 
 
     <div class="article-style" itemprop="articleBody">
-      <p>I&rsquo;ve been able to answer quite a few of the questions that I asked before. For example, I don&rsquo;t have to remove outliers because the algorithm is robust to outliers. No centering and scaling needs to be done to the variables. I can leave factors as factors, but the issue with with a lot of levels is that the tree can get quite wide which reduces its interpretability, which is after all, one of the advantages of using binary trees.
-I&rsquo;ve also answered what constitutes an improvemment in the branch-splitting algorithm, which is finding a variable that can produce the most homogenous subgroups after a split.</p>
+      
 
+
+<p>I’ve been able to answer quite a few of the questions that I asked before. For example, I don’t have to remove outliers because the algorithm is robust to outliers. No centering and scaling needs to be done to the variables. I can leave factors as factors, but the issue with with a lot of levels is that the tree can get quite wide which reduces its interpretability, which is after all, one of the advantages of using binary trees.
+I’ve also answered what constitutes an improvemment in the branch-splitting algorithm, which is finding a variable that can produce the most homogenous subgroups after a split.</p>
 <p>The <code>rpart</code> function has several hyperparameters I would like to really understand before I modify the variables.
-Today I set out to understand these hyperparameters but instead got caught up understanding the, &ldquo;five additional ingredients&rdquo; that need be specified to &ldquo;generalise &ldquo;extend&rdquo; the algorithm.
+Today I set out to understand these hyperparameters but instead got caught up understanding the, “five additional ingredients” that need be specified to “generalise”extend&quot; the algorithm.
 These are:</p>
-
-<p>a. Splitting criterion, in ANOVA, this is maximising the between-groups sum-of-squares in a simple analysis of variance.</p>
-
-<p><code>\(SS_T-(SS_L+SS_R)\)</code></p>
-
-<p>Where <code>\(SS_T\)</code> is the sum of squares for the node; <code>\(SS_L\)</code> is the sum of squares for the left son; and <code>\(SS_R\)</code> is the sum of squares for the right son.</p>
-
-<p>b. A summary statistic or vector to describe a node. The first element is considered to be the fitted value. For ANOVA or regression, this the mean of the node.</p>
-
-<p>c. Error of the node: Variance of <code>\(Y\)</code> for ANOVA.</p>
-
-<p>d. The prediction error for a new observation, assigned to the node ($y_{new}-\bar{y}$).</p>
-
-<p>e. Any initalisation parameter.</p>
-
+<ol style="list-style-type: lower-alpha">
+<li>Splitting criterion, in ANOVA, this is maximising the between-groups sum-of-squares in a simple analysis of variance.</li>
+</ol>
+<p><span class="math inline">\(SS_T-(SS_L+SS_R)\)</span></p>
+<p>Where <span class="math inline">\(SS_T\)</span> is the sum of squares for the node; <span class="math inline">\(SS_L\)</span> is the sum of squares for the left son; and <span class="math inline">\(SS_R\)</span> is the sum of squares for the right son.</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><p>A summary statistic or vector to describe a node. The first element is considered to be the fitted value. For ANOVA or regression, this the mean of the node.</p></li>
+<li><p>Error of the node: Variance of <span class="math inline">\(Y\)</span> for ANOVA.</p></li>
+<li><p>The prediction error for a new observation, assigned to the node (<span class="math inline">\(y_{new}-\bar{y}\)</span>).</p></li>
+<li><p>Any initalisation parameter.</p></li>
+</ol>
 <p>I was also trying to understand the output of <code>printcp()</code> which shows the complexity parameter in descending order.</p>
-
 <p>It shows the columns: <code>cp</code>, <code>nsplit</code>, <code>rel error</code>, <code>Xerror</code>, and <code>Xstd</code>.</p>
-
 <ul>
-<li><code>rel error</code>: is defined as <code>\(1-R^2\)</code></li>
-<li><code>Xerror</code>: &ldquo;related to the PRESS statistic&rdquo;. What is the PRESS statistic?</li>
+<li><code>rel error</code>: is defined as <span class="math inline">\(1-R^2\)</span></li>
+<li><code>Xerror</code>: “related to the PRESS statistic”. What is the PRESS statistic?</li>
 <li><code>Xstd</code>: related to the cross validation error.</li>
 </ul>
-
-<p>Also, when reading the <code>rpart</code> documentation, the authors constantly refer to a surrogate split. Which I&rsquo;m having a bit of trouble trying to understand.</p>
+<p>Also, when reading the <code>rpart</code> documentation, the authors constantly refer to a surrogate split. Which I’m having a bit of trouble trying to understand.</p>
 
     </div>
 
@@ -589,7 +584,7 @@ These are:</p>
   
   <div class="post-nav-item">
     <div class="meta-nav">Next</div>
-    <a href="/note/objectives-key-results-tasks/" rel="next">Objectives, key results, tasks</a>
+    <a href="/note/choosing-the-best-tree/" rel="next">Choosing the best tree</a>
   </div>
   
   
@@ -693,7 +688,7 @@ These are:</p>
     
     
     
-    <script src="/js/mathjax-config.c398fe0d309916d001585e64784f7d708d13ffb9b7141ea0e0a74787c27fbb092ae3c54f18c2a1de9b362819804d1eb11c6a1f7fbecfb0a6388e00b50ff5db50.js" integrity="sha512-w5j&#43;DTCZFtABWF5keE99cI0T/7m3FB6g4KdHh8J/uwkq48VPGMKh3ps2KBmATR6xHGoff77PsKY4jgC1D/XbUA=="></script>
+    <script src="/js/mathjax-config.c712bc2e0e4103caa3d2832ad42c817052567e1964a90005457344d5699157acf2c57e910a7b1b13bb9e6e3b2e5c4ba483e070aeb95a37131d7f7e17184ffe8a.js" integrity="sha512-xxK8Lg5BA8qj0oMq1CyBcFJWfhlkqQAFRXNE1WmRV6zyxX6RCnsbE7uebjsuXEukg&#43;BwrrlaNxMdf34XGE/&#43;ig=="></script>
     
 
     
