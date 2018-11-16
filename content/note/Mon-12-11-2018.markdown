@@ -1,0 +1,79 @@
+---
+title: "Hyperparameter laundry list"
+subtitle: "Getting to the bottom of this whole picking the best tree business :sweat_smile:"
+author: Ángela Castillo-Gill
+date: '2018-11-12'
+slug: hyperparameter-laundry-list
+categories:
+  - Journal
+tags: 
+  - Learning
+  - Rpart
+draft: FALSE
+summary: 
+output:
+  blogdown::html_page:
+    toc: false
+    number_sections: false
+  fig_caption: true
+editor_options: 
+  chunk_output_type: console
+---
+
+# Goal's for today's session are:
+
+1. Get clarity on how to pick the best tree. 
+2. Make a laundry list of the algorithms hyperparameters.
+
+## Goal 1: Get clarity on how to pick the best tree.
+
+So far, my confusion stems from the `\(1-SE\)` ("one standard error" rule) vs. the `\(rel\>error\)` `\(+\)` `\(xstd\)` `\(<\)` `\(xerror\)` rule.
+
+These two threads have helped me understand WHY they are the same:
+
+- [What's the deal with this whole 1-SE rule.](https://stats.stackexchange.com/questions/138569/why-is-lambda-within-one-standard-error-from-the-minimum-is-a-recommended-valu)
+- [Applying the 1-SE rule.](https://stats.stackexchange.com/questions/13471/how-to-choose-the-number-of-splits-in-rpart) 
+
+So first of all, I didn't even understand `\(1-SE\)` when I read it in the Rpart documentation. What does it mean? I kept searching substracting `\(SE\)` (which in the `cptable` appears as `xstd`) from 1 to see if I could get any number that vaguely resembled the ones that appeared in the table. 
+
+Now all is clear. I think. Let me try to explain in my own words: 
+
+The `\(1-SE\)` rule refers to picking the "best" (defined as the one with lowest cross-validated error `xerror`) or the smallest (least splits) within one standard error `xstd` of the best tree. 
+
+Let's go back to the example I couldn't understand in [this entry](https://acastillogill.com/note/surrogate-who/) and try to figure out why they picked the tree they do. 
+
+Here's the table again: 
+
+![CP table on page 16 from the Rpart documentation.](/note/Mon-12-11-2018_files/cptable.png)
+
+The "best" tree appears in row 11 since it has the smallest `xerror`, 0.36667.
+Let's look at which trees are within one standard error `xstd` of the best tree.
+
+`\(0.36667+0.03694=0.4036\)`
+
+Which smaller tree has `xerror` less than 0.4036? The tree on row 9 with `xerror`= 0.3944. 
+
+Aha! Mystery solved on why the tree with 9 splits was the best. 
+
+Now, regarding the `\(rel\>error\)` `\(+\)` `\(xstd\)` `\(<\)` `\(xerror\)`, on the [same thread](https://stackoverflow.com/questions/29197213/what-is-the-difference-between-rel-error-and-x-error-in-a-rpart-decision-tree) where I found that rule, I found another comment saying that `\(rel\>error\)` should not be used for pruning and cited this rule:
+
+`\(xerror < min(xerror) + xstd\)`
+
+Which is the `\(1-SE\)` which apparently is much quoted and standard. For now I will stick to that one. 
+
+As a final quick note on the `rpart` documentation, I think it included a lot of terms that were not all defined within and expected some minimum statistical understanding from the reader. Just saying. 
+
+## Goal 2: Make a laundry list of the algorithms hyperparameters.
+
+So, as explained on the helpful DataFramed course I took on Machine Learning with Trees, hyperparameters are like knobs to tune the tree. That explanation intuitive enough for me to recall and understand what they are so I'll leave at that for today. 
+
+Now, with `?rpart.control`, let's check what they are. Since the dataset I'll use to try out this algorithm does not have missing values, I will not include surrogate-related hyperparameters. 
+
+- `minsplit`: "The minimum number of observations that must exist in a node in order for a split to be attempted."
+- `minbucket`: "The minimum number of observations in any terminal <leaf> node. If only one of minbucket or minsplit is specified, the code either sets `minsplit` to `minbucket`*3 or `minbucket` to `minsplit/3, as appropriate."
+- `cp`: Complexity parameter. "Any split that does not decrease the overall lack of fit by a factor of `cp` is not attempted. In anova, the overall R-squared must increase by `cp` at each step. Essentially, the user informs the program that any split which does not improve the fit by `cp` will likely be pruned off by cross-validation." Interesting. Keen to see this in practice. 
+- `maxcompete`: The number of competing splits in the output, this serves to know what variable came in second, third, for the chosen split. 
+- `xval`: Number of cross-validations. 
+- `maxdepth`: The maximum depth of the final tree with the root node being 0 and max=30. This means... 29 splits, right? I think so since there is always 1+`nsplits` nodes. 
+
+OK. So the goals for the day have been reached. Tomorrow I will do some variable bining and explain why, after that I think I am ready to apply the final iteration of the `rpart` algorithm, interpret the results, and publish the post. 

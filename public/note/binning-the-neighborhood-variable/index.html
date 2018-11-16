@@ -15,11 +15,11 @@
   
     
   
-  <meta name="description" content="Goal’s for today’s session are: Understand what information is the neighboorhood variable providing
+  <meta name="description" content="Goal&rsquo;s for today&rsquo;s session are:  Understand what information is the neighboorhood variable providing
  Create a new variable that captures what the variable is providing without so many levels.
-  Goal 1: Understand what information is the neighboorhood variable providing levels(homes$Neighborhood) Shows that the variable has 25 levels. Let’s see the relationship between each level and the response variable SalesPrice.
+  Goal 1: Understand what information is the neighboorhood variable providing levels(homes$Neighborhood)  Shows that the variable has 25 levels. Let&rsquo;s see the relationship between each level and the response variable SalesPrice.
 Plotting the neighboorhood variable shows:
- Goal 2: Create a new variable that captures what the variable is providing without so many levels.">
+Goal 2: Create a new variable that captures what the variable is providing without so many levels.">
 
   
   <link rel="alternate" hreflang="en-us" href="/note/binning-the-neighborhood-variable/">
@@ -114,11 +114,11 @@ Plotting the neighboorhood variable shows:
   <meta property="og:site_name" content="Ángela Castillo-Gill">
   <meta property="og:url" content="/note/binning-the-neighborhood-variable/">
   <meta property="og:title" content="Binning the neighborhood variable | Ángela Castillo-Gill">
-  <meta property="og:description" content="Goal’s for today’s session are: Understand what information is the neighboorhood variable providing
+  <meta property="og:description" content="Goal&rsquo;s for today&rsquo;s session are:  Understand what information is the neighboorhood variable providing
  Create a new variable that captures what the variable is providing without so many levels.
-  Goal 1: Understand what information is the neighboorhood variable providing levels(homes$Neighborhood) Shows that the variable has 25 levels. Let’s see the relationship between each level and the response variable SalesPrice.
+  Goal 1: Understand what information is the neighboorhood variable providing levels(homes$Neighborhood)  Shows that the variable has 25 levels. Let&rsquo;s see the relationship between each level and the response variable SalesPrice.
 Plotting the neighboorhood variable shows:
- Goal 2: Create a new variable that captures what the variable is providing without so many levels.">
+Goal 2: Create a new variable that captures what the variable is providing without so many levels.">
   
   
     
@@ -425,29 +425,36 @@ Plotting the neighboorhood variable shows:
     <div class="article-style" itemprop="articleBody">
       
 
+<h1 id="goal-s-for-today-s-session-are">Goal&rsquo;s for today&rsquo;s session are:</h1>
 
-<div id="goals-for-todays-session-are" class="section level1">
-<h1>Goal’s for today’s session are:</h1>
-<ol style="list-style-type: decimal">
+<ol>
 <li><p>Understand what information is the <code>neighboorhood</code> variable providing</p></li>
+
 <li><p>Create a new variable that captures what the variable is providing without so many levels.</p></li>
 </ol>
-<div id="goal-1-understand-what-information-is-the-neighboorhood-variable-providing" class="section level2">
-<h2>Goal 1: Understand what information is the <code>neighboorhood</code> variable providing</h2>
-<pre class="r"><code>levels(homes$Neighborhood)</code></pre>
-<p>Shows that the variable has 25 levels. Let’s see the relationship between each level and the response variable <code>SalesPrice</code>.</p>
+
+<h2 id="goal-1-understand-what-information-is-the-neighboorhood-variable-providing">Goal 1: Understand what information is the <code>neighboorhood</code> variable providing</h2>
+
+<pre><code class="language-r">levels(homes$Neighborhood)
+</code></pre>
+
+<p>Shows that the variable has 25 levels. Let&rsquo;s see the relationship between each level and the response variable <code>SalesPrice</code>.</p>
+
 <p>Plotting the <code>neighboorhood</code> variable shows:</p>
-<p><img src="/note/Wed-14-11-2018_files/neigh_salesprice.png" /></p>
-</div>
-<div id="goal-2-create-a-new-variable-that-captures-what-the-variable-is-providing-without-so-many-levels." class="section level2">
-<h2>Goal 2: Create a new variable that captures what the variable is providing without so many levels.</h2>
-<p>Let’s say we want to create a variable with four levels, these would be the quantile cuts:</p>
-<pre class="r"><code>    0%    25%    50%    75%   100% 
- 34900 129975 163000 214000 755000 </code></pre>
+
+<p><img src="/note/Wed-14-11-2018_files/neigh_salesprice.png" alt="" /></p>
+
+<h2 id="goal-2-create-a-new-variable-that-captures-what-the-variable-is-providing-without-so-many-levels">Goal 2: Create a new variable that captures what the variable is providing without so many levels.</h2>
+
+<p>Let&rsquo;s say we want to create a variable with four levels, these would be the quantile cuts:</p>
+
+<pre><code class="language-r">    0%    25%    50%    75%   100% 
+ 34900 129975 163000 214000 755000 
+</code></pre>
+
 <p>This shows for example that only very few neighborhoods will be in the last quantile (above <code>$755,000</code>).</p>
+
 <p>Tomorrow I will do the rest cause right now I gotta go.</p>
-</div>
-</div>
 
     </div>
 

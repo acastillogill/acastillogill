@@ -18,21 +18,28 @@
       <guid>/note/binning-the-neighborhood-variable-for-real-now/</guid>
       <description>
 
+&lt;h1 id=&#34;goal-s-for-today-s-session-are&#34;&gt;Goal&amp;rsquo;s for today&amp;rsquo;s session are:&lt;/h1&gt;
 
-&lt;div id=&#34;goals-for-todays-session-are&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Goal’s for today’s session are:&lt;/h1&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;ol&gt;
 &lt;li&gt;Create a new variable that captures what the variable is providing without so many levels.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div id=&#34;goal-1-create-a-new-variable-that-captures-what-the-variable-is-providing-without-so-many-levels.&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Goal 1: Create a new variable that captures what the variable is providing without so many levels.&lt;/h2&gt;
+
+&lt;h2 id=&#34;goal-1-create-a-new-variable-that-captures-what-the-variable-is-providing-without-so-many-levels&#34;&gt;Goal 1: Create a new variable that captures what the variable is providing without so many levels.&lt;/h2&gt;
+
 &lt;p&gt;As we saw yesterday from looking at the quantiles, we have 25 neighborhoods but very few houses are in the most expensive neighborhoods.&lt;/p&gt;
-&lt;p&gt;I’m looking at the plot again and I realise there is something very odd with it. None of the homes costs more than &lt;span class=&#34;math inline&#34;&gt;\(755,000\)&lt;/span&gt; and yet the plot goes up to &lt;span class=&#34;math inline&#34;&gt;\(30,000,000\)&lt;/span&gt;. I realised that I was adding the &lt;code&gt;SalePrice&lt;/code&gt; of individuals homes. Now here is another go with actual average &lt;code&gt;SalePrice&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;homes &amp;lt;- readRDS(&amp;quot;static/data/homes.rds&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/note/Thurs-15-11-2018_files/Mean_sale_price.png&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m looking at the plot again and I realise there is something very odd with it. None of the homes costs more than &lt;code&gt;\(755,000\)&lt;/code&gt; and yet the plot goes up to &lt;code&gt;\(30,000,000\)&lt;/code&gt;. I realised that I was adding the &lt;code&gt;SalePrice&lt;/code&gt; of individuals homes. Now here is another go with actual average &lt;code&gt;SalePrice&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;homes &amp;lt;- readRDS(&amp;quot;static/data/homes.rds&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;/note/Thurs-15-11-2018_files/Mean_sale_price.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
 &lt;p&gt;Much better. Now we can see that &lt;code&gt;NoRidge&lt;/code&gt; has the highest average &lt;code&gt;SalePrice&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Now, let’s look at this again in light of the quantiles,&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;&amp;gt; neigh_quant
+
+&lt;p&gt;Now, let&amp;rsquo;s look at this again in light of the quantiles,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;&amp;gt; neigh_quant
 # A tibble: 5 x 3
   names      x incomes      
   &amp;lt;chr&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;        
@@ -40,21 +47,30 @@
 2 25%   129975 Middle_Lower 
 3 50%   163000 Lower        
 4 75%   214000 Middle_Higher
-5 100%  755000 Higher &lt;/code&gt;&lt;/pre&gt;
+5 100%  755000 Higher 
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;It seems like the top 8 neighborhoods would go into the &lt;code&gt;Higher&lt;/code&gt; bracket and none would go into the lowest.&lt;/p&gt;
-&lt;p&gt;The way that I’m going to bin the neighborhoods is that I will create a variable called &lt;code&gt;Neighboord_type&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;The way that I&amp;rsquo;m going to bin the neighborhoods is that I will create a variable called &lt;code&gt;Neighboord_type&lt;/code&gt;:&lt;/p&gt;
+
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Houses that have neighborhoods with average &lt;code&gt;SalePrice&lt;/code&gt; above &lt;span class=&#34;math inline&#34;&gt;\(200,000\)&lt;/span&gt; will go into the level “Fancy”.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Houses that have neighborhoods with average &lt;code&gt;SalePrice&lt;/code&gt; above &lt;span class=&#34;math inline&#34;&gt;\(150,000\)&lt;/span&gt; and below &lt;span class=&#34;math inline&#34;&gt;\(200,000\)&lt;/span&gt; will go into the level “Somewhat_fancy”.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Houses that have neighborhoods with average &lt;code&gt;SalePrice&lt;/code&gt; above &lt;span class=&#34;math inline&#34;&gt;\(100,000\)&lt;/span&gt; and below &lt;span class=&#34;math inline&#34;&gt;\(150,000\)&lt;/span&gt; will go into the level “Not_fancy”.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;The rest will go into the “OK” level. Because it’s ok if you don’t live in a fancy neighborhood.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Houses that have neighborhoods with average &lt;code&gt;SalePrice&lt;/code&gt; above &lt;code&gt;\(200,000\)&lt;/code&gt; will go into the level &amp;ldquo;Fancy&amp;rdquo;.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Houses that have neighborhoods with average &lt;code&gt;SalePrice&lt;/code&gt; above &lt;code&gt;\(150,000\)&lt;/code&gt; and below &lt;code&gt;\(200,000\)&lt;/code&gt; will go into the level &amp;ldquo;Somewhat_fancy&amp;rdquo;.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Houses that have neighborhoods with average &lt;code&gt;SalePrice&lt;/code&gt; above &lt;code&gt;\(100,000\)&lt;/code&gt; and below &lt;code&gt;\(150,000\)&lt;/code&gt; will go into the level &amp;ldquo;Not_fancy&amp;rdquo;.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;The rest will go into the &amp;ldquo;OK&amp;rdquo; level. Because it&amp;rsquo;s ok if you don&amp;rsquo;t live in a fancy neighborhood.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
 &lt;p&gt;And this is what it looks like:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/note/Thurs-15-11-2018_files/New_var.png&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/note/Thurs-15-11-2018_files/New_var.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
 &lt;p&gt;Job done I would say.&lt;/p&gt;
+
 &lt;p&gt;Tomorrow I will do everything again with this new variable to see if the plot improves.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 </description>
     </item>
     
@@ -66,29 +82,36 @@
       <guid>/note/binning-the-neighborhood-variable/</guid>
       <description>
 
+&lt;h1 id=&#34;goal-s-for-today-s-session-are&#34;&gt;Goal&amp;rsquo;s for today&amp;rsquo;s session are:&lt;/h1&gt;
 
-&lt;div id=&#34;goals-for-todays-session-are&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Goal’s for today’s session are:&lt;/h1&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;Understand what information is the &lt;code&gt;neighboorhood&lt;/code&gt; variable providing&lt;/p&gt;&lt;/li&gt;
+
 &lt;li&gt;&lt;p&gt;Create a new variable that captures what the variable is providing without so many levels.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div id=&#34;goal-1-understand-what-information-is-the-neighboorhood-variable-providing&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Goal 1: Understand what information is the &lt;code&gt;neighboorhood&lt;/code&gt; variable providing&lt;/h2&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;levels(homes$Neighborhood)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Shows that the variable has 25 levels. Let’s see the relationship between each level and the response variable &lt;code&gt;SalesPrice&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;goal-1-understand-what-information-is-the-neighboorhood-variable-providing&#34;&gt;Goal 1: Understand what information is the &lt;code&gt;neighboorhood&lt;/code&gt; variable providing&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;levels(homes$Neighborhood)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Shows that the variable has 25 levels. Let&amp;rsquo;s see the relationship between each level and the response variable &lt;code&gt;SalesPrice&lt;/code&gt;.&lt;/p&gt;
+
 &lt;p&gt;Plotting the &lt;code&gt;neighboorhood&lt;/code&gt; variable shows:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/note/Wed-14-11-2018_files/neigh_salesprice.png&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;goal-2-create-a-new-variable-that-captures-what-the-variable-is-providing-without-so-many-levels.&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Goal 2: Create a new variable that captures what the variable is providing without so many levels.&lt;/h2&gt;
-&lt;p&gt;Let’s say we want to create a variable with four levels, these would be the quantile cuts:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;    0%    25%    50%    75%   100% 
- 34900 129975 163000 214000 755000 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;/note/Wed-14-11-2018_files/neigh_salesprice.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;goal-2-create-a-new-variable-that-captures-what-the-variable-is-providing-without-so-many-levels&#34;&gt;Goal 2: Create a new variable that captures what the variable is providing without so many levels.&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s say we want to create a variable with four levels, these would be the quantile cuts:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;    0%    25%    50%    75%   100% 
+ 34900 129975 163000 214000 755000 
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;This shows for example that only very few neighborhoods will be in the last quantile (above &lt;code&gt;$755,000&lt;/code&gt;).&lt;/p&gt;
+
 &lt;p&gt;Tomorrow I will do the rest cause right now I gotta go.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 </description>
     </item>
     
@@ -177,55 +200,69 @@ homes_model_opt &amp;lt;- prune(tree = homes_model,
       <guid>/note/hyperparameter-laundry-list/</guid>
       <description>
 
+&lt;h1 id=&#34;goal-s-for-today-s-session-are&#34;&gt;Goal&amp;rsquo;s for today&amp;rsquo;s session are:&lt;/h1&gt;
 
-&lt;div id=&#34;goals-for-todays-session-are&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Goal’s for today’s session are:&lt;/h1&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;ol&gt;
 &lt;li&gt;Get clarity on how to pick the best tree.&lt;/li&gt;
 &lt;li&gt;Make a laundry list of the algorithms hyperparameters.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div id=&#34;goal-1-get-clarity-on-how-to-pick-the-best-tree.&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Goal 1: Get clarity on how to pick the best tree.&lt;/h2&gt;
-&lt;p&gt;So far, my confusion stems from the &lt;span class=&#34;math inline&#34;&gt;\(1-SE\)&lt;/span&gt; (“one standard error” rule) vs. the &lt;span class=&#34;math inline&#34;&gt;\(rel\&amp;gt;error\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(+\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xstd\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(&amp;lt;\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xerror\)&lt;/span&gt; rule.&lt;/p&gt;
+
+&lt;h2 id=&#34;goal-1-get-clarity-on-how-to-pick-the-best-tree&#34;&gt;Goal 1: Get clarity on how to pick the best tree.&lt;/h2&gt;
+
+&lt;p&gt;So far, my confusion stems from the &lt;code&gt;\(1-SE\)&lt;/code&gt; (&amp;ldquo;one standard error&amp;rdquo; rule) vs. the &lt;code&gt;\(rel\&amp;gt;error\)&lt;/code&gt; &lt;code&gt;\(+\)&lt;/code&gt; &lt;code&gt;\(xstd\)&lt;/code&gt; &lt;code&gt;\(&amp;lt;\)&lt;/code&gt; &lt;code&gt;\(xerror\)&lt;/code&gt; rule.&lt;/p&gt;
+
 &lt;p&gt;These two threads have helped me understand WHY they are the same:&lt;/p&gt;
+
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://stats.stackexchange.com/questions/138569/why-is-lambda-within-one-standard-error-from-the-minimum-is-a-recommended-valu&#34;&gt;What’s the deal with this whole 1-SE rule.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://stats.stackexchange.com/questions/13471/how-to-choose-the-number-of-splits-in-rpart&#34;&gt;Applying the 1-SE rule.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://stats.stackexchange.com/questions/138569/why-is-lambda-within-one-standard-error-from-the-minimum-is-a-recommended-valu&#34; target=&#34;_blank&#34;&gt;What&amp;rsquo;s the deal with this whole 1-SE rule.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://stats.stackexchange.com/questions/13471/how-to-choose-the-number-of-splits-in-rpart&#34; target=&#34;_blank&#34;&gt;Applying the 1-SE rule.&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;So first of all, I didn’t even understand &lt;span class=&#34;math inline&#34;&gt;\(1-SE\)&lt;/span&gt; when I read it in the Rpart documentation. What does it mean? I kept searching substracting &lt;span class=&#34;math inline&#34;&gt;\(SE\)&lt;/span&gt; (which in the &lt;code&gt;cptable&lt;/code&gt; appears as &lt;code&gt;xstd&lt;/code&gt;) from 1 to see if I could get any number that vaguely resembled the ones that appeared in the table.&lt;/p&gt;
+
+&lt;p&gt;So first of all, I didn&amp;rsquo;t even understand &lt;code&gt;\(1-SE\)&lt;/code&gt; when I read it in the Rpart documentation. What does it mean? I kept searching substracting &lt;code&gt;\(SE\)&lt;/code&gt; (which in the &lt;code&gt;cptable&lt;/code&gt; appears as &lt;code&gt;xstd&lt;/code&gt;) from 1 to see if I could get any number that vaguely resembled the ones that appeared in the table.&lt;/p&gt;
+
 &lt;p&gt;Now all is clear. I think. Let me try to explain in my own words:&lt;/p&gt;
-&lt;p&gt;The &lt;span class=&#34;math inline&#34;&gt;\(1-SE\)&lt;/span&gt; rule refers to picking the “best” (defined as the one with lowest cross-validated error &lt;code&gt;xerror&lt;/code&gt;) or the smallest (least splits) within one standard error &lt;code&gt;xstd&lt;/code&gt; of the best tree.&lt;/p&gt;
-&lt;p&gt;Let’s go back to the example I couldn’t understand in &lt;a href=&#34;https://acastillogill.com/note/surrogate-who/&#34;&gt;this entry&lt;/a&gt; and try to figure out why they picked the tree they do.&lt;/p&gt;
-&lt;p&gt;Here’s the table again:&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;/note/Mon-12-11-2018_files/cptable.png&#34; alt=&#34;CP table on page 16 from the Rpart documentation.&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;CP table on page 16 from the Rpart documentation.&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;The “best” tree appears in row 11 since it has the smallest &lt;code&gt;xerror&lt;/code&gt;, 0.36667.
-Let’s look at which trees are within one standard error &lt;code&gt;xstd&lt;/code&gt; of the best tree.&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(0.36667+0.03694=0.4036\)&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;\(1-SE\)&lt;/code&gt; rule refers to picking the &amp;ldquo;best&amp;rdquo; (defined as the one with lowest cross-validated error &lt;code&gt;xerror&lt;/code&gt;) or the smallest (least splits) within one standard error &lt;code&gt;xstd&lt;/code&gt; of the best tree.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s go back to the example I couldn&amp;rsquo;t understand in &lt;a href=&#34;https://acastillogill.com/note/surrogate-who/&#34; target=&#34;_blank&#34;&gt;this entry&lt;/a&gt; and try to figure out why they picked the tree they do.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s the table again:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/note/Mon-12-11-2018_files/cptable.png&#34; alt=&#34;CP table on page 16 from the Rpart documentation.&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The &amp;ldquo;best&amp;rdquo; tree appears in row 11 since it has the smallest &lt;code&gt;xerror&lt;/code&gt;, 0.36667.
+Let&amp;rsquo;s look at which trees are within one standard error &lt;code&gt;xstd&lt;/code&gt; of the best tree.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;\(0.36667+0.03694=0.4036\)&lt;/code&gt;&lt;/p&gt;
+
 &lt;p&gt;Which smaller tree has &lt;code&gt;xerror&lt;/code&gt; less than 0.4036? The tree on row 9 with &lt;code&gt;xerror&lt;/code&gt;= 0.3944.&lt;/p&gt;
+
 &lt;p&gt;Aha! Mystery solved on why the tree with 9 splits was the best.&lt;/p&gt;
-&lt;p&gt;Now, regarding the &lt;span class=&#34;math inline&#34;&gt;\(rel\&amp;gt;error\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(+\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xstd\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(&amp;lt;\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xerror\)&lt;/span&gt;, on the &lt;a href=&#34;https://stackoverflow.com/questions/29197213/what-is-the-difference-between-rel-error-and-x-error-in-a-rpart-decision-tree&#34;&gt;same thread&lt;/a&gt; where I found that rule, I found another comment saying that &lt;span class=&#34;math inline&#34;&gt;\(rel\&amp;gt;error\)&lt;/span&gt; should not be used for pruning and cited this rule:&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(xerror &amp;lt; min(xerror) + xstd\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Which is the &lt;span class=&#34;math inline&#34;&gt;\(1-SE\)&lt;/span&gt; which apparently is much quoted and standard. For now I will stick to that one.&lt;/p&gt;
+
+&lt;p&gt;Now, regarding the &lt;code&gt;\(rel\&amp;gt;error\)&lt;/code&gt; &lt;code&gt;\(+\)&lt;/code&gt; &lt;code&gt;\(xstd\)&lt;/code&gt; &lt;code&gt;\(&amp;lt;\)&lt;/code&gt; &lt;code&gt;\(xerror\)&lt;/code&gt;, on the &lt;a href=&#34;https://stackoverflow.com/questions/29197213/what-is-the-difference-between-rel-error-and-x-error-in-a-rpart-decision-tree&#34; target=&#34;_blank&#34;&gt;same thread&lt;/a&gt; where I found that rule, I found another comment saying that &lt;code&gt;\(rel\&amp;gt;error\)&lt;/code&gt; should not be used for pruning and cited this rule:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;\(xerror &amp;lt; min(xerror) + xstd\)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Which is the &lt;code&gt;\(1-SE\)&lt;/code&gt; which apparently is much quoted and standard. For now I will stick to that one.&lt;/p&gt;
+
 &lt;p&gt;As a final quick note on the &lt;code&gt;rpart&lt;/code&gt; documentation, I think it included a lot of terms that were not all defined within and expected some minimum statistical understanding from the reader. Just saying.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;goal-2-make-a-laundry-list-of-the-algorithms-hyperparameters.&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Goal 2: Make a laundry list of the algorithms hyperparameters.&lt;/h2&gt;
-&lt;p&gt;So, as explained on the helpful DataFramed course I took on Machine Learning with Trees, hyperparameters are like knobs to tune the tree. That explanation intuitive enough for me to recall and understand what they are so I’ll leave at that for today.&lt;/p&gt;
-&lt;p&gt;Now, with &lt;code&gt;?rpart.control&lt;/code&gt;, let’s check what they are. Since the dataset I’ll use to try out this algorithm does not have missing values, I will not include surrogate-related hyperparameters.&lt;/p&gt;
+
+&lt;h2 id=&#34;goal-2-make-a-laundry-list-of-the-algorithms-hyperparameters&#34;&gt;Goal 2: Make a laundry list of the algorithms hyperparameters.&lt;/h2&gt;
+
+&lt;p&gt;So, as explained on the helpful DataFramed course I took on Machine Learning with Trees, hyperparameters are like knobs to tune the tree. That explanation intuitive enough for me to recall and understand what they are so I&amp;rsquo;ll leave at that for today.&lt;/p&gt;
+
+&lt;p&gt;Now, with &lt;code&gt;?rpart.control&lt;/code&gt;, let&amp;rsquo;s check what they are. Since the dataset I&amp;rsquo;ll use to try out this algorithm does not have missing values, I will not include surrogate-related hyperparameters.&lt;/p&gt;
+
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;minsplit&lt;/code&gt;: “The minimum number of observations that must exist in a node in order for a split to be attempted.”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;minbucket&lt;/code&gt;: &amp;quot;The minimum number of observations in any terminal &lt;leaf&gt; node. If only one of minbucket or minsplit is specified, the code either sets &lt;code&gt;minsplit&lt;/code&gt; to &lt;code&gt;minbucket&lt;/code&gt;*3 or &lt;code&gt;minbucket&lt;/code&gt; to `minsplit/3, as appropriate.&amp;quot;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;cp&lt;/code&gt;: Complexity parameter. “Any split that does not decrease the overall lack of fit by a factor of &lt;code&gt;cp&lt;/code&gt; is not attempted. In anova, the overall R-squared must increase by &lt;code&gt;cp&lt;/code&gt; at each step. Essentially, the user informs the program that any split which does not improve the fit by &lt;code&gt;cp&lt;/code&gt; will likely be pruned off by cross-validation.” Interesting. Keen to see this in practice.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;minsplit&lt;/code&gt;: &amp;ldquo;The minimum number of observations that must exist in a node in order for a split to be attempted.&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;minbucket&lt;/code&gt;: &amp;ldquo;The minimum number of observations in any terminal &lt;leaf&gt; node. If only one of minbucket or minsplit is specified, the code either sets &lt;code&gt;minsplit&lt;/code&gt; to &lt;code&gt;minbucket&lt;/code&gt;*3 or &lt;code&gt;minbucket&lt;/code&gt; to `minsplit/3, as appropriate.&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cp&lt;/code&gt;: Complexity parameter. &amp;ldquo;Any split that does not decrease the overall lack of fit by a factor of &lt;code&gt;cp&lt;/code&gt; is not attempted. In anova, the overall R-squared must increase by &lt;code&gt;cp&lt;/code&gt; at each step. Essentially, the user informs the program that any split which does not improve the fit by &lt;code&gt;cp&lt;/code&gt; will likely be pruned off by cross-validation.&amp;rdquo; Interesting. Keen to see this in practice.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;maxcompete&lt;/code&gt;: The number of competing splits in the output, this serves to know what variable came in second, third, for the chosen split.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;xval&lt;/code&gt;: Number of cross-validations.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;maxdepth&lt;/code&gt;: The maximum depth of the final tree with the root node being 0 and max=30. This means… 29 splits, right? I think so since there is always 1+&lt;code&gt;nsplits&lt;/code&gt; nodes.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;maxdepth&lt;/code&gt;: The maximum depth of the final tree with the root node being 0 and max=30. This means&amp;hellip; 29 splits, right? I think so since there is always 1+&lt;code&gt;nsplits&lt;/code&gt; nodes.&lt;/li&gt;
 &lt;/ul&gt;
+
 &lt;p&gt;OK. So the goals for the day have been reached. Tomorrow I will do some variable bining and explain why, after that I think I am ready to apply the final iteration of the &lt;code&gt;rpart&lt;/code&gt; algorithm, interpret the results, and publish the post.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 </description>
     </item>
     
@@ -235,22 +272,25 @@ Let’s look at which trees are within one standard error &lt;code&gt;xstd&lt;/c
       <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/note/surrogate-who/</guid>
-      <description>
+      <description>&lt;p&gt;I hope the authors of the &lt;code&gt;Rpart&lt;/code&gt; documentation don&amp;rsquo;t take it personally but they mention surrogate variables starting on page 11 and they don&amp;rsquo;t properly define what surrogate variables mean until page 18. Maybe it&amp;rsquo;s just me.&lt;/p&gt;
 
-
-&lt;p&gt;I hope the authors of the &lt;code&gt;Rpart&lt;/code&gt; documentation don’t take it personally but they mention surrogate variables starting on page 11 and they don’t properly define what surrogate variables mean until page 18. Maybe it’s just me.&lt;/p&gt;
 &lt;p&gt;Anyway! So here is another response to a previous question: what is a surrogate variable?&lt;/p&gt;
-&lt;p&gt;So the &lt;code&gt;Rpart&lt;/code&gt; algorithm deals with missing data. The way it does this is when it’s doing its thing and determining the next variable and split point and comes across an observation that does not have a that variable, it figures out which variables can act as a replacement for that variable. Surrogate variable mystery solved. N&lt;/p&gt;
-&lt;p&gt;Now I’m having a bit of trouble figuring out if all the rules I’ve read for choosing the best tree are the same. In the DataCamp course we pick the tree that minimises &lt;code&gt;xerror&lt;/code&gt;. Yesterday I posted this rule I found on Cross Validated:&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(rel\&amp;gt;error\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(+\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xstd\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(&amp;lt;\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xerror\)&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;So the &lt;code&gt;Rpart&lt;/code&gt; algorithm deals with missing data. The way it does this is when it&amp;rsquo;s doing its thing and determining the next variable and split point and comes across an observation that does not have a that variable, it figures out which variables can act as a replacement for that variable. Surrogate variable mystery solved. N&lt;/p&gt;
+
+&lt;p&gt;Now I&amp;rsquo;m having a bit of trouble figuring out if all the rules I&amp;rsquo;ve read for choosing the best tree are the same. In the DataCamp course we pick the tree that minimises &lt;code&gt;xerror&lt;/code&gt;. Yesterday I posted this rule I found on Cross Validated:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;\(rel\&amp;gt;error\)&lt;/code&gt; &lt;code&gt;\(+\)&lt;/code&gt; &lt;code&gt;\(xstd\)&lt;/code&gt; &lt;code&gt;\(&amp;lt;\)&lt;/code&gt; &lt;code&gt;\(xerror\)&lt;/code&gt;&lt;/p&gt;
+
 &lt;p&gt;In the documentation this is a rule:&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(1-SE\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;In my next post I’m going to get to the bottom of this. I’m particularly confused because if we want to minimise the &lt;code&gt;xerror&lt;/code&gt;, why does page 16 of the documentation show a cptable with 27 splits and says: we see that the best tree has 10 terminal nodes, 9 splits, based on cross-validation. It has &lt;code&gt;xerror&lt;/code&gt; 0.3944.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;/post/Thurs-08-11-2018_files/cptable.png&#34; alt=&#34;CP table on page 16 from the Rpart documentation.&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;CP table on page 16 from the Rpart documentation.&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;Doesn’t the tree with 11 splits and 12 nodes have the first smallest error with 0.36667?&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;\(1-SE\)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;In my next post I&amp;rsquo;m going to get to the bottom of this. I&amp;rsquo;m particularly confused because if we want to minimise the &lt;code&gt;xerror&lt;/code&gt;, why does page 16 of the documentation show a cptable with 27 splits and says: we see that the best tree has 10 terminal nodes, 9 splits, based on cross-validation. It has &lt;code&gt;xerror&lt;/code&gt; 0.3944.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/post/Thurs-08-11-2018_files/cptable.png&#34; alt=&#34;CP table on page 16 from the Rpart documentation.&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Doesn&amp;rsquo;t the tree with 11 splits and 12 nodes have the first smallest error with 0.36667?&lt;/p&gt;
 </description>
     </item>
     
@@ -260,11 +300,9 @@ Let’s look at which trees are within one standard error &lt;code&gt;xstd&lt;/c
       <pubDate>Wed, 07 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/note/choosing-the-best-tree/</guid>
-      <description>
+      <description>&lt;p&gt;According to user Harold Ship in &lt;a href=&#34;https://stackoverflow.com/questions/29197213/what-is-the-difference-between-rel-error-and-x-error-in-a-rpart-decision-tree&#34; target=&#34;_blank&#34;&gt;this post&lt;/a&gt;, we should pick the tree with that keeps this relationship but has the tallest (that&amp;rsquo;s what he means with the lowest level, since each row represents a tree with more splits):&lt;/p&gt;
 
-
-&lt;p&gt;According to user Harold Ship in &lt;a href=&#34;https://stackoverflow.com/questions/29197213/what-is-the-difference-between-rel-error-and-x-error-in-a-rpart-decision-tree&#34;&gt;this post&lt;/a&gt;, we should pick the tree with that keeps this relationship but has the tallest (that’s what he means with the lowest level, since each row represents a tree with more splits):&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(rel\&amp;gt;error\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(+\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xstd\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(&amp;lt;\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xerror\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;\(rel\&amp;gt;error\)&lt;/code&gt; &lt;code&gt;\(+\)&lt;/code&gt; &lt;code&gt;\(xstd\)&lt;/code&gt; &lt;code&gt;\(&amp;lt;\)&lt;/code&gt; &lt;code&gt;\(xerror\)&lt;/code&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -274,20 +312,21 @@ Let’s look at which trees are within one standard error &lt;code&gt;xstd&lt;/c
       <pubDate>Tue, 06 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/note/objectives-key-results-tasks/</guid>
-      <description>
+      <description>&lt;p&gt;Yesterday I went to a talk by a woman that worked at Facebook helping startups scale. One of slides was about prioritisation at Facebook. It was something like &lt;a href=&#34;https://www.scrumdesk.com/wp-content/uploads/okr-1.png&#34; target=&#34;_blank&#34;&gt;this&lt;/a&gt;:&lt;/p&gt;
 
+&lt;p&gt;&lt;img src=&#34;/post/Tues-06-11-2018_files/okrs.png&#34; alt=&#34;Mission &amp;amp; vission, objectives, key results, and tasks.&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Yesterday I went to a talk by a woman that worked at Facebook helping startups scale. One of slides was about prioritisation at Facebook. It was something like &lt;a href=&#34;https://www.scrumdesk.com/wp-content/uploads/okr-1.png&#34;&gt;this&lt;/a&gt;:&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;/post/Tues-06-11-2018_files/okrs.png&#34; alt=&#34;Mission &amp;amp; vission, objectives, key results, and tasks.&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;Mission &amp;amp; vission, objectives, key results, and tasks.&lt;/p&gt;
-&lt;/div&gt;
 &lt;p&gt;So today we continue trying to understand all the &lt;code&gt;rpart()&lt;/code&gt; function and algorithm.&lt;/p&gt;
-&lt;p&gt;In response to one of yesterday’s questions, the PRESS statistic is the predicted residual error sum of squares:&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\sum_{i=1}^{n} (y_i-\hat{y}_{i,-i})^2\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;According to trusty &lt;a href=&#34;https://en.wikipedia.org/wiki/PRESS_statistic&#34;&gt;Wikipedia&lt;/a&gt;, the PRESS statistic is a form of cross validation derived from comparing the model’s predictions vs. actual values on a dataset that was not used for fitting the model.&lt;/p&gt;
+
+&lt;p&gt;In response to one of yesterday&amp;rsquo;s questions, the PRESS statistic is the predicted residual error sum of squares:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;\(\sum_{i=1}^{n} (y_i-\hat{y}_{i,-i})^2\)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;According to trusty &lt;a href=&#34;https://en.wikipedia.org/wiki/PRESS_statistic&#34; target=&#34;_blank&#34;&gt;Wikipedia&lt;/a&gt;, the PRESS statistic is a form of cross validation derived from comparing the model&amp;rsquo;s predictions vs. actual values on a dataset that was not used for fitting the model.&lt;/p&gt;
+
 &lt;p&gt;A model that is overfitted would give small residuals using the observations with which the model was fitted and larger residuals with observations that were not used to fit the model. This makes sense.&lt;/p&gt;
-&lt;p&gt;Now that I understand the PRESS statistic which is called &lt;code&gt;xerror&lt;/code&gt; in the &lt;code&gt;rpart&lt;/code&gt; output table. I still didn’t understand the &lt;code&gt;xstd&lt;/code&gt;. I assumed it was the standard deviation of the &lt;code&gt;xerror&lt;/code&gt; but after some manual attempts at calculating &lt;code&gt;xstd&lt;/code&gt; based on &lt;code&gt;xerror&lt;/code&gt; and having no luck. I took to Cross Validated to sort me out. According to user bearoak on &lt;a href=&#34;https://stats.stackexchange.com/questions/92547/r-rpart-cross-validation-and-1-se-rule-why-is-the-column-in-cptable-called-xst&#34;&gt;this thread&lt;/a&gt;, it is not the standard deviation as one would think because of the &lt;code&gt;std&lt;/code&gt; bit of &lt;code&gt;xstd&lt;/code&gt;, but it is actually the standard error which is the standard deviation divided by the number of observations.&lt;/p&gt;
+
+&lt;p&gt;Now that I understand the PRESS statistic which is called &lt;code&gt;xerror&lt;/code&gt; in the &lt;code&gt;rpart&lt;/code&gt; output table. I still didn&amp;rsquo;t understand the &lt;code&gt;xstd&lt;/code&gt;. I assumed it was the standard deviation of the &lt;code&gt;xerror&lt;/code&gt; but after some manual attempts at calculating &lt;code&gt;xstd&lt;/code&gt; based on &lt;code&gt;xerror&lt;/code&gt; and having no luck. I took to Cross Validated to sort me out. According to user bearoak on &lt;a href=&#34;https://stats.stackexchange.com/questions/92547/r-rpart-cross-validation-and-1-se-rule-why-is-the-column-in-cptable-called-xst&#34; target=&#34;_blank&#34;&gt;this thread&lt;/a&gt;, it is not the standard deviation as one would think because of the &lt;code&gt;std&lt;/code&gt; bit of &lt;code&gt;xstd&lt;/code&gt;, but it is actually the standard error which is the standard deviation divided by the number of observations.&lt;/p&gt;
 </description>
     </item>
     
@@ -297,33 +336,38 @@ Let’s look at which trees are within one standard error &lt;code&gt;xstd&lt;/c
       <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/note/understanding-output-tables/</guid>
-      <description>
+      <description>&lt;p&gt;I&amp;rsquo;ve been able to answer quite a few of the questions that I asked before. For example, I don&amp;rsquo;t have to remove outliers because the algorithm is robust to outliers. No centering and scaling needs to be done to the variables. I can leave factors as factors, but the issue with with a lot of levels is that the tree can get quite wide which reduces its interpretability, which is after all, one of the advantages of using binary trees.
+I&amp;rsquo;ve also answered what constitutes an improvemment in the branch-splitting algorithm, which is finding a variable that can produce the most homogenous subgroups after a split.&lt;/p&gt;
 
-
-&lt;p&gt;I’ve been able to answer quite a few of the questions that I asked before. For example, I don’t have to remove outliers because the algorithm is robust to outliers. No centering and scaling needs to be done to the variables. I can leave factors as factors, but the issue with with a lot of levels is that the tree can get quite wide which reduces its interpretability, which is after all, one of the advantages of using binary trees.
-I’ve also answered what constitutes an improvemment in the branch-splitting algorithm, which is finding a variable that can produce the most homogenous subgroups after a split.&lt;/p&gt;
 &lt;p&gt;The &lt;code&gt;rpart&lt;/code&gt; function has several hyperparameters I would like to really understand before I modify the variables.
-Today I set out to understand these hyperparameters but instead got caught up understanding the, “five additional ingredients” that need be specified to “generalise”extend&amp;quot; the algorithm.
+Today I set out to understand these hyperparameters but instead got caught up understanding the, &amp;ldquo;five additional ingredients&amp;rdquo; that need be specified to &amp;ldquo;generalise &amp;ldquo;extend&amp;rdquo; the algorithm.
 These are:&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
-&lt;li&gt;Splitting criterion, in ANOVA, this is maximising the between-groups sum-of-squares in a simple analysis of variance.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(SS_T-(SS_L+SS_R)\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Where &lt;span class=&#34;math inline&#34;&gt;\(SS_T\)&lt;/span&gt; is the sum of squares for the node; &lt;span class=&#34;math inline&#34;&gt;\(SS_L\)&lt;/span&gt; is the sum of squares for the left son; and &lt;span class=&#34;math inline&#34;&gt;\(SS_R\)&lt;/span&gt; is the sum of squares for the right son.&lt;/p&gt;
-&lt;ol start=&#34;2&#34; style=&#34;list-style-type: lower-alpha&#34;&gt;
-&lt;li&gt;&lt;p&gt;A summary statistic or vector to describe a node. The first element is considered to be the fitted value. For ANOVA or regression, this the mean of the node.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Error of the node: Variance of &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; for ANOVA.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;The prediction error for a new observation, assigned to the node (&lt;span class=&#34;math inline&#34;&gt;\(y_{new}-\bar{y}\)&lt;/span&gt;).&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Any initalisation parameter.&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
+
+&lt;p&gt;a. Splitting criterion, in ANOVA, this is maximising the between-groups sum-of-squares in a simple analysis of variance.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;\(SS_T-(SS_L+SS_R)\)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Where &lt;code&gt;\(SS_T\)&lt;/code&gt; is the sum of squares for the node; &lt;code&gt;\(SS_L\)&lt;/code&gt; is the sum of squares for the left son; and &lt;code&gt;\(SS_R\)&lt;/code&gt; is the sum of squares for the right son.&lt;/p&gt;
+
+&lt;p&gt;b. A summary statistic or vector to describe a node. The first element is considered to be the fitted value. For ANOVA or regression, this the mean of the node.&lt;/p&gt;
+
+&lt;p&gt;c. Error of the node: Variance of &lt;code&gt;\(Y\)&lt;/code&gt; for ANOVA.&lt;/p&gt;
+
+&lt;p&gt;d. The prediction error for a new observation, assigned to the node ($y_{new}-\bar{y}$).&lt;/p&gt;
+
+&lt;p&gt;e. Any initalisation parameter.&lt;/p&gt;
+
 &lt;p&gt;I was also trying to understand the output of &lt;code&gt;printcp()&lt;/code&gt; which shows the complexity parameter in descending order.&lt;/p&gt;
+
 &lt;p&gt;It shows the columns: &lt;code&gt;cp&lt;/code&gt;, &lt;code&gt;nsplit&lt;/code&gt;, &lt;code&gt;rel error&lt;/code&gt;, &lt;code&gt;Xerror&lt;/code&gt;, and &lt;code&gt;Xstd&lt;/code&gt;.&lt;/p&gt;
+
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;rel error&lt;/code&gt;: is defined as &lt;span class=&#34;math inline&#34;&gt;\(1-R^2\)&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Xerror&lt;/code&gt;: “related to the PRESS statistic”. What is the PRESS statistic?&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rel error&lt;/code&gt;: is defined as &lt;code&gt;\(1-R^2\)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Xerror&lt;/code&gt;: &amp;ldquo;related to the PRESS statistic&amp;rdquo;. What is the PRESS statistic?&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Xstd&lt;/code&gt;: related to the cross validation error.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Also, when reading the &lt;code&gt;rpart&lt;/code&gt; documentation, the authors constantly refer to a surrogate split. Which I’m having a bit of trouble trying to understand.&lt;/p&gt;
+
+&lt;p&gt;Also, when reading the &lt;code&gt;rpart&lt;/code&gt; documentation, the authors constantly refer to a surrogate split. Which I&amp;rsquo;m having a bit of trouble trying to understand.&lt;/p&gt;
 </description>
     </item>
     
@@ -333,11 +377,9 @@ These are:&lt;/p&gt;
       <pubDate>Sun, 04 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/note/memorising-tip/</guid>
-      <description>
+      <description>&lt;p&gt;Today I went to a poetry competition and heard a useful tip for memorising a poem, or in my case, speeches. Sometimes when we can&amp;rsquo;t memorise certain part of a text, after trying many times, maybe whatever is written down there, should go on the final version. Memorising can be a tool for editing the final text. When you read the text aloud, it&amp;rsquo;s own cadence and rhythm will point out that that word shouldn&amp;rsquo;t be there.&lt;/p&gt;
 
-
-&lt;p&gt;Today I went to a poetry competition and heard a useful tip for memorising a poem, or in my case, speeches. Sometimes when we can’t memorise certain part of a text, after trying many times, maybe whatever is written down there, should go on the final version. Memorising can be a tool for editing the final text. When you read the text aloud, it’s own cadence and rhythm will point out that that word shouldn’t be there.&lt;/p&gt;
-&lt;p&gt;I’ve joined the local chapter of Toastmasters and this recently happened to me with a speech. There were two lines in the third paragraph that I just couldn’t remember. After trying to memorise them over and over, I realised that actually the bit I was struggling with could have been said in another way. In a way that was more memorable for the audience and that made more sense within the text. Changed it and voila! Same idea expressed differently and it was easy to memorise and it made a bigger impact.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve joined the local chapter of Toastmasters and this recently happened to me with a speech. There were two lines in the third paragraph that I just couldn&amp;rsquo;t remember. After trying to memorise them over and over, I realised that actually the bit I was struggling with could have been said in another way. In a way that was more memorable for the audience and that made more sense within the text. Changed it and voila! Same idea expressed differently and it was easy to memorise and it made a bigger impact.&lt;/p&gt;
 </description>
     </item>
     
@@ -347,18 +389,18 @@ These are:&lt;/p&gt;
       <pubDate>Sat, 03 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/note/pre-processing-to-what-extent/</guid>
-      <description>
+      <description>&lt;p&gt;The goal of today&amp;rsquo;s session was to learn how to preprocess the homes dataset I&amp;rsquo;ve been working with. The missing values have been filled and now I have a few questions about whether I should perform or not, additional pre-processing steps before I can implement the CART algorithm.&lt;/p&gt;
 
-
-&lt;p&gt;The goal of today’s session was to learn how to preprocess the homes dataset I’ve been working with. The missing values have been filled and now I have a few questions about whether I should perform or not, additional pre-processing steps before I can implement the CART algorithm.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Should I remove highly correlated variables? I have three and I don’t know what to do with them?&lt;/li&gt;
+&lt;li&gt;Should I remove highly correlated variables? I have three and I don&amp;rsquo;t know what to do with them?&lt;/li&gt;
 &lt;li&gt;Should I remove levels within factor variables with few observations?&lt;/li&gt;
 &lt;li&gt;Should I bin variables with lots of factors like neighboorhoods?&lt;/li&gt;
-&lt;li&gt;Should I bin numeric variables that related to the same metric? (i.e. square feet)&lt;/li&gt;
+&lt;li&gt;Should I bin numeric variables that related to the same metric? (i.e. square feet)&lt;/li&gt;
 &lt;li&gt;What about outliers?&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;So for now I’m reading the introduction to &lt;a href=&#34;https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf&#34;&gt;Recursive Partioning document that comes with the R Part package&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;So for now I&amp;rsquo;m reading the introduction to &lt;a href=&#34;https://cran.r-project.org/web/packages/rpart/vignettes/longintro.pdf&#34; target=&#34;_blank&#34;&gt;Recursive Partioning document that comes with the R Part package&lt;/a&gt;.&lt;/p&gt;
+
 &lt;p&gt;I am also trying to figure out what constitutes improvements in the branch-splitting algorithm to know why it stops when it does.&lt;/p&gt;
 </description>
     </item>
@@ -1024,426 +1066,321 @@ $xval
       
       <guid>/post/2018-07-09-exploring-kiva-loans/exploring-kiva-loans/</guid>
       <description>
-&lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
 
-&lt;div id=&#34;TOC&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#summary&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Summary&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#purpose-of-this-post&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Purpose of this post&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#the-data&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; The data&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#data-cleaning&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Data cleaning&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#exploratory-data-analysis&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Exploratory data analysis&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#techniques-used&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; Techniques used&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#questions-from-this-analysis&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;7&lt;/span&gt; Questions from this analysis&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
+&lt;h1 id=&#34;summary&#34;&gt;Summary&lt;/h1&gt;
 
-&lt;div id=&#34;summary&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Summary&lt;/h1&gt;
-&lt;p&gt;&lt;em&gt;To see the code used in this post, visit my &lt;a href=&#34;https://www.kaggle.com/adcastillogill/exploring-kiva-loans&#34;&gt;kernel on kaggle in R Markdown format&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;In this post, I analyse 671,205 observations. Each represents a &lt;a href=&#34;www.kiva.org&#34;&gt;Kiva&lt;/a&gt; loan. I find that the gender that requests the most loans is female with single females being the most frequent borrowers. The main uses for these loans are agriculture, retail, and food with some variations amongst continents. Half of the loans are 4.22 USD or less and are funded by 12 or less contributers. The median time between posting a loan online and disbursing it to the borrower is 16.89 days. I mainly use the &lt;code&gt;tidyverse&lt;/code&gt;, &lt;code&gt;stringr&lt;/code&gt;, and &lt;code&gt;quantmode&lt;/code&gt; packages.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;purpose-of-this-post&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; Purpose of this post&lt;/h1&gt;
-&lt;p&gt;Muhammad Yunus and the Grameen Bank won the &lt;a href=&#34;https://www.nobelpeaceprize.org/Prize-winners/Winners/2006&#34;&gt;Nobel Peace Prize&lt;/a&gt; in 2006 for “their efforts through microcredit to create economic and social development from below.”&lt;/p&gt;
-&lt;p&gt;Back in 1976, Yunus, at the time a professor at the University of Chittagong (Bangladesh), &lt;a href=&#34;https://www.bbc.co.uk/news/world-south-asia-11901625&#34;&gt;noticed that small amounts of money could make a substantial difference to people living in poverty&lt;/a&gt;. He started to loan money to people that didn’t meet the requirements listed by the mainstream banking system. It was reported that these type of loans were effective to &lt;a href=&#34;https://www.nobelpeaceprize.org/Prize-winners/Prizewinner-documentation/Muhammad-Yunus-Grameen-Bank&#34;&gt;“emerge” from poverty&lt;/a&gt; using default rates lower than those of commercial banks, &lt;a href=&#34;https://www.gdrc.org/icm/grameen-article4.html&#34;&gt;reported at 2%&lt;/a&gt;. Eventually, in October 1983, Muhammad Yunus founded &lt;a href=&#34;https://grameenfoundation.org/about/history&#34;&gt;Grameen Bank&lt;/a&gt;, considered to be the first microfinance institution.&lt;/p&gt;
-&lt;p&gt;Founded in 2005, &lt;a href=&#34;www.kiva.org&#34;&gt;Kiva&lt;/a&gt;, has the same mission as Grameen Bank except that anyone can become a Kiva banker. This online platform enables microcredit lending to help low-income entrepreneurs around the world with a couple of clicks. Pretty neat, huh? In this post, I unpack a large dataset published by &lt;a href=&#34;https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding&#34;&gt;Kiva on the Kaggle platform&lt;/a&gt; and explore these microloans.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;the-data&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; The data&lt;/h1&gt;
-&lt;p&gt;The dataset was published during the first months of 2018 on the &lt;a href=&#34;https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding&#34;&gt;Kaggle platform&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;To see the code used in this post, visit my &lt;a href=&#34;https://www.kaggle.com/adcastillogill/exploring-kiva-loans&#34; target=&#34;_blank&#34;&gt;kernel on kaggle in R Markdown format&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;In this post, I analyse 671,205 observations. Each represents a &lt;a href=&#34;www.kiva.org&#34; target=&#34;_blank&#34;&gt;Kiva&lt;/a&gt; loan. I find that the gender that requests the most loans is female with single females being the most frequent borrowers. The main uses for these loans are agriculture, retail, and food with some variations amongst continents. Half of the loans are 4.22 USD or less and are funded by 12 or less contributers. The median time between posting a loan online and disbursing it to the borrower is 16.89 days. I mainly use the &lt;code&gt;tidyverse&lt;/code&gt;, &lt;code&gt;stringr&lt;/code&gt;, and &lt;code&gt;quantmode&lt;/code&gt; packages.&lt;/p&gt;
+
+&lt;h1 id=&#34;purpose-of-this-post&#34;&gt;Purpose of this post&lt;/h1&gt;
+
+&lt;p&gt;Muhammad Yunus and the Grameen Bank won the &lt;a href=&#34;https://www.nobelpeaceprize.org/Prize-winners/Winners/2006&#34; target=&#34;_blank&#34;&gt;Nobel Peace Prize&lt;/a&gt; in 2006 for &amp;ldquo;their efforts through microcredit to create economic and social development from below.&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;Back in 1976, Yunus, at the time a professor at the University of Chittagong (Bangladesh), &lt;a href=&#34;https://www.bbc.co.uk/news/world-south-asia-11901625&#34; target=&#34;_blank&#34;&gt;noticed that small amounts of money could make a substantial difference to people living in poverty&lt;/a&gt;. He started to loan money to people that didn&amp;rsquo;t meet the requirements listed by the mainstream banking system. It was reported that these type of loans were effective to &lt;a href=&#34;https://www.nobelpeaceprize.org/Prize-winners/Prizewinner-documentation/Muhammad-Yunus-Grameen-Bank&#34; target=&#34;_blank&#34;&gt;&amp;ldquo;emerge&amp;rdquo; from poverty&lt;/a&gt; using default rates lower than those of commercial banks, &lt;a href=&#34;https://www.gdrc.org/icm/grameen-article4.html&#34; target=&#34;_blank&#34;&gt;reported at 2%&lt;/a&gt;. Eventually, in October 1983, Muhammad Yunus founded &lt;a href=&#34;https://grameenfoundation.org/about/history&#34; target=&#34;_blank&#34;&gt;Grameen Bank&lt;/a&gt;, considered to be the first microfinance institution.&lt;/p&gt;
+
+&lt;p&gt;Founded in 2005, &lt;a href=&#34;www.kiva.org&#34; target=&#34;_blank&#34;&gt;Kiva&lt;/a&gt;, has the same mission as Grameen Bank except that anyone can become a Kiva banker. This online platform enables microcredit lending to help low-income entrepreneurs around the world with a couple of clicks. Pretty neat, huh? In this post, I unpack a large dataset published by &lt;a href=&#34;https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding&#34; target=&#34;_blank&#34;&gt;Kiva on the Kaggle platform&lt;/a&gt; and explore these microloans.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-data&#34;&gt;The data&lt;/h1&gt;
+
+&lt;p&gt;The dataset was published during the first months of 2018 on the &lt;a href=&#34;https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding&#34; target=&#34;_blank&#34;&gt;Kaggle platform&lt;/a&gt;.&lt;/p&gt;
+
 &lt;p&gt;The complete dataset was a zip file with size 232.7 MB containing four files: &lt;code&gt;kiva_loans.csv&lt;/code&gt;, &lt;code&gt;kiva_mpi_region_locations.csv&lt;/code&gt;,&lt;code&gt;loan_theme_ids.csv&lt;/code&gt;, and &lt;code&gt;loan_themes_by_region.csv&lt;/code&gt;. After I looked at the contents, I chose to work with the first one &lt;code&gt;kiva_loans.csv&lt;/code&gt;.&lt;/p&gt;
+
 &lt;p&gt;The dataset had 671,205 observations and 20 variables.&lt;/p&gt;
+
 &lt;p&gt;Some of the codebook came with the dataset and some I researched to make assumptions:&lt;/p&gt;
+
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;funded_amount&lt;/code&gt;: “The amount disbursed by Kiva to the field agent(USD)”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;loan_amount&lt;/code&gt;: “The amount disbursed by the field agent to the borrower(USD)”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;activity&lt;/code&gt;: “More granular category”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;sector&lt;/code&gt;: “High level category”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;use&lt;/code&gt;: “Exact usage of loan amount”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;country_code&lt;/code&gt;: “ISO country code of country in which loan was disbursed”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;country&lt;/code&gt;: “Full country name of country in which loan was disbursed”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;region&lt;/code&gt;: “Full region name within the country”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;currency&lt;/code&gt;: “The currency in which the loan was disbursed”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;partner_id&lt;/code&gt;: “ID of partner organization”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;funded_amount&lt;/code&gt;: &amp;ldquo;The amount disbursed by Kiva to the field agent(USD)&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;loan_amount&lt;/code&gt;: &amp;ldquo;The amount disbursed by the field agent to the borrower(USD)&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;activity&lt;/code&gt;: &amp;ldquo;More granular category&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sector&lt;/code&gt;: &amp;ldquo;High level category&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;use&lt;/code&gt;: &amp;ldquo;Exact usage of loan amount&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;country_code&lt;/code&gt;: &amp;ldquo;ISO country code of country in which loan was disbursed&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;country&lt;/code&gt;: &amp;ldquo;Full country name of country in which loan was disbursed&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;region&lt;/code&gt;: &amp;ldquo;Full region name within the country&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;currency&lt;/code&gt;: &amp;ldquo;The currency in which the loan was disbursed&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;partner_id&lt;/code&gt;: &amp;ldquo;ID of partner organization&amp;rdquo;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;This variable has a lot of missing values and the Kiva explanation on Kaggle doesn’t go much further. For now, I will exclude &lt;code&gt;partner_id&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;This variable has a lot of missing values and the Kiva explanation on Kaggle doesn&amp;rsquo;t go much further. For now, I will exclude &lt;code&gt;partner_id&lt;/code&gt;.&lt;/p&gt;
+
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;posted_time&lt;/code&gt;: “The time at which the loan is posted on Kiva by the field agent”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;disbursed_time&lt;/code&gt;: “The time at which the loan is disbursed by the field agent to the borrower”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;funded_time&lt;/code&gt;: “The time at which the loan posted to Kiva gets funded by lenders completely”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;term_in_months&lt;/code&gt;: “The duration for which the loan was disbursed in months”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;lender_count&lt;/code&gt;: “The total number of lenders that contributed to this loan”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;borrower_genders&lt;/code&gt;: “Comma separated M,F letters, where each instance represents a single male/female in the group”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;repayment_interval&lt;/code&gt;: Not specified so we’ll assume that it means the standard definition of when the loan is repaid back to the lender.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;posted_time&lt;/code&gt;: &amp;ldquo;The time at which the loan is posted on Kiva by the field agent&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;disbursed_time&lt;/code&gt;: &amp;ldquo;The time at which the loan is disbursed by the field agent to the borrower&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;funded_time&lt;/code&gt;: &amp;ldquo;The time at which the loan posted to Kiva gets funded by lenders completely&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;term_in_months&lt;/code&gt;: &amp;ldquo;The duration for which the loan was disbursed in months&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lender_count&lt;/code&gt;: &amp;ldquo;The total number of lenders that contributed to this loan&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;borrower_genders&lt;/code&gt;: &amp;ldquo;Comma separated M,F letters, where each instance represents a single male/female in the group&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;repayment_interval&lt;/code&gt;: Not specified so we&amp;rsquo;ll assume that it means the standard definition of when the loan is repaid back to the lender.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;data-cleaning&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;4&lt;/span&gt; Data cleaning&lt;/h1&gt;
-&lt;p&gt;From at the structure of our data, we can soon see there are a few bits that don’t make sense and need to be fixed.&lt;/p&gt;
+
+&lt;h1 id=&#34;data-cleaning&#34;&gt;Data cleaning&lt;/h1&gt;
+
+&lt;p&gt;From  at the structure of our data, we can soon see there are a few bits that don&amp;rsquo;t make sense and need to be fixed.&lt;/p&gt;
+
 &lt;p&gt;&lt;strong&gt;a. Missing values&lt;/strong&gt;&lt;/p&gt;
+
 &lt;p&gt;We will leave missing values in for now.&lt;/p&gt;
+
 &lt;p&gt;&lt;strong&gt;b. &lt;code&gt;borrower_genders&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;From the variable descriptions, we expected &lt;code&gt;borrower_genders&lt;/code&gt;to have only two levels, &lt;code&gt;male&lt;/code&gt;or &lt;code&gt;female&lt;/code&gt;. Here we see many more levels, 11,298 to be precise. This isn’t very clear so we’ll fix that first by creating five levels:&lt;/p&gt;
+
+&lt;p&gt;From the variable descriptions, we expected &lt;code&gt;borrower_genders&lt;/code&gt;to have only two levels, &lt;code&gt;male&lt;/code&gt;or &lt;code&gt;female&lt;/code&gt;. Here we see many more levels, 11,298 to be precise. This isn&amp;rsquo;t very clear so we&amp;rsquo;ll fix that first by creating five levels:&lt;/p&gt;
+
 &lt;pre&gt;&lt;code&gt;[1] &amp;quot;mixed_genders&amp;quot; &amp;quot;mult_females&amp;quot;  &amp;quot;mult_males&amp;quot;    &amp;quot;single_female&amp;quot;
-[5] &amp;quot;single_male&amp;quot;  &lt;/code&gt;&lt;/pre&gt;
+[5] &amp;quot;single_male&amp;quot;  
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;strong&gt;c. &lt;code&gt;loan_amounts&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Now, since we’re trying to make sense of all loans, it’s better if &lt;code&gt;loan_amounts&lt;/code&gt; is in the same currency. Let’s translate it to USD.&lt;/p&gt;
+
+&lt;p&gt;Now, since we&amp;rsquo;re trying to make sense of all loans, it&amp;rsquo;s better if &lt;code&gt;loan_amounts&lt;/code&gt; is in the same currency. Let&amp;rsquo;s translate it to USD.&lt;/p&gt;
+
 &lt;p&gt;&lt;strong&gt;d. &lt;code&gt;country_codes&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+
 &lt;p&gt;Finally, with 86 countries, we have 86 levels. Perhaps it would be interesting to create another category called continent to produce less levels and have a better understanding of the overall function of regional distributions.&lt;/p&gt;
-&lt;p&gt;Our country codes are in the ISO3166 format, so we will use the associated continent code found &lt;a href=&#34;https://dev.maxmind.com/geoip/legacy/codes/country_continent/&#34;&gt;here&lt;/a&gt;. And make five continents. Africa, Asia, Europe, Oceania, and South America.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[1] &amp;quot;AF&amp;quot; &amp;quot;AS&amp;quot; &amp;quot;EU&amp;quot; &amp;quot;OC&amp;quot; &amp;quot;SA&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Our country codes are in the ISO3166 format, so we will use the associated continent code found &lt;a href=&#34;https://dev.maxmind.com/geoip/legacy/codes/country_continent/&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;. And make five continents. Africa, Asia, Europe, Oceania, and South America.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[1] &amp;quot;AF&amp;quot; &amp;quot;AS&amp;quot; &amp;quot;EU&amp;quot; &amp;quot;OC&amp;quot; &amp;quot;SA&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;strong&gt;e. Dates&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Let’s calculate two lengths of time that I think are interesting. First, how much time passes from the moment the loan is posted to the moment it’s disbursed (&lt;code&gt;total_time&lt;/code&gt;). Second, how long does a loan take to get funded (&lt;code&gt;giving_time&lt;/code&gt;)?&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;exploratory-data-analysis&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;5&lt;/span&gt; Exploratory data analysis&lt;/h1&gt;
-&lt;p&gt;Now, let’s describe the data starting with some plots and tables to understand it.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:continent-and-borrower-genders-plots&#34;&gt;&lt;/span&gt;
+
+&lt;p&gt;Let&amp;rsquo;s calculate two lengths of time that I think are interesting. First, how much time passes from the moment the loan is posted to the moment it&amp;rsquo;s disbursed (&lt;code&gt;total_time&lt;/code&gt;). Second, how long does a loan take to get funded (&lt;code&gt;giving_time&lt;/code&gt;)?&lt;/p&gt;
+
+&lt;h1 id=&#34;exploratory-data-analysis&#34;&gt;Exploratory data analysis&lt;/h1&gt;
+
+&lt;p&gt;Now, let&amp;rsquo;s describe the data starting with some plots and tables to understand it.&lt;/p&gt;
+
+&lt;div class=&#34;figure&#34;&gt;
 &lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans/2018-07-09-exploring-kiva-loans_files/figure-html/continent-and-borrower-genders-plots-1.png&#34; alt=&#34;Four continents in descending order from the continent that requests the most loans (Asia). Notice Europe and North America do not appear. `mult_females` or `mult_males` means more than one female or male.&#34; width=&#34;960&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.1: Four continents in descending order from the continent that requests the most loans (Asia). Notice Europe and North America do not appear. &lt;code&gt;mult_females&lt;/code&gt; or &lt;code&gt;mult_males&lt;/code&gt; means more than one female or male.
-&lt;/p&gt;
+&lt;p class=&#34;caption&#34;&gt;Figure 1 Four continents in descending order from the continent that requests the most loans (Asia). Notice Europe and North America do not appear. `mult_females` or `mult_males` means more than one female or male.&lt;/p&gt;
 &lt;/div&gt;
+
 &lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
-&lt;caption&gt;
-&lt;span id=&#34;tab:borrower-genders-table&#34;&gt;Table 5.1: &lt;/span&gt;A single female is the most common type of borrower gender with over half of all Kiva loans requested.
-&lt;/caption&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&#34;text-align:left;&#34;&gt;
-Gender
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-Percentage
-&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
+&lt;caption&gt;Table 1 A single female is the most common type of borrower gender with over half of all Kiva loans requested.&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style=&#34;text-align:left;&#34;&gt; Gender &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; Percentage &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
 &lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-single_female
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-65.82
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-single_male
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-17.43
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-mult_females
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-9.58
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-mixed_genders
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-6.58
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-mult_males
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.59
-&lt;/td&gt;
-&lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; single_female &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 65.82 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; single_male &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 17.43 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; mult_females &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 9.58 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; mixed_genders &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 6.58 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; mult_males &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 0.59 &lt;/td&gt;
+  &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;In all continents, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it’s mixed genders.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:repayment-interval-and-continent&#34;&gt;&lt;/span&gt;
+
+&lt;p&gt;In all continents, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it&amp;rsquo;s mixed genders.&lt;/p&gt;
+
+&lt;div class=&#34;figure&#34;&gt;
 &lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans/2018-07-09-exploring-kiva-loans_files/figure-html/repayment-interval-and-continent-1.png&#34; alt=&#34;In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it&#39;s monthly.&#34; width=&#34;960&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.2: In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it’s monthly.
-&lt;/p&gt;
+&lt;p class=&#34;caption&#34;&gt;Figure 2 In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it&#39;s monthly.&lt;/p&gt;
 &lt;/div&gt;
+
 &lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
-&lt;caption&gt;
-&lt;span id=&#34;tab:repayment-interval-table&#34;&gt;Table 5.2: &lt;/span&gt;The most popular type of repayment interval is monthly.
-&lt;/caption&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&#34;text-align:left;&#34;&gt;
-Repayment interval
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-Percentage
-&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
+&lt;caption&gt;Table 2 The most popular type of repayment interval is monthly.&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style=&#34;text-align:left;&#34;&gt; Repayment interval &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; Percentage &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
 &lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-monthly
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-47
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-irregular
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-43
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-bullet
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-10
-&lt;/td&gt;
-&lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; monthly &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 47 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; irregular &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 43 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; bullet &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 10 &lt;/td&gt;
+  &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:sectors-and-continents&#34;&gt;&lt;/span&gt;
+
+&lt;div class=&#34;figure&#34;&gt;
 &lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans/2018-07-09-exploring-kiva-loans_files/figure-html/sectors-and-continents-1.png&#34; alt=&#34;In every continent, the three most popular sectors are agriculture, retail, and food.&#34; width=&#34;960&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.3: In every continent, the three most popular sectors are agriculture, retail, and food.
-&lt;/p&gt;
+&lt;p class=&#34;caption&#34;&gt;Figure 3 In every continent, the three most popular sectors are agriculture, retail, and food.&lt;/p&gt;
 &lt;/div&gt;
+
 &lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
-&lt;caption&gt;
-&lt;span id=&#34;tab:sector-table&#34;&gt;Table 5.3: &lt;/span&gt;Generally, the most frequent use of loans is agriculture, followed by food and retail.
-&lt;/caption&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&#34;text-align:left;&#34;&gt;
-Sector
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-Percentage
-&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
+&lt;caption&gt;Table 3 Generally, the most frequent use of loans is agriculture, followed by food and retail.&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style=&#34;text-align:left;&#34;&gt; Sector &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; Percentage &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
 &lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Agriculture
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-27.5
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Food
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-20.8
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Retail
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-19.5
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Services
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-6.9
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Personal Use
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-5.9
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Education
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-5.1
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Clothing
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4.7
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Housing
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4.1
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Transportation
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.6
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Arts
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.7
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Health
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.2
-&lt;/td&gt;
-&lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; Agriculture &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 27.5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; Food &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 20.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; Retail &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 19.5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; Services &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 6.9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; Personal Use &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 5.9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; Education &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 5.1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; Clothing &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 4.7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; Housing &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 4.1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; Transportation &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 2.6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; Arts &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1.7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; Health &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1.2 &lt;/td&gt;
+  &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+
 &lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
-&lt;caption&gt;
-&lt;span id=&#34;tab:continent-table&#34;&gt;Table 5.4: &lt;/span&gt;Half of all Kiva loans are requested in Asia followed by Africa, South America, Oceania and finally the European Union.
-&lt;/caption&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&#34;text-align:left;&#34;&gt;
-Continents
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-Percentage
-&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
+&lt;caption&gt;Table 4 Half of all Kiva loans are requested in Asia followed by Africa, South America, Oceania and finally the European Union.&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style=&#34;text-align:left;&#34;&gt; Continents &lt;/th&gt;
+   &lt;th style=&#34;text-align:right;&#34;&gt; Percentage &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
 &lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-AS
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-55.4
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-AF
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-29.8
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-SA
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-13.5
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-OC
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.4
-&lt;/td&gt;
-&lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; AS &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 55.4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; AF &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 29.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; SA &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 13.5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&#34;text-align:left;&#34;&gt; OC &lt;/td&gt;
+   &lt;td style=&#34;text-align:right;&#34;&gt; 1.4 &lt;/td&gt;
+  &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+
 &lt;p&gt;Notice most loans are requested by single females, the least amount of loans are given in the EU, weekly repayment is an unpopular form of paying loans back and entertainment, wholesale, manufacturing, and construction amount less than 2.2% of sectors.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:countries-plot&#34;&gt;&lt;/span&gt;
+
+&lt;div class=&#34;figure&#34;&gt;
 &lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans/2018-07-09-exploring-kiva-loans_files/figure-html/countries-plot-1.png&#34; alt=&#34;Philippines requests the mosts loans with over double as the second country, Kenya `KE`. Other top countries in this ranking are Cambodia `KH`, Pakistan `PK`, Peru `PE`, Colombia `CO`, Uganda `UG`, Tajikistan `TJ`, Ecuador `EC`, and Paraguay `PY`.&#34; width=&#34;768&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.4: Philippines requests the mosts loans with over double as the second country, Kenya &lt;code&gt;KE&lt;/code&gt;. Other top countries in this ranking are Cambodia &lt;code&gt;KH&lt;/code&gt;, Pakistan &lt;code&gt;PK&lt;/code&gt;, Peru &lt;code&gt;PE&lt;/code&gt;, Colombia &lt;code&gt;CO&lt;/code&gt;, Uganda &lt;code&gt;UG&lt;/code&gt;, Tajikistan &lt;code&gt;TJ&lt;/code&gt;, Ecuador &lt;code&gt;EC&lt;/code&gt;, and Paraguay &lt;code&gt;PY&lt;/code&gt;.
-&lt;/p&gt;
+&lt;p class=&#34;caption&#34;&gt;Figure 4 Philippines requests the mosts loans with over double as the second country, Kenya `KE`. Other top countries in this ranking are Cambodia `KH`, Pakistan `PK`, Peru `PE`, Colombia `CO`, Uganda `UG`, Tajikistan `TJ`, Ecuador `EC`, and Paraguay `PY`.&lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;Now I’m curious to look at the top 10 countries requesting Kiva loans but per capita and per number of internet users.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:countries-plot-capita&#34;&gt;&lt;/span&gt;
+
+&lt;p&gt;Now I&amp;rsquo;m curious to look at the top 10 countries requesting Kiva loans but per capita and per number of internet users.&lt;/p&gt;
+
+&lt;div class=&#34;figure&#34;&gt;
 &lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans/2018-07-09-exploring-kiva-loans_files/figure-html/countries-plot-capita-1.png&#34; alt=&#34;Interesting to see how the ranking changed! The island of Samoa `WS` is leading, followed by Armenia `AM`. Countries that remain in the top 10 are Cambodia `KH`, Philippines `PH`, Kenya `KE`, and Tajikstan `TJ`. Other new countries are Timor-Leste `TL`, Paraguay `PY`, Palestine `PS`, and Lebanon `LB`.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.5: Interesting to see how the ranking changed! The island of Samoa &lt;code&gt;WS&lt;/code&gt; is leading, followed by Armenia &lt;code&gt;AM&lt;/code&gt;. Countries that remain in the top 10 are Cambodia &lt;code&gt;KH&lt;/code&gt;, Philippines &lt;code&gt;PH&lt;/code&gt;, Kenya &lt;code&gt;KE&lt;/code&gt;, and Tajikstan &lt;code&gt;TJ&lt;/code&gt;. Other new countries are Timor-Leste &lt;code&gt;TL&lt;/code&gt;, Paraguay &lt;code&gt;PY&lt;/code&gt;, Palestine &lt;code&gt;PS&lt;/code&gt;, and Lebanon &lt;code&gt;LB&lt;/code&gt;.
-&lt;/p&gt;
+&lt;p class=&#34;caption&#34;&gt;Figure 5 Interesting to see how the ranking changed! The island of Samoa `WS` is leading, followed by Armenia `AM`. Countries that remain in the top 10 are Cambodia `KH`, Philippines `PH`, Kenya `KE`, and Tajikstan `TJ`. Other new countries are Timor-Leste `TL`, Paraguay `PY`, Palestine `PS`, and Lebanon `LB`.&lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;Let’s see how the top 10 changes when it comes to internet users. I used &lt;a href=&#34;https://en.wikipedia.org/wiki/List_of_countries_by_number_of_Internet_users&#34;&gt;this ranking&lt;/a&gt;, which is based on numbers published by the &lt;a href=&#34;https://www.itu.int/en/Pages/default.aspx&#34;&gt;International Telecommunications Union&lt;/a&gt;.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:countries-plot-users&#34;&gt;&lt;/span&gt;
+
+&lt;p&gt;Let&amp;rsquo;s see how the top 10 changes when it comes to internet users. I used &lt;a href=&#34;https://en.wikipedia.org/wiki/List_of_countries_by_number_of_Internet_users&#34; target=&#34;_blank&#34;&gt;this ranking&lt;/a&gt;, which is based on numbers published by the &lt;a href=&#34;https://www.itu.int/en/Pages/default.aspx&#34; target=&#34;_blank&#34;&gt;International Telecommunications Union&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&#34;figure&#34;&gt;
 &lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans/2018-07-09-exploring-kiva-loans_files/figure-html/countries-plot-users-1.png&#34; alt=&#34;Interesting to see how the ranking changed! Leading the charts is the island of Samoa, followed by Armenia. Countries that remain in the top 10 are Cambodia `KH`, Philippines `PH`, Kenya `KE`, and Tajikstan `TJ`. Other new countries are Timor-Leste `TL`, Paraguay `PY`, Palestine `PS`, and Lebanon `LB`.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.6: Interesting to see how the ranking changed! Leading the charts is the island of Samoa, followed by Armenia. Countries that remain in the top 10 are Cambodia &lt;code&gt;KH&lt;/code&gt;, Philippines &lt;code&gt;PH&lt;/code&gt;, Kenya &lt;code&gt;KE&lt;/code&gt;, and Tajikstan &lt;code&gt;TJ&lt;/code&gt;. Other new countries are Timor-Leste &lt;code&gt;TL&lt;/code&gt;, Paraguay &lt;code&gt;PY&lt;/code&gt;, Palestine &lt;code&gt;PS&lt;/code&gt;, and Lebanon &lt;code&gt;LB&lt;/code&gt;.
-&lt;/p&gt;
+&lt;p class=&#34;caption&#34;&gt;Figure 6 Interesting to see how the ranking changed! Leading the charts is the island of Samoa, followed by Armenia. Countries that remain in the top 10 are Cambodia `KH`, Philippines `PH`, Kenya `KE`, and Tajikstan `TJ`. Other new countries are Timor-Leste `TL`, Paraguay `PY`, Palestine `PS`, and Lebanon `LB`.&lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;Now let’s look at the distributions of our numeric variables.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:loan-usd-distribution&#34;&gt;&lt;/span&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s look at the distributions of our numeric variables.&lt;/p&gt;
+
+&lt;div class=&#34;figure&#34;&gt;
 &lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans/2018-07-09-exploring-kiva-loans_files/figure-html/loan-usd-distribution-1.png&#34; alt=&#34;Half of Kiva loans are 4.22 USD or less. Although the maximum loan is 100,000 USD, 75% of loans are equal to or less than 89.79 USD.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.7: Half of Kiva loans are 4.22 USD or less. Although the maximum loan is 100,000 USD, 75% of loans are equal to or less than 89.79 USD.
-&lt;/p&gt;
+&lt;p class=&#34;caption&#34;&gt;Figure 7 Half of Kiva loans are 4.22 USD or less. Although the maximum loan is 100,000 USD, 75% of loans are equal to or less than 89.79 USD.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:term-in-months-distribution&#34;&gt;&lt;/span&gt;
+
+&lt;div class=&#34;figure&#34;&gt;
 &lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans/2018-07-09-exploring-kiva-loans_files/figure-html/term-in-months-distribution-1.png&#34; alt=&#34;The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.8: The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median.
-&lt;/p&gt;
+&lt;p class=&#34;caption&#34;&gt;Figure 8 The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:lender-count&#34;&gt;&lt;/span&gt;
+
+&lt;div class=&#34;figure&#34;&gt;
 &lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans/2018-07-09-exploring-kiva-loans_files/figure-html/lender-count-1.png&#34; alt=&#34;The lender count has a text book right-skewed distribution with a median of 12 lenders.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.9: The lender count has a text book right-skewed distribution with a median of 12 lenders.
-&lt;/p&gt;
+&lt;p class=&#34;caption&#34;&gt;Figure 9 The lender count has a text book right-skewed distribution with a median of 12 lenders.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:lenders-per-country&#34;&gt;&lt;/span&gt;
+ 
+
+&lt;div class=&#34;figure&#34;&gt;
 &lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans/2018-07-09-exploring-kiva-loans_files/figure-html/lenders-per-country-1.png&#34; alt=&#34;Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.10: Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans.
-&lt;/p&gt;
+&lt;p class=&#34;caption&#34;&gt;Figure 10 Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:giving-time&#34;&gt;&lt;/span&gt;
+
+&lt;div class=&#34;figure&#34;&gt;
 &lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans/2018-07-09-exploring-kiva-loans_files/figure-html/giving-time-1.png&#34; alt=&#34;The median time between posting the loan and the loan being fully funded is about 9.2 days. It is a bimodal distribution with its first peak around 6 days and its second peak around 30 days.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.11: The median time between posting the loan and the loan being fully funded is about 9.2 days. It is a bimodal distribution with its first peak around 6 days and its second peak around 30 days.
-&lt;/p&gt;
+&lt;p class=&#34;caption&#34;&gt;Figure 11 The median time between posting the loan and the loan being fully funded is about 9.2 days. It is a bimodal distribution with its first peak around 6 days and its second peak around 30 days.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:total-time&#34;&gt;&lt;/span&gt;
+
+&lt;div class=&#34;figure&#34;&gt;
 &lt;img src=&#34;/post/2018-07-09-exploring-kiva-loans/2018-07-09-exploring-kiva-loans_files/figure-html/total-time-1.png&#34; alt=&#34;The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 5.12: The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days.
-&lt;/p&gt;
+&lt;p class=&#34;caption&#34;&gt;Figure 12 The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days.&lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;techniques-used&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;6&lt;/span&gt; Techniques used&lt;/h1&gt;
+
+&lt;h1 id=&#34;techniques-used&#34;&gt;Techniques used&lt;/h1&gt;
+
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;I used the &lt;code&gt;quantmode&lt;/code&gt; package to convert all loans into a unique currency (US dollars) for comparison. There were two currencies that were unavailable.&lt;/p&gt;&lt;/li&gt;
+
 &lt;li&gt;&lt;p&gt;Taking all the different levels that came in the &lt;code&gt;borrower_genders&lt;/code&gt; variable and creating five neat categories to better understand who are the borrowers was good practice with lists and the &lt;code&gt;stringr&lt;/code&gt; package.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;questions-from-this-analysis&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;7&lt;/span&gt; Questions from this analysis&lt;/h1&gt;
+
+&lt;h1 id=&#34;questions-from-this-analysis&#34;&gt;Questions from this analysis&lt;/h1&gt;
+
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Why is &lt;code&gt;Retail&lt;/code&gt; and not &lt;code&gt;Food&lt;/code&gt; (as in other regions) the second most common use for loans in Asia.&lt;/p&gt;&lt;/li&gt;
+
 &lt;li&gt;&lt;p&gt;Who are the givers? Where are they? Does proximity of the lender to the borrower have anything to do with funding times?&lt;/p&gt;&lt;/li&gt;
+
 &lt;li&gt;&lt;p&gt;Does the Kiva website have anything to do with funding times? For example, &lt;code&gt;giving_time&lt;/code&gt;, the time between posting the loan and the loan being fully funded, has two peaks, at around one week and one month. Is this due to the platform and the promotion of loans that have been posted for a certain amount of time?&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;
 </description>
     </item>
     

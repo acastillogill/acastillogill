@@ -19,9 +19,10 @@
       
       <guid>/note/objectives-key-results-tasks/</guid>
       <description>Yesterday I went to a talk by a woman that worked at Facebook helping startups scale. One of slides was about prioritisation at Facebook. It was something like this:
-Mission &amp;amp; vission, objectives, key results, and tasks.
- So today we continue trying to understand all the rpart() function and algorithm.
-In response to one of yesterday’s questions, the PRESS statistic is the predicted residual error sum of squares:</description>
+So today we continue trying to understand all the rpart() function and algorithm.
+In response to one of yesterday&amp;rsquo;s questions, the PRESS statistic is the predicted residual error sum of squares:
+\(\sum_{i=1}^{n} (y_i-\hat{y}_{i,-i})^2\)
+According to trusty Wikipedia, the PRESS statistic is a form of cross validation derived from comparing the model&amp;rsquo;s predictions vs.</description>
     </item>
     
   </channel>

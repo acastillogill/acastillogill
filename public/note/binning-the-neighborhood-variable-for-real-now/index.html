@@ -15,8 +15,8 @@
   
     
   
-  <meta name="description" content="Goal’s for today’s session are: Create a new variable that captures what the variable is providing without so many levels.  Goal 1: Create a new variable that captures what the variable is providing without so many levels. As we saw yesterday from looking at the quantiles, we have 25 neighborhoods but very few houses are in the most expensive neighborhoods.
-I’m looking at the plot again and I realise there is something very odd with it.">
+  <meta name="description" content="Goal&rsquo;s for today&rsquo;s session are:  Create a new variable that captures what the variable is providing without so many levels.  Goal 1: Create a new variable that captures what the variable is providing without so many levels. As we saw yesterday from looking at the quantiles, we have 25 neighborhoods but very few houses are in the most expensive neighborhoods.
+I&rsquo;m looking at the plot again and I realise there is something very odd with it.">
 
   
   <link rel="alternate" hreflang="en-us" href="/note/binning-the-neighborhood-variable-for-real-now/">
@@ -111,8 +111,8 @@ I’m looking at the plot again and I realise there is something very odd with i
   <meta property="og:site_name" content="Ángela Castillo-Gill">
   <meta property="og:url" content="/note/binning-the-neighborhood-variable-for-real-now/">
   <meta property="og:title" content="Binning the neighborhood variable (for real now) | Ángela Castillo-Gill">
-  <meta property="og:description" content="Goal’s for today’s session are: Create a new variable that captures what the variable is providing without so many levels.  Goal 1: Create a new variable that captures what the variable is providing without so many levels. As we saw yesterday from looking at the quantiles, we have 25 neighborhoods but very few houses are in the most expensive neighborhoods.
-I’m looking at the plot again and I realise there is something very odd with it.">
+  <meta property="og:description" content="Goal&rsquo;s for today&rsquo;s session are:  Create a new variable that captures what the variable is providing without so many levels.  Goal 1: Create a new variable that captures what the variable is providing without so many levels. As we saw yesterday from looking at the quantiles, we have 25 neighborhoods but very few houses are in the most expensive neighborhoods.
+I&rsquo;m looking at the plot again and I realise there is something very odd with it.">
   
   
     
@@ -419,21 +419,28 @@ I’m looking at the plot again and I realise there is something very odd with i
     <div class="article-style" itemprop="articleBody">
       
 
+<h1 id="goal-s-for-today-s-session-are">Goal&rsquo;s for today&rsquo;s session are:</h1>
 
-<div id="goals-for-todays-session-are" class="section level1">
-<h1>Goal’s for today’s session are:</h1>
-<ol style="list-style-type: decimal">
+<ol>
 <li>Create a new variable that captures what the variable is providing without so many levels.</li>
 </ol>
-<div id="goal-1-create-a-new-variable-that-captures-what-the-variable-is-providing-without-so-many-levels." class="section level2">
-<h2>Goal 1: Create a new variable that captures what the variable is providing without so many levels.</h2>
+
+<h2 id="goal-1-create-a-new-variable-that-captures-what-the-variable-is-providing-without-so-many-levels">Goal 1: Create a new variable that captures what the variable is providing without so many levels.</h2>
+
 <p>As we saw yesterday from looking at the quantiles, we have 25 neighborhoods but very few houses are in the most expensive neighborhoods.</p>
-<p>I’m looking at the plot again and I realise there is something very odd with it. None of the homes costs more than <span class="math inline">\(755,000\)</span> and yet the plot goes up to <span class="math inline">\(30,000,000\)</span>. I realised that I was adding the <code>SalePrice</code> of individuals homes. Now here is another go with actual average <code>SalePrice</code>.</p>
-<pre class="r"><code>homes &lt;- readRDS(&quot;static/data/homes.rds&quot;)</code></pre>
-<p><img src="/note/Thurs-15-11-2018_files/Mean_sale_price.png" /></p>
+
+<p>I&rsquo;m looking at the plot again and I realise there is something very odd with it. None of the homes costs more than <code>\(755,000\)</code> and yet the plot goes up to <code>\(30,000,000\)</code>. I realised that I was adding the <code>SalePrice</code> of individuals homes. Now here is another go with actual average <code>SalePrice</code>.</p>
+
+<pre><code class="language-r">homes &lt;- readRDS(&quot;static/data/homes.rds&quot;)
+</code></pre>
+
+<p><img src="/note/Thurs-15-11-2018_files/Mean_sale_price.png" alt="" /></p>
+
 <p>Much better. Now we can see that <code>NoRidge</code> has the highest average <code>SalePrice</code>.</p>
-<p>Now, let’s look at this again in light of the quantiles,</p>
-<pre class="r"><code>&gt; neigh_quant
+
+<p>Now, let&rsquo;s look at this again in light of the quantiles,</p>
+
+<pre><code class="language-r">&gt; neigh_quant
 # A tibble: 5 x 3
   names      x incomes      
   &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;        
@@ -441,21 +448,30 @@ I’m looking at the plot again and I realise there is something very odd with i
 2 25%   129975 Middle_Lower 
 3 50%   163000 Lower        
 4 75%   214000 Middle_Higher
-5 100%  755000 Higher </code></pre>
+5 100%  755000 Higher 
+</code></pre>
+
 <p>It seems like the top 8 neighborhoods would go into the <code>Higher</code> bracket and none would go into the lowest.</p>
-<p>The way that I’m going to bin the neighborhoods is that I will create a variable called <code>Neighboord_type</code>:</p>
+
+<p>The way that I&rsquo;m going to bin the neighborhoods is that I will create a variable called <code>Neighboord_type</code>:</p>
+
 <ul>
-<li><p>Houses that have neighborhoods with average <code>SalePrice</code> above <span class="math inline">\(200,000\)</span> will go into the level “Fancy”.</p></li>
-<li><p>Houses that have neighborhoods with average <code>SalePrice</code> above <span class="math inline">\(150,000\)</span> and below <span class="math inline">\(200,000\)</span> will go into the level “Somewhat_fancy”.</p></li>
-<li><p>Houses that have neighborhoods with average <code>SalePrice</code> above <span class="math inline">\(100,000\)</span> and below <span class="math inline">\(150,000\)</span> will go into the level “Not_fancy”.</p></li>
-<li><p>The rest will go into the “OK” level. Because it’s ok if you don’t live in a fancy neighborhood.</p></li>
+<li><p>Houses that have neighborhoods with average <code>SalePrice</code> above <code>\(200,000\)</code> will go into the level &ldquo;Fancy&rdquo;.</p></li>
+
+<li><p>Houses that have neighborhoods with average <code>SalePrice</code> above <code>\(150,000\)</code> and below <code>\(200,000\)</code> will go into the level &ldquo;Somewhat_fancy&rdquo;.</p></li>
+
+<li><p>Houses that have neighborhoods with average <code>SalePrice</code> above <code>\(100,000\)</code> and below <code>\(150,000\)</code> will go into the level &ldquo;Not_fancy&rdquo;.</p></li>
+
+<li><p>The rest will go into the &ldquo;OK&rdquo; level. Because it&rsquo;s ok if you don&rsquo;t live in a fancy neighborhood.</p></li>
 </ul>
+
 <p>And this is what it looks like:</p>
-<p><img src="/note/Thurs-15-11-2018_files/New_var.png" /></p>
+
+<p><img src="/note/Thurs-15-11-2018_files/New_var.png" alt="" /></p>
+
 <p>Job done I would say.</p>
+
 <p>Tomorrow I will do everything again with this new variable to see if the plot improves.</p>
-</div>
-</div>
 
     </div>
 
