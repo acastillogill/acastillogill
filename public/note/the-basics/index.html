@@ -15,10 +15,12 @@
   
     
   
-  <meta name="description" content="Goal’s for today’s session are: Show if the variable change made the tree more interpretable.  #Splitting data # Randomly assign rows to ids (1/2/3 represents train/valid/test) # This will generate a vector of ids of length equal to the number of rows # The train/valid/test split will be approximately 70% / 15% / 15% set.seed(1) assignment &lt;- sample(1:3, size = nrow(homes), prob = c(0.7,0.15,0.15), replace = TRUE) # Create a train, validation and tests from the original data frame homes_train &lt;- homes[assignment == 1, ] # subset the homes data frame to training indices only homes_valid &lt;- homes[assignment == 2, ] # subset the homes data frame to validation indices only homes_test &lt;- homes[assignment == 3, ] # subset the homes data frame to test indices only # Train the model homes_model &lt;- rpart(formula = SalePrice ~ .">
+  <meta name="description" content="Goal’s for today’s session are: Go over the difference between standard deviation, variance, and standard error.
+ Evaluate the RMSE and MSE in the base and improved tree.
+  Goal 1: Go over the difference between standard deviation, variance, and standard error. So in a few machine learning algorithms, if not all of them, there are three terms that are contantly being used with “mean” and “median”: Standard deviation, variance, and standard error.">
 
   
-  <link rel="alternate" hreflang="en-us" href="/note/did-the-tree-improve/">
+  <link rel="alternate" hreflang="en-us" href="/note/the-basics/">
 
   
 
@@ -100,7 +102,7 @@
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="/note/did-the-tree-improve/">
+  <link rel="canonical" href="/note/the-basics/">
 
   <meta property="twitter:card" content="summary_large_image">
   
@@ -108,25 +110,27 @@
   <meta property="twitter:creator" content="@acastillogill">
   
   <meta property="og:site_name" content="Ángela Castillo-Gill">
-  <meta property="og:url" content="/note/did-the-tree-improve/">
-  <meta property="og:title" content="Did the tree improve? | Ángela Castillo-Gill">
-  <meta property="og:description" content="Goal’s for today’s session are: Show if the variable change made the tree more interpretable.  #Splitting data # Randomly assign rows to ids (1/2/3 represents train/valid/test) # This will generate a vector of ids of length equal to the number of rows # The train/valid/test split will be approximately 70% / 15% / 15% set.seed(1) assignment &lt;- sample(1:3, size = nrow(homes), prob = c(0.7,0.15,0.15), replace = TRUE) # Create a train, validation and tests from the original data frame homes_train &lt;- homes[assignment == 1, ] # subset the homes data frame to training indices only homes_valid &lt;- homes[assignment == 2, ] # subset the homes data frame to validation indices only homes_test &lt;- homes[assignment == 3, ] # subset the homes data frame to test indices only # Train the model homes_model &lt;- rpart(formula = SalePrice ~ .">
+  <meta property="og:url" content="/note/the-basics/">
+  <meta property="og:title" content="The basics | Ángela Castillo-Gill">
+  <meta property="og:description" content="Goal’s for today’s session are: Go over the difference between standard deviation, variance, and standard error.
+ Evaluate the RMSE and MSE in the base and improved tree.
+  Goal 1: Go over the difference between standard deviation, variance, and standard error. So in a few machine learning algorithms, if not all of them, there are three terms that are contantly being used with “mean” and “median”: Standard deviation, variance, and standard error.">
   
   
     
   <meta property="og:image" content="/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2018-11-16T00:00:00&#43;00:00">
+  <meta property="article:published_time" content="2018-11-17T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2018-11-16T00:00:00&#43;00:00">
-  
-
+  <meta property="article:modified_time" content="2018-11-17T00:00:00&#43;00:00">
   
 
   
 
-  <title>Did the tree improve? | Ángela Castillo-Gill</title>
+  
+
+  <title>The basics | Ángela Castillo-Gill</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
@@ -298,10 +302,10 @@
   
   
 <div class="article-container pt-3">
-  <h1 itemprop="name">Did the tree improve?</h1>
+  <h1 itemprop="name">The basics</h1>
 
   
-  <p class="page-subtitle">Seems like it 😄</p>
+  <p class="page-subtitle">I need to properly understand the difference between a few things.</p>
   
 
   
@@ -318,9 +322,9 @@
 
   <span class="article-date">
     
-    <meta content="2018-11-16 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-    <time datetime="2018-11-16 00:00:00 &#43;0000 UTC" itemprop="dateModified">
-      Nov 16, 2018
+    <meta content="2018-11-17 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+    <time datetime="2018-11-17 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+      Nov 17, 2018
     </time>
   </span>
   <span itemscope itemprop="publisher" itemtype="http://schema.org/Person">
@@ -351,35 +355,35 @@
   <ul class="share">
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=Did%20the%20tree%20improve%3f&amp;url=%2fnote%2fdid-the-tree-improve%2f"
+         href="https://twitter.com/intent/tweet?text=The%20basics&amp;url=%2fnote%2fthe-basics%2f"
          target="_blank" rel="noopener">
         <i class="fab fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=%2fnote%2fdid-the-tree-improve%2f"
+         href="https://www.facebook.com/sharer.php?u=%2fnote%2fthe-basics%2f"
          target="_blank" rel="noopener">
         <i class="fab fa-facebook-f"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fnote%2fdid-the-tree-improve%2f&amp;title=Did%20the%20tree%20improve%3f"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fnote%2fthe-basics%2f&amp;title=The%20basics"
          target="_blank" rel="noopener">
         <i class="fab fa-linkedin-in"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=%2fnote%2fdid-the-tree-improve%2f&amp;title=Did%20the%20tree%20improve%3f"
+         href="http://service.weibo.com/share/share.php?url=%2fnote%2fthe-basics%2f&amp;title=The%20basics"
          target="_blank" rel="noopener">
         <i class="fab fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=Did%20the%20tree%20improve%3f&amp;body=%2fnote%2fdid-the-tree-improve%2f">
+         href="mailto:?subject=The%20basics&amp;body=%2fnote%2fthe-basics%2f">
         <i class="fas fa-envelope"></i>
       </a>
     </li>
@@ -422,69 +426,70 @@
 <div id="goals-for-todays-session-are" class="section level1">
 <h1>Goal’s for today’s session are:</h1>
 <ol style="list-style-type: decimal">
-<li>Show if the variable change made the tree more interpretable.</li>
+<li><p>Go over the difference between standard deviation, variance, and standard error.</p></li>
+<li><p>Evaluate the <code>RMSE</code> and <code>MSE</code> in the base and improved tree.</p></li>
 </ol>
-<pre class="r"><code>#Splitting data
-# Randomly assign rows to ids (1/2/3 represents train/valid/test)
-# This will generate a vector of ids of length equal to the number of rows
-# The train/valid/test split will be approximately 70% / 15% / 15% 
-set.seed(1)
-assignment &lt;- sample(1:3, size = nrow(homes),
-                     prob = c(0.7,0.15,0.15),
-                     replace = TRUE)
-
-# Create a train, validation and tests from the original data frame 
-homes_train &lt;- homes[assignment == 1, ]    # subset the homes data frame to training indices only
-homes_valid &lt;- homes[assignment == 2, ]  # subset the homes data frame to validation indices only
-homes_test &lt;- homes[assignment == 3, ]   # subset the homes data frame to test indices only</code></pre>
-<pre class="r"><code># Train the model
-homes_model &lt;- rpart(formula = SalePrice ~ ., 
-                     data = homes_train, 
-                     method = &quot;anova&quot;)
-
-# Plot the basic model
-rpart.plot(x = homes_model, type = 5, extra = 1)</code></pre>
-<div class="figure"><span id="fig:basic-model"></span>
-<img src="/note/Fri-16-11-2018_files/figure-html/basic-model-1.png" alt="A first model suggests 9 splits with 10 nodes." width="672" />
-<p class="caption">
-Figure 1: A first model suggests 9 splits with 10 nodes.
-</p>
+<div id="goal-1-go-over-the-difference-between-standard-deviation-variance-and-standard-error." class="section level2">
+<h2>Goal 1: Go over the difference between standard deviation, variance, and standard error.</h2>
+<p>So in a few machine learning algorithms, if not all of them, there are three terms that are contantly being used with “mean” and “median”: Standard deviation, variance, and standard error. I have probably studied these three terms and written their formulas too many times to mention here and you know what? If you asked me right now to explain the difference with every day examples, I don’t think I could. Over time they have become a mush and I realise the reason they don’t stick is because they are something I haven’t associated with something that makes sense to me.</p>
+<p>So today I will define these world-renowned measures of dispersion today and try to come up with examples from my every day life.</p>
+<ul>
+<li>Sample variance:</li>
+</ul>
+<p><span class="math display">\[s^2 = \frac{1}{N-1} \sum_{i=1}^N (x_i - \overline{x})^2\]</span>
+Where, <span class="math inline">\(N\)</span> is the sample size; <span class="math inline">\(x_i\)</span> is the observation or piece of data, and <span class="math inline">\(\overline{x}\)</span> is the data set mean.</p>
+<p>The differences between each point and the mean are squared to avoid negative differences cancelling positive ones. The variance units are the mean units squared.</p>
+<p><strong>Example</strong>: Today I went for my grocery shop so let’s work from there. Let’s say I add lemons (1.68), apples (1.9), grapes (1.4), bananas (.97), and pine nuts (5.4) to my receipt.</p>
+<p>Then I ask, I wonder what the average price of each ingredient was, so I add and divide to create a simple average.</p>
+<pre class="r"><code>grocery_bill&lt;- c(1.68,1.9,1.4,0.97,5.4)
+sum(grocery_bill)/length(grocery_bill)</code></pre>
+<pre><code>## [1] 2.27</code></pre>
+<p>2.27, fabulous. Now, I want to see how much variation there is amongst each ingredient.</p>
+<pre class="r"><code>grocery_bill-mean(grocery_bill)</code></pre>
+<pre><code>## [1] -0.59 -0.37 -0.87 -1.30  3.13</code></pre>
+<p>It seems like the last two items, bananas and pine nuts varied quite a bit more from the mean. Let’s add the differences now because let’s say I want to show my husband how bigger the difference is when we add pine nuts.</p>
+<pre class="r"><code>sum(grocery_bill-mean(grocery_bill))</code></pre>
+<pre><code>## [1] 0</code></pre>
+<p>They have cancelled out. I think this is what you do when you want the regression line to go through the origin.</p>
+<p>In order to take each difference without it cancelling out, we SQUARE. AHA. Ok. I think maybe this will help it stick.</p>
+<pre class="r"><code>sum((grocery_bill-mean(grocery_bill))^2)</code></pre>
+<pre><code>## [1] 12.7288</code></pre>
+<p>Great, now we divide by the 5 items.</p>
+<pre class="r"><code>(sum((grocery_bill-mean(grocery_bill))^2))/5</code></pre>
+<pre><code>## [1] 2.54576</code></pre>
+<pre class="r"><code>var(grocery_bill)</code></pre>
+<pre><code>## [1] 3.1822</code></pre>
+<p>Then I also computed the variance with base R and they were different. Why? Because I forgot the <span class="math inline">\(N-1\)</span> bit. Classic.</p>
+<pre class="r"><code>(sum((grocery_bill-mean(grocery_bill))^2))/4</code></pre>
+<pre><code>## [1] 3.1822</code></pre>
+<pre class="r"><code>var(grocery_bill)</code></pre>
+<pre><code>## [1] 3.1822</code></pre>
+<p>Now they are the same. But why do we substract <span class="math inline">\(-1\)</span>. It seems the answer is because we want to have an unbiased estimator and it’s called the <em>Bessel’s correction</em> (?????).</p>
+<ul>
+<li>Sample standard deviation:</li>
+</ul>
+<p><span class="math display">\[s = \sqrt{\frac{1}{N-1} \sum_{i=1}^N (x_i -\overline{x})^2}\]</span></p>
+<p>Now, the sample standard deviation is just the square root of the variance. It has the same units as the mean. On our groceries:</p>
+<pre class="r"><code>sqrt((sum((grocery_bill-mean(grocery_bill))^2))/4)</code></pre>
+<pre><code>## [1] 1.783872</code></pre>
+<pre class="r"><code>sd(grocery_bill)</code></pre>
+<pre><code>## [1] 1.783872</code></pre>
+<p>It is the same! Ok. Well done. So 1.78 Euros is how much each item of my grocery list on average deviates from the mean which was 2.27.</p>
+<ul>
+<li>Standard error:</li>
+</ul>
+<p><span class="math display">\[\sigma_{\bar {x}}\ \approx {\frac {s}{\sqrt {n}}}\]</span>
+So from what I can see it’s the sample standard deviation divided by the square root of the sample size. mmmm, but why?</p>
+<p>According to Wikipedia: <em>The standard error (SE) of a statistic (usually an estimate of a parameter) is the standard deviation of its sampling distribution…</em>
+mmmmm ok.</p>
+<p><em>or an estimate of that standard deviation.</em></p>
+<p>Looking at the formula, this latter definition makes more sense.</p>
+<p><em>If the parameter or the statistic is the mean, it is called the standard error of the mean (SEM).</em></p>
+<p>But actually, not. I don’t really get this, yet.</p>
+<p>Then it reads: <em>It can also be understood as the standard deviation of the error in the sample mean with respect to the true mean (or an estimate of that statistic).</em></p>
+<p>I think I’m going to let this one sink for today because I gotta run.</p>
+<p>You know what, this was extremely basic but a helpful reminder I should do more often. Would be fun to compare the standard deviation between my grocery shop and my husband’s. I need a refresher like this with the median and distribution skewness.</p>
 </div>
-<p>Now we are going to look at the CP table.</p>
-<pre class="r"><code># Plot the &quot;CP Table&quot;
-plotcp(homes_model)</code></pre>
-<p><img src="/note/Fri-16-11-2018_files/figure-html/tuning-hyperparameters-1.png" width="672" /></p>
-<pre class="r"><code># Print the &quot;CP Table&quot;
-print(homes_model$cptable)</code></pre>
-<pre><code>##            CP nsplit rel error    xerror       xstd
-## 1  0.44576120      0 1.0000000 1.0034376 0.09648934
-## 2  0.11362733      1 0.5542388 0.5578944 0.05448931
-## 3  0.07787835      2 0.4406115 0.4760270 0.05459581
-## 4  0.03461959      3 0.3627331 0.4091012 0.03666288
-## 5  0.02116148      4 0.3281135 0.3979878 0.04568692
-## 6  0.01818931      5 0.3069520 0.4082587 0.04732241
-## 7  0.01742778      6 0.2887627 0.3937271 0.04468678
-## 8  0.01671704      7 0.2713350 0.3939984 0.04468230
-## 9  0.01294838      8 0.2546179 0.3677683 0.04291999
-## 10 0.01000000      9 0.2416695 0.3524860 0.04281097</code></pre>
-<p>According the <code>cptable</code>, the lowest <code>xerror</code> is in row 10, to that we add the <code>xstd</code> error and obtain: <span class="math inline">\(0.39529\)</span>. We see that the smallest error with <code>xerror</code> below that is the tree with 7 splits and 8 nodes. I will use that in the improved plot.</p>
-<pre class="r"><code># Retrieve optimal cp value based on cross-validated error
-opt_index &lt;- 7
-cp_opt &lt;- homes_model$cptable[opt_index, &quot;CP&quot;]
-
-# Prune the model (to optimized cp value)
-homes_model_opt &lt;- prune(tree = homes_model, 
-                         cp = cp_opt)
-                          
-# Plot the optimized model
- rpart.plot(x = homes_model_opt, type = 5, extra = 1)</code></pre>
-<div class="figure"><span id="fig:improved-model"></span>
-<img src="/note/Fri-16-11-2018_files/figure-html/improved-model-1.png" alt="Improved model has 7 splits and 8 nodes." width="672" />
-<p class="caption">
-Figure 2: Improved model has 7 splits and 8 nodes.
-</p>
-</div>
-<p>Tomorrow, I will look to see if there are any objective measures of error, clue, there are! And apply them to compare both models.</p>
 </div>
 
     </div>
@@ -612,6 +617,8 @@ Figure 2: Improved model has 7 splits and 8 nodes.
       <h3>Related</h3>
       <ul>
         
+        <li><a href="/note/did-the-tree-improve/">Did the tree improve?</a></li>
+        
         <li><a href="/note/binning-the-neighborhood-variable-for-real-now/">Binning the neighborhood variable (for real now)</a></li>
         
         <li><a href="/note/binning-the-neighborhood-variable/">Binning the neighborhood variable</a></li>
@@ -619,8 +626,6 @@ Figure 2: Improved model has 7 splits and 8 nodes.
         <li><a href="/note/applying-concepts-learned-to-property-prices/">Applying concepts learned to property prices</a></li>
         
         <li><a href="/note/hyperparameter-laundry-list/">Hyperparameter laundry list</a></li>
-        
-        <li><a href="/note/surrogate-who/">Surrogate who?</a></li>
         
       </ul>
     </div>
@@ -631,15 +636,10 @@ Figure 2: Improved model has 7 splits and 8 nodes.
     <div class="article-widget">
       <div class="post-nav">
   
-  <div class="post-nav-item">
-    <div class="meta-nav">Next</div>
-    <a href="/note/the-basics/" rel="next">The basics</a>
-  </div>
-  
   
   <div class="post-nav-item">
     <div class="meta-nav">Previous</div>
-    <a href="/note/binning-the-neighborhood-variable-for-real-now/" rel="prev">Binning the neighborhood variable (for real now)</a>
+    <a href="/note/did-the-tree-improve/" rel="prev">Did the tree improve?</a>
   </div>
   
 </div>

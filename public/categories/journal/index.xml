@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Ángela Castillo-Gill</copyright>
-    <lastBuildDate>Fri, 16 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 17 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/journal/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>The basics</title>
+      <link>/note/the-basics/</link>
+      <pubDate>Sat, 17 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/note/the-basics/</guid>
+      <description>Goal’s for today’s session are: Go over the difference between standard deviation, variance, and standard error.
+ Evaluate the RMSE and MSE in the base and improved tree.
+  Goal 1: Go over the difference between standard deviation, variance, and standard error. So in a few machine learning algorithms, if not all of them, there are three terms that are contantly being used with “mean” and “median”: Standard deviation, variance, and standard error.</description>
+    </item>
     
     <item>
       <title>Did the tree improve?</title>

@@ -1,0 +1,89 @@
+---
+title: "The basics"
+subtitle: "I need to properly understand the difference between a few things."
+author: Ángela Castillo-Gill
+date: '2018-11-17'
+slug: the-basics
+categories:
+  - Journal
+tags: 
+  - Learning
+draft: FALSE
+summary: 
+output:
+ blogdown::html_page:
+  fig_caption: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+
+<div id="goals-for-todays-session-are" class="section level1">
+<h1>Goal’s for today’s session are:</h1>
+<ol style="list-style-type: decimal">
+<li><p>Go over the difference between standard deviation, variance, and standard error.</p></li>
+<li><p>Evaluate the <code>RMSE</code> and <code>MSE</code> in the base and improved tree.</p></li>
+</ol>
+<div id="goal-1-go-over-the-difference-between-standard-deviation-variance-and-standard-error." class="section level2">
+<h2>Goal 1: Go over the difference between standard deviation, variance, and standard error.</h2>
+<p>So in a few machine learning algorithms, if not all of them, there are three terms that are contantly being used with “mean” and “median”: Standard deviation, variance, and standard error. I have probably studied these three terms and written their formulas too many times to mention here and you know what? If you asked me right now to explain the difference with every day examples, I don’t think I could. Over time they have become a mush and I realise the reason they don’t stick is because they are something I haven’t associated with something that makes sense to me.</p>
+<p>So today I will define these world-renowned measures of dispersion today and try to come up with examples from my every day life.</p>
+<ul>
+<li>Sample variance:</li>
+</ul>
+<p><span class="math display">\[s^2 = \frac{1}{N-1} \sum_{i=1}^N (x_i - \overline{x})^2\]</span>
+Where, <span class="math inline">\(N\)</span> is the sample size; <span class="math inline">\(x_i\)</span> is the observation or piece of data, and <span class="math inline">\(\overline{x}\)</span> is the data set mean.</p>
+<p>The differences between each point and the mean are squared to avoid negative differences cancelling positive ones. The variance units are the mean units squared.</p>
+<p><strong>Example</strong>: Today I went for my grocery shop so let’s work from there. Let’s say I add lemons (1.68), apples (1.9), grapes (1.4), bananas (.97), and pine nuts (5.4) to my receipt.</p>
+<p>Then I ask, I wonder what the average price of each ingredient was, so I add and divide to create a simple average.</p>
+<pre class="r"><code>grocery_bill&lt;- c(1.68,1.9,1.4,0.97,5.4)
+sum(grocery_bill)/length(grocery_bill)</code></pre>
+<pre><code>## [1] 2.27</code></pre>
+<p>2.27, fabulous. Now, I want to see how much variation there is amongst each ingredient.</p>
+<pre class="r"><code>grocery_bill-mean(grocery_bill)</code></pre>
+<pre><code>## [1] -0.59 -0.37 -0.87 -1.30  3.13</code></pre>
+<p>It seems like the last two items, bananas and pine nuts varied quite a bit more from the mean. Let’s add the differences now because let’s say I want to show my husband how bigger the difference is when we add pine nuts.</p>
+<pre class="r"><code>sum(grocery_bill-mean(grocery_bill))</code></pre>
+<pre><code>## [1] 0</code></pre>
+<p>They have cancelled out. I think this is what you do when you want the regression line to go through the origin.</p>
+<p>In order to take each difference without it cancelling out, we SQUARE. AHA. Ok. I think maybe this will help it stick.</p>
+<pre class="r"><code>sum((grocery_bill-mean(grocery_bill))^2)</code></pre>
+<pre><code>## [1] 12.7288</code></pre>
+<p>Great, now we divide by the 5 items.</p>
+<pre class="r"><code>(sum((grocery_bill-mean(grocery_bill))^2))/5</code></pre>
+<pre><code>## [1] 2.54576</code></pre>
+<pre class="r"><code>var(grocery_bill)</code></pre>
+<pre><code>## [1] 3.1822</code></pre>
+<p>Then I also computed the variance with base R and they were different. Why? Because I forgot the <span class="math inline">\(N-1\)</span> bit. Classic.</p>
+<pre class="r"><code>(sum((grocery_bill-mean(grocery_bill))^2))/4</code></pre>
+<pre><code>## [1] 3.1822</code></pre>
+<pre class="r"><code>var(grocery_bill)</code></pre>
+<pre><code>## [1] 3.1822</code></pre>
+<p>Now they are the same. But why do we substract <span class="math inline">\(-1\)</span>. It seems the answer is because we want to have an unbiased estimator and it’s called the <em>Bessel’s correction</em> (?????).</p>
+<ul>
+<li>Sample standard deviation:</li>
+</ul>
+<p><span class="math display">\[s = \sqrt{\frac{1}{N-1} \sum_{i=1}^N (x_i -\overline{x})^2}\]</span></p>
+<p>Now, the sample standard deviation is just the square root of the variance. It has the same units as the mean. On our groceries:</p>
+<pre class="r"><code>sqrt((sum((grocery_bill-mean(grocery_bill))^2))/4)</code></pre>
+<pre><code>## [1] 1.783872</code></pre>
+<pre class="r"><code>sd(grocery_bill)</code></pre>
+<pre><code>## [1] 1.783872</code></pre>
+<p>It is the same! Ok. Well done. So 1.78 Euros is how much each item of my grocery list on average deviates from the mean which was 2.27.</p>
+<ul>
+<li>Standard error:</li>
+</ul>
+<p><span class="math display">\[\sigma_{\bar {x}}\ \approx {\frac {s}{\sqrt {n}}}\]</span>
+So from what I can see it’s the sample standard deviation divided by the square root of the sample size. mmmm, but why?</p>
+<p>According to Wikipedia: <em>The standard error (SE) of a statistic (usually an estimate of a parameter) is the standard deviation of its sampling distribution…</em>
+mmmmm ok.</p>
+<p><em>or an estimate of that standard deviation.</em></p>
+<p>Looking at the formula, this latter definition makes more sense.</p>
+<p><em>If the parameter or the statistic is the mean, it is called the standard error of the mean (SEM).</em></p>
+<p>But actually, not. I don’t really get this, yet.</p>
+<p>Then it reads: <em>It can also be understood as the standard deviation of the error in the sample mean with respect to the true mean (or an estimate of that statistic).</em></p>
+<p>I think I’m going to let this one sink for today because I gotta run.</p>
+<p>You know what, this was extremely basic but a helpful reminder I should do more often. Would be fun to compare the standard deviation between my grocery shop and my husband’s. I need a refresher like this with the median and distribution skewness.</p>
+</div>
+</div>
