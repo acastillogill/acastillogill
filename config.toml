@@ -204,6 +204,13 @@ enableGitInfo = false
     # List publications and talks related to the project?
     list_children = false
 
+
+    # Post list format.
+    #   0 = Simple
+    #   1 = Detailed
+    #   2 = Stream
+    post_format = 2
+
     # Publication list format.
     #   0 = Simple
     #   1 = Detailed
