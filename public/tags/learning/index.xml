@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Ángela Castillo-Gill</copyright>
-    <lastBuildDate>Sat, 17 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 20 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/learning/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>An objective measure</title>
+      <link>/note/an-objective-measure/</link>
+      <pubDate>Tue, 20 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/note/an-objective-measure/</guid>
+      <description>Goal’s for today’s session are: Evaluate the RMSE and MSE in the base and improved tree.  Goal 1: Evaluate the RMSE and MSE in the base and improved tree. Right. So we know from previous posts that we pick the smallest tree within one standard error of the lowest xerror. Eggsellent. BUT. What can we use to objectively measure the difference between trees? We can use the error between a less pruned tree and the improved one.</description>
+    </item>
     
     <item>
       <title>The basics</title>

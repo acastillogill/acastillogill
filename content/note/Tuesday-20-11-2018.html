@@ -1,0 +1,55 @@
+---
+title: "An objective measure"
+subtitle: "What are objective measurements of when something is good and something is bad."
+author: Ángela Castillo-Gill
+date: '2018-11-20'
+slug: an-objective-measure
+categories:
+  - Journal
+tags: 
+  - Learning
+draft: FALSE
+summary: 
+output:
+ blogdown::html_page:
+  fig_caption: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+
+<div id="goals-for-todays-session-are" class="section level1">
+<h1>Goal’s for today’s session are:</h1>
+<ol style="list-style-type: decimal">
+<li>Evaluate the <code>RMSE</code> and <code>MSE</code> in the base and improved tree.</li>
+</ol>
+<div id="goal-1-evaluate-the-rmse-and-mse-in-the-base-and-improved-tree." class="section level2">
+<h2>Goal 1: Evaluate the <code>RMSE</code> and <code>MSE</code> in the base and improved tree.</h2>
+<p>Right. So we know from previous posts that we pick the smallest tree within one standard error of the lowest <code>xerror</code>. Eggsellent. BUT. What can we use to objectively measure the difference between trees? We can use the error between a less pruned tree and the improved one.</p>
+<p>There are two measurements of error, the <code>rmse</code> and the <code>mae</code>.</p>
+<p>The root mean square error (RMSE) or root mean standard deviation (RMSD) is defined as:</p>
+<p><span class="math display">\[RMSD =\sqrt {\frac {\sum _{i=1}^{n}({\hat {y}}_{i}-y_{i})^{2}}{n}}\]</span>
+Where <span class="math inline">\(n\)</span> is the sample size, and <span class="math inline">\(\hat{y}_{i}\)</span> are the predicted values for the dependent variable <span class="math inline">\(y_{i}\)</span>.</p>
+<p>Without reading the definition, this looks like it it “punishing” the differences between the estimated values and actual values, then dividing it per observation and taking the square root so the units are the actual ones for the response variable.</p>
+<p>The other <em>performance metric</em>, which is the actual name for these tree-measuring-metrics, is called the <code>MAE</code>. Which I think stands for the mean absolute error is defined as:</p>
+<p><span class="math display">\[MAE ={\frac {\sum _{i=1}^{n}\left|y_{i}-\hat {y_i}\right|}{n}}\]</span>
+It seems like the difference here is that the <code>RMSE</code> punishes differences while the <code>MAE</code> doesn’t emphasise large differences as much.</p>
+<p>Now let’s calculate these performance metrics for the original tree and then the pruned tree.</p>
+<div class="figure"><span id="fig:basic-model"></span>
+<img src="/note/Tuesday-20-11-2018_files/figure-html/basic-model-1.png" alt="A first model suggests 9 splits with 10 nodes." width="672" />
+<p class="caption">
+Figure 1: A first model suggests 9 splits with 10 nodes.
+</p>
+</div>
+<p>The <code>rmse</code> for the base model <code>homes_model</code> is 4.689356110^{4} and the <code>mae</code> is 3.167888610^{4}.</p>
+<div class="figure"><span id="fig:improved-model"></span>
+<img src="/note/Tuesday-20-11-2018_files/figure-html/improved-model-1.png" alt="Improved model has 7 splits and 8 nodes." width="672" />
+<p class="caption">
+Figure 2: Improved model has 7 splits and 8 nodes.
+</p>
+</div>
+<p>The <code>rmse</code> for the improved model <code>homes_model_opt</code> is 4.99639510^{4} and the <code>mae</code> is 3.390979910^{4}.</p>
+<p>Ugh oh. It has gone up. Something is wrong. Why?</p>
+</div>
+</div>

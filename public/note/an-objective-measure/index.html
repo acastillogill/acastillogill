@@ -15,12 +15,10 @@
   
     
   
-  <meta name="description" content="Goal’s for today’s session are: Go over the difference between standard deviation, variance, and standard error.
- Evaluate the RMSE and MSE in the base and improved tree.
-  Goal 1: Go over the difference between standard deviation, variance, and standard error. So in a few machine learning algorithms, if not all of them, there are three terms that are contantly being used with “mean” and “median”: Standard deviation, variance, and standard error.">
+  <meta name="description" content="Goal’s for today’s session are: Evaluate the RMSE and MSE in the base and improved tree.  Goal 1: Evaluate the RMSE and MSE in the base and improved tree. Right. So we know from previous posts that we pick the smallest tree within one standard error of the lowest xerror. Eggsellent. BUT. What can we use to objectively measure the difference between trees? We can use the error between a less pruned tree and the improved one.">
 
   
-  <link rel="alternate" hreflang="en-us" href="/note/the-basics/">
+  <link rel="alternate" hreflang="en-us" href="/note/an-objective-measure/">
 
   
 
@@ -102,7 +100,7 @@
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="/note/the-basics/">
+  <link rel="canonical" href="/note/an-objective-measure/">
 
   <meta property="twitter:card" content="summary_large_image">
   
@@ -110,27 +108,25 @@
   <meta property="twitter:creator" content="@acastillogill">
   
   <meta property="og:site_name" content="Ángela Castillo-Gill">
-  <meta property="og:url" content="/note/the-basics/">
-  <meta property="og:title" content="The basics | Ángela Castillo-Gill">
-  <meta property="og:description" content="Goal’s for today’s session are: Go over the difference between standard deviation, variance, and standard error.
- Evaluate the RMSE and MSE in the base and improved tree.
-  Goal 1: Go over the difference between standard deviation, variance, and standard error. So in a few machine learning algorithms, if not all of them, there are three terms that are contantly being used with “mean” and “median”: Standard deviation, variance, and standard error.">
+  <meta property="og:url" content="/note/an-objective-measure/">
+  <meta property="og:title" content="An objective measure | Ángela Castillo-Gill">
+  <meta property="og:description" content="Goal’s for today’s session are: Evaluate the RMSE and MSE in the base and improved tree.  Goal 1: Evaluate the RMSE and MSE in the base and improved tree. Right. So we know from previous posts that we pick the smallest tree within one standard error of the lowest xerror. Eggsellent. BUT. What can we use to objectively measure the difference between trees? We can use the error between a less pruned tree and the improved one.">
   
   
     
   <meta property="og:image" content="/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2018-11-17T00:00:00&#43;00:00">
+  <meta property="article:published_time" content="2018-11-20T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2018-11-17T00:00:00&#43;00:00">
-  
-
+  <meta property="article:modified_time" content="2018-11-20T00:00:00&#43;00:00">
   
 
   
 
-  <title>The basics | Ángela Castillo-Gill</title>
+  
+
+  <title>An objective measure | Ángela Castillo-Gill</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
@@ -302,10 +298,10 @@
   
   
 <div class="article-container pt-3">
-  <h1 itemprop="name">The basics</h1>
+  <h1 itemprop="name">An objective measure</h1>
 
   
-  <p class="page-subtitle">I need to properly understand the difference between a few things.</p>
+  <p class="page-subtitle">What are objective measurements of when something is good and something is bad.</p>
   
 
   
@@ -322,9 +318,9 @@
 
   <span class="article-date">
     
-    <meta content="2018-11-17 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-    <time datetime="2018-11-17 00:00:00 &#43;0000 UTC" itemprop="dateModified">
-      Nov 17, 2018
+    <meta content="2018-11-20 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+    <time datetime="2018-11-20 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+      Nov 20, 2018
     </time>
   </span>
   <span itemscope itemprop="publisher" itemtype="http://schema.org/Person">
@@ -355,35 +351,35 @@
   <ul class="share">
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=The%20basics&amp;url=%2fnote%2fthe-basics%2f"
+         href="https://twitter.com/intent/tweet?text=An%20objective%20measure&amp;url=%2fnote%2fan-objective-measure%2f"
          target="_blank" rel="noopener">
         <i class="fab fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=%2fnote%2fthe-basics%2f"
+         href="https://www.facebook.com/sharer.php?u=%2fnote%2fan-objective-measure%2f"
          target="_blank" rel="noopener">
         <i class="fab fa-facebook-f"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fnote%2fthe-basics%2f&amp;title=The%20basics"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fnote%2fan-objective-measure%2f&amp;title=An%20objective%20measure"
          target="_blank" rel="noopener">
         <i class="fab fa-linkedin-in"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=%2fnote%2fthe-basics%2f&amp;title=The%20basics"
+         href="http://service.weibo.com/share/share.php?url=%2fnote%2fan-objective-measure%2f&amp;title=An%20objective%20measure"
          target="_blank" rel="noopener">
         <i class="fab fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=The%20basics&amp;body=%2fnote%2fthe-basics%2f">
+         href="mailto:?subject=An%20objective%20measure&amp;body=%2fnote%2fan-objective-measure%2f">
         <i class="fas fa-envelope"></i>
       </a>
     </li>
@@ -426,69 +422,35 @@
 <div id="goals-for-todays-session-are" class="section level1">
 <h1>Goal’s for today’s session are:</h1>
 <ol style="list-style-type: decimal">
-<li><p>Go over the difference between standard deviation, variance, and standard error.</p></li>
-<li><p>Evaluate the <code>RMSE</code> and <code>MSE</code> in the base and improved tree.</p></li>
+<li>Evaluate the <code>RMSE</code> and <code>MSE</code> in the base and improved tree.</li>
 </ol>
-<div id="goal-1-go-over-the-difference-between-standard-deviation-variance-and-standard-error." class="section level2">
-<h2>Goal 1: Go over the difference between standard deviation, variance, and standard error.</h2>
-<p>So in a few machine learning algorithms, if not all of them, there are three terms that are contantly being used with “mean” and “median”: Standard deviation, variance, and standard error. I have probably studied these three terms and written their formulas too many times to mention here and you know what? If you asked me right now to explain the difference with every day examples, I don’t think I could. Over time they have become a mush and I realise the reason they don’t stick is because they are something I haven’t associated with something that makes sense to me.</p>
-<p>So today I will define these world-renowned measures of dispersion today and try to come up with examples from my every day life.</p>
-<ul>
-<li>Sample variance:</li>
-</ul>
-<p><span class="math display">\[s^2 = \frac{1}{N-1} \sum_{i=1}^N (x_i - \overline{x})^2\]</span>
-Where, <span class="math inline">\(N\)</span> is the sample size; <span class="math inline">\(x_i\)</span> is the observation or piece of data, and <span class="math inline">\(\overline{x}\)</span> is the data set mean.</p>
-<p>The differences between each point and the mean are squared to avoid negative differences cancelling positive ones. The variance units are the mean units squared.</p>
-<p><strong>Example</strong>: Today I went for my grocery shop so let’s work from there. Let’s say I add lemons (1.68), apples (1.9), grapes (1.4), bananas (.97), and pine nuts (5.4) to my receipt.</p>
-<p>Then I ask, I wonder what the average price of each ingredient was, so I add and divide to create a simple average.</p>
-<pre class="r"><code>grocery_bill&lt;- c(1.68,1.9,1.4,0.97,5.4)
-sum(grocery_bill)/length(grocery_bill)</code></pre>
-<pre><code>## [1] 2.27</code></pre>
-<p>2.27, fabulous. Now, I want to see how much variation there is amongst each ingredient.</p>
-<pre class="r"><code>grocery_bill-mean(grocery_bill)</code></pre>
-<pre><code>## [1] -0.59 -0.37 -0.87 -1.30  3.13</code></pre>
-<p>It seems like the last two items, bananas and pine nuts varied quite a bit more from the mean. Let’s add the differences now because let’s say I want to show my husband how bigger the difference is when we add pine nuts.</p>
-<pre class="r"><code>sum(grocery_bill-mean(grocery_bill))</code></pre>
-<pre><code>## [1] 0</code></pre>
-<p>They have cancelled out. I think this is what you do when you want the regression line to go through the origin.</p>
-<p>In order to take each difference without it cancelling out, we SQUARE. AHA. Ok. I think maybe this will help it stick.</p>
-<pre class="r"><code>sum((grocery_bill-mean(grocery_bill))^2)</code></pre>
-<pre><code>## [1] 12.7288</code></pre>
-<p>Great, now we divide by the 5 items.</p>
-<pre class="r"><code>(sum((grocery_bill-mean(grocery_bill))^2))/5</code></pre>
-<pre><code>## [1] 2.54576</code></pre>
-<pre class="r"><code>var(grocery_bill)</code></pre>
-<pre><code>## [1] 3.1822</code></pre>
-<p>Then I also computed the variance with base R and they were different. Why? Because I forgot the <span class="math inline">\(N-1\)</span> bit. Classic.</p>
-<pre class="r"><code>(sum((grocery_bill-mean(grocery_bill))^2))/4</code></pre>
-<pre><code>## [1] 3.1822</code></pre>
-<pre class="r"><code>var(grocery_bill)</code></pre>
-<pre><code>## [1] 3.1822</code></pre>
-<p>Now they are the same. But why do we substract <span class="math inline">\(-1\)</span>. It seems the answer is because we want to have an unbiased estimator and it’s called the <em>Bessel’s correction</em> (?????).</p>
-<ul>
-<li>Sample standard deviation:</li>
-</ul>
-<p><span class="math display">\[s = \sqrt{\frac{1}{N-1} \sum_{i=1}^N (x_i -\overline{x})^2}\]</span></p>
-<p>Now, the sample standard deviation is just the square root of the variance. It has the same units as the mean. On our groceries:</p>
-<pre class="r"><code>sqrt((sum((grocery_bill-mean(grocery_bill))^2))/4)</code></pre>
-<pre><code>## [1] 1.783872</code></pre>
-<pre class="r"><code>sd(grocery_bill)</code></pre>
-<pre><code>## [1] 1.783872</code></pre>
-<p>It is the same! Ok. Well done. So 1.78 Euros is how much each item of my grocery list on average deviates from the mean which was 2.27.</p>
-<ul>
-<li>Standard error:</li>
-</ul>
-<p><span class="math display">\[\sigma_{\bar {x}}\ \approx {\frac {s}{\sqrt {n}}}\]</span>
-So from what I can see it’s the sample standard deviation divided by the square root of the sample size. mmmm, but why?</p>
-<p>According to Wikipedia: <em>The standard error (SE) of a statistic (usually an estimate of a parameter) is the standard deviation of its sampling distribution…</em>
-mmmmm ok.</p>
-<p><em>or an estimate of that standard deviation.</em></p>
-<p>Looking at the formula, this latter definition makes more sense.</p>
-<p><em>If the parameter or the statistic is the mean, it is called the standard error of the mean (SEM).</em></p>
-<p>But actually, not. I don’t really get this, yet.</p>
-<p>Then it reads: <em>It can also be understood as the standard deviation of the error in the sample mean with respect to the true mean (or an estimate of that statistic).</em></p>
-<p>I think I’m going to let this one sink for today because I gotta run.</p>
-<p>You know what, this was extremely basic but a helpful reminder I should do more often. Would be fun to compare the standard deviation between my grocery shop and my husband’s. I need a refresher like this with the median and distribution skewness.</p>
+<div id="goal-1-evaluate-the-rmse-and-mse-in-the-base-and-improved-tree." class="section level2">
+<h2>Goal 1: Evaluate the <code>RMSE</code> and <code>MSE</code> in the base and improved tree.</h2>
+<p>Right. So we know from previous posts that we pick the smallest tree within one standard error of the lowest <code>xerror</code>. Eggsellent. BUT. What can we use to objectively measure the difference between trees? We can use the error between a less pruned tree and the improved one.</p>
+<p>There are two measurements of error, the <code>rmse</code> and the <code>mae</code>.</p>
+<p>The root mean square error (RMSE) or root mean standard deviation (RMSD) is defined as:</p>
+<p><span class="math display">\[RMSD =\sqrt {\frac {\sum _{i=1}^{n}({\hat {y}}_{i}-y_{i})^{2}}{n}}\]</span>
+Where <span class="math inline">\(n\)</span> is the sample size, and <span class="math inline">\(\hat{y}_{i}\)</span> are the predicted values for the dependent variable <span class="math inline">\(y_{i}\)</span>.</p>
+<p>Without reading the definition, this looks like it it “punishing” the differences between the estimated values and actual values, then dividing it per observation and taking the square root so the units are the actual ones for the response variable.</p>
+<p>The other <em>performance metric</em>, which is the actual name for these tree-measuring-metrics, is called the <code>MAE</code>. Which I think stands for the mean absolute error is defined as:</p>
+<p><span class="math display">\[MAE ={\frac {\sum _{i=1}^{n}\left|y_{i}-\hat {y_i}\right|}{n}}\]</span>
+It seems like the difference here is that the <code>RMSE</code> punishes differences while the <code>MAE</code> doesn’t emphasise large differences as much.</p>
+<p>Now let’s calculate these performance metrics for the original tree and then the pruned tree.</p>
+<div class="figure"><span id="fig:basic-model"></span>
+<img src="/note/Tuesday-20-11-2018_files/figure-html/basic-model-1.png" alt="A first model suggests 9 splits with 10 nodes." width="672" />
+<p class="caption">
+Figure 1: A first model suggests 9 splits with 10 nodes.
+</p>
+</div>
+<p>The <code>rmse</code> for the base model <code>homes_model</code> is 4.689356110^{4} and the <code>mae</code> is 3.167888610^{4}.</p>
+<div class="figure"><span id="fig:improved-model"></span>
+<img src="/note/Tuesday-20-11-2018_files/figure-html/improved-model-1.png" alt="Improved model has 7 splits and 8 nodes." width="672" />
+<p class="caption">
+Figure 2: Improved model has 7 splits and 8 nodes.
+</p>
+</div>
+<p>The <code>rmse</code> for the improved model <code>homes_model_opt</code> is 4.99639510^{4} and the <code>mae</code> is 3.390979910^{4}.</p>
+<p>Ugh oh. It has gone up. Something is wrong. Why?</p>
 </div>
 </div>
 
@@ -617,6 +579,8 @@ mmmmm ok.</p>
       <h3>Related</h3>
       <ul>
         
+        <li><a href="/note/the-basics/">The basics</a></li>
+        
         <li><a href="/note/did-the-tree-improve/">Did the tree improve?</a></li>
         
         <li><a href="/note/binning-the-neighborhood-variable-for-real-now/">Binning the neighborhood variable (for real now)</a></li>
@@ -624,8 +588,6 @@ mmmmm ok.</p>
         <li><a href="/note/binning-the-neighborhood-variable/">Binning the neighborhood variable</a></li>
         
         <li><a href="/note/applying-concepts-learned-to-property-prices/">Applying concepts learned to property prices</a></li>
-        
-        <li><a href="/note/hyperparameter-laundry-list/">Hyperparameter laundry list</a></li>
         
       </ul>
     </div>
@@ -636,15 +598,10 @@ mmmmm ok.</p>
     <div class="article-widget">
       <div class="post-nav">
   
-  <div class="post-nav-item">
-    <div class="meta-nav">Next</div>
-    <a href="/note/an-objective-measure/" rel="next">An objective measure</a>
-  </div>
-  
   
   <div class="post-nav-item">
     <div class="meta-nav">Previous</div>
-    <a href="/note/did-the-tree-improve/" rel="prev">Did the tree improve?</a>
+    <a href="/note/the-basics/" rel="prev">The basics</a>
   </div>
   
 </div>

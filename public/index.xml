@@ -11,6 +11,52 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>An objective measure</title>
+      <link>/note/an-objective-measure/</link>
+      <pubDate>Tue, 20 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/note/an-objective-measure/</guid>
+      <description>
+
+
+&lt;div id=&#34;goals-for-todays-session-are&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Goal’s for today’s session are:&lt;/h1&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Evaluate the &lt;code&gt;RMSE&lt;/code&gt; and &lt;code&gt;MSE&lt;/code&gt; in the base and improved tree.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div id=&#34;goal-1-evaluate-the-rmse-and-mse-in-the-base-and-improved-tree.&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Goal 1: Evaluate the &lt;code&gt;RMSE&lt;/code&gt; and &lt;code&gt;MSE&lt;/code&gt; in the base and improved tree.&lt;/h2&gt;
+&lt;p&gt;Right. So we know from previous posts that we pick the smallest tree within one standard error of the lowest &lt;code&gt;xerror&lt;/code&gt;. Eggsellent. BUT. What can we use to objectively measure the difference between trees? We can use the error between a less pruned tree and the improved one.&lt;/p&gt;
+&lt;p&gt;There are two measurements of error, the &lt;code&gt;rmse&lt;/code&gt; and the &lt;code&gt;mae&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The root mean square error (RMSE) or root mean standard deviation (RMSD) is defined as:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[RMSD =\sqrt {\frac {\sum _{i=1}^{n}({\hat {y}}_{i}-y_{i})^{2}}{n}}\]&lt;/span&gt;
+Where &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; is the sample size, and &lt;span class=&#34;math inline&#34;&gt;\(\hat{y}_{i}\)&lt;/span&gt; are the predicted values for the dependent variable &lt;span class=&#34;math inline&#34;&gt;\(y_{i}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Without reading the definition, this looks like it it “punishing” the differences between the estimated values and actual values, then dividing it per observation and taking the square root so the units are the actual ones for the response variable.&lt;/p&gt;
+&lt;p&gt;The other &lt;em&gt;performance metric&lt;/em&gt;, which is the actual name for these tree-measuring-metrics, is called the &lt;code&gt;MAE&lt;/code&gt;. Which I think stands for the mean absolute error is defined as:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[MAE ={\frac {\sum _{i=1}^{n}\left|y_{i}-\hat {y_i}\right|}{n}}\]&lt;/span&gt;
+It seems like the difference here is that the &lt;code&gt;RMSE&lt;/code&gt; punishes differences while the &lt;code&gt;MAE&lt;/code&gt; doesn’t emphasise large differences as much.&lt;/p&gt;
+&lt;p&gt;Now let’s calculate these performance metrics for the original tree and then the pruned tree.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:basic-model&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/note/Tuesday-20-11-2018_files/figure-html/basic-model-1.png&#34; alt=&#34;A first model suggests 9 splits with 10 nodes.&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 1: A first model suggests 9 splits with 10 nodes.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;The &lt;code&gt;rmse&lt;/code&gt; for the base model &lt;code&gt;homes_model&lt;/code&gt; is 4.689356110^{4} and the &lt;code&gt;mae&lt;/code&gt; is 3.167888610^{4}.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:improved-model&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/note/Tuesday-20-11-2018_files/figure-html/improved-model-1.png&#34; alt=&#34;Improved model has 7 splits and 8 nodes.&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 2: Improved model has 7 splits and 8 nodes.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;The &lt;code&gt;rmse&lt;/code&gt; for the improved model &lt;code&gt;homes_model_opt&lt;/code&gt; is 4.99639510^{4} and the &lt;code&gt;mae&lt;/code&gt; is 3.390979910^{4}.&lt;/p&gt;
+&lt;p&gt;Ugh oh. It has gone up. Something is wrong. Why?&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>The basics</title>
       <link>/note/the-basics/</link>
       <pubDate>Sat, 17 Nov 2018 00:00:00 +0000</pubDate>
@@ -1559,16 +1605,6 @@ Figure 5.12: The total time between posting the loan and it being disbursed has 
 &lt;li&gt;&lt;p&gt;Does the Kiva website have anything to do with funding times? For example, &lt;code&gt;giving_time&lt;/code&gt;, the time between posting the loan and the loan being fully funded, has two peaks, at around one week and one month. Is this due to the platform and the promotion of loans that have been posted for a certain amount of time?&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Privacy Policy</title>
-      <link>/privacy/</link>
-      <pubDate>Thu, 28 Jun 2018 00:00:00 +0200</pubDate>
-      
-      <guid>/privacy/</guid>
-      <description>&lt;p&gt;&amp;hellip;&lt;/p&gt;
 </description>
     </item>
     
