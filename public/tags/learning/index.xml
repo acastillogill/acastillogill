@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Ángela Castillo-Gill</copyright>
-    <lastBuildDate>Tue, 20 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 21 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/learning/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Why did error go up?</title>
+      <link>/note/why-did-error-go-up/</link>
+      <pubDate>Wed, 21 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/note/why-did-error-go-up/</guid>
+      <description>Goal’s for today’s session are: Figure out why the RMSE and MSE went up when I chose an “improved” tree.  Goal 1: Figure out why the RMSE and MSE went up when I chose an “improved” tree. The rmse for the base model homes_model is 46893.56 and the mae is 31678.89.
+The rmse for the improved model homes_model_opt is 49963.95 and the mae is 33909.8.
+This shouldn’t be the case, or should it?</description>
+    </item>
     
     <item>
       <title>An objective measure</title>

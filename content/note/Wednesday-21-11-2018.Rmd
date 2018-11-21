@@ -1,9 +1,9 @@
 ---
-title: "An objective measure"
-subtitle: "What are objective measurements of when something is good and something is bad."
+title: "Why did error go up?"
+subtitle: "I chose a better tree and the error went up, why? :confused:"
 author: Ángela Castillo-Gill
-date: '2018-11-20'
-slug: an-objective-measure
+date: '2018-11-21'
+slug: why-did-error-go-up
 categories:
   - Journal
 tags: 
@@ -19,16 +19,17 @@ editor_options:
 
 # Goal's for today's session are:
 
-1. Evaluate the `RMSE` and `MSE` in the base and improved tree. 
+1. Figure out why the `RMSE` and `MSE` went up when I chose an "improved" tree. 
 
-## Goal 1: Evaluate the `RMSE` and `MSE` in the base and improved tree. 
+## Goal 1: Figure out why the `RMSE` and `MSE` went up when I chose an "improved" tree. 
 
 ```{r read data, echo=FALSE, message=FALSE}
 library(tidyverse)
 library(rpart)
 library(rpart.plot)
 library(knitr)
-options(digits=3)
+options(digits=4)
+options(scipen = 999)
 opts_chunk$set(echo = FALSE,
                warning = FALSE,
                error = FALSE,
@@ -38,26 +39,11 @@ opts_chunk$set(echo = FALSE,
                tidy = TRUE)
 theme_set(theme_light())
 homes <- readRDS(file="/Volumes/TOSHIBAEXT/google_drive/acastillogill/content/homes.rds")
+homes <- homes%>%
+  select(-Id)
 ```
 
-Right. So we know from previous posts that we pick the smallest tree within one standard error of the lowest `xerror`. Eggsellent. BUT. What can we use to objectively measure the difference between trees? We can use the error between a less pruned tree and the improved one. 
 
-
-There are two measurements of error, the `rmse` and the `mae`.
-
-The root mean square error (RMSE) or root mean standard deviation (RMSD) is defined as: 
-
-$$RMSD =\sqrt {\frac {\sum _{i=1}^{n}({\hat {y}}_{i}-y_{i})^{2}}{n}}$$
-Where $n$ is the sample size, and $\hat{y}_{i}$ are the predicted values for the dependent variable $y_{i}$. 
-
-Without reading the definition, this looks like it it "punishing" the differences between the estimated values and actual values, then dividing it per observation and taking the square root so the units are the actual ones for the response variable. 
-
-The other *performance metric*, which is the actual name for these tree-measuring-metrics, is called the `MAE`. Which I think stands for the mean absolute error is defined as:
-
-$$MAE ={\frac {\sum _{i=1}^{n}\left|y_{i}-\hat {y_i}\right|}{n}}$$
-It seems like the difference here is that the `RMSE` punishes differences while the `MAE` doesn't emphasise large differences as much. 
-
-Now let's calculate these performance metrics for the original tree and then the pruned tree. 
 
 ```{r }
 #Splitting data
@@ -75,10 +61,10 @@ homes_valid <- homes[assignment == 2, ]  # subset the homes data frame to valida
 homes_test <- homes[assignment == 3, ]   # subset the homes data frame to test indices only
 ```
 
-```{r basic-model, fig.cap="A first model suggests 9 splits with 10 nodes."}
+```{r basic-model, fig.cap="A first model suggests 9 splits with 10 nodes.", include=FALSE}
 # Train the model
 homes_model <- rpart(formula = SalePrice ~ ., 
-                     data = homes_train, 
+                     data = homes, 
                      method = "anova")
 
 # Plot the basic model
@@ -108,7 +94,7 @@ mae_base <- mae(actual=homes_test$SalePrice, #Actual values
 
 The `rmse` for the base model `homes_model` is `r  rmse_base` and the `mae` is `r mae_base`. 
 
-```{r improved-model, fig.cap="Improved model has 7 splits and 8 nodes."}
+```{r improved-model, fig.cap="Improved model has 7 splits and 8 nodes.", include=FALSE}
 # Retrieve optimal cp value based on cross-validated error
 opt_index <- 7
 cp_opt <- homes_model$cptable[opt_index, "CP"]
@@ -134,8 +120,14 @@ rmse_opt <- rmse(actual=homes_test$SalePrice, #Actual values
 mae_opt <- mae(actual=homes_test$SalePrice, #Actual values
     predicted = pred_opt) #Predicted values
 ```
-
  
-The `rmse` for the improved model `homes_model_opt` is `r  rmse_opt` and the `mae` is `r mae_opt`.
+The `rmse` for the improved model `homes_model_opt` is `r  round(rmse_opt, 2)` and the `mae` is `r round(mae_opt,2)`.
 
-Ugh oh. It has gone up. Something is wrong. Why? 
+This shouldn't be the case, or should it?
+
+Let's think what an increase in these two types of performance metrics mean. In the `rmse` case, yesterday we saw that this is a measure of how much the fit deviates from real values. 
+An increase of `r  rmse_opt-rmse_base` means that the pruned model is a worse fit. WHY? Shouldn't a smaller tree prevent overfitting?
+
+I've just posted the question on Stack Overflow because right now I don't have any ideas... maybe there is nothing wrong with performance metrics going up? But that doesn't make sense. Wasn't the whole process of choosing the best `cp_index` to choose a tree with improved performance?
+
+I am very confused. It doesn't make sense. I am going to look at the documentation again to see if I can find anything on performance metrics. 
