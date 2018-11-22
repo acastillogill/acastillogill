@@ -26,10 +26,12 @@ editor_options:
 </ol>
 <div id="goal-1-figure-out-why-the-rmse-and-mse-went-up-when-i-chose-an-improved-tree." class="section level2">
 <h2>Goal 1: Figure out why the <code>RMSE</code> and <code>MSE</code> went up when I chose an “improved” tree.</h2>
-<p>The <code>rmse</code> for the base model <code>homes_model</code> is 46893.56 and the <code>mae</code> is 31678.89.</p>
-<p>The <code>rmse</code> for the improved model <code>homes_model_opt</code> is 49963.95 and the <code>mae</code> is 33909.8.</p>
+<p>The <code>rmse</code> for the base model <code>homes_model</code> is 36182.1117 and the <code>mae</code> is 25797.5518.</p>
+<p>The <code>rmse</code> for the improved model <code>homes_model_opt</code> is 40848.44 and the <code>mae</code> is 28394.1.</p>
 <p>This shouldn’t be the case, or should it?</p>
 <p>Let’s think what an increase in these two types of performance metrics mean. In the <code>rmse</code> case, yesterday we saw that this is a measure of how much the fit deviates from real values.
-An increase of 3070.39 means that the pruned model is a worse fit. WHY? Shouldn’t a smaller tree prevent overfitting?</p>
+An increase of 4666.3268 means that the pruned model is a worse fit. WHY? Shouldn’t a smaller tree prevent overfitting?</p>
+<p>I’ve just posted the question on Stack Overflow because right now I don’t have any ideas… maybe there is nothing wrong with performance metrics going up? But that doesn’t make sense. Wasn’t the whole process of choosing the best <code>cp_index</code> to choose a tree with improved performance?</p>
+<p>I am very confused. It doesn’t make sense. I am going to look at the documentation again to see if I can find anything on performance metrics.</p>
 </div>
 </div>

@@ -18,7 +18,7 @@ tags_include = []
 tags_exclude = []
 
 # Number of notes to list.
-count = 5
+count = 10
 
 # List format.
 #   0 = Simple

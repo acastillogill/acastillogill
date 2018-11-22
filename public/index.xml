@@ -11,6 +11,135 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>The perfect balance</title>
+      <link>/note/the-perfect-balance/</link>
+      <pubDate>Thu, 22 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/note/the-perfect-balance/</guid>
+      <description>
+
+
+&lt;div id=&#34;daily-goals&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Daily goals:&lt;/h1&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Discuss the proposed answer for yesterday’s question: why did the performance metrics go up?&lt;/li&gt;
+&lt;li&gt;Talk about next steps for the property values post.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div id=&#34;goal-1-discuss-the-proposed-answer-for-yesterdays-question-why-did-the-performance-metrics-go-up&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Goal 1: Discuss the proposed answer for yesterday’s question: why did the performance metrics go up?&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;rmse&lt;/code&gt; for the base model &lt;code&gt;homes_model&lt;/code&gt; is 36182.1117 and the &lt;code&gt;mae&lt;/code&gt; is 25797.5518.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;rmse&lt;/code&gt; for the improved model &lt;code&gt;homes_model_opt&lt;/code&gt; is 40848.44 and the &lt;code&gt;mae&lt;/code&gt; is 28394.1.&lt;/p&gt;
+&lt;p&gt;Yesterday I was pretty annoyed because I didn’t understand why the smallest tree with lowest cross validated error had worse performance metrics than a large tree. Like, mmm, why?&lt;/p&gt;
+&lt;p&gt;So I kind of felt I was hitting a dead end and decided to take to trusty old Stack Overflow to ASK FOR HELP. I asked and I received.&lt;/p&gt;
+&lt;p&gt;I received two helpful in less than twelve hours (Stack Overflow never change). The first suggested I consult the book Introduction to Statistical Learning from Springer. I have obtained it and it will be my reference book right after the one I’m currently doing called Regression Models. I have looked at the Table of Contents and it has a chapter dedicated to trees so that will come very much in handy.&lt;/p&gt;
+&lt;p&gt;The second answer was this:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;There is always a balance between a tree big enough to represent the variation in the data and not so big that it overfits. The reason that bigger trees sometimes produce better results is that they more finely partition the data and so represent nuances. The reason that smaller trees sometimes produce better results is that there is less of a problem with overfitting. But if the smallest tree was always the best, the why not just use one node? Just using the root node would estimate the value using the average - not likely to be really accurate. The two conflicting forces must be balanced to get the best result.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;My initial thoughts yesterday were that because a smaller tree, was ummm, well, smaller, it would have better performance on unseen data than a larger tree.&lt;/p&gt;
+&lt;p&gt;That line they use:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;But if the smallest tree was always the best, the why not just use one node?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Really captures my inital assumption. Exactly, if a smaller tree is always better, why not just use the smallest tree possible, the root node.&lt;/p&gt;
+&lt;p&gt;And so the mystery is partially solved in that actually the bigger tree did perform better.&lt;/p&gt;
+&lt;p&gt;I will consult the book chapter now to see if I can see any immediately useful tips. Wow! That book is super helfpul and explains well how the &lt;code&gt;RPart&lt;/code&gt; algorithm works. I look forward to moving on to it soon.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;goal-2-talk-about-next-steps-for-the-property-values-post.&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Goal 2: Talk about next steps for the property values post.&lt;/h2&gt;
+&lt;p&gt;So now that we’ve decided that the larger tree is better, there is also an option where we use the data split we haven’t used to tune the model’s hyperparamters that we talked about in previous posts.&lt;/p&gt;
+&lt;p&gt;I would think the next steps are to do that with the tree that performs better and see if we can get any improvements.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;grid-search-for-best-hyperparameters-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Grid search for best hyperparameters &lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
+# Establish a list of possible values for minsplit and maxdepth From 1 to 30
+# by 5
+min_split &amp;lt;- seq(1, 10, 1)
+# From 1 to 30 by 1
+max_depth &amp;lt;- seq(1, 30, 1)
+
+# Create a dataframe containing all combinations
+hyper_grid &amp;lt;- expand.grid(min_split = min_split, max_depth = max_depth)
+
+# Check dimensions
+dim(hyper_grid)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Create an empty list to store the models
+
+models &amp;lt;- list()
+
+# Execute the grid search
+
+for (i in 1:nrow(hyper_grid)) {
+    
+    # Get min_split, max_depth values at row i
+    
+    minsplit &amp;lt;- hyper_grid$min_split[i]
+    max_depth &amp;lt;- hyper_grid$max_depth[i]
+    
+    # Train the model and store in the list
+    
+    models[[i]] &amp;lt;- rpart(formula = SalePrice ~ ., data = homes_train, method = &amp;quot;anova&amp;quot;, 
+        minsplit = min_split, maxdepth = max_depth)
+    
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Create an empty vector to store RMSE values
+rmse_values &amp;lt;- c()
+# Create an empty vector to store MAE values
+mae_values &amp;lt;- c()
+
+# Compute validation RMSE
+for (i in 1:length(models)) {
+    
+    # Retrieve the ith model from the list
+    
+    model &amp;lt;- models[[i]]
+    
+    # Generate predictions on homes_valid validation set
+    
+    pred_grid &amp;lt;- predict(object = model, newdata = homes_valid)
+    
+    # Compute validation RMSE and add to the
+    
+    rmse_values[i] &amp;lt;- rmse(actual = homes_valid$SalePrice, predicted = pred_grid)
+    
+    mae_values[i] &amp;lt;- mae(actual = homes_valid$SalePrice, predicted = pred_grid)
+    
+    
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Identifying the model with smallest validation set RMSE
+best_model_RMSE &amp;lt;- models[[which.min(rmse_values)]]
+# Print the model parameters of the best_model_RMSE
+best_model_RMSE$control
+# Compute test set RMSE on best_model_RMSE
+pred &amp;lt;- predict(object = best_model_RMSE, newdata = homes_test)
+
+rmse(actual = homes_test$SalePrice, predicted = pred)
+
+# Identifying the model with smallest validation set MAE
+best_model_MAE &amp;lt;- models[[which.min(mae_values)]]
+# Print the model parameters of the best_model_MAE
+best_model_MAE$control
+# Compute test set MAE on best_model_MAE
+pred &amp;lt;- predict(object = best_model_MAE, newdata = homes_test)
+
+mae(actual = homes_test$SalePrice, predicted = pred)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/note/Thursday-22-11-2018_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;There is something wrong I think because the best tree after grid search has an &lt;code&gt;RMSE&lt;/code&gt; higher than the base tree. And then if we look at the RMSE values resulting from the grid search they are all the same so it seems like the tree doesn’t attempt any splits. WHY?
+Another why?&lt;/p&gt;
+&lt;p&gt;I think instead of doing this grid search which needs a proper study, I’m going to write up the full post and everything I’ve done with the Kaggle dataset. Better to talk about the interpretability and the next bits too.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Code from here until the end of the post was adapted from DataCamp’s course on Machine Learning with Trees.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Why did error go up?</title>
       <link>/note/why-did-error-go-up/</link>
       <pubDate>Wed, 21 Nov 2018 00:00:00 +0000</pubDate>
@@ -26,11 +155,13 @@
 &lt;/ol&gt;
 &lt;div id=&#34;goal-1-figure-out-why-the-rmse-and-mse-went-up-when-i-chose-an-improved-tree.&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Goal 1: Figure out why the &lt;code&gt;RMSE&lt;/code&gt; and &lt;code&gt;MSE&lt;/code&gt; went up when I chose an “improved” tree.&lt;/h2&gt;
-&lt;p&gt;The &lt;code&gt;rmse&lt;/code&gt; for the base model &lt;code&gt;homes_model&lt;/code&gt; is 46893.56 and the &lt;code&gt;mae&lt;/code&gt; is 31678.89.&lt;/p&gt;
-&lt;p&gt;The &lt;code&gt;rmse&lt;/code&gt; for the improved model &lt;code&gt;homes_model_opt&lt;/code&gt; is 49963.95 and the &lt;code&gt;mae&lt;/code&gt; is 33909.8.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;rmse&lt;/code&gt; for the base model &lt;code&gt;homes_model&lt;/code&gt; is 36182.1117 and the &lt;code&gt;mae&lt;/code&gt; is 25797.5518.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;rmse&lt;/code&gt; for the improved model &lt;code&gt;homes_model_opt&lt;/code&gt; is 40848.44 and the &lt;code&gt;mae&lt;/code&gt; is 28394.1.&lt;/p&gt;
 &lt;p&gt;This shouldn’t be the case, or should it?&lt;/p&gt;
 &lt;p&gt;Let’s think what an increase in these two types of performance metrics mean. In the &lt;code&gt;rmse&lt;/code&gt; case, yesterday we saw that this is a measure of how much the fit deviates from real values.
-An increase of 3070.39 means that the pruned model is a worse fit. WHY? Shouldn’t a smaller tree prevent overfitting?&lt;/p&gt;
+An increase of 4666.3268 means that the pruned model is a worse fit. WHY? Shouldn’t a smaller tree prevent overfitting?&lt;/p&gt;
+&lt;p&gt;I’ve just posted the question on Stack Overflow because right now I don’t have any ideas… maybe there is nothing wrong with performance metrics going up? But that doesn’t make sense. Wasn’t the whole process of choosing the best &lt;code&gt;cp_index&lt;/code&gt; to choose a tree with improved performance?&lt;/p&gt;
+&lt;p&gt;I am very confused. It doesn’t make sense. I am going to look at the documentation again to see if I can find anything on performance metrics.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>
@@ -567,640 +698,6 @@ These are:&lt;/p&gt;
 &lt;h2 id=&#34;tip-2&#34;&gt;Tip 2&lt;/h2&gt;
 
 &lt;p&gt;&amp;hellip;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Predicting property prices</title>
-      <link>/post/2018-08-09-predicting-property-prices/predicting-property-prices/</link>
-      <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2018-08-09-predicting-property-prices/predicting-property-prices/</guid>
-      <description>
-&lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
-
-&lt;div id=&#34;TOC&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#summary&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Summary&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#purpose-of-this-post&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Purpose of this post&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#the-data&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; The data&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#missing-values&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.1&lt;/span&gt; Missing values&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#variable-creation&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.2&lt;/span&gt; Variable creation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#correlation&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.3&lt;/span&gt; Correlation&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#classification-and-regression-trees-cart-time&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Classification and Regression Trees (CART) time&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#splitting-the-data&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.1&lt;/span&gt; Splitting the data&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#training-the-model&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.2&lt;/span&gt; Training the model&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#revising-variable-importance&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.3&lt;/span&gt; Revising variable importance&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#evaluating-the-model&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.4&lt;/span&gt; Evaluating the model&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#tuning-hyperparameters&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.5&lt;/span&gt; Tuning hyperparameters&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#checking-the-error-on-the-optimised-model&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.6&lt;/span&gt; Checking the error on the optimised model&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#grid-search-for-best-hyperparameters&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.7&lt;/span&gt; Grid search for best hyperparameters&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#techniques-used&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Techniques used&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#questions-from-this-analysis&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; Questions from this analysis&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-
-&lt;div id=&#34;summary&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Summary&lt;/h1&gt;
-&lt;p&gt;&lt;em&gt;To see the code used in this post, visit my &lt;a href=&#34;https://www.kaggle.com/adcastillogill/exploring-kiva-loans&#34;&gt;kernel on kaggle in R Markdown format&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;purpose-of-this-post&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; Purpose of this post&lt;/h1&gt;
-&lt;/div&gt;
-&lt;div id=&#34;the-data&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; The data&lt;/h1&gt;
-&lt;p&gt;The dataset &lt;a href=&#34;https://www.kaggle.com/c/house-prices-advanced-regression-techniques&#34;&gt;House Prices: Advanced Regression Techniques&lt;/a&gt; was downloaded from Kaggle and put together by &lt;a href=&#34;https://ww2.amstat.org/publications/jse/v19n3/decock.pdf&#34;&gt;Dean De Cock.&lt;/a&gt; It has 79 explanatory variables describing 1,460 homes in Ames, Iowa. The codebook for all the variables can be &lt;a href=&#34;https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data&#34;&gt;found here.&lt;/a&gt; As I go along, I’ll explain the most relevant ones.&lt;/p&gt;
-&lt;p&gt;First we will see how many numerical vs. categorical variables there are.&lt;/p&gt;
-&lt;p&gt;Our dataset has 38 numeric and 43 character variables. Next, since we are interested in estimating sales prices &lt;code&gt;SalePrice&lt;/code&gt;, we will recode character variables and see the most strongly correlated variables. There are 43 character variables available. I want to recode them where there is ordinality and where there isn’t dummify them.&lt;/p&gt;
-&lt;p&gt;There are two numerical variables that are actually date related: &lt;code&gt;YearBuilt&lt;/code&gt; and &lt;code&gt;YearRemodAdd&lt;/code&gt; (remodelled date). It makes more sense to make two new variables that relate the build and remodelled dates with the present. In other words, I will create the years since built and years since remodelled date variables, this will help interpret the results better.&lt;/p&gt;
-&lt;div id=&#34;missing-values&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.1&lt;/span&gt; Missing values&lt;/h2&gt;
-&lt;p&gt;As it more common than not, the dataset contains missing values. Missing values need to be dealt with because regression (and other models) requires complete observations.&lt;/p&gt;
-&lt;p&gt;Dealing with missing data depends on &lt;em&gt;why the data are missing&lt;/em&gt;. &lt;a href=&#34;http://www.stat.columbia.edu/~gelman/arm/missing.pdf&#34;&gt;This article&lt;/a&gt; explains four reasons why data could be missing. When the data are missing at random (MAR) or completely at random (MCAR), observations with missing values can be removed without introducing bias into the model.&lt;/p&gt;
-&lt;p&gt;Sometimes, however, if the dataset is not too big and we don’t want to lose observations, or even if it is big, yet we still don’t want to remove observations, we can impute data. Imputing means replacing missing values by doing some educated guesses. &lt;a href=&#34;https://towardsdatascience.com/how-to-handle-missing-data-8646b18db0d4&#34;&gt;This article&lt;/a&gt; summarises how to impute data depending on why it is missing.&lt;/p&gt;
-&lt;p&gt;If the data are not missing at random, then the imputation mechanism has to modelled.&lt;/p&gt;
-&lt;p&gt;Let’s look at which variables are missing:&lt;/p&gt;
-&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
-&lt;caption&gt;
-&lt;span id=&#34;tab:missigness-table&#34;&gt;Table 3.1: &lt;/span&gt;Variables with missing values in descending order
-&lt;/caption&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&#34;text-align:left;&#34;&gt;
-Variable
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-Number of NAs
-&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-PoolQC
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1453
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-MiscFeature
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1406
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Alley
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1369
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Fence
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1179
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-FireplaceQu
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-690
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-LotFrontage
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-259
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-GarageType
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-81
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-GarageYrBlt
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-81
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-GarageFinish
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-81
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-GarageQual
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-81
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-GarageCond
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-81
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtExposure
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-38
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtFinType2
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-38
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtQual
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-37
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtCond
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-37
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtFinType1
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-37
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-MasVnrType
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-MasVnrArea
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Electrical
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;19 variables have missing values. Based on the codebook, the reason why so many houses have &lt;code&gt;PoolQC&lt;/code&gt; missing is because &lt;code&gt;NA&lt;/code&gt;, means there is no pool. Since this variable is ordinal, I can revalue it to make it numerical and &lt;code&gt;0&lt;/code&gt; will mean the property has no pool. &lt;code&gt;MiscFeature&lt;/code&gt;, &lt;code&gt;Alley&lt;/code&gt;, &lt;code&gt;Fence&lt;/code&gt;, and &lt;code&gt;FireplaceQu&lt;/code&gt; are missing because of similar reasons. We don’t know why &lt;code&gt;LotFrontage&lt;/code&gt; is missing but we will impute as the median for properties in the same neighborhood. &lt;a href=&#34;https://www.kaggle.com/erikbruin/house-prices-lasso-xgboost-and-a-detailed-eda/code&#34;&gt;Erik Bruin’s kernel on Kaggle&lt;/a&gt; with this dataset, was a great guideline for what to do in each missing value case.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;variable-creation&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.2&lt;/span&gt; Variable creation&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices/2018-08-09-predicting-property-prices_files/figure-html/understanding-neighborhood-var-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;correlation&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3&lt;/span&gt; Correlation&lt;/h2&gt;
-&lt;p&gt;Correlation, &lt;span class=&#34;math inline&#34;&gt;\(Cor(X,Y)\)&lt;/span&gt;, measures the strength of the linear relationship between two variables &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;The correlation between &lt;code&gt;SalePrice&lt;/code&gt; and another variable, let’s say, &lt;code&gt;OverallQual&lt;/code&gt;, is the covariance of the separately normalised data between the two variables.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cov(scale(homes$SalePrice), scale(homes$OverallQual))
-          [,1]
-[1,] 0.7909816&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Since covariance units are &lt;code&gt;OverallQual&lt;/code&gt; * &lt;code&gt;SalePrice&lt;/code&gt;, calculating the correlation is instead more helpful since it is unit free.&lt;/p&gt;
-&lt;p&gt;If we created a model with only variable as the predictor of &lt;code&gt;SalesPrice&lt;/code&gt;, let’s say, &lt;code&gt;KitchenQual&lt;/code&gt; and normalised the data, the regression slope would be the correlation between the two variables.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;norm_fit &amp;lt;- lm(scale(SalePrice) ~ scale(KitchenQual), data = homes)
-round(coefficients(norm_fit), digits = 2)
-       (Intercept) scale(KitchenQual) 
-              0.00               0.66 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Here is the correlation matrix for variables that have a relationship stronger than 0.5 with &lt;code&gt;SalePrice&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices/2018-08-09-predicting-property-prices_files/figure-html/correlation-matrix-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;There are 17 variables that have a correlation stronger than 0.5. They are arranged in descending order. It is interesting to note the high correlation that exists amongst variables. The correlation plot highlights some obvious ones, &lt;code&gt;GarageArea&lt;/code&gt; and &lt;code&gt;GarageCars&lt;/code&gt;. Makes sense, a bigger garage can hold more cars. &lt;code&gt;X1stFlrSF&lt;/code&gt; and &lt;code&gt;TotalBsmtSF&lt;/code&gt;, the total area of the first floor and basement, this also seems reasonable since basements are underneath the same floor and would tend to have a similar area. &lt;code&gt;TotRmsAbvGrd&lt;/code&gt; and &lt;code&gt;GrLivArea&lt;/code&gt;, the total number of rooms and area above ground, again ok, more rooms would be linked to a bigger living area. Finally, &lt;code&gt;YearsSinceBuilt&lt;/code&gt; and &lt;code&gt;YearsSinceGarageBuilt&lt;/code&gt; since garages are usually built at the same time as the house.&lt;/p&gt;
-&lt;p&gt;Here is the codebook for all the variables featured in the correlation matrix in case they come up later and we need to interpret what they mean.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Positive correlation&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;OverallQual&lt;/code&gt;: Rates the overall material and finish of the house&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;GrLivArea&lt;/code&gt;: Above grade (ground) living area square feet.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;ExterQual&lt;/code&gt;: Exterior quality&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;KitchenQual&lt;/code&gt;: Kitchen quality&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;GarageCars&lt;/code&gt;: Size of garage in car capacity&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;GarageArea&lt;/code&gt;: Size of garage in square feet&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;TotalBsmtSF&lt;/code&gt;: Total square feet of basement area&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;X1stFlrSF&lt;/code&gt;: First floor square feet&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;BsmtQual&lt;/code&gt;: Height of basement&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;FullBath&lt;/code&gt;: Full bathrooms above grade&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;GarageFinish&lt;/code&gt;: Interior finish of the garage&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;TotRmsAbvGrd&lt;/code&gt;: Total rooms above grade (does not include bathrooms)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;FireplaceQu&lt;/code&gt;: Fireplace quality&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Negative correlation&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;YearsSinceRemod&lt;/code&gt;: Years since remodel date (same as construction date if no remodelling or additions)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;YearsSinceGarageBuilt&lt;/code&gt;: Years since the garage was built&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;YearsSinceBuilt&lt;/code&gt;: Years since construction date&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;classification-and-regression-trees-cart-time&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;4&lt;/span&gt; Classification and Regression Trees (CART) time&lt;/h1&gt;
-&lt;p&gt;In this post I am using the recursing and partitioning (RPART) algorithm also known as classification and regression trees (CART). It will be implemented with the &lt;code&gt;rpart&lt;/code&gt; package in R.&lt;/p&gt;
-&lt;p&gt;Rpart, builds a model in two stages:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;First stage&lt;/strong&gt;:&lt;/p&gt;
-&lt;p&gt;A single variable is identified which can best split the data into two groups. The data is then separated intwo two groups and the whole process is repeated &lt;em&gt;recursively&lt;/em&gt; or indefinitely until the sub groups reach a minimum size, or until no further improvements can be made.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;To be defined later&lt;/strong&gt;
-- What constitutes as the variable that BEST splits the data?&lt;/p&gt;
-&lt;p&gt;When the split is made, similarity amongst the observations can more or less homogenous. This homogeneity is also called purity and it can be measured. The impurity measure of a node specifies how mixed the resulting subset is.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;What are the further improvements that the algorithm can make?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;These are further splits that reduce the homogeneity of the subgroups.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Second stage&lt;/strong&gt;:&lt;/p&gt;
-&lt;p&gt;The tree is trimmed back or prunned using cross-validation.&lt;/p&gt;
-&lt;div id=&#34;splitting-the-data&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.1&lt;/span&gt; Splitting the data&lt;/h2&gt;
-&lt;/div&gt;
-&lt;div id=&#34;training-the-model&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.2&lt;/span&gt; Training the model&lt;/h2&gt;
-&lt;/div&gt;
-&lt;div id=&#34;revising-variable-importance&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.3&lt;/span&gt; Revising variable importance&lt;/h2&gt;
-&lt;table class=&#34;table table-striped table-hover table-condensed&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
-&lt;caption&gt;
-&lt;span id=&#34;tab:variable-importance-table&#34;&gt;Table 4.1: &lt;/span&gt;Top 30 variables in order of importance
-&lt;/caption&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&#34;text-align:left;&#34;&gt;
-Variable
-&lt;/th&gt;
-&lt;th style=&#34;text-align:right;&#34;&gt;
-Percentage
-&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-OverallQual
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-23.2881205
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtQual
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-9.3219127
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-TotalBsmtSF
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-9.2963511
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-GarageCars
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8.9148899
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-GarageArea
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-8.3353758
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Neighborhood_type
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-5.5795851
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-KitchenQual
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-5.3419024
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-GrLivArea
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-4.9671386
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-X1stFlrSF
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3.9252303
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-FullBath
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3.7461030
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-YearsSinceBuilt
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3.7244438
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-YearsSinceGarageBuilt
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-3.0305361
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Foundation
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.6912965
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-TotRmsAbvGrd
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-2.0111251
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-MSSubClass
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.1734153
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtFinSF1
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-1.0429523
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtUnfSF
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.8111851
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-X2ndFlrSF
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.7053916
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-HouseStyle
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.6331315
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-LotArea
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.4572123
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-LotFrontage
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.3740828
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-MSZoning
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.1799967
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BedroomAbvGr
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.1711556
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtCond
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.0714405
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtExposure
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.0714405
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-BsmtFinType1
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.0714405
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-Id
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.0315722
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:left;&#34;&gt;
-RoofStyle
-&lt;/td&gt;
-&lt;td style=&#34;text-align:right;&#34;&gt;
-0.0315722
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;div id=&#34;evaluating-the-model&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.4&lt;/span&gt; Evaluating the model&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;[1] 46893.56
-[1] 31678.89&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;tuning-hyperparameters&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.5&lt;/span&gt; Tuning hyperparameters&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices/2018-08-09-predicting-property-prices_files/figure-html/tuning-hyperparameters-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;           CP nsplit rel error    xerror       xstd
-1  0.44576120      0 1.0000000 1.0034376 0.09648934
-2  0.11362733      1 0.5542388 0.5578944 0.05448931
-3  0.07787835      2 0.4406115 0.4760270 0.05459581
-4  0.03461959      3 0.3627331 0.4091012 0.03666288
-5  0.02116148      4 0.3281135 0.3979878 0.04568692
-6  0.01818931      5 0.3069520 0.4082587 0.04732241
-7  0.01742778      6 0.2887627 0.3937271 0.04468678
-8  0.01671704      7 0.2713350 0.3939984 0.04468230
-9  0.01294838      8 0.2546179 0.3677683 0.04291999
-10 0.01000000      9 0.2416695 0.3524860 0.04281097&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices/2018-08-09-predicting-property-prices_files/figure-html/tuning-hyperparameters-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;checking-the-error-on-the-optimised-model&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.6&lt;/span&gt; Checking the error on the optimised model&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;[1] 49963.95
-[1] 33909.8&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;grid-search-for-best-hyperparameters&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.7&lt;/span&gt; Grid search for best hyperparameters&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;[1] 90  2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;$minsplit
-[1] 10 12 14 16 18 20
-
-$minbucket
-[1] 3 4 5 5 6 7
-
-$cp
-[1] 0.01
-
-$maxcompete
-[1] 4
-
-$maxsurrogate
-[1] 5
-
-$usesurrogate
-[1] 2
-
-$surrogatestyle
-[1] 0
-
-$maxdepth
-[1] 2
-
-$xval
-[1] 10
-[1] 81900.42
-$minsplit
-[1] 10 12 14 16 18 20
-
-$minbucket
-[1] 3 4 5 5 6 7
-
-$cp
-[1] 0.01
-
-$maxcompete
-[1] 4
-
-$maxsurrogate
-[1] 5
-
-$usesurrogate
-[1] 2
-
-$surrogatestyle
-[1] 0
-
-$maxdepth
-[1] 2
-
-$xval
-[1] 10
-[1] 58664.27&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-08-09-predicting-property-prices/2018-08-09-predicting-property-prices_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;techniques-used&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;5&lt;/span&gt; Techniques used&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;I&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;questions-from-this-analysis&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;6&lt;/span&gt; Questions from this analysis&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
 </description>
     </item>
     
