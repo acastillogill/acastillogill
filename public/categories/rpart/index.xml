@@ -18,7 +18,8 @@
       <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018-08-09-predicting-property-prices/predicting-property-prices/</guid>
-      <description>1 Summary 2 Purpose of this post 3 The data 3.1 Missing values 3.2 Variable creation 3.3 Correlation  4 Classification and Regression Trees (CART) time 4.1 Splitting the data 4.2 Training the model 4.3 Revising variable importance 4.4 Evaluating the model 4.5 Tuning hyperparameters 4.6 Checking the error on the optimised model 4.7 Grid search for best hyperparameters  5 Techniques used 6 Questions from this analysis   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.</description>
+      <description>1 Summary 2 Business quesiton 3 Dataset description 4 Steps 5 Result 6 Interpretation   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
+ 2 Business quesiton  3 Dataset description The dataset House Prices: Advanced Regression Techniques was downloaded from Kaggle and put together by Dean De Cock. It has 79 explanatory variables describing 1,460 homes in Ames, Iowa.</description>
     </item>
     
   </channel>

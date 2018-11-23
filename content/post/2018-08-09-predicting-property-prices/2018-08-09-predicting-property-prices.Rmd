@@ -81,11 +81,12 @@ here::here()
 
 
 
-# Purpose of this post
+# Business question
 
+Let's say that you have a house in Ames, Iowa (that's where the dataset is from). You're about to buy a house or even buy some terrain and you want to understand what makes a house more valuable than others. That will be our first question.
 
+# Dataset description 
 
-# The data
 
 The dataset [House Prices: Advanced Regression Techniques](https://www.kaggle.com/c/house-prices-advanced-regression-techniques) was downloaded from Kaggle and put together by [Dean De Cock.](https://ww2.amstat.org/publications/jse/v19n3/decock.pdf) It has 79 explanatory variables describing 1,460 homes in Ames, Iowa. The codebook for all the variables can be [found here.](https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data) As I go along, I'll explain the most relevant ones. 
 
@@ -134,14 +135,6 @@ homes%>%
   dplyr::summarise_all(funs(sum(is.na(.))))%>%
   gather()%>%
   arrange(desc(value))->missing_columns
-
-missing_columns%>%
-#Make table
-  kable(caption="Variables with missing values in descending order",
-        #Add column names
-        col.names = c("Variable","Number of NAs")) %>%
-  #Style table
- kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 
 ```
 
@@ -576,46 +569,52 @@ Here is the codebook for all the variables featured in the correlation matrix in
 - `YearsSinceGarageBuilt`: Years since the garage was built 
 - `YearsSinceBuilt`: Years since construction date
 
-# Classification and Regression Trees (CART) time
 
-In this post I am using the recursing and partitioning (RPART) algorithm also known as classification and regression trees (CART). It will be implemented with the `rpart` package in R. 
+
+# Motivation for tool
+
+The tool that I'm going to be using to solve is a regression tree. It's known as as classification and regression trees (CART) or the recursing and partitioning (RPART) algorithm. 
+
+The reason I'm choosing this tool or algorithm to answer the business question is because regression trees are interpretable and we can make easy to follow plots with them.
+
+It will be implemented with the `rpart` package in R. 
 
 Rpart, builds a model in two stages:
 
 **First stage**:
 
-A single variable is identified which can best split the data into two groups. The data is then separated intwo two groups and the whole process is repeated *recursively* or indefinitely until the sub groups reach a minimum size, or until no further improvements can be made. 
+A single variable is identified which can best ^[1] split the data into two groups. The data is then separated intwo two groups and the whole process is repeated *recursively* or indefinitely until the sub-groups reach a minimum size, or until no further improvements can be made. 
 
-**To be defined later**
-- What constitutes as the variable that BEST splits the data?
+^[1]: The best tree is the smallest tree with highest cross-validated error.
 
 When the split is made, similarity amongst the observations can more or less homogenous. This homogeneity is also called purity and it can be measured. The impurity measure of a node specifies how mixed the resulting subset is.
-
-- What are the further improvements that the algorithm can make? 
-
-These are further splits that reduce the homogeneity of the subgroups.
 
 **Second stage**:
 
 The tree is trimmed back or prunned using cross-validation. 
 
+# Steps 
+
+
+
 ## Splitting the data
+
 ```{r split-data, include=FALSE}
-# Randomly assign rows to ids (1/2/3 represents train/valid/test)
+# Randomly assign rows to ids (1/2) represents train/test)
 # This will generate a vector of ids of length equal to the number of rows
-# The train/valid/test split will be approximately 70% / 15% / 15% 
+# The train/test split will be approximately 70% / 30%
 set.seed(1)
-assignment <- sample(1:3, size = nrow(homes),
-                     prob = c(0.7,0.15,0.15),
+assignment <- sample(1:2, size = nrow(homes),
+                     prob = c(0.7,0.3),
                      replace = TRUE)
 
 # Create a train, validation and tests from the original data frame 
 homes_train <- homes[assignment == 1, ]    # subset the homes data frame to training indices only
-homes_valid <- homes[assignment == 2, ]  # subset the homes data frame to validation indices only
-homes_test <- homes[assignment == 3, ]   # subset the homes data frame to test indices only
+homes_test <- homes[assignment == 2, ]   # subset the homes data frame to test indices only
 ```
 
 ## Training the model
+
 ```{r train the model, include=FALSE}
 # Train the model
 homes_model <- rpart(formula = SalePrice ~ ., 
@@ -627,6 +626,7 @@ print(homes_model)
 ```
 
 ## Revising variable importance
+
 ```{r variable-importance-table}
 #Look at variable importance
 
@@ -695,113 +695,12 @@ mae(actual=homes_test$SalePrice, #Actual values
     predicted = pred_opt) #Predicted values
 ```
 
-## Grid search for best hyperparameters
-
-```{r set up the grid}
-#Establish a list of possible values for minsplit and maxdepth
-#From 1 to 30 by 5
-min_split <- seq(10,20,2)
-#From 5 to 30 by 10
-max_depth <- seq(2, 30, 2)
-
-#Create a dataframe containing all combinations
-hyper_grid <- expand.grid(min_split=min_split,
-                          max_depth=max_depth)
-
-#Check dimensions
-dim(hyper_grid)
-```
-
-```{r create models}
-#Create an empty list to store the models
-
-models <- list()
-
-#Execute the grid search
-
-for (i in 1:nrow(hyper_grid)){
-  
-  #Get min_split, max_depth values at row i
-  
-  minsplit <- hyper_grid$min_split[i]
-  max_depth <- hyper_grid$max_depth[i]
-  
-  #Train the model and store in the list
-  
-  models[[i]] <- rpart(formula = SalePrice~.,
-                       data = homes_train,
-                       method = "anova",
-                       minsplit=min_split,
-                       maxdepth=max_depth)
-  
-}
-```
-
-```{r evaluating models in grid}
-#Create an empty vector to store RMSE values
-rmse_values <- c()
-#Create an empty vector to store MAE values
-mae_values <- c()
-
-#Compute validation RMSE 
-for (i in 1:length(models)){
-  
-  #Retrieve the ith model from the list
-  
-  model <- models[[i]]
-  
-  #Generate predictions on homes_valid validation set
-  
-  pred_grid <- predict(object=model,
-                       newdata=homes_valid)
-  
-  #Compute validation RMSE and add to the 
-  
-  rmse_values[i] <- rmse(actual = homes_valid$SalePrice,
-                         predicted = pred_grid)
-  
-    mae_values[i] <- mae(actual = homes_valid$SalePrice,
-                         predicted = pred_grid)
-  
-  
-}
-```
-
-```{r picking best model}
-#Identifying the model with smallest validation set RMSE
-best_model_RMSE <- models[[which.min(rmse_values)]]
-#Print the model parameters of the best_model_RMSE
-best_model_RMSE$control
-#Compute test set RMSE on best_model_RMSE
-pred <- predict(object=best_model_RMSE,
-                newdata=homes_test)
-
-rmse(actual = homes_test$SalePrice,
-     predicted = pred)
-
-#Identifying the model with smallest validation set MAE
-best_model_MAE <- models[[which.min(mae_values)]]
-#Print the model parameters of the best_model_MAE
-best_model_MAE$control
-#Compute test set MAE on best_model_MAE
-pred <- predict(object=best_model_MAE,
-                newdata=homes_test)
-
-mae(actual = homes_test$SalePrice,
-     predicted = pred)
-```
-
-```{r}
-rpart.plot(best_model_MAE)
-rpart.plot(best_model_RMSE)
-```
+# Result
 
 
-# Techniques used
 
-- I 
+# Interpretation
 
-# Questions from this analysis
 
 - 
 

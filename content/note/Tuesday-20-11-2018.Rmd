@@ -9,7 +9,7 @@ categories:
 tags: 
   - Learning
 draft: FALSE
-summary: 
+summary: "What are objective measurements of when something is good and something is bad."
 output:
  blogdown::html_page:
   fig_caption: true

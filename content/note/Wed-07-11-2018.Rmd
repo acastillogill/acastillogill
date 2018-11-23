@@ -9,7 +9,7 @@ tags:
   - Rpart
   - Learning
 draft: FALSE
-summary: How to choose the best tree using the output tables.
+summary: "How to choose the best tree using the output tables."
 output:
   blogdown::html_page:
     toc: true

@@ -9,7 +9,7 @@ categories:
 tags: 
   - Learning
 draft: FALSE
-summary: 
+summary: "I need to properly understand the difference between a few things."
 output:
  blogdown::html_page:
   fig_caption: true

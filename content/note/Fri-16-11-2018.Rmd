@@ -9,7 +9,7 @@ categories:
 tags: 
   - Learning
 draft: FALSE
-summary: 
+summary: "Seems like it :smile:"
 output:
  blogdown::html_page:
   fig_caption: true

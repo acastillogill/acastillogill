@@ -9,7 +9,7 @@ tags:
   - RPart
   - Learning
 draft: FALSE
-summary: Generalising the Rpart algorithm.
+summary: "Generalising the Rpart algorithm."
 output:
   blogdown::html_page:
     toc: true

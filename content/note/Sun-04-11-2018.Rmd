@@ -9,7 +9,7 @@ tags:
   - Rest day
   - Learning
 draft: FALSE
-summary: Let the text write itself...
+summary: "Let the text write itself..."
 output:
   blogdown::html_page:
     toc: true

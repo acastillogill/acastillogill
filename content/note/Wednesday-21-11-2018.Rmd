@@ -9,7 +9,7 @@ categories:
 tags: 
   - Learning
 draft: FALSE
-summary: 
+summary: "I chose a better tree and the error went up, why?"
 output:
  blogdown::html_page:
   fig_caption: true

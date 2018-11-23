@@ -7,10 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Ángela Castillo-Gill</copyright>
-    <lastBuildDate>Thu, 22 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 23 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/note/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Structure</title>
+      <link>/note/structure/</link>
+      <pubDate>Fri, 23 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/note/structure/</guid>
+      <description>Daily goals: Plan the structure of the final blogpost.  Goal 1: Plan the structure of the final blogpost. This is the second blogpost I’m going to be publishing. I want to set out a plan and know well what I’m going to include and what I’m not going to include.
+The first step is to remind myself why I’m publishing this blog post. The reason is…
+drumroll
+I want to show how I applied the regression tree algorithm to a Kaggle dataset.</description>
+    </item>
     
     <item>
       <title>The perfect balance</title>
