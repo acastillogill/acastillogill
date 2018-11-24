@@ -1,0 +1,48 @@
+---
+title: "Editing property prices."
+subtitle: "Deleting all the chit chat is painful but I guess necessary."
+author: Ángela Castillo-Gill
+date: '2018-11-24'
+slug: editing-property-prices
+categories:
+  - Journal
+tags: 
+  - Learning
+draft: FALSE
+summary: "Deleting all the chit chat is painful but I guess necessary."
+output:
+ blogdown::html_page:
+  fig_caption: true
+editor_options: 
+  chunk_output_type: console
+---
+
+# Daily goals:
+
+1. Edit the final blogpost.
+
+## Goal 1: Edit the final blogpost.
+
+```{r read data, echo=FALSE, message=FALSE}
+library(tidyverse)
+library(rpart)
+library(rpart.plot)
+library(knitr)
+options(digits=4)
+options(scipen = 999)
+opts_chunk$set(echo = FALSE,
+               warning = FALSE,
+               error = FALSE,
+               message = FALSE,
+               collapse= TRUE,
+               comment = NA,
+               tidy = TRUE)
+theme_set(theme_light())
+homes <- readRDS(file="/Volumes/TOSHIBAEXT/google_drive/acastillogill/content/homes.rds")
+homes <- homes%>%
+  select(-Id)
+```
+
+So today I've had a session of ruthlessly cutting out a lot of the things I had written and I guess, a lot of the work I had done. In the end the most important thing is to make a much more readable blogpost that goes to the point. When I started writing that blogpost, I hadn't really started this daily journal to think out loud about I was doing. Today I made a lot of changes.
+
+I still have to write the interpretation, the summary, final proofing, and then upload to Kaggle. 

@@ -71,7 +71,7 @@ opts_chunk$set(echo = FALSE,
                tidy = TRUE,
                cache=FALSE)
 
-
+theme_set(theme_light())
 here::here()
 ```
 
@@ -81,14 +81,14 @@ here::here()
 
 
 
-# Business question
+# Question
 
-Let's say that you have a house in Ames, Iowa (that's where the dataset is from). You're about to buy a house or even buy some terrain and you want to understand what makes a house more valuable than others. That will be our first question.
+Let's say that you have a house in Ames, Iowa (that's where the dataset is from). You're about to buy a house or even buy some terrain and you want to understand **what makes a house more valuable than others**. 
 
 # Dataset description 
 
 
-The dataset [House Prices: Advanced Regression Techniques](https://www.kaggle.com/c/house-prices-advanced-regression-techniques) was downloaded from Kaggle and put together by [Dean De Cock.](https://ww2.amstat.org/publications/jse/v19n3/decock.pdf) It has 79 explanatory variables describing 1,460 homes in Ames, Iowa. The codebook for all the variables can be [found here.](https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data) As I go along, I'll explain the most relevant ones. 
+
 
 
 ```{r reading data, results='hide'}
@@ -97,7 +97,7 @@ path <- "/Volumes/TOSHIBAEXT/RStudio/blog/content/post/house_prices/"
 homes <- read.csv(paste0(path,"train.csv"), stringsAsFactors = FALSE)
 ```
 
-First we will see how many numerical vs. categorical variables there are. 
+
 ```{r counting variable types}
 #is.numeric returns TRUE if the variable is numeric. 
 #sapply iterates and returns a vector. 
@@ -111,21 +111,11 @@ car_var <- which(sapply(homes, is.character))
 length_car_var <- length(car_var)
 ```
 
-Our dataset has `r length_num_var` numeric and `r length_car_var` character variables. Next, since we are interested in estimating sales prices `SalePrice`, we will recode character variables and see the most strongly correlated variables. There are 43 character variables available. I want to recode them where there is ordinality and where there isn't dummify them.
-
-There are two numerical variables that are actually date related: `YearBuilt` and `YearRemodAdd` (remodelled date). It makes more sense to make two new variables that relate the build and remodelled dates with the present. In other words, I will create the years since built and years since remodelled date variables, this will help interpret the results better. 
+The dataset [House Prices: Advanced Regression Techniques](https://www.kaggle.com/c/house-prices-advanced-regression-techniques) was put together by [Dean De Cock.](https://ww2.amstat.org/publications/jse/v19n3/decock.pdf) It has 79 explanatory variables describing 1,460 homes in Ames, Iowa. The codebook for all the variables can be [found here.](https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data) As I go along, I'll explain the most relevant ones. The dataset has `r length_num_var` numeric and `r length_car_var` character variables. Next, since we are interested in estimating `SalePrice`, we will see the most strongly correlated variables. There are 43 character variables available.
 
 ## Missing values
 
-As it more common than not, the dataset contains missing values. Missing values need to be dealt with because regression (and other models) requires complete observations. 
-
-Dealing with missing data depends on *why the data are missing*. [This article](http://www.stat.columbia.edu/~gelman/arm/missing.pdf) explains four reasons why data could be missing. When the data are missing at random (MAR) or completely at random (MCAR), observations with missing values can be removed without introducing bias into the model.  
-
-Sometimes, however, if the dataset is not too big and we don't want to lose observations, or even if it is big, yet we still don't want to remove observations, we can impute data. Imputing means replacing missing values by doing some educated guesses. [This article](https://towardsdatascience.com/how-to-handle-missing-data-8646b18db0d4) summarises how to impute data depending on why it is missing. 
-
-If the data are not missing at random, then the imputation mechanism has to modelled.
-
-Let's look at which variables are missing:
+As is more common than not, the dataset contains missing values. Missing values need to be dealt with because often regression (and other models) require complete observations. Dealing with missing data depends on *why the data are missing*. [This article](http://www.stat.columbia.edu/~gelman/arm/missing.pdf) explains four reasons why data could be missing. When the data are missing at random (MAR) or completely at random (MCAR), observations with missing values can be removed without introducing bias into the model. Sometimes, however, if the dataset is not too big and we don't want to lose observations, or even if it is big, yet we still don't want to remove observations, we can impute data. Imputing means replacing missing values by doing some educated guesses. [This article](https://towardsdatascience.com/how-to-handle-missing-data-8646b18db0d4) summarises how to impute data depending on why it is missing. If the data are not missing at random, then the imputation mechanism has to modelled. 
 
 ```{r missigness-table}
 
@@ -138,7 +128,7 @@ homes%>%
 
 ```
 
-`r nrow(missing_columns)` variables have missing values. Based on the codebook, the reason why so many houses have `PoolQC` missing is because `NA`, means there is no pool. Since this variable is ordinal, I can revalue it to make it numerical and `0` will mean the property has no pool. `MiscFeature`, `Alley`, `Fence`, and `FireplaceQu` are missing because of similar reasons. We don't know why `LotFrontage` is missing but we will impute as the median for properties in the same neighborhood. [Erik Bruin's kernel on Kaggle](https://www.kaggle.com/erikbruin/house-prices-lasso-xgboost-and-a-detailed-eda/code) with this dataset, was a great guideline for what to do in each missing value case. 
+About `r nrow(missing_columns)` variables have missing values. Based on the codebook, the reason why so many houses have `PoolQC` missing is because `NA`, means there is no pool. Since this variable is ordinal, I can revalue it to make it numerical and `0` will mean the property has no pool. `MiscFeature`, `Alley`, `Fence`, and `FireplaceQu` are missing because of similar reasons. We don't know why `LotFrontage` is missing but we will impute as the median for properties in the same neighborhood. I learned a lot about imputation and missing values from [Erik Bruin's kernel on Kaggle](https://www.kaggle.com/erikbruin/house-prices-lasso-xgboost-and-a-detailed-eda/code).
 
 ```{r missingness and recoding ordinal variables, results='hide'}
 
@@ -453,8 +443,6 @@ homes$SaleCondition     <- as.factor(homes$SaleCondition)
 ```
 
 
-## Variable creation
-
 ```{r create time variables}
 homes<-homes%>%
   #Mutate to create `YearsSinceBuilt`, `YearsSinceGarageBuilt`, and `YearsSinceRemod`
@@ -470,7 +458,7 @@ homes<-homes%>%
                 -YearBuilt)
 ```
 
-```{r understanding-neighborhood-var}
+```{r understanding-neighborhood-var, include=FALSE}
 homes%>%
   group_by(Neighborhood)%>%
   summarise(mean=mean(SalePrice))%>%
@@ -507,24 +495,20 @@ saveRDS(homes, file="../../homes.rds")
 
 ## Correlation
 
-Correlation, $Cor(X,Y)$, measures the strength of the linear relationship between two variables $X$ and $Y$.
-
-The correlation between `SalePrice` and another variable, let's say, `OverallQual`, is the covariance of the separately normalised data between the two variables.
+Correlation, $Cor(X,Y)$, measures the strength of the linear relationship between two variables $X$ and $Y$. The correlation between `SalePrice` and another variable, let's say, `OverallQual`, is the covariance of the separately normalised data between the two variables.
 
 ```{r covariance-example, echo=TRUE}
 cov(scale(homes$SalePrice), scale(homes$OverallQual))
 ```
 
-Since covariance units are `OverallQual` * `SalePrice`, calculating the correlation is instead more helpful since it is unit free. 
-
-If we created a model with only variable as the predictor of `SalesPrice`, let's say, `KitchenQual` and normalised the data, the regression slope would be the correlation between the two variables.
+Since covariance units are `OverallQual` * `SalePrice`, calculating the correlation is more helpful since as is unit free. If we created a model with only one variable as the predictor of `SalesPrice`, let's say, `KitchenQual` and normalised the data, the regression slope would be the correlation between the two variables.
 
 ```{r single-regression-normalised-data, echo=TRUE}
 norm_fit <- lm(scale(SalePrice) ~ scale(KitchenQual), data = homes)
 round(coefficients(norm_fit), digits = 2)
 ```
 
-Here is the correlation matrix for variables that have a relationship stronger than 0.5 with `SalePrice`. 
+Now I'll look at all variables - here is the correlation matrix for variables that have a relationship stronger than 0.5 with `SalePrice`. 
 
 ```{r correlation-matrix, fig.retina=10}
 homes_num <- homes%>%
@@ -543,61 +527,27 @@ corrplot.mixed(high_cor, tl.col="black", tl.pos = "lt",cl.ratio=0.1,number.cex=.
 
 ```
 
-There are 17 variables that have a correlation stronger than 0.5. They are arranged in descending order. It is interesting to note the high correlation that exists amongst variables. The correlation plot highlights some obvious ones, `GarageArea` and `GarageCars`. Makes sense, a bigger garage can hold more cars. `X1stFlrSF` and `TotalBsmtSF`, the total area of the first floor and basement, this also seems reasonable since basements are underneath the same floor and would tend to have a similar area. `TotRmsAbvGrd` and `GrLivArea`, the total number of rooms and area above ground, again ok, more rooms would be linked to a bigger living area. Finally, `YearsSinceBuilt` and `YearsSinceGarageBuilt` since garages are usually built at the same time as the house.
-
-Here is the codebook for all the variables featured in the correlation matrix in case they come up later and we need to interpret what they mean.
-
-**Positive correlation**
-
-- `OverallQual`: Rates the overall material and finish of the house
-- `GrLivArea`: Above grade (ground) living area square feet.
-- `ExterQual`: Exterior quality
-- `KitchenQual`: Kitchen quality
-- `GarageCars`: Size of garage in car capacity
-- `GarageArea`: Size of garage in square feet
-- `TotalBsmtSF`: Total square feet of basement area
-- `X1stFlrSF`: First floor square feet
-- `BsmtQual`: Height of basement
-- `FullBath`: Full bathrooms above grade
-- `GarageFinish`: Interior finish of the garage
-- `TotRmsAbvGrd`: Total rooms above grade (does not include bathrooms)
-- `FireplaceQu`: Fireplace quality
-
-**Negative correlation**
-
-- `YearsSinceRemod`: Years since remodel date (same as construction date if no remodelling or additions)
-- `YearsSinceGarageBuilt`: Years since the garage was built 
-- `YearsSinceBuilt`: Years since construction date
+Variables are arranged in descending order according to the strength of the relationship with `SalePrice`. There are 17 variables that have a correlation stronger than 0.5. When variables are highly correlated amongst each other, it's better to remove some of them. The correlation plot highlights some obvious pairs that are related with another, for example, `GarageArea` and `GarageCars`. Makes sense, a bigger garage can hold more cars. `X1stFlrSF` and `TotalBsmtSF`, the total area of the first floor and basement, this also seems reasonable since basements are underneath the same floor and would tend to have a similar area. `TotRmsAbvGrd` and `GrLivArea`, the total number of rooms and area above ground, again ok, more rooms would be linked to a bigger living area. Finally, `YearsSinceBuilt` and `YearsSinceGarageBuilt` since garages are usually built at the same time as the house.
 
 
+# Regression trees - why use it?
 
-# Motivation for tool
-
-The tool that I'm going to be using to solve is a regression tree. It's known as as classification and regression trees (CART) or the recursing and partitioning (RPART) algorithm. 
-
-The reason I'm choosing this tool or algorithm to answer the business question is because regression trees are interpretable and we can make easy to follow plots with them.
-
-It will be implemented with the `rpart` package in R. 
-
-Rpart, builds a model in two stages:
+The tool that I'm going to be using to solve is regression trees. It's also known as as classification and regression trees (CART) or the recursing and partitioning (RPART) algorithm. The reason I'm choosing this tool or algorithm to answer the business question is because regression trees are interpretable and we can make easy-to- follow plots with them. It will be implemented with the `rpart` package in R. Rpart, builds a model in two stages:
 
 **First stage**:
 
-A single variable is identified which can best ^[1] split the data into two groups. The data is then separated intwo two groups and the whole process is repeated *recursively* or indefinitely until the sub-groups reach a minimum size, or until no further improvements can be made. 
+The variable which can best[^1] split the data into two groups is identified. The data are then separated into two groups and the whole process is repeated *recursively* or indefinitely until the sub-groups reach a minimum size, or until no further improvements can be made. When the split is made, similarity amongst the observations can more or less homogenous. This homogeneity is also called purity and it can be measured. The impurity measure of a node specifies how mixed the resulting subset is.
 
-^[1]: The best tree is the smallest tree with highest cross-validated error.
-
-When the split is made, similarity amongst the observations can more or less homogenous. This homogeneity is also called purity and it can be measured. The impurity measure of a node specifies how mixed the resulting subset is.
+[^1]: The best tree is the smallest tree with highest cross-validated error.
 
 **Second stage**:
 
-The tree is trimmed back or prunned using cross-validation. 
-
-# Steps 
+The tree is trimmed back or prunned using cross-validation. We identify the lowest cross-validated error or the smallest within one standard error of the tree with lowest cross-validated error. 
 
 
 
-## Splitting the data
+
+
 
 ```{r split-data, include=FALSE}
 # Randomly assign rows to ids (1/2) represents train/test)
@@ -613,7 +563,7 @@ homes_train <- homes[assignment == 1, ]    # subset the homes data frame to trai
 homes_test <- homes[assignment == 2, ]   # subset the homes data frame to test indices only
 ```
 
-## Training the model
+
 
 ```{r train the model, include=FALSE}
 # Train the model
@@ -627,7 +577,9 @@ print(homes_model)
 
 ## Revising variable importance
 
-```{r variable-importance-table}
+Using the `rpart` function, we are able to rank which variables are most predictive of `SalePrice`. The following plot ranks these variables in descending order. 
+
+```{r variable-importance-table, fig.cap="Overall quality is the most predictive variable and the one that originally had the most correlation with `SalePrice`, it's followed by basement quality and Total basement square feet."}
 #Look at variable importance
 
 var_importance <- tidy(homes_model$variable.importance)
@@ -635,17 +587,21 @@ var_importance <- tidy(homes_model$variable.importance)
 total_importance <- sum(var_importance$x)
 
 var_importance%>%
-mutate(x=x/total_importance*100)%>%
-kable(caption="Top 30 variables in order of importance",
-        #Add column names
-        col.names = c("Variable","Percentage")) %>%
-  #Style table
- kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+  mutate(names=fct_reorder(names,x))%>%
+  head(15)%>%
+ggplot(aes(names,x/total_importance,fill=names))+
+  geom_col()+
+  scale_y_continuous(labels = scales::percent_format())+
+  coord_flip()+
+  labs(title="Top 15 most important variables for predicting `SalePrice`",
+       y="",
+       x="")+
+  theme(legend.position = "none")
+  
 ```
 
-## Evaluating the model
 
-```{r initial-prediction}
+```{r initial-prediction, include=FALSE}
 #Computing predicted values 
 pred_base <- predict(object=homes_model,
                 newdata = homes_test)
@@ -659,9 +615,8 @@ mae(actual=homes_test$SalePrice, #Actual values
      predicted = pred_base ) #Predicted values
 ```
 
-## Tuning hyperparameters
 
-```{r tuning-hyperparameters}
+```{r tuning-hyperparameters, include=FALSE}
 # Plot the "CP Table"
 plotcp(homes_model)
 
@@ -676,12 +631,11 @@ cp_opt <- homes_model$cptable[opt_index, "CP"]
 homes_model_opt <- prune(tree = homes_model, 
                          cp = cp_opt)
                           
-# Plot the optimized model
- rpart.plot(x = homes_model_opt, type = 5, extra = 1)
+
 ```
 
-## Checking the error on the optimised model
-```{r prediction}
+
+```{r prediction, include=FALSE}
 #Computing predicted values 
 pred_opt <- predict(object=homes_model_opt,
                 newdata = homes_test)
@@ -695,13 +649,17 @@ mae(actual=homes_test$SalePrice, #Actual values
     predicted = pred_opt) #Predicted values
 ```
 
-# Result
+# Results
+
+```{r final_plot,include=FALSE}
+# Plot the optimized model
+ rpart.plot(x = homes_model_opt, type = 5, extra = 1)
+```
+
+
+# What does it mean?
 
 
 
-# Interpretation
-
-
-- 
 
 
