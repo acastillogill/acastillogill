@@ -70,7 +70,8 @@ opts_chunk$set(echo = FALSE,
                comment = NA,
                tidy = TRUE,
                cache=FALSE)
-
+options(scipen = 999)
+options(digits=4)
 theme_set(theme_light())
 here::here()
 ```
@@ -547,6 +548,10 @@ The tree is trimmed back or prunned using cross-validation. We identify the lowe
 
 
 
+```{r}
+homes <- homes%>%
+  mutate(SalePrice=SalePrice/1000)
+```
 
 
 ```{r split-data, include=FALSE}
@@ -570,12 +575,9 @@ homes_test <- homes[assignment == 2, ]   # subset the homes data frame to test i
 homes_model <- rpart(formula = SalePrice ~ ., 
                      data = homes_train, 
                      method = "anova")
-
-# Look at the model output                      
-print(homes_model)
 ```
 
-## Revising variable importance
+## Variable importance
 
 Using the `rpart` function, we are able to rank which variables are most predictive of `SalePrice`. The following plot ranks these variables in descending order. 
 
@@ -651,15 +653,24 @@ mae(actual=homes_test$SalePrice, #Actual values
 
 # Results
 
-```{r final_plot,include=FALSE}
+```{r final_plot, fig.cap="The tree with 10 nodes and 9 splits had the least lowest performance metric `RMSE`."}
+
+par(mar=c(1,1,1,1))
 # Plot the optimized model
- rpart.plot(x = homes_model_opt, type = 5, extra = 1)
+ rpart.plot(x = homes_model, type = 5, extra = 1, digits = 0)
+
+
 ```
+
+The most influential variable for `SalePrice` was `OverallQual`. This variable "rates the overall material and finish of the house", values equal or above to 8 correspond to "very good", "excellent", and "very excellent". On one hand, for houses with a rating of 8 or above in `OverallQual`, the next most decisive variable is `TotalBsmtSF`, which is the "total square feet of basement area". If it's above 1,850, the house is classified depending on the total number of rooms. If it's below 1,850 then `GarageArea` will determine how much the house will sell for. 
+
+On the other hand, houses with a rating below 8 for `OverallQual`, `Neighborhood_type` defined as median price of houses in that neighborhood. The variables that determine the `SalePrice` thereafter are `GrLivArea`: "above grade living area in square feet", and `OverallQual` again.
+
+In response to the question: what makes a house more valuable than others? Many variables in the tree are related to area: basement, garage, and total living. Even the number of rooms to some extent depends on the size of the house. So an important one definitely is size. But more important than size in this case, the overall quality of the house is critical. 
 
 
 # What does it mean?
 
-
-
+It seems that having in very good or better condition pays a lot. Would it be worth to find a house in a somewhat fancy neighborhood and work on improving its finish and materials. Who knows? That is a causal question. There is a strong relationship between `OverallQual` and `SalePrice` but correlation does not imply causation. As a final note it's important to add that to a large extent the results of this analysis are limited Ames, Iowa, where this dataset is from.
 
 

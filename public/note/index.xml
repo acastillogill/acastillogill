@@ -7,13 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Ángela Castillo-Gill</copyright>
-    <lastBuildDate>Sat, 24 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 26 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/note/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Editing property prices.</title>
+      <title>Editing property prices - part 2</title>
+      <link>/note/editing-property-prices/</link>
+      <pubDate>Mon, 26 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/note/editing-property-prices/</guid>
+      <description>Daily goals: Continue editing the daily goal.  Goal 1: 1. Continue editing the daily goal. So today I described the tree and it’s results and I realised to some extent that my binning of the Neighborhood variable is definitely wrong. I had binned it as a function of SalePrice removing the names of the neighborhoods that contained some important information such as location.
+I will fix that tomorrow, plus write the summary.</description>
+    </item>
+    
+    <item>
+      <title>Editing property prices</title>
       <link>/note/editing-property-prices/</link>
       <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
       

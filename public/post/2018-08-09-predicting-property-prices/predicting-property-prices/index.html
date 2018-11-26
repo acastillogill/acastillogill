@@ -328,7 +328,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    5 min read
+    6 min read
   </span>
   
 
@@ -432,7 +432,7 @@
 <li><a href="#correlation"><span class="toc-section-number">3.2</span> Correlation</a></li>
 </ul></li>
 <li><a href="#regression-trees---why-use-it"><span class="toc-section-number">4</span> Regression trees - why use it?</a><ul>
-<li><a href="#revising-variable-importance"><span class="toc-section-number">4.1</span> Revising variable importance</a></li>
+<li><a href="#variable-importance"><span class="toc-section-number">4.1</span> Variable importance</a></li>
 </ul></li>
 <li><a href="#results"><span class="toc-section-number">5</span> Results</a></li>
 <li><a href="#what-does-it-mean"><span class="toc-section-number">6</span> What does it mean?</a></li>
@@ -459,8 +459,8 @@
 <h2><span class="header-section-number">3.2</span> Correlation</h2>
 <p>Correlation, <span class="math inline">\(Cor(X,Y)\)</span>, measures the strength of the linear relationship between two variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. The correlation between <code>SalePrice</code> and another variable, let’s say, <code>OverallQual</code>, is the covariance of the separately normalised data between the two variables.</p>
 <pre class="r"><code>cov(scale(homes$SalePrice), scale(homes$OverallQual))
-          [,1]
-[1,] 0.7909816</code></pre>
+      [,1]
+[1,] 0.791</code></pre>
 <p>Since covariance units are <code>OverallQual</code> * <code>SalePrice</code>, calculating the correlation is more helpful since as is unit free. If we created a model with only one variable as the predictor of <code>SalesPrice</code>, let’s say, <code>KitchenQual</code> and normalised the data, the regression slope would be the correlation between the two variables.</p>
 <pre class="r"><code>norm_fit &lt;- lm(scale(SalePrice) ~ scale(KitchenQual), data = homes)
 round(coefficients(norm_fit), digits = 2)
@@ -478,8 +478,8 @@ round(coefficients(norm_fit), digits = 2)
 <p>The variable which can best<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> split the data into two groups is identified. The data are then separated into two groups and the whole process is repeated <em>recursively</em> or indefinitely until the sub-groups reach a minimum size, or until no further improvements can be made. When the split is made, similarity amongst the observations can more or less homogenous. This homogeneity is also called purity and it can be measured. The impurity measure of a node specifies how mixed the resulting subset is.</p>
 <p><strong>Second stage</strong>:</p>
 <p>The tree is trimmed back or prunned using cross-validation. We identify the lowest cross-validated error or the smallest within one standard error of the tree with lowest cross-validated error.</p>
-<div id="revising-variable-importance" class="section level2">
-<h2><span class="header-section-number">4.1</span> Revising variable importance</h2>
+<div id="variable-importance" class="section level2">
+<h2><span class="header-section-number">4.1</span> Variable importance</h2>
 <p>Using the <code>rpart</code> function, we are able to rank which variables are most predictive of <code>SalePrice</code>. The following plot ranks these variables in descending order.</p>
 <div class="figure"><span id="fig:variable-importance-table"></span>
 <img src="/post/2018-08-09-predicting-property-prices/2018-08-09-predicting-property-prices_files/figure-html/variable-importance-table-1.png" alt="Overall quality is the most predictive variable and the one that originally had the most correlation with `SalePrice`, it's followed by basement quality and Total basement square feet." width="672" />
@@ -491,9 +491,19 @@ Figure 4.1: Overall quality is the most predictive variable and the one that ori
 </div>
 <div id="results" class="section level1">
 <h1><span class="header-section-number">5</span> Results</h1>
+<div class="figure">
+<img src="/post/2018-08-09-predicting-property-prices/2018-08-09-predicting-property-prices_files/figure-html/final_plot-1.png" alt="The tree with 10 nodes and 9 splits had the least lowest performance metric `RMSE`." width="672" />
+<p class="caption">
+(#fig:final_plot)The tree with 10 nodes and 9 splits had the least lowest performance metric <code>RMSE</code>.
+</p>
+</div>
+<p>The most influential variable for <code>SalePrice</code> was <code>OverallQual</code>. This variable “rates the overall material and finish of the house”, values equal or above to 8 correspond to “very good”, “excellent”, and “very excellent”. On one hand, for houses with a rating of 8 or above in <code>OverallQual</code>, the next most decisive variable is <code>TotalBsmtSF</code>, which is the “total square feet of basement area”. If it’s above 1,850, the house is classified depending on the total number of rooms. If it’s below 1,850 then <code>GarageArea</code> will determine how much the house will sell for.</p>
+<p>On the other hand, houses with a rating below 8 for <code>OverallQual</code>, <code>Neighborhood_type</code> defined as median price of houses in that neighborhood. The variables that determine the <code>SalePrice</code> thereafter are <code>GrLivArea</code>: “above grade living area in square feet”, and <code>OverallQual</code> again.</p>
+<p>In response to the question: what makes a house more valuable than others? Many variables in the tree are related to area: basement, garage, and total living. Even the number of rooms to some extent depends on the size of the house. So an important one definitely is size. But more important than size in this case, the overall quality of the house is critical.</p>
 </div>
 <div id="what-does-it-mean" class="section level1">
 <h1><span class="header-section-number">6</span> What does it mean?</h1>
+<p>It seems that having in very good or better condition pays a lot. Would it be worth to find a house in a somewhat fancy neighborhood and work on improving its finish and materials. Who knows? That is a causal question. There is a strong relationship between <code>OverallQual</code> and <code>SalePrice</code> but correlation does not imply causation. As a final note it’s important to add that to a large extent the results of this analysis are limited Ames, Iowa, where this dataset is from.</p>
 </div>
 <div class="footnotes">
 <hr />

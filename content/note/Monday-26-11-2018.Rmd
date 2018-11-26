@@ -1,15 +1,15 @@
 ---
-title: "Editing property prices"
-subtitle: "Deleting all the chit chat is painful but I guess necessary."
+title: "Editing property prices - part 2"
+subtitle: "The work continues."
 author: Ángela Castillo-Gill
-date: '2018-11-24'
+date: '2018-11-26'
 slug: editing-property-prices
 categories:
   - Journal
 tags: 
   - Learning
 draft: FALSE
-summary: "Deleting all the chit chat is painful but I guess necessary."
+summary: "The work continues."
 output:
  blogdown::html_page:
   fig_caption: true
@@ -19,9 +19,9 @@ editor_options:
 
 # Daily goals:
 
-1. Edit the final blogpost.
+1. Continue editing the daily goal. 
 
-## Goal 1: Edit the final blogpost.
+## Goal 1: 1. Continue editing the daily goal. 
 
 ```{r read data, echo=FALSE, message=FALSE}
 library(tidyverse)
@@ -43,6 +43,6 @@ homes <- homes%>%
   select(-Id)
 ```
 
-So today I've had a session of ruthlessly cutting out a lot of the things I had written and I guess, a lot of the work I had done. In the end the most important thing is to make a much more readable blogpost that goes to the point. When I started writing that blogpost, I hadn't really started this daily journal to think out loud about I was doing. Today I made a lot of changes.
+So today I described the tree and it's results and I realised to some extent that my binning of the `Neighborhood` variable is definitely wrong. I had binned it as a function of `SalePrice` removing the names of the neighborhoods that contained some important information such as location.
 
-I still have to write the interpretation, the summary, final proofing, and then upload to Kaggle. 
+I will fix that tomorrow, plus write the summary. Then on Wednesday I plan to proofread and leave it as is and hopefully at the end of this week start the next post on k-means clustering which is way overdue. 

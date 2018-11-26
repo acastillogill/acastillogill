@@ -11,7 +11,30 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Editing property prices.</title>
+      <title>Editing property prices - part 2</title>
+      <link>/note/editing-property-prices/</link>
+      <pubDate>Mon, 26 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/note/editing-property-prices/</guid>
+      <description>
+
+
+&lt;div id=&#34;daily-goals&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Daily goals:&lt;/h1&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Continue editing the daily goal.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div id=&#34;goal-1-1.-continue-editing-the-daily-goal.&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Goal 1: 1. Continue editing the daily goal.&lt;/h2&gt;
+&lt;p&gt;So today I described the tree and it’s results and I realised to some extent that my binning of the &lt;code&gt;Neighborhood&lt;/code&gt; variable is definitely wrong. I had binned it as a function of &lt;code&gt;SalePrice&lt;/code&gt; removing the names of the neighborhoods that contained some important information such as location.&lt;/p&gt;
+&lt;p&gt;I will fix that tomorrow, plus write the summary. Then on Wednesday I plan to proofread and leave it as is and hopefully at the end of this week start the next post on k-means clustering which is way overdue.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Editing property prices</title>
       <link>/note/editing-property-prices/</link>
       <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
       
@@ -715,20 +738,6 @@ These are:&lt;/p&gt;
 &lt;li&gt;&lt;code&gt;Xstd&lt;/code&gt;: related to the cross validation error.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Also, when reading the &lt;code&gt;rpart&lt;/code&gt; documentation, the authors constantly refer to a surrogate split. Which I’m having a bit of trouble trying to understand.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Memorising tip</title>
-      <link>/note/memorising-tip/</link>
-      <pubDate>Sun, 04 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/note/memorising-tip/</guid>
-      <description>
-
-
-&lt;p&gt;Today I went to a poetry competition and heard a useful tip for memorising a poem, or in my case, speeches. Sometimes when we can’t memorise certain part of a text, after trying many times, maybe whatever is written down there, should go on the final version. Memorising can be a tool for editing the final text. When you read the text aloud, it’s own cadence and rhythm will point out that that word shouldn’t be there.&lt;/p&gt;
-&lt;p&gt;I’ve joined the local chapter of Toastmasters and this recently happened to me with a speech. There were two lines in the third paragraph that I just couldn’t remember. After trying to memorise them over and over, I realised that actually the bit I was struggling with could have been said in another way. In a way that was more memorable for the audience and that made more sense within the text. Changed it and voila! Same idea expressed differently and it was easy to memorise and it made a bigger impact.&lt;/p&gt;
 </description>
     </item>
     
