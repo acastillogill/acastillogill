@@ -80,7 +80,7 @@ here::here()
 
 *To see the code used in this post, visit my [kernel on kaggle in R Markdown format](https://www.kaggle.com/adcastillogill/exploring-kiva-loans).* 
 
-
+In this post I explore a property price dataset from Ames, Iowa. The data describes a set of features for houses. My goal was to understand what characteristics make a house more valuable than others in Ames, Iowa. To do this, I first dealt with missing values in the dataset and created other values to make results easier to understand. After preparing the data, I used regression trees to answer the tools. The benefits of regression trees is that they produce an easy to understand output that can be illustrated. I found that the overall quality of properties is the most closely link characteristic with sale prices. Other features such as living area size and basement size are key. An interesting finding was that there are three neighborhoods that have the most expensive houses. The are NorthRidge Heights, Northridge and, Stone Brook. 
 
 # Question
 
@@ -582,7 +582,7 @@ homes_model <- rpart(formula = SalePrice ~ .,
 
 Using the `rpart` function, we are able to rank which variables are most predictive of `SalePrice`. The following plot ranks these variables in descending order. 
 
-```{r variable-importance-table, fig.cap="Overall quality is the most predictive variable and the one that originally had the most correlation with `SalePrice`, it's followed by basement quality and Total basement square feet."}
+```{r variable-importance-table, fig.cap="Overall quality is the most predictive variable and the one that originally had the most correlation with `SalePrice`, it's followed by basement size and neighborhood type."}
 #Look at variable importance
 
 var_importance <- tidy(homes_model$variable.importance)
@@ -654,7 +654,7 @@ mae(actual=homes_test$SalePrice, #Actual values
 
 # Results
 
-```{r final_plot, fig.cap="The tree with 10 nodes and 9 splits had the least lowest performance metric `RMSE`."}
+```{r final-plot, fig.cap="The tree with 10 nodes and 9 splits had the least lowest performance metric `RMSE`."}
 
 par(mar=c(1,1,1,1))
 # Plot the optimized model

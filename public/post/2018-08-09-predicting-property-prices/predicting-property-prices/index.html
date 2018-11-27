@@ -442,6 +442,7 @@
 <div id="summary" class="section level1">
 <h1><span class="header-section-number">1</span> Summary</h1>
 <p><em>To see the code used in this post, visit my <a href="https://www.kaggle.com/adcastillogill/exploring-kiva-loans">kernel on kaggle in R Markdown format</a>.</em></p>
+<p>In this post I explore a property price dataset from Ames, Iowa. The data describes a set of features for houses. My goal was to understand what characteristics make a house more valuable than others in Ames, Iowa. To do this, I first dealt with missing values in the dataset and created other values to make results easier to understand. After preparing the data, I used regression trees to answer the tools. The benefits of regression trees is that they produce an easy to understand output that can be illustrated. I found that the overall quality of properties is the most closely link characteristic with sale prices. Other features such as living area size and basement size are key. An interesting finding was that there are three neighborhoods that have the most expensive houses. The are NorthRidge Heights, Northridge and, Stone Brook.</p>
 </div>
 <div id="question" class="section level1">
 <h1><span class="header-section-number">2</span> Question</h1>
@@ -482,19 +483,19 @@ round(coefficients(norm_fit), digits = 2)
 <h2><span class="header-section-number">4.1</span> Variable importance</h2>
 <p>Using the <code>rpart</code> function, we are able to rank which variables are most predictive of <code>SalePrice</code>. The following plot ranks these variables in descending order.</p>
 <div class="figure"><span id="fig:variable-importance-table"></span>
-<img src="/post/2018-08-09-predicting-property-prices/2018-08-09-predicting-property-prices_files/figure-html/variable-importance-table-1.png" alt="Overall quality is the most predictive variable and the one that originally had the most correlation with `SalePrice`, it's followed by basement quality and Total basement square feet." width="672" />
+<img src="/post/2018-08-09-predicting-property-prices/2018-08-09-predicting-property-prices_files/figure-html/variable-importance-table-1.png" alt="Overall quality is the most predictive variable and the one that originally had the most correlation with `SalePrice`, it's followed by basement size and neighborhood type." width="672" />
 <p class="caption">
-Figure 4.1: Overall quality is the most predictive variable and the one that originally had the most correlation with <code>SalePrice</code>, it’s followed by basement quality and Total basement square feet.
+Figure 4.1: Overall quality is the most predictive variable and the one that originally had the most correlation with <code>SalePrice</code>, it’s followed by basement size and neighborhood type.
 </p>
 </div>
 </div>
 </div>
 <div id="results" class="section level1">
 <h1><span class="header-section-number">5</span> Results</h1>
-<div class="figure">
-<img src="/post/2018-08-09-predicting-property-prices/2018-08-09-predicting-property-prices_files/figure-html/final_plot-1.png" alt="The tree with 10 nodes and 9 splits had the least lowest performance metric `RMSE`." width="672" />
+<div class="figure"><span id="fig:final-plot"></span>
+<img src="/post/2018-08-09-predicting-property-prices/2018-08-09-predicting-property-prices_files/figure-html/final-plot-1.png" alt="The tree with 10 nodes and 9 splits had the least lowest performance metric `RMSE`." width="672" />
 <p class="caption">
-(#fig:final_plot)The tree with 10 nodes and 9 splits had the least lowest performance metric <code>RMSE</code>.
+Figure 5.1: The tree with 10 nodes and 9 splits had the least lowest performance metric <code>RMSE</code>.
 </p>
 </div>
 <p>The most influential variable for <code>SalePrice</code> was <code>OverallQual</code>. This variable “rates the overall material and finish of the house”, values equal or above to 8 correspond to “very good”, “excellent”, and “very excellent”. On one hand, houses with a rating of 8 or above in <code>OverallQual</code>, the next most decisive variable is <code>TotalBsmtSF</code>, which is the “total square feet of basement area”. If it’s above 1,850, the house is classified depending on <code>Neighborhood_type</code>. Fancy houses are thoses that are in either of these neighborhoods NridgHt, NoRidge, StoneBr. All other neighborhoods are not fancy. Houses below 1,850 feet are further classified depending on the <code>GarageArea</code>.</p>
