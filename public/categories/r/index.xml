@@ -18,7 +18,7 @@
       <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018-08-09-predicting-property-prices/predicting-property-prices/</guid>
-      <description>1 Summary 2 Question 3 Dataset description 3.1 Missing values 3.2 Correlation  4 Regression trees - why use it? 4.1 Variable importance  5 Results 6 What does it mean?   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
+      <description>1 Summary 2 Question 3 Dataset description 3.1 Missing values 3.2 Correlation  4 Regression trees - why use them? 4.1 Variable importance  5 Results 6 What does it mean?   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
  2 Question Let’s say that you have a house in Ames, Iowa (that’s where the dataset is from).</description>
     </item>
     

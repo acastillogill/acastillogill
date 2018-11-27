@@ -1,15 +1,15 @@
 ---
-title: "Editing property prices - part 2"
-subtitle: "The work continues."
+title: "Do it again."
+subtitle: "The binning was wrong."
 author: Ángela Castillo-Gill
-date: '2018-11-26'
-slug: editing-property-prices
+date: '2018-11-27'
+slug: do-it-again
 categories:
   - Journal
 tags: 
   - Learning
 draft: FALSE
-summary: "The work continues."
+summary: "The binning was wrong."
 output:
  blogdown::html_page:
   fig_caption: true
@@ -43,4 +43,4 @@ homes <- homes%>%
   select(-Id)
 ```
 
-
+So job done than on that part. Now all I have to do it seems is write up the summary and then proofread. Let me see the whole thing again and decide. 

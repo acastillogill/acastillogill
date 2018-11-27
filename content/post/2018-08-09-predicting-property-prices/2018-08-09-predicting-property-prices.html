@@ -33,7 +33,7 @@ editor_options:
 <li><a href="#missing-values"><span class="toc-section-number">3.1</span> Missing values</a></li>
 <li><a href="#correlation"><span class="toc-section-number">3.2</span> Correlation</a></li>
 </ul></li>
-<li><a href="#regression-trees---why-use-it"><span class="toc-section-number">4</span> Regression trees - why use it?</a><ul>
+<li><a href="#regression-trees---why-use-them"><span class="toc-section-number">4</span> Regression trees - why use them?</a><ul>
 <li><a href="#variable-importance"><span class="toc-section-number">4.1</span> Variable importance</a></li>
 </ul></li>
 <li><a href="#results"><span class="toc-section-number">5</span> Results</a></li>
@@ -73,8 +73,8 @@ round(coefficients(norm_fit), digits = 2)
 <p>Variables are arranged in descending order according to the strength of the relationship with <code>SalePrice</code>. There are 17 variables that have a correlation stronger than 0.5. When variables are highly correlated amongst each other, it’s better to remove some of them. The correlation plot highlights some obvious pairs that are related with another, for example, <code>GarageArea</code> and <code>GarageCars</code>. Makes sense, a bigger garage can hold more cars. <code>X1stFlrSF</code> and <code>TotalBsmtSF</code>, the total area of the first floor and basement, this also seems reasonable since basements are underneath the same floor and would tend to have a similar area. <code>TotRmsAbvGrd</code> and <code>GrLivArea</code>, the total number of rooms and area above ground, again ok, more rooms would be linked to a bigger living area. Finally, <code>YearsSinceBuilt</code> and <code>YearsSinceGarageBuilt</code> since garages are usually built at the same time as the house.</p>
 </div>
 </div>
-<div id="regression-trees---why-use-it" class="section level1">
-<h1><span class="header-section-number">4</span> Regression trees - why use it?</h1>
+<div id="regression-trees---why-use-them" class="section level1">
+<h1><span class="header-section-number">4</span> Regression trees - why use them?</h1>
 <p>The tool that I’m going to be using to solve is regression trees. It’s also known as as classification and regression trees (CART) or the recursing and partitioning (RPART) algorithm. The reason I’m choosing this tool or algorithm to answer the business question is because regression trees are interpretable and we can make easy-to- follow plots with them. It will be implemented with the <code>rpart</code> package in R. Rpart, builds a model in two stages:</p>
 <p><strong>First stage</strong>:</p>
 <p>The variable which can best<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> split the data into two groups is identified. The data are then separated into two groups and the whole process is repeated <em>recursively</em> or indefinitely until the sub-groups reach a minimum size, or until no further improvements can be made. When the split is made, similarity amongst the observations can more or less homogenous. This homogeneity is also called purity and it can be measured. The impurity measure of a node specifies how mixed the resulting subset is.</p>
@@ -99,8 +99,8 @@ Figure 4.1: Overall quality is the most predictive variable and the one that ori
 (#fig:final_plot)The tree with 10 nodes and 9 splits had the least lowest performance metric <code>RMSE</code>.
 </p>
 </div>
-<p>The most influential variable for <code>SalePrice</code> was <code>OverallQual</code>. This variable “rates the overall material and finish of the house”, values equal or above to 8 correspond to “very good”, “excellent”, and “very excellent”. On one hand, for houses with a rating of 8 or above in <code>OverallQual</code>, the next most decisive variable is <code>TotalBsmtSF</code>, which is the “total square feet of basement area”. If it’s above 1,850, the house is classified depending on the total number of rooms. If it’s below 1,850 then <code>GarageArea</code> will determine how much the house will sell for.</p>
-<p>On the other hand, houses with a rating below 8 for <code>OverallQual</code>, <code>Neighborhood_type</code> defined as median price of houses in that neighborhood. The variables that determine the <code>SalePrice</code> thereafter are <code>GrLivArea</code>: “above grade living area in square feet”, and <code>OverallQual</code> again.</p>
+<p>The most influential variable for <code>SalePrice</code> was <code>OverallQual</code>. This variable “rates the overall material and finish of the house”, values equal or above to 8 correspond to “very good”, “excellent”, and “very excellent”. On one hand, houses with a rating of 8 or above in <code>OverallQual</code>, the next most decisive variable is <code>TotalBsmtSF</code>, which is the “total square feet of basement area”. If it’s above 1,850, the house is classified depending on <code>Neighborhood_type</code>. Fancy houses are thoses that are in either of these neighborhoods NridgHt, NoRidge, StoneBr. All other neighborhoods are not fancy. Houses below 1,850 feet are further classified depending on the <code>GarageArea</code>.</p>
+<p>On the other hand, houses with a rating below 8 for <code>OverallQual</code>, the same variable decides again classifying them above or equal to 7, which is “good”. Either way, houses will be classified again by <code>GrLivArea</code>: “above grade living area in square feet”, where smaller houses will depend on basement size (<code>TotalBsmtSF</code>) or on <code>MS_type</code>, which describes the type of dwelling. Modern dwellings include: split foyer, 1-story built in 1946 or newer. Less modern dwellings are 1945 or older in some cases.</p>
 <p>In response to the question: what makes a house more valuable than others? Many variables in the tree are related to area: basement, garage, and total living. Even the number of rooms to some extent depends on the size of the house. So an important one definitely is size. But more important than size in this case, the overall quality of the house is critical.</p>
 </div>
 <div id="what-does-it-mean" class="section level1">
