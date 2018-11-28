@@ -11,6 +11,24 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Finished!</title>
+      <link>/note/finished-property-prices/</link>
+      <pubDate>Wed, 28 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/note/finished-property-prices/</guid>
+      <description>
+
+
+&lt;div id=&#34;daily-goals&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Daily goals:&lt;/h1&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Daily goals were to finish the blogpost and I think I have. Tomorrow I will start with k-means clustering!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Do it again.</title>
       <link>/note/do-it-again/</link>
       <pubDate>Tue, 27 Nov 2018 00:00:00 +0000</pubDate>
@@ -708,20 +726,6 @@ Let’s look at which trees are within one standard error &lt;code&gt;xstd&lt;/c
 &lt;p class=&#34;caption&#34;&gt;CP table on page 16 from the Rpart documentation.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Doesn’t the tree with 11 splits and 12 nodes have the first smallest error with 0.36667?&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Choosing the best tree</title>
-      <link>/note/choosing-the-best-tree/</link>
-      <pubDate>Wed, 07 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/note/choosing-the-best-tree/</guid>
-      <description>
-
-
-&lt;p&gt;According to user Harold Ship in &lt;a href=&#34;https://stackoverflow.com/questions/29197213/what-is-the-difference-between-rel-error-and-x-error-in-a-rpart-decision-tree&#34;&gt;this post&lt;/a&gt;, we should pick the tree with that keeps this relationship but has the tallest (that’s what he means with the lowest level, since each row represents a tree with more splits):&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(rel\&amp;gt;error\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(+\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xstd\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(&amp;lt;\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xerror\)&lt;/span&gt;&lt;/p&gt;
 </description>
     </item>
     
