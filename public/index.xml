@@ -11,6 +11,37 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>What next?</title>
+      <link>/note/what-next/</link>
+      <pubDate>Thu, 29 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/note/what-next/</guid>
+      <description>
+
+
+&lt;div id=&#34;daily-goals&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Daily goals:&lt;/h1&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Reflect on what post I would like do next, what tool will I use, what dataset will I use and why?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The last posts I haven’t planned properly in terms of what tool I’m going to use, why is it well-suited, and what dataset would I like to use. Don’t get me wrong, there are some positive aspects to this lacking of planning. I get to see lots of raw datasets where I can see the challenges of dealing with raw data.&lt;/p&gt;
+&lt;p&gt;Despite linear regression being such a foundational thing, I haven’t used it in any post so far. I did attempt to do it with the Kiva loans one, but the dataset was so large that it got a little bit out of hand. Performing linear regression on 2,000 observations is very much different than doing so on a dataset with 500,000. I rememeber the distributions being bimodal and that tripping me up and also the number of outliers at a time.&lt;/p&gt;
+&lt;p&gt;I asked for help at some point and someone on CrossValidated, I think quite appropriately so, said: stop and take baby steps. And I didn’t want to but now I kind of see why. The frustration of taking very large steps can exhaust and feel daunting. It’s much better to take small steps and come across issues slowly that seem figure-out-able.&lt;/p&gt;
+&lt;p&gt;So for this next post I would like to use a linear regression. Why? Because I would like to properly test my understanding of the assumptions it carries, what are the steps I should take, how will I deal with outliers, and how I will I choose the best model and why.&lt;/p&gt;
+&lt;p&gt;Getting linear regression is critical/crucial/essential in this whole data science thing and I intend to get it right.&lt;/p&gt;
+&lt;p&gt;Tuesday and Wednesday were this month’s R-Ladies reading group and it was bloody EXCELLENT. I learned so much about the importance of being organised when doing computing and how to do so. I’m having a ball reading Hadley Wickam’s reading list and learning lots. I’ve also started the book Introduction to Statistical Learning which is the foundation of these blogpost.&lt;/p&gt;
+&lt;p&gt;Ok, moving on.&lt;/p&gt;
+&lt;p&gt;I want to apply linear regression because it is critical I get right, but what will be the dataset and how do I come up with a question? Ah. Yes. A bit more tricky. The reason it’s a bit more tricky is because receiving a simple dataset and cleaning it, getting to know it, etc, is just a pre step to figuring out what is the question we want to ask.&lt;/p&gt;
+&lt;p&gt;Oh, just had an idea, why don’t I just use the same one? I could use the property price and get on with it. It could help look at the effects of adjusting for another variable and also, how to deal with dummy variables. Hmmmm.&lt;/p&gt;
+&lt;p&gt;Could be a good idea, since it’s a dataset I know well, I’m sort of tempted. Also, it could be a good start to compare the results with property values. I definitely need to improve my interpretation of results. It’s a dataset I understand well so why not. Ok. Same dataset. I wanted to go through the Tidy Tuesday one but maybe in another post. I can’t move on until I get linear regression right. I mean I can but I don’t want to.&lt;/p&gt;
+&lt;p&gt;So, what is the first condition for a linear regression:&lt;/p&gt;
+&lt;p&gt;-The input (&lt;span class=&#34;math inline&#34;&gt;\(X_i\)&lt;/span&gt;) and the output (&lt;span class=&#34;math inline&#34;&gt;\(Y_i\)&lt;/span&gt;) do not have to be normally distributed.
+-The &lt;span class=&#34;math inline&#34;&gt;\(Y|X\)&lt;/span&gt; do have to be linearly related.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Finished!</title>
       <link>/note/finished-property-prices/</link>
       <pubDate>Wed, 28 Nov 2018 00:00:00 +0000</pubDate>
@@ -701,31 +732,6 @@ Let’s look at which trees are within one standard error &lt;code&gt;xstd&lt;/c
 &lt;p&gt;OK. So the goals for the day have been reached. Tomorrow I will do some variable bining and explain why, after that I think I am ready to apply the final iteration of the &lt;code&gt;rpart&lt;/code&gt; algorithm, interpret the results, and publish the post.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Surrogate who?</title>
-      <link>/note/surrogate-who/</link>
-      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/note/surrogate-who/</guid>
-      <description>
-
-
-&lt;p&gt;I hope the authors of the &lt;code&gt;Rpart&lt;/code&gt; documentation don’t take it personally but they mention surrogate variables starting on page 11 and they don’t properly define what surrogate variables mean until page 18. Maybe it’s just me.&lt;/p&gt;
-&lt;p&gt;Anyway! So here is another response to a previous question: what is a surrogate variable?&lt;/p&gt;
-&lt;p&gt;So the &lt;code&gt;Rpart&lt;/code&gt; algorithm deals with missing data. The way it does this is when it’s doing its thing and determining the next variable and split point and comes across an observation that does not have a that variable, it figures out which variables can act as a replacement for that variable. Surrogate variable mystery solved. N&lt;/p&gt;
-&lt;p&gt;Now I’m having a bit of trouble figuring out if all the rules I’ve read for choosing the best tree are the same. In the DataCamp course we pick the tree that minimises &lt;code&gt;xerror&lt;/code&gt;. Yesterday I posted this rule I found on Cross Validated:&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(rel\&amp;gt;error\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(+\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xstd\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(&amp;lt;\)&lt;/span&gt; &lt;span class=&#34;math inline&#34;&gt;\(xerror\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;In the documentation this is a rule:&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(1-SE\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;In my next post I’m going to get to the bottom of this. I’m particularly confused because if we want to minimise the &lt;code&gt;xerror&lt;/code&gt;, why does page 16 of the documentation show a cptable with 27 splits and says: we see that the best tree has 10 terminal nodes, 9 splits, based on cross-validation. It has &lt;code&gt;xerror&lt;/code&gt; 0.3944.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;/post/Thurs-08-11-2018_files/cptable.png&#34; alt=&#34;CP table on page 16 from the Rpart documentation.&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;CP table on page 16 from the Rpart documentation.&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;Doesn’t the tree with 11 splits and 12 nodes have the first smallest error with 0.36667?&lt;/p&gt;
 </description>
     </item>
     

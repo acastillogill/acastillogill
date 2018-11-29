@@ -9,11 +9,13 @@ categories:
 tags: 
   - Kaggle
   - Home sales prices
+  - Decision trees
+  - Regression trees
 draft: FALSE
 summary: "What are features are closely linked with sales price?"
 header: 
-  image: ""
-  caption: "Test"
+  image: "headers/final-plot-1.png"
+  caption: "Regression tree to estimate property values. "
 output:
   blogdown::html_page:
     toc: true
@@ -455,13 +457,14 @@ homes<-homes%>%
          YearsSinceRemod = year(Sys.Date())-YearRemodAdd,
          #Same for GarageYrBlt
          YearsSinceGarageBuilt = year(Sys.Date())-GarageYrBlt)%>%
-  #Remove old variables
+  #Remove old variables, correlated ones, and ID
   dplyr::select(-GarageYrBlt,
                 -YearRemodAdd,
                 -YearBuilt,
                 -GarageCars,
                 -BsmtQual,
-                -TotRmsAbvGrd)
+                -TotRmsAbvGrd,
+                -Id)
 ```
 
 ```{r understanding-neighborhood-var, include=FALSE}

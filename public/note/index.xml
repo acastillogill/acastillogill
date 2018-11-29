@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Ángela Castillo-Gill</copyright>
-    <lastBuildDate>Wed, 28 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 29 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/note/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>What next?</title>
+      <link>/note/what-next/</link>
+      <pubDate>Thu, 29 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/note/what-next/</guid>
+      <description>Daily goals: Reflect on what post I would like do next, what tool will I use, what dataset will I use and why?  The last posts I haven’t planned properly in terms of what tool I’m going to use, why is it well-suited, and what dataset would I like to use. Don’t get me wrong, there are some positive aspects to this lacking of planning. I get to see lots of raw datasets where I can see the challenges of dealing with raw data.</description>
+    </item>
     
     <item>
       <title>Finished!</title>
