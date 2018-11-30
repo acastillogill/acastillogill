@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Ángela Castillo-Gill</copyright>
-    <lastBuildDate>Thu, 29 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 30 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/journal/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Learning Friday</title>
+      <link>/note/learning-friday/</link>
+      <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/note/learning-friday/</guid>
+      <description>There are a bunch of packages that I’ve accumulated in the “to learn/later” basket but I never get around to them. Today, the last day of November 2018, I’m going to give myself two hours for some calm documentation reading because this time investment will bring much rewards in the future.
+Let’s begin with a laundry list of the packages I want to learn:
+here: brought to my attention by Jenny Brian.</description>
+    </item>
     
     <item>
       <title>What next?</title>
@@ -76,7 +87,7 @@ I want to show how I applied the regression tree algorithm to a Kaggle dataset.<
       <pubDate>Thu, 22 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/note/the-perfect-balance/</guid>
-      <description>Daily goals: Discuss the proposed answer for yesterday’s question: why did the performance metrics go up? Talk about next steps for the property values post.  Goal 1: Discuss the proposed answer for yesterday’s question: why did the performance metrics go up? The rmse for the base model homes_model is 36182.1117 and the mae is 25797.5518.
+      <description>Daily goals: Discuss the proposed answer for yesterday’s question: why did the performance metrics go up? Talk about next steps for the property values post.  Goal 1: Discuss the proposed answer for yesterday’s question: why did the performance metrics go up? The rmse for the base model homes_model is 36595.3198 and the mae is 25784.2432.
 The rmse for the improved model homes_model_opt is 40848.44 and the mae is 28394.</description>
     </item>
     

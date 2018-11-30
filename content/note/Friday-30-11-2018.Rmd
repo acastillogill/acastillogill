@@ -1,0 +1,55 @@
+---
+title: "Learning Friday"
+subtitle: "Lots of new packages straight from the R-Ladies Remote reading group."
+author: Ángela Castillo-Gill
+date: '2018-11-30'
+slug: learning-friday
+categories:
+  - Journal
+tags: 
+  - Learning
+draft: FALSE
+summary: "Lots of new packages straight from the R-Ladies Remote reading group."
+output:
+ blogdown::html_page:
+  fig_caption: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r read data, echo=FALSE, message=FALSE}
+library(tidyverse)
+library(rpart)
+library(rpart.plot)
+library(knitr)
+options(digits=4)
+options(scipen = 999)
+opts_chunk$set(echo = FALSE,
+               warning = FALSE,
+               error = FALSE,
+               message = FALSE,
+               collapse= TRUE,
+               comment = NA,
+               tidy = TRUE)
+theme_set(theme_light())
+homes <- readRDS(file=here::here("static","data","homes.rds"))
+```
+
+
+
+There are a bunch of packages that I've accumulated in the "to learn/later" basket but I never get around to them. Today, the last day of November 2018, I'm going to give myself two hours for some calm documentation reading because this time investment will bring much rewards in the future.
+
+Let's begin with a laundry list of the packages I want to learn:
+
+1. [here](https://github.com/jennybc/here_here): brought to my attention by Jenny Brian.
+2. [drake](https://ropenscilabs.github.io/drake-manual/index.html#the-drake-r-package): Recommended by Sina Rueger, fellow member of R-Ladies Remote.
+3. [testthat](https://github.com/krlmlr/testthat): mentioned in this week's DataFramed podcast.
+4. [roxygen2](https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html): used by of R-Ladies Remote.
+5. Creating a `makefile` with .Rmd. Heather Turner, also from R-Ladies Remote suggest: `rmarkdown::render` instead of `source()` when working with `.Rmd()` files.
+
+
+OK. Great. Now that I've gotten myself all nice and overwhelmed. I need to plan how to read the documentation and slowly integrate those packages into my workflow. 
+
+The one that I simply must try now is `here`. I keep using pathways I only have in both the PhD work and on this site. Awful. Jenny Brian would come and set my laptop on fire. Okidokes.
+
+Let's fix that. 

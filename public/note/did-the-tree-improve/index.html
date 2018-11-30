@@ -179,25 +179,6 @@
         
 
         <li class="nav-item">
-          <a class="nav-link" href="/tutorial">
-            
-            <span>Tutorials</span>
-            
-          </a>
-        </li>
-
-        
-        
-
-        
-
-        
-        
-        
-          
-        
-
-        <li class="nav-item">
           <a class="nav-link" href="/#posts">
             
             <span>Posts</span>
@@ -458,15 +439,15 @@ plotcp(homes_model)</code></pre>
 print(homes_model$cptable)</code></pre>
 <pre><code>##            CP nsplit rel error    xerror       xstd
 ## 1  0.44576120      0 1.0000000 1.0034376 0.09648934
-## 2  0.11362733      1 0.5542388 0.5578944 0.05448931
-## 3  0.07787835      2 0.4406115 0.4760270 0.05459581
-## 4  0.03461959      3 0.3627331 0.4091012 0.03666288
-## 5  0.02116148      4 0.3281135 0.3979878 0.04568692
-## 6  0.01818931      5 0.3069520 0.4082587 0.04732241
-## 7  0.01742778      6 0.2887627 0.3937271 0.04468678
-## 8  0.01671704      7 0.2713350 0.3939984 0.04468230
-## 9  0.01294838      8 0.2546179 0.3677683 0.04291999
-## 10 0.01000000      9 0.2416695 0.3524860 0.04281097</code></pre>
+## 2  0.11185759      1 0.5542388 0.5578944 0.05448931
+## 3  0.07787835      2 0.4423812 0.4670323 0.05424358
+## 4  0.03937406      3 0.3645029 0.4001065 0.03612001
+## 5  0.02682084      4 0.3251288 0.3604073 0.03569390
+## 6  0.02116148      6 0.2714871 0.3619070 0.04101147
+## 7  0.01526856      7 0.2503256 0.3454768 0.03781928
+## 8  0.01468395      8 0.2350571 0.3367953 0.03724153
+## 9  0.01059506      9 0.2203731 0.3260323 0.03727571
+## 10 0.01000000     10 0.2097781 0.3241648 0.03732242</code></pre>
 <p>According the <code>cptable</code>, the lowest <code>xerror</code> is in row 10, to that we add the <code>xstd</code> error and obtain: <span class="math inline">\(0.39529\)</span>. We see that the smallest error with <code>xerror</code> below that is the tree with 7 splits and 8 nodes. I will use that in the improved plot.</p>
 <pre class="r"><code># Retrieve optimal cp value based on cross-validated error
 opt_index &lt;- 7

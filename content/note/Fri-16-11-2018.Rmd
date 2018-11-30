@@ -25,7 +25,7 @@ editor_options:
 library(tidyverse)
 library(rpart)
 library(rpart.plot)
-homes <- readRDS(file="/Volumes/TOSHIBAEXT/google_drive/acastillogill/content/homes.rds")
+homes <- readRDS(file=here::here("static","data","homes.rds"))
 ```
 
 ```{r}

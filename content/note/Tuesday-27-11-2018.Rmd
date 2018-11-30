@@ -38,9 +38,8 @@ opts_chunk$set(echo = FALSE,
                comment = NA,
                tidy = TRUE)
 theme_set(theme_light())
-homes <- readRDS(file="/Volumes/TOSHIBAEXT/google_drive/acastillogill/content/homes.rds")
-homes <- homes%>%
-  select(-Id)
+homes <- readRDS(file=here::here("data","homes.rds"))
+
 ```
 
 So job done than on that part. Now all I have to do it seems is write up the summary and then proofread. Let me see the whole thing again and decide. 

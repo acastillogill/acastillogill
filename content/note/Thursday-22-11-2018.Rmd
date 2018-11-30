@@ -39,9 +39,7 @@ opts_chunk$set(echo = FALSE,
                comment = NA,
                tidy = TRUE)
 theme_set(theme_light())
-homes <- readRDS(file="/Volumes/TOSHIBAEXT/google_drive/acastillogill/content/homes.rds")
-homes <- homes%>%
-  select(-Id)
+homes <- readRDS(file=here::here("static","data","homes.rds"))
 ```
 
 ```{r splitting data}

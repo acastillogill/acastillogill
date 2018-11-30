@@ -36,7 +36,7 @@ opts_chunk$set(echo = FALSE,
                comment = NA,
                tidy = TRUE)
 theme_set(theme_light())
-homes <- readRDS(file="/Volumes/TOSHIBAEXT/google_drive/acastillogill/content/homes.rds")
+homes <- readRDS(file=here::here("data","homes.rds"))
 ```
 
 The last posts I haven't planned properly in terms of what tool I'm going to use, why is it well-suited, and what dataset would I like to use. Don't get me wrong, there are some positive aspects to this lacking of planning. I get to see lots of raw datasets where I can see the challenges of dealing with raw data. 

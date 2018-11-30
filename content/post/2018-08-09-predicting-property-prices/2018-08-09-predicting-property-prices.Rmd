@@ -75,12 +75,12 @@ opts_chunk$set(echo = FALSE,
 options(scipen = 999)
 options(digits=4)
 theme_set(theme_light())
-here::here()
+
 ```
 
 # Summary
 
-*To see the code used in this post, visit my [kernel on kaggle in R Markdown format](https://www.kaggle.com/adcastillogill/exploring-kiva-loans).* 
+*To see the code used in this post, visit my [kernel on kaggle in R Markdown format](https://www.kaggle.com/adcastillogill/regression-trees-predicting-property-prices/code).* 
 
 In this post I explore a property dataset from Ames, Iowa. The data describes a set of features for houses. My goal was to understand what characteristics make a house more valuable than others in Ames, Iowa. To do this, I first prepared the data by dealing with missing values in the dataset and created other variables to make results easier to understand. After preparing the data, I used regression trees to answer the question. The benefits of regression trees are that they produce an output that can be illustrated and easily interpreted. I found that the overall quality of properties is the most closely linked characteristic with sale prices. Other features such as living area and basement size were also key. An interesting finding was that there are three neighborhoods that have the most expensive houses. These are NorthRidge Heights, Northridge and, Stone Brook. 
 
@@ -97,9 +97,9 @@ Let's say that you have a house in Ames, Iowa [^2]. You're about to buy a house 
 
 
 ```{r reading data, results='hide'}
-path <- "/Volumes/TOSHIBAEXT/RStudio/blog/content/post/house_prices/"
+path <- here::here("static","data","property_train.csv")
 #Read `train.csv` as homes
-homes <- read.csv(paste0(path,"train.csv"), stringsAsFactors = FALSE)
+homes <- read.csv(path, stringsAsFactors = FALSE)
 ```
 
 
@@ -497,7 +497,7 @@ homes <- homes%>%
 
 ```{r export the data set for posts}
 #Save RDS
-saveRDS(homes, file="../../homes.rds")
+saveRDS(homes, file=here("static","data", "homes.rds"))
 ```
 
 
