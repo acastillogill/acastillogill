@@ -11,6 +11,43 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>New month, new post</title>
+      <link>/note/new-month-new-post/</link>
+      <pubDate>Mon, 03 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/note/new-month-new-post/</guid>
+      <description>
+
+
+&lt;p&gt;As a follow up to Friday’s post on the new packages and scripts I would like to make. I can report that I have learned the &lt;code&gt;here&lt;/code&gt; package and was able to make a &lt;code&gt;makefile&lt;/code&gt; too to organise all my projects. I have a good understanding now, I think. I’ll leave &lt;code&gt;testthat&lt;/code&gt; for this Friday and &lt;code&gt;roxygen2&lt;/code&gt; for another rainy day.&lt;/p&gt;
+&lt;p&gt;It’s important to invest that time in learning things that will make my workflow more efficient. At first it feels like I’m stalling or something, but it can be worth the investment in the future.&lt;/p&gt;
+&lt;p&gt;Now, in a previous I had said that I wanted to find another dataset, but then I decided to keep the property price dataset, but now I don’t think I can be bothered.&lt;/p&gt;
+&lt;p&gt;I will look at datasets on Tidy Tuesday and find something that excites me from there. I think the most important thing to keep me going is, does the dataset make me curious about something. I found a dataset on a year’s worth of R Language downloads.&lt;/p&gt;
+&lt;p&gt;My questions here that could lead to a regression of some sort are, which countries download R Language the most in a year. What is the relationship with GPD per capita, with education funding, maybe even GINI index.&lt;/p&gt;
+&lt;p&gt;I would be working backwards, the downloads would be my &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; variable and then I would have to find statistics from around the internet. Could be fun and also, I wouldn’t be so overwhelmed about a lot of variables at once. I have the option to find each one.&lt;/p&gt;
+&lt;p&gt;Let’s read the data in and explore it:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;downloads &amp;lt;- read_csv(&amp;quot;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2018-10-30/r_downloads_year.csv&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let’s save that data for a rainy day since it took a while to download:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;saveRDS(downloads, here(&amp;quot;static&amp;quot;, &amp;quot;data&amp;quot;, &amp;quot;r-downloads.rds&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Excellent!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/rfordatascience/tidytuesday/tree/master/data/2018-10-30&#34;&gt;Data source&lt;/a&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;downloads_per_country &amp;lt;- downloads %&amp;gt;% count(country, sort = TRUE) %&amp;gt;% arrange(desc(n))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now I’m going to give the countries full names, to do this I will use the ISO code to merge and obtain names.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;iso_codes &amp;lt;- read_csv(here(&amp;quot;static&amp;quot;, &amp;quot;data&amp;quot;, &amp;quot;iso_countries.csv&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;downloads_per_country %&amp;lt;&amp;gt;% right_join(iso_codes, by = c(country = &amp;quot;iso&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;which-are-the-top-ten-countries-in-terms-of-downloads&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Which are the top ten countries in terms of downloads&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;downloads_per_country %&amp;gt;% arrange(desc(n)) %&amp;gt;% filter(!is.na(name)) %&amp;gt;% head(20) %&amp;gt;% 
+    mutate(name = fct_reorder(name, n)) %&amp;gt;% ggplot(aes(name, n, fill = name)) + 
+    geom_col() + expand_limits(y = 0) + coord_flip() + scale_y_continuous(labels = comma_format()) + 
+    labs(title = &amp;quot;Top 20 countries by R downloads&amp;quot;, x = &amp;quot;Country&amp;quot;, y = &amp;quot;Downloads&amp;quot;) + 
+    theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/note/Monday-3-12-2018_files/figure-html/top-20-countries-plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Learning Friday</title>
       <link>/note/learning-friday/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
@@ -637,63 +674,6 @@ Figure 2: Improved model has 7 splits and 8 nodes.
  34900 129975 163000 214000 755000 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This shows for example that only very few neighborhoods will be in the last quantile (above &lt;code&gt;$755,000&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;Tomorrow I will do the rest cause right now I gotta go.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Applying concepts learned to property prices</title>
-      <link>/note/applying-concepts-learned-to-property-prices/</link>
-      <pubDate>Tue, 13 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/note/applying-concepts-learned-to-property-prices/</guid>
-      <description>
-
-
-&lt;div id=&#34;goals-for-todays-session-are&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Goal’s for today’s session are:&lt;/h1&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;&lt;p&gt;Interpret the &lt;code&gt;cptable&lt;/code&gt; for the generic &lt;code&gt;homes_model&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Interpret the &lt;code&gt;rpart.plot&lt;/code&gt; associated to &lt;code&gt;homes_model&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Bin the &lt;code&gt;neighborhood&lt;/code&gt; variable and explain why I’m doing that.&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div id=&#34;goal-1-interpret-the-cptable-for-the-generic-homes_model.&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Goal 1: Interpret the &lt;code&gt;cptable&lt;/code&gt; for the generic &lt;code&gt;homes_model&lt;/code&gt;.&lt;/h2&gt;
-&lt;p&gt;With the &lt;code&gt;homes&lt;/code&gt; data as is (just removing missing values), I fited a model to predict &lt;code&gt;SalesPrice&lt;/code&gt; using &lt;code&gt;rpart()&lt;/code&gt;:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;homes_model &amp;lt;- rpart(formula = SalePrice ~ ., 
-                     data = homes_train, 
-                     method = &amp;quot;anova&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Looking at the &lt;code&gt;cptable&lt;/code&gt; with &lt;code&gt;homes_model$cptable&lt;/code&gt;, I’ll apply the &lt;span class=&#34;math inline&#34;&gt;\(1-SE\)&lt;/span&gt; rule I explained yesterday:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/note/Tues-13-11-2018_files/cptable_rawhomes.png&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;First, we can see that the smallest cross-validation &lt;code&gt;xerror&lt;/code&gt; appears on row 11. Now let’s add 1 standard error &lt;code&gt;xstd&lt;/code&gt;: &lt;span class=&#34;math inline&#34;&gt;\(0.3074050+0.03541012=0.3428151\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;The smallest tree with &lt;code&gt;xerror&lt;/code&gt; less than &lt;span class=&#34;math inline&#34;&gt;\(0.3428151\)&lt;/span&gt; is the tree appearing on row 8 with 8 splits and 9 nodes.&lt;/p&gt;
-&lt;p&gt;Now, I look at the &lt;code&gt;plotcp(homes_model)&lt;/code&gt;, I’m confused to whether size of the tree refers to nodes or splits:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/note/Tues-13-11-2018_files/cpplot_rawhomes.png&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;I think it refers to nodes because the &lt;code&gt;xerror&lt;/code&gt; for the tree with 9 nodes appears on the dotted line. A dotted line that intersects the 9-tree node must mean it’s the chosen one, right? :laughing:&lt;/p&gt;
-&lt;p&gt;Now, let’s run the model again, but specifying the best model, with 8 splits.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Hard code best tree based on above explained analysis
-opt_index &amp;lt;- 8
-#Retrieve cp_opt
-cp_opt &amp;lt;- homes_model$cptable[opt_index, &amp;quot;CP&amp;quot;]
-# Prune the model (to optimized cp value)
-homes_model_opt &amp;lt;- prune(tree = homes_model, 
-                         cp = cp_opt)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;I suppose hard coding the number 8 instead of writing the code to pick the best tree isn’t too elegant, but bear with me. Writing clean code is not the priority right now. :hankey:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;goal-2-interpret-the-rpart.plot-associated-to-homes_model.&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Goal 2: Interpret the &lt;code&gt;rpart.plot&lt;/code&gt; associated to &lt;code&gt;homes_model&lt;/code&gt;.&lt;/h2&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rpart.plot(x = homes_model_opt, type = 5, extra = 1)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;That code produces this plot:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/note/Tues-13-11-2018_files/rpartplot_rawhomes.png&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;It has 8 splits and 9 nodes and we asked it to. Inside each terminal node is the number of observations which add up to 1025. Each split specifies the criteria for the observation being classified either into the left or right son.&lt;/p&gt;
-&lt;p&gt;If we go back and look at the numeric variables that had the highest correlation with &lt;code&gt;SalesPrice&lt;/code&gt;, &lt;code&gt;OverallQual&lt;/code&gt; was leading followed by &lt;code&gt;GrLivArea&lt;/code&gt;. In the tree we can see that these variables appear further below &lt;code&gt;X1stFlrSF&lt;/code&gt; and &lt;code&gt;GarageArea&lt;/code&gt; appear later down.&lt;/p&gt;
-&lt;p&gt;The plot shows the &lt;code&gt;neighborhood&lt;/code&gt; variable twice and in the second level. So it’s an important variable.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;goal-3-bin-the-neighborhood-variable-and-explain-why-im-doing-that.&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Goal 3: Bin the &lt;code&gt;neighborhood&lt;/code&gt; variable and explain why I’m doing that.&lt;/h2&gt;
-&lt;p&gt;So today I don’t think I’ll be able to the binning since my alloted time for this is almost up. But I will explain the why since it appears clearly on the graph.&lt;/p&gt;
-&lt;p&gt;One of the advantages of regression trees is that they area easy to understand and visualise. Because the &lt;code&gt;neighborhood&lt;/code&gt; variable has so many levels, it is actually going against one of the reasons I picked it. The whole neighborhood variable is confusing. Explaining the key differences amongst neighborhoods is not straightforward using just the plot. So I’m going to explore what the relationship between those neighborhoods and price is tomorrow and see if I can create another variable that better reflects that relationship. Exciting! :sparkles:&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>
