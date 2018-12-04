@@ -19,8 +19,7 @@ editor_options:
 
 ```{r setup, echo=FALSE, message=FALSE}
 library(tidyverse)
-library(rpart)
-library(rpart.plot)
+library(dplyr)
 library(knitr)
 library(here)
 library(scales)
@@ -38,39 +37,16 @@ theme_set(theme_light())
 r_downloads <- readRDS(file=here::here("static","data","r-downloads.rds"))
 ```
 
-As a follow up to Friday's post on the new packages and scripts I would like to make. I can report that I have learned the `here` package and was able to make a `makefile` too to organise all my projects. I have a good understanding now, I think. I'll leave `testthat` for this Friday and `roxygen2` for another rainy day. 
+Today I've added one variable `internet_users` which sums the total internet users per country. The point is to slowly add regressors or independent variables and see if they have a linear relationship with `r-downloads`. If yes, I'll add them to a model.
 
-It's important to invest that time in learning things that will make my workflow more efficient. At first it feels like I'm stalling or something, but it can be worth the investment in the future. 
-
-Now, in a previous I had said that I wanted to find another dataset, but then I decided to keep the property price dataset, but now I don't think I can be bothered. 
-
-I will look at datasets on Tidy Tuesday and find something that excites me from there. I think the most important thing to keep me going is, does the dataset make me curious about something. I found a dataset on a year's worth of R Language downloads.
-
-My questions here that could lead to a regression of some sort are, which countries download R Language the most in a year. What is the relationship with GPD per capita, with education funding, maybe even GINI index. 
-
-I would be working backwards, the downloads would be my $Y$ variable and then I would have to find statistics from around the internet. Could be fun and also, I wouldn't be so overwhelmed about a lot of variables at once. I have the option to find each one. 
-
-Let's read the data in and explore it:
-
-```{r read-data, eval=FALSE}
-r_downloads <- read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2018-10-30/r_downloads_year.csv")
-```
-
-Let's save that data for a rainy day since it took a while to download:
-
-```{r save-data-for-later, eval=FALSE}
-saveRDS(r_downloads, here("static","data","r-downloads.rds"))
-```
-
-Excellent!
 
 [Data source](https://github.com/rfordatascience/tidytuesday/tree/master/data/2018-10-30)
 
 ```{r downloads-by-country}
 r_downloads%>%
-  #Count and arrange downloads per country
-  count(country,sort = TRUE)%>%
-  ungroup()->downloads_per_country
+  group_by(country)%>%
+  summarise(n=n())%>%
+  arrange(desc(n))->downloads_per_country
 ```
 
 Now I'm going to give the countries full names, to do this I will use the ISO code to merge and obtain names. 
@@ -113,21 +89,29 @@ downloads_per_country%<>%
   right_join(internet_users, by=c("name"="name"))
 ```
 
-```{r downloads-internet-users-scatter-plot}
+```{r downloads-internet-users-scatter-plot, fig.cap="There are clearly some influential points, US, China and India, that are outliers in case of a regression."}
 library(plotly)
 library(ggrepel)
 downloads_internet_plot<- downloads_per_country%>%
   arrange(desc(n))%>%
-  head(100)%>%
   ggplot(aes(users, n, label=name, color=region))+
-  geom_jitter(alpha=0.3)+ scale_x_continuous(labels=comma_format())+
+  #Add light opacity
+  geom_jitter(alpha=0.3)+
+  #Add nice commas x axis
+  scale_x_continuous(labels=comma_format())+
+  #Add nice commas y axis
 scale_y_continuous(labels=comma_format())+
+  #Add a linear regression line for all regions
   geom_smooth(aes(group=1),method="lm")+
+  #Fix legend
+theme(legend.position = "bottom", legend.title = element_blank())+
+   #Add title
   labs(title="Do R-Language downloads increase with more internet users?",
        y="Downloads per country",
-       x="Internet users in each country")+ theme(legend.position = "bottom")
+       x="Internet users in each country")
   
 
-ggplotly(downloads_internet_plot)
+ggplotly(downloads_internet_plot)%>%
+   layout(legend = list(orientation = "h", x = 0.4, y = -0.2))
 ```
 

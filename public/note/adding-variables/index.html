@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 3.1.0">
+  <meta name="generator" content="Hugo 0.51" />
+  <meta name="author" content="Ángela Castillo-Gill">
+
+  
+  
+  
+  
+    
+  
+  <meta name="description" content="This will be fun, as I search for variables, I&#39;ll add them to the regression to the see the adjusted effects.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/note/adding-variables/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous">
+      
+    
+
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+  <link rel="stylesheet" href="/css/angela.css">
+  
+
+  
+  
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-128602464-1', 'auto');
+      
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="//www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
+  
+
+  
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Ángela Castillo-Gill">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Ángela Castillo-Gill">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/note/adding-variables/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@acastillogill">
+  <meta property="twitter:creator" content="@acastillogill">
+  
+  <meta property="og:site_name" content="Ángela Castillo-Gill">
+  <meta property="og:url" content="/note/adding-variables/">
+  <meta property="og:title" content="Adding variables | Ángela Castillo-Gill">
+  <meta property="og:description" content="This will be fun, as I search for variables, I&#39;ll add them to the regression to the see the adjusted effects.">
+  
+  
+    
+  <meta property="og:image" content="/img/icon-192.png">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2018-12-04T00:00:00&#43;00:00">
+  
+  <meta property="article:modified_time" content="2018-12-04T00:00:00&#43;00:00">
+  
+
+  
+
+  
+
+  <title>Adding variables | Ángela Castillo-Gill</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Ángela Castillo-Gill</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#notes">
+            
+            <span>Notes</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/files/cv.pdf">
+            
+            <span>CV</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">Adding variables</h1>
+
+  
+  <p class="page-subtitle">This will be fun, as I search for variables, I&rsquo;ll add them to the regression to the see the adjusted effects.</p>
+  
+
+  
+    
+
+<div class="article-metadata">
+
+  
+  
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Ángela Castillo-Gill">
+  </span>
+  
+
+  <span class="article-date">
+    
+    <meta content="2018-12-04 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+    <time datetime="2018-12-04 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+      Dec 4, 2018
+    </time>
+  </span>
+  <span itemscope itemprop="publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Ángela Castillo-Gill">
+  </span>
+
+  
+
+  
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    
+    <a href="/categories/journal/">Journal</a>
+    
+  </span>
+  
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Adding%20variables&amp;url=%2fnote%2fadding-variables%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2fnote%2fadding-variables%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fnote%2fadding-variables%2f&amp;title=Adding%20variables"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2fnote%2fadding-variables%2f&amp;title=Adding%20variables"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Adding%20variables&amp;body=%2fnote%2fadding-variables%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+
+    <div class="article-style" itemprop="articleBody">
+      
+<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/plotly-binding/plotly.js"></script>
+<script src="/rmarkdown-libs/typedarray/typedarray.min.js"></script>
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<link href="/rmarkdown-libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/crosstalk/js/crosstalk.min.js"></script>
+<link href="/rmarkdown-libs/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/plotly-main/plotly-latest.min.js"></script>
+
+
+<p>Today I’ve added one variable <code>internet_users</code> which sums the total internet users per country. The point is to slowly add regressors or independent variables and see if they have a linear relationship with <code>r-downloads</code>. If yes, I’ll add them to a model.</p>
+<p><a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2018-10-30">Data source</a></p>
+<pre class="r"><code>downloads_per_country &lt;- r_downloads %&gt;% group_by(country) %&gt;% summarise(n = n()) %&gt;% 
+    arrange(desc(n))</code></pre>
+<p>Now I’m going to give the countries full names, to do this I will use the ISO code to merge and obtain names.</p>
+<pre class="r"><code>iso_codes &lt;- read_csv(here(&quot;static&quot;, &quot;data&quot;, &quot;iso_countries.csv&quot;))</code></pre>
+<pre class="r"><code>downloads_per_country %&lt;&gt;% right_join(iso_codes, by = c(country = &quot;iso&quot;))</code></pre>
+<div id="which-are-the-top-ten-countries-in-terms-of-downloads" class="section level2">
+<h2>Which are the top ten countries in terms of downloads</h2>
+<pre class="r"><code>downloads_per_country %&gt;% arrange(desc(n)) %&gt;% filter(!is.na(name)) %&gt;% head(20) %&gt;% 
+    mutate(name = fct_reorder(name, n)) %&gt;% ggplot(aes(name, n, fill = name)) + 
+    geom_col() + expand_limits(y = 0) + coord_flip() + scale_y_continuous(labels = comma_format()) + 
+    labs(title = &quot;Top 20 countries by R downloads&quot;, x = &quot;Country&quot;, y = &quot;Downloads&quot;) + 
+    theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="/note/Tuesday-4-12-2018_files/figure-html/top-20-countries-plot-1.png" width="672" /></p>
+<pre class="r"><code>internet_users &lt;- read_csv(here(&quot;static&quot;, &quot;data&quot;, &quot;internet_users.csv&quot;))</code></pre>
+<pre class="r"><code>downloads_per_country %&lt;&gt;% right_join(internet_users, by = c(name = &quot;name&quot;))</code></pre>
+<pre class="r"><code>library(plotly)
+library(ggrepel)
+downloads_internet_plot &lt;- downloads_per_country %&gt;% arrange(desc(n)) %&gt;% ggplot(aes(users, 
+    n, label = name, color = region)) + # Add light opacity
+geom_jitter(alpha = 0.3) + # Add nice commas x axis
+scale_x_continuous(labels = comma_format()) + # Add nice commas y axis
+scale_y_continuous(labels = comma_format()) + # Add a linear regression line for all regions
+geom_smooth(aes(group = 1), method = &quot;lm&quot;) + # Fix legend
+theme(legend.position = &quot;bottom&quot;, legend.title = element_blank()) + # Add title
+labs(title = &quot;Do R-Language downloads increase with more internet users?&quot;, y = &quot;Downloads per country&quot;, 
+    x = &quot;Internet users in each country&quot;)
+
+
+ggplotly(downloads_internet_plot) %&gt;% layout(legend = list(orientation = &quot;h&quot;, 
+    x = 0.4, y = -0.2))</code></pre>
+<div class="figure"><span id="fig:downloads-internet-users-scatter-plot"></span>
+<div id="htmlwidget-1" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"data":[{"x":[769448.160483371,30248356.673477,12599999.8697486,47743534.1664043,37519534.4830406,20555773.0360652,5801981.85118356,15739371.8507602,9779266.563389,671835.782642148,9077559.20077314,7224384.88994955,3733970.45715006,3954627.24645378,17440308.201464,3745755.49517943,4232469.49975086,2603032.3426554,2383503.2755309,5859803.29823617,1172536.80977342,1303586.29165305,1738599.28364663,5050931.5820096,53254.2684662547,885711.710515756,774191.688032841,11082076.219359,1999226.52963133,602963.076278963,893076.733583018,269183.528964638,1214810.45141131,951294.324854936,1275641.62387307,870538.304955143,337737.800620657,860272.62553907,123724.788509553,259903.680888507,544094.933035176,290474.210468563,58462.1970409807,819465.471087276,63160.1888565859,722618.452411306,183789.448708189,68262.9592494806],"y":[22513.6804118536,6751.78400702737,1404.01671670359,944.334054290317,814.370056116953,560.950214088149,448.797555544041,440.915100938827,410.326235875115,303.972622892447,265.72032709606,210.71954703629,196.695263839886,168.190728549846,166.22624009382,160.783962420933,124.904598328285,116.963781623915,107.006181076355,98.2454499335959,97.2565864669159,91.7208092276007,87.293134207651,75.8447919037193,73.7711337624118,63.3099655665457,47.7068666055799,46.3776892405003,41.6559813212603,34.2133051749319,33.1202469117939,18.0122216377407,15.9214691611007,15.3062360513955,13.3455777786672,11.2491109965369,7.65981058385223,7.36015657447278,6.31747381538153,5.14823216944933,2.84351503737271,1.68728884644806,1.63532631024718,1.20917902532965,0.936772715672851,null,null,null],"text":["users:    769455<br />n: 22514<br />name: Namibia<br />region: Africa","users:  30248355<br />n:  6752<br />name: South Africa<br />region: Africa","users:  12600007<br />n:  1404<br />name: Kenya<br />region: Africa","users:  47743541<br />n:   944<br />name: Nigeria<br />region: Africa","users:  37519531<br />n:   814<br />name: Egypt<br />region: Africa","users:  20555783<br />n:   561<br />name: Morocco<br />region: Africa","users:   5801972<br />n:   449<br />name: Tunisia<br />region: Africa","users:  15739371<br />n:   441<br />name: Ethiopia<br />region: Africa","users:   9779273<br />n:   410<br />name: Ghana<br />region: Africa","users:    671833<br />n:   304<br />name: Mauritius<br />region: Africa","users:   9077567<br />n:   266<br />name: Uganda<br />region: Africa","users:   7224386<br />n:   211<br />name: Tanzania<br />region: Africa","users:   3733964<br />n:   197<br />name: Zimbabwe<br />region: Africa","users:   3954620<br />n:   168<br />name: Senegal<br />region: Africa","users:  17440299<br />n:   166<br />name: Algeria<br />region: Africa","users:   3745750<br />n:   161<br />name: Angola<br />region: Africa","users:   4232464<br />n:   125<br />name: Zambia<br />region: Africa","users:   2603042<br />n:   117<br />name: Burkina Faso<br />region: Africa","users:   2383501<br />n:   107<br />name: Rwanda<br />region: Africa","users:   5859797<br />n:    98<br />name: Cameroon<br />region: Africa","users:   1172533<br />n:    97<br />name: Madagascar<br />region: Africa","users:   1303589<br />n:    92<br />name: Benin<br />region: Africa","users:   1738600<br />n:    87<br />name: Malawi<br />region: Africa","users:   5050924<br />n:    76<br />name: Mozambique<br />region: Africa","users:     53248<br />n:    74<br />name: Seychelles<br />region: Africa","users:    885702<br />n:    63<br />name: Botswana<br />region: Africa","users:    774183<br />n:    48<br />name: Mauritania<br />region: Africa","users:  11082072<br />n:    46<br />name: Sudan<br />region: Africa","users:   1999226<br />n:    42<br />name: Mali<br />region: Africa","users:    602965<br />n:    34<br />name: Lesotho<br />region: Africa","users:    893073<br />n:    33<br />name: Niger<br />region: Africa","users:    269178<br />n:    18<br />name: Somalia<br />region: Africa","users:   1214801<br />n:    16<br />name: Guinea<br />region: Africa","users:    951287<br />n:    15<br />name: Gabon<br />region: Africa","users:   1275642<br />n:    13<br />name: Libya<br />region: Africa","users:    870532<br />n:    11<br />name: Sierra Leone<br />region: Africa","users:    337732<br />n:     8<br />name: Liberia<br />region: Africa","users:    860280<br />n:     7<br />name: Togo<br />region: Africa","users:    123728<br />n:     6<br />name: Djibouti<br />region: Africa","users:    259906<br />n:     5<br />name: Cabo Verde<br />region: Africa","users:    544097<br />n:     3<br />name: Burundi<br />region: Africa","users:    290470<br />n:     2<br />name: Equatorial Guinea<br />region: Africa","users:     58465<br />n:     2<br />name: Eritrea<br />region: Africa","users:    819459<br />n:     1<br />name: South Sudan<br />region: Africa","users:     63170<br />n:     1<br />name: Comoros<br />region: Africa","users:    722627<br />n:    NA<br />name: Chad<br />region: Africa","users:    183785<br />n:    NA<br />name: Central African Republic<br />region: Africa","users:     68270<br />n:    NA<br />name: Guinea-Bissau<br />region: Africa"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":0.3,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"Africa","legendgroup":"Africa","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[32602785.0706281,123927239.616505,75937569.8070017,28287103.6359561,11822226.4720924,30758981.0775201,14444392.816325,8857757.41914579,3207250.48472987,2946051.66857242,2286814.84296767,5722616.5531814,6530893.96071736,2733867.52330628,1000523.38387213,4322496.12068304,2178427.92873223,1839968.51454427,1296605.95107235,1326636.7115625,3453437.72065113,1511046.62928283,4449233.21106482,226709.574308875,60426.2055034125,253499.817343313,163583.407276121,275762.275687158,47996.9121257365,38645.4858229896,60926.48690126,42106.1523353467,49304.7456189794,98048.380237286,73702.4973138543,83178.4693082226,59953.7980926204,12042.1984938784,2826.49316205829],"y":[33631.7761645928,15731.7407517515,9401.02798078209,8205.9122287672,3688.25356417019,3159.38719143532,3140.92974044606,1553.16066930015,1514.34277603012,763.179137943685,668.392530498095,430.192842160538,402.715047550574,366.373196629249,332.385590209253,257.333510863595,249.917560936324,193.959547749534,132.942845448479,115.275163105316,89.8989548478276,66.8972593424842,57.8058393727988,53.9491423074156,42.9858745938167,34.3130669295788,32.7874652065337,24.2737885395065,17.0761754184961,16.350672403723,14.9992181519046,12.1532097255811,8.87609517648816,8.31760627478361,4.86218984071165,3.29292774815112,2.3808048253879,2.36585068777204,null],"text":["users:  32602776<br />n: 33632<br />name: Canada<br />region: Americas","users: 123927230<br />n: 15732<br />name: Brazil<br />region: Americas","users:  75937568<br />n:  9401<br />name: Mexico<br />region: Americas","users:  28287098<br />n:  8206<br />name: Colombia<br />region: Americas","users:  11822229<br />n:  3688<br />name: Chile<br />region: Americas","users:  30758972<br />n:  3159<br />name: Argentina<br />region: Americas","users:  14444387<br />n:  3141<br />name: Peru<br />region: Americas","users:   8857767<br />n:  1553<br />name: Ecuador<br />region: Americas","users:   3207258<br />n:  1514<br />name: Costa Rica<br />region: Americas","users:   2946059<br />n:   763<br />name: Puerto Rico<br />region: Americas","users:   2286820<br />n:   668<br />name: Uruguay<br />region: Americas","users:   5722610<br />n:   430<br />name: Guatemala<br />region: Americas","users:   6530903<br />n:   403<br />name: Dominican Republic<br />region: Americas","users:   2733860<br />n:   366<br />name: Honduras<br />region: Americas","users:   1000517<br />n:   332<br />name: Trinidad and Tobago<br />region: Americas","users:   4322489<br />n:   257<br />name: Bolivia<br />region: Americas","users:   2178424<br />n:   250<br />name: Panama<br />region: Americas","users:   1839969<br />n:   194<br />name: El Salvador<br />region: Americas","users:   1296610<br />n:   133<br />name: Jamaica<br />region: Americas","users:   1326629<br />n:   115<br />name: Haiti<br />region: Americas","users:   3453445<br />n:    90<br />name: Paraguay<br />region: Americas","users:   1511037<br />n:    67<br />name: Nicaragua<br />region: Americas","users:   4449238<br />n:    58<br />name: Cuba<br />region: Americas","users:    226715<br />n:    54<br />name: Barbados<br />region: Americas","users:     60432<br />n:    43<br />name: Bermuda<br />region: Americas","users:    253499<br />n:    34<br />name: Suriname<br />region: Americas","users:    163588<br />n:    33<br />name: Belize<br />region: Americas","users:    275760<br />n:    24<br />name: Guyana<br />region: Americas","users:     48004<br />n:    17<br />name: Cayman Islands<br />region: Americas","users:     38642<br />n:    16<br />name: Greenland<br />region: Americas","users:     60929<br />n:    15<br />name: Saint Vincent and the Grenadines<br />region: Americas","users:     42113<br />n:    12<br />name: Saint Kitts and Nevis<br />region: Americas","users:     49296<br />n:     9<br />name: Dominica<br />region: Americas","users:     98051<br />n:     8<br />name: Aruba<br />region: Americas","users:     73702<br />n:     5<br />name: Antigua and Barbuda<br />region: Americas","users:     83186<br />n:     3<br />name: Saint Lucia<br />region: Americas","users:     59947<br />n:     2<br />name: Grenada<br />region: Americas","users:     12043<br />n:     2<br />name: Anguilla<br />region: Americas","users:      2833<br />n:    NA<br />name: Montserrat<br />region: Americas"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(163,165,0,1)","opacity":0.3,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(163,165,0,1)"}},"hoveron":"points","name":"Americas","legendgroup":"Americas","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[746662195.447413,391292634.807113,117528634.172992,6375373.11063819,66244990.3073228,4554188.43535224,46395498.3458086,6535439.32884678,24572446.5532356,32710178.9268669,57342722.3237316,43974626.1289122,29965866.7536467,8398273.09231817,23803326.5458,6665917.46219669,29738651.8686137,13814583.2292374,5706713.47599866,888116.652458366,1813393.52976785,4571672.71829656,2423061.11133502,5890967.9799828,3176005.44492256,674199.026165687,7605236.61572135,1962701.21198948,3089362.75081441,4030431.62300938,1396676.28429335,7898108.56285995,14713959.2947674,2054730.84983178,333232.714894287,252770.801913425,3673535.55537263,13258324.8405394,1478052.1607619,1788045.97326803,6780194.92785906,1018695.28269812],"y":[49087.7085864993,35865.8360445704,22701.7410545209,13041.0131012836,7043.20911126621,6204.67274251822,5653.18762970101,3602.63780748732,3428.28207269497,2839.09421819113,2749.26498493664,2126.20110385269,1522.79395522513,988.648414864577,907.306091579609,700.745074573532,456.158631686308,422.729247646593,362.204786899872,308.785556882992,299.982877655141,264.031993254647,246.834964258224,235.809654532373,166.339635362849,138.90271470733,128.868983654492,103.047361669503,97.7077862484381,87.9634482847527,63.3065341755748,57.7464263159782,45.0180579686537,45.3418850090355,28.1102954452857,24.8319564746693,23.2086012296379,21.1182692619041,16.8722511786968,5.85742797292769,3.75363910403103,1.92424869667739],"text":["users: 746662194<br />n: 49088<br />name: China<br />region: Asia","users: 391292635<br />n: 35866<br />name: India<br />region: Asia","users: 117528631<br />n: 22702<br />name: Japan<br />region: Asia","users:   6375381<br />n: 13041<br />name: Hong Kong<br />region: Asia","users:  66244991<br />n:  7043<br />name: Indonesia<br />region: Asia","users:   4554189<br />n:  6205<br />name: Singapore<br />region: Asia","users:  46395500<br />n:  5653<br />name: Turkey<br />region: Asia","users:   6535440<br />n:  3603<br />name: Israel<br />region: Asia","users:  24572446<br />n:  3428<br />name: Malaysia<br />region: Asia","users:  32710169<br />n:  2839<br />name: Thailand<br />region: Asia","users:  57342723<br />n:  2749<br />name: Philippines<br />region: Asia","users:  43974618<br />n:  2126<br />name: Vietnam<br />region: Asia","users:  29965859<br />n:  1523<br />name: Pakistan<br />region: Asia","users:   8398268<br />n:   989<br />name: United Arab Emirates<br />region: Asia","users:  23803319<br />n:   907<br />name: Saudi Arabia<br />region: Asia","users:   6665916<br />n:   701<br />name: Sri Lanka<br />region: Asia","users:  29738660<br />n:   456<br />name: Bangladesh<br />region: Asia","users:  13814581<br />n:   423<br />name: Kazakhstan<br />region: Asia","users:   5706708<br />n:   362<br />name: Nepal<br />region: Asia","users:    888125<br />n:   309<br />name: Cyprus<br />region: Asia","users:   1813386<br />n:   300<br />name: Armenia<br />region: Asia","users:   4571675<br />n:   264<br />name: Lebanon<br />region: Asia","users:   2423068<br />n:   247<br />name: Qatar<br />region: Asia","users:   5890965<br />n:   236<br />name: Jordan<br />region: Asia","users:   3176010<br />n:   166<br />name: Kuwait<br />region: Asia","users:    674201<br />n:   139<br />name: Mongolia<br />region: Asia","users:   7605244<br />n:   129<br />name: Azerbaijan<br />region: Asia","users:   1962702<br />n:   103<br />name: Georgia<br />region: Asia","users:   3089369<br />n:    98<br />name: Oman<br />region: Asia","users:   4030438<br />n:    88<br />name: Cambodia<br />region: Asia","users:   1396668<br />n:    63<br />name: Bahrain<br />region: Asia","users:   7898106<br />n:    58<br />name: Iraq<br />region: Asia","users:  14713955<br />n:    45<br />name: Uzbekistan<br />region: Asia","users:   2054728<br />n:    45<br />name: Kyrgyzstan<br />region: Asia","users:    333226<br />n:    28<br />name: Bhutan<br />region: Asia","users:    252761<br />n:    25<br />name: Maldives<br />region: Asia","users:   3673539<br />n:    23<br />name: Afghanistan<br />region: Asia","users:  13258325<br />n:    21<br />name: Myanmar<br />region: Asia","users:   1478051<br />n:    17<br />name: Laos<br />region: Asia","users:   1788044<br />n:     6<br />name: Tajikistan<br />region: Asia","users:   6780200<br />n:     4<br />name: Yemen<br />region: Asia","users:   1018691<br />n:     2<br />name: Turkmenistan<br />region: Asia"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,191,125,1)","opacity":0.3,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,191,125,1)"}},"hoveron":"points","name":"Asia","legendgroup":"Asia","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[73436495.0219032,62354405.3213216,55413858.9150136,15358241.2710519,37337611.2256006,7511994.38153264,36442442.7168839,28018500.3523528,9827269.95165603,7346079.86832232,9002317.33954075,5538805.52796028,4826253.35545607,3883419.81553903,5112826.07970935,7303696.9659391,11767959.4615141,7726835.56262275,23321385.9638368,7730449.48847391,2163163.81430334,1568793.61366436,3063035.56059147,4381513.13140143,1144977.35180764,6741259.28180031,4266782.11232745,5914754.10155664,1574250.86150122,326624.75557626,561298.816857771,331846.448022227,2438207.46984433,1941925.81989164,36954.8850014331,36652.6614198238,32496.430245853,439266.14192943,46718.8503575465,75683.2844746383,38957.3116346467,16474.3343734844],"y":[48690.9848421304,44415.6899162512,21519.7780775044,16340.226263281,16319.362948701,13365.7469980771,11929.952183624,8053.67140678335,5726.93881584425,5718.68818033244,5477.22288301457,5356.67545961514,4193.68432871979,3933.9893147368,3652.64167918861,3121.00665193126,2831.74103608355,2742.20822291747,2545.02166037969,1927.83316038996,880.876793929189,879.86438936796,776.100801988877,697.621292687766,676.943891914189,665.311339521967,658.14028501641,617.375628889725,544.93395677302,520.363727375306,352.773924921267,193.987339019589,117.810750699975,92.6234869394451,38.1498599333689,33.1895956661552,25.1315336417407,22.7053067469969,23.201610089466,12.9400727022439,4.00842305030674,2.19365945644677],"text":["users:  73436503<br />n: 48691<br />name: Germany<br />region: Europe","users:  62354410<br />n: 44416<br />name: United Kingdom<br />region: Europe","users:  55413854<br />n: 21520<br />name: France<br />region: Europe","users:  15358245<br />n: 16340<br />name: Netherlands<br />region: Europe","users:  37337607<br />n: 16319<br />name: Spain<br />region: Europe","users:   7511995<br />n: 13366<br />name: Switzerland<br />region: Europe","users:  36442438<br />n: 11930<br />name: Italy<br />region: Europe","users:  28018492<br />n:  8054<br />name: Poland<br />region: Europe","users:   9827270<br />n:  5727<br />name: Belgium<br />region: Europe","users:   7346074<br />n:  5719<br />name: Austria<br />region: Europe","users:   9002326<br />n:  5477<br />name: Sweden<br />region: Europe","users:   5538800<br />n:  5357<br />name: Denmark<br />region: Europe","users:   4826246<br />n:  4194<br />name: Finland<br />region: Europe","users:   3883418<br />n:  3934<br />name: Ireland<br />region: Europe","users:   5112817<br />n:  3653<br />name: Norway<br />region: Europe","users:   7303699<br />n:  3121<br />name: Portugal<br />region: Europe","users:  11767959<br />n:  2832<br />name: Romania<br />region: Europe","users:   7726829<br />n:  2742<br />name: Greece<br />region: Europe","users:  23321390<br />n:  2545<br />name: Ukraine<br />region: Europe","users:   7730451<br />n:  1928<br />name: Hungary<br />region: Europe","users:   2163155<br />n:   881<br />name: Lithuania<br />region: Europe","users:   1568786<br />n:   880<br />name: Slovenia<br />region: Europe","users:   3063044<br />n:   776<br />name: Croatia<br />region: Europe","users:   4381507<br />n:   698<br />name: Slovakia<br />region: Europe","users:   1144974<br />n:   677<br />name: Estonia<br />region: Europe","users:   6741258<br />n:   665<br />name: Belarus<br />region: Europe","users:   4266773<br />n:   658<br />name: Bulgaria<br />region: Europe","users:   5914748<br />n:   617<br />name: Serbia<br />region: Europe","users:   1574256<br />n:   545<br />name: Latvia<br />region: Europe","users:    326622<br />n:   520<br />name: Iceland<br />region: Europe","users:    561295<br />n:   353<br />name: Luxembourg<br />region: Europe","users:    331853<br />n:   194<br />name: Malta<br />region: Europe","users:   2438208<br />n:   118<br />name: Bosnia and Herzegovina<br />region: Europe","users:   1941925<br />n:    93<br />name: Albania<br />region: Europe","users:     36946<br />n:    38<br />name: Liechtenstein<br />region: Europe","users:     36654<br />n:    33<br />name: Monaco<br />region: Europe","users:     32494<br />n:    25<br />name: Gibraltar<br />region: Europe","users:    439276<br />n:    23<br />name: Montenegro<br />region: Europe","users:     46715<br />n:    23<br />name: Faroe Islands<br />region: Europe","users:     75681<br />n:    13<br />name: Andorra<br />region: Europe","users:     38958<br />n:     4<br />name: Jersey<br />region: Europe","users:     16484<br />n:     2<br />name: San Marino<br />region: Europe"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,176,246,1)","opacity":0.3,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,176,246,1)"}},"hoveron":"points","name":"Europe","legendgroup":"Europe","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[21288646.9264971,4123436.22970508,418021.675403241,125437.27951574,776157.798157549,191769.333151924,194714.721914821,65937.6884964565,57389.6255475413,64894.851076779,15810.1187471505,42803.8196424255,15671.6212044265,5106.42860797606,1390.60498877149,1043.18808911927],"y":[24245.2125089815,4448.89541484546,40.7050998482853,40.1308444114402,35.10472359173,23.64201106783,20.9248021092266,6.95763664469123,4.85086512807757,4.34339361991733,1.33089134451002,null,null,null,null,null],"text":["users:  21288648<br />n: 24245<br />name: Australia<br />region: Oceania","users:   4123439<br />n:  4449<br />name: New Zealand<br />region: Oceania","users:    418013<br />n:    41<br />name: Fiji<br />region: Oceania","users:    125446<br />n:    40<br />name: Guam<br />region: Oceania","users:    776159<br />n:    35<br />name: Papua New Guinea<br />region: Oceania","users:    191774<br />n:    24<br />name: French Polynesia<br />region: Oceania","users:    194707<br />n:    21<br />name: New Caledonia<br />region: Oceania","users:     65936<br />n:     7<br />name: Solomon Islands<br />region: Oceania","users:     57386<br />n:     5<br />name: Samoa<br />region: Oceania","users:     64896<br />n:     4<br />name: Vanuatu<br />region: Oceania","users:     15808<br />n:     1<br />name: Marshall Islands<br />region: Oceania","users:     42795<br />n:    NA<br />name: Tonga<br />region: Oceania","users:     15672<br />n:    NA<br />name: Kiribati<br />region: Oceania","users:      5106<br />n:    NA<br />name: Tuvalu<br />region: Oceania","users:      1383<br />n:    NA<br />name: Wallis and Futuna<br />region: Oceania","users:      1034<br />n:    NA<br />name: Niue<br />region: Oceania"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(231,107,243,1)","opacity":0.3,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(231,107,243,1)"}},"hoveron":"points","name":"Oceania","legendgroup":"Oceania","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[245436416.21805,110003284.665084,47094275.9969427,42731669.0779323,18940912.007937,18786470.6310132,8115254.96908677,6286534.76758257,5873793.00119106,4889511.01951492,2930962.65920374,2882321.41331358,1501792.28825622,499775.642139634,416220.920084224,383732.59786104,377119.637305315,320341.282268875,317402.134668062,312995.867112814,62537.677823334,55978.7066068603,34991.6814915687,14461.6092723692,2899.67539154831,2882.63071942981,366.020541865379],"y":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"text":["users: 245436423<br />n:    NA<br />name: United States<br />region: NA","users: 110003284<br />n:    NA<br />name: Russia<br />region: NA","users:  47094267<br />n:    NA<br />name: South Korea<br />region: NA","users:  42731675<br />n:    NA<br />name: Iran<br />region: NA","users:  18940907<br />n:    NA<br />name: Venezuela<br />region: NA","users:  18786473<br />n:    NA<br />name: Taiwan<br />region: NA","users:   8115252<br />n:    NA<br />name: Czech Republic<br />region: NA","users:   6286527<br />n:    NA<br />name: Ivory Coast<br />region: NA","users:   5873785<br />n:    NA<br />name: Syria<br />region: NA","users:   4889515<br />n:    NA<br />name: Democratic Republic of the Congo<br />region: NA","users:   2930953<br />n:    NA<br />name: Palestinian Authority<br />region: NA","users:   2882322<br />n:    NA<br />name: Moldova<br />region: NA","users:   1501798<br />n:    NA<br />name: Macedonia<br />region: NA","users:    499773<br />n:    NA<br />name: Macau<br />region: NA","users:    416217<br />n:    NA<br />name: Republic of the Congo<br />region: NA","users:    383723<br />n:    NA<br />name: Swaziland<br />region: NA","users:    377123<br />n:    NA<br />name: The Gambia<br />region: NA","users:    320339<br />n:    NA<br />name: Timor Leste<br />region: NA","users:    317397<br />n:    NA<br />name: Brunei<br />region: NA","users:    312986<br />n:    NA<br />name: The Bahamas<br />region: NA","users:     62539<br />n:    NA<br />name: U.S. Virgin Islands<br />region: NA","users:     55974<br />n:    NA<br />name: São Tomé and Príncipe<br />region: NA","users:     34996<br />n:    NA<br />name: Micronesia, Federated States of<br />region: NA","users:     14456<br />n:    NA<br />name: British Virgin Islands<br />region: NA","users:      2906<br />n:    NA<br />name: Saint Helena<br />region: NA","users:      2881<br />n:    NA<br />name: Falkland Islands<br />region: NA","users:       361<br />n:    NA<br />name: Ascension<br />region: NA"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(127,127,127,1)","opacity":0.3,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(127,127,127,1)"}},"hoveron":"points","name":"NA","legendgroup":"NA","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[12043,9463310.73417722,18914578.4683544,28365846.2025316,37817113.9367089,47268381.6708861,56719649.4050633,66170917.1392405,75622184.8734177,85073452.6075949,94524720.3417722,103975988.075949,113427255.810127,122878523.544304,132329791.278481,141781059.012658,151232326.746835,160683594.481013,170134862.21519,179586129.949367,189037397.683544,198488665.417722,207939933.151899,217391200.886076,226842468.620253,236293736.35443,245745004.088608,255196271.822785,264647539.556962,274098807.291139,283550075.025316,293001342.759494,302452610.493671,311903878.227848,321355145.962025,330806413.696203,340257681.43038,349708949.164557,359160216.898734,368611484.632911,378062752.367089,387514020.101266,396965287.835443,406416555.56962,415867823.303797,425319091.037975,434770358.772152,444221626.506329,453672894.240506,463124161.974684,472575429.708861,482026697.443038,491477965.177215,500929232.911392,510380500.64557,519831768.379747,529283036.113924,538734303.848101,548185571.582278,557636839.316456,567088107.050633,576539374.78481,585990642.518987,595441910.253165,604893177.987342,614344445.721519,623795713.455696,633246981.189873,642698248.924051,652149516.658228,661600784.392405,671052052.126582,680503319.860759,689954587.594937,699405855.329114,708857123.063291,718308390.797468,727759658.531646,737210926.265823,746662194],"y":[1760.53345460513,2530.18076049743,3299.82806638974,4069.47537228205,4839.12267817435,5608.76998406666,6378.41728995896,7148.06459585127,7917.71190174358,8687.35920763588,9457.00651352819,10226.6538194205,10996.3011253128,11765.9484312051,12535.5957370974,13305.2430429897,14074.890348882,14844.5376547743,15614.1849606666,16383.8322665589,17153.4795724513,17923.1268783436,18692.7741842359,19462.4214901282,20232.0687960205,21001.7161019128,21771.3634078051,22541.0107136974,23310.6580195897,24080.305325482,24849.9526313743,25619.5999372666,26389.2472431589,27158.8945490512,27928.5418549435,28698.1891608358,29467.8364667281,30237.4837726205,31007.1310785128,31776.7783844051,32546.4256902974,33316.0729961897,34085.720302082,34855.3676079743,35625.0149138666,36394.6622197589,37164.3095256512,37933.9568315435,38703.6041374358,39473.2514433281,40242.8987492204,41012.5460551127,41782.193361005,42551.8406668974,43321.4879727897,44091.135278682,44860.7825845743,45630.4298904666,46400.0771963589,47169.7245022512,47939.3718081435,48709.0191140358,49478.6664199281,50248.3137258204,51017.9610317127,51787.608337605,52557.2556434973,53326.9029493896,54096.5502552819,54866.1975611742,55635.8448670666,56405.4921729589,57175.1394788512,57944.7867847435,58714.4340906358,59484.0813965281,60253.7287024204,61023.3760083127,61793.023314205,62562.6706200973],"text":["users:     12043<br />n:  1761<br />region: #3366FF","users:   9463311<br />n:  2530<br />region: #3366FF","users:  18914578<br />n:  3300<br />region: #3366FF","users:  28365846<br />n:  4069<br />region: #3366FF","users:  37817114<br />n:  4839<br />region: #3366FF","users:  47268382<br />n:  5609<br />region: #3366FF","users:  56719649<br />n:  6378<br />region: #3366FF","users:  66170917<br />n:  7148<br />region: #3366FF","users:  75622185<br />n:  7918<br />region: #3366FF","users:  85073453<br />n:  8687<br />region: #3366FF","users:  94524720<br />n:  9457<br />region: #3366FF","users: 103975988<br />n: 10227<br />region: #3366FF","users: 113427256<br />n: 10996<br />region: #3366FF","users: 122878524<br />n: 11766<br />region: #3366FF","users: 132329791<br />n: 12536<br />region: #3366FF","users: 141781059<br />n: 13305<br />region: #3366FF","users: 151232327<br />n: 14075<br />region: #3366FF","users: 160683594<br />n: 14845<br />region: #3366FF","users: 170134862<br />n: 15614<br />region: #3366FF","users: 179586130<br />n: 16384<br />region: #3366FF","users: 189037398<br />n: 17153<br />region: #3366FF","users: 198488665<br />n: 17923<br />region: #3366FF","users: 207939933<br />n: 18693<br />region: #3366FF","users: 217391201<br />n: 19462<br />region: #3366FF","users: 226842469<br />n: 20232<br />region: #3366FF","users: 236293736<br />n: 21002<br />region: #3366FF","users: 245745004<br />n: 21771<br />region: #3366FF","users: 255196272<br />n: 22541<br />region: #3366FF","users: 264647540<br />n: 23311<br />region: #3366FF","users: 274098807<br />n: 24080<br />region: #3366FF","users: 283550075<br />n: 24850<br />region: #3366FF","users: 293001343<br />n: 25620<br />region: #3366FF","users: 302452610<br />n: 26389<br />region: #3366FF","users: 311903878<br />n: 27159<br />region: #3366FF","users: 321355146<br />n: 27929<br />region: #3366FF","users: 330806414<br />n: 28698<br />region: #3366FF","users: 340257681<br />n: 29468<br />region: #3366FF","users: 349708949<br />n: 30237<br />region: #3366FF","users: 359160217<br />n: 31007<br />region: #3366FF","users: 368611485<br />n: 31777<br />region: #3366FF","users: 378062752<br />n: 32546<br />region: #3366FF","users: 387514020<br />n: 33316<br />region: #3366FF","users: 396965288<br />n: 34086<br />region: #3366FF","users: 406416556<br />n: 34855<br />region: #3366FF","users: 415867823<br />n: 35625<br />region: #3366FF","users: 425319091<br />n: 36395<br />region: #3366FF","users: 434770359<br />n: 37164<br />region: #3366FF","users: 444221627<br />n: 37934<br />region: #3366FF","users: 453672894<br />n: 38704<br />region: #3366FF","users: 463124162<br />n: 39473<br />region: #3366FF","users: 472575430<br />n: 40243<br />region: #3366FF","users: 482026697<br />n: 41013<br />region: #3366FF","users: 491477965<br />n: 41782<br />region: #3366FF","users: 500929233<br />n: 42552<br />region: #3366FF","users: 510380501<br />n: 43321<br />region: #3366FF","users: 519831768<br />n: 44091<br />region: #3366FF","users: 529283036<br />n: 44861<br />region: #3366FF","users: 538734304<br />n: 45630<br />region: #3366FF","users: 548185572<br />n: 46400<br />region: #3366FF","users: 557636839<br />n: 47170<br />region: #3366FF","users: 567088107<br />n: 47939<br />region: #3366FF","users: 576539375<br />n: 48709<br />region: #3366FF","users: 585990643<br />n: 49479<br />region: #3366FF","users: 595441910<br />n: 50248<br />region: #3366FF","users: 604893178<br />n: 51018<br />region: #3366FF","users: 614344446<br />n: 51788<br />region: #3366FF","users: 623795713<br />n: 52557<br />region: #3366FF","users: 633246981<br />n: 53327<br />region: #3366FF","users: 642698249<br />n: 54097<br />region: #3366FF","users: 652149517<br />n: 54866<br />region: #3366FF","users: 661600784<br />n: 55636<br />region: #3366FF","users: 671052052<br />n: 56405<br />region: #3366FF","users: 680503320<br />n: 57175<br />region: #3366FF","users: 689954588<br />n: 57945<br />region: #3366FF","users: 699405855<br />n: 58714<br />region: #3366FF","users: 708857123<br />n: 59484<br />region: #3366FF","users: 718308391<br />n: 60254<br />region: #3366FF","users: 727759659<br />n: 61023<br />region: #3366FF","users: 737210926<br />n: 61793<br />region: #3366FF","users: 746662194<br />n: 62563<br />region: #3366FF"],"type":"scatter","mode":"lines","name":"fitted values","line":{"width":3.77952755905512,"color":"rgba(51,102,255,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[12043,9463310.73417722,18914578.4683544,28365846.2025316,37817113.9367089,47268381.6708861,56719649.4050633,66170917.1392405,75622184.8734177,85073452.6075949,94524720.3417722,103975988.075949,113427255.810127,122878523.544304,132329791.278481,141781059.012658,151232326.746835,160683594.481013,170134862.21519,179586129.949367,189037397.683544,198488665.417722,207939933.151899,217391200.886076,226842468.620253,236293736.35443,245745004.088608,255196271.822785,264647539.556962,274098807.291139,283550075.025316,293001342.759494,302452610.493671,311903878.227848,321355145.962025,330806413.696203,340257681.43038,349708949.164557,359160216.898734,368611484.632911,378062752.367089,387514020.101266,396965287.835443,406416555.56962,415867823.303797,425319091.037975,434770358.772152,444221626.506329,453672894.240506,463124161.974684,472575429.708861,482026697.443038,491477965.177215,500929232.911392,510380500.64557,519831768.379747,529283036.113924,538734303.848101,548185571.582278,557636839.316456,567088107.050633,576539374.78481,585990642.518987,595441910.253165,604893177.987342,614344445.721519,623795713.455696,633246981.189873,642698248.924051,652149516.658228,661600784.392405,671052052.126582,680503319.860759,689954587.594937,699405855.329114,708857123.063291,718308390.797468,727759658.531646,737210926.265823,746662194,746662194,746662194,737210926.265823,727759658.531646,718308390.797468,708857123.063291,699405855.329114,689954587.594937,680503319.860759,671052052.126582,661600784.392405,652149516.658228,642698248.924051,633246981.189873,623795713.455696,614344445.721519,604893177.987342,595441910.253165,585990642.518987,576539374.78481,567088107.050633,557636839.316456,548185571.582278,538734303.848101,529283036.113924,519831768.379747,510380500.64557,500929232.911392,491477965.177215,482026697.443038,472575429.708861,463124161.974684,453672894.240506,444221626.506329,434770358.772152,425319091.037975,415867823.303797,406416555.56962,396965287.835443,387514020.101266,378062752.367089,368611484.632911,359160216.898734,349708949.164557,340257681.43038,330806413.696203,321355145.962025,311903878.227848,302452610.493671,293001342.759494,283550075.025316,274098807.291139,264647539.556962,255196271.822785,245745004.088608,236293736.35443,226842468.620253,217391200.886076,207939933.151899,198488665.417722,189037397.683544,179586129.949367,170134862.21519,160683594.481013,151232326.746835,141781059.012658,132329791.278481,122878523.544304,113427255.810127,103975988.075949,94524720.3417722,85073452.6075949,75622184.8734177,66170917.1392405,56719649.4050633,47268381.6708861,37817113.9367089,28365846.2025316,18914578.4683544,9463310.73417722,12043,12043],"y":[825.908703009466,1618.66930446744,2392.44532249203,3146.98181965229,3883.19074198101,4602.89823284986,5308.41229257424,6002.11345804856,6686.18523645974,7362.49225369309,8032.56010693196,8697.60729097511,9358.59553262906,10016.2808822876,10671.2583061496,11323.9979338722,11974.8734657018,12624.1840256981,13272.1708343358,13919.0299014625,14564.9217053547,15209.9786028339,15854.3105329335,16498.0094344416,17141.1526901863,17783.8058309479,18426.0246727996,19067.8570181138,19709.3440183348,20350.5212728332,20991.419720484,21632.0663674112,22272.4848844242,22912.6961001869,23552.7184104647,24192.5681194439,24832.2597257726,25471.8061633803,26111.2190051184,26750.5086356873,27389.6843990736,28028.7547247386,28667.7272360197,29306.6088435795,29945.4058262384,30584.123901121,31222.7682847171,31861.3437461944,32499.8546540785,33138.3050172382,33776.6985209663,34415.0385588237,35053.3282608135,35691.5705183659,36329.7680065468,36967.9232038412,37606.0384098134,38244.1157609046,38882.1572445919,39520.1647121026,40158.1398898539,40796.0843897611,41433.999718546,42071.8872861532,42709.7484133739,43347.584338763,43985.3962249228,44623.1851642215,45260.952184004,45898.6982513466,46536.4242774016,47174.1311213724,47811.8195941549,48449.4904616781,49087.144447971,49724.7822379832,50362.4044801811,51000.0117889394,51637.6047467487,52275.1839062525,52275.1839062525,72850.1573339421,71948.4418816613,71046.740227686,70145.0529246597,69243.3805550729,68341.7237333006,67440.0831078089,66538.4593635474,65636.8532245453,64735.2654567315,63833.6968710019,62932.1483265599,62030.6207345578,61129.1150620719,60227.6323364471,59326.1736500515,58424.7401654876,57523.3331213102,56621.9538383105,55720.6037264331,54819.2842923998,53917.9971481259,53016.7440200285,52115.5267593351,51214.3473535228,50313.2079390326,49412.1108154288,48511.0584611966,47610.0535514017,46709.0989774746,45808.1978694181,44907.3536207931,44006.5699168926,43105.8507665853,42205.2005383968,41304.6240014948,40404.1263723691,39503.7133681443,38603.3912676407,37703.1669815212,36803.0481331228,35903.0431519071,35003.1613818606,34103.4132076837,33203.8102022278,32304.3652994223,31405.0929979155,30506.0096018937,29607.1335071221,28708.4855422646,27810.0893781308,26911.9720208446,26014.164409281,25116.7021428106,24219.6263728777,23322.9849018547,22426.8335458147,21531.2378355383,20636.2751538532,19742.0374395478,18848.6346316554,17956.1990869975,17064.8912838506,16174.9072320622,15286.4881521073,14399.9331680453,13515.6159801226,12634.0067179965,11755.7003478659,10881.4529201244,10012.2261615787,9149.23856702741,8294.01573365399,7448.42228734368,6614.64173528345,5795.05461436769,4991.96892491181,4207.21081028745,3441.69221652743,2695.15820620079,825.908703009466],"text":["users:     12043<br />n:  1761<br />region: #3366FF","users:   9463311<br />n:  2530<br />region: #3366FF","users:  18914578<br />n:  3300<br />region: #3366FF","users:  28365846<br />n:  4069<br />region: #3366FF","users:  37817114<br />n:  4839<br />region: #3366FF","users:  47268382<br />n:  5609<br />region: #3366FF","users:  56719649<br />n:  6378<br />region: #3366FF","users:  66170917<br />n:  7148<br />region: #3366FF","users:  75622185<br />n:  7918<br />region: #3366FF","users:  85073453<br />n:  8687<br />region: #3366FF","users:  94524720<br />n:  9457<br />region: #3366FF","users: 103975988<br />n: 10227<br />region: #3366FF","users: 113427256<br />n: 10996<br />region: #3366FF","users: 122878524<br />n: 11766<br />region: #3366FF","users: 132329791<br />n: 12536<br />region: #3366FF","users: 141781059<br />n: 13305<br />region: #3366FF","users: 151232327<br />n: 14075<br />region: #3366FF","users: 160683594<br />n: 14845<br />region: #3366FF","users: 170134862<br />n: 15614<br />region: #3366FF","users: 179586130<br />n: 16384<br />region: #3366FF","users: 189037398<br />n: 17153<br />region: #3366FF","users: 198488665<br />n: 17923<br />region: #3366FF","users: 207939933<br />n: 18693<br />region: #3366FF","users: 217391201<br />n: 19462<br />region: #3366FF","users: 226842469<br />n: 20232<br />region: #3366FF","users: 236293736<br />n: 21002<br />region: #3366FF","users: 245745004<br />n: 21771<br />region: #3366FF","users: 255196272<br />n: 22541<br />region: #3366FF","users: 264647540<br />n: 23311<br />region: #3366FF","users: 274098807<br />n: 24080<br />region: #3366FF","users: 283550075<br />n: 24850<br />region: #3366FF","users: 293001343<br />n: 25620<br />region: #3366FF","users: 302452610<br />n: 26389<br />region: #3366FF","users: 311903878<br />n: 27159<br />region: #3366FF","users: 321355146<br />n: 27929<br />region: #3366FF","users: 330806414<br />n: 28698<br />region: #3366FF","users: 340257681<br />n: 29468<br />region: #3366FF","users: 349708949<br />n: 30237<br />region: #3366FF","users: 359160217<br />n: 31007<br />region: #3366FF","users: 368611485<br />n: 31777<br />region: #3366FF","users: 378062752<br />n: 32546<br />region: #3366FF","users: 387514020<br />n: 33316<br />region: #3366FF","users: 396965288<br />n: 34086<br />region: #3366FF","users: 406416556<br />n: 34855<br />region: #3366FF","users: 415867823<br />n: 35625<br />region: #3366FF","users: 425319091<br />n: 36395<br />region: #3366FF","users: 434770359<br />n: 37164<br />region: #3366FF","users: 444221627<br />n: 37934<br />region: #3366FF","users: 453672894<br />n: 38704<br />region: #3366FF","users: 463124162<br />n: 39473<br />region: #3366FF","users: 472575430<br />n: 40243<br />region: #3366FF","users: 482026697<br />n: 41013<br />region: #3366FF","users: 491477965<br />n: 41782<br />region: #3366FF","users: 500929233<br />n: 42552<br />region: #3366FF","users: 510380501<br />n: 43321<br />region: #3366FF","users: 519831768<br />n: 44091<br />region: #3366FF","users: 529283036<br />n: 44861<br />region: #3366FF","users: 538734304<br />n: 45630<br />region: #3366FF","users: 548185572<br />n: 46400<br />region: #3366FF","users: 557636839<br />n: 47170<br />region: #3366FF","users: 567088107<br />n: 47939<br />region: #3366FF","users: 576539375<br />n: 48709<br />region: #3366FF","users: 585990643<br />n: 49479<br />region: #3366FF","users: 595441910<br />n: 50248<br />region: #3366FF","users: 604893178<br />n: 51018<br />region: #3366FF","users: 614344446<br />n: 51788<br />region: #3366FF","users: 623795713<br />n: 52557<br />region: #3366FF","users: 633246981<br />n: 53327<br />region: #3366FF","users: 642698249<br />n: 54097<br />region: #3366FF","users: 652149517<br />n: 54866<br />region: #3366FF","users: 661600784<br />n: 55636<br />region: #3366FF","users: 671052052<br />n: 56405<br />region: #3366FF","users: 680503320<br />n: 57175<br />region: #3366FF","users: 689954588<br />n: 57945<br />region: #3366FF","users: 699405855<br />n: 58714<br />region: #3366FF","users: 708857123<br />n: 59484<br />region: #3366FF","users: 718308391<br />n: 60254<br />region: #3366FF","users: 727759659<br />n: 61023<br />region: #3366FF","users: 737210926<br />n: 61793<br />region: #3366FF","users: 746662194<br />n: 62563<br />region: #3366FF","users: 746662194<br />n: 62563<br />region: #3366FF","users: 746662194<br />n: 62563<br />region: #3366FF","users: 737210926<br />n: 61793<br />region: #3366FF","users: 727759659<br />n: 61023<br />region: #3366FF","users: 718308391<br />n: 60254<br />region: #3366FF","users: 708857123<br />n: 59484<br />region: #3366FF","users: 699405855<br />n: 58714<br />region: #3366FF","users: 689954588<br />n: 57945<br />region: #3366FF","users: 680503320<br />n: 57175<br />region: #3366FF","users: 671052052<br />n: 56405<br />region: #3366FF","users: 661600784<br />n: 55636<br />region: #3366FF","users: 652149517<br />n: 54866<br />region: #3366FF","users: 642698249<br />n: 54097<br />region: #3366FF","users: 633246981<br />n: 53327<br />region: #3366FF","users: 623795713<br />n: 52557<br />region: #3366FF","users: 614344446<br />n: 51788<br />region: #3366FF","users: 604893178<br />n: 51018<br />region: #3366FF","users: 595441910<br />n: 50248<br />region: #3366FF","users: 585990643<br />n: 49479<br />region: #3366FF","users: 576539375<br />n: 48709<br />region: #3366FF","users: 567088107<br />n: 47939<br />region: #3366FF","users: 557636839<br />n: 47170<br />region: #3366FF","users: 548185572<br />n: 46400<br />region: #3366FF","users: 538734304<br />n: 45630<br />region: #3366FF","users: 529283036<br />n: 44861<br />region: #3366FF","users: 519831768<br />n: 44091<br />region: #3366FF","users: 510380501<br />n: 43321<br />region: #3366FF","users: 500929233<br />n: 42552<br />region: #3366FF","users: 491477965<br />n: 41782<br />region: #3366FF","users: 482026697<br />n: 41013<br />region: #3366FF","users: 472575430<br />n: 40243<br />region: #3366FF","users: 463124162<br />n: 39473<br />region: #3366FF","users: 453672894<br />n: 38704<br />region: #3366FF","users: 444221627<br />n: 37934<br />region: #3366FF","users: 434770359<br />n: 37164<br />region: #3366FF","users: 425319091<br />n: 36395<br />region: #3366FF","users: 415867823<br />n: 35625<br />region: #3366FF","users: 406416556<br />n: 34855<br />region: #3366FF","users: 396965288<br />n: 34086<br />region: #3366FF","users: 387514020<br />n: 33316<br />region: #3366FF","users: 378062752<br />n: 32546<br />region: #3366FF","users: 368611485<br />n: 31777<br />region: #3366FF","users: 359160217<br />n: 31007<br />region: #3366FF","users: 349708949<br />n: 30237<br />region: #3366FF","users: 340257681<br />n: 29468<br />region: #3366FF","users: 330806414<br />n: 28698<br />region: #3366FF","users: 321355146<br />n: 27929<br />region: #3366FF","users: 311903878<br />n: 27159<br />region: #3366FF","users: 302452610<br />n: 26389<br />region: #3366FF","users: 293001343<br />n: 25620<br />region: #3366FF","users: 283550075<br />n: 24850<br />region: #3366FF","users: 274098807<br />n: 24080<br />region: #3366FF","users: 264647540<br />n: 23311<br />region: #3366FF","users: 255196272<br />n: 22541<br />region: #3366FF","users: 245745004<br />n: 21771<br />region: #3366FF","users: 236293736<br />n: 21002<br />region: #3366FF","users: 226842469<br />n: 20232<br />region: #3366FF","users: 217391201<br />n: 19462<br />region: #3366FF","users: 207939933<br />n: 18693<br />region: #3366FF","users: 198488665<br />n: 17923<br />region: #3366FF","users: 189037398<br />n: 17153<br />region: #3366FF","users: 179586130<br />n: 16384<br />region: #3366FF","users: 170134862<br />n: 15614<br />region: #3366FF","users: 160683594<br />n: 14845<br />region: #3366FF","users: 151232327<br />n: 14075<br />region: #3366FF","users: 141781059<br />n: 13305<br />region: #3366FF","users: 132329791<br />n: 12536<br />region: #3366FF","users: 122878524<br />n: 11766<br />region: #3366FF","users: 113427256<br />n: 10996<br />region: #3366FF","users: 103975988<br />n: 10227<br />region: #3366FF","users:  94524720<br />n:  9457<br />region: #3366FF","users:  85073453<br />n:  8687<br />region: #3366FF","users:  75622185<br />n:  7918<br />region: #3366FF","users:  66170917<br />n:  7148<br />region: #3366FF","users:  56719649<br />n:  6378<br />region: #3366FF","users:  47268382<br />n:  5609<br />region: #3366FF","users:  37817114<br />n:  4839<br />region: #3366FF","users:  28365846<br />n:  4069<br />region: #3366FF","users:  18914578<br />n:  3300<br />region: #3366FF","users:   9463311<br />n:  2530<br />region: #3366FF","users:     12043<br />n:  1761<br />region: #3366FF","users:     12043<br />n:  1761<br />region: #3366FF"],"type":"scatter","mode":"lines","line":{"width":3.77952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(153,153,153,0.4)","hoveron":"points","hoverinfo":"x+y","showlegend":false,"xaxis":"x","yaxis":"y","frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":40.1826484018265,"l":60.6392694063927},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":"Do R-Language downloads increase with more internet users?","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-37332725.4508017,783995286.918756],"tickmode":"array","ticktext":["0","200,000,000","400,000,000","600,000,000"],"tickvals":[0,200000000,400000000,600000000],"categoryorder":"array","categoryarray":["0","200,000,000","400,000,000","600,000,000"],"nticks":null,"ticks":"outside","tickcolor":"rgba(179,179,179,1)","ticklen":3.65296803652968,"tickwidth":0.33208800332088,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(222,222,222,1)","gridwidth":0.33208800332088,"zeroline":false,"anchor":"y","title":"Internet users in each country","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-3641.52425534565,76492.6183620034],"tickmode":"array","ticktext":["0","20,000","40,000","60,000"],"tickvals":[-4.54747350886464e-13,20000,40000,60000],"categoryorder":"array","categoryarray":["0","20,000","40,000","60,000"],"nticks":null,"ticks":"outside","tickcolor":"rgba(179,179,179,1)","ticklen":3.65296803652968,"tickwidth":0.33208800332088,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(222,222,222,1)","gridwidth":0.33208800332088,"zeroline":false,"anchor":"x","title":"Downloads per country","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(179,179,179,1)","width":0.66417600664176,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"y":-0.2,"orientation":"h","x":0.4},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false},"source":"A","attrs":{"53e31baf6d66":{"x":{},"y":{},"label":{},"colour":{},"type":"scatter"},"53e31a3751bd":{"x":{},"y":{},"label":{},"colour":{}}},"cur_data":"53e31baf6d66","visdat":{"53e31baf6d66":["function (y) ","x"],"53e31a3751bd":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":[]}</script>
+<p class="caption">
+Figure 1: There are clearly some influential points, US, China and India, that are outliers in case of a regression.
+</p>
+</div>
+</div>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/learning/">Learning</a>
+  
+</div>
+
+
+
+    
+
+
+
+
+
+
+<div class="media author-card" itemscope itemtype="http://schema.org/Person">
+  
+  <img class="portrait mr-3" src="/img/angela.jpeg" itemprop="image" alt="Avatar">
+  
+  <div class="media-body">
+    <h5 class="card-title" itemprop="name"><a href="/">Ángela Castillo-Gill</a></h5>
+    <h6 class="card-subtitle">Researcher and Data Analyst</h6>
+    
+    <ul class="network-icon" aria-hidden="true">
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      <li>
+        <a itemprop="sameAs" href="mailto:acastillogill@gmail.com" >
+          <i class="fas fa-paper-plane"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="//twitter.com/acastillogill" >
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="//github.com/acastillogill" >
+          <i class="fab fa-github"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://www.linkedin.com/in/acastillogill/" target="_blank" rel="noopener">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="/files/cv.pdf" >
+          <i class="ai ai-cv"></i>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+
+
+    
+    
+    <div class="article-widget">
+      <div class="hr-light"></div>
+      <h3>Related</h3>
+      <ul>
+        
+        <li><a href="/note/new-month-new-post/">New month, new post</a></li>
+        
+        <li><a href="/note/learning-friday/">Learning Friday</a></li>
+        
+        <li><a href="/note/what-next/">What next?</a></li>
+        
+        <li><a href="/note/finished-property-prices/">Finished!</a></li>
+        
+        <li><a href="/note/do-it-again/">Do it again.</a></li>
+        
+      </ul>
+    </div>
+    
+    
+
+    
+    <div class="article-widget">
+      <div class="post-nav">
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/note/new-month-new-post/" rel="prev">New month, new post</a>
+  </div>
+  
+</div>
+
+    </div>
+    
+
+    
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-acastillogill-com" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+  </div>
+</article>
+
+<div class="container">
+  <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    &copy; 2018 Ángela Castillo-Gill &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+</div>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+    
+    
+    <script src="/js/mathjax-config.c712bc2e0e4103caa3d2832ad42c817052567e1964a90005457344d5699157acf2c57e910a7b1b13bb9e6e3b2e5c4ba483e070aeb95a37131d7f7e17184ffe8a.js" integrity="sha512-xxK8Lg5BA8qj0oMq1CyBcFJWfhlkqQAFRXNE1WmRV6zyxX6RCnsbE7uebjsuXEukg&#43;BwrrlaNxMdf34XGE/&#43;ig=="></script>
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+        
+      
+
+      
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML-full" integrity="sha256-GhM+5JHb6QUzOQPXSJLEWP7R73CbkisjzK5Eyij4U9w=" crossorigin="anonymous" async></script>
+      
+    
+
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "Search Results",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    <script src="/js/search.js"></script>
+    
+
+    
+    
+
+  </body>
+</html>
+
