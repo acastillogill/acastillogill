@@ -1,0 +1,179 @@
+---
+title: "Describing outliters"
+subtitle: "The US, China, India, big impact."
+author: Ángela Castillo-Gill
+date: '2018-12-05'
+slug: adding-variables
+categories:
+  - Journal
+tags: 
+  - Learning
+draft: FALSE
+summary: "The US, China, India, big impact."
+output:
+ blogdown::html_page:
+  fig_caption: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, echo=FALSE, message=FALSE}
+library(tidyverse)
+library(dplyr)
+library(knitr)
+library(here)
+library(scales)
+library(magrittr)
+options(digits=4)
+options(scipen = 999)
+opts_chunk$set(echo = TRUE,
+               warning = FALSE,
+               error = FALSE,
+               message = FALSE,
+               collapse= TRUE,
+               comment = NA,
+               tidy = TRUE)
+theme_set(theme_light())
+r_downloads <- readRDS(file=here::here("static","data","r-downloads.rds"))
+```
+
+
+
+[Data source](https://github.com/rfordatascience/tidytuesday/tree/master/data/2018-10-30)
+
+```{r downloads-by-country}
+r_downloads%>%
+  group_by(country)%>%
+  summarise(n=n())%>%
+  arrange(desc(n))->downloads_per_country
+```
+
+Now I'm going to give the countries full names, to do this I will use the ISO code to merge and obtain names. 
+
+```{r read-country-codes}
+iso_codes <- read_csv(here("static","data","iso_countries.csv"))
+```
+
+```{r merge-country-codes}
+downloads_per_country%<>%
+  right_join(iso_codes, by=c("country"="iso"))
+```
+
+
+## Which are the top ten countries in terms of downloads
+```{r top-20-countries-plot}
+downloads_per_country%>%
+  arrange(desc(n))%>%
+  filter(!is.na(name))%>%
+  head(20)%>%
+  mutate(name=fct_reorder(name,n))%>%
+  ggplot(aes(name,n,fill=name))+
+  geom_col()+
+  expand_limits(y=0)+
+  coord_flip()+
+  scale_y_continuous(labels=comma_format())+
+  labs(title="Top 20 countries by R downloads",
+       x="Country",
+       y="Downloads")+
+  theme(legend.position = "none")
+  
+```
+Today I've added one variable `internet_users` which sums the total internet users per country. The point is to slowly add regressors or independent variables and see if they have a linear relationship with `r-downloads`. If yes, I'll add them to a model.
+
+```{r read-internet-users}
+internet_users <-read_csv(here("static","data","internet_users.csv"))
+```
+
+```{r merge-internet-users}
+downloads_users_country <-downloads_per_country%>%
+  right_join(internet_users, by=c("name"="name"))%>%
+  filter(!is.na(name),
+         !is.na(users),
+         !is.na(n))%>%
+  arrange(desc(n))
+  
+```
+
+```{r downloads-internet-users-scatter-plot, fig.cap="There are clearly some influential points, US, China and India, that are outliers in case of a regression."}
+library(plotly)
+library(ggrepel)
+downloads_internet_plot<- downloads_users_country%>%
+  arrange(desc(n))%>%
+  ggplot(aes(users, n, label=name, color=region))+
+  #Add light opacity
+  geom_jitter(alpha=0.3)+
+  #Add nice commas x axis
+  scale_x_continuous(labels=comma_format())+
+  #Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+  #Add a linear regression line for all regions
+  geom_smooth(aes(group=1),method="lm")+
+  #Fix legend
+theme(legend.position = "bottom", legend.title = element_blank())+
+   #Add title
+  labs(title="Do R-Language downloads increase with more internet users?",
+       y="Downloads per country",
+       x="Internet users in each country")
+  
+
+ggplotly(downloads_internet_plot)%>%
+   layout(legend = list(orientation = "h", x = 0.4, y = -0.2))
+```
+
+Today I'm going to describe the big outliers in the set and see what their effect is on the regression.
+
+```{r fitting-model-first}
+internet_downloads_fit <- lm(n~users, data = downloads_users_country)
+summary(internet_downloads_fit)$coef
+par(mfrow=c(2,2))
+plot(internet_downloads_fit)
+```
+
+```{r dataset-without-outliers}
+downloads_users_country%>%
+  filter(name!="United Kingdom",
+         name!="Germany",
+         name!="China",
+         name!="India",
+         name!="United States of America",
+         name!="Brazil",
+         name!="Japan",
+         name!="Canada",
+         name!="Australia",
+         name!="Namibia")->outliers_gone
+```
+
+
+```{r plot-without-outliers}
+downloads_internet_plot_out<- outliers_gone%>%
+  arrange(desc(n))%>%
+  ggplot(aes(users, n, label=name, color=region))+
+  #Add light opacity
+  geom_jitter(alpha=0.3)+
+  #Add nice commas x axis
+  scale_x_continuous(labels=comma_format())+
+  #Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+  #Add a linear regression line for all regions
+  geom_smooth(aes(group=1),method="lm")+
+  #Fix legend
+theme(legend.position = "bottom", legend.title = element_blank())+
+   #Add title
+  labs(title="Do R-Language downloads increase with more internet users?",
+       subtitle = "China, India, United Kingdom, and Germany removed.",
+       y="Downloads per country",
+       x="Internet users in each country")
+  
+
+ggplotly(downloads_internet_plot_out)%>%
+   layout(legend = list(orientation = "h", x = 0.4, y = -0.2))
+```
+
+```{r fitting-model-without-outliers}
+internet_downloads_fit_2 <- lm(n~users, data = outliers_gone)
+summary(internet_downloads_fit_2)$coef
+par(mfrow=c(2,2))
+plot(internet_downloads_fit_2)
+```
+
+
