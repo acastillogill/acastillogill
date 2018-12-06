@@ -1,15 +1,15 @@
 ---
-title: "Describing outliters"
-subtitle: "The US, China, India, big impact."
+title: "Adding language"
+subtitle: "Surprise surprise, what variable do you think can capture a lot of variability."
 author: Ángela Castillo-Gill
-date: '2018-12-05'
-slug: describing-outliers
+date: '2018-12-06'
+slug: adding-language
 categories:
   - Journal
 tags: 
   - Learning
 draft: FALSE
-summary: "The US, China, India, big impact."
+summary: "Surprise surprise, what variable do you think can capture a lot of variability."
 output:
  blogdown::html_page:
   fig_caption: true
@@ -120,8 +120,6 @@ ggplotly(downloads_internet_plot)%>%
    layout(legend = list(orientation = "h", x = 0.4, y = -0.2))
 ```
 
-Today I'm going to describe the big outliers in the set and see what their effect is on the regression.
-
 ```{r fitting-model-first}
 internet_downloads_fit <- lm(n~users, data = downloads_users_country)
 summary(internet_downloads_fit)$coef
@@ -169,11 +167,73 @@ ggplotly(downloads_internet_plot_out)%>%
    layout(legend = list(orientation = "h", x = 0.4, y = -0.2))
 ```
 
-```{r fitting-model-without-outliers}
-internet_downloads_fit_2 <- lm(n~users, data = outliers_gone)
-summary(internet_downloads_fit_2)$coef
-par(mfrow=c(2,2))
-plot(internet_downloads_fit_2)
+
+As I was removing outliers yesterday, I was thinking, what do all these countries I'm removing have in common and what variable can I add to capture some of that variability.
+
+I mean, look at them, United Kingdom, Germany, China, India, USA, Brazil, Japan, Canada, Australia, Namibia... They are in almost all cases "developed" countries. Let's add the Human Development Indicator as a variable to see if it can capture some of that variability. 
+
+```{r read-hdi-index}
+human_dev_ind <-read_csv(here("static","data","HDI.csv"))
 ```
 
 
+```{r merge-hdi-users}
+downloads_hdi_country <-downloads_users_country%>%
+  right_join(human_dev_ind, by=c("name"="name"))%>%
+  arrange(desc(HDI))%>%
+  filter(!is.na(name),
+         !is.na(users),
+         !is.na(n),
+         !is.na(HDI))
+```
+
+```{r hdi-downloads-plot}
+downloads_hdi_plot<- downloads_hdi_country%>%
+  ggplot(aes(x=HDI, y=n, label=name, color=region))+
+  #Add light opacity
+  geom_jitter(alpha=0.3)+
+  #Add nice commas x axis
+  scale_x_continuous(labels=percent_format())+
+  #Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+  #Add a linear regression line for all regions
+  geom_smooth(aes(group=1),method="lm")+
+  #Fix legend
+theme(legend.position = "bottom", legend.title = element_blank())+
+   #Add title
+  labs(title="Human Development Index (HDI) and R downloads.",
+       y="Downloads per country",
+       x="Human Development Index")
+
+ggplotly(downloads_hdi_plot)
+```
+
+Wow! There does seem to be a strong linear relationship between the variables. Now, it might be that countries with more internet users also have a higher human development index. Makes sense? Right? Let me check the correlation:
+
+```{r checking-correlation}
+cor(downloads_hdi_country$users,downloads_hdi_country$HDI)*100
+```
+
+Hmmmm only 8% I thought it would be higher. Multicollinearity is a threat in regression. Why add another variable that whose explanatory variable is contained in another.
+
+Let me see the model with this new variable in:
+
+```{r fitting-hdi-users}
+internet_fit <- lm(n ~ users, data=downloads_hdi_country)
+
+hdi_fit <- lm(n ~ users + HDI, data=downloads_hdi_country)
+summary(hdi_fit)$coef
+```
+
+So the HDI is a significant variable if our Type error rate is 0.05, but barely. Internet users still is top.
+```{r diagnostics-hdi-users}
+plot(hdi_fit)
+```
+
+Wow! They bloody residuals look not that bad. For like the first time ever in my experience! There is more or less equal variation around zero, they do look more or less distributed normally, and of course we have some outliers, we always do. I'm not too inclined to add another variable. Let's look at the adjusted $R^2$.
+
+```{r}
+summary(hdi_fit)$adj.r.squared*100
+```
+
+Mmmm, those two variables, internet users and the HDI only explain about 20.53% of the variation. I want to increase the explanatory power of the model, what to do?

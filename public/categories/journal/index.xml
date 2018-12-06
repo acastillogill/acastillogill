@@ -7,24 +7,24 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Ángela Castillo-Gill</copyright>
-    <lastBuildDate>Wed, 05 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 06 Dec 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/journal/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Describing outliers</title>
-      <link>/note/describing-outliers/</link>
-      <pubDate>Wed, 05 Dec 2018 00:00:00 +0000</pubDate>
+      <title>Adding language</title>
+      <link>/note/adding-language/</link>
+      <pubDate>Thu, 06 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>/note/describing-outliers/</guid>
+      <guid>/note/adding-language/</guid>
       <description>Data source
 downloads_per_country &amp;lt;- r_downloads %&amp;gt;% group_by(country) %&amp;gt;% summarise(n = n()) %&amp;gt;% arrange(desc(n)) Now I’m going to give the countries full names, to do this I will use the ISO code to merge and obtain names.
 iso_codes &amp;lt;- read_csv(here(&amp;quot;static&amp;quot;, &amp;quot;data&amp;quot;, &amp;quot;iso_countries.csv&amp;quot;)) downloads_per_country %&amp;lt;&amp;gt;% right_join(iso_codes, by = c(country = &amp;quot;iso&amp;quot;)) Which are the top ten countries in terms of downloads downloads_per_country %&amp;gt;% arrange(desc(n)) %&amp;gt;% filter(!</description>
     </item>
     
     <item>
-      <title>Describing outliters</title>
+      <title>Describing outliers</title>
       <link>/note/describing-outliers/</link>
       <pubDate>Wed, 05 Dec 2018 00:00:00 +0000</pubDate>
       
