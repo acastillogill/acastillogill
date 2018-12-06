@@ -1,5 +1,5 @@
 ---
-title: "Describing outliers"
+title: "Describing outliters"
 subtitle: "The US, China, India, big impact."
 author: Ángela Castillo-Gill
 date: '2018-12-05'
