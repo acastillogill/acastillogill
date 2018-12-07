@@ -7,17 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Ángela Castillo-Gill</copyright>
-    <lastBuildDate>Thu, 06 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 07 Dec 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/note/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Adding language</title>
-      <link>/note/adding-language/</link>
+      <title>Breaking up the HDI stats</title>
+      <link>/note/breaking-up-the-hdi-stats/</link>
+      <pubDate>Fri, 07 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/note/breaking-up-the-hdi-stats/</guid>
+      <description>Data source
+downloads_per_country &amp;lt;- r_downloads %&amp;gt;% group_by(country) %&amp;gt;% summarise(n = n()) %&amp;gt;% arrange(desc(n)) Now I’m going to give the countries full names, to do this I will use the ISO code to merge and obtain names.
+iso_codes &amp;lt;- read_csv(here(&amp;quot;static&amp;quot;, &amp;quot;data&amp;quot;, &amp;quot;iso_countries.csv&amp;quot;)) downloads_per_country %&amp;lt;&amp;gt;% right_join(iso_codes, by = c(country = &amp;quot;iso&amp;quot;)) Which are the top ten countries in terms of downloads downloads_per_country %&amp;gt;% arrange(desc(n)) %&amp;gt;% filter(!</description>
+    </item>
+    
+    <item>
+      <title>Adding HDI</title>
+      <link>/note/adding-hdi/</link>
       <pubDate>Thu, 06 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>/note/adding-language/</guid>
+      <guid>/note/adding-hdi/</guid>
       <description>Data source
 downloads_per_country &amp;lt;- r_downloads %&amp;gt;% group_by(country) %&amp;gt;% summarise(n = n()) %&amp;gt;% arrange(desc(n)) Now I’m going to give the countries full names, to do this I will use the ISO code to merge and obtain names.
 iso_codes &amp;lt;- read_csv(here(&amp;quot;static&amp;quot;, &amp;quot;data&amp;quot;, &amp;quot;iso_countries.csv&amp;quot;)) downloads_per_country %&amp;lt;&amp;gt;% right_join(iso_codes, by = c(country = &amp;quot;iso&amp;quot;)) Which are the top ten countries in terms of downloads downloads_per_country %&amp;gt;% arrange(desc(n)) %&amp;gt;% filter(!</description>

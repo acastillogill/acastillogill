@@ -1,15 +1,15 @@
 ---
-title: "Adding HDI"
-subtitle: "Surprise surprise, what variable do you think can capture a lot of variability."
+title: "Breaking up the HDI stats"
+subtitle: "Better to have uncorrelated variables than a single composite one."
 author: Ángela Castillo-Gill
-date: '2018-12-06'
-slug: adding-HDI
+date: '2018-12-07'
+slug: breaking-up-the-hdi-stats
 categories:
   - Journal
 tags: 
   - Learning
 draft: FALSE
-summary: "Surprise surprise, what variable do you think can capture a lot of variability."
+summary: "Better to have uncorrelated variables than a single composite one."
 output:
  blogdown::html_page:
   fig_caption: true
@@ -96,7 +96,6 @@ downloads_users_country <-downloads_per_country%>%
 
 ```{r downloads-internet-users-scatter-plot, fig.cap="There are clearly some influential points, US, China and India, that are outliers in case of a regression."}
 library(plotly)
-library(ggrepel)
 downloads_internet_plot<- downloads_users_country%>%
   arrange(desc(n))%>%
   ggplot(aes(users, n, label=name, color=region))+
@@ -120,12 +119,7 @@ ggplotly(downloads_internet_plot)%>%
    layout(legend = list(orientation = "h", x = 0.4, y = -0.2))
 ```
 
-```{r fitting-model-first}
-internet_downloads_fit <- lm(n~users, data = downloads_users_country)
-summary(internet_downloads_fit)$coef
-par(mfrow=c(2,2))
-plot(internet_downloads_fit)
-```
+
 
 ```{r dataset-without-outliers}
 downloads_users_country%>%
@@ -220,13 +214,13 @@ Let me see the model with this new variable in:
 
 ```{r fitting-hdi-users}
 internet_fit <- lm(n ~ users, data=downloads_hdi_country)
-
 hdi_fit <- lm(n ~ users + HDI, data=downloads_hdi_country)
 summary(hdi_fit)$coef
 ```
 
 So the HDI is a significant variable if our Type error rate is 0.05, but barely. Internet users still is top.
 ```{r diagnostics-hdi-users}
+par(mfrow=c(2,2))
 plot(hdi_fit)
 ```
 
@@ -237,3 +231,112 @@ summary(hdi_fit)$adj.r.squared*100
 ```
 
 Mmmm, those two variables, internet users and the HDI only explain about 20.53% of the variation. I want to increase the explanatory power of the model, what to do?
+
+So today I would like break up the HDI index into its component parts and see how each separate feature relates to R downloads. 
+
+The HDI is a mix of three elements: 
+
+- Health: Life expectancy (years)
+- Education: Expected years of schooling(years)/Mean years of schooling (years)
+- Standard of living: Gross national income per capita (2011 PPP $)
+
+So I have downloaded those variables and I will now plot them against downloads and also fit the regression model again. 
+
+```{r read-three-new-indicators}
+standard_liv <- read_csv(here("static","data","GNIPC.csv"))
+standard_liv$GNI <- as.integer(standard_liv$GNI)
+
+life_exp <- read_csv(here("static","data","life_exp.csv"))
+edu_year <- read_csv(here("static","data","edu_year.csv"))
+
+edu_year <- edu_year%>%
+  filter(Indicator=="Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",
+         year==2016)%>%
+  select(country,educ)
+```
+
+```{r join-new-indicators}
+full_hdi <- downloads_hdi_country%>%
+  left_join(standard_liv, by=c(`alpha-3`="iso"))%>%
+  left_join(life_exp, by=c(`country-code`="country_code"))%>%
+  left_join(edu_year, by=c(`alpha-3`="country"))%>%
+  arrange(desc(educ))%>%
+  filter(!is.na(name),
+         !is.na(users),
+         !is.na(n),
+         !is.na(HDI),
+         !is.na(GNI),
+         !is.na(life_exp),
+         !is.na(educ))
+```
+
+```{r life-exp-plot}
+life_exp_plot<- full_hdi%>%
+  ggplot(aes(x=life_exp, y=n, label=name, color=region))+
+  #Add light opacity
+  geom_jitter(alpha=0.3)+
+  #Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+  #Add a linear regression line for all regions
+  geom_smooth(aes(group=1),method="lm")+
+  #Fix legend
+theme(legend.position = "bottom", legend.title = element_blank())+
+   #Add title
+  labs(title="Life expectancy at birth and R downloads.",
+       y="Downloads per country",
+       x="Life expectancy at birth (Years)")
+
+ggplotly(life_exp_plot)
+```
+
+```{r educ-plot}
+educ_plot<- full_hdi%>%
+  ggplot(aes(x=educ, y=n, label=name, color=region))+
+  #Add light opacity
+  geom_jitter(alpha=0.3)+
+  #Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+  #Add a linear regression line for all regions
+  geom_smooth(aes(group=1),method="lm")+
+  #Fix legend
+theme(legend.position = "bottom", legend.title = element_blank())+
+   #Add title
+  labs(title="Mean years of schooling (years) and R downloads.",
+       y="Downloads per country",
+       x="Mean years of schooling (years)")
+
+ggplotly(educ_plot)
+```
+
+```{r GNI_plot}
+GNI_plot<- full_hdi%>%
+  ggplot(aes(x=GNI, y=n, label=name, color=region))+
+  #Add light opacity
+  geom_jitter(alpha=0.3)+
+    #Add nice commas x axis
+  scale_x_continuous(labels=dollar_format())+
+  #Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+  #Add a linear regression line for all regions
+  geom_smooth(aes(group=1),method="lm")+
+  #Fix legend
+theme(legend.position = "bottom", legend.title = element_blank())+
+   #Add title
+  labs(title="Gross National Income and R downloads.",
+       y="Downloads per country",
+       x="Gross National Income")
+
+ggplotly(GNI_plot)
+```
+
+```{r four-var-fit}
+four_fit <- lm(n ~ users + GNI + educ + life_exp, data=full_hdi)
+summary(four_fit)$coef
+```
+
+Seems like separating the four doesn't lead to any significant coefficients beyond internet users. Interesting. I leave `HDI` in and it does, barely. I wonder what's behind the number of internet users... 
+
+Population?
+
+Tomorrow I'll add population in and see if that's what's behind internet users. 
+
