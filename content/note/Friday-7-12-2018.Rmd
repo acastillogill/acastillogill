@@ -18,14 +18,14 @@ editor_options:
 ---
 
 ```{r setup, echo=FALSE, message=FALSE}
-library(tidyverse)
 library(dplyr)
 library(knitr)
 library(here)
 library(scales)
 library(magrittr)
-options(digits=4)
-options(scipen = 999)
+library(ggplot2)
+library(cowplot)
+library(tidyverse)
 opts_chunk$set(echo = TRUE,
                warning = FALSE,
                error = FALSE,
@@ -34,6 +34,16 @@ opts_chunk$set(echo = TRUE,
                comment = NA,
                tidy = TRUE)
 theme_set(theme_light())
+
+options(
+  ggplot2.discrete.colour = "viridis",
+  ggplot2.discrete.fill = "viridis",
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis",
+  digits=4,
+  scipen = 999
+)
+
 r_downloads <- readRDS(file=here::here("static","data","r-downloads.rds"))
 ```
 
@@ -100,7 +110,7 @@ downloads_internet_plot<- downloads_users_country%>%
   arrange(desc(n))%>%
   ggplot(aes(users, n, label=name, color=region))+
   #Add light opacity
-  geom_jitter(alpha=0.3)+
+  geom_jitter()+
   #Add nice commas x axis
   scale_x_continuous(labels=comma_format())+
   #Add nice commas y axis
@@ -141,7 +151,7 @@ downloads_internet_plot_out<- outliers_gone%>%
   arrange(desc(n))%>%
   ggplot(aes(users, n, label=name, color=region))+
   #Add light opacity
-  geom_jitter(alpha=0.3)+
+  geom_jitter()+
   #Add nice commas x axis
   scale_x_continuous(labels=comma_format())+
   #Add nice commas y axis
@@ -185,7 +195,7 @@ downloads_hdi_country <-downloads_users_country%>%
 downloads_hdi_plot<- downloads_hdi_country%>%
   ggplot(aes(x=HDI, y=n, label=name, color=region))+
   #Add light opacity
-  geom_jitter(alpha=0.3)+
+  geom_jitter()+
   #Add nice commas x axis
   scale_x_continuous(labels=percent_format())+
   #Add nice commas y axis
@@ -279,14 +289,13 @@ life_exp_plot<- full_hdi%>%
 scale_y_continuous(labels=comma_format())+
   #Add a linear regression line for all regions
   geom_smooth(aes(group=1),method="lm")+
-  #Fix legend
-theme(legend.position = "bottom", legend.title = element_blank())+
+  #Remove legend
+  theme(legend.position = "none")+
    #Add title
   labs(title="Life expectancy at birth and R downloads.",
        y="Downloads per country",
        x="Life expectancy at birth (Years)")
 
-ggplotly(life_exp_plot)
 ```
 
 ```{r educ-plot}
@@ -305,7 +314,6 @@ theme(legend.position = "bottom", legend.title = element_blank())+
        y="Downloads per country",
        x="Mean years of schooling (years)")
 
-ggplotly(educ_plot)
 ```
 
 ```{r GNI_plot}
@@ -319,15 +327,23 @@ GNI_plot<- full_hdi%>%
 scale_y_continuous(labels=comma_format())+
   #Add a linear regression line for all regions
   geom_smooth(aes(group=1),method="lm")+
-  #Fix legend
-theme(legend.position = "bottom", legend.title = element_blank())+
+  #Remove legend
+  theme(legend.position = "none")+
    #Add title
   labs(title="Gross National Income and R downloads.",
        y="Downloads per country",
        x="Gross National Income")
 
-ggplotly(GNI_plot)
 ```
+
+```{r plot-three-HDI}
+plot_grid(life_exp_plot, educ_plot, GNI_plot, nrow = 1)
+```
+
+```{r plot-grid-HDI, fig.show='hold', out.width = "33%", fig.align = "default"}
+life_exp_plot; educ_plot; GNI_plot
+```
+
 
 ```{r four-var-fit}
 four_fit <- lm(n ~ users + GNI + educ + life_exp, data=full_hdi)
