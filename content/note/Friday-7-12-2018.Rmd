@@ -337,12 +337,9 @@ scale_y_continuous(labels=comma_format())+
 ```
 
 ```{r plot-three-HDI}
-plot_grid(life_exp_plot, educ_plot, GNI_plot, nrow = 1)
+plot_grid(life_exp_plot, educ_plot, GNI_plot)
 ```
 
-```{r plot-grid-HDI, fig.show='hold', out.width = "33%", fig.align = "default"}
-life_exp_plot; educ_plot; GNI_plot
-```
 
 
 ```{r four-var-fit}
