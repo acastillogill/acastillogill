@@ -354,5 +354,98 @@ So far, with all the variables I've tried so far, inclusion of the Human Develop
 
 I wonder if I nested models by region... I wonder if that would change something. Interesting to try. I'll do this and then write it up.
 
+```{r nesting-models}
+library(broom)
 
+nested_hdi <- full_hdi%>%
+  group_by(region)%>%
+  nest()
+
+```
+
+```{r mean-downloads-per-region}
+downloads_nested <- nested_hdi %>%
+  mutate(mean_n = map_dbl(data, ~mean(.x$n)))
+
+# Extract the mean_n value by using unnest
+downloads_mean <- downloads_nested %>% 
+  unnest(mean_n)
+```
+
+```{r linear-model-for-each-region}
+regression_each_region <- nested_hdi %>%
+  mutate(model=map(data, ~lm(formula=n~HDI+users, data=.x)))
+```
+
+```{r extracting-coefficients}
+# Extract the coefficient statistics of each model into nested dataframes
+model_coef_nested <- regression_each_region %>% 
+    mutate(coef = map(model, ~tidy(.x)))
+    
+# Simplify the coef dataframes for each model    
+model_coef <- model_coef_nested %>%
+    unnest(coef)
+
+```
+
+```{r assessing-model-fit}
+# Extract the fit statistics of each model into dataframes
+model_perf_nested <- regression_each_region %>% 
+    mutate(fit = map(model, ~glance(.x)))
+
+# Simplify the fit dataframes for each model    
+model_perf <- model_perf_nested %>% 
+    unnest(fit)
+
+# Look at the first six rows of model_perf
+head(model_perf)
+```
+
+
+```{r ranking fit}
+# Plot a histogram of rsquared for the 77 models    
+model_perf %>% 
+  ggplot(aes(x = r.squared)) + 
+  geom_histogram()
+  
+# Extract the 4 best fitting models
+best_fit <- model_perf %>% 
+  top_n(n = 2, wt = r.squared)
+
+# Extract the 4 models with the worst fit
+worst_fit <- model_perf %>% 
+  top_n(n = 2, wt = -r.squared)
+```
+
+```{r visualising-model-fit}
+best_augmented <- best_fit %>% 
+  # Build the augmented dataframe for each country model
+  mutate(augmented = map(model, ~augment(.x))) %>% 
+  # Expand the augmented dataframes
+  unnest(augmented)
+
+worst_augmented <- worst_fit %>% 
+  # Build the augmented dataframe for each country model
+  mutate(augmented = map(model, ~augment(.x))) %>% 
+  # Expand the augmented dataframes
+  unnest(augmented)
+```
+
+```{r best-mods}
+# Compare the predicted values with the actual values of life expectancy 
+# for the top 4 best fitting models
+best_augmented %>% 
+  ggplot(aes(x = HDI)) +
+  geom_point(aes(y = n)) + 
+  geom_line(aes(y = .fitted), color = "red") +
+  facet_wrap(~region, scales = "free_y")
+```
+
+```{r worst-mods}
+worst_augmented %>% 
+  ggplot(aes(x = HDI)) +
+  geom_point(aes(y = n)) + 
+  geom_line(aes(y = .fitted), color = "red") +
+  facet_wrap(~region, scales = "free_y")
+```
 
