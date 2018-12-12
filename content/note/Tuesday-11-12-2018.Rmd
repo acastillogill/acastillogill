@@ -69,18 +69,18 @@ downloads_per_country%<>%
 
 
 ## Which are the top ten countries in terms of downloads
-```{r plot-top-20-countries}
+```{r plot-top-10-countries}
 downloads_per_country%>%
   arrange(desc(n))%>%
   filter(!is.na(name))%>%
-  head(20)%>%
+  head(10)%>%
   mutate(name=fct_reorder(name,n))%>%
   ggplot(aes(name,n,fill=name))+
   geom_col()+
   expand_limits(y=0)+
   coord_flip()+
   scale_y_continuous(labels=comma_format())+
-  labs(title="Top 20 countries by R downloads",
+  labs(title="Top 10 countries by R downloads",
        x="",
        y="Downloads")+
   theme(legend.position = "none")
@@ -182,11 +182,11 @@ human_dev_ind <-read_csv(here("static","data","HDI.csv"))
 ```{r merge-hdi-users}
 downloads_hdi_country <-downloads_users_country%>%
   right_join(human_dev_ind, by=c("name"="name"))%>%
-  arrange(desc(HDI))%>%
   filter(!is.na(name),
          !is.na(users),
          !is.na(n),
-         !is.na(HDI))
+         !is.na(HDI))%>%
+  arrange(desc(HDI))
 ```
 
 ```{r hdi-downloads-plot}
@@ -203,7 +203,7 @@ scale_y_continuous(labels=comma_format())+
   #Fix legend
 theme(legend.position = "bottom", legend.title = element_blank())+
    #Add title
-  labs(title="Human Development Index (HDI) and R downloads.",
+  labs(title="Human Development Index (HDI) and downloads.",
        y="Downloads per country",
        x="Human Development Index")
 
@@ -234,7 +234,7 @@ plot(hdi_fit)
 
 Wow! They bloody residuals look not that bad. For like the first time ever in my experience! There is more or less equal variation around zero, they do look more or less distributed normally, and of course we have some outliers, we always do. I'm not too inclined to add another variable. Let's look at the adjusted $R^2$.
 
-```{r}
+```{r adj-r-squared}
 summary(hdi_fit)$adj.r.squared*100
 ```
 
@@ -262,6 +262,7 @@ edu_year <- edu_year%>%
          year==2016)%>%
   select(country,educ)
 ```
+
 
 
 ```{r join-new-indicators}
@@ -341,6 +342,8 @@ summary(four_fit)$coef
 
 Seems like separating the four doesn't lead to any significant coefficients beyond internet users. Interesting. I leave `HDI` in and it does, barely. I wonder what's behind the number of internet users... 
 
+Which are the top 10 countreis 
+
 ```{r population-fit}
 pop_fit <- lm(n ~ pop_2018 + HDI, data=full_hdi, na.action = na.omit)
 summary(pop_fit)$coef
@@ -397,12 +400,35 @@ model_coef <- model_coef_nested %>%
     unnest(coef)
 ```
 
-```{r significant-coefficient-tables, fig.cap="The model describing R downloads as a function of internet users per country and the HDI has significant coefficients for Asia nd Europe."}
+```{r table-significant-coefficient}
 model_coef%>% 
   #Filter significant coefficient
   filter(p.value<0.05)%>%       
   arrange(p.value)%>%
-  kable()
+  kable(caption="The model describing R downloads as a function of internet users per country and the HDI has significant coefficients for Asia and Europe.")
+```
+
+```{r assessing-model-fit}
+# Extract the fit statistics of each model into dataframes
+model_perf_nested <- regression_each_region %>% 
+    mutate(fit = map(model, ~glance(.x)))
+
+# Simplify the fit dataframes for each model    
+model_perf <- model_perf_nested %>% 
+    unnest(fit)
+```
+
+```{r table-model-fit}
+#Make a table with model fit in descending order #Filter significant coefficient
+model_perf%>%
+  arrange(desc(adj.r.squared), p.value)%>%
+  select(region, adj.r.squared, p.value)%>%
+  kable(caption="The model describing R downloads as a function of internet users per country and the HDI has significant coefficients for Asia and Europe.")
+```
+
+```{r separate-top-2-by-r-squared}
+best_fit_models <- model_perf%>%
+  top_n(2, wt=adj.r.squared)
 ```
 
 
