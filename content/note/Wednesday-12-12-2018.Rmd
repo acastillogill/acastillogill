@@ -3,7 +3,7 @@ title: "Downloads per capita"
 subtitle: "Which countries are the biggest R users per capita?"
 author: Ángela Castillo-Gill
 date: '2018-12-12'
-slug: nesting-models
+slug: downloads-per-capita
 categories:
   - Journal
 tags: 
