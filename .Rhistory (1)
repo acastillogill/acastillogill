@@ -1,0 +1,512 @@
+# Chunk 20: life-exp-plot
+life_exp_plot<- full_hdi%>%
+ggplot(aes(x=life_exp, y=n, label=name, color=region))+
+#Add light opacity
+geom_jitter(alpha=0.3)+
+#Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+#Add a linear regression line for all regions
+geom_smooth(aes(group=1),method="lm")+
+#Fix legend
+theme(legend.position = "bottom", legend.title = element_blank())+
+#Add title
+labs(title="Life expectancy at birth and R downloads.",
+y="Downloads per country",
+x="Life expectancy at birth (Years)")
+ggplotly(life_exp_plot)
+# Chunk 21: educ-plot
+educ_plot<- full_hdi%>%
+ggplot(aes(x=educ, y=n, label=name, color=region))+
+#Add light opacity
+geom_jitter(alpha=0.3)+
+#Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+#Add a linear regression line for all regions
+geom_smooth(aes(group=1),method="lm")+
+#Fix legend
+theme(legend.position = "bottom", legend.title = element_blank())+
+#Add title
+labs(title="Mean years of schooling (years) and R downloads.",
+y="Downloads per country",
+x="Mean years of schooling (years)")
+ggplotly(educ_plot)
+# Chunk 22: GNI_plot
+GNI_plot<- full_hdi%>%
+ggplot(aes(x=GNI, y=n, label=name, color=region))+
+#Add light opacity
+geom_jitter(alpha=0.3)+
+#Add nice commas x axis
+scale_x_continuous(labels=dollar_format())+
+#Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+#Add a linear regression line for all regions
+geom_smooth(aes(group=1),method="lm")+
+#Fix legend
+theme(legend.position = "bottom", legend.title = element_blank())+
+#Add title
+labs(title="Gross National Income and R downloads.",
+y="Downloads per country",
+x="Gross National Income")
+ggplotly(GNI_plot)
+# Chunk 23: four-var-fit
+four_fit <- lm(n ~ users + GNI + educ + life_exp, data=full_hdi)
+summary(four_fit)$coef
+install.packages("cowplot")
+library(cowplot)
+plot_grid(life_exp_plot, educ_plot, GNI_plot)
+# Chunk 1: setup
+library(dplyr)
+library(knitr)
+library(here)
+library(scales)
+library(magrittr)
+library(ggplot2)
+opts_chunk$set(echo = TRUE,
+warning = FALSE,
+error = FALSE,
+message = FALSE,
+collapse= TRUE,
+comment = NA,
+tidy = TRUE)
+theme_set(theme_light())
+options(
+ggplot2.discrete.colour = "viridis",
+ggplot2.discrete.fill = "viridis",
+ggplot2.continuous.colour = "viridis",
+ggplot2.continuous.fill = "viridis",
+digits=4,
+scipen = 999
+)
+r_downloads <- readRDS(file=here::here("static","data","r-downloads.rds"))
+# Chunk 2: downloads-by-country
+r_downloads%>%
+group_by(country)%>%
+summarise(n=n())%>%
+arrange(desc(n))->downloads_per_country
+# Chunk 3: read-country-codes
+iso_codes <- read_csv(here("static","data","iso_countries.csv"))
+# Chunk 4: merge-country-codes
+downloads_per_country%<>%
+right_join(iso_codes, by=c("country"="iso"))
+# Chunk 5: top-20-countries-plot
+downloads_per_country%>%
+arrange(desc(n))%>%
+filter(!is.na(name))%>%
+head(20)%>%
+mutate(name=fct_reorder(name,n))%>%
+ggplot(aes(name,n,fill=name))+
+geom_col()+
+expand_limits(y=0)+
+coord_flip()+
+scale_y_continuous(labels=comma_format())+
+labs(title="Top 20 countries by R downloads",
+x="Country",
+y="Downloads")+
+theme(legend.position = "none")
+# Chunk 6: read-internet-users
+internet_users <-read_csv(here("static","data","internet_users.csv"))
+# Chunk 7: merge-internet-users
+downloads_users_country <-downloads_per_country%>%
+right_join(internet_users, by=c("name"="name"))%>%
+filter(!is.na(name),
+!is.na(users),
+!is.na(n))%>%
+arrange(desc(n))
+# Chunk 8: downloads-internet-users-scatter-plot
+library(plotly)
+downloads_internet_plot<- downloads_users_country%>%
+arrange(desc(n))%>%
+ggplot(aes(users, n, label=name, color=region))+
+#Add light opacity
+geom_jitter()+
+#Add nice commas x axis
+scale_x_continuous(labels=comma_format())+
+#Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+#Add a linear regression line for all regions
+geom_smooth(aes(group=1),method="lm")+
+#Fix legend
+theme(legend.position = "bottom", legend.title = element_blank())+
+#Add title
+labs(title="Do R-Language downloads increase with more internet users?",
+y="Downloads per country",
+x="Internet users in each country")
+ggplotly(downloads_internet_plot)%>%
+layout(legend = list(orientation = "h", x = 0.4, y = -0.2))
+# Chunk 9: dataset-without-outliers
+downloads_users_country%>%
+filter(name!="United Kingdom",
+name!="Germany",
+name!="China",
+name!="India",
+name!="United States of America",
+name!="Brazil",
+name!="Japan",
+name!="Canada",
+name!="Australia",
+name!="Namibia")->outliers_gone
+# Chunk 10: plot-without-outliers
+downloads_internet_plot_out<- outliers_gone%>%
+arrange(desc(n))%>%
+ggplot(aes(users, n, label=name, color=region))+
+#Add light opacity
+geom_jitter()+
+#Add nice commas x axis
+scale_x_continuous(labels=comma_format())+
+#Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+#Add a linear regression line for all regions
+geom_smooth(aes(group=1),method="lm")+
+#Fix legend
+theme(legend.position = "bottom", legend.title = element_blank())+
+#Add title
+labs(title="Do R-Language downloads increase with more internet users?",
+subtitle = "China, India, United Kingdom, and Germany removed.",
+y="Downloads per country",
+x="Internet users in each country")
+ggplotly(downloads_internet_plot_out)%>%
+layout(legend = list(orientation = "h", x = 0.4, y = -0.2))
+# Chunk 11: read-hdi-index
+human_dev_ind <-read_csv(here("static","data","HDI.csv"))
+# Chunk 12: merge-hdi-users
+downloads_hdi_country <-downloads_users_country%>%
+right_join(human_dev_ind, by=c("name"="name"))%>%
+arrange(desc(HDI))%>%
+filter(!is.na(name),
+!is.na(users),
+!is.na(n),
+!is.na(HDI))
+# Chunk 13: hdi-downloads-plot
+downloads_hdi_plot<- downloads_hdi_country%>%
+ggplot(aes(x=HDI, y=n, label=name, color=region))+
+#Add light opacity
+geom_jitter()+
+#Add nice commas x axis
+scale_x_continuous(labels=percent_format())+
+#Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+#Add a linear regression line for all regions
+geom_smooth(aes(group=1),method="lm")+
+#Fix legend
+theme(legend.position = "bottom", legend.title = element_blank())+
+#Add title
+labs(title="Human Development Index (HDI) and R downloads.",
+y="Downloads per country",
+x="Human Development Index")
+ggplotly(downloads_hdi_plot)
+# Chunk 14: checking-correlation
+cor(downloads_hdi_country$users,downloads_hdi_country$HDI)*100
+# Chunk 15: fitting-hdi-users
+internet_fit <- lm(n ~ users, data=downloads_hdi_country)
+hdi_fit <- lm(n ~ users + HDI, data=downloads_hdi_country)
+summary(hdi_fit)$coef
+# Chunk 16: diagnostics-hdi-users
+par(mfrow=c(2,2))
+plot(hdi_fit)
+# Chunk 17
+summary(hdi_fit)$adj.r.squared*100
+# Chunk 18: read-three-new-indicators
+standard_liv <- read_csv(here("static","data","GNIPC.csv"))
+standard_liv$GNI <- as.integer(standard_liv$GNI)
+life_exp <- read_csv(here("static","data","life_exp.csv"))
+edu_year <- read_csv(here("static","data","edu_year.csv"))
+edu_year <- edu_year%>%
+filter(Indicator=="Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",
+year==2016)%>%
+select(country,educ)
+# Chunk 19: join-new-indicators
+full_hdi <- downloads_hdi_country%>%
+left_join(standard_liv, by=c(`alpha-3`="iso"))%>%
+left_join(life_exp, by=c(`country-code`="country_code"))%>%
+left_join(edu_year, by=c(`alpha-3`="country"))%>%
+arrange(desc(educ))%>%
+filter(!is.na(name),
+!is.na(users),
+!is.na(n),
+!is.na(HDI),
+!is.na(GNI),
+!is.na(life_exp),
+!is.na(educ))
+# Chunk 20: life-exp-plot
+life_exp_plot<- full_hdi%>%
+ggplot(aes(x=life_exp, y=n, label=name, color=region))+
+#Add light opacity
+geom_jitter(alpha=0.3)+
+#Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+#Add a linear regression line for all regions
+geom_smooth(aes(group=1),method="lm")+
+#Fix legend
+theme(legend.position = "bottom", legend.title = element_blank())+
+#Add title
+labs(title="Life expectancy at birth and R downloads.",
+y="Downloads per country",
+x="Life expectancy at birth (Years)")
+# Chunk 21: educ-plot
+educ_plot<- full_hdi%>%
+ggplot(aes(x=educ, y=n, label=name, color=region))+
+#Add light opacity
+geom_jitter(alpha=0.3)+
+#Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+#Add a linear regression line for all regions
+geom_smooth(aes(group=1),method="lm")+
+#Fix legend
+theme(legend.position = "bottom", legend.title = element_blank())+
+#Add title
+labs(title="Mean years of schooling (years) and R downloads.",
+y="Downloads per country",
+x="Mean years of schooling (years)")
+# Chunk 22: GNI_plot
+GNI_plot<- full_hdi%>%
+ggplot(aes(x=GNI, y=n, label=name, color=region))+
+#Add light opacity
+geom_jitter(alpha=0.3)+
+#Add nice commas x axis
+scale_x_continuous(labels=dollar_format())+
+#Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+#Add a linear regression line for all regions
+geom_smooth(aes(group=1),method="lm")+
+#Fix legend
+theme(legend.position = "bottom", legend.title = element_blank())+
+#Add title
+labs(title="Gross National Income and R downloads.",
+y="Downloads per country",
+x="Gross National Income")
+# Chunk 23: plot-three-HDI
+plot_grid(life_exp_plot, educ_plot, GNI_plot)
+# Chunk 24: four-var-fit
+four_fit <- lm(n ~ users + GNI + educ + life_exp, data=full_hdi)
+summary(four_fit)$coef
+blogdown::serve_site()
+plot_grid(life_exp_plot, educ_plot, GNI_plot, nrow = 1)
+blogdown::serve_site()
+life_exp_plot; educ_plot; GNI_plot
+# Chunk 1: setup
+library(dplyr)
+library(knitr)
+library(here)
+library(scales)
+library(magrittr)
+library(ggplot2)
+library(cowplot)
+library(tidyverse)
+opts_chunk$set(echo = TRUE,
+warning = FALSE,
+error = FALSE,
+message = FALSE,
+collapse= TRUE,
+comment = NA,
+tidy = TRUE)
+theme_set(theme_light())
+options(
+ggplot2.discrete.colour = "viridis",
+ggplot2.discrete.fill = "viridis",
+ggplot2.continuous.colour = "viridis",
+ggplot2.continuous.fill = "viridis",
+digits=4,
+scipen = 999
+)
+r_downloads <- readRDS(file=here::here("static","data","r-downloads.rds"))
+# Chunk 2: downloads-by-country
+r_downloads%>%
+group_by(country)%>%
+summarise(n=n())%>%
+arrange(desc(n))->downloads_per_country
+# Chunk 3: read-country-codes
+iso_codes <- read_csv(here("static","data","iso_countries.csv"))
+# Chunk 4: merge-country-codes
+downloads_per_country%<>%
+right_join(iso_codes, by=c("country"="iso"))
+# Chunk 5: top-20-countries-plot
+downloads_per_country%>%
+arrange(desc(n))%>%
+filter(!is.na(name))%>%
+head(20)%>%
+mutate(name=fct_reorder(name,n))%>%
+ggplot(aes(name,n,fill=name))+
+geom_col()+
+expand_limits(y=0)+
+coord_flip()+
+scale_y_continuous(labels=comma_format())+
+labs(title="Top 20 countries by R downloads",
+x="Country",
+y="Downloads")+
+theme(legend.position = "none")
+# Chunk 6: read-internet-users
+internet_users <-read_csv(here("static","data","internet_users.csv"))
+# Chunk 7: merge-internet-users
+downloads_users_country <-downloads_per_country%>%
+right_join(internet_users, by=c("name"="name"))%>%
+filter(!is.na(name),
+!is.na(users),
+!is.na(n))%>%
+arrange(desc(n))
+# Chunk 8: downloads-internet-users-scatter-plot
+library(plotly)
+downloads_internet_plot<- downloads_users_country%>%
+arrange(desc(n))%>%
+ggplot(aes(users, n, label=name, color=region))+
+#Add light opacity
+geom_jitter()+
+#Add nice commas x axis
+scale_x_continuous(labels=comma_format())+
+#Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+#Add a linear regression line for all regions
+geom_smooth(aes(group=1),method="lm")+
+#Fix legend
+theme(legend.position = "bottom", legend.title = element_blank())+
+#Add title
+labs(title="Do R-Language downloads increase with more internet users?",
+y="Downloads per country",
+x="Internet users in each country")
+ggplotly(downloads_internet_plot)%>%
+layout(legend = list(orientation = "h", x = 0.4, y = -0.2))
+# Chunk 9: dataset-without-outliers
+downloads_users_country%>%
+filter(name!="United Kingdom",
+name!="Germany",
+name!="China",
+name!="India",
+name!="United States of America",
+name!="Brazil",
+name!="Japan",
+name!="Canada",
+name!="Australia",
+name!="Namibia")->outliers_gone
+# Chunk 10: plot-without-outliers
+downloads_internet_plot_out<- outliers_gone%>%
+arrange(desc(n))%>%
+ggplot(aes(users, n, label=name, color=region))+
+#Add light opacity
+geom_jitter()+
+#Add nice commas x axis
+scale_x_continuous(labels=comma_format())+
+#Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+#Add a linear regression line for all regions
+geom_smooth(aes(group=1),method="lm")+
+#Fix legend
+theme(legend.position = "bottom", legend.title = element_blank())+
+#Add title
+labs(title="Do R-Language downloads increase with more internet users?",
+subtitle = "China, India, United Kingdom, and Germany removed.",
+y="Downloads per country",
+x="Internet users in each country")
+ggplotly(downloads_internet_plot_out)%>%
+layout(legend = list(orientation = "h", x = 0.4, y = -0.2))
+# Chunk 11: read-hdi-index
+human_dev_ind <-read_csv(here("static","data","HDI.csv"))
+# Chunk 12: merge-hdi-users
+downloads_hdi_country <-downloads_users_country%>%
+right_join(human_dev_ind, by=c("name"="name"))%>%
+arrange(desc(HDI))%>%
+filter(!is.na(name),
+!is.na(users),
+!is.na(n),
+!is.na(HDI))
+# Chunk 13: hdi-downloads-plot
+downloads_hdi_plot<- downloads_hdi_country%>%
+ggplot(aes(x=HDI, y=n, label=name, color=region))+
+#Add light opacity
+geom_jitter()+
+#Add nice commas x axis
+scale_x_continuous(labels=percent_format())+
+#Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+#Add a linear regression line for all regions
+geom_smooth(aes(group=1),method="lm")+
+#Fix legend
+theme(legend.position = "bottom", legend.title = element_blank())+
+#Add title
+labs(title="Human Development Index (HDI) and R downloads.",
+y="Downloads per country",
+x="Human Development Index")
+ggplotly(downloads_hdi_plot)
+# Chunk 14: checking-correlation
+cor(downloads_hdi_country$users,downloads_hdi_country$HDI)*100
+# Chunk 15: fitting-hdi-users
+internet_fit <- lm(n ~ users, data=downloads_hdi_country)
+hdi_fit <- lm(n ~ users + HDI, data=downloads_hdi_country)
+summary(hdi_fit)$coef
+# Chunk 16: diagnostics-hdi-users
+par(mfrow=c(2,2))
+plot(hdi_fit)
+# Chunk 17
+summary(hdi_fit)$adj.r.squared*100
+# Chunk 18: read-three-new-indicators
+standard_liv <- read_csv(here("static","data","GNIPC.csv"))
+standard_liv$GNI <- as.integer(standard_liv$GNI)
+life_exp <- read_csv(here("static","data","life_exp.csv"))
+edu_year <- read_csv(here("static","data","edu_year.csv"))
+edu_year <- edu_year%>%
+filter(Indicator=="Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",
+year==2016)%>%
+select(country,educ)
+# Chunk 19: join-new-indicators
+full_hdi <- downloads_hdi_country%>%
+left_join(standard_liv, by=c(`alpha-3`="iso"))%>%
+left_join(life_exp, by=c(`country-code`="country_code"))%>%
+left_join(edu_year, by=c(`alpha-3`="country"))%>%
+arrange(desc(educ))%>%
+filter(!is.na(name),
+!is.na(users),
+!is.na(n),
+!is.na(HDI),
+!is.na(GNI),
+!is.na(life_exp),
+!is.na(educ))
+# Chunk 20: life-exp-plot
+life_exp_plot<- full_hdi%>%
+ggplot(aes(x=life_exp, y=n, label=name, color=region))+
+#Add light opacity
+geom_jitter(alpha=0.3)+
+#Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+#Add a linear regression line for all regions
+geom_smooth(aes(group=1),method="lm")+
+#Remove legend
+theme(legend.position = "none")+
+#Add title
+labs(title="Life expectancy at birth and R downloads.",
+y="Downloads per country",
+x="Life expectancy at birth (Years)")
+# Chunk 21: educ-plot
+educ_plot<- full_hdi%>%
+ggplot(aes(x=educ, y=n, label=name, color=region))+
+#Add light opacity
+geom_jitter(alpha=0.3)+
+#Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+#Add a linear regression line for all regions
+geom_smooth(aes(group=1),method="lm")+
+#Fix legend
+theme(legend.position = "bottom", legend.title = element_blank())+
+#Add title
+labs(title="Mean years of schooling (years) and R downloads.",
+y="Downloads per country",
+x="Mean years of schooling (years)")
+# Chunk 22: GNI_plot
+GNI_plot<- full_hdi%>%
+ggplot(aes(x=GNI, y=n, label=name, color=region))+
+#Add light opacity
+geom_jitter(alpha=0.3)+
+#Add nice commas x axis
+scale_x_continuous(labels=dollar_format())+
+#Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+#Add a linear regression line for all regions
+geom_smooth(aes(group=1),method="lm")+
+#Remove legend
+theme(legend.position = "none")+
+#Add title
+labs(title="Gross National Income and R downloads.",
+y="Downloads per country",
+x="Gross National Income")
+# Chunk 23: plot-three-HDI
+plot_grid(life_exp_plot, educ_plot, GNI_plot)
+# Chunk 24: four-var-fit
+four_fit <- lm(n ~ users + GNI + educ + life_exp, data=full_hdi)
+summary(four_fit)$coef
