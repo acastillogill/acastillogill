@@ -2,7 +2,7 @@
 title: "Removing small sub-regions"
 subtitle: "Micronesia and Polinesia"
 author: Ángela Castillo-Gill
-date: '2018-12-17'
+date: '2018-12-18'
 slug: removing-small-sub-regions
 categories:
   - Journal
