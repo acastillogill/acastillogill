@@ -1,0 +1,95 @@
+{{ $ := .root }}
+{{ $page := .page }}
+{{ $notes_len := len (where (where $.Site.RegularPages "Type" "note") ".Params.notonhomepage" nil) }}
+
+<!-- Blog Notes widget -->
+<div class="row">
+  <div class="col-12 col-lg-4 section-heading">
+
+    <h1>{{ with $page.Title }}{{ . | markdownify }}{{ end }}</h1>
+    {{ with $page.Params.subtitle }}<p>{{ . | markdownify }}</p>{{ end }}
+    {{ if gt $notes_len $page.Params.count }}
+    <p class="view-all">
+      <a href="{{ ($.Site.GetPage "section" "note").RelPermalink }}">
+        {{ i18n "more_notes" | markdownify }}
+        <i class="fas fa-angle-double-right"></i>
+      </a>
+    </p>
+    {{ end }}
+
+  </div>
+  <div class="col-12 col-lg-8">
+
+    {{ with $page.Content }}<p>{{ . | markdownify }}</p>{{ end }}
+
+    {{ if gt (len $page.Params.tags_include) 0 }}
+      {{ $notes := where (where (where $.Site.RegularPages "Type" "note") ".Params.tags" "intersect" $page.Params.tags_include) ".Params.notonhomepage" nil }}
+
+      {{ $.Scratch.Add "show_note" "1" }}
+      {{ range $note := first $page.Params.count $notes }}
+
+        {{ $.Scratch.Set "show_note" "1" }}
+
+        {{/* If `tags_include` is set, exclude notes with no tags. */}}
+        {{ with (not .Params.tags) }}
+          {{ with $page.Params.tags_include }}
+            {{ $.Scratch.Set "show_note" "0" }}
+          {{end}}
+        {{end}}
+        {{/* If `tags_exclude` is set, exclude notes. */}}
+        {{ range $key, $val := .Params.tags }}
+          {{ if in $page.Params.tags_exclude $val }}
+          {{ $.Scratch.Set "show_note" "0" }}
+        {{end}}
+      {{end}}
+
+      {{ $show_note := $.Scratch.Get "show_note" }}
+      {{ if ne $show_note "0" }}
+        {{ if eq $page.Params.list_format 0 }}
+          {{ partial "note_li_simple" . }}
+        {{ else if eq $page.Params.list_format 1 }}
+          {{ partial "note_li_detailed" . }}
+        {{ else }}
+          {{ partial "note_li_stream" . }}
+        {{ end }}
+      {{end}}
+
+      {{ end }}
+    {{ else}}
+      {{ $notes := where (where $.Site.RegularPages "Type" "note") ".Params.notonhomepage" nil }}
+
+      {{ $.Scratch.Add "show_note" "1" }}
+      {{ range $note := first $page.Params.count $notes }}
+
+        {{ $.Scratch.Set "show_note" "1" }}
+
+        {{/* If `tags_include` is set, exclude notes with no tags. */}}
+        {{ with (not .Params.tags) }}
+          {{ with $page.Params.tags_include }}
+            {{ $.Scratch.Set "show_note" "0" }}
+          {{end}}
+        {{end}}
+
+        {{/* If `tags_exclude` is set, exclude notes. */}}
+        {{ range $key, $val := .Params.tags }}
+          {{ if in $page.Params.tags_exclude $val }}
+          {{ $.Scratch.Set "show_note" "0" }}
+        {{end}}
+      {{end}}
+
+      {{ $show_note := $.Scratch.Get "show_note" }}
+      {{ if ne $show_note "0" }}
+        {{ if eq $page.Params.list_format 0 }}
+          {{ partial "note_li_simple" . }}
+        {{ else if eq $page.Params.list_format 1 }}
+          {{ partial "note_li_detailed" . }}
+        {{ else }}
+          {{ partial "note_li_stream" . }}
+        {{ end }}
+      {{end}}
+
+      {{ end }}
+    {{ end }}
+
+  </div>
+</div>

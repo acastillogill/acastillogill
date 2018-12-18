@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linear regression on Ángela Castillo-Gill</title>
+    <link>/categories/linear-regression/</link>
+    <description>Recent content in Linear regression on Ángela Castillo-Gill</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018 Ángela Castillo-Gill</copyright>
+    <lastBuildDate>Sat, 01 Sep 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/linear-regression/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Linear regression: R-Downloads around the world</title>
+      <link>/post/2018-09-01-linear-regression-r-downloads/linear-regression-r-downloads-around-the-world/</link>
+      <pubDate>Sat, 01 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018-09-01-linear-regression-r-downloads/linear-regression-r-downloads-around-the-world/</guid>
+      <description>  1 Summary 2 Question 3 Dataset description 4 Linear regression - why use it? 5 Results 6 What does it mean?   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
+Write up
+ 2 Question  3 Dataset description  4 Linear regression - why use it?  5 Results  6 What does it mean?  </description>
+    </item>
+    
+  </channel>
+</rss>

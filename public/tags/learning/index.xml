@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Ángela Castillo-Gill</copyright>
-    <lastBuildDate>Fri, 14 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 17 Dec 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/learning/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Fixing the Namibian mystery</title>
+      <link>/note/fixing-the-namibian-mystery/</link>
+      <pubDate>Mon, 17 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/note/fixing-the-namibian-mystery/</guid>
+      <description>Data source
+downloads_per_country &amp;lt;- r_downloads %&amp;gt;% group_by(country) %&amp;gt;% summarise(n = n()) %&amp;gt;% arrange(desc(n)) Now I’m going to give the countries full names, to do this I will use the ISO code to merge and obtain names.
+iso_codes &amp;lt;- read_csv(here::here(&amp;quot;static&amp;quot;, &amp;quot;data&amp;quot;, &amp;quot;iso_countries.csv&amp;quot;)) downloads_per_country %&amp;lt;&amp;gt;% right_join(iso_codes, by = c(country = &amp;quot;iso&amp;quot;)) Which are the top ten countries in terms of downloads downloads_per_country %&amp;gt;% arrange(desc(n)) %&amp;gt;% filter(!</description>
+    </item>
     
     <item>
       <title>Improving facets</title>
@@ -20,7 +31,7 @@
       <guid>/note/improving-facets/</guid>
       <description>Data source
 downloads_per_country &amp;lt;- r_downloads %&amp;gt;% group_by(country) %&amp;gt;% summarise(n = n()) %&amp;gt;% arrange(desc(n)) Now I’m going to give the countries full names, to do this I will use the ISO code to merge and obtain names.
-iso_codes &amp;lt;- read_csv(here(&amp;quot;static&amp;quot;, &amp;quot;data&amp;quot;, &amp;quot;iso_countries.csv&amp;quot;)) downloads_per_country %&amp;lt;&amp;gt;% right_join(iso_codes, by = c(country = &amp;quot;iso&amp;quot;)) Which are the top ten countries in terms of downloads downloads_per_country %&amp;gt;% arrange(desc(n)) %&amp;gt;% filter(!</description>
+iso_codes &amp;lt;- read_csv(here::here(&amp;quot;static&amp;quot;, &amp;quot;data&amp;quot;, &amp;quot;iso_countries.csv&amp;quot;)) downloads_per_country %&amp;lt;&amp;gt;% right_join(iso_codes, by = c(country = &amp;quot;iso&amp;quot;)) Which are the top ten countries in terms of downloads downloads_per_country %&amp;gt;% arrange(desc(n)) %&amp;gt;% filter(!</description>
     </item>
     
     <item>
