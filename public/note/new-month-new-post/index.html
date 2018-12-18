@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="generator" content="Source Themes Academic 3.1.0">
+  <meta name="generator" content="Source Themes Academic 3.2.0">
   <meta name="generator" content="Hugo 0.51" />
   <meta name="author" content="Ángela Castillo-Gill">
 
@@ -30,6 +30,12 @@
   
 
   
+
+  
+
+  
+
+  
   
   
   <meta name="theme-color" content="#2962ff">
@@ -42,7 +48,7 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
 
     
@@ -102,7 +108,14 @@
 
   <link rel="canonical" href="/note/new-month-new-post/">
 
-  <meta property="twitter:card" content="summary_large_image">
+  
+  
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary">
   
   <meta property="twitter:site" content="@acastillogill">
   <meta property="twitter:creator" content="@acastillogill">
@@ -110,11 +123,7 @@
   <meta property="og:site_name" content="Ángela Castillo-Gill">
   <meta property="og:url" content="/note/new-month-new-post/">
   <meta property="og:title" content="New month, new post | Ángela Castillo-Gill">
-  <meta property="og:description" content="Let&#39;s find the dataset.">
-  
-  
-    
-  <meta property="og:image" content="/img/icon-192.png">
+  <meta property="og:description" content="Let&#39;s find the dataset."><meta property="og:image" content="/img/angela.jpeg">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2018-12-03T00:00:00&#43;00:00">
@@ -130,6 +139,37 @@
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
 
 <nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
   <div class="container">
@@ -251,6 +291,15 @@
         
 
         
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+
       </ul>
 
     </div>
@@ -394,7 +443,6 @@
 
 
   <div class="article-container">
-
 
     <div class="article-style" itemprop="articleBody">
       
@@ -564,7 +612,6 @@
       </ul>
     </div>
     
-    
 
     
     <div class="article-widget">
@@ -675,8 +722,7 @@
     
     
     
-    
-    <script src="/js/mathjax-config.c712bc2e0e4103caa3d2832ad42c817052567e1964a90005457344d5699157acf2c57e910a7b1b13bb9e6e3b2e5c4ba483e070aeb95a37131d7f7e17184ffe8a.js" integrity="sha512-xxK8Lg5BA8qj0oMq1CyBcFJWfhlkqQAFRXNE1WmRV6zyxX6RCnsbE7uebjsuXEukg&#43;BwrrlaNxMdf34XGE/&#43;ig=="></script>
+    <script src="/js/mathjax-config.js"></script>
     
 
     
@@ -704,9 +750,6 @@
       
     
 
-    <script src="/js/hugo-academic.js"></script>
-    
-
     
     
 
@@ -725,7 +768,7 @@
       const search_index_filename = "/index.json";
       const i18n = {
         'placeholder': "Search...",
-        'results': "Search Results",
+        'results': "results found",
         'no_results': "No results found"
       };
       const content_type = {
@@ -759,10 +802,21 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
-    <script src="/js/search.js"></script>
     
 
     
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="/js/academic.min.d037ee5294b166a79dec317c58aea9cc.js"></script>
+
     
 
   </body>

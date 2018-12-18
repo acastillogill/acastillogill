@@ -4,6 +4,14 @@
     
     <url>
     
+      <loc>/note/fixing-the-namibian-mystery/</loc>
+      <lastmod>2018-12-17T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/note/improving-facets/</loc>
       <lastmod>2018-12-14T00:00:00+00:00</lastmod>
     </url>
@@ -268,6 +276,14 @@
     
     <url>
     
+      <loc>/post/2018-09-01-linear-regression-r-downloads/linear-regression-r-downloads-around-the-world/</loc>
+      <lastmod>2018-09-01T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/post/2018-08-09-predicting-property-prices/regression-trees-predicting-property-prices/</loc>
       <lastmod>2018-08-09T00:00:00+00:00</lastmod>
     </url>
@@ -361,7 +377,7 @@
     <url>
     
       <loc>/categories/journal/</loc>
-      <lastmod>2018-12-14T00:00:00+00:00</lastmod>
+      <lastmod>2018-12-17T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -370,7 +386,7 @@
     <url>
     
       <loc>/tags/kaggle/</loc>
-      <lastmod>2018-08-09T00:00:00+00:00</lastmod>
+      <lastmod>2018-09-01T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -388,7 +404,16 @@
     <url>
     
       <loc>/tags/learning/</loc>
-      <lastmod>2018-12-14T00:00:00+00:00</lastmod>
+      <lastmod>2018-12-17T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/categories/linear-regression/</loc>
+      <lastmod>2018-09-01T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -397,7 +422,7 @@
     <url>
     
       <loc>/note/</loc>
-      <lastmod>2018-12-14T00:00:00+00:00</lastmod>
+      <lastmod>2018-12-17T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -406,7 +431,7 @@
     <url>
     
       <loc>/post/</loc>
-      <lastmod>2018-08-09T00:00:00+00:00</lastmod>
+      <lastmod>2018-09-01T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -432,7 +457,7 @@
     <url>
     
       <loc>/categories/r/</loc>
-      <lastmod>2018-08-09T00:00:00+00:00</lastmod>
+      <lastmod>2018-09-01T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -502,6 +527,15 @@
     
       <loc>/tags/</loc>
       <lastmod>2017-01-01T00:00:00+01:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/tidy-tuesday/</loc>
+      <lastmod>2018-09-01T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
