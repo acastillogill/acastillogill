@@ -59,7 +59,7 @@ r_downloads%>%
 Now I'm going to give the countries full names, to do this I will use the ISO code to merge and obtain names. 
 
 ```{r read-country-codes}
-iso_codes <- read_csv(here("static","data","iso_countries.csv"))
+iso_codes <- read_csv(here::here("static","data","iso_countries.csv"))
 ```
 
 ```{r merge-country-codes}
@@ -89,7 +89,7 @@ downloads_per_country%>%
 Today I've added one variable `internet_users` which sums the total internet users per country. The point is to slowly add regressors or independent variables and see if they have a linear relationship with `r-downloads`. If yes, I'll add them to a model.
 
 ```{r read-internet-users}
-internet_users <-read_csv(here("static","data","internet_users.csv"))
+internet_users <-read_csv(here::here("static","data","internet_users.csv"))
 ```
 
 ```{r merge-internet-users}
@@ -149,7 +149,7 @@ downloads_internet_plot_out<- outliers_gone%>%
   arrange(desc(n))%>%
   ggplot(aes(users, n, label=name, color=region))+
   #Add light opacity
-  geom_point(alphta=0.5)+
+  geom_point(alpha=0.5)+
   #Add nice commas x axis
   scale_x_continuous(labels=comma_format())+
   #Add nice commas y axis
@@ -175,7 +175,7 @@ As I was removing outliers yesterday, I was thinking, what do all these countrie
 I mean, look at them, United Kingdom, Germany, China, India, USA, Brazil, Japan, Canada, Australia, Namibia... They are in almost all cases "developed" countries. Let's add the Human Development Indicator as a variable to see if it can capture some of that variability. 
 
 ```{r read-hdi-index}
-human_dev_ind <-read_csv(here("static","data","HDI.csv"))
+human_dev_ind <-read_csv(here::here("static","data","HDI.csv"))
 ```
 
 
@@ -193,7 +193,7 @@ downloads_hdi_country <-downloads_users_country%>%
 downloads_hdi_plot<- downloads_hdi_country%>%
   ggplot(aes(x=HDI, y=n, label=name, color=region))+
   #Add light opacity
-  geom_point(alphta=0.5)+
+  geom_point(alpha=0.5)+
   #Add nice commas x axis
   scale_x_continuous(labels=percent_format())+
   #Add nice commas y axis
@@ -251,12 +251,12 @@ The HDI is a mix of three elements:
 So I have downloaded those variables and I will now plot them against downloads and also fit the regression model again. 
 
 ```{r read-four-new-indicators}
-standard_liv <- read_csv(here("static","data","GNIPC.csv"))
+standard_liv <- read_csv(here::here("static","data","GNIPC.csv"))
 standard_liv$GNI <- as.integer(standard_liv$GNI)
 
-life_exp <- read_csv(here("static","data","life_exp.csv"))
-edu_year <- read_csv(here("static","data","edu_year.csv"))
-pop <-read_csv(here("static","data","country_populations.csv"))
+life_exp <- read_csv(here::here("static","data","life_exp.csv"))
+edu_year <- read_csv(here::here("static","data","edu_year.csv"))
+pop <-read_csv(here::here("static","data","country_populations.csv"))
 edu_year <- edu_year%>%
   filter(Indicator=="Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",
          year==2016)%>%
@@ -267,9 +267,9 @@ edu_year <- edu_year%>%
 ```{r join-new-indicators}
 full_hdi <- downloads_hdi_country%>%
   left_join(pop, by=c("name"="name"))%>%
-  left_join(standard_liv, by=c(`alpha-3`="iso"))%>%
-  left_join(life_exp, by=c(`country-code`="country_code"))%>%
-  left_join(edu_year, by=c(`alpha-3`="country"))%>%
+  left_join(standard_liv, by=c("iso_3"="iso"))%>%
+  left_join(life_exp, by=c("country_code"="country_code"))%>%
+  left_join(edu_year, by=c("iso_3"="country"))%>%
   arrange(name)
 ```
 

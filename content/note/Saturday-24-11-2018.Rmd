@@ -38,7 +38,7 @@ opts_chunk$set(echo = FALSE,
                comment = NA,
                tidy = TRUE)
 theme_set(theme_light())
-homes <- readRDS(file=here::here("data","homes.rds"))
+homes <- readRDS(file=here::here("static","data","homes.rds"))
 ```
 
 So today I've had a session of ruthlessly cutting out a lot of the things I had written and I guess, a lot of the work I had done. In the end the most important thing is to make a much more readable blogpost that goes to the point. When I started writing that blogpost, I hadn't really started this daily journal to think out loud about I was doing. Today I made a lot of changes.

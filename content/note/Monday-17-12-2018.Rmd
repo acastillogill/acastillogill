@@ -1,15 +1,15 @@
 ---
-title: "When do countries download R?"
-subtitle: "Examining when Namibia downloads R the most"
+title: "Fixing the Namibian mystery"
+subtitle: "Namibia's country code is NA, guess what that causes?"
 author: Ángela Castillo-Gill
 date: '2018-12-17'
-slug: when-do-countries-download-r
+slug: fixing-the-namibian-mystery
 categories:
   - Journal
 tags: 
   - Learning
 draft: FALSE
-summary: "Examining when Namibia downloads R the most"
+summary: "Namibia's country code is NA, guess what that causes?"
 output:
  blogdown::html_page:
   fig_caption: true
@@ -26,7 +26,6 @@ library(magrittr)
 library(ggplot2)
 library(cowplot)
 library(tidyverse)
-library(lubridate)
 opts_chunk$set(echo = TRUE,
                warning = FALSE,
                error = FALSE,
@@ -46,29 +45,9 @@ scale_colour_discrete <- function(...) scale_colour_brewer(..., palette="Paired"
 scale_fill_discrete <- function(...) scale_fill_brewer(... , palette="Paired")
 
 r_downloads <- readRDS(file=here::here("static","data","r-downloads.rds"))
-```
 
-```{r remove-missing-values}
 r_downloads <- na.omit(r_downloads)
 ```
-
-```{r give-countries-a-code}
-iso_codes <- read_csv(here("static","data","iso_countries.csv"))
-
-r_downloads <- r_downloads%>%
-  full_join(iso_codes,by=c("country"="iso"))%>%
-  dplyr::select(date,
-                time,
-                size,
-                version,
-                os,
-                country,
-                iso_3,
-                country_code,
-                sub_region)
-```
-
-
 
 [Data source](https://github.com/rfordatascience/tidytuesday/tree/master/data/2018-10-30)
 
@@ -81,17 +60,24 @@ r_downloads%>%
 
 Now I'm going to give the countries full names, to do this I will use the ISO code to merge and obtain names. 
 
+```{r read-country-codes}
+iso_codes <- read_csv(here::here("static","data","iso_countries.csv"))
+```
 
-
+```{r merge-country-codes}
+downloads_per_country%<>%
+  right_join(iso_codes, by=c("country"="iso"))
+```
 
 
 ## Which are the top ten countries in terms of downloads
 ```{r plot-top-10-countries}
 downloads_per_country%>%
   arrange(desc(n))%>%
+  filter(!is.na(name))%>%
   head(10)%>%
-  mutate(country=fct_reorder(country,n))%>%
-  ggplot(aes(country,n,fill=country))+
+  mutate(name=fct_reorder(name,n))%>%
+  ggplot(aes(name,n,fill=name))+
   geom_col()+
   expand_limits(y=0)+
   coord_flip()+
@@ -105,12 +91,16 @@ downloads_per_country%>%
 Today I've added one variable `internet_users` which sums the total internet users per country. The point is to slowly add regressors or independent variables and see if they have a linear relationship with `r-downloads`. If yes, I'll add them to a model.
 
 ```{r read-internet-users}
-internet_users <-read_csv(here("static","data","internet_users.csv"))
+internet_users <-read_csv(here::here("static","data","internet_users.csv"))
 ```
 
 ```{r merge-internet-users}
 downloads_users_country <-downloads_per_country%>%
- full_join(internet_users, by=c("country"="name"))
+  right_join(internet_users, by=c("name"="name"))%>%
+  filter(!is.na(name),
+         !is.na(users),
+         !is.na(n))%>%
+  arrange(desc(n))
   
 ```
 
@@ -118,7 +108,7 @@ downloads_users_country <-downloads_per_country%>%
 library(plotly)
 downloads_internet_plot<- downloads_users_country%>%
   arrange(desc(n))%>%
-  ggplot(aes(users, n, label=country, color=subregion))+
+  ggplot(aes(users, n, label=name, color=region))+
   #Add light opacity
   geom_point(alpha=0.5)+
   #Add nice commas x axis
@@ -159,9 +149,9 @@ downloads_users_country%>%
 ```{r plot-without-outliers}
 downloads_internet_plot_out<- outliers_gone%>%
   arrange(desc(n))%>%
-  ggplot(aes(users, n, label=name, color=region))+
+  ggplot(aes(users, n, label=name, color=sub_region))+
   #Add light opacity
-  geom_point(alphta=0.5)+
+  geom_point(alpha=0.5)+
   #Add nice commas x axis
   scale_x_continuous(labels=comma_format())+
   #Add nice commas y axis
@@ -187,7 +177,7 @@ As I was removing outliers yesterday, I was thinking, what do all these countrie
 I mean, look at them, United Kingdom, Germany, China, India, USA, Brazil, Japan, Canada, Australia, Namibia... They are in almost all cases "developed" countries. Let's add the Human Development Indicator as a variable to see if it can capture some of that variability. 
 
 ```{r read-hdi-index}
-human_dev_ind <-read_csv(here("static","data","HDI.csv"))
+human_dev_ind <-read_csv(here::here("static","data","HDI.csv"))
 ```
 
 
@@ -205,7 +195,7 @@ downloads_hdi_country <-downloads_users_country%>%
 downloads_hdi_plot<- downloads_hdi_country%>%
   ggplot(aes(x=HDI, y=n, label=name, color=region))+
   #Add light opacity
-  geom_point(alphta=0.5)+
+  geom_point(alpha=0.5)+
   #Add nice commas x axis
   scale_x_continuous(labels=percent_format())+
   #Add nice commas y axis
@@ -263,12 +253,12 @@ The HDI is a mix of three elements:
 So I have downloaded those variables and I will now plot them against downloads and also fit the regression model again. 
 
 ```{r read-four-new-indicators}
-standard_liv <- read_csv(here("static","data","GNIPC.csv"))
+standard_liv <- read_csv(here::here("static","data","GNIPC.csv"))
 standard_liv$GNI <- as.integer(standard_liv$GNI)
 
-life_exp <- read_csv(here("static","data","life_exp.csv"))
-edu_year <- read_csv(here("static","data","edu_year.csv"))
-pop <-read_csv(here("static","data","country_populations.csv"))
+life_exp <- read_csv(here::here("static","data","life_exp.csv"))
+edu_year <- read_csv(here::here("static","data","edu_year.csv"))
+pop <-read_csv(here::here("static","data","country_populations.csv"))
 edu_year <- edu_year%>%
   filter(Indicator=="Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",
          year==2016)%>%
@@ -279,9 +269,9 @@ edu_year <- edu_year%>%
 ```{r join-new-indicators}
 full_hdi <- downloads_hdi_country%>%
   left_join(pop, by=c("name"="name"))%>%
-  left_join(standard_liv, by=c(`alpha-3`="iso"))%>%
-  left_join(life_exp, by=c(`country-code`="country_code"))%>%
-  left_join(edu_year, by=c(`alpha-3`="country"))%>%
+  left_join(standard_liv, by=c("iso_3"="iso"))%>%
+  left_join(life_exp, by=c("country_code"="country_code"))%>%
+  left_join(edu_year, by=c("iso_3"="country"))%>%
   arrange(name)
 ```
 
@@ -362,7 +352,7 @@ scale_y_continuous(labels=comma_format())+
 ```
 
 ```{r plot-three-HDI}
-plot_grid(life_exp_plot, educ_plot, GNI_plot)
+plot_grid(life_exp_plot, educ_plot, GNI_plot, rows = 3)
 ```
 
 
@@ -390,7 +380,7 @@ I wonder if I nested models by region... I wonder if that would change something
 library(broom)
 
 nested_hdi <- full_hdi%>%
-  group_by(region)%>%
+  group_by(sub_region)%>%
   nest()
 ```
 
@@ -403,8 +393,8 @@ downloads_nested <- nested_hdi %>%
 downloads_nested %>% 
   unnest(median_n)%>%
   arrange(desc(median_n))%>%
-  mutate(region=fct_reorder(region,median_n))%>%
-  ggplot(aes(x=region, y=median_n, fill=region))+
+  mutate(region=fct_reorder(sub_region,median_n))%>%
+  ggplot(aes(x=sub_region, y=median_n, fill=region))+
   geom_col()+
   expand_limits(y=0)+
   coord_flip()+
@@ -451,7 +441,7 @@ model_performance <- regression_each_region %>%
 #Make a table with model fit in descending order #Filter significant coefficient
 model_performance%>%
   arrange(desc(adj.r.squared))%>%
-  select(region, adj.r.squared)%>%
+  select(sub_region, adj.r.squared)%>%
   kable(caption="The model describing R downloads as a function of internet users per country and the HDI has significant coefficients for Asia and Europe.")
 ```
 
@@ -467,7 +457,7 @@ models_augmented%>%
   ggplot(aes(x=users/1000, y=n, shape=cut(HDI, breaks = 4)))+
   geom_point(alpha=0.5)+
   geom_line(aes(y=.fitted), color="red", alpha=0.5)+
-  facet_wrap(~region, scales = "free")+ 
+  facet_wrap(~sub_region, scales = "free")+ 
     #Add nice commas x axis
 scale_x_continuous(labels=comma_format())+
   #Add nice commas y axis
@@ -478,10 +468,4 @@ labs(title="Top 10 countries by R downloads per 1,000 capita",
        y="Downloads")
 ```
 
-So I'm intrigued why Namibia has the most R-Software downloads per capita, let's look at when in the year they download the software the most. 
-
-```{r}
-full_hdi%>%
-  filter(name=="Namibia")
-```
 
