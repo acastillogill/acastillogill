@@ -267,9 +267,9 @@ edu_year <- edu_year%>%
 
 ```{r join-new-indicators}
 full_hdi <- downloads_hdi_country%>%
-  left_join(standard_liv, by=c(`alpha-3`="iso"))%>%
-  left_join(life_exp, by=c(`country-code`="country_code"))%>%
-  left_join(edu_year, by=c(`alpha-3`="country"))%>%
+  left_join(standard_liv, by=c(iso_3="iso"))%>%
+  left_join(life_exp, by=c("country_code"="country_code"))%>%
+  left_join(edu_year, by=c(iso_3="country"))%>%
   arrange(desc(educ))%>%
   filter(!is.na(name),
          !is.na(users),

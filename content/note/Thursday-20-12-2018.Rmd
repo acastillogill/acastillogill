@@ -1,0 +1,664 @@
+---
+title: "Trying other models"
+subtitle: "Nesting by regions but adding the other features"
+author: Ángela Castillo-Gill
+date: '2018-12-20'
+slug: trying-other-models
+categories:
+  - Journal
+tags: 
+  - Learning
+draft: FALSE
+summary: "Nesting by regions but adding the other features"
+output:
+ blogdown::html_page:
+  fig_caption: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, echo=FALSE, message=FALSE}
+library(dplyr)
+library(knitr)
+library(here)
+library(scales)
+library(magrittr)
+library(ggplot2)
+library(cowplot)
+library(tidyverse)
+library(Metrics)
+library(rsample)
+library(broom)
+opts_chunk$set(echo = TRUE,
+               warning = FALSE,
+               error = FALSE,
+               message = FALSE,
+               collapse= TRUE,
+               comment = NA,
+               tidy = TRUE)
+theme_set(theme_light())
+
+options(
+  digits=3,
+  scipen = 999
+)
+
+
+scale_colour_discrete <- function(...) scale_colour_brewer(..., palette="Paired")
+scale_fill_discrete <- function(...) scale_fill_brewer(... , palette="Paired")
+
+r_downloads <- readRDS(file=here::here("static","data","r-downloads.rds"))
+
+r_downloads <- na.omit(r_downloads)
+```
+
+[Data source](https://github.com/rfordatascience/tidytuesday/tree/master/data/2018-10-30)
+
+```{r downloads-by-country}
+r_downloads%>%
+  group_by(country)%>%
+  summarise(n=n())%>%
+  filter(!is.na(n))%>%
+  arrange(desc(n))->downloads_per_country
+```
+
+Now I'm going to give the countries full names, to do this I will use the ISO code to merge and obtain names. 
+
+```{r read-country-codes}
+iso_codes <- read_csv(here::here("static","data","iso_countries.csv"))
+```
+
+```{r merge-country-codes}
+downloads_per_country%<>%
+  full_join(iso_codes, by=c("country"="iso"))
+```
+
+
+
+## Which are the top ten countries in terms of downloads
+```{r plot-top-10-countries}
+downloads_per_country%>%
+  arrange(desc(n))%>%
+  head(10)%>%
+  mutate(name=fct_reorder(name,n))%>%
+  ggplot(aes(name,n,fill=name))+
+  geom_col()+
+  expand_limits(y=0)+
+  coord_flip()+
+  scale_y_continuous(labels=comma_format())+
+  labs(title="Top 10 countries by R downloads",
+       x="",
+       y="Downloads")+
+  theme(legend.position = "none")
+  
+```
+Today I've added one variable `internet_users` which sums the total internet users per country. The point is to slowly add regressors or independent variables and see if they have a linear relationship with `r-downloads`. If yes, I'll add them to a model.
+
+```{r read-internet-users}
+internet_users <-read_csv(here::here("static","data","internet_users.csv"))
+```
+
+```{r merge-internet-users}
+downloads_users_country <-downloads_per_country%>%
+  right_join(internet_users, by=c("name"="name"))%>%
+  filter(!is.na(name),
+         !is.na(users),
+         !is.na(n))%>%
+  arrange(desc(n))
+  
+```
+
+```{r plot-downloads-internet-users, fig.cap="There are clearly some influential points, US, China and India, that are outliers in case of a regression."}
+library(plotly)
+downloads_internet_plot<- downloads_users_country%>%
+  arrange(desc(n))%>%
+  ggplot(aes(users, n, label=name, color=region))+
+  #Add light opacity
+  geom_point(alpha=0.5)+
+  #Add nice commas x axis
+  scale_x_continuous(labels=comma_format())+
+  #Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+  #Add a linear regression line for all regions
+  geom_smooth(aes(group=1),method="lm")+
+  #Fix legend
+theme(legend.position = "bottom", legend.title = element_blank())+
+   #Add title
+  labs(title="Do R-Language downloads increase with more internet users?",
+       y="Downloads per country",
+       x="Internet users in each country")
+  
+
+ggplotly(downloads_internet_plot)%>%
+   layout(legend = list(orientation = "h", x = 0.4, y = -0.2))
+```
+
+
+
+```{r dataset-without-outliers}
+downloads_users_country%>%
+  filter(name!="United Kingdom",
+         name!="Germany",
+         name!="China",
+         name!="India",
+         name!="United States of America",
+         name!="Brazil",
+         name!="Japan",
+         name!="Canada",
+         name!="Australia",
+         name!="Namibia")->outliers_gone
+```
+
+
+```{r plot-without-outliers}
+downloads_internet_plot_out<- outliers_gone%>%
+  arrange(desc(n))%>%
+  ggplot(aes(users, n, label=name, color=region))+
+  #Add light opacity
+  geom_point(alpha=0.5)+
+  #Add nice commas x axis
+  scale_x_continuous(labels=comma_format())+
+  #Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+  #Add a linear regression line for all regions
+  geom_smooth(aes(group=1),method="lm")+
+  #Fix legend
+theme(legend.position = "bottom", legend.title = element_blank())+
+   #Add title
+  labs(title="Do R-Language downloads increase with more internet users?",
+       subtitle = "China, India, United Kingdom, and Germany removed.",
+       y="Downloads per country",
+       x="Internet users in each country")
+  
+
+ggplotly(downloads_internet_plot_out)%>%
+   layout(legend = list(orientation = "h", x = 0.4, y = -0.2))
+```
+
+
+As I was removing outliers yesterday, I was thinking, what do all these countries I'm removing have in common and what variable can I add to capture some of that variability.
+
+I mean, look at them, United Kingdom, Germany, China, India, USA, Brazil, Japan, Canada, Australia, Namibia... They are in almost all cases "developed" countries. Let's add the Human Development Indicator as a variable to see if it can capture some of that variability. 
+
+```{r read-hdi-index}
+human_dev_ind <-read_csv(here::here("static","data","HDI.csv"))
+```
+
+
+```{r merge-hdi-users}
+downloads_hdi_country <-downloads_users_country%>%
+  right_join(human_dev_ind, by=c("name"="name"))%>%
+  filter(!is.na(name),
+         !is.na(users),
+         !is.na(n),
+         !is.na(HDI))%>%
+  arrange(desc(HDI))
+```
+
+```{r hdi-downloads-plot}
+downloads_hdi_plot<- downloads_hdi_country%>%
+  ggplot(aes(x=HDI, y=n, label=name, color=region))+
+  #Add light opacity
+  geom_point(alpha=0.5)+
+  #Add nice commas x axis
+  scale_x_continuous(labels=percent_format())+
+  #Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+  #Add a linear regression line for all regions
+  geom_smooth(aes(group=1),method="lm")+
+  #Fix legend
+theme(legend.position = "bottom", legend.title = element_blank())+
+   #Add title
+  labs(title="Human Development Index (HDI) and downloads.",
+       y="Downloads per country",
+       x="Human Development Index")
+
+ggplotly(downloads_hdi_plot)
+```
+
+Wow! There does seem to be a strong linear relationship between the variables. Now, it might be that countries with more internet users also have a higher human development index. Makes sense? Right? Let me check the correlation:
+
+```{r checking-correlation}
+cor(downloads_hdi_country$users,downloads_hdi_country$HDI)*100
+```
+
+Hmmmm only 8% I thought it would be higher. Multicollinearity is a threat in regression. Why add another variable that whose explanatory variable is contained in another.
+
+Let me see the model with this new variable in:
+
+```{r fitting-hdi-users}
+internet_fit <- lm(n ~ users, data=downloads_hdi_country)
+hdi_fit <- lm(n ~ users + HDI, data=downloads_hdi_country)
+summary(hdi_fit)$coef
+```
+
+So the HDI is a significant variable if our Type error rate is 0.05, but barely. Internet users still is top.
+```{r diagnostics-hdi-users}
+par(mfrow=c(2,2))
+plot(hdi_fit)
+```
+
+Wow! They bloody residuals look not that bad. For like the first time ever in my experience! There is more or less equal variation around zero, they do look more or less distributed normally, and of course we have some outliers, we always do. I'm not too inclined to add another variable. Let's look at the adjusted $R^2$.
+
+```{r adj-r-squared}
+summary(hdi_fit)$adj.r.squared*100
+```
+
+Mmmm, those two variables, internet users and the HDI only explain about 20.53% of the variation. I want to increase the explanatory power of the model, what to do?
+
+So today I would like break up the HDI index into its component parts and see how each separate feature relates to R downloads. 
+
+The HDI is a mix of three elements: 
+
+- Health: Life expectancy (years)
+- Education: Expected years of schooling(years)/Mean years of schooling (years)
+- Standard of living: Gross national income per capita (2011 PPP $)
+
+So I have downloaded those variables and I will now plot them against downloads and also fit the regression model again. 
+
+```{r read-four-new-indicators}
+standard_liv <- read_csv(here::here("static","data","GNIPC.csv"))
+standard_liv$GNI <- as.integer(standard_liv$GNI)
+
+life_exp <- read_csv(here::here("static","data","life_exp.csv"))
+edu_year <- read_csv(here::here("static","data","edu_year.csv"))
+pop <-read_csv(here::here("static","data","country_populations.csv"))
+edu_year <- edu_year%>%
+  filter(Indicator=="Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",
+         year==2016)%>%
+  select(country,educ)
+```
+
+
+```{r join-new-indicators}
+full_hdi <- downloads_hdi_country%>%
+  left_join(pop, by=c("name"="name"))%>%
+  left_join(standard_liv, by=c("iso_3"="iso"))%>%
+  left_join(life_exp, by=c("country_code"="country_code"))%>%
+  left_join(edu_year, by=c("iso_3"="country"))%>%
+  arrange(name)
+```
+
+# Which are the biggest R users per capita?
+
+```{r plot-users-per-capita, fig.cap="Namibia is the country with most R downloads per capita! I'm surprised!"}
+full_hdi%>%
+  mutate(downloads_per_capita=n/pop_2018)%>%
+  arrange(desc(downloads_per_capita))%>%
+  head(10)%>%
+  mutate(name=fct_reorder(name,downloads_per_capita))%>%
+  ggplot(aes(name,downloads_per_capita,fill=name))+
+  geom_col()+
+  expand_limits(y=0)+
+  coord_flip()+
+  scale_y_continuous(labels=comma_format())+
+  labs(title="Top 10 countries by R downloads per capita",
+       x="",
+       y="Downloads per capita")+
+  theme(legend.position = "none")
+```
+
+
+```{r plot-life-exp}
+life_exp_plot<- full_hdi%>%
+  ggplot(aes(x=life_exp, y=n, label=name, color=region))+
+  #Add light opacity
+  geom_point(alpha=0.5)+
+  #Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+  #Add a linear regression line for all regions
+  geom_smooth(aes(group=1),method="lm")+
+  #Remove legend
+  theme(legend.position = "none")+
+   #Add title
+  labs(title="Life expectancy at birth and R downloads.",
+       y="Downloads per country",
+       x="Life expectancy at birth (Years)")
+
+```
+
+```{r educ-plot}
+educ_plot<- full_hdi%>%
+  ggplot(aes(x=educ, y=n, label=name, color=region))+
+  #Add light opacity
+  geom_point(alpha=0.5)+
+  #Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+  #Add a linear regression line for all regions
+  geom_smooth(aes(group=1),method="lm")+
+  #Fix legend
+theme(legend.position = "bottom", legend.title = element_blank())+
+   #Add title
+  labs(title="Mean years of schooling (years) and R downloads.",
+       y="Downloads per country",
+       x="Mean years of schooling (years)")
+
+```
+
+
+```{r GNI_plot}
+GNI_plot<- full_hdi%>%
+  ggplot(aes(x=GNI, y=n, label=name, color=region))+
+  #Add light opacity
+  geom_point(alpha=0.5)+
+    #Add nice commas x axis
+  scale_x_continuous(labels=dollar_format())+
+  #Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+  #Add a linear regression line for all regions
+  geom_smooth(aes(group=1),method="lm")+
+  #Remove legend
+  theme(legend.position = "none")+
+   #Add title
+  labs(title="Gross National Income and R downloads.",
+       y="Downloads per country",
+       x="Gross National Income")
+
+```
+
+```{r plot-three-HDI}
+plot_grid(life_exp_plot, educ_plot, GNI_plot, rows = 3)
+```
+
+
+```{r four-var-fit}
+four_fit <- lm(n ~ users + GNI + educ + life_exp, data=full_hdi)
+summary(four_fit)$coef
+```
+
+Seems like separating the four doesn't lead to any significant coefficients beyond internet users. Interesting. I leave `HDI` in and it does, barely. I wonder what's behind the number of internet users... 
+
+Which are the top 10 countreis 
+
+```{r population-fit}
+pop_fit <- lm(n ~ pop_2018 + HDI, data=full_hdi, na.action = na.omit)
+summary(pop_fit)$coef
+```
+
+I added population as a variable, now since multicollinearity is a threat, that is adding variables that are highly correlated amongst themselves is as issue, I tested the correlation between internet users and population and it was `r cor(full_hdi$users,full_hdi$pop_2018, use = "pairwise.complete.obs")*100`. It's high. Because of this, I have to choose using either population or internet users. I fitted the model again with `HDI` and `pop_2018` and the adjusted R Squared is `r summary(pop_fit)$adj.r.squared*100`. With population instead of internet users, the model explains `r (summary(hdi_fit)$adj.r.squared-summary(pop_fit)$adj.r.squared)*100` less of the variation in the data.
+
+So far, with all the variables I've tried so far, inclusion of the Human Development Index and internet users per country most explain variation in the data.
+
+I wonder if I nested models by region... I wonder if that would change something. Interesting to try. I'll do this and then write it up.
+
+```{r nesting-models}
+
+
+nested_hdi <- full_hdi%>%
+  group_by(region)%>%
+  nest()
+```
+
+
+```{r plot-median-downloads-per-region, fig.cap="The median downloads per region was calculated using country-level data. The region with most median downloads is Europe, followed by Asia. The Americas, despite having the US as the country with most R Downloads in the world, is not the first since countries across the Americas do not have as many downloads."}
+downloads_nested <- nested_hdi %>%
+  mutate(median_n = map_dbl(data, ~median(.x$n)))
+
+# Extract the median_n value by using unnest
+downloads_nested %>% 
+  unnest(median_n)%>%
+  arrange(desc(median_n))%>%
+  mutate(region=fct_reorder(region,median_n))%>%
+  ggplot(aes(x=region, y=median_n, fill=region))+
+  geom_col()+
+  expand_limits(y=0)+
+  coord_flip()+
+  scale_y_continuous(labels=comma_format())+
+  labs(title="median R Downloads by country per region",
+       x="",
+       y="R Downloads")+
+  theme(legend.position = "none")
+```
+
+
+```{r linear-model-for-each-region}
+regression_each_region <- nested_hdi %>%
+  mutate(model=map(data, ~lm(formula=n~users, data=.x)))
+```
+
+```{r extracting-coefficients}
+# Extract the coefficient statistics of each model into nested dataframes
+model_coef_nested <- regression_each_region %>% 
+    mutate(coef = map(model, ~broom::tidy(.x)))
+    
+# Simplify the coef dataframes for each model    
+model_coef <- model_coef_nested %>%
+    unnest(coef)
+```
+
+```{r table-significant-coefficient}
+model_coef%>% 
+  #Filter significant coefficient
+  filter(p.value<0.05)%>%       
+  arrange(p.value)%>%
+  kable(caption="The model describing R downloads as a function of internet users per country and the HDI has significant coefficients for Asia and Europe.")
+```
+
+```{r assessing-model-fit}
+# Extract the fit statistics of each model into dataframes
+model_performance <- regression_each_region%>% 
+    mutate(fit = map(model, ~glance(.x)))%>%
+  unnest(fit)
+
+```
+
+```{r table-model-fit}
+#Make a table with model fit in descending order #Filter significant coefficient
+model_performance%>%
+  arrange(desc(adj.r.squared))%>%
+  select(region, adj.r.squared)%>%
+  kable(caption="The model describing R downloads as a function of internet users per country and the HDI has significant coefficients for Asia and Europe.")
+```
+
+
+```{r augment-models}
+models_augmented <- regression_each_region%>%
+  mutate(augmented=map(model,~augment(.x)))%>%
+  unnest(augmented)
+```
+
+```{r plot-model-fit}
+models_augmented%>%
+  ggplot(aes(x=users/1000, y=n))+
+  geom_point(alpha=0.5)+
+  geom_line(aes(y=.fitted), color="red", alpha=0.5)+
+  facet_wrap(~region, scales = "free")+ 
+    #Add nice commas x axis
+scale_x_continuous(labels=comma_format())+
+  #Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+labs(title="Top 10 countries by R downloads per 1,000 capita",
+     subtitle = "Red dots represents fitted value, black dots are real values.",
+       x="Divided by 1,000 users",
+       y="Downloads")
+```
+
+## Cross validating the models with the MAP function Europe
+
+```{r creating-train-test-data-europe}
+set.seed(123)
+
+full_europe <- full_hdi%>%
+  filter(region=="Europe")
+#Setting seed
+downloads_split_europe <- initial_split(full_europe,prop=0.75)
+#Store training_data
+training_data_europe <-training(downloads_split_europe)
+#Store testing_data
+testing_data_europe <- testing(downloads_split_europe)
+#Split the data into 3 folds
+cv_split_europe <- vfold_cv(training_data_europe, v=3)
+```
+
+```{r creating-train-and-validate-data-from-each-fold-europe}
+cv_data_europe <- cv_split_europe%>%
+  #Create cross-validated data
+  mutate(train=map(splits, ~training(.x)),
+         validate=map(splits, ~testing(.x)))
+```
+
+```{r creating-models-with-cross-validated-data-europe}
+cv_models_lm_europe <- cv_data_europe %>%
+  #Create models
+  mutate(model=map(train,~lm(formula=n ~ users, data = .x)))
+```
+
+## Measuring cross-validation performance
+
+```{r extract-actual-and-predicted-values-europe}
+cv_prep_lm_europe <- cv_models_lm_europe %>%
+  #Create actual values
+  mutate(validate_actual=map(validate, ~ .x$n),
+  #Store predicted values
+         validate_predicted=map2(model, validate,~predict(.x,.y)))
+```
+
+## Calculate performance
+
+```{r calculate-MAE-europe}
+
+cv_eval_lm_europe <- cv_prep_lm_europe%>%
+  #Compute MAE
+  mutate(validate_mae=map2_dbl(validate_actual,validate_predicted, ~mae(actual=.x,predicted = .y)))
+```
+
+## Cross validating the models with the MAP function Americas
+
+```{r creating-train-test-data-americas}
+
+full_americas <- full_hdi%>%
+  filter(region=="Americas")
+#Setting seed
+downloads_split_americas <- initial_split(full_americas,prop=0.75)
+#Store training_data
+training_data_americas <-training(downloads_split_americas)
+#Store testing_data
+testing_data_americas <- testing(downloads_split_americas)
+#Split the data into 3 folds
+cv_split_americas <- vfold_cv(training_data_americas, v=3)
+```
+
+```{r creating-train-and-validate-data-from-each-fold-americas}
+cv_data_americas <- cv_split_americas%>%
+  #Create cross-validated data
+  mutate(train=map(splits, ~training(.x)),
+         validate=map(splits, ~testing(.x)))
+```
+
+```{r creating-models-with-cross-validated-data-americas}
+cv_models_lm_americas <- cv_data_americas %>%
+  #Create models
+  mutate(model=map(train,~lm(formula=n ~ users, data = .x)))
+```
+
+## Measuring cross-validation performance
+
+```{r extract-actual-and-predicted-values-americas}
+cv_prep_lm_americas <- cv_models_lm_americas %>%
+  #Create actual values
+  mutate(validate_actual=map(validate, ~ .x$n),
+         #Store predicted values
+         validate_predicted=map2(model, validate,~predict(.x,.y)))
+```
+
+## Calculate performance
+
+```{r calculate-MAE-americas}
+
+cv_eval_lm_americas <- cv_prep_lm_americas%>%
+  #Compute MAE
+  mutate(validate_mae=map2_dbl(validate_actual,validate_predicted, ~mae(actual=.x,predicted = .y)))
+```
+
+
+## Cross validating the models with the MAP function Asia
+
+```{r creating-train-test-data-asia}
+
+full_asia <- full_hdi%>%
+  filter(region=="Asia")
+#Setting seed
+downloads_split_asia <- initial_split(full_asia,prop=0.75)
+#Store training_data
+training_data_asia <-training(downloads_split_asia)
+#Store testing_data
+testing_data_asia <- testing(downloads_split_asia)
+#Split the data into 3 folds
+cv_split_asia <- vfold_cv(training_data_asia, v=3)
+```
+
+```{r creating-train-and-validate-data-from-each-fold-asia}
+cv_data_asia <- cv_split_asia%>%
+  #Create cross-validated data
+  mutate(train=map(splits, ~training(.x)),
+         validate=map(splits, ~testing(.x)))
+```
+
+```{r creating-models-with-cross-validated-data-asia}
+cv_models_lm_asia <- cv_data_asia %>%
+  #Create models
+  mutate(model=map(train,~lm(formula=n ~ users, data = .x)))
+```
+
+## Measuring cross-validation performance
+
+```{r extract-actual-and-predicted-values-asia}
+cv_prep_lm_asia <- cv_models_lm_asia %>%
+  #Create actual values
+  mutate(validate_actual=map(validate, ~ .x$n),
+         #Store predicted values
+         validate_predicted=map2(model, validate,~predict(.x,.y)))
+```
+
+## Calculate performance
+
+```{r calculate-MAE-asia}
+cv_eval_lm_asia <- cv_prep_lm_asia%>%
+  #Compute MAE
+  mutate(validate_mae=map2_dbl(validate_actual,validate_predicted, ~mae(actual=.x,predicted = .y)))
+```
+
+
+
+## Testing the final model
+
+```{r testing-the-final-model-europe}
+#Store the best model with traning data
+best_model_europe <- lm(n~users, data=training_data_europe)
+#Store test data
+test_actual_europe <- testing_data_europe$n
+#Use the best model on the the test data
+test_predict_europe <-predict(best_model_europe,testing_data_europe)
+#Compute mae
+mae(test_actual_europe,test_predict_europe)
+```
+
+```{r testing-the-final-model-americas}
+#Store the best model with traning data
+best_model_americas <- lm(n~users, data=training_data_americas)
+#Store test data
+test_actual_americas <- testing_data_americas$n
+#Use the best model on the the test data
+test_predict_americas <-predict(best_model_americas,testing_data_americas)
+#Compute mae
+mae(test_actual_americas,test_predict_americas)
+```
+
+
+```{r testing-the-final-model-asia}
+#Store the best model with traning data
+best_model_asia <- lm(n~users, data=training_data_asia)
+#Store test data
+test_actual_asia <- testing_data_asia$n
+#Use the best model on the the test data
+test_predict_asia <-predict(best_model_asia,testing_data_asia)
+#Compute mae
+mae(test_actual_asia,test_predict_asia)
+```
+
+
+# Reggression conclusions 
+
+After trying different models, an aggregated model for the entire world, and the same model for each region, the variable most associated with R-Downloads was number of internet users. In Europe, Asia, and the Americas, users explains at least 75% of the variability in the data. For Africa, internet users only explained 26.8% of variation in the data. I'm excluding Oceania since it only had 8 observations. All the other regions had at least 30.
+
+Despite explaining a lot of the variability in the model, after using cross-validation to test the final model, on average, our models deviate by `r mae(test_actual_europe,test_predict_europe)` for Europe, `r mae(test_actual_americas,test_predict_americas)` for the Americas, and `r mae(test_actual_asia,test_predict_asia)` for Asia.
