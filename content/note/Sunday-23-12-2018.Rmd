@@ -1,15 +1,15 @@
 ---
-title: "Building maps"
-subtitle: "Visualising is the best way of seeing data."
+title: "First map per n_capita"
+subtitle: "Needs to be polished and lots of countries missing."
 author: Ángela Castillo-Gill
 date: "`r format(Sys.Date())`"
-slug: building-maps
+slug: first-map-per-n-capita
 categories:
   - Journal
 tags: 
   - Learning
 draft: FALSE
-summary: "Visualising is the best way of seeing data."
+summary: "Needs to be polished and lots of countries missing."
 output: 
  blogdown::html_page:
   fig_caption: true
@@ -29,8 +29,10 @@ library(tidyverse)
 library(Metrics)
 library(rsample)
 library(broom)
-library(tmap)
+library(sf)
 library(rgdal)
+library(summarytools)
+library(leaflet)
 opts_chunk$set(echo = TRUE,
                warning = FALSE,
                error = FALSE,
@@ -679,5 +681,46 @@ full_maps <- downloads_per_country%>%
 
 Excellent! Now that we have a tibble with not all countries, but at least 193 regions, we are ready to draw some maps I think!
 
+```{r see-summary}
+#view(dfSummary(world_full))
+```
 
+```{r read-map-as-sf-object}
+
+map_path <- here::here("static","data","world_shapefile","world_shapefile.shp")
+world <- sf::st_read(map_path)
+
+```
+
+```{r merge-full-maps-and-map-path}
+world_full <- world%>%
+  left_join(full_maps, by=c("ISO3"="iso_3"))
+
+#world_full <- na.omit(world_full)
+```
+
+```{r plot-n-downloads-per-capita}
+#Create intervals for n_capita
+
+#n_capita_breaks <- classIntervals(world_full$n_capita,
+                                  #n=5,
+                                  #style="pretty")
+
+ggplot(world_full)+
+  geom_sf(aes(fill=n_capita), color="black") +
+    scale_fill_viridis_c(option = "plasma")+
+   theme(panel.grid.major = element_line(color = gray(.5),
+        linetype = "dashed", size = 0.5),
+        panel.background = element_rect(fill = "aliceblue"))
+
+```
+
+
+```{r first-leaflet-map-attempt}
+#Remove names from geometry
+names(st_geometry(world_full)) <-  NULL
+#Create leaflet map
+world_leaflet <- leaflet(world_full)%>%addPolygons()
+world_leaflet
+```
 
