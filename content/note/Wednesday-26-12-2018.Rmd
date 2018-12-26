@@ -700,11 +700,21 @@ world_full <- world%>%
 ```
 
 ```{r plot-n-downloads-per-capita}
+plot_downloads_per_capita <- tm_shape(world_full) + 
+    tm_polygons(col="n_capita",n=4, style="jenks") + 
+tm_layout("R Downloads per Capita in 2017/18", title.size=.8, frame = FALSE)+
+  tm_scale_bar(breaks = c(0, 100, 200), size = 1) 
 
-tm_shape(world_full, projection="longlat") + 
-    tm_polygons(col="n_capita",n=5, style="jenks") + 
-tm_layout("R Downloads per Capita in 2017/18", inner.margins=c(0,0,.1,0), title.size=.8, frame = FALSE)+
-  tm_scale_bar(breaks = c(0, 100, 200), size = 1) #tm_layout(bg.color = "lightblue")
+tmap_leaflet(plot_downloads_per_capita)
 ```
 
+
+```{r plot-n-downloads}
+plot_total_downloads <- tm_shape(world_full)+
+    tm_polygons(col="n",n=4, style="jenks") + 
+tm_layout("Total R Downloads in 2017/18", title.size=.8, frame = FALSE)+
+  tm_scale_bar(breaks = c(0, 100, 200), size = 1) 
+
+tmap_leaflet(plot_total_downloads)
+```
 
