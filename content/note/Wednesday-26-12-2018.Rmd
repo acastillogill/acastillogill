@@ -35,6 +35,8 @@ library(summarytools)
 library(leaflet)
 library(tmap)
 library(tmaptools)
+library(htmlwidgets)
+library(htmltools)
 opts_chunk$set(echo = TRUE,
                warning = FALSE,
                error = FALSE,
@@ -705,16 +707,13 @@ plot_downloads_per_capita <- tm_shape(world_full) +
 tm_layout("R Downloads per Capita in 2017/18", title.size=.8, frame = FALSE)+
   tm_scale_bar(breaks = c(0, 100, 200), size = 1) 
 
-tmap_leaflet(plot_downloads_per_capita)
+widget_capita <- tmap_leaflet(plot_downloads_per_capita)
+
+saveWidget(widget_capita, here::here("static","leaflet","plot_downloads_per_capita.html"))
+
+
 ```
 
+<iframe seamless src="/static/leaflet/plot_downloads_per_capita.html" width="100%" height="500"></iframe>
 
-```{r plot-n-downloads}
-plot_total_downloads <- tm_shape(world_full)+
-    tm_polygons(col="n",n=4, style="jenks") + 
-tm_layout("Total R Downloads in 2017/18", title.size=.8, frame = FALSE)+
-  tm_scale_bar(breaks = c(0, 100, 200), size = 1) 
-
-tmap_leaflet(plot_total_downloads)
-```
 
