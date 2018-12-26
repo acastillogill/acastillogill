@@ -701,19 +701,25 @@ world_full <- world%>%
   left_join(full_maps, by=c("ISO3"="iso_3"))
 ```
 
-```{r plot-n-downloads-per-capita}
-plot_downloads_per_capita <- tm_shape(world_full) + 
-    tm_polygons(col="n_capita",n=4, style="jenks") + 
-tm_layout("R Downloads per Capita in 2017/18", title.size=.8, frame = FALSE)+
-  tm_scale_bar(breaks = c(0, 100, 200), size = 1) 
+```{r plot-n-downloads-per-capita.warning=FALSE}
+n_capita_map <- tm_shape(world_full) + 
+  tm_borders(col="black", lwd=0.1)+
+    tm_fill(col="n_capita",n=4, style="jenks", palette = get_brewer_pal("YlOrRd", n = 4, contrast = c(0.13, 0.9))) + 
+tm_layout(main.title = "R Downloads per capita in 2017/18",
+          main.title.size = 2, frame = TRUE, bg.color = "aliceblue", title.position = c("right","bottom"))+
+tm_legend(position=c("left", "bottom"), bg.color="white", frame=TRUE, legend.title.size=1)
 
-widget_capita <- tmap_leaflet(plot_downloads_per_capita)
-
-saveWidget(widget_capita, here::here("static","leaflet","plot_downloads_per_capita.html"))
-
-
+n_capita_map
 ```
 
-<iframe seamless src="/static/leaflet/plot_downloads_per_capita.html" width="100%" height="500"></iframe>
+```{r plot-total-downloads, warning=FALSE}
+n_map <- tm_shape(world_full) + 
+  tm_borders(col="black", lwd=0.1)+
+    tm_fill(col="n",n=4, style="jenks", palette = get_brewer_pal("BuPu", n = 4, contrast = c(0.13, 0.9))) + 
+tm_layout(main.title = "Total R downloads in 2017/18",
+          main.title.size = 2, frame = TRUE, bg.color = "aliceblue", title.position = c("right","bottom"))+
+tm_legend(position=c("left", "bottom"), bg.color="white", frame=TRUE, legend.title.size=1)
 
+n_map
+```
 
