@@ -7,10 +7,33 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Ángela Castillo-Gill</copyright>
-    <lastBuildDate>Wed, 26 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 27 Dec 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/journal/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Interactive maps with Tmap!</title>
+      <link>/note/interactive-maps-with-tmap/</link>
+      <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/note/interactive-maps-with-tmap/</guid>
+      <description>Data source
+downloads_per_country &amp;lt;- r_downloads %&amp;gt;% group_by(country) %&amp;gt;% summarise(n = n()) %&amp;gt;% filter(!is.na(n)) %&amp;gt;% arrange(desc(n)) Now I’m going to give the countries full names, to do this I will use the ISO code to merge and obtain names.
+iso_codes &amp;lt;- read_csv(here::here(&amp;quot;static&amp;quot;, &amp;quot;data&amp;quot;, &amp;quot;iso_countries.csv&amp;quot;)) downloads_per_country %&amp;lt;&amp;gt;% full_join(iso_codes, by = c(country = &amp;quot;iso&amp;quot;)) Which are the top ten countries in terms of downloads downloads_per_country %&amp;gt;% arrange(desc(n)) %&amp;gt;% head(10) %&amp;gt;% mutate(name = fct_reorder(name, n)) %&amp;gt;% ggplot(aes(name, n, fill = name)) + geom_col() + expand_limits(y = 0) + coord_flip() + scale_y_continuous(labels = comma_format()) + labs(title = &amp;quot;Top 10 countries by R downloads&amp;quot;, x = &amp;quot;&amp;quot;, y = &amp;quot;Downloads&amp;quot;) + theme(legend.</description>
+    </item>
+    
+    <item>
+      <title>Skeleton for blogpost</title>
+      <link>/note/skeleton-for-blogpost/</link>
+      <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/note/skeleton-for-blogpost/</guid>
+      <description>#Goal for the day
+In this blogpost I want to look at everything I’ve written and document what I would like to include in the blogpost.
+I would like to include what months of the data have the most R-Downloads.
+iso_codes &amp;lt;- read_csv(here::here(&amp;quot;static&amp;quot;, &amp;quot;data&amp;quot;, &amp;quot;iso_countries.csv&amp;quot;)) r_downloads %&amp;lt;&amp;gt;% full_join(iso_codes, by = c(country = &amp;quot;iso&amp;quot;)) %&amp;gt;% filter(!is.na(sub_region))  r_downloads %&amp;gt;% # Group by the month of the year group_by(month(date), sub_region) %&amp;gt;% # Count downloads by the month of the year summarise(monthly_downloads = n()) %&amp;gt;% # Pipe to make a plot ggplot(aes(x = `month(date)`, y = monthly_downloads)) + # Add line geom_line(alpha = 0.</description>
+    </item>
     
     <item>
       <title>First map per n_capita</title>
@@ -18,17 +41,6 @@
       <pubDate>Wed, 26 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/note/first-map-per-n-capita/</guid>
-      <description>Data source
-downloads_per_country &amp;lt;- r_downloads %&amp;gt;% group_by(country) %&amp;gt;% summarise(n = n()) %&amp;gt;% filter(!is.na(n)) %&amp;gt;% arrange(desc(n)) Now I’m going to give the countries full names, to do this I will use the ISO code to merge and obtain names.
-iso_codes &amp;lt;- read_csv(here::here(&amp;quot;static&amp;quot;, &amp;quot;data&amp;quot;, &amp;quot;iso_countries.csv&amp;quot;)) downloads_per_country %&amp;lt;&amp;gt;% full_join(iso_codes, by = c(country = &amp;quot;iso&amp;quot;)) Which are the top ten countries in terms of downloads downloads_per_country %&amp;gt;% arrange(desc(n)) %&amp;gt;% head(10) %&amp;gt;% mutate(name = fct_reorder(name, n)) %&amp;gt;% ggplot(aes(name, n, fill = name)) + geom_col() + expand_limits(y = 0) + coord_flip() + scale_y_continuous(labels = comma_format()) + labs(title = &amp;quot;Top 10 countries by R downloads&amp;quot;, x = &amp;quot;&amp;quot;, y = &amp;quot;Downloads&amp;quot;) + theme(legend.</description>
-    </item>
-    
-    <item>
-      <title>Interactive maps with Tmap!</title>
-      <link>/note/interactive-maps-with-tmap/</link>
-      <pubDate>Wed, 26 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/note/interactive-maps-with-tmap/</guid>
       <description>Data source
 downloads_per_country &amp;lt;- r_downloads %&amp;gt;% group_by(country) %&amp;gt;% summarise(n = n()) %&amp;gt;% filter(!is.na(n)) %&amp;gt;% arrange(desc(n)) Now I’m going to give the countries full names, to do this I will use the ISO code to merge and obtain names.
 iso_codes &amp;lt;- read_csv(here::here(&amp;quot;static&amp;quot;, &amp;quot;data&amp;quot;, &amp;quot;iso_countries.csv&amp;quot;)) downloads_per_country %&amp;lt;&amp;gt;% full_join(iso_codes, by = c(country = &amp;quot;iso&amp;quot;)) Which are the top ten countries in terms of downloads downloads_per_country %&amp;gt;% arrange(desc(n)) %&amp;gt;% head(10) %&amp;gt;% mutate(name = fct_reorder(name, n)) %&amp;gt;% ggplot(aes(name, n, fill = name)) + geom_col() + expand_limits(y = 0) + coord_flip() + scale_y_continuous(labels = comma_format()) + labs(title = &amp;quot;Top 10 countries by R downloads&amp;quot;, x = &amp;quot;&amp;quot;, y = &amp;quot;Downloads&amp;quot;) + theme(legend.</description>

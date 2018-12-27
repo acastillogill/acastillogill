@@ -1,15 +1,15 @@
 ---
-title: "Interactive maps with Tmap!"
-subtitle: "Downloads per capita and total downloads, up!"
+title: "Skeleton for blogpost"
+subtitle: "Let's write it up"
 author: Ángela Castillo-Gill
 date: "`r format(Sys.Date())`"
-slug: interactive-maps-with-tmap
+slug: skeleton-for-blogpost
 categories:
   - Journal
 tags: 
   - Learning
 draft: FALSE
-summary: "Downloads per capita and total downloads, up!"
+summary: "Let's write it up"
 output: 
  blogdown::html_page:
   fig_caption: true
@@ -37,6 +37,7 @@ library(tmap)
 library(tmaptools)
 library(htmlwidgets)
 library(htmltools)
+library(lubridate)
 opts_chunk$set(echo = TRUE,
                warning = FALSE,
                error = FALSE,
@@ -60,6 +61,51 @@ r_downloads <- readRDS(file=here::here("static","data","r-downloads.rds"))
 r_downloads <- na.omit(r_downloads)
 ```
 
+#Goal for the day
+
+In this blogpost I want to look at everything I've written and document what I would like to include in the blogpost. 
+
+I would like to include what months of the data have the most R-Downloads. 
+
+
+```{r read-country-codes}
+iso_codes <- read_csv(here::here("static","data","iso_countries.csv"))
+```
+
+
+```{r merge-country-codes}
+r_downloads%<>%
+  full_join(iso_codes, by=c("country"="iso"))%>%
+  filter(!is.na(sub_region))
+```
+
+
+
+```{r plot-what-months-have-the-most-downloads}
+
+r_downloads%>%
+  #Group by the month of the year
+  group_by(month(date), sub_region)%>%
+  #Count downloads by the month of the year
+  summarise(monthly_downloads=n())%>%
+  #Pipe to make a plot
+  ggplot(aes(x=`month(date)`,y= monthly_downloads))+
+  #Add line
+  geom_line(alpha=0.5, color="purple")+
+  geom_point(color="purple")+
+scale_x_continuous(breaks=c(seq(1,12,1)))+
+   #Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+   #Add title
+  labs(title="Monthly R downloads around the world",
+       y="Downloads",
+       x="Week")+
+  facet_wrap(~sub_region, scales="free")
+```
+
+
+
+
 [Data source](https://github.com/rfordatascience/tidytuesday/tree/master/data/2018-10-30)
 
 ```{r downloads-by-country}
@@ -72,11 +118,11 @@ r_downloads%>%
 
 Now I'm going to give the countries full names, to do this I will use the ISO code to merge and obtain names. 
 
-```{r read-country-codes}
+```{r read-iso-country-codes}
 iso_codes <- read_csv(here::here("static","data","iso_countries.csv"))
 ```
 
-```{r merge-country-codes}
+```{r merge-iso-country-codes}
 downloads_per_country%<>%
   full_join(iso_codes, by=c("country"="iso"))
 ```
