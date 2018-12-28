@@ -1,7 +1,7 @@
 ---
 title: "Linear regression: R-Downloads around the world"
 author: Ángela Castillo-Gill
-date: '2018-09-01'
+date: '2018-12-01'
 slug: linear-regression-r-downloads-around-the-world
 categories:
   - R
@@ -12,7 +12,7 @@ tags:
 draft: FALSE
 summary: "To decide"
 header: 
-  image: "headers/final-plot-1.png"
+  image: "headers/plot-n-downloads-per-capita-1.png"
   caption: "To decide"
 output:
   blogdown::html_page:
@@ -27,23 +27,25 @@ editor_options:
 
 ```{r setup, include=FALSE}
 x <-
-  c("tidyverse",
+  c("dplyr",
     "knitr",
-    "formatR",
-    "stringr",
-    "lubridate",
-    "tidyr",
-    "formattable",
-    "gridExtra",
-    "kableExtra",
+    "here",
+    "scales",
     "magrittr",
-    "here",
-    "broom",
-    "rpart",
+    "ggplot2",
+    "cowplot",
+    "tidyverse",
     "Metrics",
-    "caret",
-    "here",
-    "cowplot")
+    "rsample",
+    "broom",
+    "sf",
+    "rgdal",
+    "summarytools",
+    "leaflet",
+    "tmap",
+    "tmaptools",
+    "lubridate")
+
 
 lapply(x, require, character.only = TRUE)
 
@@ -65,10 +67,14 @@ options(
 
 theme_set(theme_light())
 
+
 scale_colour_discrete <- function(...) scale_colour_brewer(..., palette="Paired")
 scale_fill_discrete <- function(...) scale_fill_brewer(... , palette="Paired")
 
 r_downloads <- readRDS(file=here::here("static","data","r-downloads.rds"))
+
+r_downloads <- na.omit(r_downloads)%>%
+  filter(date<"2018-10-20")
 
 ```
 
@@ -80,10 +86,56 @@ Write up
 
 # Question
 
-
-
+What countries download R the most? Where are they? And who are the most *intense* R users measured by R downloads per capita?
+Which months of the year are the most popular times to download R? Does it depend on the season? What variable could we attempt to use as a predictor of R downloads? Could we use linear regression for inference?
 
 # Dataset description 
+
+I used the [Tidy Tuesday dataset](https://github.com/rfordatascience/tidytuesday/tree/master/data/2018-10-30) for R Downloads posted on 30th October 2018. 
+
+The dataset contained 938,115 observations and eight features corresponding to a unique id, download date, time, size, version, os, country, and IP id. The downloads correspond to a year's worth of downloads running from 2017-10-20 to 2018-10-20. To prevent any overlap and have one entire year, I limited downloads until 2018-10-19. After I removed missing values, there were `r nrow(r_downloads)` observations.
+
+
+
+## Top 10 countries for R Downloads
+
+So what are the top ten countries with the most downloads? 
+
+```{r read-country-codes}
+iso_codes <- read_csv(here::here("static","data","iso_countries.csv"))
+```
+
+
+```{r merge-country-codes}
+r_downloads%<>%
+  full_join(iso_codes, by=c("country"="iso"))%>%
+  filter(!is.na(sub_region))
+```
+
+```{r downloads-by-country}
+r_downloads%>%
+  group_by(name)%>%
+  summarise(n=n())%>%
+  filter(!is.na(n))%>%
+  arrange(desc(n))->downloads_per_country
+```
+
+```{r plot-top-10-countries, fig.cap="The US has almost six times as many downloads than the second country China."}
+downloads_per_country%>%
+  arrange(desc(n))%>%
+  head(10)%>%
+  mutate(name=fct_reorder(name,n))%>%
+  ggplot(aes(name,n,fill=name))+
+  geom_col()+
+  expand_limits(y=0)+
+  coord_flip()+
+  scale_y_continuous(labels=comma_format())+
+  labs(title="Top 10 countries by R downloads in 2017/18",
+       x="",
+       y="Downloads")+
+  theme(legend.position = "none")
+  
+```
 
 # Linear regression - why use it?
 

@@ -114,12 +114,12 @@
   
   
     
-  <meta property="og:image" content="/img/headers/final-plot-1.png">
+  <meta property="og:image" content="/img/headers/plot-n-downloads-per-capita-1.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2018-09-01T00:00:00&#43;00:00">
+  <meta property="article:published_time" content="2018-12-01T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2018-09-01T00:00:00&#43;00:00">
+  <meta property="article:modified_time" content="2018-12-01T00:00:00&#43;00:00">
   
 
   
@@ -273,7 +273,7 @@
 <div class="article-header">
   
   
-  <img src="/img/headers/final-plot-1.png" class="article-banner" itemprop="image" alt="">
+  <img src="/img/headers/plot-n-downloads-per-capita-1.png" class="article-banner" itemprop="image" alt="">
   
 
   <span class="article-header-caption">To decide</span>
@@ -306,9 +306,9 @@
 
   <span class="article-date">
     
-    <meta content="2018-09-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-    <time datetime="2018-09-01 00:00:00 &#43;0000 UTC" itemprop="dateModified">
-      Sep 1, 2018
+    <meta content="2018-12-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+    <time datetime="2018-12-01 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+      Dec 1, 2018
     </time>
   </span>
   <span itemscope itemprop="publisher" itemtype="http://schema.org/Person">
@@ -318,7 +318,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    1 min read
+    2 min read
   </span>
   
 
@@ -417,7 +417,9 @@
 <ul>
 <li><a href="#summary"><span class="toc-section-number">1</span> Summary</a></li>
 <li><a href="#question"><span class="toc-section-number">2</span> Question</a></li>
-<li><a href="#dataset-description"><span class="toc-section-number">3</span> Dataset description</a></li>
+<li><a href="#dataset-description"><span class="toc-section-number">3</span> Dataset description</a><ul>
+<li><a href="#top-10-countries-for-r-downloads"><span class="toc-section-number">3.1</span> Top 10 countries for R Downloads</a></li>
+</ul></li>
 <li><a href="#linear-regression---why-use-it"><span class="toc-section-number">4</span> Linear regression - why use it?</a></li>
 <li><a href="#results"><span class="toc-section-number">5</span> Results</a></li>
 <li><a href="#what-does-it-mean"><span class="toc-section-number">6</span> What does it mean?</a></li>
@@ -431,9 +433,31 @@
 </div>
 <div id="question" class="section level1">
 <h1><span class="header-section-number">2</span> Question</h1>
+<p>What countries download R the most? Where are they? And who are the most <em>intense</em> R users measured by R downloads per capita?
+Which months of the year are the most popular times to download R? Does it depend on the season? What variable could we attempt to use as a predictor of R downloads? Could we use linear regression for inference?</p>
 </div>
 <div id="dataset-description" class="section level1">
 <h1><span class="header-section-number">3</span> Dataset description</h1>
+<p>I used the <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2018-10-30">Tidy Tuesday dataset</a> for R Downloads posted on 30th October 2018.</p>
+<p>The dataset contained 938,115 observations and eight features corresponding to a unique id, download date, time, size, version, os, country, and IP id. The downloads correspond to a year’s worth of downloads running from 2017-10-20 to 2018-10-20. To prevent any overlap and have one entire year, I limited downloads until 2018-10-19. After I removed missing values, there were 910351 observations.</p>
+<div id="top-10-countries-for-r-downloads" class="section level2">
+<h2><span class="header-section-number">3.1</span> Top 10 countries for R Downloads</h2>
+<p>So what are the top ten countries with the most downloads?</p>
+<pre class="r"><code>iso_codes &lt;- read_csv(here::here(&quot;static&quot;, &quot;data&quot;, &quot;iso_countries.csv&quot;))</code></pre>
+<pre class="r"><code>r_downloads %&lt;&gt;% full_join(iso_codes, by = c(country = &quot;iso&quot;)) %&gt;% filter(!is.na(sub_region))</code></pre>
+<pre class="r"><code>downloads_per_country &lt;- r_downloads %&gt;% group_by(name) %&gt;% summarise(n = n()) %&gt;% 
+    filter(!is.na(n)) %&gt;% arrange(desc(n))</code></pre>
+<pre class="r"><code>downloads_per_country %&gt;% arrange(desc(n)) %&gt;% head(10) %&gt;% mutate(name = fct_reorder(name, 
+    n)) %&gt;% ggplot(aes(name, n, fill = name)) + geom_col() + expand_limits(y = 0) + 
+    coord_flip() + scale_y_continuous(labels = comma_format()) + labs(title = &quot;Top 10 countries by R downloads in 2017/18&quot;, 
+    x = &quot;&quot;, y = &quot;Downloads&quot;) + theme(legend.position = &quot;none&quot;)</code></pre>
+<div class="figure"><span id="fig:plot-top-10-countries"></span>
+<img src="/post/2018-09-01-linear-regression-r-downloads/2018-09-01-linear-regression-r-downloads_files/figure-html/plot-top-10-countries-1.png" alt="The US has almost six times as many downloads than the second country China." width="672" />
+<p class="caption">
+Figure 3.1: The US has almost six times as many downloads than the second country China.
+</p>
+</div>
+</div>
 </div>
 <div id="linear-regression---why-use-it" class="section level1">
 <h1><span class="header-section-number">4</span> Linear regression - why use it?</h1>
