@@ -13,7 +13,7 @@ draft: FALSE
 summary: "To decide"
 header: 
   image: "headers/plot-n-downloads-per-capita-1.png"
-  caption: "To decide"
+  caption: "R Downloads per capita around the world. Iceland and Switzerland are right on top!"
 output:
   blogdown::html_page:
     toc: true
@@ -50,7 +50,7 @@ x <-
 lapply(x, require, character.only = TRUE)
 
 
-opts_chunk$set(echo = TRUE,
+opts_chunk$set(echo = FALSE,
                warning = FALSE,
                error = FALSE,
                message = FALSE,
@@ -65,7 +65,10 @@ options(
   scipen = 999
 )
 
-theme_set(theme_light())
+
+knit_hooks$set(inline = function(x) {
+  prettyNum(round(x,2), big.mark=",")
+})
 
 
 scale_colour_discrete <- function(...) scale_colour_brewer(..., palette="Paired")
@@ -101,8 +104,14 @@ The dataset contained 938,115 observations and eight features corresponding to a
 
 So what are the top ten countries with the most downloads? 
 
-```{r read-country-codes}
+```{r read-country-codes-and-pop-and-map}
 iso_codes <- read_csv(here::here("static","data","iso_countries.csv"))
+
+pop <-read_csv(here::here("static","data","country_populations.csv"))
+
+map_path <- here::here("static","data","world_shapefile","world_shapefile.shp")
+world <- sf::st_read(map_path)
+
 ```
 
 
@@ -137,8 +146,41 @@ downloads_per_country%>%
   
 ```
 
+And what about other countries and regions?
+
+
+```{r create-tibble-with-pop-and-users-only}
+full_maps <- downloads_per_country%>%
+  full_join(iso_codes, by=c("name"="name"))%>%
+  filter(!is.na(sub_region))%>%
+  left_join(pop, by=c("name"="name"))%>%
+  select(n, name, iso_3, region, sub_region, pop_2018)%>%
+  mutate(n_capita=n/pop_2018)%>%
+  filter(!is.na(n_capita),
+         pop_2018!=0)
+```
+
+```{r merge-full-maps-and-map-path}
+world_full <- world%>%
+  left_join(full_maps, by=c("ISO3"="iso_3"))
+```
+
+
+
+```{r plot-total-downloads}
+n_map <- tm_shape(world_full) + 
+  tm_borders(col="black", lwd=0.1)+
+    tm_fill(col="n",n=4, style="jenks", palette = get_brewer_pal("BuPu", n = 4, contrast = c(0.13, 0.9))) + 
+tm_layout(main.title = "Total R downloads in 2017/18",
+          main.title.size = 2, frame = TRUE, bg.color = "aliceblue", title.position = c("right","bottom"))+
+tm_legend(position=c("left", "bottom"), bg.color="white", frame=TRUE, legend.title.size=1)
+
+n_map
+```
+
 # Linear regression - why use it?
 
+Linear regression is a parametric 
 
 # Results
 
