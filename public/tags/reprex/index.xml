@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Reprex on Ángela Castillo-Gill</title>
+    <link>/tags/reprex/</link>
+    <description>Recent content in Reprex on Ángela Castillo-Gill</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 30 Oct 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/reprex/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>reprex-ing with {datapasta} 🍝</title>
+      <link>/2018/10/reprex-with-datapasta/</link>
+      <pubDate>Tue, 30 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/10/reprex-with-datapasta/</guid>
+      <description>Scenario 1: from spreadsheet to reprex So, you’ve been asked to make a reprex and you want to include a bit of data that you have in a spreadsheet.1 Meet {datapasta}, a package by Miles McBain that can make your life a whole lot easier. Once you’ve installed datapasta, you simply copy a selected number of rows from your spreadsheet (remember, this is a minimal reproducible example), and select the Paste as tribble option from the DATAPASTA section of the Addins dropdown.</description>
+    </item>
+    
+    <item>
+      <title>reprex-cellence 👑</title>
+      <link>/2018/06/reprexcellence/</link>
+      <pubDate>Sun, 24 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/06/reprexcellence/</guid>
+      <description>In honour of the triumphant return of reprex to CRAN, let’s revisit what I refer to as Jenny Bryan’s keys to reprex-cellence.1 The three keys are as follows:
+code that actually runs
+ code that I don’t have to run code that can be easily run2  Our example True to the ésprit de reprex, let’s look at a real world example to unpack why these attributes are so useful.</description>
+    </item>
+    
+  </channel>
+</rss>

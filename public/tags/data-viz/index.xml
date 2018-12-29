@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Viz on Ángela Castillo-Gill</title>
+    <link>/tags/data-viz/</link>
+    <description>Recent content in Data Viz on Ángela Castillo-Gill</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 28 May 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/data-viz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Uncounted casualties</title>
+      <link>/2018/05/uncounted-casualties/</link>
+      <pubDate>Mon, 28 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/05/uncounted-casualties/</guid>
+      <description>There is a relationship between war (and death) and counting things.1 Some of the best known data visualizations pertain to the casualties of war (e.g. Florence Nightingale’s coxcomb chart, Diagram of the Causes of Mortality, 1858).
+When I came upon Lt. Colonel Albert G. Love’s 1931 “War Casualties”2 my curiosity was piqued. Focused on “the World War” (at that date there had only been one), Colonel Love describes his task in the preface:</description>
+    </item>
+    
+    <item>
+      <title>NBA Horserace 🏇</title>
+      <link>/2018/04/nba-horserace/</link>
+      <pubDate>Sat, 07 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/04/nba-horserace/</guid>
+      <description>Inspired by Laura Ellis (aka @LittleMissData’s) post, Data Storytelling, I decided to take Flourish for a spin to look at NBA-team win percentages over the course of the season thus far. 🏀
+As advertised, Flourish is a tool for “powerful, beautiful, easy data visualisation” that lets you “quickly turn your spreadsheets into stunning online charts, maps and interactive stories.” Clearly someone on the Flourish team and I are on the same wavelength when it comes to carnival games and data visualization, since the animated rank or relative-score chart that caught my eye turned out to be named the Horserace template.</description>
+    </item>
+    
+    <item>
+      <title>ggraph all grown up 🎈🦒</title>
+      <link>/2018/02/ggraph-all-grown-up/</link>
+      <pubDate>Fri, 23 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/02/ggraph-all-grown-up/</guid>
+      <description>Thomas Lin Pedersen (known aliases: @thomasp85, data imaginist) has quite an array of cool packages, all of which you should check out. However, in celebration its CRANniversary 🎈 I thought ggraph deserved a roundup post of its own.1
+Dispatches from a proud papa 👨 ggraph: A grammar of graphics for relational data The repo from whence it sprang…
+More cool R viz-ness from @thomasp85 &amp;quot;ggraph&amp;quot; https://t.co/ncCKDHlQAx #rstats #dataviz #ggplot2 pic.</description>
+    </item>
+    
+  </channel>
+</rss>

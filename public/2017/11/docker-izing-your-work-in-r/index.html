@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Docker-izing your work in R 🐳 &middot; Ángela Castillo-Gill</title>
+    <meta name="generator" content="Hugo 0.53" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Ángela Castillo-Gill">
+    
+      <meta name="description" content="A roundup of helpful guides to containerizing packages, docs, projects, and more by using Docker with R. 📦">
+    
+    
+    <link rel="canonical" href="../../../2017/11/docker-izing-your-work-in-r/"/>
+    <link rel="icon" href="../../../favicon.ico">
+    <link rel="apple-touch-icon" href="../../../apple-touch-icon.png"/>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../css/monokai.css">
+    <link rel="stylesheet" href="../../../css/coarse.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="../../../fancybox/jquery.fancybox.css">
+    
+    <link rel="stylesheet" href="../../../css/tomorrow-night-bright.css">
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:regular,medium,bold' rel='stylesheet' type='text/css'>
+    <meta property="og:title" content="Docker-izing your work in R 🐳" />
+<meta property="og:description" content="A roundup of helpful guides to containerizing packages, docs, projects, and more by using Docker with R. 📦" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/2017/11/docker-izing-your-work-in-r/" />
+<meta property="og:image" content="/banners/nyan_docker_whale_gfycat.gif" />
+<meta property="article:published_time" content="2017-11-20T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2018-08-19T00:00:00&#43;00:00"/>
+
+    
+    
+<meta itemprop="name" content="Docker-izing your work in R 🐳">
+<meta itemprop="description" content="A roundup of helpful guides to containerizing packages, docs, projects, and more by using Docker with R. 📦">
+
+
+<meta itemprop="datePublished" content="2017-11-20T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-08-19T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="618">
+
+  <meta itemprop="image" content="/banners/nyan_docker_whale_gfycat.gif">
+
+
+
+<meta itemprop="keywords" content="R,rOpenSci,roundups," />
+
+    <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/banners/nyan_docker_whale_gfycat.gif"/>
+
+<meta name="twitter:title" content="Docker-izing your work in R 🐳"/>
+<meta name="twitter:description" content="A roundup of helpful guides to containerizing packages, docs, projects, and more by using Docker with R. 📦"/>
+<meta name="twitter:site" content="@acastillogill"/>
+
+    
+<link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Alegreya|Source+Sans+Pro" rel="stylesheet">
+
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+	<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="../../../" id="logo">
+          
+          <span class="site-title">Ángela Castillo-Gill</span>
+      </a>
+      <nav id="main-nav">
+          
+          
+          <a class="main-nav-link" href="../../../">Home</a>
+          
+          
+          
+          
+          
+          
+
+          
+          <a class="main-nav-link" href="../../../about/">About</a>
+          
+
+          
+          
+          
+          
+          <a class="main-nav-link" href="../../../tags/posts/">Posts</a>
+          
+          
+          
+          <a class="main-nav-link" href="../../../tags/notes/">Notes</a>
+          
+          
+      </nav>
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="../../../img/angela.jpeg"><i class="fas fa-caret-down"></i></a>
+          </div>
+        </nav>
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+              <input type="search" name="q" class="search-form-input" placeholder="Search">
+              <button type="submit" class="search-form-submit">
+              </button>
+              <input type="hidden" name="sitesearch" value="/" />
+         </form>
+        </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tbody>
+          <tr>
+          
+          
+          <td><a class="main-nav-link" href="../../../">Home</a></td>
+          
+          
+          
+          
+          
+          
+
+          
+          <td><a class="main-nav-link" href="../../../about/">About</a></td>
+          
+
+          
+          
+          
+          
+          <td><a class="main-nav-link" href="../../../tags/posts/">Posts</a></td>
+          
+          
+          
+          <td><a class="main-nav-link" href="../../../tags/notes/">Notes</a></td>
+          
+          
+          <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="Search">
+          <input type="hidden" name="sitesearch" value="/" />
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</header>
+
+   	
+   	<div class="outer">
+   	
+    	<aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      
+      <img id="avatar" src="../../../img/angela.jpeg">
+      
+      <h2 id="name">Ángela Castillo-Gill</h2>
+      <h3 id="title">Data Analyst training to be a Data Scientist</h3>
+      
+      
+          <a id="follow" href="https://twitter.com/acastillogill">
+              @dataandme
+          </a>
+      
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        36
+        <span>Posts</span>
+      </div>
+      <div class="article-info-block">
+        
+          29
+        
+        <span>
+            Tags
+        </span>
+      </div>
+    </div>
+    <div class="profile-block social-links">
+      <table>
+        <tr>
+          
+<td><a href="//github.com/acastillogill" target="_blank" title="GitHub"><i class="fab fa-github-square"></i></a></td>
+
+
+
+<td><a href="//twitter.com/acastillogill" target="_blank" title="Twitter"><i class="fab fa-twitter-square"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//medium.com/@@acastillogill" target="_blank" title="Medium"><i class="fab fa-medium"></i></a></td>
+
+
+
+
+
+
+
+
+
+<td><a href="//linkedin.com/in/acastillogill" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <td><a href="../../../index.xml" target="_blank" title="RSS"><i class="fas fa-rss-square"></i></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+
+    
+
+    <section id="main">
+    
+    <article id="page-undefined" class="article article-type-page" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <img src="../../../banners/nyan_docker_whale_gfycat.gif" class="article-banner">
+        
+
+        <header class="article-header">
+    <a href="../../../2017/11/docker-izing-your-work-in-r/">
+    <h1 class="article-title" itemprop="name">
+        Docker-izing your work in R 🐳
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="far fa-calendar"></i>
+            <time datetime="2017-11-20 00:00:00 &#43;0000 UTC" itemprop="datePublished">2017-11-20</time>
+            &middot;
+            618
+            words
+            &middot;
+            3
+            minute read
+        </div>
+        
+        
+            
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fas fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="../../../tags/r">R</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/ropensci">rOpenSci</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/roundups">roundups</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            
+
+
+<p><em>Updated: 2018-08-19</em></p>
+<p>I am decidedly a novice when it comes to any and all things Docker (which,
+incidentally, is why I’ve been reading these posts). But, since it’s helpful for
+<em>me</em> to have all of these resources together in one place, I thought I’d share
+the love around.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<div id="r-docker-turorial-for-reproducible-research.-via-ropensci-labs" class="section level3">
+<h3><a href="http://ropenscilabs.github.io/r-docker-tutorial/">R Docker turorial for reproducible research.</a> via rOpenSci Labs</h3>
+<p>This is actually a series of <em>6</em> lessons put together at the
+rOpenSci unconf in 2016.</p>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">👨‍🏫 great intro, what-is ⇨ repres<br>🐳 &quot;R Docker tutorial by ropenscilabs&quot; <a href="https://t.co/hboFGlQDTM">https://t.co/hboFGlQDTM</a> <br>via <a href="https://twitter.com/rOpenSci?ref_src=twsrc%5Etfw">@rOpenSci</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/docker?src=hash&amp;ref_src=twsrc%5Etfw">#docker</a> <a href="https://t.co/fEepnsVSvk">pic.twitter.com/fEepnsVSvk</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/930633713876127744?ref_src=twsrc%5Etfw">November 15, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="docker-for-the-user-by-noam-ross" class="section level3">
+<h3><a href="https://github.com/noamross/nyhackr-docker-talk">Docker for the UseR</a> by Noam Ross</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">🐳 looks like this was 💯! (plus tons o&#39; bonus resources)<br>&quot;Docker for the UseR&quot; 🗣 <a href="https://twitter.com/noamross?ref_src=twsrc%5Etfw">@noamross</a><a href="https://t.co/v64FwSbz6z">https://t.co/v64FwSbz6z</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/Docker?src=hash&amp;ref_src=twsrc%5Etfw">#Docker</a> <a href="https://t.co/rxVwxVq9xl">pic.twitter.com/rxVwxVq9xl</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/1017077037146796032?ref_src=twsrc%5Etfw">July 11, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="enough-docker-to-be-dangerous-by-sean-kross" class="section level3">
+<h3><a href="http://seankross.com/2017/09/17/Enough-Docker-to-be-Dangerous.html">Enough Docker to be Dangerous</a> by Sean Kross</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">.<a href="https://twitter.com/seankross?ref_src=twsrc%5Etfw">@seankross</a> 📝💡 intro guide esp for data 🤓s... &quot;Enough <a href="https://twitter.com/hashtag/Docker?src=hash&amp;ref_src=twsrc%5Etfw">#Docker</a> to be Dangerous&quot; <a href="https://t.co/A7fcIRlUxh">https://t.co/A7fcIRlUxh</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/Python?src=hash&amp;ref_src=twsrc%5Etfw">#Python</a> <a href="https://t.co/Ze7JJ9LW9R">pic.twitter.com/Ze7JJ9LW9R</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/911774443885797377?ref_src=twsrc%5Etfw">September 24, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="liftr-by-nan-xiao" class="section level3">
+<h3><a href="https://liftr.me/">liftr</a> 📦 by Nan Xiao</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">🐳📜 Docker your docs: &quot;liftr: Containerize R Markdown Documents&quot; by <a href="https://twitter.com/road2stat?ref_src=twsrc%5Etfw">@road2stat</a> <a href="https://t.co/nSN1ylZXsy">https://t.co/nSN1ylZXsy</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/docker?src=hash&amp;ref_src=twsrc%5Etfw">#docker</a> <a href="https://twitter.com/hashtag/rmarkdown?src=hash&amp;ref_src=twsrc%5Etfw">#rmarkdown</a> <a href="https://t.co/9xJQ4rANjy">pic.twitter.com/9xJQ4rANjy</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/919548925287297024?ref_src=twsrc%5Etfw">October 15, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote>
+<p>liftr aims to solve the problem of <em>persistent reproducible reporting</em>.
+To achieve this goal, it extends the R Markdown metadata format,
+and uses Docker to containerize and render R Markdown documents.</p>
+</blockquote>
+<p>You can also learn more about liftr from the slides from Nan Xiao’s talk from JSM 2018! 👇</p>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">🐳 combines the best of a bunch o&#39; tools ⇩<br>&quot;liftr: an R Package for Persistent Reproducible Research&quot; 🗣 <a href="https://twitter.com/road2stat?ref_src=twsrc%5Etfw">@road2stat</a><a href="https://t.co/jsM0avJh1V">https://t.co/jsM0avJh1V</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/JSM2018?src=hash&amp;ref_src=twsrc%5Etfw">#JSM2018</a> <a href="https://t.co/m03tyO3qSM">pic.twitter.com/m03tyO3qSM</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/1024041204940513280?ref_src=twsrc%5Etfw">July 30, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="docker-for-r-package-development-by-jim-hester" class="section level3">
+<h3><a href="http://www.jimhester.com/2017/10/13/docker/">Docker for R Package Development</a> by Jim Hester</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">⭐️ guide: &quot;Docker for R Package 📦 Development&quot; by <a href="https://twitter.com/jimhester_?ref_src=twsrc%5Etfw">@jimhester_</a> <a href="https://t.co/jLtQy0yPu7">https://t.co/jLtQy0yPu7</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/docker?src=hash&amp;ref_src=twsrc%5Etfw">#docker</a> [n.b. silly logo usage my fault 🐳] <a href="https://t.co/GD1ZnuiInY">pic.twitter.com/GD1ZnuiInY</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/918910727070601217?ref_src=twsrc%5Etfw">October 13, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="an-r-docker-hello-world-example-via-symbolix" class="section level3">
+<h3><a href="https://www.symbolix.com.au/blog-main/r-docker-hello">An R-docker hello world example</a> via symbolix</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">👍 intro to 🐳 for R (w/ code):<br>&quot;An R-docker hello world example&quot; by Elizabeth Stark <a href="https://t.co/zQPXCWP0JD">https://t.co/zQPXCWP0JD</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/Docker?src=hash&amp;ref_src=twsrc%5Etfw">#Docker</a> ht <a href="https://twitter.com/rweekly_org?ref_src=twsrc%5Etfw">@rweekly_org</a> <a href="https://t.co/KvHOyl2ZY5">pic.twitter.com/KvHOyl2ZY5</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/910938183386484738?ref_src=twsrc%5Etfw">September 21, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="how-to-get-started-with-data-science-in-containers-by-jamie-hall" class="section level3">
+<h3><a href="http://blog.kaggle.com/2016/02/05/how-to-get-started-with-data-science-in-containers/">How to get started with data science in containers</a> by Jamie Hall</h3>
+<p>This post isn’t R-specific, but that doesn’t mean it’s not useful!</p>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">What&#39;s all the <a href="https://twitter.com/hashtag/container?src=hash&amp;ref_src=twsrc%5Etfw">#container</a> hype about? &quot;How to get started with data science in containers&quot; <a href="https://t.co/WLFjFrzJQx">https://t.co/WLFjFrzJQx</a> via <a href="https://twitter.com/kaggle?ref_src=twsrc%5Etfw">@kaggle</a> <a href="https://twitter.com/hashtag/docker?src=hash&amp;ref_src=twsrc%5Etfw">#docker</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/696057282325561344?ref_src=twsrc%5Etfw">February 6, 2016</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="dockerized-shiny-app-development-by-tamas-szilagyi" class="section level3">
+<h3><a href="http://tamaszilagyi.com/blog/dockerized-shiny-app-development/">Dockerized Shiny App development</a> by Tamas Szilagyi</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">✨🐳 step-by-step:<br>&quot;Dockerized Shiny App development&quot; by <a href="https://twitter.com/tudosgar?ref_src=twsrc%5Etfw">@tudosgar</a><a href="https://t.co/D6lZkUrJUj">https://t.co/D6lZkUrJUj</a> (feat <a href="https://twitter.com/travisci?ref_src=twsrc%5Etfw">@TravisCI</a> &amp; httptest, too!) <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/docker?src=hash&amp;ref_src=twsrc%5Etfw">#docker</a> <a href="https://t.co/qYH65qTQYq">pic.twitter.com/qYH65qTQYq</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/954353292221575168?ref_src=twsrc%5Etfw">January 19, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="stevedore-a-docker-client-for-r-by-rich-fitzjohn" class="section level3">
+<h3><a href="https://richfitz.github.io/stevedore/">stevedore: A docker client for R</a> by Rich FitzJohn</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">If <a href="https://twitter.com/rgfitzjohn?ref_src=twsrc%5Etfw">@rgfitzjohn</a> can make the 📦, I can make the Archer gif:<br>🚧 &quot;stevedore: A docker client for R&quot;<br> <a href="https://t.co/x45CO95wLh">https://t.co/x45CO95wLh</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/Docker?src=hash&amp;ref_src=twsrc%5Etfw">#Docker</a> <a href="https://t.co/qCMV6sutzO">pic.twitter.com/qCMV6sutzO</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/935264570901442560?ref_src=twsrc%5Etfw">November 27, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="using-rselenium-and-docker-to-webscrape-in-r---using-the-who-snake-database-by-callum-taylor" class="section level3">
+<h3><a href="https://callumgwtaylor.github.io/blog/2018/02/01/using-rselenium-and-docker-to-webscrape-in-r-using-the-who-snake-database/">Using RSelenium and Docker To Webscrape In R - Using The WHO Snake Database</a> by Callum Taylor</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">📖 if only <a href="https://twitter.com/CallumGWT?ref_src=twsrc%5Etfw">@CallumGWT</a>&#39;s 🖍… <br>&quot;Using RSelenium &amp; <a href="https://twitter.com/hashtag/Docker?src=hash&amp;ref_src=twsrc%5Etfw">#Docker</a> To Webscrape In R - w/ the WHO 🐍 Database&quot; <a href="https://t.co/QovBI62bwi">https://t.co/QovBI62bwi</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/rselenium?src=hash&amp;ref_src=twsrc%5Etfw">#rselenium</a> <a href="https://t.co/GfAAqKdm6c">pic.twitter.com/GfAAqKdm6c</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/961074296515899393?ref_src=twsrc%5Etfw">February 7, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="dockerise-and-deploy-your-own-r-archive-repo-by-colin-fay" class="section level3">
+<h3><a href="https://rtask.thinkr.fr/blog/dockerise-and-deploy-your-own-r-archive-repo/">Dockerise and deploy your own R Archive Repo</a> by Colin Fay</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">🐳 Become one w/ {craneur}...<br>&quot;Dockerise and deploy your own R Archive Repo&quot; ✍️ <a href="https://twitter.com/_ColinFay?ref_src=twsrc%5Etfw">@_ColinFay</a> <a href="https://t.co/qKQbuDgNT9">https://t.co/qKQbuDgNT9</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/docker?src=hash&amp;ref_src=twsrc%5Etfw">#docker</a> <a href="https://t.co/fnATnLLhdd">pic.twitter.com/fnATnLLhdd</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/1004908127521828864?ref_src=twsrc%5Etfw">June 8, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="shipping-data-science-products-with-r-and-docker-by-steph-locke" class="section level3">
+<h3><a href="https://itsalocke.com/talks/post/shipping-r-with-docker/">Shipping Data Science Products with R and Docker</a> by Steph Locke</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">Woah! I had no idea about rize! 😎 stuff, <a href="https://twitter.com/cole_brokamp?ref_src=twsrc%5Etfw">@cole_brokamp</a>!<br>🐳 wonderful Docker slides, Steph!<br>🔗 <a href="https://t.co/8EACAaHydd">https://t.co/8EACAaHydd</a><br>🏷 <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/rshiny?src=hash&amp;ref_src=twsrc%5Etfw">#rshiny</a> <a href="https://t.co/9499MYoAbA">pic.twitter.com/9499MYoAbA</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/1014846062568312835?ref_src=twsrc%5Etfw">July 5, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="fin" class="section level2">
+<h2>Fin 🎉</h2>
+<p>Additions? Questions? Comments? Snide remarks? Feel free to tweet me <a href="https://twitter.com/dataandme">@dataandme</a> 🐦, and/or comment below!</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Speaking of sharing love: cred for <a href="https://gfycat.com/gifs/detail/PerfectHarshHoatzin">Nyan Whale</a> (i.e. the banner gif 🌈) goes to <a href="https://www.youtube.com/watch?v=2c_rmqme6rc">Andrew Kennedy</a>!<a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+
+        </div>
+        <footer class="article-footer">
+    <a data-url="/2017/11/docker-izing-your-work-in-r/" data-id="1e0b29e8a25cfbf92318f20e85fc1c05" text="Docker-izing your work in R 🐳" via="acastillogill" class="article-share-link">
+        <i class="fas fa-share"></i>
+        Share
+    </a>
+    
+    <a href="../../../2017/11/docker-izing-your-work-in-r/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                titleText = $this.attr('text'),
+                via = $this.attr('via'),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/share?url=' + encodedUrl + '&text=' + titleText + '&via=' + via + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest-p article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+
+    
+<nav id="article-nav">
+    
+    <a href="../../../2017/11/r-blog-tips-from-an-inveterate-tweeter-thereof/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Older
+      </strong>
+      <div class="article-nav-title">R-blog 📝 tips from an inveterate tweeter thereof</div>
+    </a>
+    
+
+    
+    <a href="../../../2017/12/2017-a-year-in-review/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Newer
+      </strong>
+      <div class="article-nav-title">2017 - A 🐦❤️ year in review</div>
+    </a>
+    
+</nav>
+
+
+</article>
+
+
+<section id="comments">
+    <div id="disqus_thread">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-acastillogill-com" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+</section>
+
+
+    </section>
+
+   	
+    	<aside id="sidebar">
+    
+
+    
+
+    
+
+    
+
+
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+    
+	</div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018
+      Ángela Castillo-Gill. Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="https://github.com/ppoffice">PPOffice</a>. Customised by <a href="https://github.com/ppoffice">Mara Averick</a>
+    </div>
+  </div>
+</footer>
+
+
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	if (window.sessionStorage) {
+		var GA_SESSION_STORAGE_KEY = 'ga:clientId';
+		ga('create', 'UA-128602464-1', {
+	    'storage': 'none',
+	    'clientId': sessionStorage.getItem(GA_SESSION_STORAGE_KEY)
+	   });
+	   ga(function(tracker) {
+	    sessionStorage.setItem(GA_SESSION_STORAGE_KEY, tracker.get('clientId'));
+	   });
+   }
+	
+	ga('send', 'pageview');
+}
+</script>
+
+<script src="../../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../../js/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+</body>
+</html>

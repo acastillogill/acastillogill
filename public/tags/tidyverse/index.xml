@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tidyverse on Ángela Castillo-Gill</title>
+    <link>/tags/tidyverse/</link>
+    <description>Recent content in Tidyverse on Ángela Castillo-Gill</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 Jun 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/tidyverse/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>reprex-cellence 👑</title>
+      <link>/2018/06/reprexcellence/</link>
+      <pubDate>Sun, 24 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/06/reprexcellence/</guid>
+      <description>In honour of the triumphant return of reprex to CRAN, let’s revisit what I refer to as Jenny Bryan’s keys to reprex-cellence.1 The three keys are as follows:
+code that actually runs
+ code that I don’t have to run code that can be easily run2  Our example True to the ésprit de reprex, let’s look at a real world example to unpack why these attributes are so useful.</description>
+    </item>
+    
+    <item>
+      <title>tidyeval resource roundup</title>
+      <link>/2017/08/tidyeval-resource-roundup/</link>
+      <pubDate>Sat, 26 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/08/tidyeval-resource-roundup/</guid>
+      <description>Updated: 2018-10-06
+Though, naturally, the Honorable Professor Doctor Sir Lord General Hadley Wickham’s Programming with dplyr article is the ne plus ultra of getting oneself aquainted with the latest and greatest in tidyeval programming recipes, quoting, and quasiquotation; there are some other resources out there.
+After posting a link to Edwin Thoen’s ⭐️ Tidy evaluation, most common actions, I was asked if there were other tidyeval tutorials I knew of.</description>
+    </item>
+    
+  </channel>
+</rss>

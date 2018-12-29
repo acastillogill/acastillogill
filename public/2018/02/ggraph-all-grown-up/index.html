@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>ggraph all grown up 🎈🦒 &middot; Ángela Castillo-Gill</title>
+    <meta name="generator" content="Hugo 0.53" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Ángela Castillo-Gill">
+    
+      <meta name="description" content="A CRANniversary 🍰 roundup of some of my favourite posts featuring ggraph, the network visualization 📦 by Thomas Lin Pedersen.">
+    
+    
+    <link rel="canonical" href="../../../2018/02/ggraph-all-grown-up/"/>
+    <link rel="icon" href="../../../favicon.ico">
+    <link rel="apple-touch-icon" href="../../../apple-touch-icon.png"/>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../css/monokai.css">
+    <link rel="stylesheet" href="../../../css/coarse.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="../../../fancybox/jquery.fancybox.css">
+    
+    <link rel="stylesheet" href="../../../css/tomorrow-night-bright.css">
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:regular,medium,bold' rel='stylesheet' type='text/css'>
+    <meta property="og:title" content="ggraph all grown up 🎈🦒" />
+<meta property="og:description" content="A CRANniversary 🍰 roundup of some of my favourite posts featuring ggraph, the network visualization 📦 by Thomas Lin Pedersen." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/2018/02/ggraph-all-grown-up/" />
+<meta property="og:image" content="/banners/giraffe_grown_up.gif" />
+<meta property="article:published_time" content="2018-02-23T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2018-04-02T00:00:00&#43;00:00"/>
+
+    
+    
+<meta itemprop="name" content="ggraph all grown up 🎈🦒">
+<meta itemprop="description" content="A CRANniversary 🍰 roundup of some of my favourite posts featuring ggraph, the network visualization 📦 by Thomas Lin Pedersen.">
+
+
+<meta itemprop="datePublished" content="2018-02-23T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-04-02T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="409">
+
+  <meta itemprop="image" content="/banners/giraffe_grown_up.gif">
+
+
+
+<meta itemprop="keywords" content="R,visualization,data viz,ggraph,roundups," />
+
+    <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/banners/giraffe_grown_up.gif"/>
+
+<meta name="twitter:title" content="ggraph all grown up 🎈🦒"/>
+<meta name="twitter:description" content="A CRANniversary 🍰 roundup of some of my favourite posts featuring ggraph, the network visualization 📦 by Thomas Lin Pedersen."/>
+<meta name="twitter:site" content="@acastillogill"/>
+
+    
+<link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Alegreya|Source+Sans+Pro" rel="stylesheet">
+
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+	<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="../../../" id="logo">
+          
+          <span class="site-title">Ángela Castillo-Gill</span>
+      </a>
+      <nav id="main-nav">
+          
+          
+          <a class="main-nav-link" href="../../../">Home</a>
+          
+          
+          
+          
+          
+          
+
+          
+          <a class="main-nav-link" href="../../../about/">About</a>
+          
+
+          
+          
+          
+          
+          <a class="main-nav-link" href="../../../tags/posts/">Posts</a>
+          
+          
+          
+          <a class="main-nav-link" href="../../../tags/notes/">Notes</a>
+          
+          
+      </nav>
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="../../../img/angela.jpeg"><i class="fas fa-caret-down"></i></a>
+          </div>
+        </nav>
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+              <input type="search" name="q" class="search-form-input" placeholder="Search">
+              <button type="submit" class="search-form-submit">
+              </button>
+              <input type="hidden" name="sitesearch" value="/" />
+         </form>
+        </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tbody>
+          <tr>
+          
+          
+          <td><a class="main-nav-link" href="../../../">Home</a></td>
+          
+          
+          
+          
+          
+          
+
+          
+          <td><a class="main-nav-link" href="../../../about/">About</a></td>
+          
+
+          
+          
+          
+          
+          <td><a class="main-nav-link" href="../../../tags/posts/">Posts</a></td>
+          
+          
+          
+          <td><a class="main-nav-link" href="../../../tags/notes/">Notes</a></td>
+          
+          
+          <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="Search">
+          <input type="hidden" name="sitesearch" value="/" />
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</header>
+
+   	
+   	<div class="outer">
+   	
+    	<aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      
+      <img id="avatar" src="../../../img/angela.jpeg">
+      
+      <h2 id="name">Ángela Castillo-Gill</h2>
+      <h3 id="title">Data Analyst training to be a Data Scientist</h3>
+      
+      
+          <a id="follow" href="https://twitter.com/acastillogill">
+              @dataandme
+          </a>
+      
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        36
+        <span>Posts</span>
+      </div>
+      <div class="article-info-block">
+        
+          29
+        
+        <span>
+            Tags
+        </span>
+      </div>
+    </div>
+    <div class="profile-block social-links">
+      <table>
+        <tr>
+          
+<td><a href="//github.com/acastillogill" target="_blank" title="GitHub"><i class="fab fa-github-square"></i></a></td>
+
+
+
+<td><a href="//twitter.com/acastillogill" target="_blank" title="Twitter"><i class="fab fa-twitter-square"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//medium.com/@@acastillogill" target="_blank" title="Medium"><i class="fab fa-medium"></i></a></td>
+
+
+
+
+
+
+
+
+
+<td><a href="//linkedin.com/in/acastillogill" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <td><a href="../../../index.xml" target="_blank" title="RSS"><i class="fas fa-rss-square"></i></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+
+    
+
+    <section id="main">
+    
+    <article id="page-undefined" class="article article-type-page" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <img src="../../../banners/giraffe_grown_up.gif" class="article-banner">
+        
+
+        <header class="article-header">
+    <a href="../../../2018/02/ggraph-all-grown-up/">
+    <h1 class="article-title" itemprop="name">
+        ggraph all grown up 🎈🦒
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="far fa-calendar"></i>
+            <time datetime="2018-02-23 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-02-23</time>
+            &middot;
+            409
+            words
+            &middot;
+            2
+            minute read
+        </div>
+        
+        
+            
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fas fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="../../../tags/r">R</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/visualization">visualization</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/data-viz">data viz</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/ggraph">ggraph</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/roundups">roundups</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            
+
+
+<p>Thomas Lin Pedersen (known aliases: <a href="https://twitter.com/thomasp85">@thomasp85</a>, <a href="https://www.data-imaginist.com/">data imaginist</a>) has quite an array of <a href="https://github.com/thomasp85">cool packages</a>, all of which you should check out. However, in celebration its <strong>CRANniversary</strong> 🎈 I thought <a href="https://github.com/thomasp85/ggraph"><strong>ggraph</strong></a> deserved a roundup post of its own.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<div id="dispatches-from-a-proud-papa" class="section level2">
+<h2>Dispatches from a proud papa 👨</h2>
+<div id="ggraph-a-grammar-of-graphics-for-relational-data" class="section level3">
+<h3><a href="https://github.com/thomasp85/ggraph">ggraph: A grammar of graphics for relational data</a></h3>
+<p><em>The repo from whence it sprang…</em></p>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">More cool R viz-ness from <a href="https://twitter.com/thomasp85?ref_src=twsrc%5Etfw">@thomasp85</a> &quot;ggraph&quot; <a href="https://t.co/ncCKDHlQAx">https://t.co/ncCKDHlQAx</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/dataviz?src=hash&amp;ref_src=twsrc%5Etfw">#dataviz</a> <a href="https://twitter.com/hashtag/ggplot2?src=hash&amp;ref_src=twsrc%5Etfw">#ggplot2</a> <a href="https://t.co/Kfq8IYPnWQ">pic.twitter.com/Kfq8IYPnWQ</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/777130491287928832?ref_src=twsrc%5Etfw">September 17, 2016</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="data-driven-logo-design-with-ggraph-and-gtable" class="section level3">
+<h3><a href="https://www.data-imaginist.com/2016/data-driven-logo/">Data Driven Logo Design with ggraph and gtable</a></h3>
+<p><em>A place for ggraph announcements 🌟 to call home.</em></p>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">Literally...with code! &quot;Data Driven Logo Design with ggraph and gtable&quot; by <a href="https://twitter.com/thomasp85?ref_src=twsrc%5Etfw">@thomasp85</a> <a href="https://t.co/tCeez5wc90">https://t.co/tCeez5wc90</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/785301087578419200?ref_src=twsrc%5Etfw">October 10, 2016</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="announcing-ggraph-a-grammar-of-graphics-for-relational-data" class="section level3">
+<h3><a href="https://www.data-imaginist.com/2017/announcing-ggraph/">Announcing ggraph: A grammar of graphics for relational data</a></h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">Beyond layouts, nodes, &amp; edges: “Announcing ggraph: A grammar of graphics for relational data” by <a href="https://twitter.com/thomasp85?ref_src=twsrc%5Etfw">@thomasp85</a> <a href="https://t.co/4bfH232MuO">https://t.co/4bfH232MuO</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://t.co/JZe2IeAAS8">pic.twitter.com/JZe2IeAAS8</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/835188089911922688?ref_src=twsrc%5Etfw">February 24, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="introduction-to-ggraph-layouts" class="section level3">
+<h3><a href="https://www.data-imaginist.com/2017/ggraph-introduction-layouts/">Introduction to ggraph: Layouts</a></h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">👍👍 code-through: &quot;Introduction to ggraph: Layouts&quot; by <a href="https://twitter.com/thomasp85?ref_src=twsrc%5Etfw">@thomasp85</a> <a href="https://t.co/d2wDMhgHK3">https://t.co/d2wDMhgHK3</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/dataviz?src=hash&amp;ref_src=twsrc%5Etfw">#dataviz</a> <a href="https://twitter.com/hashtag/ggraph?src=hash&amp;ref_src=twsrc%5Etfw">#ggraph</a> <a href="https://t.co/qdmZoO47gQ">pic.twitter.com/qdmZoO47gQ</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/830068094227902464?ref_src=twsrc%5Etfw">February 10, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="introduction-to-ggraph-nodes" class="section level3">
+<h3><a href="https://www.data-imaginist.com/2017/ggraph-introduction-nodes/">Introduction to ggraph: Nodes</a></h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">😊 Feeling graph-y today… &quot;Introduction to ggraph: Nodes&quot; by <a href="https://twitter.com/thomasp85?ref_src=twsrc%5Etfw">@thomasp85</a> <a href="https://t.co/UDmCPOPuR6">https://t.co/UDmCPOPuR6</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/dataviz?src=hash&amp;ref_src=twsrc%5Etfw">#dataviz</a> <a href="https://twitter.com/hashtag/ggraph?src=hash&amp;ref_src=twsrc%5Etfw">#ggraph</a> <a href="https://twitter.com/hashtag/infovis?src=hash&amp;ref_src=twsrc%5Etfw">#infovis</a> <a href="https://t.co/iWTf9yhvw0">pic.twitter.com/iWTf9yhvw0</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/950927436396613632?ref_src=twsrc%5Etfw">January 10, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="introduction-to-ggraph-edges" class="section level3">
+<h3><a href="https://www.data-imaginist.com/2017/ggraph-introduction-edges/">Introduction to ggraph: Edges</a></h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">Code-through fun continues: &quot;Introduction to ggraph: Edges&quot; by <a href="https://twitter.com/thomasp85?ref_src=twsrc%5Etfw">@thomasp85</a> <a href="https://t.co/69VjIM5V9c">https://t.co/69VjIM5V9c</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/dataviz?src=hash&amp;ref_src=twsrc%5Etfw">#dataviz</a> <a href="https://twitter.com/hashtag/ggraph?src=hash&amp;ref_src=twsrc%5Etfw">#ggraph</a> <a href="https://t.co/zo8JsilUkq">pic.twitter.com/zo8JsilUkq</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/832677509258846213?ref_src=twsrc%5Etfw">February 17, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+</div>
+<div id="applied-posts-from-fellow-fans" class="section level2">
+<h2>Applied posts from fellow fans 📝</h2>
+<div id="a-gentle-introduction-to-network-visualisation-by-colin-fay" class="section level3">
+<h3><a href="http://colinfay.me/back-budapest/">A Gentle Introduction to Network Visualisation</a> by Colin Fay</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">Great deck 📽 w/ code:<br>&quot;A Gentle Introduction to Network Visualisation&quot; by <a href="https://twitter.com/_ColinFay?ref_src=twsrc%5Etfw">@_ColinFay</a> <br> <a href="https://t.co/o3VsIKrVfz">https://t.co/o3VsIKrVfz</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/dataviz?src=hash&amp;ref_src=twsrc%5Etfw">#dataviz</a> <a href="https://twitter.com/hashtag/ggraph?src=hash&amp;ref_src=twsrc%5Etfw">#ggraph</a> <a href="https://t.co/S41oPQiQUd">pic.twitter.com/S41oPQiQUd</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/932696587398275072?ref_src=twsrc%5Etfw">November 20, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="how-to-create-correlation-network-plots-with-corrr-and-ggraph-by-simon-jackson" class="section level3">
+<h3><a href="https://drsimonj.svbtle.com/how-to-create-correlation-network-plots-with-corrr-and-ggraph">How to create correlation network plots with corrr and ggraph</a> by Simon Jackson</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">&#39;nother great how-to: “How to create correlation network plots with corrr and ggraph” by <a href="https://twitter.com/drsimonj?ref_src=twsrc%5Etfw">@drsimonj</a> <a href="https://t.co/rWdzL9MSr5">https://t.co/rWdzL9MSr5</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/dataviz?src=hash&amp;ref_src=twsrc%5Etfw">#dataviz</a> <a href="https://t.co/59VcE4ZTkn">pic.twitter.com/59VcE4ZTkn</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/836577246945099776?ref_src=twsrc%5Etfw">February 28, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="plotting-trees-from-random-forest-models-with-ggraph-by-shirin-glander" class="section level3">
+<h3><a href="https://shiring.github.io/machine_learning/2017/03/16/rf_plot_ggraph">Plotting trees from Random Forest models with ggraph</a> by Shirin Glander</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">Visualizing models in R: &quot;Plotting trees from Random Forest models w/ <a href="https://twitter.com/hashtag/ggraph?src=hash&amp;ref_src=twsrc%5Etfw">#ggraph</a>&quot; by <a href="https://twitter.com/ShirinGlander?ref_src=twsrc%5Etfw">@ShirinGlander</a> <a href="https://t.co/ZihS6VO1Bc">https://t.co/ZihS6VO1Bc</a> <a href="https://twitter.com/hashtag/dataviz?src=hash&amp;ref_src=twsrc%5Etfw">#dataviz</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://t.co/sO72o7SdTX">pic.twitter.com/sO72o7SdTX</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/842722809709256704?ref_src=twsrc%5Etfw">March 17, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="holy-ifelse-statements-batman-by-austin-wehrwein" class="section level3">
+<h3><a href="http://austinwehrwein.com/data-visualization/plotting-batman-villains-ggraph/">Holy ifelse() statements Batman!</a> by Austin Wehrwein</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">.<a href="https://twitter.com/awhstin?ref_src=twsrc%5Etfw">@awhstin</a>  charts🦇👨 villains w/ <a href="https://twitter.com/thomasp85?ref_src=twsrc%5Etfw">@thomasp85</a>&#39;s ggraph: “Holy if_else() statements, Batman!&quot; <a href="https://t.co/GpCFFtTNkp">https://t.co/GpCFFtTNkp</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/dataviz?src=hash&amp;ref_src=twsrc%5Etfw">#dataviz</a> <a href="https://t.co/nOaN1WyaXY">pic.twitter.com/nOaN1WyaXY</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/952903820945870849?ref_src=twsrc%5Etfw">January 15, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+</div>
+<div id="tada" class="section level2">
+<h2>Tada! 🎉</h2>
+<p>As always, I’m sure there are many more posts out there I’ve missed. If there’s something you’d like to see added, send me a tweet 🐦  (<a href="https://twitter.com/dataandme">@dataandme</a>).</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>And by “post” I do, of course, really mean collection of tweets.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+
+        </div>
+        <footer class="article-footer">
+    <a data-url="/2018/02/ggraph-all-grown-up/" data-id="5c1c403554f0a3e50ebeed13795a8c7a" text="ggraph all grown up 🎈🦒" via="acastillogill" class="article-share-link">
+        <i class="fas fa-share"></i>
+        Share
+    </a>
+    
+    <a href="../../../2018/02/ggraph-all-grown-up/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                titleText = $this.attr('text'),
+                via = $this.attr('via'),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/share?url=' + encodedUrl + '&text=' + titleText + '&via=' + via + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest-p article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+
+    
+<nav id="article-nav">
+    
+    <a href="../../../2018/01/hammertime-tibbletime/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Older
+      </strong>
+      <div class="article-nav-title">Hammertime ✖️ tibbletime</div>
+    </a>
+    
+
+    
+    <a href="../../../2018/02/source-tree-fetch-rebase/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Newer
+      </strong>
+      <div class="article-nav-title">Sourcetree fetch rebase</div>
+    </a>
+    
+</nav>
+
+
+</article>
+
+
+<section id="comments">
+    <div id="disqus_thread">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-acastillogill-com" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+</section>
+
+
+    </section>
+
+   	
+    	<aside id="sidebar">
+    
+
+    
+
+    
+
+    
+
+
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+    
+	</div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018
+      Ángela Castillo-Gill. Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="https://github.com/ppoffice">PPOffice</a>. Customised by <a href="https://github.com/ppoffice">Mara Averick</a>
+    </div>
+  </div>
+</footer>
+
+
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	if (window.sessionStorage) {
+		var GA_SESSION_STORAGE_KEY = 'ga:clientId';
+		ga('create', 'UA-128602464-1', {
+	    'storage': 'none',
+	    'clientId': sessionStorage.getItem(GA_SESSION_STORAGE_KEY)
+	   });
+	   ga(function(tracker) {
+	    sessionStorage.setItem(GA_SESSION_STORAGE_KEY, tracker.get('clientId'));
+	   });
+   }
+	
+	ga('send', 'pageview');
+}
+</script>
+
+<script src="../../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../../js/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+</body>
+</html>

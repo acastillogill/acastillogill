@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Updating your version of Hugo for blogdown on Netlify &middot; Ángela Castillo-Gill</title>
+    <meta name="generator" content="Hugo 0.53" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Ángela Castillo-Gill">
+    
+      <meta name="description" content="A ⚡ quick, pictorial run-through for the blogdown, Hugo, Netlify stack.">
+    
+    
+    <link rel="canonical" href="../../../2017/10/updating-blogdown-hugo-version-netlify/"/>
+    <link rel="icon" href="../../../favicon.ico">
+    <link rel="apple-touch-icon" href="../../../apple-touch-icon.png"/>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../css/monokai.css">
+    <link rel="stylesheet" href="../../../css/coarse.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="../../../fancybox/jquery.fancybox.css">
+    
+    <link rel="stylesheet" href="../../../css/tomorrow-night-bright.css">
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:regular,medium,bold' rel='stylesheet' type='text/css'>
+    <meta property="og:title" content="Updating your version of Hugo for blogdown on Netlify" />
+<meta property="og:description" content="A ⚡ quick, pictorial run-through for the blogdown, Hugo, Netlify stack." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/2017/10/updating-blogdown-hugo-version-netlify/" />
+<meta property="og:image" content="/banners/icarus_hugo_version.png" />
+<meta property="article:published_time" content="2017-10-20T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2017-10-20T00:00:00&#43;00:00"/>
+
+    
+    
+<meta itemprop="name" content="Updating your version of Hugo for blogdown on Netlify">
+<meta itemprop="description" content="A ⚡ quick, pictorial run-through for the blogdown, Hugo, Netlify stack.">
+
+
+<meta itemprop="datePublished" content="2017-10-20T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2017-10-20T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="583">
+
+  <meta itemprop="image" content="/banners/icarus_hugo_version.png">
+
+
+
+<meta itemprop="keywords" content="blogdown,R Markdown,Hugo," />
+
+    <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/banners/icarus_hugo_version.png"/>
+
+<meta name="twitter:title" content="Updating your version of Hugo for blogdown on Netlify"/>
+<meta name="twitter:description" content="A ⚡ quick, pictorial run-through for the blogdown, Hugo, Netlify stack."/>
+<meta name="twitter:site" content="@acastillogill"/>
+
+    
+<link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Alegreya|Source+Sans+Pro" rel="stylesheet">
+
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+	<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="../../../" id="logo">
+          
+          <span class="site-title">Ángela Castillo-Gill</span>
+      </a>
+      <nav id="main-nav">
+          
+          
+          <a class="main-nav-link" href="../../../">Home</a>
+          
+          
+          
+          
+          
+          
+
+          
+          <a class="main-nav-link" href="../../../about/">About</a>
+          
+
+          
+          
+          
+          
+          <a class="main-nav-link" href="../../../tags/posts/">Posts</a>
+          
+          
+          
+          <a class="main-nav-link" href="../../../tags/notes/">Notes</a>
+          
+          
+      </nav>
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="../../../img/angela.jpeg"><i class="fas fa-caret-down"></i></a>
+          </div>
+        </nav>
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+              <input type="search" name="q" class="search-form-input" placeholder="Search">
+              <button type="submit" class="search-form-submit">
+              </button>
+              <input type="hidden" name="sitesearch" value="/" />
+         </form>
+        </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tbody>
+          <tr>
+          
+          
+          <td><a class="main-nav-link" href="../../../">Home</a></td>
+          
+          
+          
+          
+          
+          
+
+          
+          <td><a class="main-nav-link" href="../../../about/">About</a></td>
+          
+
+          
+          
+          
+          
+          <td><a class="main-nav-link" href="../../../tags/posts/">Posts</a></td>
+          
+          
+          
+          <td><a class="main-nav-link" href="../../../tags/notes/">Notes</a></td>
+          
+          
+          <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="Search">
+          <input type="hidden" name="sitesearch" value="/" />
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</header>
+
+   	
+   	<div class="outer">
+   	
+    	<aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      
+      <img id="avatar" src="../../../img/angela.jpeg">
+      
+      <h2 id="name">Ángela Castillo-Gill</h2>
+      <h3 id="title">Data Analyst training to be a Data Scientist</h3>
+      
+      
+          <a id="follow" href="https://twitter.com/acastillogill">
+              @dataandme
+          </a>
+      
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        36
+        <span>Posts</span>
+      </div>
+      <div class="article-info-block">
+        
+          29
+        
+        <span>
+            Tags
+        </span>
+      </div>
+    </div>
+    <div class="profile-block social-links">
+      <table>
+        <tr>
+          
+<td><a href="//github.com/acastillogill" target="_blank" title="GitHub"><i class="fab fa-github-square"></i></a></td>
+
+
+
+<td><a href="//twitter.com/acastillogill" target="_blank" title="Twitter"><i class="fab fa-twitter-square"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//medium.com/@@acastillogill" target="_blank" title="Medium"><i class="fab fa-medium"></i></a></td>
+
+
+
+
+
+
+
+
+
+<td><a href="//linkedin.com/in/acastillogill" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <td><a href="../../../index.xml" target="_blank" title="RSS"><i class="fas fa-rss-square"></i></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+
+    
+
+    <section id="main">
+    
+    <article id="page-undefined" class="article article-type-page" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <img src="../../../banners/icarus_hugo_version.png" class="article-banner">
+        
+
+        <header class="article-header">
+    <a href="../../../2017/10/updating-blogdown-hugo-version-netlify/">
+    <h1 class="article-title" itemprop="name">
+        Updating your version of Hugo for blogdown on Netlify
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="far fa-calendar"></i>
+            <time datetime="2017-10-20 00:00:00 &#43;0000 UTC" itemprop="datePublished">2017-10-20</time>
+            &middot;
+            583
+            words
+            &middot;
+            3
+            minute read
+        </div>
+        
+        
+            
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fas fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="../../../tags/blogdown">blogdown</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/r-markdown">R Markdown</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/hugo">Hugo</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            
+
+
+<div id="fair-warning" class="section level3">
+<h3><em>Fair warning</em> ⚠️</h3>
+<p>All of the information that follows is indeed in <a href="https://bookdown.org/yihui/blogdown/"><strong><em>blogdown: Creating Websites with R Markdown</em></strong></a> by <a href="https://yihui.name/">Yihui Xie</a>, <a href="https://proquestionasker.github.io/">Amber Thomas</a>, and <a href="https://apreshill.rbind.io/">Alison Presmanes Hill</a>. But, since this is the second time I got a bit lost in this process, I’m writing it up for my own (and anyone else’s incidental) edification.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p>Plus, just look at all the failed deploys that happen when I mess it up…it renders my Netlify deploy panel hideous! 🙈</p>
+<p><img src="https://i.imgur.com/EtZDky6.png" /></p>
+</div>
+<div id="what-versions-of-hugo-do-i-have" class="section level3">
+<h3><em>What version(s) of Hugo do I have?</em></h3>
+<p>First off, if you have an existing blogdown site that you’re working on in RStudio, you can simply run the following code to find out what your current version of Hugo is.</p>
+<pre class="r"><code>blogdown::hugo_version()</code></pre>
+<pre><code>## [1] &#39;0.37.1&#39;</code></pre>
+<p>In addition to being able to find out your Hugo version from the <strong>Console</strong> (see below)…</p>
+<p><img src="https://i.imgur.com/1ieLcgG.png" /></p>
+<p>…you can also use RStudio’s <strong>Terminal</strong> to get the Hugo version, plus a few more details, by running <code>hugo version</code>.</p>
+<p><img src="https://i.imgur.com/b5nTTCh.png" /></p>
+<p>If you’re a Mac user, and have installed Hugo using its <a href="http://brewformulas.org/Hugo"><code>homebrew</code> formula</a>,<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> you can also check out what versions of Hugo you have by navigating to your <code>Cellar/hugo</code> directory (from the Terminal in RStudio, or whatever terminal you use— in my case, this was iTerm2).</p>
+<p><img src="https://i.imgur.com/f1Me58W.png" /></p>
+</div>
+<div id="what-version-of-hugo-do-i-need" class="section level3">
+<h3><em>What version of Hugo do I need?</em></h3>
+<p>To be quite honest, I’m not 100% sure. It may depend on your theme. I use a slightly modified version of the <a href="https://themes.gohugo.io/hugo-icarus/">Icarus theme</a>. Which, in its <code>config.toml</code> file, lists <code>min_version = 0.20</code>.</p>
+<p><img src="https://i.imgur.com/4m1WFti.png" /></p>
+<p>If you choose your theme from the <a href="https://themes.gohugo.io/"><strong>Hugo Themes</strong></a> site, you can also find it in the theme metadata listed on the theme page. They seem to vary quite a bit (<a href="https://themes.gohugo.io/academic/">Academic</a> requires 0.27; <a href="https://themes.gohugo.io/hugo-goa/">Goa</a> 0.16; etc.), so be sure to take a gander.</p>
+<p><img src="https://i.imgur.com/vP0JNMu.png" /></p>
+<p>As discussed in section <a href="https://bookdown.org/yihui/blogdown/installation.html#update"><strong>1.1.1 Update</strong></a> of the blogdown book, you can use <code>blogdown::update_hugo</code> to update Hugo from R.</p>
+</div>
+<div id="how-do-i-make-this-happen-in-my-netlify-build" class="section level3">
+<h3><em>How do I make this happen in my Netlify build?</em></h3>
+<p>Now here’s the part that tripped me up (despite the fact that it’s completely and utterly described in blogdown 📘 <a href="https://bookdown.org/yihui/blogdown/netlify.html"><strong>3.1 Netlify</strong></a>). When you go to <a href="https://www.netlify.com/">Netlify</a> you’ll navigate to <code>Sites</code> and then open whichever site you’re working on. From there you can either go to <code>Deploys</code> <code>&gt;&gt;</code> <code>Deploy Settings</code> or <code>Settings</code> <code>&gt;&gt;</code> <code>Build &amp; deploy</code> (they both take you to the same place).</p>
+<p>When I made my first Netlify/Hugo site, you could simply change the version of Hugo in the <strong>Build command</strong> field of Deploy settings.</p>
+<p><img src="https://i.imgur.com/L8oIhIb.png" /></p>
+<p>This is still true <em>if</em> your build version of Hugo is 0.19 or lower. However, as Yihui, Amber and Alison eloquently describe:</p>
+<blockquote>
+<p>To specify a Hugo version greater or equal to 0.20, you need to create an environment variable <code>HUGO_VERSION</code> on Netlify.</p>
+</blockquote>
+<p>So, in effect, this means that you will:</p>
+<ol style="list-style-type: decimal">
+<li>Edit your <strong>Build command</strong> to say simply <code>hugo</code></li>
+<li>Open <strong>Edit variables</strong> in the <strong>Build environmental variables</strong> pane</li>
+<li>Add a <strong>New variable</strong>, set the key to <code>HUGO_VERSION</code>, and the value for your desired Hugo version.</li>
+</ol>
+<p><img src="https://i.imgur.com/Gzhr5Pg.gif" /></p>
+<div id="further-resources" class="section level4">
+<h4>Further Resources?</h4>
+<p>There’s a helpful piece on the Netlify blog: <a href="https://www.netlify.com/blog/2017/04/11/netlify-plus-hugo-0.20-and-beyond/"><strong>Netlify Plus Hugo 2.0 and Beyond</strong></a>, if you want to take a peek there.</p>
+<p>I also did a roundup of some more blogdown resources in an earlier post: <a href="https://maraaverick.rbind.io/2017/10/keeping-up-with-blogdown/"><strong>Keeping up with blogdown 🌟</strong></a>— so, y’know, that’s there too.</p>
+<p>For questions, comments, snide remarks, and the like, tweet me (<a href="https://twitter.com/dataandme">@dataandme</a>) 🐦!</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Inspired/liberated by the great <a href="https://twitter.com/JennyBryan">Jenny Bryan</a>’s <a href="https://github.com/jennybc/access-r-source">Accessing R Source</a> repo description which reads: <em>“I am sick of Googling this. I am writing it down this time.”</em><a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>For more on this, see the <a href="https://bookdown.org/yihui/blogdown/installation.html"><strong>Installation</strong></a> section of the blogdown book.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+
+        </div>
+        <footer class="article-footer">
+    <a data-url="/2017/10/updating-blogdown-hugo-version-netlify/" data-id="f027386f0dd3af0ed18ba4f24bf26de6" text="Updating your version of Hugo for blogdown on Netlify" via="acastillogill" class="article-share-link">
+        <i class="fas fa-share"></i>
+        Share
+    </a>
+    
+    <a href="../../../2017/10/updating-blogdown-hugo-version-netlify/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                titleText = $this.attr('text'),
+                via = $this.attr('via'),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/share?url=' + encodedUrl + '&text=' + titleText + '&via=' + via + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest-p article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+
+    
+<nav id="article-nav">
+    
+    <a href="../../../2017/10/goodreads-part-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Older
+      </strong>
+      <div class="article-nav-title">Goodreads 👍📚 Part 2: rvesting descriptions</div>
+    </a>
+    
+
+    
+    <a href="../../../2017/10/papyrus/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Newer
+      </strong>
+      <div class="article-nav-title">Papyrus 📜</div>
+    </a>
+    
+</nav>
+
+
+</article>
+
+
+<section id="comments">
+    <div id="disqus_thread">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-acastillogill-com" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+</section>
+
+
+    </section>
+
+   	
+    	<aside id="sidebar">
+    
+
+    
+
+    
+
+    
+
+
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+    
+	</div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018
+      Ángela Castillo-Gill. Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="https://github.com/ppoffice">PPOffice</a>. Customised by <a href="https://github.com/ppoffice">Mara Averick</a>
+    </div>
+  </div>
+</footer>
+
+
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	if (window.sessionStorage) {
+		var GA_SESSION_STORAGE_KEY = 'ga:clientId';
+		ga('create', 'UA-128602464-1', {
+	    'storage': 'none',
+	    'clientId': sessionStorage.getItem(GA_SESSION_STORAGE_KEY)
+	   });
+	   ga(function(tracker) {
+	    sessionStorage.setItem(GA_SESSION_STORAGE_KEY, tracker.get('clientId'));
+	   });
+   }
+	
+	ga('send', 'pageview');
+}
+</script>
+
+<script src="../../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../../js/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+</body>
+</html>

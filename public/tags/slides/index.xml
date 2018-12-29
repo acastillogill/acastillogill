@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Slides on Ángela Castillo-Gill</title>
+    <link>/tags/slides/</link>
+    <description>Recent content in Slides on Ángela Castillo-Gill</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 05 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/slides/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>leaRning out loud: 📽️ slides from EARL Boston</title>
+      <link>/2017/11/learning-out-loud-slides-from-earl-boston/</link>
+      <pubDate>Sun, 05 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/11/learning-out-loud-slides-from-earl-boston/</guid>
+      <description>🎉 I gave a talk at EARL Boston, and somehow managed not to die! 😵
+Couldn’t make it? Here are the slides from the aforementioned, non-fatal event for your enjoyment. They likely won’t make too much sense on their own, and I plan on doing a proper write-up at some point. But, until that time comes…
+ I’ve also put a high(er)-resolution version of these same slides (with working links 🔗) up at: https://bit.</description>
+    </item>
+    
+  </channel>
+</rss>

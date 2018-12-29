@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>reprex-cellence 👑 &middot; Ángela Castillo-Gill</title>
+    <meta name="generator" content="Hugo 0.53" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Ángela Castillo-Gill">
+    
+      <meta name="description" content="Celebrating the release of reprex 0.2.0 on CRAN by reviewing the keys to reprexcellence. 🔑">
+    
+    
+    <link rel="canonical" href="../../../2018/06/reprexcellence/"/>
+    <link rel="icon" href="../../../favicon.ico">
+    <link rel="apple-touch-icon" href="../../../apple-touch-icon.png"/>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../css/monokai.css">
+    <link rel="stylesheet" href="../../../css/coarse.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="../../../fancybox/jquery.fancybox.css">
+    
+    <link rel="stylesheet" href="../../../css/tomorrow-night-bright.css">
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:regular,medium,bold' rel='stylesheet' type='text/css'>
+    <meta property="og:title" content="reprex-cellence 👑" />
+<meta property="og:description" content="Celebrating the release of reprex 0.2.0 on CRAN by reviewing the keys to reprexcellence. 🔑" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/2018/06/reprexcellence/" />
+<meta property="og:image" content="/banners/reprex_ggplot2_descent_height.gif" />
+<meta property="article:published_time" content="2018-06-24T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2018-06-24T00:00:00&#43;00:00"/>
+
+    
+    
+<meta itemprop="name" content="reprex-cellence 👑">
+<meta itemprop="description" content="Celebrating the release of reprex 0.2.0 on CRAN by reviewing the keys to reprexcellence. 🔑">
+
+
+<meta itemprop="datePublished" content="2018-06-24T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-06-24T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="554">
+
+  <meta itemprop="image" content="/banners/reprex_ggplot2_descent_height.gif">
+
+
+
+<meta itemprop="keywords" content="R,reprex,tidyverse," />
+
+    <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/banners/reprex_ggplot2_descent_height.gif"/>
+
+<meta name="twitter:title" content="reprex-cellence 👑"/>
+<meta name="twitter:description" content="Celebrating the release of reprex 0.2.0 on CRAN by reviewing the keys to reprexcellence. 🔑"/>
+<meta name="twitter:site" content="@acastillogill"/>
+
+    
+<link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Alegreya|Source+Sans+Pro" rel="stylesheet">
+
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+	<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="../../../" id="logo">
+          
+          <span class="site-title">Ángela Castillo-Gill</span>
+      </a>
+      <nav id="main-nav">
+          
+          
+          <a class="main-nav-link" href="../../../">Home</a>
+          
+          
+          
+          
+          
+          
+
+          
+          <a class="main-nav-link" href="../../../about/">About</a>
+          
+
+          
+          
+          
+          
+          <a class="main-nav-link" href="../../../tags/posts/">Posts</a>
+          
+          
+          
+          <a class="main-nav-link" href="../../../tags/notes/">Notes</a>
+          
+          
+      </nav>
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="../../../img/angela.jpeg"><i class="fas fa-caret-down"></i></a>
+          </div>
+        </nav>
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+              <input type="search" name="q" class="search-form-input" placeholder="Search">
+              <button type="submit" class="search-form-submit">
+              </button>
+              <input type="hidden" name="sitesearch" value="/" />
+         </form>
+        </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tbody>
+          <tr>
+          
+          
+          <td><a class="main-nav-link" href="../../../">Home</a></td>
+          
+          
+          
+          
+          
+          
+
+          
+          <td><a class="main-nav-link" href="../../../about/">About</a></td>
+          
+
+          
+          
+          
+          
+          <td><a class="main-nav-link" href="../../../tags/posts/">Posts</a></td>
+          
+          
+          
+          <td><a class="main-nav-link" href="../../../tags/notes/">Notes</a></td>
+          
+          
+          <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="Search">
+          <input type="hidden" name="sitesearch" value="/" />
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</header>
+
+   	
+   	<div class="outer">
+   	
+    	<aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      
+      <img id="avatar" src="../../../img/angela.jpeg">
+      
+      <h2 id="name">Ángela Castillo-Gill</h2>
+      <h3 id="title">Data Analyst training to be a Data Scientist</h3>
+      
+      
+          <a id="follow" href="https://twitter.com/acastillogill">
+              @dataandme
+          </a>
+      
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        36
+        <span>Posts</span>
+      </div>
+      <div class="article-info-block">
+        
+          29
+        
+        <span>
+            Tags
+        </span>
+      </div>
+    </div>
+    <div class="profile-block social-links">
+      <table>
+        <tr>
+          
+<td><a href="//github.com/acastillogill" target="_blank" title="GitHub"><i class="fab fa-github-square"></i></a></td>
+
+
+
+<td><a href="//twitter.com/acastillogill" target="_blank" title="Twitter"><i class="fab fa-twitter-square"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//medium.com/@@acastillogill" target="_blank" title="Medium"><i class="fab fa-medium"></i></a></td>
+
+
+
+
+
+
+
+
+
+<td><a href="//linkedin.com/in/acastillogill" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <td><a href="../../../index.xml" target="_blank" title="RSS"><i class="fas fa-rss-square"></i></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+
+    
+
+    <section id="main">
+    
+    <article id="page-undefined" class="article article-type-page" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <img src="../../../banners/reprex_ggplot2_descent_height.gif" class="article-banner">
+        
+
+        <header class="article-header">
+    <a href="../../../2018/06/reprexcellence/">
+    <h1 class="article-title" itemprop="name">
+        reprex-cellence 👑
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="far fa-calendar"></i>
+            <time datetime="2018-06-24 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-06-24</time>
+            &middot;
+            554
+            words
+            &middot;
+            3
+            minute read
+        </div>
+        
+        
+            
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fas fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="../../../tags/r">R</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/reprex">reprex</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/tidyverse">tidyverse</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            
+
+
+<p>In honour of the triumphant return of <a href="https://reprex.tidyverse.org/">reprex</a> to CRAN, let’s revisit what I refer to as <a href="https://twitter.com/jennybryan">Jenny Bryan</a>’s keys to <strong>reprex-cellence</strong>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> The three keys are as follows:</p>
+<ol style="list-style-type: decimal">
+<li>code that <strong>actually runs</strong><br />
+</li>
+<li>code that <strong>I don’t have to run</strong></li>
+<li>code that <strong>can be easily run</strong><a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></li>
+</ol>
+<div id="our-example" class="section level2">
+<h2>Our example</h2>
+<p>True to the <em>ésprit de reprex</em>, let’s look at a real world example to unpack why these attributes are so useful. The code shown comes from an issue filed by <a href="https://twitter.com/ClausWilke/">Claus Wilke</a> in the ggplot2 repo, <a href="https://github.com/tidyverse/ggplot2/issues/2687">Descent heights still not right</a>.</p>
+<p>To be clear, “code that actually runs” does not mean that your code needs to be error-free. In fact, a reprex is a great way to show exactly what’s leading to an error. It just so happens that, in this particular case, the “error” is in what’s <em>produced</em> by the code.</p>
+<p>Code that actually runs, and that can be easily run is, in essence, <em>self-contained</em> and <em>minimal</em>. Self-contained means that everything we need (packages, data) is inside of the reprex, and you really can’t get much more minimal than a ggplot2 chart that plots but a single point.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> Since the focus of the issue is descent height for the title text, that’s the only aspect that changes between the two charts (<em>13/10 minimal af</em>).</p>
+<pre class="r"><code>library(ggplot2)
+
+df &lt;- data.frame(x = 1)</code></pre>
+<pre class="r"><code>ggplot(df, aes(x, x)) + geom_point() +
+  ggtitle(&quot;gjpjQ&quot;) +
+  theme(plot.title = element_text(size = 10))</code></pre>
+<p><img src="../../../post/2018-06-24-reprexcellence_files/figure-html/text10-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(df, aes(x, x)) + geom_point() +
+  ggtitle(&quot;gjpjQ&quot;) +
+  theme(plot.title = element_text(size = 100))</code></pre>
+<p><img src="../../../post/2018-06-24-reprexcellence_files/figure-html/text100-1.png" width="672" /></p>
+<p>Because the example is suitably minimal, you don’t <em>need</em> to run the code to see the problem.</p>
+</div>
+<div id="mouse-free-reprexing" class="section level2">
+<h2>Mouse-free reprexing 🐭</h2>
+<p>If, like me, you’re lazy <em>and</em> run a lot of reprexes, you might want to consider making your life easier by using a keyboard shortcut for your reprexing needs. The shortcut can be anything you desire, I’m just demonstrating with the one I happen to use.</p>
+<div class="figure">
+<img src="https://i.imgur.com/OjzLPtE.gif" alt="Generate reprex of selection using Ctrl + R + P" />
+<p class="caption">Generate reprex of selection using <code>Ctrl</code> + <code>R</code> + <code>P</code></p>
+</div>
+<p>Adding a shortcut of your own is easy as can be. First, you’ll need to navigate to <code>Modify Keyboard Shortcuts...</code> in the RStudio IDE by way of the <code>Tools</code> menu.</p>
+<div class="figure">
+<img src="https://i.imgur.com/qhpEmxO.png" alt="RStudio Tools &gt;&gt; Modify Keyboard Shortcuts…" />
+<p class="caption">RStudio Tools &gt;&gt; Modify Keyboard Shortcuts…</p>
+</div>
+<p>Once you’re in the <code>Keyboard Shortcuts</code> interface, find the reprex add-in names. (You can do this by searching for “reprex.” 🔎) To add a shortcut, just click in the <strong>Shortcuts</strong> column of your chosen command (in this example, <code>reprex selection</code>) and start typing, click <strong>Apply</strong>, and you’re good to go.</p>
+<div class="figure">
+<img src="https://i.imgur.com/CxLKawd.gif" alt="Add keyboard shortcut for “Reprex selection”" />
+<p class="caption">Add keyboard shortcut for “Reprex selection”</p>
+</div>
+</div>
+<div id="further-resources" class="section level2">
+<h2>Further resources</h2>
+<p>There are lots of other excellent resources out there on how to up your reprex (or reproducible-example/troubleshooting) game:</p>
+<ul>
+<li><a href="http://reprex.tidyverse.org/">reprex</a> 📦<br />
+</li>
+<li><a href="https://github.com/tidyverse/reprex">reprex GitHub</a><br />
+</li>
+<li><a href="https://yihui.name/en/2017/09/the-minimal-reprex-paradox/">The Minimal Reproducible Example Paradox</a> by Yihui Xie<br />
+</li>
+<li><a href="https://www.tidyverse.org/help/#reprex">tidyverse help: reprex</a><br />
+</li>
+<li><a href="https://vimeo.com/208749032">rOpenSci community call</a><br />
+</li>
+<li><a href="http://www.njtierney.com/post/2017/01/11/magic-reprex/">Magic Reprex</a> by Nick Tierney<br />
+</li>
+<li><a href="https://www.jessemaegan.com/post/so-you-ve-been-asked-to-make-a-reprex.html">So you’ve been asked to make a reprex</a> by Jesse Maegan<br />
+</li>
+<li><a href="https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example-aka-mcve-minimal-complete-and-ver">StackOverflow: How to make a great R reproducible example? aka MCVE</a><br />
+</li>
+<li><a href="https://www.r-bloggers.com/three-tips-for-posting-good-questions-to-r-help-and-stack-overflow/">Three tips for posting good questions to R-help and Stack Overflow</a><br />
+</li>
+<li><a href="http://www.burns-stat.com/pages/Tutor/R_inferno.pdf">The R Inferno, Circle 9: Unhelpfully Seeking Help</a></li>
+</ul>
+<div id="reprex-the-package-the-point-by-jenny-bryan" class="section level3">
+<h3><a href="https://speakerdeck.com/jennybc/reprex-help-me-help-you">reprex: the package, the point</a> by Jenny Bryan</h3>
+<script async class="speakerdeck-embed" data-id="906ef0adea0a411f81412ffe9cc53713" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>I take full responsibility for this disaster of a portmanteau, but the actual important information is all Jenny’s.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>Jenny Bryan, 2017. “reprex: the package, the point.” <a href="https://speakerdeck.com/jennybc/reprex-help-me-help-you" class="uri">https://speakerdeck.com/jennybc/reprex-help-me-help-you</a><a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>As Jenny notes in the <a href="https://reprex.tidyverse.org/articles/reprex-dos-and-donts.html">Reprex do’s and don’ts</a>, <em>“Use the smallest, simplest, most built-in data possible. Think: <code>iris</code> or <code>mtcars</code>. Bore me.”</em><a href="#fnref3" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+
+        </div>
+        <footer class="article-footer">
+    <a data-url="/2018/06/reprexcellence/" data-id="c6993f10dd46b7cca5779897b39141c2" text="reprex-cellence 👑" via="acastillogill" class="article-share-link">
+        <i class="fas fa-share"></i>
+        Share
+    </a>
+    
+    <a href="../../../2018/06/reprexcellence/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                titleText = $this.attr('text'),
+                via = $this.attr('via'),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/share?url=' + encodedUrl + '&text=' + titleText + '&via=' + via + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest-p article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+
+    
+<nav id="article-nav">
+    
+    <a href="../../../2018/06/meta-sods18-a-call-to-curation/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Older
+      </strong>
+      <div class="article-nav-title">Hand-crafted curation: meta-#SoDS18</div>
+    </a>
+    
+
+    
+    <a href="../../../2018/07/palettes-archer-poster-edition/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Newer
+      </strong>
+      <div class="article-nav-title">🎨 Palettes - Archer poster edition</div>
+    </a>
+    
+</nav>
+
+
+</article>
+
+
+<section id="comments">
+    <div id="disqus_thread">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-acastillogill-com" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+</section>
+
+
+    </section>
+
+   	
+    	<aside id="sidebar">
+    
+
+    
+
+    
+
+    
+
+
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+    
+	</div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018
+      Ángela Castillo-Gill. Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="https://github.com/ppoffice">PPOffice</a>. Customised by <a href="https://github.com/ppoffice">Mara Averick</a>
+    </div>
+  </div>
+</footer>
+
+
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	if (window.sessionStorage) {
+		var GA_SESSION_STORAGE_KEY = 'ga:clientId';
+		ga('create', 'UA-128602464-1', {
+	    'storage': 'none',
+	    'clientId': sessionStorage.getItem(GA_SESSION_STORAGE_KEY)
+	   });
+	   ga(function(tracker) {
+	    sessionStorage.setItem(GA_SESSION_STORAGE_KEY, tracker.get('clientId'));
+	   });
+   }
+	
+	ga('send', 'pageview');
+}
+</script>
+
+<script src="../../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../../js/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+</body>
+</html>

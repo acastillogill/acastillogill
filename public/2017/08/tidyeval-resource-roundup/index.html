@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>tidyeval resource roundup &middot; Ángela Castillo-Gill</title>
+    <meta name="generator" content="Hugo 0.53" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Ángela Castillo-Gill">
+    
+      <meta name="description" content="Updated 📆 2018-05-10. After posting a link to Edwin Thoen’s &#34;Tidy evaluation most common actions,&#34; I was asked if there were other tidy eval resources I knew of. So, here are some of the tutorials  I’ve found and tweeted.">
+    
+    
+    <link rel="canonical" href="../../../2017/08/tidyeval-resource-roundup/"/>
+    <link rel="icon" href="../../../favicon.ico">
+    <link rel="apple-touch-icon" href="../../../apple-touch-icon.png"/>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../css/monokai.css">
+    <link rel="stylesheet" href="../../../css/coarse.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="../../../fancybox/jquery.fancybox.css">
+    
+    <link rel="stylesheet" href="../../../css/tomorrow-night-bright.css">
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:regular,medium,bold' rel='stylesheet' type='text/css'>
+    <meta property="og:title" content="tidyeval resource roundup" />
+<meta property="og:description" content="Updated 📆 2018-05-10. After posting a link to Edwin Thoen’s &#34;Tidy evaluation most common actions,&#34; I was asked if there were other tidy eval resources I knew of. So, here are some of the tutorials  I’ve found and tweeted." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/2017/08/tidyeval-resource-roundup/" />
+<meta property="og:image" content="/banners/tidyeval_combo.png" />
+<meta property="article:published_time" content="2017-08-26T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2018-10-06T00:00:00&#43;00:00"/>
+
+    
+    
+<meta itemprop="name" content="tidyeval resource roundup">
+<meta itemprop="description" content="Updated 📆 2018-05-10. After posting a link to Edwin Thoen’s &#34;Tidy evaluation most common actions,&#34; I was asked if there were other tidy eval resources I knew of. So, here are some of the tutorials  I’ve found and tweeted.">
+
+
+<meta itemprop="datePublished" content="2017-08-26T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-10-06T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="834">
+
+  <meta itemprop="image" content="/banners/tidyeval_combo.png">
+
+
+
+<meta itemprop="keywords" content="R,resources,tidyeval,tidyverse,roundups," />
+
+    <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/banners/tidyeval_combo.png"/>
+
+<meta name="twitter:title" content="tidyeval resource roundup"/>
+<meta name="twitter:description" content="Updated 📆 2018-05-10. After posting a link to Edwin Thoen’s &#34;Tidy evaluation most common actions,&#34; I was asked if there were other tidy eval resources I knew of. So, here are some of the tutorials  I’ve found and tweeted."/>
+<meta name="twitter:site" content="@acastillogill"/>
+
+    
+<link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Alegreya|Source+Sans+Pro" rel="stylesheet">
+
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+	<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="../../../" id="logo">
+          
+          <span class="site-title">Ángela Castillo-Gill</span>
+      </a>
+      <nav id="main-nav">
+          
+          
+          <a class="main-nav-link" href="../../../">Home</a>
+          
+          
+          
+          
+          
+          
+
+          
+          <a class="main-nav-link" href="../../../about/">About</a>
+          
+
+          
+          
+          
+          
+          <a class="main-nav-link" href="../../../tags/posts/">Posts</a>
+          
+          
+          
+          <a class="main-nav-link" href="../../../tags/notes/">Notes</a>
+          
+          
+      </nav>
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="../../../img/angela.jpeg"><i class="fas fa-caret-down"></i></a>
+          </div>
+        </nav>
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+              <input type="search" name="q" class="search-form-input" placeholder="Search">
+              <button type="submit" class="search-form-submit">
+              </button>
+              <input type="hidden" name="sitesearch" value="/" />
+         </form>
+        </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tbody>
+          <tr>
+          
+          
+          <td><a class="main-nav-link" href="../../../">Home</a></td>
+          
+          
+          
+          
+          
+          
+
+          
+          <td><a class="main-nav-link" href="../../../about/">About</a></td>
+          
+
+          
+          
+          
+          
+          <td><a class="main-nav-link" href="../../../tags/posts/">Posts</a></td>
+          
+          
+          
+          <td><a class="main-nav-link" href="../../../tags/notes/">Notes</a></td>
+          
+          
+          <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="Search">
+          <input type="hidden" name="sitesearch" value="/" />
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</header>
+
+   	
+   	<div class="outer">
+   	
+    	<aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      
+      <img id="avatar" src="../../../img/angela.jpeg">
+      
+      <h2 id="name">Ángela Castillo-Gill</h2>
+      <h3 id="title">Data Analyst training to be a Data Scientist</h3>
+      
+      
+          <a id="follow" href="https://twitter.com/acastillogill">
+              @dataandme
+          </a>
+      
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        36
+        <span>Posts</span>
+      </div>
+      <div class="article-info-block">
+        
+          29
+        
+        <span>
+            Tags
+        </span>
+      </div>
+    </div>
+    <div class="profile-block social-links">
+      <table>
+        <tr>
+          
+<td><a href="//github.com/acastillogill" target="_blank" title="GitHub"><i class="fab fa-github-square"></i></a></td>
+
+
+
+<td><a href="//twitter.com/acastillogill" target="_blank" title="Twitter"><i class="fab fa-twitter-square"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//medium.com/@@acastillogill" target="_blank" title="Medium"><i class="fab fa-medium"></i></a></td>
+
+
+
+
+
+
+
+
+
+<td><a href="//linkedin.com/in/acastillogill" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <td><a href="../../../index.xml" target="_blank" title="RSS"><i class="fas fa-rss-square"></i></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+
+    
+
+    <section id="main">
+    
+    <article id="page-undefined" class="article article-type-page" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <img src="../../../banners/tidyeval_combo.png" class="article-banner">
+        
+
+        <header class="article-header">
+    <a href="../../../2017/08/tidyeval-resource-roundup/">
+    <h1 class="article-title" itemprop="name">
+        tidyeval resource roundup
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="far fa-calendar"></i>
+            <time datetime="2017-08-26 00:00:00 &#43;0000 UTC" itemprop="datePublished">2017-08-26</time>
+            &middot;
+            834
+            words
+            &middot;
+            4
+            minute read
+        </div>
+        
+        
+            
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fas fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="../../../tags/r">R</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/resources">resources</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/tidyeval">tidyeval</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/tidyverse">tidyverse</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/roundups">roundups</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            
+
+
+<p><em>Updated: 2018-10-06</em></p>
+<p>Though, naturally, the <a href="http://hadley.nz/">Honorable Professor Doctor Sir Lord General Hadley Wickham</a>’s <a href="http://dplyr.tidyverse.org/articles/programming.html"><strong>Programming with dplyr</strong></a> article is the <em>ne plus ultra</em> of getting oneself aquainted with the latest and greatest in <a href="http://dplyr.tidyverse.org/articles/programming.html#programming-recipes">tidyeval programming recipes</a>, <a href="http://dplyr.tidyverse.org/articles/programming.html#quoting">quoting</a>, and <a href="http://dplyr.tidyverse.org/articles/programming.html#quasiquotation">quasiquotation</a>; there <em>are</em> some other resources out there.</p>
+<p>After posting a link to <a href="https://edwinth.github.io">Edwin Thoen</a>’s ⭐️ <a href="https://edwinth.github.io/blog/dplyr-recipes/"><strong>Tidy evaluation, most common actions</strong></a>, I was asked if there were other <code>tidyeval</code> tutorials I knew of. And so, here are some resources I’ve found and tweeted.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">Awesome 💖 tidyeval helpers by <a href="https://twitter.com/edwin_thoen?ref_src=twsrc%5Etfw">@edwin_thoen</a>: &quot;Tidy evaluation, most common actions&quot; <a href="https://t.co/Ad64qGzBxe">https://t.co/Ad64qGzBxe</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/tidyeval?src=hash&amp;ref_src=twsrc%5Etfw">#tidyeval</a> <a href="https://twitter.com/hashtag/tidyverse?src=hash&amp;ref_src=twsrc%5Etfw">#tidyverse</a> <a href="https://t.co/QMfWTuzRa3">pic.twitter.com/QMfWTuzRa3</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/901429535266267136?ref_src=twsrc%5Etfw">August 26, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<div id="tidy-evaluation-in-5-minutes-by-hadley-wickham" class="section level3">
+<h3><a href="https://www.youtube.com/watch?v=nERXS3ssntw">Tidy evaluation in 5 minutes</a> by Hadley Wickham</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">⏲got 5 mins? Let <a href="https://twitter.com/hadleywickham?ref_src=twsrc%5Etfw">@hadleywickham</a> teach you: &quot;Tidy evaluation in 5 mins&quot; <a href="https://t.co/EzaL2B2kYz">https://t.co/EzaL2B2kYz</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/tidyeval?src=hash&amp;ref_src=twsrc%5Etfw">#tidyeval</a> <a href="https://twitter.com/hashtag/tidyverse?src=hash&amp;ref_src=twsrc%5Etfw">#tidyverse</a> 🌴</p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/963175175658397701?ref_src=twsrc%5Etfw">February 12, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="quotes-quotation-and-quasiquotation-by-charlotte-wickham" class="section level3">
+<h3><a href="https://github.com/cwickham/quotation">Quotes, Quotation and Quasiquotation</a> by Charlotte Wickham</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">🎉 slides, code, and annotated output!<br>“Quotes, Quotation and Quasiquotation” 🗣 <a href="https://twitter.com/CVWickham?ref_src=twsrc%5Etfw">@CVWickham</a><a href="https://t.co/3jkcfJ1Ied">https://t.co/3jkcfJ1Ied</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/tidyverse?src=hash&amp;ref_src=twsrc%5Etfw">#tidyverse</a> <a href="https://twitter.com/hashtag/tidyeval?src=hash&amp;ref_src=twsrc%5Etfw">#tidyeval</a> <a href="https://t.co/C2sMeZlbNy">pic.twitter.com/C2sMeZlbNy</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/994563225583747074?ref_src=twsrc%5Etfw">May 10, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="lesser-known-dplyr-0.7-tricks-by-bruno-rodrigues" class="section level3">
+<h3><a href="http://www.brodrigues.co/blog/2017-06-19-dplyr-0-70-tutorial/">Lesser known <code>dplyr</code> 0.7* tricks</a> by Bruno Rodrigues</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">Helpful stuff (plus, tidyeval is all the rage)! &quot;Lesser known dplyr 0.7* tricks&quot; by <a href="https://twitter.com/brodriguesco?ref_src=twsrc%5Etfw">@brodriguesco</a> <a href="https://t.co/iHdmEzHHLB">https://t.co/iHdmEzHHLB</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/tidyverse?src=hash&amp;ref_src=twsrc%5Etfw">#tidyverse</a> <a href="https://t.co/oTTzhP0yiR">pic.twitter.com/oTTzhP0yiR</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/881860624808128512?ref_src=twsrc%5Etfw">July 3, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="why-i-find-tidyeval-useful-by-bruno-rodrigues" class="section level3">
+<h3><a href="http://www.brodrigues.co/blog/2017-08-27-why_tidyeval/">Why I find tidyeval useful</a> by Bruno Rodrigues</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">👉 the *when* and *why* to tidyeval&#39;s how: &quot;Why I find tidyeval useful&quot; by <a href="https://twitter.com/brodriguesco?ref_src=twsrc%5Etfw">@brodriguesco</a> <a href="https://t.co/dIKoQ9TKum">https://t.co/dIKoQ9TKum</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/tideval?src=hash&amp;ref_src=twsrc%5Etfw">#tideval</a> <a href="https://t.co/JK51w0sDZw">pic.twitter.com/JK51w0sDZw</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/902278898968170496?ref_src=twsrc%5Etfw">August 28, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="excluding-rows-by-romain-francois" class="section level3">
+<h3><a href="https://romain.rbind.io/blog/2017/07/01/excluding-rows/?utm_content=bufferc1336&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer">Excluding Rows</a> by Romain François</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">Getting to know tidyeval, quos, &amp; !!!: &quot;Excluding rows&quot; by <a href="https://twitter.com/romain_francois?ref_src=twsrc%5Etfw">@romain_francois</a> <a href="https://t.co/26c7P1oU7t">https://t.co/26c7P1oU7t</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://t.co/oWp7xheGkj">pic.twitter.com/oWp7xheGkj</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/881584765073227780?ref_src=twsrc%5Etfw">July 2, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="set_na_where-a-nonstandard-evaluation-use-case-by-tristan-mahr" class="section level3">
+<h3><a href="https://tjmahr.github.io/set-na-where-nonstandard-evaluation-use-case/?utm_content=buffer2d7a9&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer"><code>set_na_where()</code>: a nonstandard evaluation use case</a> by Tristan Mahr</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">Casting spells💫 w/ tidyeval: &quot;set_na_where(): a nonstandard evaluation use case&quot; by <a href="https://twitter.com/tjmahr?ref_src=twsrc%5Etfw">@tjmahr</a> <a href="https://t.co/LUoVMl1De4">https://t.co/LUoVMl1De4</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/tidyeval?src=hash&amp;ref_src=twsrc%5Etfw">#tidyeval</a> <a href="https://twitter.com/hashtag/NSE?src=hash&amp;ref_src=twsrc%5Etfw">#NSE</a> <a href="https://t.co/cIyi7qy5JG">pic.twitter.com/cIyi7qy5JG</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/899341779962605568?ref_src=twsrc%5Etfw">August 20, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="down-the-rabbit-hole-with-tidy-eval-part-1-by-colin-fay" class="section level3">
+<h3><a href="http://colinfay.me/tidyeval-1/">Down the rabbit hole with tidy eval — Part 1</a> by Colin Fay</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">Great dive into <a href="https://twitter.com/hashtag/tidyeval?src=hash&amp;ref_src=twsrc%5Etfw">#tidyeval</a> 🐰🕳: &quot;Down the rabbit hole with tidy eval — Pt 1&quot; by <a href="https://twitter.com/_ColinFay?ref_src=twsrc%5Etfw">@_ColinFay</a> <a href="https://t.co/jXYVOQxYjV">https://t.co/jXYVOQxYjV</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/tidyverse?src=hash&amp;ref_src=twsrc%5Etfw">#tidyverse</a> <a href="https://t.co/UoH555Ux1c">pic.twitter.com/UoH555Ux1c</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/902214722572996612?ref_src=twsrc%5Etfw">August 28, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="non-standard-evaluation-how-tidy-eval-builds-on-base-r-by-edwin-thoen" class="section level3">
+<h3><a href="https://edwinth.github.io/blog/nse/">Non-standard evaluation, how tidy eval builds on base R</a> by Edwin Thoen</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">🙏 <a href="https://twitter.com/edwin_thoen?ref_src=twsrc%5Etfw">@edwin_thoen</a> 🌟 tour through base vs. tidyeval NSE: &quot;Non-standard evaluation, how tidy eval builds on base <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a>&quot; <a href="https://t.co/H1uSBUrskI">https://t.co/H1uSBUrskI</a> <a href="https://t.co/2HErI7BgeK">pic.twitter.com/2HErI7BgeK</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/906925770538455040?ref_src=twsrc%5Etfw">September 10, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="tidyeval-meets-pdf-table-hell-by-luis-verde-arregoitia" class="section level3">
+<h3><a href="https://luisdva.github.io/rstats/Tidyeval-pdf-hell/">Tidyeval meets PDF table hell</a> by Luis Verde Arregoitia</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">👿 🤺 this is awesome:<br>&quot;Tidyeval meets PDF table hell&quot; by <a href="https://twitter.com/LuisDVerde?ref_src=twsrc%5Etfw">@LuisDVerde</a> <a href="https://t.co/kuy7cLSdcf">https://t.co/kuy7cLSdcf</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/tidyeval?src=hash&amp;ref_src=twsrc%5Etfw">#tidyeval</a> <a href="https://t.co/2Dzv7lTuzn">pic.twitter.com/2Dzv7lTuzn</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/983164881020080129?ref_src=twsrc%5Etfw">April 9, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="my-first-steps-into-the-world-of-tidy-eval-by-omayma" class="section level3">
+<h3><a href="www.onceupondata.com/2017/08/12/my-first-steps-into-the-world-of-tidyeval/">My First Steps into The World of Tidy Eval</a> by Omayma</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">🙌 great code-through: <br>&quot;My First Steps into The World of Tidy Eval&quot; by <a href="https://twitter.com/OmaymaS_?ref_src=twsrc%5Etfw">@OmaymaS_</a><a href="https://t.co/K3oQnXg0dL">https://t.co/K3oQnXg0dL</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/tidyeval?src=hash&amp;ref_src=twsrc%5Etfw">#tidyeval</a> <a href="https://twitter.com/hashtag/tidyverse?src=hash&amp;ref_src=twsrc%5Etfw">#tidyverse</a> <a href="https://t.co/0aHoPivwvK">pic.twitter.com/0aHoPivwvK</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/909126265923391488?ref_src=twsrc%5Etfw">September 16, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="dplyr-0.7.0-tidyeval-programming-with-dplyr-by-marianna-foos" class="section level3">
+<h3><a href="https://github.com/rladies/meetup-presentations_boston/blob/master/Boston_20170817_tidyeval_ppt.pdf"><code>dplyr 0.7.0</code>: tidyeval / programming with dplyr</a> by Marianna Foos</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="in" dir="ltr">👍 intro deck! &quot;dplyr 0.7.0: tidyeval / programming w/ dplyr&quot; by <a href="https://twitter.com/MariannaFoos?ref_src=twsrc%5Etfw">@MariannaFoos</a> <a href="https://t.co/qZ4sNYjCJ0">https://t.co/qZ4sNYjCJ0</a> via <a href="https://twitter.com/RLadiesBoston?ref_src=twsrc%5Etfw">@RLadiesBoston</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/tidyverse?src=hash&amp;ref_src=twsrc%5Etfw">#tidyverse</a> <a href="https://t.co/nMXtcqgAU0">pic.twitter.com/nMXtcqgAU0</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/912025352666583040?ref_src=twsrc%5Etfw">September 24, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="do-it-with-quasi-quotation-by-jameel-alsalam" class="section level3">
+<h3><a href="http://blog.jalsalam.com/posts/2017/quasi-quotation-applications/">Do it With Quasi-Quotation</a> by Jameel Alsalam</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">🖤ing this tidy eval series:<br>&quot;Do it With Quasi-Quotation&quot; by <a href="https://twitter.com/jalsalam?ref_src=twsrc%5Etfw">@jalsalam</a> <a href="https://t.co/diNQC6QcY8">https://t.co/diNQC6QcY8</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/tidyeval?src=hash&amp;ref_src=twsrc%5Etfw">#tidyeval</a> <a href="https://t.co/F1Evs39wQ6">pic.twitter.com/F1Evs39wQ6</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/935344760029671424?ref_src=twsrc%5Etfw">November 28, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="theory-free-tidyeval-by-john-mackintosh" class="section level3">
+<h3><a href="https://www.johnmackintosh.com/2018-02-19-theory-free-tidyeval/">Theory free tidyeval</a> by John MacKintosh</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">Tidy eval– no krakens 🐙:<br>&quot;Theory free tidyeval: Getting our feet wet with dplyr programming&quot; ✍️<a href="https://twitter.com/HighlandDataSci?ref_src=twsrc%5Etfw">@HighlandDataSci</a> <a href="https://t.co/21VQ8WDchQ">https://t.co/21VQ8WDchQ</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/tidyverse?src=hash&amp;ref_src=twsrc%5Etfw">#tidyverse</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/966799020281692161?ref_src=twsrc%5Etfw">February 22, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="how-do-i-make-my-own-dplyr-style-functions-by-nic-crane" class="section level3">
+<h3><a href="https://thisisnic.github.io/2018/04/16/how-do-i-make-my-own-dplyr-style-functions/">How do I make my own dplyr-style functions?</a> by Nic Crane</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">💖 Loving <a href="https://twitter.com/nic_crane?ref_src=twsrc%5Etfw">@nic_crane</a>&#39;s tidy-eval series!<br>📝 &quot;How do I make my own dplyr-style functions?&quot; <a href="https://t.co/4cdg7MEj2B">https://t.co/4cdg7MEj2B</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/tidyeval?src=hash&amp;ref_src=twsrc%5Etfw">#tidyeval</a> <a href="https://twitter.com/hashtag/tidyverse?src=hash&amp;ref_src=twsrc%5Etfw">#tidyverse</a> <a href="https://t.co/smDAnvV2AL">pic.twitter.com/smDAnvV2AL</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/985952471209127937?ref_src=twsrc%5Etfw">April 16, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="making-sense-of-dplyr-0.6-by-jason-becker" class="section level3">
+<h3><a href="http://www.json.blog/2017/05/making-sense-of-dplyr-0.6/?utm_content=bufferb2c45&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer">Making Sense of <code>dplyr</code> 0.6</a> by Jason Becker</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">Of tidyeval and ! ! ! &quot;Making Sense of dplyr 0.6&quot; by <a href="https://twitter.com/jsonbecker?ref_src=twsrc%5Etfw">@jsonbecker</a> <a href="https://t.co/f4VIeOJ2Qd">https://t.co/f4VIeOJ2Qd</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://t.co/7MZO0JSeHa">pic.twitter.com/7MZO0JSeHa</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/865975935245451264?ref_src=twsrc%5Etfw">May 20, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="gentle-non-standard-evaluation-in-dplyr-0.6-by-alex-hayes" class="section level3">
+<h3><a href="https://alexpghayes.github.io/2017/gentle-non-standard-evaluation-in-dplyr-0-6/?utm_content=buffer3fc76&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer">gentle non-standard evaluation in <code>dplyr</code> 0.6</a> by Alex Hayes</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">Quick intro w/ 👍 examples: “Gentle Non-Standard Evaluation in dplyr 0.6” by  <a href="https://twitter.com/alexpghayes?ref_src=twsrc%5Etfw">@alexpghayes</a> <a href="https://t.co/2fe7TqSjLM">https://t.co/2fe7TqSjLM</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/dplyr?src=hash&amp;ref_src=twsrc%5Etfw">#dplyr</a> <a href="https://t.co/9DKoUatKVg">pic.twitter.com/9DKoUatKVg</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/866364480212611072?ref_src=twsrc%5Etfw">May 21, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="filter-with-context-by-romain-francois" class="section level3">
+<h3><a href="https://purrple.cat/blog/2017/06/28/filter-with-context/">filter with context</a> by Romain François</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">😮How&#39;d I missed this tidy eval gem?!<br>&quot;filter with context&quot; ✏️ <a href="https://twitter.com/romain_francois?ref_src=twsrc%5Etfw">@romain_francois</a> <a href="https://t.co/tgWw9Fn8QL">https://t.co/tgWw9Fn8QL</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/tidyeval?src=hash&amp;ref_src=twsrc%5Etfw">#tidyeval</a> <a href="https://twitter.com/hashtag/tidyverse?src=hash&amp;ref_src=twsrc%5Etfw">#tidyverse</a> <a href="https://t.co/b957n234kz">pic.twitter.com/b957n234kz</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/968973417197309954?ref_src=twsrc%5Etfw">February 28, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="tidy-evaluation-by-lionel-henry-and-hadley-wickham" class="section level2">
+<h2>📽 <a href="https://schd.ws/hosted_files/user2017/43/tidyeval-user.pdf">Tidy Evaluation</a> by Lionel Henry and Hadley Wickham</h2>
+<p><em>n.b. these are likely not as up-to-date as <a href="http://dplyr.tidyverse.org/articles/programming.html"><strong>Programming with dplyr</strong></a>, but I like the visuals— so, they’re here</em></p>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">📽s from UseR that I somehow missed entirely…<br>&quot;Tidy Evaluation&quot; by <a href="https://twitter.com/_lionelhenry?ref_src=twsrc%5Etfw">@_lionelhenry</a> &amp; <a href="https://twitter.com/hadleywickham?ref_src=twsrc%5Etfw">@hadleywickham</a> <a href="https://t.co/aGbkrqwYAi">https://t.co/aGbkrqwYAi</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/tidyeval?src=hash&amp;ref_src=twsrc%5Etfw">#tidyeval</a> <a href="https://t.co/01qUlPH6iI">pic.twitter.com/01qUlPH6iI</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/919311107357069316?ref_src=twsrc%5Etfw">October 14, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<div id="tidy-evaluation-programming-with-ggplot2-and-dplyr-by-hadley-wickham" class="section level3">
+<h3><a href="https://speakerdeck.com/hadley/tidy-evaluation-programming-with-ggplot2-and-dplyr">Tidy evaluation: programming with ggplot2 and dplyr</a> by Hadley Wickham</h3>
+<script async class="speakerdeck-embed" data-id="1463da3d72894309a26ec21aef5aa7c4" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+</div>
+<div id="overscoping-and-eval-by-thomas-mailund" class="section level3">
+<h3><a href="https://mailund.github.io/r-programmer-blog/2018/09/22/overscoping-and-eval/">Overscoping and eval</a> by Thomas Mailund</h3>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">⛓ a deep dive into NSE and chained env&#39;ts…<br>&quot;Overscoping and eval&quot; by <a href="https://twitter.com/ThomasMailund?ref_src=twsrc%5Etfw">@ThomasMailund</a><a href="https://t.co/9o06yyeoyR">https://t.co/9o06yyeoyR</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://t.co/SvzV9HoJos">pic.twitter.com/SvzV9HoJos</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/1044046018210418689?ref_src=twsrc%5Etfw">September 24, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div id="ta-da" class="section level3">
+<h3>Ta-da 🎉</h3>
+<p>If you’ve written and/or found more examples that you think would be helpful to have in here, by all means give me a shout! Actually, a tweet 🐦 (<a href="https://twitter.com/dataandme">@dataandme</a>) would probably be best…which, I know, is totally tragic.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Yes, I’m just leaving them as tweets, because they already have author names, and screenshots and…y’know what? If you don’t want them in tweet form, go write your own post! (I’m kidding, of course 😉)<a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+
+        </div>
+        <footer class="article-footer">
+    <a data-url="/2017/08/tidyeval-resource-roundup/" data-id="4006aecb40289c469215aa9fcef4e5e6" text="tidyeval resource roundup" via="acastillogill" class="article-share-link">
+        <i class="fas fa-share"></i>
+        Share
+    </a>
+    
+    <a href="../../../2017/08/tidyeval-resource-roundup/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                titleText = $this.attr('text'),
+                via = $this.attr('via'),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/share?url=' + encodedUrl + '&text=' + titleText + '&via=' + via + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest-p article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+
+    
+<nav id="article-nav">
+    
+    <a href="../../../2017/08/ropensci-package-review/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Older
+      </strong>
+      <div class="article-nav-title">Onboarding with rOpenSci: Tandem tales of package review</div>
+    </a>
+    
+
+    
+    <a href="../../../2017/09/r-workflow-fun/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Newer
+      </strong>
+      <div class="article-nav-title">R workflow fun</div>
+    </a>
+    
+</nav>
+
+
+</article>
+
+
+<section id="comments">
+    <div id="disqus_thread">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-acastillogill-com" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+</section>
+
+
+    </section>
+
+   	
+    	<aside id="sidebar">
+    
+
+    
+
+    
+
+    
+
+
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+    
+	</div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018
+      Ángela Castillo-Gill. Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="https://github.com/ppoffice">PPOffice</a>. Customised by <a href="https://github.com/ppoffice">Mara Averick</a>
+    </div>
+  </div>
+</footer>
+
+
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	if (window.sessionStorage) {
+		var GA_SESSION_STORAGE_KEY = 'ga:clientId';
+		ga('create', 'UA-128602464-1', {
+	    'storage': 'none',
+	    'clientId': sessionStorage.getItem(GA_SESSION_STORAGE_KEY)
+	   });
+	   ga(function(tracker) {
+	    sessionStorage.setItem(GA_SESSION_STORAGE_KEY, tracker.get('clientId'));
+	   });
+   }
+	
+	ga('send', 'pageview');
+}
+</script>
+
+<script src="../../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../../js/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+</body>
+</html>

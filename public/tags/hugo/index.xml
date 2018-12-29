@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on Ángela Castillo-Gill</title>
+    <link>/tags/hugo/</link>
+    <description>Recent content in Hugo on Ángela Castillo-Gill</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 20 Oct 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Updating your version of Hugo for blogdown on Netlify</title>
+      <link>/2017/10/updating-blogdown-hugo-version-netlify/</link>
+      <pubDate>Fri, 20 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/10/updating-blogdown-hugo-version-netlify/</guid>
+      <description>Fair warning ⚠️ All of the information that follows is indeed in blogdown: Creating Websites with R Markdown by Yihui Xie, Amber Thomas, and Alison Presmanes Hill. But, since this is the second time I got a bit lost in this process, I’m writing it up for my own (and anyone else’s incidental) edification.1
+Plus, just look at all the failed deploys that happen when I mess it up…it renders my Netlify deploy panel hideous!</description>
+    </item>
+    
+  </channel>
+</rss>

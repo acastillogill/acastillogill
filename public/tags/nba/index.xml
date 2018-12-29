@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nba on Ángela Castillo-Gill</title>
+    <link>/tags/nba/</link>
+    <description>Recent content in Nba on Ángela Castillo-Gill</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 07 Apr 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/nba/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>NBA Horserace 🏇</title>
+      <link>/2018/04/nba-horserace/</link>
+      <pubDate>Sat, 07 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/04/nba-horserace/</guid>
+      <description>Inspired by Laura Ellis (aka @LittleMissData’s) post, Data Storytelling, I decided to take Flourish for a spin to look at NBA-team win percentages over the course of the season thus far. 🏀
+As advertised, Flourish is a tool for “powerful, beautiful, easy data visualisation” that lets you “quickly turn your spreadsheets into stunning online charts, maps and interactive stories.” Clearly someone on the Flourish team and I are on the same wavelength when it comes to carnival games and data visualization, since the animated rank or relative-score chart that caught my eye turned out to be named the Horserace template.</description>
+    </item>
+    
+  </channel>
+</rss>

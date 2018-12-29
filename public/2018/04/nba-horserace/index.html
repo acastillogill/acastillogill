@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>NBA Horserace 🏇 &middot; Ángela Castillo-Gill</title>
+    <meta name="generator" content="Hugo 0.53" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Ángela Castillo-Gill">
+    
+      <meta name="description" content="🏀 NBA teams ranked by win percentage over the course of the 2017-18 season/an excuse to tinker with Flourish visualizations.">
+    
+    
+    <link rel="canonical" href="../../../2018/04/nba-horserace/"/>
+    <link rel="icon" href="../../../favicon.ico">
+    <link rel="apple-touch-icon" href="../../../apple-touch-icon.png"/>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../css/monokai.css">
+    <link rel="stylesheet" href="../../../css/coarse.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="../../../fancybox/jquery.fancybox.css">
+    
+    <link rel="stylesheet" href="../../../css/tomorrow-night-bright.css">
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:regular,medium,bold' rel='stylesheet' type='text/css'>
+    <meta property="og:title" content="NBA Horserace 🏇" />
+<meta property="og:description" content="🏀 NBA teams ranked by win percentage over the course of the 2017-18 season/an excuse to tinker with Flourish visualizations." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/2018/04/nba-horserace/" />
+<meta property="og:image" content="/banners/nba_horserace_w_title.png" />
+<meta property="article:published_time" content="2018-04-07T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2018-04-09T00:00:00&#43;00:00"/>
+
+    
+    
+<meta itemprop="name" content="NBA Horserace 🏇">
+<meta itemprop="description" content="🏀 NBA teams ranked by win percentage over the course of the 2017-18 season/an excuse to tinker with Flourish visualizations.">
+
+
+<meta itemprop="datePublished" content="2018-04-07T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-04-09T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="430">
+
+  <meta itemprop="image" content="/banners/nba_horserace_w_title.png">
+
+
+
+<meta itemprop="keywords" content="data viz,NBA," />
+
+    <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/banners/nba_horserace_w_title.png"/>
+
+<meta name="twitter:title" content="NBA Horserace 🏇"/>
+<meta name="twitter:description" content="🏀 NBA teams ranked by win percentage over the course of the 2017-18 season/an excuse to tinker with Flourish visualizations."/>
+<meta name="twitter:site" content="@acastillogill"/>
+
+    
+<link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Alegreya|Source+Sans+Pro" rel="stylesheet">
+
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+	<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="../../../" id="logo">
+          
+          <span class="site-title">Ángela Castillo-Gill</span>
+      </a>
+      <nav id="main-nav">
+          
+          
+          <a class="main-nav-link" href="../../../">Home</a>
+          
+          
+          
+          
+          
+          
+
+          
+          <a class="main-nav-link" href="../../../about/">About</a>
+          
+
+          
+          
+          
+          
+          <a class="main-nav-link" href="../../../tags/posts/">Posts</a>
+          
+          
+          
+          <a class="main-nav-link" href="../../../tags/notes/">Notes</a>
+          
+          
+      </nav>
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="../../../img/angela.jpeg"><i class="fas fa-caret-down"></i></a>
+          </div>
+        </nav>
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+              <input type="search" name="q" class="search-form-input" placeholder="Search">
+              <button type="submit" class="search-form-submit">
+              </button>
+              <input type="hidden" name="sitesearch" value="/" />
+         </form>
+        </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tbody>
+          <tr>
+          
+          
+          <td><a class="main-nav-link" href="../../../">Home</a></td>
+          
+          
+          
+          
+          
+          
+
+          
+          <td><a class="main-nav-link" href="../../../about/">About</a></td>
+          
+
+          
+          
+          
+          
+          <td><a class="main-nav-link" href="../../../tags/posts/">Posts</a></td>
+          
+          
+          
+          <td><a class="main-nav-link" href="../../../tags/notes/">Notes</a></td>
+          
+          
+          <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="Search">
+          <input type="hidden" name="sitesearch" value="/" />
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</header>
+
+   	
+   	<div class="outer">
+   	
+    	<aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      
+      <img id="avatar" src="../../../img/angela.jpeg">
+      
+      <h2 id="name">Ángela Castillo-Gill</h2>
+      <h3 id="title">Data Analyst training to be a Data Scientist</h3>
+      
+      
+          <a id="follow" href="https://twitter.com/acastillogill">
+              @dataandme
+          </a>
+      
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        36
+        <span>Posts</span>
+      </div>
+      <div class="article-info-block">
+        
+          29
+        
+        <span>
+            Tags
+        </span>
+      </div>
+    </div>
+    <div class="profile-block social-links">
+      <table>
+        <tr>
+          
+<td><a href="//github.com/acastillogill" target="_blank" title="GitHub"><i class="fab fa-github-square"></i></a></td>
+
+
+
+<td><a href="//twitter.com/acastillogill" target="_blank" title="Twitter"><i class="fab fa-twitter-square"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//medium.com/@@acastillogill" target="_blank" title="Medium"><i class="fab fa-medium"></i></a></td>
+
+
+
+
+
+
+
+
+
+<td><a href="//linkedin.com/in/acastillogill" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <td><a href="../../../index.xml" target="_blank" title="RSS"><i class="fas fa-rss-square"></i></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+
+    
+
+    <section id="main">
+    
+    <article id="page-undefined" class="article article-type-page" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <img src="../../../banners/nba_horserace_w_title.png" class="article-banner">
+        
+
+        <header class="article-header">
+    <a href="../../../2018/04/nba-horserace/">
+    <h1 class="article-title" itemprop="name">
+        NBA Horserace 🏇
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="far fa-calendar"></i>
+            <time datetime="2018-04-07 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-04-07</time>
+            &middot;
+            430
+            words
+            &middot;
+            3
+            minute read
+        </div>
+        
+        
+            
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fas fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="../../../tags/data-viz">data viz</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/nba">NBA</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            
+
+
+<p>Inspired by Laura Ellis (aka <a href="https://twitter.com/LittleMissData">@LittleMissData</a>’s) post, <a href="https://www.littlemissdata.com/blog/data-storytelling"><strong>Data Storytelling</strong></a>, I decided to take <a href="https://flourish.studio/"><strong>Flourish</strong></a> for a spin to look at NBA-team win percentages over the course of the season thus far. 🏀</p>
+<p>As advertised, Flourish is a tool for <em>“powerful, beautiful, easy data visualisation”</em> that lets you <em>“quickly turn your spreadsheets into stunning online charts, maps and interactive stories.”</em> Clearly someone on the Flourish team and I are on the same wavelength when it comes to carnival games and data visualization, since the animated rank or relative-score chart that caught my eye turned out to be named the <a href="https://public.flourish.studio/story/959/">Horserace template</a>.</p>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr"><a href="https://twitter.com/lenkiefer?ref_src=twsrc%5Etfw">@lenkiefer</a> there was a chart animation you did once that I said reminded me of the carnival horse-race game, but I can&#39;t remember which post it was! 🏇 <a href="https://t.co/XfsiYNuLwd">https://t.co/XfsiYNuLwd</a> <a href="https://t.co/ZRGu6iwhFF">pic.twitter.com/ZRGu6iwhFF</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/952159667668553728?ref_src=twsrc%5Etfw">January 13, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>The hardest part (which wasn’t very hard at all) was un-tidying my data to fit their spreadsheet model, with the x-axis variable (number of games played, in my example) as column headers.</p>
+<p><img src="https://i.imgur.com/nly4x9Y.png" /></p>
+<p>After that, there were very few design decisions to be made, which (I think) is part of the allure of such a tool. Going with the <strong>Ranks</strong> (as opposed to <strong>Scores</strong>) view as default was an easy decision, since the actual win-percentage values tend to be pretty close, making things look quite cluttered.</p>
+<p><img src="https://i.imgur.com/JJeAos5.png" /></p>
+<p>The limited “possibility space”<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> makes for a “beginner-friendly” visualization tool. Of course, there’s a trade-off — you can’t add another layer of labels or annotation with a <code>+</code> sign. Actually, the title in the banner for this post is “<em>after-market</em>” (read: I added it to the image outside of Flourish).</p>
+<p>Anyhow, you can see the chart in the embed below, though, if you happen to be on your computer I recommend viewing it <a href="https://public.flourish.studio/visualisation/30168/">here 🔗</a>, since my blog template is too narrow a view-port for a chart of this nature (IMHO).</p>
+<div class="flourish-embed" data-src="visualisation/30168">
+
+</div>
+<script src="https://public.flourish.studio/resources/embed.js"></script>
+<p>Here it is as a GIF, just in case — umm, I can’t actually think of a use case, but I like GIFs. 🎦</p>
+<p><img src="https://i.imgur.com/90uAqYD.gif" /></p>
+<div id="bonus-chart-tankathon" class="section level3">
+<h3>Bonus chart: Tankathon 📉</h3>
+<div class="flourish-embed" data-src="visualisation/34024">
+
+</div>
+<script src="https://public.flourish.studio/resources/embed.js"></script>
+<p>All in all, Flourish is a fun tool, and definitely worth playing with yourself. Big ups to the folks at <a href="https://twitter.com/f_l_o_u_r_i_s_h">@f_l_o_u_r_i_s_h</a>, who helped me figure out how to add custom colours to my chart!</p>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">Nice <a href="https://twitter.com/f_l_o_u_r_i_s_h?ref_src=twsrc%5Etfw">@f_l_o_u_r_i_s_h</a> horserace chart of <a href="https://twitter.com/NBA?ref_src=twsrc%5Etfw">@NBA</a> data by <a href="https://twitter.com/dataandme?ref_src=twsrc%5Etfw">@dataandme</a>. <a href="https://t.co/NOYWXAezUh">pic.twitter.com/NOYWXAezUh</a></p>&mdash; Flourish (@f_l_o_u_r_i_s_h) <a href="https://twitter.com/f_l_o_u_r_i_s_h/status/978677821177581568?ref_src=twsrc%5Etfw">March 27, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>So much better, right?!</p>
+<blockquote class="twitter-tweet" data-dnt="true"><p lang="en" dir="ltr">Ah— finally figured out that I could just paste the colours in the colour-scheme box! <a href="https://twitter.com/hashtag/NBA?src=hash&amp;ref_src=twsrc%5Etfw">#NBA</a> sanity restored 🏀 <a href="https://t.co/jLzLj0G2pQ">pic.twitter.com/jLzLj0G2pQ</a></p>&mdash; Mara Averick (@dataandme) <a href="https://twitter.com/dataandme/status/978959050854600704?ref_src=twsrc%5Etfw">March 28, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Shout-out to Elijah Meeks, who loves that term.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+
+        </div>
+        <footer class="article-footer">
+    <a data-url="/2018/04/nba-horserace/" data-id="f657a91479bafc843120d403f188b7ee" text="NBA Horserace 🏇" via="acastillogill" class="article-share-link">
+        <i class="fas fa-share"></i>
+        Share
+    </a>
+    
+    <a href="../../../2018/04/nba-horserace/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                titleText = $this.attr('text'),
+                via = $this.attr('via'),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/share?url=' + encodedUrl + '&text=' + titleText + '&via=' + via + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest-p article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+
+    
+<nav id="article-nav">
+    
+    <a href="../../../2018/04/dataframed-podcast-interview/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Older
+      </strong>
+      <div class="article-nav-title">DataFramed podcast interview 📻</div>
+    </a>
+    
+
+    
+    <a href="../../../2018/05/uncounted-casualties/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Newer
+      </strong>
+      <div class="article-nav-title">Uncounted casualties</div>
+    </a>
+    
+</nav>
+
+
+</article>
+
+
+<section id="comments">
+    <div id="disqus_thread">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-acastillogill-com" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+</section>
+
+
+    </section>
+
+   	
+    	<aside id="sidebar">
+    
+
+    
+
+    
+
+    
+
+
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+    
+	</div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018
+      Ángela Castillo-Gill. Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="https://github.com/ppoffice">PPOffice</a>. Customised by <a href="https://github.com/ppoffice">Mara Averick</a>
+    </div>
+  </div>
+</footer>
+
+
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	if (window.sessionStorage) {
+		var GA_SESSION_STORAGE_KEY = 'ga:clientId';
+		ga('create', 'UA-128602464-1', {
+	    'storage': 'none',
+	    'clientId': sessionStorage.getItem(GA_SESSION_STORAGE_KEY)
+	   });
+	   ga(function(tracker) {
+	    sessionStorage.setItem(GA_SESSION_STORAGE_KEY, tracker.get('clientId'));
+	   });
+   }
+	
+	ga('send', 'pageview');
+}
+</script>
+
+<script src="../../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../../js/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+</body>
+</html>

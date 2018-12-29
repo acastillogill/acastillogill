@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Resources on Ángela Castillo-Gill</title>
+    <link>/tags/resources/</link>
+    <description>Recent content in Resources on Ángela Castillo-Gill</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 05 Jun 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/resources/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hand-crafted curation: meta-#SoDS18</title>
+      <link>/2018/06/meta-sods18-a-call-to-curation/</link>
+      <pubDate>Tue, 05 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/06/meta-sods18-a-call-to-curation/</guid>
+      <description>😎 Summer of Data Science (#SoDS18) is upon us, and (thanks to Renée (aka @BecomingDataSci)) there is already some great guidance out there. I’m a big fan of “mini” projects — and, unlike Highlander, I’m pretty sure there can only be one isn’t the name of the SoDS game.
+So, I wanted to share some ideas I have for potential micro-projects…
+🙌 do something by hand I know, I know — this borders on heresy.</description>
+    </item>
+    
+    <item>
+      <title>Git guides</title>
+      <link>/2017/12/git-guides/</link>
+      <pubDate>Sat, 30 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/12/git-guides/</guid>
+      <description>A completely selfish collection of resources (in addition to the GitHub Guides, which are excellent) to turn to when I inevitably get myself into Git trouble…
+Git pretty by Justin Hileman &amp;quot;Git pretty&amp;quot; by @bobthecow
+🙌 flowchart to follow so @jimhester_ doesn&amp;#39;t have to 🚒 rescue my 🔥ed repos!https://t.co/NFjIxOqZ03 #git #github pic.twitter.com/nQhhznmsog
+&amp;mdash; Mara Averick (@dataandme) December 20, 2017   Excuse me, do you have a moment to talk about version control?</description>
+    </item>
+    
+    <item>
+      <title>2017 - A 🐦❤️ year in review</title>
+      <link>/2017/12/2017-a-year-in-review/</link>
+      <pubDate>Wed, 20 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/12/2017-a-year-in-review/</guid>
+      <description>I have no words of wisdom when it comes to summing up 2017. 🙊 So, I guess I’ll let some algorithm do the talking.1 🤖💬 Behold 🙌: two Top Tweets for each month (according to Twitter analytics), some more R-related than others.
+January 🎊 RStudio IDE Easy Tricks You Might’ve Missed by Sean Lopp These are indeed handy! &amp;quot;RStudio IDE Easy Tricks You Might&amp;#39;ve Missed&amp;quot; by @lopp_sean https://t.co/JFlwhkyCzL via @rstudio #rstats pic.</description>
+    </item>
+    
+    <item>
+      <title>Keeping up with blogdown 🌟</title>
+      <link>/2017/10/keeping-up-with-blogdown/</link>
+      <pubDate>Sat, 07 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/10/keeping-up-with-blogdown/</guid>
+      <description>Updated: 2018-08-30
+I’ve loved blogdown 📦 for so long, that I was kind of shocked 😱 when I saw Yinui Xie’s post, Announcing blogdown: Create Websites with R Markdown, on the RStudio blog just last month!
+Have people really been living without the magic ✨ of blogdown in their lives for so long?! If you are one of these people, then hopefully this post (which, yes, is really just a roundup of tweets) will inspire you to join in on the fun 👯.</description>
+    </item>
+    
+    <item>
+      <title>😸 purrr-ty posts</title>
+      <link>/2017/09/purrr-ty-posts/</link>
+      <pubDate>Tue, 26 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/09/purrr-ty-posts/</guid>
+      <description>Updated: 📆 2018-10-06.
+🎉🐱 purrr-tiest cheat sheet Purrr royal decree (ok, I’ll stop with the 🐱 puns now), the purrr 📦 now has its very own official RStudio cheat sheet: Apply Functions Cheat Sheet
+ The purrr package makes it easy to work with lists and functions. This cheatsheet will remind you how to manipulate lists with purrr as well as how to apply functions iteratively to each element of a list or vector.</description>
+    </item>
+    
+    <item>
+      <title>RegEx resources</title>
+      <link>/2017/09/regex-resources/</link>
+      <pubDate>Thu, 21 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/09/regex-resources/</guid>
+      <description>Updated: 📆 2018-04-06.
+Regular Expressions, RegEx, regexps– call them what you like, but no matter how you slice it, they’re useful af. After all, data spelunking is all about patterns, and that’s precisely what regexps are for: (wo)manhandling patterns in strings. Good Sirs Wickham and Grolemund, in their masterful tome, r4ds, describe them thusly:
+ They [regexps] take a little while to get your head around, but once you understand them, you’ll find them extremely useful.</description>
+    </item>
+    
+    <item>
+      <title>R workflow fun</title>
+      <link>/2017/09/r-workflow-fun/</link>
+      <pubDate>Mon, 04 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/09/r-workflow-fun/</guid>
+      <description>I was excited to see Declutter your R workflow with tidy tools1, a preprint by Zev Ross, Hadley Wickham, and David Robinson, among the many excellent papers in the Practical Data Science for Stats PeerJ collection.2 Workflows, whether data-analysis-related or not, are never a one-size-fits-all matter of course. Among other things, the workflows here differ in scope (heck, one of them doesn’t even use R).
+That said, there’s lots to be learned from the processes, mistakes, and hard-wrought wisdom 🦉 of others.</description>
+    </item>
+    
+    <item>
+      <title>tidyeval resource roundup</title>
+      <link>/2017/08/tidyeval-resource-roundup/</link>
+      <pubDate>Sat, 26 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/08/tidyeval-resource-roundup/</guid>
+      <description>Updated: 2018-10-06
+Though, naturally, the Honorable Professor Doctor Sir Lord General Hadley Wickham’s Programming with dplyr article is the ne plus ultra of getting oneself aquainted with the latest and greatest in tidyeval programming recipes, quoting, and quasiquotation; there are some other resources out there.
+After posting a link to Edwin Thoen’s ⭐️ Tidy evaluation, most common actions, I was asked if there were other tidyeval tutorials I knew of.</description>
+    </item>
+    
+    <item>
+      <title>Stringr Visual Cheat Sheet</title>
+      <link>/2017/08/stringr-visual-cheat-sheet/</link>
+      <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/08/stringr-visual-cheat-sheet/</guid>
+      <description>So, kinda the whole point of this “making-a-blog” endeavor (aside from getting to play with Yihui Xie’s super awesome blogdown 📦) was to give a more permanent home to some of the resources I’ve found and/or tweeted. So, without further ado…
+stringr «aide-mémoire» This visual guide (or cheat sheet, if you prefer) was made by Lise Vaudor (@LVaudor on twitter), and originally shared in her blog post, Manipuler des strings avec R.</description>
+    </item>
+    
+  </channel>
+</rss>
