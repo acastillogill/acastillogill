@@ -54,9 +54,10 @@ opts_chunk$set(echo = FALSE,
                warning = FALSE,
                error = FALSE,
                message = FALSE,
-               collapse= TRUE,
+               collapse = TRUE,
                comment = NA,
-               tidy = TRUE)
+               tidy = TRUE,
+               include = FALSE)
 
 theme_set(theme_light())
 
@@ -114,7 +115,6 @@ world <- sf::st_read(map_path)
 
 ```
 
-
 ```{r merge-country-codes}
 r_downloads%<>%
   full_join(iso_codes, by=c("country"="iso"))%>%
@@ -129,7 +129,7 @@ r_downloads%>%
   arrange(desc(n))->downloads_per_country
 ```
 
-```{r plot-top-10-countries, fig.cap="The US has almost six times as many downloads than the second country China."}
+```{r plot-top-10-countries, fig.cap="The US has almost six times as many downloads than the second country China.", include=TRUE}
 downloads_per_country%>%
   arrange(desc(n))%>%
   head(10)%>%
@@ -145,9 +145,6 @@ downloads_per_country%>%
   theme(legend.position = "none")
   
 ```
-
-And what about other countries and regions?
-
 
 ```{r create-tibble-with-pop-and-users-only}
 full_maps <- downloads_per_country%>%
@@ -165,18 +162,19 @@ world_full <- world%>%
   left_join(full_maps, by=c("ISO3"="iso_3"))
 ```
 
-
-
-```{r plot-total-downloads}
+```{r create-total-downloads-map}
 n_map <- tm_shape(world_full) + 
   tm_borders(col="black", lwd=0.1)+
     tm_fill(col="n",n=4, style="jenks", palette = get_brewer_pal("BuPu", n = 4, contrast = c(0.13, 0.9))) + 
 tm_layout(main.title = "Total R downloads in 2017/18",
           main.title.size = 2, frame = TRUE, bg.color = "aliceblue", title.position = c("right","bottom"))+
 tm_legend(position=c("left", "bottom"), bg.color="white", frame=TRUE, legend.title.size=1)
-
+```
+And what about other countries and regions?
+```{r plot-total-downloads-map, include=TRUE}
 n_map
 ```
+
 
 # Linear regression - why use it?
 

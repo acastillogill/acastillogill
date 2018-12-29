@@ -495,9 +495,9 @@ homes <- homes%>%
                 -MSSubClass)
 ```
 
-```{r export the data set for posts}
+```{r export the data set for posts, eval=FALSE}
 #Save RDS
-saveRDS(homes, file=here("static","data", "homes.rds"))
+saveRDS(homes, file=here::here("static","data", "homes.rds"))
 ```
 
 
