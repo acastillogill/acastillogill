@@ -30,7 +30,7 @@ theme = "hugo-icarus-theme"
 [params]
     # Tell me who you are
     author = "Ángela Castillo-Gill"
-    bio = "Data Analyst, \n kindness & discipline."
+    bio = "Data Analyst, kindness & discipline."
     location = ""
     site_description = ""
     copyright  = "Ángela Castillo-Gill. Powered by [Hugo](//gohugo.io). Theme by [PPOffice](https://github.com/ppoffice). Customised by [Mara Averick](https://github.com/ppoffice) and used with permission."
