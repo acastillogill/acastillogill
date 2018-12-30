@@ -39,7 +39,7 @@ In this post I explore a property dataset from Ames, Iowa. The data describes a 
       
       <guid>/2018/07/exploring-kiva-loans/</guid>
       <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 5 Exploratory data analysis 6 Techniques used 7 Questions from this analysis   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
-In this post I analyse 671,205 observations Kiva loans. I find that the gender that requests the most loans is female with single females being the most frequent borrowers.</description>
+In this post I analyse 671,205 Kiva loans. I find that the gender that requests the most loans is female with single females being the most frequent borrowers.</description>
     </item>
     
   </channel>

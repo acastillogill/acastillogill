@@ -258,9 +258,39 @@ header-inner {
 .header-inner #logo .site-title {
   display: inline-block;
   vertical-align: top;
-  /* Mara mod - title text */
+  /* Ángela mod - title text */
   font-family: "LuissSans-ThinSans";
   font-size: 1.2em;
 
   font-weight: bolder;
+}
+#profile.card .profile-inner:after {
+  z-index: 0;
+  border-color: transparent transparent #dbdee1 transparent;
+}
+.article {
+  margin: 40px 0;
+}
+.article-inner {
+  overflow: hidden;
+}
+.article-banner {
+  width: 100%;
+  height: auto;
+}
+.article-header {
+  /* Ángela mod top padding to 10px */
+  padding: 10px 20px 0;
+}
+.article-header .article-title {
+  display: block;
+  margin-bottom: 14px;
+}
+.article-title {
+  font-size: 2em;
+  color: #565a5f;
+  text-decoration: none;
+  line-height: 1.3em;
+  /* Ángela mod */
+  font-family: "LuissSans-ThinSans";
 }

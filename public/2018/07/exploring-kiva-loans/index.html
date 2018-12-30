@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="author" content="Ángela Castillo-Gill">
     
-      <meta name="description" content="In this post I analyse 671,205 observations [Kiva](www.kiva.org) loans. I find that the gender that requests the most loans is female with single females being the most frequent borrowers. The main uses for these loans are agriculture, retail, and food with some variations amongst regions. Half of the loans are 4.22 USD or less and are funded by 12 or less contributers. The median time between posting a loan online and disbursing it to the borrower is 16.89 days. I mainly use the `tidyverse`, `stringr`, and `quantmode` packages.">
+      <meta name="description" content="In this post I analyse 671,205 Kiva loans. I find that the gender that requests the most loans is female with single females being the most frequent borrowers. The main uses for these loans are agriculture, retail, and food with some variations amongst regions. Half of the loans are 4.22 USD or less and are funded by 12 or less contributers. The median time between posting a loan online and disbursing it to the borrower is 16.89 days. I mainly use the tidyverse, stringr, and quantmode packages.">
     
     
     <link rel="canonical" href="../../../2018/07/exploring-kiva-loans/"/>
@@ -24,7 +24,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:regular,medium,bold' rel='stylesheet' type='text/css'>
     <meta property="og:title" content="Exploring Kiva loans" />
-<meta property="og:description" content="In this post I analyse 671,205 observations [Kiva](www.kiva.org) loans. I find that the gender that requests the most loans is female with single females being the most frequent borrowers. The main uses for these loans are agriculture, retail, and food with some variations amongst regions. Half of the loans are 4.22 USD or less and are funded by 12 or less contributers. The median time between posting a loan online and disbursing it to the borrower is 16.89 days. I mainly use the `tidyverse`, `stringr`, and `quantmode` packages." />
+<meta property="og:description" content="In this post I analyse 671,205 Kiva loans. I find that the gender that requests the most loans is female with single females being the most frequent borrowers. The main uses for these loans are agriculture, retail, and food with some variations amongst regions. Half of the loans are 4.22 USD or less and are funded by 12 or less contributers. The median time between posting a loan online and disbursing it to the borrower is 16.89 days. I mainly use the tidyverse, stringr, and quantmode packages." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/2018/07/exploring-kiva-loans/" />
 <meta property="og:image" content="/banners/lenders-country.png" />
@@ -34,12 +34,12 @@
     
     
 <meta itemprop="name" content="Exploring Kiva loans">
-<meta itemprop="description" content="In this post I analyse 671,205 observations [Kiva](www.kiva.org) loans. I find that the gender that requests the most loans is female with single females being the most frequent borrowers. The main uses for these loans are agriculture, retail, and food with some variations amongst regions. Half of the loans are 4.22 USD or less and are funded by 12 or less contributers. The median time between posting a loan online and disbursing it to the borrower is 16.89 days. I mainly use the `tidyverse`, `stringr`, and `quantmode` packages.">
+<meta itemprop="description" content="In this post I analyse 671,205 Kiva loans. I find that the gender that requests the most loans is female with single females being the most frequent borrowers. The main uses for these loans are agriculture, retail, and food with some variations amongst regions. Half of the loans are 4.22 USD or less and are funded by 12 or less contributers. The median time between posting a loan online and disbursing it to the borrower is 16.89 days. I mainly use the tidyverse, stringr, and quantmode packages.">
 
 
 <meta itemprop="datePublished" content="2018-07-07T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-07-07T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1508">
+<meta itemprop="wordCount" content="1507">
 
   <meta itemprop="image" content="/banners/lenders-country.png">
 
@@ -51,7 +51,7 @@
 <meta name="twitter:image" content="/banners/lenders-country.png"/>
 
 <meta name="twitter:title" content="Exploring Kiva loans"/>
-<meta name="twitter:description" content="In this post I analyse 671,205 observations [Kiva](www.kiva.org) loans. I find that the gender that requests the most loans is female with single females being the most frequent borrowers. The main uses for these loans are agriculture, retail, and food with some variations amongst regions. Half of the loans are 4.22 USD or less and are funded by 12 or less contributers. The median time between posting a loan online and disbursing it to the borrower is 16.89 days. I mainly use the `tidyverse`, `stringr`, and `quantmode` packages."/>
+<meta name="twitter:description" content="In this post I analyse 671,205 Kiva loans. I find that the gender that requests the most loans is female with single females being the most frequent borrowers. The main uses for these loans are agriculture, retail, and food with some variations amongst regions. Half of the loans are 4.22 USD or less and are funded by 12 or less contributers. The median time between posting a loan online and disbursing it to the borrower is 16.89 days. I mainly use the tidyverse, stringr, and quantmode packages."/>
 <meta name="twitter:site" content="@acastillogill"/>
 
     
@@ -286,7 +286,7 @@
             <i class="far fa-calendar"></i>
             <time datetime="2018-07-07 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-07-07</time>
             &middot;
-            1508
+            1507
             words
             &middot;
             8
@@ -344,7 +344,7 @@
 <div id="summary" class="section level1">
 <h1><span class="header-section-number">1</span> Summary</h1>
 <p><em>To see the code used in this post, visit my <a href="https://www.kaggle.com/adcastillogill/exploring-kiva-loans">kernel on kaggle in R Markdown format</a>.</em></p>
-<p>In this post I analyse 671,205 observations <a href="www.kiva.org">Kiva</a> loans. I find that the gender that requests the most loans is female with single females being the most frequent borrowers. The main uses for these loans are agriculture, retail, and food with some variations amongst regions. Half of the loans are 4.22 USD or less and are funded by 12 or less contributers. The median time between posting a loan online and disbursing it to the borrower is 16.89 days. I mainly use the <code>tidyverse</code>, <code>stringr</code>, and <code>quantmode</code> packages.</p>
+<p>In this post I analyse 671,205 <a href="www.kiva.org">Kiva</a> loans. I find that the gender that requests the most loans is female with single females being the most frequent borrowers. The main uses for these loans are agriculture, retail, and food with some variations amongst regions. Half of the loans are 4.22 USD or less and are funded by 12 or less contributers. The median time between posting a loan online and disbursing it to the borrower is 16.89 days. I mainly use the <code>tidyverse</code>, <code>stringr</code>, and <code>quantmode</code> packages.</p>
 </div>
 <div id="purpose-of-this-post" class="section level1">
 <h1><span class="header-section-number">2</span> Purpose of this post</h1>
