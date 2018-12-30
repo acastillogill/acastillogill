@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Regression trees: predicting property prices &middot; Ángela Castillo-Gill</title>
+    <meta name="generator" content="Hugo 0.53" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Ángela Castillo-Gill">
+    
+      <meta name="description" content="In this post I explore a property dataset from Ames, Iowa. The data describes a set of features for houses. My goal was to understand what characteristics make a house more valuable than others in Ames, Iowa.">
+    
+    
+    <link rel="canonical" href="../../../2018/08/regression-trees-predicting-property-prices/"/>
+    <link rel="icon" href="../../../favicon.ico">
+    <link rel="apple-touch-icon" href="../../../apple-touch-icon.png"/>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../css/monokai.css">
+    <link rel="stylesheet" href="../../../css/coarse.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="../../../fancybox/jquery.fancybox.css">
+    
+    <link rel="stylesheet" href="../../../css/fonts.css">
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:regular,medium,bold' rel='stylesheet' type='text/css'>
+    <meta property="og:title" content="Regression trees: predicting property prices" />
+<meta property="og:description" content="In this post I explore a property dataset from Ames, Iowa. The data describes a set of features for houses. My goal was to understand what characteristics make a house more valuable than others in Ames, Iowa." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/2018/08/regression-trees-predicting-property-prices/" />
+<meta property="og:image" content="/banners/property-prices.png" />
+<meta property="article:published_time" content="2018-08-09T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2018-08-09T00:00:00&#43;00:00"/>
+
+    
+    
+<meta itemprop="name" content="Regression trees: predicting property prices">
+<meta itemprop="description" content="In this post I explore a property dataset from Ames, Iowa. The data describes a set of features for houses. My goal was to understand what characteristics make a house more valuable than others in Ames, Iowa.">
+
+
+<meta itemprop="datePublished" content="2018-08-09T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-08-09T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1493">
+
+  <meta itemprop="image" content="/banners/property-prices.png">
+
+
+
+<meta itemprop="keywords" content="Kaggle,Home sales prices,Decision trees,Regression trees," />
+
+    <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/banners/property-prices.png"/>
+
+<meta name="twitter:title" content="Regression trees: predicting property prices"/>
+<meta name="twitter:description" content="In this post I explore a property dataset from Ames, Iowa. The data describes a set of features for houses. My goal was to understand what characteristics make a house more valuable than others in Ames, Iowa."/>
+<meta name="twitter:site" content="@acastillogill"/>
+
+    
+<link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Alegreya|Source+Sans+Pro" rel="stylesheet">
+
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+	<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="../../../" id="logo">
+          
+          <span class="site-title">Ángela Castillo-Gill</span>
+      </a>
+      <nav id="main-nav">
+          
+          
+          <a class="main-nav-link" href="../../../">Home</a>
+          
+          
+          
+          
+          
+          
+
+          
+          <a class="main-nav-link" href="../../../about/">About</a>
+          
+
+          
+          
+          
+          
+          <a class="main-nav-link" href="../../../tags/posts/">Posts</a>
+          
+          
+          
+          <a class="main-nav-link" href="../../../tags/notes/">Notes</a>
+          
+          
+      </nav>
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="../../../img/angela.jpeg"><i class="fas fa-caret-down"></i></a>
+          </div>
+        </nav>
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+              <input type="search" name="q" class="search-form-input" placeholder="Search">
+              <button type="submit" class="search-form-submit">
+              </button>
+              <input type="hidden" name="sitesearch" value="/" />
+         </form>
+        </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tbody>
+          <tr>
+          
+          
+          <td><a class="main-nav-link" href="../../../">Home</a></td>
+          
+          
+          
+          
+          
+          
+
+          
+          <td><a class="main-nav-link" href="../../../about/">About</a></td>
+          
+
+          
+          
+          
+          
+          <td><a class="main-nav-link" href="../../../tags/posts/">Posts</a></td>
+          
+          
+          
+          <td><a class="main-nav-link" href="../../../tags/notes/">Notes</a></td>
+          
+          
+          <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="Search">
+          <input type="hidden" name="sitesearch" value="/" />
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</header>
+
+   	
+   	<div class="outer">
+   	
+    	<aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      
+      <img id="avatar" src="../../../img/angela.jpeg">
+      
+      <h2 id="name">Ángela Castillo-Gill</h2>
+      <h3 id="title">Data Analyst, kindness &amp; discipline.</h3>
+      
+      
+          <a id="follow" href="https://twitter.com/acastillogill">
+              @acastillogill
+          </a>
+      
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        3
+        <span>Posts</span>
+      </div>
+      <div class="article-info-block">
+        
+          9
+        
+        <span>
+            Tags
+        </span>
+      </div>
+    </div>
+    <div class="profile-block social-links">
+      <table>
+        <tr>
+          
+<td><a href="//github.com/acastillogill" target="_blank" title="GitHub"><i class="fab fa-github-square"></i></a></td>
+
+
+
+<td><a href="//twitter.com/acastillogill" target="_blank" title="Twitter"><i class="fab fa-twitter-square"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//medium.com/@acastillogill" target="_blank" title="Medium"><i class="fab fa-medium"></i></a></td>
+
+
+
+
+
+
+
+
+
+<td><a href="//linkedin.com/in/acastillogill" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <td><a href="../../../index.xml" target="_blank" title="RSS"><i class="fas fa-rss-square"></i></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+
+    
+
+    <section id="main">
+    
+    <article id="page-undefined" class="article article-type-page" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <img src="../../../banners/property-prices.png" class="article-banner">
+        
+
+        <header class="article-header">
+    <a href="../../../2018/08/regression-trees-predicting-property-prices/">
+    <h1 class="article-title" itemprop="name">
+        Regression trees: predicting property prices
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="far fa-calendar"></i>
+            <time datetime="2018-08-09 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-08-09</time>
+            &middot;
+            1493
+            words
+            &middot;
+            8
+            minute read
+        </div>
+        
+        
+            
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fas fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="../../../tags/kaggle">Kaggle</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/home-sales-prices">Home sales prices</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/decision-trees">Decision trees</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/regression-trees">Regression trees</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            
+
+<div id="TOC">
+<ul>
+<li><a href="#summary"><span class="toc-section-number">1</span> Summary</a></li>
+<li><a href="#question"><span class="toc-section-number">2</span> Question</a></li>
+<li><a href="#dataset-description"><span class="toc-section-number">3</span> Dataset description</a><ul>
+<li><a href="#missing-values"><span class="toc-section-number">3.1</span> Missing values</a></li>
+<li><a href="#correlation"><span class="toc-section-number">3.2</span> Correlation</a></li>
+</ul></li>
+<li><a href="#regression-trees---why-use-them"><span class="toc-section-number">4</span> Regression trees - why use them?</a><ul>
+<li><a href="#variable-importance"><span class="toc-section-number">4.1</span> Variable importance</a></li>
+</ul></li>
+<li><a href="#results"><span class="toc-section-number">5</span> Results</a></li>
+<li><a href="#what-does-it-mean"><span class="toc-section-number">6</span> What does it mean?</a></li>
+</ul>
+</div>
+
+<div id="summary" class="section level1">
+<h1><span class="header-section-number">1</span> Summary</h1>
+<p><em>To see the code used in this post, visit my <a href="https://www.kaggle.com/adcastillogill/regression-trees-predicting-property-prices/code">kernel on kaggle in R Markdown format</a>.</em></p>
+<p>In this post I explore a property dataset from Ames, Iowa. The data describes a set of features for houses. My goal was to understand what characteristics make a house more valuable than others in Ames, Iowa. To do this, I first prepared the data by dealing with missing values in the dataset and created other variables to make results easier to understand. After preparing the data, I used regression trees to answer the question. The benefits of regression trees are that they produce an output that can be illustrated and easily interpreted. I found that the overall quality of properties is the most closely linked characteristic with sale prices. Other features such as living area and basement size were also key. An interesting finding was that there are three neighborhoods that have the most expensive houses. These are NorthRidge Heights, Northridge and, Stone Brook.</p>
+</div>
+<div id="question" class="section level1">
+<h1><span class="header-section-number">2</span> Question</h1>
+<p>Let’s say that you have a house in Ames, Iowa <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. You’re about to buy a house or some terrain to build your own house and you want to understand <strong>what makes a house more valuable than others</strong>.</p>
+</div>
+<div id="dataset-description" class="section level1">
+<h1><span class="header-section-number">3</span> Dataset description</h1>
+<p>The dataset <a href="https://www.kaggle.com/c/house-prices-advanced-regression-techniques">House Prices: Advanced Regression Techniques</a> was put together by <a href="https://ww2.amstat.org/publications/jse/v19n3/decock.pdf">Dean De Cock.</a> It has 79 explanatory variables describing 1,460 homes in Ames, Iowa. The codebook for all the variables can be <a href="https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data">found here.</a> As I go along, I’ll explain the most relevant ones. The dataset has 38 numeric and 43 character variables.</p>
+<div id="missing-values" class="section level2">
+<h2><span class="header-section-number">3.1</span> Missing values</h2>
+<p>As is more common than not, the dataset contains missing values. Missing values need to be dealt with because often regression (and other models) require complete observations. Dealing with missing data depends on <em>why the data are missing</em>. <a href="http://www.stat.columbia.edu/~gelman/arm/missing.pdf">This article</a> explains four reasons why data could be missing. When the data are missing at random (MAR) or completely at random (MCAR), observations with missing values can be removed without introducing bias into the model. Sometimes, however, if the dataset is not too big and we don’t want to lose observations, or even if it is big, yet we still don’t want to remove observations, we can impute data. Imputing means replacing missing values by taking some educated guesses. <a href="https://towardsdatascience.com/how-to-handle-missing-data-8646b18db0d4">This article</a> summarises how to impute data depending on why it is missing. If the data are not missing at random, then the imputation mechanism has to be modelled.</p>
+<p>About 19 variables have missing values - based on the codebook, the reason why so many houses have pool quality (<code>PoolQC</code>) missing is because <code>NA</code>, means there is no pool. Since this variable is ordinal, I can revalue it to make it numerical and <code>0</code> will mean the property has no pool. Other features (<code>MiscFeature</code>), <code>Alley</code>, <code>Fence</code>, and fireplace quality (<code>FireplaceQu</code>) are missing because of similar reasons. We don’t know why <code>LotFrontage</code> is missing but we will impute as the median for properties in the same neighborhood. I learned a lot about imputation and missing values from <a href="https://www.kaggle.com/erikbruin/house-prices-lasso-xgboost-and-a-detailed-eda/code">Erik Bruin’s kernel on Kaggle</a>.</p>
+</div>
+<div id="correlation" class="section level2">
+<h2><span class="header-section-number">3.2</span> Correlation</h2>
+<p>Correlation, <span class="math inline">\(Cor(X,Y)\)</span>, measures the strength of the linear relationship between two variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. The correlation between <code>SalePrice</code> and another variable, let’s say, <code>OverallQual</code>, is the covariance of the separately normalised data between the two variables.</p>
+<pre class="r"><code>cov(scale(homes$SalePrice), scale(homes$OverallQual))</code></pre>
+<pre><code>  [,1]</code></pre>
+<p>[1,] 0.791</p>
+<p>Since covariance units are <code>OverallQual</code> * <code>SalePrice</code>, calculating the correlation is more helpful as is unit free. If we created a model with only one variable as the predictor of <code>SalePrice</code>, let’s say, kitchen quality (<code>KitchenQual</code>) and normalised the data, the regression slope would be the correlation between the two variables.</p>
+<pre class="r"><code>norm_fit &lt;- lm(scale(SalePrice) ~ scale(KitchenQual), data = homes)
+round(coefficients(norm_fit), digits = 2)</code></pre>
+<pre><code>   (Intercept) scale(KitchenQual) 
+          0.00               0.66 </code></pre>
+<p>Now I’ll look at all variables - here is the correlation matrix for variables that have a relationship stronger than 0.5 with <code>SalePrice</code>.</p>
+<div class="figure"><span id="fig:correlation-matrix"></span>
+<img src="../../../post/2018-08-09-predicting-property-prices_files/figure-html/correlation-matrix-1.png" alt="Variables are arranged in descending order according to the strength of the relationship with `SalePrice`." width="672" />
+<p class="caption">
+Figure 3.1: Variables are arranged in descending order according to the strength of the relationship with <code>SalePrice</code>.
+</p>
+</div>
+<p>There are 17 variables that have a correlation stronger than 0.5. When variables are highly correlated amongst each other, it’s better to remove some of them as they don’t necessarily add additional information and it could lead to multicollinearity. The correlation plot highlights some obvious pairs that are related with another, for example, <code>GarageArea</code> and <code>GarageCars</code>. Makes sense, a bigger garage can hold more cars. <code>X1stFlrSF</code> and <code>TotalBsmtSF</code>, the total area of the first floor and basement, this also seems reasonable since basements are underneath the same floor and would tend to have a similar area. <code>TotRmsAbvGrd</code> and <code>GrLivArea</code>, the total number of rooms and area above ground, again ok, more rooms would be linked to a bigger living area. Finally, <code>YearsSinceBuilt</code> and <code>YearsSinceGarageBuilt</code> since garages are usually built at the same time as the house.</p>
+</div>
+</div>
+<div id="regression-trees---why-use-them" class="section level1">
+<h1><span class="header-section-number">4</span> Regression trees - why use them?</h1>
+<p>The tool that I’m going to be using to answer the question is regression trees. They are also known as classification and regression trees (CART) or the recursing and partitioning (RPART) algorithm. The reason I’m choosing this tool or algorithm to answer the business question is because regression trees are interpretable and we can make easy-to-follow plots with them. It will be implemented with the <code>rpart</code> package in R. Rpart, builds a model in two stages:</p>
+<p><strong>First stage</strong>:</p>
+<p>The variable which can best<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> split the data into two groups is identified. The data are then separated into two groups and the whole process is repeated <em>recursively</em> or indefinitely until the sub-groups reach a minimum size, or until no further improvements can be made. When the split is made, similarity amongst the observations can more or less homogenous. This homogeneity is also called purity and it can be measured. The impurity measure of a node specifies how mixed the resulting subset is.</p>
+<p><strong>Second stage</strong>:</p>
+<p>The tree is trimmed back or prunned using cross-validation. We identify the lowest cross-validated error or the smallest within one standard error of the tree with lowest cross-validated error.</p>
+<div id="variable-importance" class="section level2">
+<h2><span class="header-section-number">4.1</span> Variable importance</h2>
+<p>Using the <code>rpart</code> function, we are able to rank which variables are most predictive of <code>SalePrice</code>. The following plot ranks these variables in descending order.</p>
+<div class="figure"><span id="fig:variable-importance-table"></span>
+<img src="../../../post/2018-08-09-predicting-property-prices_files/figure-html/variable-importance-table-1.png" alt="Overall quality is the most predictive variable and the one that originally had the most correlation with `SalePrice`, it's followed by basement size and neighborhood type." width="672" />
+<p class="caption">
+Figure 4.1: Overall quality is the most predictive variable and the one that originally had the most correlation with <code>SalePrice</code>, it’s followed by basement size and neighborhood type.
+</p>
+</div>
+</div>
+</div>
+<div id="results" class="section level1">
+<h1><span class="header-section-number">5</span> Results</h1>
+<div class="figure"><span id="fig:final-plot"></span>
+<img src="../../../post/2018-08-09-predicting-property-prices_files/figure-html/final-plot-1.png" alt="The tree with 10 nodes and 9 splits had the lowest performance metric `RMSE`." width="672" />
+<p class="caption">
+Figure 5.1: The tree with 10 nodes and 9 splits had the lowest performance metric <code>RMSE</code>.
+</p>
+</div>
+<p>The most influential variable for <code>SalePrice</code> was <code>OverallQual</code>. This variable “rates the overall material and finish of the house”, values equal or above to 8 correspond to “very good”, “excellent”, and “very excellent”. On one hand, for houses with a rating of 8 or above in <code>OverallQual</code>, the next most decisive variable is <code>TotalBsmtSF</code>, which is the “total square feet of basement area”. If it’s above 1,850, the house is classified depending on <code>Neighborhood_type</code>. Fancy houses are thoses that are in either of these neighborhoods NridgHt, NoRidge, StoneBr. All other neighborhoods are not fancy. Houses below 1,850 feet are further classified depending on the <code>LotArea</code>.</p>
+<p>On the other hand, houses with a rating below 8 for <code>OverallQual</code>, the same variable decides again classifying them above or equal to 7, which is “good”. Either way, houses will be classified again by <code>GrLivArea</code>: “above grade living area in square feet”, where smaller houses will depend on basement size (<code>TotalBsmtSF</code>) or on <code>MS_type</code>, which describes the type of dwelling. Modern dwellings include: split foyer, 1-story built in 1946 or newer. Less modern dwellings are 1945 or older in some cases.</p>
+<p>In response to the question: what makes a house more valuable than others? Many variables in the tree are related to area: basement area, garage area, and total living area. Even the size of the lot plays an important role and is related to area. So an important one definitely is size. But more important than size in this case, the overall quality of the house is critical.</p>
+</div>
+<div id="what-does-it-mean" class="section level1">
+<h1><span class="header-section-number">6</span> What does it mean?</h1>
+<p>It seems that having a property in very good condition or better pays a lot. Would it be worth to find a house in a somewhat fancy neighborhood and work on improving its finish and materials to increase quality. Who knows? That is a causal question. There is a strong relationship between <code>OverallQual</code> and <code>SalePrice</code> but correlation does not imply causation.
+Size matters in all property dimensions: garage area, basement area, living area above ground, lot size. These are all important characteristics strongly linked to sales price.
+As a final note it’s important to add that to a large extent the results of this analysis are limited Ames, Iowa, where this dataset is from.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>That’s where the dataset is from.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>The best tree is the smallest tree with highest cross-validated error.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+
+        </div>
+        <footer class="article-footer">
+    <a data-url="/2018/08/regression-trees-predicting-property-prices/" data-id="58b1c36adbb58e860f9c6ec655a1a5a5" text="Regression trees: predicting property prices" via="acastillogill" class="article-share-link">
+        <i class="fas fa-share"></i>
+        Share
+    </a>
+    
+    <a href="../../../2018/08/regression-trees-predicting-property-prices/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                titleText = $this.attr('text'),
+                via = $this.attr('via'),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/share?url=' + encodedUrl + '&text=' + titleText + '&via=' + via + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest-p article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+
+    
+<nav id="article-nav">
+    
+    <a href="../../../2018/07/exploring-kiva-loans/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Older
+      </strong>
+      <div class="article-nav-title">Exploring Kiva loans</div>
+    </a>
+    
+
+    
+    <a href="../../../2018/12/linear-regression-r-downloads-around-the-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Newer
+      </strong>
+      <div class="article-nav-title">Linear regression: R-Downloads around the world</div>
+    </a>
+    
+</nav>
+
+
+</article>
+
+
+<section id="comments">
+    <div id="disqus_thread">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-acastillogill-com" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+</section>
+
+
+    </section>
+
+   	
+    	<aside id="sidebar">
+    
+
+    
+
+    
+
+    
+
+
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+    
+	</div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018
+      Ángela Castillo-Gill. Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="https://github.com/ppoffice">PPOffice</a>. Customised by <a href="https://maraaverick.rbind.io/">Mara Averick</a> and used with permission.
+    </div>
+  </div>
+</footer>
+
+
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	if (window.sessionStorage) {
+		var GA_SESSION_STORAGE_KEY = 'ga:clientId';
+		ga('create', 'UA-128602464-1', {
+	    'storage': 'none',
+	    'clientId': sessionStorage.getItem(GA_SESSION_STORAGE_KEY)
+	   });
+	   ga(function(tracker) {
+	    sessionStorage.setItem(GA_SESSION_STORAGE_KEY, tracker.get('clientId'));
+	   });
+   }
+	
+	ga('send', 'pageview');
+}
+</script>
+
+<script src="../../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../../js/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+</body>
+</html>

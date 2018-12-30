@@ -3,6 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/2018/12/linear-regression-r-downloads-around-the-world/</loc>
+    <lastmod>2018-12-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2018/08/regression-trees-predicting-property-prices/</loc>
+    <lastmod>2018-08-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2018/07/exploring-kiva-loans/</loc>
+    <lastmod>2018-07-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/about/</loc>
   </url>
   
@@ -12,12 +27,74 @@
   </url>
   
   <url>
+    <loc>/tags/decision-trees/</loc>
+    <lastmod>2018-08-09T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/end-to-end/</loc>
+    <lastmod>2018-07-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/exploratory-data-analysis/</loc>
+    <lastmod>2018-07-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/home-sales-prices/</loc>
+    <lastmod>2018-08-09T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/kaggle/</loc>
+    <lastmod>2018-12-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/kiva/</loc>
+    <lastmod>2018-07-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/linear-regression/</loc>
+    <lastmod>2018-12-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2018-12-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/regression-trees/</loc>
+    <lastmod>2018-08-09T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/</loc>
+    <lastmod>2018-08-09T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/tidy-tuesday/</loc>
+    <lastmod>2018-12-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/</loc>
+    <lastmod>2018-12-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

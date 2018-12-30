@@ -6,9 +6,41 @@
     <description>Recent content on Ángela Castillo-Gill</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Sat, 01 Dec 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Linear regression: R-Downloads around the world</title>
+      <link>/2018/12/linear-regression-r-downloads-around-the-world/</link>
+      <pubDate>Sat, 01 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/12/linear-regression-r-downloads-around-the-world/</guid>
+      <description>1 Summary 2 Question 3 Dataset description 3.1 Top 10 countries for R Downloads  4 Linear regression - why use it? 5 Results 6 What does it mean?   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
+Write up
+ 2 Question What countries download R the most? Where are they? And who are the most intense R users measured by R downloads per capita?</description>
+    </item>
+    
+    <item>
+      <title>Regression trees: predicting property prices</title>
+      <link>/2018/08/regression-trees-predicting-property-prices/</link>
+      <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/08/regression-trees-predicting-property-prices/</guid>
+      <description>1 Summary 2 Question 3 Dataset description 3.1 Missing values 3.2 Correlation  4 Regression trees - why use them? 4.1 Variable importance  5 Results 6 What does it mean?   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
+In this post I explore a property dataset from Ames, Iowa. The data describes a set of features for houses.</description>
+    </item>
+    
+    <item>
+      <title>Exploring Kiva loans</title>
+      <link>/2018/07/exploring-kiva-loans/</link>
+      <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/07/exploring-kiva-loans/</guid>
+      <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 5 Exploratory data analysis 6 Techniques used 7 Questions from this analysis   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
+In this post I analyse 671,205 observations Kiva loans. I find that the gender that requests the most loans is female with single females being the most frequent borrowers.</description>
+    </item>
     
   </channel>
 </rss>
