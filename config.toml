@@ -38,7 +38,7 @@ theme = "hugo-icarus-theme"
     # Enter your email address to display your Gravatar icon in the profile. If not set the theme
     # will fallback to the avatar.
     gravatar = ""
-    logo = "logo.png"
+    logo = ""
     disable_mathjax = false # set to true to disable MathJax
 
     # define which types of pages should be shown. By default the type with the most regular pages
