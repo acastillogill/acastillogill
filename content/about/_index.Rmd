@@ -8,6 +8,6 @@ output:
     keep_md: TRUE
 ---
 
-Hi! I'm [Ángela](`r here::here("static","pdf","cv.pdf")`) .
+Hi! I'm [Ángela](https://acastillogill.com/pdf/cv.pdf).
 
 
