@@ -9,12 +9,12 @@ tags:
   - Tidy Tuesday
   - Linear regression
 description: "Tim I love you but you snore."
-banner: "banners/r-downloads-per-capita.png"
-images: ["banners/r-downloads-per-capita.png"]
+banner: "banners/r-downloads.png"
+images: ["banners/r-downloads.png"]
 draft: FALSE
 summary: "To decide"
 header: 
-  image: "banners/r-downloads-per-capita.png"
+  image: "banners/r-downloads.png"
   caption: "R Downloads per capita around the world. Iceland and Switzerland are right on top!"
 output:
   blogdown::html_page:

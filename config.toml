@@ -61,16 +61,6 @@ theme = "hugo-icarus-theme"
     before = true
     label  = "Home"
     link   = "/"
-
-[[params.menu]]
-    before = false
-    label = "Posts"
-    link = "/tags/posts/"
- 
-[[params.menu]]
-    before = false
-    label = "Notes"
-    link = "/tags/notes/"   
     
 
 # Enter a link for the follow button on the left
