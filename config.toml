@@ -33,7 +33,7 @@ theme = "hugo-icarus-theme"
     bio = "Data Analyst, kindness & discipline."
     location = ""
     site_description = ""
-    copyright  = "Ángela Castillo-Gill. Powered by [Hugo](//gohugo.io). Theme by [PPOffice](https://github.com/ppoffice). Customised by [Mara Averick](https://github.com/ppoffice) and used with permission."
+    copyright  = "Ángela Castillo-Gill. Powered by [Hugo](//gohugo.io). Theme by [PPOffice](https://github.com/ppoffice). Customised by [Mara Averick](https://maraaverick.rbind.io/) and used with permission."
     avatar = "img/angela.jpeg"
     # Enter your email address to display your Gravatar icon in the profile. If not set the theme
     # will fallback to the avatar.
@@ -61,16 +61,6 @@ theme = "hugo-icarus-theme"
     before = true
     label  = "Home"
     link   = "/"
-
-[[params.menu]]
-    before = false
-    label = "Posts"
-    link = "/tags/posts/"
- 
-[[params.menu]]
-    before = false
-    label = "Notes"
-    link = "/tags/notes/"   
     
 
 # Enter a link for the follow button on the left
@@ -92,7 +82,7 @@ theme = "hugo-icarus-theme"
     instagram       = ""
     youtube         = ""
     vimeo           = ""
-    medium          = "@acastillogill"
+    medium          = "acastillogill"
     wordpress       = ""
     tumblr          = ""
     linkedin        = "acastillogill"

@@ -8,7 +8,6 @@ output:
     keep_md: TRUE
 ---
 
-`r emo::ji_glue(":confused:")`
+Hi! I'm [Ángela](https://acastillogill.com/pdf/cv.pdf).
 
 
-`r emo::ji("detective")` 

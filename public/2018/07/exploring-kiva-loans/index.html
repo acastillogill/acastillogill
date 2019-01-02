@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Exploring Kiva loans &middot; Ángela Castillo-Gill</title>
+    <meta name="generator" content="Hugo 0.53" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Ángela Castillo-Gill">
+    
+      <meta name="description" content="In this post I analyse 671,205 Kiva loans. I find that the gender that requests the most loans is female with single females being the most frequent borrowers. The main uses for these loans are agriculture, retail, and food with some variations amongst regions. Half of the loans are 4.22 USD or less and are funded by 12 or less contributers. The median time between posting a loan online and disbursing it to the borrower is 16.89 days. I mainly use the tidyverse, stringr, and quantmode packages.">
+    
+    
+    <link rel="canonical" href="../../../2018/07/exploring-kiva-loans/"/>
+    <link rel="icon" href="../../../favicon.ico">
+    <link rel="apple-touch-icon" href="../../../apple-touch-icon.png"/>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../css/monokai.css">
+    <link rel="stylesheet" href="../../../css/coarse.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="../../../fancybox/jquery.fancybox.css">
+    
+    <link rel="stylesheet" href="../../../css/fonts.css">
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:regular,medium,bold' rel='stylesheet' type='text/css'>
+    <meta property="og:title" content="Exploring Kiva loans" />
+<meta property="og:description" content="In this post I analyse 671,205 Kiva loans. I find that the gender that requests the most loans is female with single females being the most frequent borrowers. The main uses for these loans are agriculture, retail, and food with some variations amongst regions. Half of the loans are 4.22 USD or less and are funded by 12 or less contributers. The median time between posting a loan online and disbursing it to the borrower is 16.89 days. I mainly use the tidyverse, stringr, and quantmode packages." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/2018/07/exploring-kiva-loans/" />
+<meta property="og:image" content="/banners/lenders-country.png" />
+<meta property="article:published_time" content="2018-07-07T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2018-07-07T00:00:00&#43;00:00"/>
+
+    
+    
+<meta itemprop="name" content="Exploring Kiva loans">
+<meta itemprop="description" content="In this post I analyse 671,205 Kiva loans. I find that the gender that requests the most loans is female with single females being the most frequent borrowers. The main uses for these loans are agriculture, retail, and food with some variations amongst regions. Half of the loans are 4.22 USD or less and are funded by 12 or less contributers. The median time between posting a loan online and disbursing it to the borrower is 16.89 days. I mainly use the tidyverse, stringr, and quantmode packages.">
+
+
+<meta itemprop="datePublished" content="2018-07-07T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-07-07T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1507">
+
+  <meta itemprop="image" content="/banners/lenders-country.png">
+
+
+
+<meta itemprop="keywords" content="Kaggle,Kiva,End-to-end,Exploratory data analysis," />
+
+    <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/banners/lenders-country.png"/>
+
+<meta name="twitter:title" content="Exploring Kiva loans"/>
+<meta name="twitter:description" content="In this post I analyse 671,205 Kiva loans. I find that the gender that requests the most loans is female with single females being the most frequent borrowers. The main uses for these loans are agriculture, retail, and food with some variations amongst regions. Half of the loans are 4.22 USD or less and are funded by 12 or less contributers. The median time between posting a loan online and disbursing it to the borrower is 16.89 days. I mainly use the tidyverse, stringr, and quantmode packages."/>
+<meta name="twitter:site" content="@acastillogill"/>
+
+    
+<link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Alegreya|Source+Sans+Pro" rel="stylesheet">
+
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+	<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="../../../" id="logo">
+          
+          <span class="site-title">Ángela Castillo-Gill</span>
+      </a>
+      <nav id="main-nav">
+          
+          
+          <a class="main-nav-link" href="../../../">Home</a>
+          
+          
+
+          
+          <a class="main-nav-link" href="../../../about/">About</a>
+          
+
+          
+          
+          
+      </nav>
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="../../../img/angela.jpeg"><i class="fas fa-caret-down"></i></a>
+          </div>
+        </nav>
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+              <input type="search" name="q" class="search-form-input" placeholder="Search">
+              <button type="submit" class="search-form-submit">
+              </button>
+              <input type="hidden" name="sitesearch" value="/" />
+         </form>
+        </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tbody>
+          <tr>
+          
+          
+          <td><a class="main-nav-link" href="../../../">Home</a></td>
+          
+          
+
+          
+          <td><a class="main-nav-link" href="../../../about/">About</a></td>
+          
+
+          
+          
+          
+          <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="Search">
+          <input type="hidden" name="sitesearch" value="/" />
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</header>
+
+   	
+   	<div class="outer">
+   	
+    	<aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      
+      <img id="avatar" src="../../../img/angela.jpeg">
+      
+      <h2 id="name">Ángela Castillo-Gill</h2>
+      <h3 id="title">Data Analyst, kindness &amp; discipline.</h3>
+      
+      
+          <a id="follow" href="https://twitter.com/acastillogill">
+              @acastillogill
+          </a>
+      
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        3
+        <span>Posts</span>
+      </div>
+      <div class="article-info-block">
+        
+          9
+        
+        <span>
+            Tags
+        </span>
+      </div>
+    </div>
+    <div class="profile-block social-links">
+      <table>
+        <tr>
+          
+<td><a href="//github.com/acastillogill" target="_blank" title="GitHub"><i class="fab fa-github-square"></i></a></td>
+
+
+
+<td><a href="//twitter.com/acastillogill" target="_blank" title="Twitter"><i class="fab fa-twitter-square"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//medium.com/@acastillogill" target="_blank" title="Medium"><i class="fab fa-medium"></i></a></td>
+
+
+
+
+
+
+
+
+
+<td><a href="//linkedin.com/in/acastillogill" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <td><a href="../../../index.xml" target="_blank" title="RSS"><i class="fas fa-rss-square"></i></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+
+    
+
+    <section id="main">
+    
+    <article id="page-undefined" class="article article-type-page" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <img src="../../../banners/lenders-country.png" class="article-banner">
+        
+
+        <header class="article-header">
+    <a href="../../../2018/07/exploring-kiva-loans/">
+    <h1 class="article-title" itemprop="name">
+        Exploring Kiva loans
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="far fa-calendar"></i>
+            <time datetime="2018-07-07 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-07-07</time>
+            &middot;
+            1507
+            words
+            &middot;
+            8
+            minute read
+        </div>
+        
+        
+            
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fas fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="../../../tags/kaggle">Kaggle</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/kiva">Kiva</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/end-to-end">End-to-end</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/exploratory-data-analysis">Exploratory data analysis</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            
+
+<div id="TOC">
+<ul>
+<li><a href="#summary"><span class="toc-section-number">1</span> Summary</a></li>
+<li><a href="#purpose-of-this-post"><span class="toc-section-number">2</span> Purpose of this post</a></li>
+<li><a href="#the-data"><span class="toc-section-number">3</span> The data</a></li>
+<li><a href="#data-cleaning"><span class="toc-section-number">4</span> Data cleaning</a></li>
+<li><a href="#exploratory-data-analysis"><span class="toc-section-number">5</span> Exploratory data analysis</a></li>
+<li><a href="#techniques-used"><span class="toc-section-number">6</span> Techniques used</a></li>
+<li><a href="#questions-from-this-analysis"><span class="toc-section-number">7</span> Questions from this analysis</a></li>
+</ul>
+</div>
+
+<div id="summary" class="section level1">
+<h1><span class="header-section-number">1</span> Summary</h1>
+<p><em>To see the code used in this post, visit my <a href="https://www.kaggle.com/adcastillogill/exploring-kiva-loans">kernel on kaggle in R Markdown format</a>.</em></p>
+<p>In this post I analyse 671,205 <a href="www.kiva.org">Kiva</a> loans. I find that the gender that requests the most loans is female with single females being the most frequent borrowers. The main uses for these loans are agriculture, retail, and food with some variations amongst regions. Half of the loans are 4.22 USD or less and are funded by 12 or less contributers. The median time between posting a loan online and disbursing it to the borrower is 16.89 days. I mainly use the <code>tidyverse</code>, <code>stringr</code>, and <code>quantmode</code> packages.</p>
+</div>
+<div id="purpose-of-this-post" class="section level1">
+<h1><span class="header-section-number">2</span> Purpose of this post</h1>
+<p>Muhammad Yunus and the Grameen Bank won the <a href="https://www.nobelpeaceprize.org/Prize-winners/Winners/2006">Nobel Peace Prize</a> in 2006 for “their efforts through microcredit to create economic and social development from below.”</p>
+<p>Back in 1976, Yunus, at the time a professor at the University of Chittagong (Bangladesh), <a href="https://www.bbc.co.uk/news/world-south-asia-11901625">noticed that small amounts of money could make a substantial difference to people living in poverty</a>. He started to loan money to people that didn’t meet the requirements listed by the mainstream banking system. It was reported that these type of loans were effective to <a href="https://www.nobelpeaceprize.org/Prize-winners/Prizewinner-documentation/Muhammad-Yunus-Grameen-Bank">“emerge” from poverty</a> using default rates lower than those of commercial banks, <a href="https://www.gdrc.org/icm/grameen-article4.html">reported at 2%</a>. Eventually, in October 1983, Muhammad Yunus founded <a href="https://grameenfoundation.org/about/history">Grameen Bank</a>, considered to be the first microfinance institution.</p>
+<p>Founded in 2005, <a href="www.kiva.org">Kiva</a>, has the same mission as Grameen Bank except that anyone can become a Kiva banker. This online platform enables microcredit lending to help low-income entrepreneurs around the world with a couple of clicks. Pretty neat, huh? In this post, I unpack a large dataset published by <a href="https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding">Kiva on the Kaggle platform</a> and explore these microloans.</p>
+</div>
+<div id="the-data" class="section level1">
+<h1><span class="header-section-number">3</span> The data</h1>
+<p>The dataset was published during the first months of 2018 on the <a href="https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding">Kaggle platform</a>.</p>
+<p>The complete dataset was a zip file with size 232.7 MB containing four files: <code>kiva_loans.csv</code>, <code>kiva_mpi_region_locations.csv</code>,<code>loan_theme_ids.csv</code>, and <code>loan_themes_by_region.csv</code>. After I looked at the contents, I chose to work with the first one <code>kiva_loans.csv</code>.</p>
+<p>The dataset had 671,205 observations and 20 variables.</p>
+<p>Some of the codebook came with the dataset and some I researched to make assumptions:</p>
+<ul>
+<li><code>funded_amount</code>: “The amount disbursed by Kiva to the field agent(USD)”</li>
+<li><code>loan_amount</code>: “The amount disbursed by the field agent to the borrower(USD)”</li>
+<li><code>activity</code>: “More granular category”</li>
+<li><code>sector</code>: “High level category”</li>
+<li><code>use</code>: “Exact usage of loan amount”</li>
+<li><code>country_code</code>: “ISO country code of country in which loan was disbursed”</li>
+<li><code>country</code>: “Full country name of country in which loan was disbursed”</li>
+<li><code>region</code>: “Full region name within the country”</li>
+<li><code>currency</code>: “The currency in which the loan was disbursed”</li>
+<li><code>partner_id</code>: “ID of partner organization”</li>
+</ul>
+<p>This variable has a lot of missing values and the Kiva explanation on Kaggle doesn’t go much further. For now, I will exclude <code>partner_id</code>.</p>
+<ul>
+<li><code>posted_time</code>: “The time at which the loan is posted on Kiva by the field agent”</li>
+<li><code>disbursed_time</code>: “The time at which the loan is disbursed by the field agent to the borrower”</li>
+<li><code>funded_time</code>: “The time at which the loan posted to Kiva gets funded by lenders completely”</li>
+<li><code>term_in_months</code>: “The duration for which the loan was disbursed in months”</li>
+<li><code>lender_count</code>: “The total number of lenders that contributed to this loan”</li>
+<li><code>borrower_genders</code>: “Comma separated M,F letters, where each instance represents a single male/female in the group”</li>
+<li><code>repayment_interval</code>: Not specified so we’ll assume that it means the standard definition of when the loan is repaid back to the lender.</li>
+</ul>
+</div>
+<div id="data-cleaning" class="section level1">
+<h1><span class="header-section-number">4</span> Data cleaning</h1>
+<p>From at the structure of our data, we can soon see there are a few bits that don’t make sense and need to be fixed.</p>
+<p><strong>a. Missing values</strong></p>
+<p>We will leave missing values in for now.</p>
+<p><strong>b. <code>borrower_genders</code></strong></p>
+<p>From the variable descriptions, we expected <code>borrower_genders</code>to have only two levels, <code>male</code>or <code>female</code>. Here we see many more levels, 11,298 to be precise. This isn’t very clear so we’ll fix that first by creating five levels:</p>
+<pre><code>[1] &quot;mixed_genders&quot; &quot;mult_females&quot;  &quot;mult_males&quot;    &quot;single_female&quot;
+[5] &quot;single_male&quot;  </code></pre>
+<p><strong>c. <code>loan_amounts</code></strong></p>
+<p>Now, since we’re trying to make sense of all loans, it’s better if <code>loan_amounts</code> is in the same currency. Let’s translate it to USD.</p>
+<p><strong>d. <code>country_codes</code></strong></p>
+<p>Finally, with 86 countries, we have 86 levels. Perhaps it would be interesting to create another category called region to produce less levels and have a better understanding of the overall function of regional distributions.</p>
+<p>Our country codes are in the ISO3166 format, so we will use the associated region code found <a href="https://dev.maxmind.com/geoip/legacy/codes/country_region/">here</a>. And make five regions. Africa, Asia, Europe, Oceania, and South America.</p>
+<pre><code>[1] &quot;Africa&quot;   &quot;Americas&quot; &quot;Asia&quot;     &quot;Europe&quot;   &quot;Oceania&quot; </code></pre>
+<p><strong>e. Dates</strong></p>
+<p>Let’s calculate two lengths of time that I think are interesting. First, how much time passes from the moment the loan is posted to the moment it’s disbursed (<code>total_time</code>). Second, how long does a loan take to get funded (<code>giving_time</code>)?</p>
+</div>
+<div id="exploratory-data-analysis" class="section level1">
+<h1><span class="header-section-number">5</span> Exploratory data analysis</h1>
+<p>Now, let’s describe the data starting with some plots and tables to understand it.</p>
+<div class="figure"><span id="fig:region-and-borrower-genders-plots"></span>
+<img src="../../../post/2018-07-09-exploring-kiva-loans_files/figure-html/region-and-borrower-genders-plots-1.png" alt="Four regions in descending order from the region that requests the most loans (Asia). Notice Europe and North America do not appear. `mult_females` or `mult_males` means more than one female or male." width="960" />
+<p class="caption">
+Figure 5.1: Four regions in descending order from the region that requests the most loans (Asia). Notice Europe and North America do not appear. <code>mult_females</code> or <code>mult_males</code> means more than one female or male.
+</p>
+</div>
+<p>In all regions, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it’s mixed genders.</p>
+<div class="figure"><span id="fig:repayment-interval-and-region"></span>
+<img src="../../../post/2018-07-09-exploring-kiva-loans_files/figure-html/repayment-interval-and-region-1.png" alt="In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it's monthly." width="960" />
+<p class="caption">
+Figure 5.2: In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it’s monthly.
+</p>
+</div>
+<div class="figure"><span id="fig:sectors-and-regions"></span>
+<img src="../../../post/2018-07-09-exploring-kiva-loans_files/figure-html/sectors-and-regions-1.png" alt="In every region, the three most popular sectors are agriculture, retail, and food." width="960" />
+<p class="caption">
+Figure 5.3: In every region, the three most popular sectors are agriculture, retail, and food.
+</p>
+</div>
+<p>Notice most loans are requested by single females, the least amount of loans are given in the EU, weekly repayment is an unpopular form of paying loans back and entertainment, wholesale, manufacturing, and construction amount less than 2.2% of sectors.</p>
+<div class="figure"><span id="fig:countries-plot"></span>
+<img src="../../../post/2018-07-09-exploring-kiva-loans_files/figure-html/countries-plot-1.png" alt="Philippines requests the mosts loans with over double as the second country, Kenya `KE`. Other top countries in this ranking are Cambodia `KH`, Pakistan `PK`, Peru `PE`, Colombia `CO`, Uganda `UG`, Tajikistan `TJ`, Ecuador `EC`, and Paraguay `PY`." width="768" />
+<p class="caption">
+Figure 5.4: Philippines requests the mosts loans with over double as the second country, Kenya <code>KE</code>. Other top countries in this ranking are Cambodia <code>KH</code>, Pakistan <code>PK</code>, Peru <code>PE</code>, Colombia <code>CO</code>, Uganda <code>UG</code>, Tajikistan <code>TJ</code>, Ecuador <code>EC</code>, and Paraguay <code>PY</code>.
+</p>
+</div>
+<p>Now I’m curious to look at the top 10 countries requesting Kiva loans but per capita and per number of internet users.</p>
+<div class="figure"><span id="fig:countries-plot-capita"></span>
+<img src="../../../post/2018-07-09-exploring-kiva-loans_files/figure-html/countries-plot-capita-1.png" alt="Interesting to see how the ranking changed! The island of Samoa `WS` is leading, followed by Armenia `AM`. Countries that remain in the top 10 are Cambodia `KH`, Philippines `PH`, Kenya `KE`, and Tajikstan `TJ`. Other new countries are Timor-Leste `TL`, Paraguay `PY`, Palestine `PS`, and Lebanon `LB`." width="672" />
+<p class="caption">
+Figure 5.5: Interesting to see how the ranking changed! The island of Samoa <code>WS</code> is leading, followed by Armenia <code>AM</code>. Countries that remain in the top 10 are Cambodia <code>KH</code>, Philippines <code>PH</code>, Kenya <code>KE</code>, and Tajikstan <code>TJ</code>. Other new countries are Timor-Leste <code>TL</code>, Paraguay <code>PY</code>, Palestine <code>PS</code>, and Lebanon <code>LB</code>.
+</p>
+</div>
+<p>Let’s see how the top 10 changes when it comes to internet users. I used <a href="https://en.wikipedia.org/wiki/List_of_countries_by_number_of_Internet_users">this ranking</a>, which is based on numbers published by the <a href="https://www.itu.int/en/Pages/default.aspx">International Telecommunications Union</a>.</p>
+<div class="figure"><span id="fig:countries-plot-users"></span>
+<img src="../../../post/2018-07-09-exploring-kiva-loans_files/figure-html/countries-plot-users-1.png" alt="Interesting to see how the ranking changed! Leading the charts is the island of Samoa, followed by Armenia. Countries that remain in the top 10 are Cambodia `KH`, Philippines `PH`, Kenya `KE`, and Tajikstan `TJ`. Other new countries are Timor-Leste `TL`, Paraguay `PY`, Palestine `PS`, and Lebanon `LB`." width="672" />
+<p class="caption">
+Figure 5.6: Interesting to see how the ranking changed! Leading the charts is the island of Samoa, followed by Armenia. Countries that remain in the top 10 are Cambodia <code>KH</code>, Philippines <code>PH</code>, Kenya <code>KE</code>, and Tajikstan <code>TJ</code>. Other new countries are Timor-Leste <code>TL</code>, Paraguay <code>PY</code>, Palestine <code>PS</code>, and Lebanon <code>LB</code>.
+</p>
+</div>
+<p>Now let’s look at the distributions of our numeric variables.</p>
+<div class="figure"><span id="fig:loan-usd-distribution"></span>
+<img src="../../../post/2018-07-09-exploring-kiva-loans_files/figure-html/loan-usd-distribution-1.png" alt="Half of Kiva loans are 4.22 USD or less. Although the maximum loan is 100,000 USD, 75% of loans are equal to or less than 89.79 USD." width="672" />
+<p class="caption">
+Figure 5.7: Half of Kiva loans are 4.22 USD or less. Although the maximum loan is 100,000 USD, 75% of loans are equal to or less than 89.79 USD.
+</p>
+</div>
+<div class="figure"><span id="fig:term-in-months-distribution"></span>
+<img src="../../../post/2018-07-09-exploring-kiva-loans_files/figure-html/term-in-months-distribution-1.png" alt="The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median." width="672" />
+<p class="caption">
+Figure 5.8: The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median.
+</p>
+</div>
+<div class="figure"><span id="fig:lender-count"></span>
+<img src="../../../post/2018-07-09-exploring-kiva-loans_files/figure-html/lender-count-1.png" alt="The lender count has a text book right-skewed distribution with a median of 12 lenders." width="672" />
+<p class="caption">
+Figure 5.9: The lender count has a text book right-skewed distribution with a median of 12 lenders.
+</p>
+</div>
+<div class="figure"><span id="fig:lenders-per-country"></span>
+<img src="../../../post/2018-07-09-exploring-kiva-loans_files/figure-html/lenders-per-country-1.png" alt="Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans." width="672" />
+<p class="caption">
+Figure 5.10: Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans.
+</p>
+</div>
+<div class="figure"><span id="fig:giving-time"></span>
+<img src="../../../post/2018-07-09-exploring-kiva-loans_files/figure-html/giving-time-1.png" alt="The median time between posting the loan and the loan being fully funded is about 9.2 days. It is a bimodal distribution with its first peak around 6 days and its second peak around 30 days." width="672" />
+<p class="caption">
+Figure 5.11: The median time between posting the loan and the loan being fully funded is about 9.2 days. It is a bimodal distribution with its first peak around 6 days and its second peak around 30 days.
+</p>
+</div>
+<div class="figure"><span id="fig:total-time"></span>
+<img src="../../../post/2018-07-09-exploring-kiva-loans_files/figure-html/total-time-1.png" alt="The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days." width="672" />
+<p class="caption">
+Figure 5.12: The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days.
+</p>
+</div>
+</div>
+<div id="techniques-used" class="section level1">
+<h1><span class="header-section-number">6</span> Techniques used</h1>
+<ul>
+<li><p>I used the <code>quantmode</code> package to convert all loans into a unique currency (US dollars) for comparison. There were two currencies that were unavailable.</p></li>
+<li><p>Taking all the different levels that came in the <code>borrower_genders</code> variable and creating five neat categories to better understand who are the borrowers was good practice with lists and the <code>stringr</code> package.</p></li>
+</ul>
+</div>
+<div id="questions-from-this-analysis" class="section level1">
+<h1><span class="header-section-number">7</span> Questions from this analysis</h1>
+<ul>
+<li><p>Why is <code>Retail</code> and not <code>Food</code> (as in other regions) the second most common use for loans in Asia.</p></li>
+<li><p>Who are the givers? Where are they? Does proximity of the lender to the borrower have anything to do with funding times?</p></li>
+<li><p>Does the Kiva website have anything to do with funding times? For example, <code>giving_time</code>, the time between posting the loan and the loan being fully funded, has two peaks, at around one week and one month. Is this due to the platform and the promotion of loans that have been posted for a certain amount of time?</p></li>
+</ul>
+</div>
+
+        </div>
+        <footer class="article-footer">
+    <a data-url="/2018/07/exploring-kiva-loans/" data-id="41429b3fa65e9e188171ee8bdc0f02eb" text="Exploring Kiva loans" via="acastillogill" class="article-share-link">
+        <i class="fas fa-share"></i>
+        Share
+    </a>
+    
+    <a href="../../../2018/07/exploring-kiva-loans/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                titleText = $this.attr('text'),
+                via = $this.attr('via'),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/share?url=' + encodedUrl + '&text=' + titleText + '&via=' + via + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest-p article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+
+    
+<nav id="article-nav">
+    
+
+    
+    <a href="../../../2018/08/regression-trees-predicting-property-prices/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Newer
+      </strong>
+      <div class="article-nav-title">Regression trees: predicting property prices</div>
+    </a>
+    
+</nav>
+
+
+</article>
+
+
+<section id="comments">
+    <div id="disqus_thread">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-acastillogill-com" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+</section>
+
+
+    </section>
+
+   	
+    	<aside id="sidebar">
+    
+
+    
+
+    
+
+    
+
+
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+    
+	</div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018
+      Ángela Castillo-Gill. Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="https://github.com/ppoffice">PPOffice</a>. Customised by <a href="https://maraaverick.rbind.io/">Mara Averick</a> and used with permission.
+    </div>
+  </div>
+</footer>
+
+
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	if (window.sessionStorage) {
+		var GA_SESSION_STORAGE_KEY = 'ga:clientId';
+		ga('create', 'UA-128602464-1', {
+	    'storage': 'none',
+	    'clientId': sessionStorage.getItem(GA_SESSION_STORAGE_KEY)
+	   });
+	   ga(function(tracker) {
+	    sessionStorage.setItem(GA_SESSION_STORAGE_KEY, tracker.get('clientId'));
+	   });
+   }
+	
+	ga('send', 'pageview');
+}
+</script>
+
+<script src="../../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../../js/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+</body>
+</html>
