@@ -173,9 +173,12 @@ tm_layout(main.title = "Total R downloads in 2017/18",
 tm_legend(position=c("left", "bottom"), bg.color="white", frame=TRUE, legend.title.size=1)
 ```
 And what about other countries and regions?
-```{r plot-total-downloads-map, include=TRUE}
+```{r plot-total-downloads-map, include=TRUE, fig.cap="Besides the US, China, Germany, and other countries featured in the top 10, the map allows us to see which countries in each country downloaded R the most. These are Colombia and Brazil in South America; Mexico in Central America; and Italy, France and Poland in Europe."}
 n_map
 ```
+
+Some countries are heavier R users measured by the number of downloads per capita. I wanted to see how this compared with total downloads. 
+
 
 
 # Linear regression - why use it?
