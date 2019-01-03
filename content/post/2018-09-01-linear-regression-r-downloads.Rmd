@@ -221,8 +221,8 @@ n_capita_map
 
 I wonder at what times in the year are most popular for R downloads. Does it change amongst regions?
 
-```{r plot-r-downloads-per-month}
-r_downloads%>%
+```{r create-r-downloads-per-region}
+monthly_downloads_per_region <- r_downloads%>%
 #Group by the month of the year
  group_by(month(date), sub_region)%>%
 #Count downloads by the month of the year
@@ -231,7 +231,7 @@ summarise(monthly_downloads=n())%>%
 ggplot(aes(x=`month(date)`,y= monthly_downloads))+
 #Add line
 geom_line(alpha=0.5, color="coral2")+
-geom_point(color="purple")+
+geom_point(color="coral2")+
 scale_x_continuous(breaks=c(seq(1,12,1)))+
 #Add nice commas y axis
 scale_y_continuous(labels=comma_format())+
@@ -242,6 +242,9 @@ x="Week")+
 facet_wrap(~sub_region, scales="free")
 ```
 
+```{r plot-monthly-downloads-per-region}
+monthly_downloads_per_region 
+```
 
 # Linear regression - why use it?
 
