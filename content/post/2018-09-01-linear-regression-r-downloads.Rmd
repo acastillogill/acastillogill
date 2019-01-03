@@ -239,10 +239,10 @@ scale_y_continuous(labels=comma_format())+
 labs(title="Monthly R downloads around the world",
 y="Downloads",
 x="Week")+
-facet_wrap(~sub_region, scales="free")
+facet_wrap(~sub_region, scales="free", nrow = 6)
 ```
 
-```{r plot-monthly-downloads-per-region}
+```{r plot-monthly-downloads-per-region, include=TRUE, fig.height=12}
 monthly_downloads_per_region 
 ```
 
