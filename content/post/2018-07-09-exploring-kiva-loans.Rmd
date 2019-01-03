@@ -343,12 +343,14 @@ kiva_loans <-  kiva_loans%>%
           sector!="Entertainment"&
            sector!= "Manufacturing"&
             sector!= "Wholesale")%>%
-  droplevels()
+  droplevels()%>%
+  na.omit()
 ```
 
+## Borrower gender by region
 ```{r region-and-borrower-genders-plots, fig.cap="Four regions in descending order from the region that requests the most loans (Asia). Notice Europe and North America do not appear. `mult_females` or `mult_males` means more than one female or male.",fig.width=10}
-AF_borrower_genders <- na.omit(kiva_loans) %>%
-  filter(region == "AF") %>%
+AF_borrower_genders <- kiva_loans %>%
+  filter(region == "Africa") %>%
   dplyr::count(borrower_genders) %>%
   mutate(borrower_genders = reorder(borrower_genders, n)) %>%
   ggplot(aes(
@@ -364,14 +366,14 @@ AF_borrower_genders <- na.omit(kiva_loans) %>%
        y = "Number of loans") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         axis.ticks.x = element_blank()) +
-  #guides(fill = guide_legend(title = "Borrower genders")) +
+  #guides(fill = guide_legend(title = "Borrower gender")) +
   scale_fill_viridis_d() +
   scale_color_viridis_d() +
   coord_flip(ylim = c(0,250000))
 
 
 OC_borrower_genders <- na.omit(kiva_loans) %>%
-  filter(region == "OC") %>%
+  filter(region == "Oceania") %>%
   dplyr::count(borrower_genders) %>%
   mutate(borrower_genders = reorder(borrower_genders, n)) %>%
   ggplot(aes(
@@ -387,14 +389,14 @@ OC_borrower_genders <- na.omit(kiva_loans) %>%
        y = "Number of loans") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         axis.ticks.x = element_blank()) +
-  #guides(fill = guide_legend(title = "Borrower genders")) +
+  #guides(fill = guide_legend(title = "Borrower gender")) +
   scale_fill_viridis_d() +
   scale_color_viridis_d() +
   coord_flip(ylim = c(0,250000))
 
 
 AS_borrower_genders <- na.omit(kiva_loans) %>%
-  filter(region == "AS") %>%
+  filter(region == "Asia") %>%
   dplyr::count(borrower_genders) %>%
   mutate(borrower_genders = reorder(borrower_genders, n)) %>%
   ggplot(aes(
@@ -410,14 +412,14 @@ AS_borrower_genders <- na.omit(kiva_loans) %>%
        y = "Number of loans") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         axis.ticks.x = element_blank()) +
-  #guides(fill = guide_legend(title = "Borrower genders")) +
+  #guides(fill = guide_legend(title = "Borrower gender")) +
   scale_fill_viridis_d() +
   scale_color_viridis_d() +
   coord_flip(ylim = c(0,250000))
 
 
 SA_borrower_genders <- na.omit(kiva_loans) %>%
-  filter(region == "SA") %>%
+  filter(region == "Americas") %>%
   dplyr::count(borrower_genders) %>%
   mutate(borrower_genders = reorder(borrower_genders, n)) %>%
   ggplot(aes(
@@ -433,7 +435,7 @@ SA_borrower_genders <- na.omit(kiva_loans) %>%
        y = "Number of loans") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         axis.ticks.x = element_blank()) +
-  #guides(fill = guide_legend(title = "Borrower genders")) +
+  #guides(fill = guide_legend(title = "Borrower gender")) +
   scale_fill_viridis_d() +
   scale_color_viridis_d() +
   coord_flip(ylim = c(0,250000))
@@ -445,21 +447,16 @@ grid.arrange(
   AF_borrower_genders,
   SA_borrower_genders,
   OC_borrower_genders,
-  nrow = 1,
-  top = grid::textGrob("Borrower genders by region",
-                       x=0,
-                       hjust=0,
-                       gp=gpar(fontsize=30,
-                         font=8))
+  nrow = 1
 )
 ```
 
-```{r borrower-genders-table, eval=FALSE}
+```{r borrower-genders-table}
 options("digits"=2)
 prop.table(table(kiva_loans$borrower_genders))%>%
-  as_tibble()%>%
-  mutate(n=n*100)%>%
-  arrange(desc(n))%>%
+data.frame()%>%
+  mutate(Freq=Freq*100)%>%
+  arrange(desc(Freq))%>%
   kable(caption="A single female is the most common type of borrower gender with over half of all Kiva loans requested.",
         col.names = c("Gender","Percentage")) %>%
  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
@@ -470,9 +467,11 @@ prop.table(table(kiva_loans$borrower_genders))%>%
 
 In all regions, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it's mixed genders. 
 
+## Repayment interval by region
+
 ```{r repayment-interval-and-region, fig.cap="In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it's monthly.",fig.width=10}
 AF_repayment_interval <- kiva_loans %>%
-  filter(region=="AF")%>%
+  filter(region=="Africa")%>%
   dplyr::count(repayment_interval)%>%
   mutate(repayment_interval=reorder(repayment_interval, n))%>%
   ggplot(aes(
@@ -494,7 +493,7 @@ AF_repayment_interval <- kiva_loans %>%
 
 
 OC_repayment_interval <- kiva_loans %>%
-  filter(region=="OC")%>%
+  filter(region=="Oceania")%>%
   dplyr::count(repayment_interval)%>%
   mutate(repayment_interval=reorder(repayment_interval, n))%>%
   ggplot(aes(
@@ -516,7 +515,7 @@ OC_repayment_interval <- kiva_loans %>%
 
 
 AS_repayment_interval <- kiva_loans %>%
-  filter(region=="AS")%>%
+  filter(region=="Asia")%>%
   dplyr::count(repayment_interval)%>%
   mutate(repayment_interval=reorder(repayment_interval, n))%>%
   ggplot(aes(
@@ -538,7 +537,7 @@ AS_repayment_interval <- kiva_loans %>%
 
 
 SA_repayment_interval <- kiva_loans %>%
-  filter(region=="SA")%>%
+  filter(region=="Americas")%>%
   dplyr::count(repayment_interval)%>%
   mutate(repayment_interval=reorder(repayment_interval, n))%>%
   ggplot(aes(
@@ -561,31 +560,28 @@ SA_repayment_interval <- kiva_loans %>%
 grid.arrange(AS_repayment_interval,
              AF_repayment_interval,
              SA_repayment_interval, OC_repayment_interval,
-             nrow=1,  
-             top = grid::textGrob("Repayment interval by region",
-                       x=0,
-                       hjust=0,
-                       gp=gpar(fontsize=30,
-                               font=8))
+             nrow=1
 )
 
 ```
 
-```{r repayment-interval-table, eval=FALSE}
+```{r repayment-interval-table}
 
 prop.table(table(kiva_loans$repayment_interval))%>%
-  as.tibble()%>%
-  mutate(n=n*100)%>%
-  arrange(desc(n))%>%
+data.frame()%>%
+  mutate(Freq=Freq*100)%>%
+  arrange(desc(Freq))%>%
   kable(caption="The most popular type of repayment interval is monthly.",
         col.names = c("Repayment interval","Percentage")) %>%
  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 
 ```
 
+## Loan use by region
+
 ```{r sectors-and-regions, fig.cap="In every region, the three most popular sectors are agriculture, retail, and food.",fig.width=10}
 AF_sector <- kiva_loans %>%
-filter(region=="AF")%>%
+filter(region=="Africa")%>%
 dplyr::count(sector)%>%
 mutate(sector=reorder(sector, n))%>%
 ggplot(aes(
@@ -606,7 +602,7 @@ scale_color_viridis_d()+
   coord_flip(ylim = c(0,80000))
 
 OC_sector <- kiva_loans %>%
-filter(region=="OC")%>%
+filter(region=="Oceania")%>%
 dplyr::count(sector)%>%
 mutate(sector=reorder(sector, n))%>%
 ggplot(aes(
@@ -627,7 +623,7 @@ scale_color_viridis_d()+
   coord_flip(ylim = c(0,80000))
 
 AS_sector <- kiva_loans %>%
-filter(region=="AS")%>%
+filter(region=="Asia")%>%
 dplyr::count(sector)%>%
 mutate(sector=reorder(sector, n))%>%
 ggplot(aes(
@@ -648,7 +644,7 @@ scale_color_viridis_d()+
   coord_flip(ylim = c(0,80000))
 
 SA_sector <- kiva_loans %>%
-filter(region=="SA")%>%
+filter(region=="Americas")%>%
 dplyr::count(sector)%>%
 mutate(sector=reorder(sector, n))%>%
 ggplot(aes(
@@ -672,35 +668,30 @@ grid.arrange(AS_sector,
              AF_sector,
              SA_sector,
              OC_sector,
-             nrow=1,
-             top = grid::textGrob("Loan use by region",
-                       x=0,
-                       hjust=0,
-                       gp=gpar(fontsize=30,
-                               font=8))
+             nrow=1
 )
 ```
 
-```{r sector-table, eval=FALSE}
+```{r sector-table}
 
 prop.table(table(kiva_loans$sector))%>%
-  as.tibble()%>%
-  mutate(n=n*100)%>%
-  arrange(desc(n))%>%
+  data.frame()%>%
+  mutate(Freq=Freq*100)%>%
+  arrange(desc(Freq))%>%
   kable(caption="Generally, the most frequent use of loans is agriculture, followed by food and retail.",
         col.names = c("Sector","Percentage")) %>%
  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 ```
 
-```{r region-table, eval=FALSE}
+```{r region-table}
 
 prop.table(table(kiva_loans$region))%>%
-  as.tibble()%>%
-  mutate(n=n*100)%>%
-  arrange(desc(n))%>%
+  data.frame()%>%
+  mutate(Freq=Freq*100)%>%
+  arrange(desc(Freq))%>%
   kable(format="html",
           caption="Half of all Kiva loans are requested in Asia followed by Africa, South America, Oceania and finally the European Union.",
-        col.names = c("regions","Percentage")) %>%
+        col.names = c("Regions","Percentage")) %>%
  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 
 
@@ -1013,8 +1004,4 @@ ggplot(kiva_loans,
 - Who are the givers? Where are they? Does proximity of the lender to the borrower have anything to do with funding times?
 
 - Does the Kiva website have anything to do with funding times? For example, `giving_time`, the time between posting the loan and the loan being fully funded, has two peaks, at around one week and one month. Is this due to the platform and the promotion of loans that have been posted for a certain amount of time?
-
-```{r eval=FALSE}
-
-```
 

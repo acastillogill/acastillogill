@@ -50,7 +50,7 @@ div {
 }
 
 span {
-    font-family: 'LuissSans-ThinSans';
+    font-family: "Lucida Console", Monaco, monospace;
 }
 
 applet {
@@ -292,5 +292,10 @@ header-inner {
   text-decoration: none;
   line-height: 1.3em;
   /* Ángela mod */
+  font-family: "LuissSans-ThinSans";
+}
+
+
+.article-entry .caption {
   font-family: "LuissSans-ThinSans";
 }
