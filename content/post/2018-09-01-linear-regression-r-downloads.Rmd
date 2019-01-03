@@ -1,13 +1,14 @@
 ---
-title: "Linear regression: R-Downloads around the world"
+title: "R-Downloads around the world"
 author: Ángela Castillo-Gill
 date: '2018-12-01'
-slug: linear-regression-r-downloads-around-the-world
+slug: r-downloads-around-the-world
 categories: []
 tags: 
   - Kaggle
   - Tidy Tuesday
-  - Linear regression
+  - EDA
+  - Maps
 description: "To decide"
 banner: "banners/r-downloads.png"
 images: ["banners/r-downloads.png"]
@@ -103,7 +104,7 @@ The dataset contained 938,115 observations and eight features corresponding to a
 
 
 
-## Top 10 countries for R Downloads
+## Total R Downloads
 
 So what are the top ten countries with the most downloads? 
 
@@ -130,6 +131,8 @@ r_downloads%>%
   filter(!is.na(n))%>%
   arrange(desc(n))->downloads_per_country
 ```
+
+
 
 ```{r plot-top-10-countries, fig.cap="The US has almost six times as many downloads than the second country China.", include=TRUE}
 downloads_per_country%>%
@@ -177,8 +180,67 @@ And what about other countries and regions?
 n_map
 ```
 
+## Total R Downloads per capita
+
 Some countries are heavier R users measured by the number of downloads per capita. I wanted to see how this compared with total downloads. 
 
+```{r plot-top-10-countries-per-capita, fig.cap="Hong Kong, Switzerland, and Iceland, had more than two downloads per capita during the 2017/18 period.", include=TRUE}
+full_maps%>%
+  arrange(desc(n_capita))%>%
+  head(10)%>%
+  mutate(name=fct_reorder(name,n_capita))%>%
+  ggplot(aes(name,n_capita,fill=name))+
+  geom_col()+
+  expand_limits(y=0)+
+  coord_flip()+
+  scale_y_continuous(labels=comma_format())+
+  labs(title="Top 10 countries by R downloads per capita in 2017/18",
+       x="",
+       y="Downloads")+
+  theme(legend.position = "none")
+  
+```
+
+And again, how does this look like around the world?
+
+```{r create-downloads-per-capita-map}
+n_capita_map <- tm_shape(world_full) + 
+  tm_borders(col="black", lwd=0.1)+
+    tm_fill(col="n_capita",n=4, style="jenks", palette = get_brewer_pal("OrRd", n = 4, contrast = c(0.13, 0.9))) + 
+tm_layout(main.title = "R downloads per capita in 2017/18",
+          main.title.size = 2, frame = TRUE, bg.color = "aliceblue", title.position = c("right","bottom"))+
+tm_legend(position=c("left", "bottom"), bg.color="white", frame=TRUE, legend.title.size=1)
+```
+
+```{r plot-downloads-per-capita-map, include=TRUE, fig.cap="Besides the top 10 downloads per capita plot, here we see that Uruguay and Chile in South America have the most downloads per capita; El Salvador in Central America; and Japan in Asia."}
+n_capita_map
+```
+
+
+## Times of the year with most downloads
+
+I wonder at what times in the year are most popular for R downloads. Does it change amongst regions?
+
+```{r plot-r-downloads-per-month}
+r_downloads%>%
+#Group by the month of the year
+ group_by(month(date), sub_region)%>%
+#Count downloads by the month of the year
+summarise(monthly_downloads=n())%>%
+#Pipe to make a plot
+ggplot(aes(x=`month(date)`,y= monthly_downloads))+
+#Add line
+geom_line(alpha=0.5, color="coral2")+
+geom_point(color="purple")+
+scale_x_continuous(breaks=c(seq(1,12,1)))+
+#Add nice commas y axis
+scale_y_continuous(labels=comma_format())+
+ #Add title
+labs(title="Monthly R downloads around the world",
+y="Downloads",
+x="Week")+
+facet_wrap(~sub_region, scales="free")
+```
 
 
 # Linear regression - why use it?

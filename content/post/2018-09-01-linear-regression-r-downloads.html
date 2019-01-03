@@ -1,13 +1,14 @@
 ---
-title: "Linear regression: R-Downloads around the world"
+title: "R-Downloads around the world"
 author: Ángela Castillo-Gill
 date: '2018-12-01'
-slug: linear-regression-r-downloads-around-the-world
+slug: r-downloads-around-the-world
 categories: []
 tags: 
   - Kaggle
   - Tidy Tuesday
-  - Linear regression
+  - EDA
+  - Maps
 description: "To decide"
 banner: "banners/r-downloads.png"
 images: ["banners/r-downloads.png"]
@@ -32,7 +33,9 @@ editor_options:
 <li><a href="#summary"><span class="toc-section-number">1</span> Summary</a></li>
 <li><a href="#question"><span class="toc-section-number">2</span> Question</a></li>
 <li><a href="#dataset-description"><span class="toc-section-number">3</span> Dataset description</a><ul>
-<li><a href="#top-10-countries-for-r-downloads"><span class="toc-section-number">3.1</span> Top 10 countries for R Downloads</a></li>
+<li><a href="#total-r-downloads"><span class="toc-section-number">3.1</span> Total R Downloads</a></li>
+<li><a href="#total-r-downloads-per-capita"><span class="toc-section-number">3.2</span> Total R Downloads per capita</a></li>
+<li><a href="#times-of-the-year-with-most-downloads"><span class="toc-section-number">3.3</span> Times of the year with most downloads</a></li>
 </ul></li>
 <li><a href="#linear-regression---why-use-it"><span class="toc-section-number">4</span> Linear regression - why use it?</a></li>
 <li><a href="#results"><span class="toc-section-number">5</span> Results</a></li>
@@ -54,8 +57,8 @@ Which months of the year are the most popular times to download R? Does it depen
 <h1><span class="header-section-number">3</span> Dataset description</h1>
 <p>I used the <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2018-10-30">Tidy Tuesday dataset</a> for R Downloads posted on 30th October 2018.</p>
 <p>The dataset contained 938,115 observations and eight features corresponding to a unique id, download date, time, size, version, os, country, and IP id. The downloads correspond to a year’s worth of downloads running from 2017-10-20 to 2018-10-20. To prevent any overlap and have one entire year, I limited downloads until 2018-10-19. After I removed missing values, there were 910,351 observations.</p>
-<div id="top-10-countries-for-r-downloads" class="section level2">
-<h2><span class="header-section-number">3.1</span> Top 10 countries for R Downloads</h2>
+<div id="total-r-downloads" class="section level2">
+<h2><span class="header-section-number">3.1</span> Total R Downloads</h2>
 <p>So what are the top ten countries with the most downloads?</p>
 <div class="figure"><span id="fig:plot-top-10-countries"></span>
 <img src="/post/2018-09-01-linear-regression-r-downloads_files/figure-html/plot-top-10-countries-1.png" alt="The US has almost six times as many downloads than the second country China." width="672" />
@@ -70,7 +73,27 @@ And what about other countries and regions?
 Figure 3.2: Besides the US, China, Germany, and other countries featured in the top 10, the map allows us to see which countries in each country downloaded R the most. These are Colombia and Brazil in South America; Mexico in Central America; and Italy, France and Poland in Europe.
 </p>
 </div>
+</div>
+<div id="total-r-downloads-per-capita" class="section level2">
+<h2><span class="header-section-number">3.2</span> Total R Downloads per capita</h2>
 <p>Some countries are heavier R users measured by the number of downloads per capita. I wanted to see how this compared with total downloads.</p>
+<div class="figure"><span id="fig:plot-top-10-countries-per-capita"></span>
+<img src="/post/2018-09-01-linear-regression-r-downloads_files/figure-html/plot-top-10-countries-per-capita-1.png" alt="Hong Kong, Switzerland, and Iceland, had more than two downloads per capita during the 2017/18 period." width="672" />
+<p class="caption">
+Figure 3.3: Hong Kong, Switzerland, and Iceland, had more than two downloads per capita during the 2017/18 period.
+</p>
+</div>
+<p>And again, how does this look like around the world?</p>
+<div class="figure"><span id="fig:plot-downloads-per-capita-map"></span>
+<img src="/post/2018-09-01-linear-regression-r-downloads_files/figure-html/plot-downloads-per-capita-map-1.png" alt="Besides the top 10 downloads per capita plot, here we see that Uruguay and Chile in South America have the most downloads per capita; El Salvador in Central America; and Japan in Asia." width="672" />
+<p class="caption">
+Figure 3.4: Besides the top 10 downloads per capita plot, here we see that Uruguay and Chile in South America have the most downloads per capita; El Salvador in Central America; and Japan in Asia.
+</p>
+</div>
+</div>
+<div id="times-of-the-year-with-most-downloads" class="section level2">
+<h2><span class="header-section-number">3.3</span> Times of the year with most downloads</h2>
+<p>I wonder at what times in the year are most popular for R downloads. Does it change amongst regions?</p>
 </div>
 </div>
 <div id="linear-regression---why-use-it" class="section level1">
