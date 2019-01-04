@@ -9,14 +9,14 @@ tags:
   - Tidy Tuesday
   - EDA
   - Maps
-description: "To decide"
+description: "In this blogpost I analysed a dataset containing downloads of the R software in one year, spanning from October 2017 to 2018. Unsurprisingly, I found that large countries have the most total downloads. I then decide to explore downloads per capita and find that small, developed countries around the world have the most downloads. Finally, I look into which the times of the year are most common for downloading R. I find that almost everywhere, the summer isn't a very popular season for R downloads."
 banner: "banners/r-downloads.png"
 images: ["banners/r-downloads.png"]
 draft: FALSE
-summary: "To decide"
+summary: "In this blogpost I analysed a dataset containing downloads of the R software in one year, spanning from October 2017 to 2018. Unsurprisingly, I found that large countries have the most total downloads. I then decide to explore downloads per capita and find that small, developed countries around the world have the most downloads. Finally, I look into which the times of the year are most common for downloading R. I find that almost everywhere, the summer isn't a very popular season for R downloads."
 header: 
   image: "banners/r-downloads.png"
-  caption: "R Downloads per capita around the world. Iceland and Switzerland are right on top!"
+  caption: "R downloads per capita around the world. Iceland and Switzerland are right on top!"
 output:
   blogdown::html_page:
     toc: true
@@ -44,10 +44,10 @@ x <-
     "sf",
     "rgdal",
     "summarytools",
-    "leaflet",
     "tmap",
     "tmaptools",
-    "lubridate")
+    "lubridate",
+    "RColorBrewer")
 
 
 lapply(x, require, character.only = TRUE)
@@ -75,9 +75,6 @@ knit_hooks$set(inline = function(x) {
 })
 
 
-scale_colour_discrete <- function(...) scale_colour_brewer(..., palette="Paired")
-scale_fill_discrete <- function(...) scale_fill_brewer(... , palette="Paired")
-
 r_downloads <- readRDS(file=here::here("static","data","r-downloads.rds"))
 
 r_downloads <- na.omit(r_downloads)%>%
@@ -89,7 +86,7 @@ r_downloads <- na.omit(r_downloads)%>%
 
 *To see the code used in this post, visit my [kernel on kaggle in R Markdown format](https://www.kaggle.com/adcastillogill/regression-trees-predicting-property-prices/code).* 
 
-Write up
+In this blogpost I analysed a dataset containing downloads of the R software in one year, spanning from October 2017 to 2018. Unsurprisingly, I found that large countries have the most total downloads. I then decide to explore downloads per capita and find that small, developed countries around the world have the most downloads. Finally, I look into which the times of the year are most common for downloading R. I find that almost everywhere, the summer isn't a very popular season for R downloads.
 
 # Question
 
@@ -98,7 +95,7 @@ Which months of the year are the most popular times to download R? Does it depen
 
 # Dataset description 
 
-I used the [Tidy Tuesday dataset](https://github.com/rfordatascience/tidytuesday/tree/master/data/2018-10-30) for R Downloads posted on 30th October 2018. 
+I used the [Tidy Tuesday dataset](https://github.com/rfordatascience/tidytuesday/tree/master/data/2018-10-30) for R downloads posted on 30th October 2018. 
 
 The dataset contained 938,115 observations and eight features corresponding to a unique id, download date, time, size, version, os, country, and IP id. The downloads correspond to a year's worth of downloads running from 2017-10-20 to 2018-10-20. To prevent any overlap and have one entire year, I limited downloads until 2018-10-19. After I removed missing values, there were `r nrow(r_downloads)` observations.
 
@@ -135,6 +132,10 @@ r_downloads%>%
 
 
 ```{r plot-top-10-countries, fig.cap="The US has almost six times as many downloads than the second country China.", include=TRUE}
+
+blues <- brewer.pal(9,"BuPu")
+blue_range <- colorRampPalette(blues)
+
 downloads_per_country%>%
   arrange(desc(n))%>%
   head(10)%>%
@@ -147,7 +148,8 @@ downloads_per_country%>%
   labs(title="Top 10 countries by R downloads in 2017/18",
        x="",
        y="Downloads")+
-  theme(legend.position = "none")
+  theme(legend.position = "none")+
+  scale_fill_manual(values=blue_range(10))
   
 ```
 
@@ -185,6 +187,9 @@ n_map
 Some countries are heavier R users measured by the number of downloads per capita. I wanted to see how this compared with total downloads. 
 
 ```{r plot-top-10-countries-per-capita, fig.cap="Hong Kong, Switzerland, and Iceland, had more than two downloads per capita during the 2017/18 period.", include=TRUE}
+yellows <- brewer.pal(9,"OrRd")
+yellow_range <- colorRampPalette(yellows)
+
 full_maps%>%
   arrange(desc(n_capita))%>%
   head(10)%>%
@@ -197,7 +202,8 @@ full_maps%>%
   labs(title="Top 10 countries by R downloads per capita in 2017/18",
        x="",
        y="Downloads")+
-  theme(legend.position = "none")
+  theme(legend.position = "none")+
+  scale_fill_manual(values=yellow_range(10))
   
 ```
 
@@ -216,7 +222,6 @@ tm_legend(position=c("left", "bottom"), bg.color="white", frame=TRUE, legend.tit
 n_capita_map
 ```
 
-
 ## Times of the year with most downloads
 
 I wonder at what times in the year are most popular for R downloads. Does it change amongst regions?
@@ -230,28 +235,29 @@ summarise(monthly_downloads=n())%>%
 #Pipe to make a plot
 ggplot(aes(x=`month(date)`,y= monthly_downloads))+
 #Add line
-geom_line(alpha=0.5, color="coral2")+
-geom_point(color="coral2")+
+geom_line(alpha=0.5, color="seagreen3")+
+geom_point(color="seagreen3")+
 scale_x_continuous(breaks=c(seq(1,12,1)))+
 #Add nice commas y axis
 scale_y_continuous(labels=comma_format())+
  #Add title
-labs(title="Monthly R downloads around the world",
+labs(title="Monthly R downloads around the world 2017/2018",
 y="Downloads",
-x="Week")+
-facet_wrap(~sub_region, scales="free", nrow = 6)
+x="Month",
+caption = "Data source: Tidy Tuesday (2018-10-30)")+
+facet_wrap(~sub_region, scales="free", nrow = 6)+
+  theme(strip.background =element_rect(fill="white"))+
+  theme(strip.text = element_text(colour = "seagreen4", size=8,face="bold"))+
+  theme(title =element_text(size=12, face='bold',colour="seagreen4"))
 ```
 
-```{r plot-monthly-downloads-per-region, include=TRUE, fig.height=12}
+```{r plot-monthly-downloads-per-region, include=TRUE, fig.cap="It seems like not everybody loves the sunshine, #RStats doesn't. The summer months had the least downloads around the world with the exception of Sub-Saharan Africa and the Pacific Islander regions." ,fig.height=12}
 monthly_downloads_per_region 
 ```
 
-# Linear regression - why use it?
+# Conclusion
 
-Linear regression is a parametric 
-
-# Results
+In this post I analysed a dataset that contained downloads of R software around the world spanning a one year period between 2017 and 2018. Using the `tidyverse`, `lubridate`, and `tmap`packages, I found out which countries download the software the most. Since large countries with large populations will have more total downloads, I decided to inspect number downloads per capita. This extra step revealed that small, developed countries, such as Hong Kong, Switzerland, Iceland, Singapore, Liechtenstein, the Netherlands and Denmark have the most downloads per capita. An exception to this were the US and Australia with at least one download per capita despite being larger countries. Lastly, I looked into which months had the most R downloads by sub-regions and found that almost everywhere, there are few R downloads during the summer. 
 
 
-# What does it mean?
 

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="author" content="Ángela Castillo-Gill">
     
-      <meta name="description" content="To decide">
+      <meta name="description" content="In this blogpost I analysed a dataset containing downloads of the R software in one year, spanning from October 2017 to 2018. Unsurprisingly, I found that large countries have the most total downloads. I then decide to explore downloads per capita and find that small, developed countries around the world have the most downloads. Finally, I look into which the times of the year are most common for downloading R. I find that almost everywhere, the summer isn&#39;t a very popular season for R downloads.">
     
     
     <link rel="canonical" href="../../../2018/12/r-downloads-around-the-world/"/>
@@ -24,7 +24,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:regular,medium,bold' rel='stylesheet' type='text/css'>
     <meta property="og:title" content="R-Downloads around the world" />
-<meta property="og:description" content="To decide" />
+<meta property="og:description" content="In this blogpost I analysed a dataset containing downloads of the R software in one year, spanning from October 2017 to 2018. Unsurprisingly, I found that large countries have the most total downloads. I then decide to explore downloads per capita and find that small, developed countries around the world have the most downloads. Finally, I look into which the times of the year are most common for downloading R. I find that almost everywhere, the summer isn&#39;t a very popular season for R downloads." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/2018/12/r-downloads-around-the-world/" />
 <meta property="og:image" content="/banners/r-downloads.png" />
@@ -34,12 +34,12 @@
     
     
 <meta itemprop="name" content="R-Downloads around the world">
-<meta itemprop="description" content="To decide">
+<meta itemprop="description" content="In this blogpost I analysed a dataset containing downloads of the R software in one year, spanning from October 2017 to 2018. Unsurprisingly, I found that large countries have the most total downloads. I then decide to explore downloads per capita and find that small, developed countries around the world have the most downloads. Finally, I look into which the times of the year are most common for downloading R. I find that almost everywhere, the summer isn&#39;t a very popular season for R downloads.">
 
 
 <meta itemprop="datePublished" content="2018-12-01T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-12-01T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="427">
+<meta itemprop="wordCount" content="646">
 
   <meta itemprop="image" content="/banners/r-downloads.png">
 
@@ -51,7 +51,7 @@
 <meta name="twitter:image" content="/banners/r-downloads.png"/>
 
 <meta name="twitter:title" content="R-Downloads around the world"/>
-<meta name="twitter:description" content="To decide"/>
+<meta name="twitter:description" content="In this blogpost I analysed a dataset containing downloads of the R software in one year, spanning from October 2017 to 2018. Unsurprisingly, I found that large countries have the most total downloads. I then decide to explore downloads per capita and find that small, developed countries around the world have the most downloads. Finally, I look into which the times of the year are most common for downloading R. I find that almost everywhere, the summer isn&#39;t a very popular season for R downloads."/>
 <meta name="twitter:site" content="@acastillogill"/>
 
     
@@ -262,10 +262,10 @@
             <i class="far fa-calendar"></i>
             <time datetime="2018-12-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-12-01</time>
             &middot;
-            427
+            646
             words
             &middot;
-            3
+            4
             minute read
         </div>
         
@@ -314,16 +314,14 @@
 <li><a href="#total-r-downloads-per-capita"><span class="toc-section-number">3.2</span> Total R Downloads per capita</a></li>
 <li><a href="#times-of-the-year-with-most-downloads"><span class="toc-section-number">3.3</span> Times of the year with most downloads</a></li>
 </ul></li>
-<li><a href="#linear-regression---why-use-it"><span class="toc-section-number">4</span> Linear regression - why use it?</a></li>
-<li><a href="#results"><span class="toc-section-number">5</span> Results</a></li>
-<li><a href="#what-does-it-mean"><span class="toc-section-number">6</span> What does it mean?</a></li>
+<li><a href="#conclusion"><span class="toc-section-number">4</span> Conclusion</a></li>
 </ul>
 </div>
 
 <div id="summary" class="section level1">
 <h1><span class="header-section-number">1</span> Summary</h1>
 <p><em>To see the code used in this post, visit my <a href="https://www.kaggle.com/adcastillogill/regression-trees-predicting-property-prices/code">kernel on kaggle in R Markdown format</a>.</em></p>
-<p>Write up</p>
+<p>In this blogpost I analysed a dataset containing downloads of the R software in one year, spanning from October 2017 to 2018. Unsurprisingly, I found that large countries have the most total downloads. I then decide to explore downloads per capita and find that small, developed countries around the world have the most downloads. Finally, I look into which the times of the year are most common for downloading R. I find that almost everywhere, the summer isn’t a very popular season for R downloads.</p>
 </div>
 <div id="question" class="section level1">
 <h1><span class="header-section-number">2</span> Question</h1>
@@ -332,7 +330,7 @@ Which months of the year are the most popular times to download R? Does it depen
 </div>
 <div id="dataset-description" class="section level1">
 <h1><span class="header-section-number">3</span> Dataset description</h1>
-<p>I used the <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2018-10-30">Tidy Tuesday dataset</a> for R Downloads posted on 30th October 2018.</p>
+<p>I used the <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2018-10-30">Tidy Tuesday dataset</a> for R downloads posted on 30th October 2018.</p>
 <p>The dataset contained 938,115 observations and eight features corresponding to a unique id, download date, time, size, version, os, country, and IP id. The downloads correspond to a year’s worth of downloads running from 2017-10-20 to 2018-10-20. To prevent any overlap and have one entire year, I limited downloads until 2018-10-19. After I removed missing values, there were 910,351 observations.</p>
 <div id="total-r-downloads" class="section level2">
 <h2><span class="header-section-number">3.1</span> Total R Downloads</h2>
@@ -371,18 +369,17 @@ Figure 3.4: Besides the top 10 downloads per capita plot, here we see that Urugu
 <div id="times-of-the-year-with-most-downloads" class="section level2">
 <h2><span class="header-section-number">3.3</span> Times of the year with most downloads</h2>
 <p>I wonder at what times in the year are most popular for R downloads. Does it change amongst regions?</p>
-<p><img src="../../../post/2018-09-01-linear-regression-r-downloads_files/figure-html/plot-monthly-downloads-per-region-1.png" width="672" /></p>
+<div class="figure"><span id="fig:plot-monthly-downloads-per-region"></span>
+<img src="../../../post/2018-09-01-linear-regression-r-downloads_files/figure-html/plot-monthly-downloads-per-region-1.png" alt="It seems like not everybody loves the sunshine, #RStats doesn't. The summer months had the least downloads around the world with the exception of Sub-Saharan Africa and the Pacific Islander regions." width="672" />
+<p class="caption">
+Figure 3.5: It seems like not everybody loves the sunshine, #RStats doesn’t. The summer months had the least downloads around the world with the exception of Sub-Saharan Africa and the Pacific Islander regions.
+</p>
 </div>
 </div>
-<div id="linear-regression---why-use-it" class="section level1">
-<h1><span class="header-section-number">4</span> Linear regression - why use it?</h1>
-<p>Linear regression is a parametric</p>
 </div>
-<div id="results" class="section level1">
-<h1><span class="header-section-number">5</span> Results</h1>
-</div>
-<div id="what-does-it-mean" class="section level1">
-<h1><span class="header-section-number">6</span> What does it mean?</h1>
+<div id="conclusion" class="section level1">
+<h1><span class="header-section-number">4</span> Conclusion</h1>
+<p>In this post I analysed a dataset that contained downloads of R software around the world spanning a one year period between 2017 and 2018. Using the <code>tidyverse</code>, <code>lubridate</code>, and <code>tmap</code>packages, I found out which countries download the software the most. Since large countries with large populations will have more total downloads, I decided to inspect number downloads per capita. This extra step revealed that small, developed countries, such as Hong Kong, Switzerland, Iceland, Singapore, Liechtenstein, the Netherlands and Denmark have the most downloads per capita. An exception to this were the US and Australia with at least one download per capita despite being larger countries. Lastly, I looked into which months had the most R downloads by sub-regions and found that almost everywhere, there are few R downloads during the summer.</p>
 </div>
 
         </div>
