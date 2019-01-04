@@ -22,6 +22,16 @@ In this blogpost I analysed a dataset containing downloads of the R software in 
     </item>
     
     <item>
+      <title>R-Downloads around the world</title>
+      <link>/2018/12/r-downloads-around-the-world/</link>
+      <pubDate>Sat, 01 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/12/r-downloads-around-the-world/</guid>
+      <description>1 Summary 2 Question 3 Dataset description 3.1 Total R Downloads 3.2 Total R Downloads per capita 3.3 Times of the year with most downloads  4 Conclusion   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
+In this blogpost I analysed a dataset containing downloads of the R software in one year, spanning from October 2017 to 2018.</description>
+    </item>
+    
+    <item>
       <title>Regression trees: predicting property prices</title>
       <link>/2018/08/regression-trees-predicting-property-prices/</link>
       <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
@@ -39,6 +49,16 @@ In this post I explore a property dataset from Ames, Iowa. The data describes a 
       <guid>/2018/07/exploring-kiva-loans/</guid>
       <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 5 Exploratory data analysis 5.1 Borrower gender by region 5.2 Repayment interval by region 5.3 Loan use by region  6 Techniques used 7 Questions from this analysis   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
 In this post I analyse 671,205 Kiva loans from around the world.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/1/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/1/01/</guid>
+      <description>1 Summary 2 Question 3 Dataset description 3.1 Total R Downloads 3.2 Total R Downloads per capita 3.3 Times of the year with most downloads  4 Conclusion   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
+In this blogpost I analysed a dataset containing downloads of the R software in one year, spanning from October 2017 to 2018.</description>
     </item>
     
   </channel>

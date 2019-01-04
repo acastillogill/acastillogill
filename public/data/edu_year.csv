@@ -1,965 +1,206 @@
-﻿Indicator,country,year,educ
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",PAK,2012,3.41
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",PAK,2013,3.52
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",PAK,2014,3.74
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",PAK,2016,3.69
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",DEU,2012,13.89
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",DEU,2013,13.92
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",DEU,2014,14.04
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",DEU,2015,14.08
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",DEU,2016,14.13
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",DOM,2012,7.52
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",DOM,2013,7.61
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",DOM,2014,7.75
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",DOM,2015,7.83
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ESP,2012,8.7
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ESP,2014,8.04
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ESP,2015,9.57
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ESP,2016,9.69
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",CYP,2012,11.64
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",CYP,2013,11.76
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",CYP,2014,11.77
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",CYP,2015,11.75
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",CYP,2016,12.01
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BRA,2012,7.45
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BRA,2013,7.55
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BRA,2014,7.65
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BRA,2015,7.78
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",FRA,2012,10.86
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",FRA,2013,11
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",FRA,2014,11.14
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",FRA,2015,11.29
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",FRA,2016,11.13
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SWE,2012,12.27
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SWE,2013,12.14
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SWE,2014,12.19
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SWE,2015,12.26
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SWE,2016,12.31
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",AZE,2012,10.45
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",AZE,2013,11.25
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",AZE,2014,10.45
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",AZE,2015,10.45
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",AZE,2016,10.21
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",AUS,2012,12.85
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",AUS,2013,12.18
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",AUS,2014,12.32
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",AUS,2015,12.45
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",AUS,2016,12.42
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SUR,2012,8.96
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",MLT,2012,10.4
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",MLT,2013,10.68
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",MLT,2014,10.79
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",MLT,2015,10.9
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",MLT,2016,11.02
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",NLD,2012,11.76
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",NLD,2013,11.73
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",NLD,2014,11.77
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",NLD,2015,11.82
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",NLD,2016,11.91
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",PRY,2012,7.79
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",PRY,2013,8.27
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",PRY,2014,8.26
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",PRY,2015,8.53
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",PRY,2016,8.32
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ALB,2012,10.24
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",KWT,2012,7.24
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",KWT,2013,6.4
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",KWT,2015,6.82
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",KWT,2017,6.89
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ARM,2015,12.52
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",URY,2012,8.23
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",URY,2013,8.27
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",URY,2014,8.35
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",URY,2015,8.41
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",URY,2016,8.42
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",TUR,2012,6.74
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",TUR,2013,6.76
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",TUR,2014,6.93
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",TUR,2015,7.11
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",TUR,2016,6.86
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",CHL,2013,10.22
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",CHL,2015,10.51
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",PRT,2012,8.51
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",PRT,2013,8.65
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",PRT,2014,8.91
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",PRT,2015,9.04
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",PRT,2016,9.16
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",CZE,2012,12.17
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",CZE,2013,12.4
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",CZE,2014,12.58
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",CZE,2015,12.47
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",CZE,2016,12.53
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",PSE,2012,9.5
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",PSE,2013,9.26
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",PSE,2014,9.28
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",PSE,2015,9.31
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",PSE,2016,9.31
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",POL,2012,11.66
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",POL,2013,12.02
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",POL,2014,11.32
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",POL,2016,12.32
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",MYS,2016,10.02
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",LTU,2012,11.74
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",LTU,2013,11.88
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",LTU,2014,12.96
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",LTU,2015,13.1
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",LTU,2016,13.22
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",PRY,2012,7.78
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",PRY,2013,8.29
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",PRY,2014,8.25
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",PRY,2015,8.53
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",PRY,2016,8.35
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",QAT,2012,9.2
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",QAT,2013,9.89
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",QAT,2014,9.81
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",QAT,2016,9.67
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BGD,2012,4.92
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BGD,2013,4.71
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BGD,2014,4.38
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BGD,2015,5.11
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BGD,2016,5.21
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BGD,2017,5.4
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",KOR,2015,11.41
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",CYM,2014,13.54
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",CYM,2015,13.55
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ECU,2012,8.17
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ECU,2013,8.38
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ECU,2014,8.27
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ECU,2015,8.63
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ECU,2016,8.91
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",MEX,2012,8.57
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",MEX,2013,8.36
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",MEX,2014,8.4
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",MEX,2015,8.6
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",MEX,2016,8.6
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SEN,2013,2.78
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SEN,2017,2.83
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",VEN,2015,9.31
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",VEN,2016,10.03
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BEL,2012,11.4
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BEL,2013,11.59
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BEL,2014,11.7
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BEL,2015,11.85
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BEL,2016,11.95
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",LTU,2012,11.75
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",LTU,2013,11.88
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",LTU,2014,12.97
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",LTU,2015,13.1
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",LTU,2016,13.24
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",DEU,2012,14.33
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",DEU,2013,14.34
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",DEU,2014,14.47
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",DEU,2015,14.49
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",DEU,2016,14.52
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",GTM,2012,4.63
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",GTM,2013,4.71
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",GTM,2014,6.37
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BIH,2014,7.91
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BIH,2015,7.86
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BIH,2016,8.63
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",MEX,2012,8.91
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",MEX,2013,8.6
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",MEX,2014,8.61
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",MEX,2015,8.82
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",MEX,2016,8.8
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SVK,2012,12.38
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SVK,2013,12.43
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SVK,2014,12.62
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SVK,2015,13.7
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SVK,2016,13.74
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SVN,2012,11.49
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SVN,2013,11.57
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SVN,2014,11.76
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SVN,2015,11.92
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SVN,2016,12.21
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",OMN,2015,9.55
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",PRT,2012,8.46
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",PRT,2013,8.64
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",PRT,2014,8.97
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",PRT,2015,9.08
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",PRT,2016,9.22
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",USA,2012,13.29
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",USA,2013,13.24
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",USA,2014,13.25
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",USA,2015,13.26
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",USA,2016,13.35
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",LUX,2012,13.26
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",LUX,2013,13.53
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",LUX,2014,13.63
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",LUX,2015,13.4
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",PER,2012,8.8
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",PER,2013,9.42
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",PER,2014,9.12
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",PER,2015,9.16
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ZAF,2012,9.61
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ZAF,2014,9.81
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ZAF,2015,9.93
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",MAC,2016,10.74
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",MYS,2016,10.16
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BFA,2014,0.95
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",NLD,2012,12.05
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",NLD,2013,12.07
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",NLD,2014,12.1
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",NLD,2015,12.14
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",NLD,2016,12.19
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",IDN,2014,7.8
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",IDN,2015,7.91
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",IDN,2016,7.98
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BOL,2012,8.03
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BOL,2015,8.92
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",CRI,2012,8.46
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",CRI,2014,8.77
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",CRI,2015,8.51
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",CRI,2016,8.5
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SLV,2012,7.15
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SLV,2013,6.99
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SLV,2016,7.31
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ARE,2016,10.95
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",MAC,2016,10.51
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BEL,2012,11.06
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BEL,2013,11.21
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BEL,2014,11.29
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BEL,2015,11.54
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BEL,2016,11.63
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SRB,2013,10.41
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SRB,2014,10.72
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SRB,2015,11.01
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SRB,2016,11.13
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",GRC,2014,10.6
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",GRC,2015,10.75
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",GRC,2016,10.26
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",KWT,2012,7.45
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",KWT,2013,7.48
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",KWT,2015,7.73
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",KWT,2017,8.02
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",NOR,2014,12.46
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",NOR,2015,12.5
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",NOR,2016,12.52
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",HUN,2012,11.74
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",HUN,2013,11.89
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",HUN,2014,11.55
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",HUN,2015,11.64
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",HUN,2016,11.68
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SLV,2012,6.71
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SLV,2013,6.58
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SLV,2016,6.89
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",GTM,2012,5.24
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",GTM,2013,5.22
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",GTM,2014,6.44
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",CYP,2012,11.83
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",CYP,2013,11.97
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",CYP,2014,11.9
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",CYP,2015,11.89
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",CYP,2016,12.1
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",MLT,2012,10.8
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",MLT,2013,11.03
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",MLT,2014,11.13
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",MLT,2015,11.21
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",MLT,2016,11.29
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ROU,2012,10.49
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ROU,2013,10.57
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ROU,2014,10.5
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ROU,2015,10.53
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ROU,2016,10.64
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ITA,2012,9.66
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ITA,2014,9.87
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ITA,2015,9.96
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",CUB,2012,10.83
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BHR,2016,8.17
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",STP,2012,6.33
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",URY,2012,8.77
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",URY,2013,8.74
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",URY,2014,8.87
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",URY,2015,8.93
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",URY,2016,8.98
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",PHL,2013,9.32
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",HND,2012,5.52
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",HND,2014,6.16
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",HND,2015,6.3
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",HND,2016,6.53
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",AUS,2012,12.76
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",AUS,2013,12.14
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",AUS,2014,12.34
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",AUS,2015,12.44
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",AUS,2016,12.41
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ISR,2012,12.83
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ISR,2013,12.78
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ISR,2014,12.91
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ISR,2015,12.96
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BRA,2012,7.28
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BRA,2013,7.35
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BRA,2014,7.45
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BRA,2015,7.58
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",MOZ,2015,3.12
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",DOM,2012,7.25
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",DOM,2013,7.38
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",DOM,2014,7.49
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",DOM,2015,7.49
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",MYS,2016,10.3
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",CRI,2012,8.52
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",CRI,2014,8.76
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",CRI,2015,8.69
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",CRI,2016,8.66
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",GBR,2012,13.41
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",GBR,2013,13.01
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",GBR,2014,13.11
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",POL,2012,11.84
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",POL,2013,12.11
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",POL,2014,11.32
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",POL,2016,12.26
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BOL,2012,8.64
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BOL,2015,9.67
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SRB,2013,11.02
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SRB,2014,11.3
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SRB,2015,11.51
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SRB,2016,11.6
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",LTU,2012,11.74
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",LTU,2013,11.88
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",LTU,2014,12.95
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",LTU,2015,13.1
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",LTU,2016,13.21
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",COL,2012,7.64
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",COL,2013,7.85
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",COL,2014,8.01
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",COL,2015,8.06
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",COL,2016,8.27
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",CYP,2012,12.04
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",CYP,2013,12.2
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",CYP,2014,12.05
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",CYP,2015,12.03
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",CYP,2016,12.2
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",HKG,2014,11.9
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",HKG,2015,12.04
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",CYM,2014,13.53
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",CYM,2015,13.43
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",KOR,2015,12.85
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",MDA,2012,11.45
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",MDA,2013,11.63
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",MDA,2014,11.58
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",MDA,2015,11.58
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ESP,2012,8.88
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ESP,2014,8.18
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ESP,2015,9.73
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ESP,2016,9.82
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",RWA,2012,4.31
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",RWA,2014,4.57
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",GRC,2014,10.91
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",GRC,2015,11.01
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",GRC,2016,10.59
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ECU,2012,8.41
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ECU,2013,8.63
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ECU,2014,8.46
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ECU,2015,8.78
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ECU,2016,9.07
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SEN,2013,2.12
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SEN,2017,1.66
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ECU,2012,8.29
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ECU,2013,8.5
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ECU,2014,8.36
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ECU,2015,8.7
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ECU,2016,8.99
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ITA,2012,9.89
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ITA,2014,10.08
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ITA,2015,10.16
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",AZE,2012,11.02
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",AZE,2013,11.18
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",AZE,2014,11.04
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",AZE,2015,11.04
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",AZE,2016,11.01
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ARG,2012,11.32
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ARG,2013,11.44
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ARG,2014,11.41
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ARG,2015,11.43
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ARG,2016,11.42
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",MLT,2012,11.21
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",MLT,2013,11.39
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",MLT,2014,11.47
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",MLT,2015,11.53
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",MLT,2016,11.56
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",CUB,2012,10.85
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",NLD,2012,12.35
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",NLD,2013,12.43
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",NLD,2014,12.44
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",NLD,2015,12.47
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",NLD,2016,12.49
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ALB,2012,9.83
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",MLI,2015,1.57
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",MLI,2016,1.03
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",DEU,2012,13.46
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",DEU,2013,13.52
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",DEU,2014,13.63
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",DEU,2015,13.7
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",DEU,2016,13.77
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ESP,2012,9.06
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ESP,2014,8.32
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ESP,2015,9.9
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ESP,2016,9.96
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",PAK,2012,4.85
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",PAK,2013,4.93
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",PAK,2014,5.13
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",PAK,2016,5.06
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",HND,2012,5.47
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",HND,2014,6.08
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",HND,2015,6.16
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",HND,2016,6.5
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",FRA,2012,11.04
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",FRA,2013,11.19
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",FRA,2014,11.39
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",FRA,2015,11.51
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",FRA,2016,11.35
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",PHL,2013,9.15
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",POL,2012,11.75
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",POL,2013,12.06
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",POL,2014,11.32
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",POL,2016,12.29
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",PER,2012,9.3
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",PER,2013,9.94
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",PER,2014,9.66
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",PER,2015,9.67
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",AZE,2012,10.73
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",AZE,2013,10.77
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",AZE,2014,10.73
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",AZE,2015,10.73
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",AZE,2016,10.52
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ARG,2012,11.13
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ARG,2013,11.29
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ARG,2014,11.22
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ARG,2015,11.22
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ARG,2016,11.25
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",PRY,2012,7.76
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",PRY,2013,8.32
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",PRY,2014,8.24
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",PRY,2015,8.52
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",PRY,2016,8.38
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",CHL,2013,9.92
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",CHL,2015,10.2
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",TUR,2012,7.66
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",TUR,2013,7.64
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",TUR,2014,7.8
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",TUR,2015,7.96
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",TUR,2016,7.6
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BGD,2012,6.72
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BGD,2013,6.32
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BGD,2014,5.61
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BGD,2015,6.46
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BGD,2016,6.6
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BGD,2017,6.73
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ARM,2015,12.52
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",GRC,2014,10.32
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",GRC,2015,10.51
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",GRC,2016,9.96
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",NOR,2014,12.49
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",NOR,2015,12.55
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",NOR,2016,12.61
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",TUR,2012,8.59
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",TUR,2013,8.53
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",TUR,2014,8.68
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",TUR,2015,8.84
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",TUR,2016,8.35
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",EST,2012,13.94
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",EST,2013,14.1
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",EST,2014,14.09
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",EST,2015,14.11
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",EST,2016,14.11
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",KWT,2012,7.31
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",KWT,2013,6.79
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",KWT,2015,7.14
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",KWT,2017,7.28
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",URY,2012,8.52
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",URY,2013,8.52
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",URY,2014,8.63
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",URY,2015,8.68
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",URY,2016,8.72
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BEL,2012,11.23
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BEL,2013,11.39
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BEL,2014,11.49
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BEL,2015,11.69
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BEL,2016,11.78
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",PRT,2012,8.48
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",PRT,2013,8.65
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",PRT,2014,8.94
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",PRT,2015,9.06
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",PRT,2016,9.19
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ISR,2012,12.83
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ISR,2013,12.8
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ISR,2014,12.92
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ISR,2015,12.96
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",PSE,2012,9.03
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",PSE,2013,8.87
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",PSE,2014,8.92
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",PSE,2015,9.02
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",PSE,2016,9.1
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",DOM,2012,7.78
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",DOM,2013,7.83
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",DOM,2014,8
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",DOM,2015,8.14
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ZWE,2012,7.86
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ZWE,2014,8.15
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",CHL,2013,10.05
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",CHL,2015,10.34
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",PAK,2012,6.22
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",PAK,2013,6.28
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",PAK,2014,6.46
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",PAK,2016,6.38
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",GTM,2012,4.1
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",GTM,2013,4.27
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",GTM,2014,6.3
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",GBR,2012,13.46
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",GBR,2013,13.1
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",GBR,2014,13.16
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",PER,2012,8.32
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",PER,2013,8.92
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",PER,2014,8.58
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",PER,2015,8.66
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",THA,2013,7.31
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",THA,2016,7.4
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ITA,2012,10.15
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ITA,2014,10.32
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ITA,2015,10.38
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SVN,2012,11.65
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SVN,2013,11.72
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SVN,2014,11.91
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SVN,2015,12.03
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SVN,2016,12.27
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ROU,2012,11.29
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ROU,2013,11.33
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ROU,2014,11.26
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ROU,2015,11.27
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ROU,2016,11.35
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",FRA,2012,11.23
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",FRA,2013,11.39
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",FRA,2014,11.67
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",FRA,2015,11.75
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",FRA,2016,11.59
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",TJK,2017,12.01
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",OMN,2015,10.44
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",AUS,2012,12.94
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",AUS,2013,12.22
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",AUS,2014,12.31
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",AUS,2015,12.45
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",AUS,2016,12.44
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",COL,2012,7.57
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",COL,2013,7.74
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",COL,2014,7.88
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",COL,2015,7.94
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",COL,2016,8.13
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",USA,2012,13.37
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",USA,2013,13.23
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",USA,2014,13.27
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",USA,2015,13.31
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",USA,2016,13.41
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ROU,2012,10.87
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ROU,2013,10.93
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ROU,2014,10.86
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ROU,2015,10.88
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ROU,2016,10.98
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",CYM,2014,13.52
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",CYM,2015,13.32
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BIH,2014,10.53
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BIH,2015,10.24
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BIH,2016,10.85
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ZAF,2012,10.06
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ZAF,2014,10.18
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ZAF,2015,10.35
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",VEN,2015,9.65
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",VEN,2016,10.32
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SLV,2012,6.35
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SLV,2013,6.26
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SLV,2016,6.66
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SAU,2013,9.93
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",MAC,2016,10.3
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ZAF,2012,9.82
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ZAF,2014,9.99
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ZAF,2015,10.13
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",IDN,2014,7.33
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",IDN,2015,7.45
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",IDN,2016,7.57
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SAU,2013,8.82
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",ALB,2012,10.03
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",CUB,2012,10.84
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BFA,2014,1.88
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ARG,2012,11.49
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ARG,2013,11.56
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ARG,2014,11.58
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ARG,2015,11.6
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ARG,2016,11.57
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SRB,2013,9.86
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SRB,2014,10.19
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SRB,2015,10.56
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SRB,2016,10.69
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SEN,2013,3.5
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SEN,2017,4.11
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",CRI,2012,8.49
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",CRI,2014,8.77
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",CRI,2015,8.6
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",CRI,2016,8.58
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",MDA,2012,11.33
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",MDA,2013,11.61
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",MDA,2014,11.57
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",MDA,2015,11.61
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",LVA,2012,12.36
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",LVA,2013,12.54
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",LVA,2014,11.18
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",LVA,2015,12.74
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SVK,2012,12.23
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SVK,2013,12.29
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SVK,2014,12.45
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SVK,2015,13.57
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SVK,2016,13.64
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",RWA,2012,3.23
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",RWA,2014,3.54
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BTN,2012,2.5
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",MLI,2015,2.22
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",MLI,2016,2.11
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",PRI,2012,13.98
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",VEN,2015,9.98
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",VEN,2016,10.65
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",QAT,2012,8.88
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",QAT,2013,9.65
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",QAT,2014,9.51
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",QAT,2016,9.34
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",UGA,2012,4.07
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",CHE,2012,13.41
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",CHE,2014,13.8
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",CHE,2015,13.9
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",CHE,2016,13.85
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",KOR,2015,12.12
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",THA,2013,7.54
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",THA,2016,7.61
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",OMN,2015,9.19
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",HKG,2014,11.51
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",HKG,2015,11.65
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",USA,2012,13.33
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",USA,2013,13.23
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",USA,2014,13.26
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",USA,2015,13.29
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",USA,2016,13.38
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",COL,2012,7.7
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",COL,2013,7.95
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",COL,2014,8.12
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",COL,2015,8.17
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",COL,2016,8.46
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",IDN,2014,8.29
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",IDN,2015,8.39
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",IDN,2016,8.39
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",HUN,2012,11.84
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",HUN,2013,12.01
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",HUN,2014,11.77
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",HUN,2015,11.85
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",HUN,2016,11.89
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BRA,2012,7.08
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BRA,2013,7.13
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BRA,2014,7.21
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BRA,2015,7.35
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SWE,2012,12.62
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SWE,2013,12.3
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SWE,2014,12.37
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SWE,2015,12.47
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SWE,2016,12.54
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",MEX,2012,8.28
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",MEX,2013,8.15
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",MEX,2014,8.22
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",MEX,2015,8.41
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",MEX,2016,8.42
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",QAT,2012,10.6
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",QAT,2013,10.83
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",QAT,2014,11.07
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",QAT,2016,11.09
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",PSE,2012,8.55
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",PSE,2013,8.48
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",PSE,2014,8.55
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",PSE,2015,8.73
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",PSE,2016,8.89
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",CHE,2012,12.91
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",CHE,2014,13.35
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",CHE,2015,13.47
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",CHE,2016,13.4
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",HKG,2014,12.38
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",HKG,2015,12.52
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ISR,2012,12.82
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ISR,2013,12.83
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ISR,2014,12.92
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ISR,2015,12.96
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BHR,2016,8.54
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",NER,2012,1.14
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BOL,2012,7.43
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BOL,2015,8.2
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BFA,2014,1.37
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",LUX,2012,13.94
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",LUX,2013,14.05
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",LUX,2014,14.3
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",LUX,2015,13.66
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",DNK,2012,12.76
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",DNK,2013,13.24
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",DNK,2014,12.8
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",DNK,2015,12.53
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",DNK,2016,12.59
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SVK,2012,12.1
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SVK,2013,12.15
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SVK,2014,12.3
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SVK,2015,13.44
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SVK,2016,13.55
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",LVA,2012,12.7
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",LVA,2013,12.91
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",LVA,2014,12.84
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",LVA,2015,13.23
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",MDA,2012,11.58
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",MDA,2013,11.66
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",MDA,2014,11.58
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",MDA,2015,11.54
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SVN,2012,11.82
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SVN,2013,11.88
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SVN,2014,12.06
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SVN,2015,12.14
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SVN,2016,12.34
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SWE,2012,12.45
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SWE,2013,12.22
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SWE,2014,12.28
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SWE,2015,12.37
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SWE,2016,12.43
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",CZE,2012,12.58
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",CZE,2013,12.84
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",CZE,2014,13.09
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",CZE,2015,12.9
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",CZE,2016,12.96
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",PRI,2012,13.4
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ZWE,2012,8.26
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",ZWE,2014,8.91
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",NOR,2014,12.48
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",NOR,2015,12.53
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",NOR,2016,12.57
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",TJK,2017,10.84
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",DNK,2012,12.61
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",DNK,2013,13.09
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",DNK,2014,12.94
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",DNK,2015,12.38
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",DNK,2016,12.43
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",GBR,2012,13.51
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",GBR,2013,13.18
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",GBR,2014,13.21
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",NER,2012,1.63
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",NER,2012,2.29
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",GEO,2012,12.6
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",GEO,2014,12.65
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",GEO,2016,12.8
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",EST,2012,13.61
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",EST,2013,13.72
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",EST,2014,13.58
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",EST,2015,13.63
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",EST,2016,13.66
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",STP,2012,7.06
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BHR,2016,7.98
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",EST,2012,13.23
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",EST,2013,13.29
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",EST,2014,13.02
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",EST,2015,13.11
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",EST,2016,13.17
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",CHE,2012,13.93
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",CHE,2014,14.28
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",CHE,2015,14.35
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",CHE,2016,14.33
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ARM,2015,12.52
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SUR,2012,8.74
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BGR,2012,10.81
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BGR,2013,10.91
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BGR,2014,10.95
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BGR,2015,11.77
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BGR,2016,11.81
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BTN,2012,1.68
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",DNK,2012,12.92
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",DNK,2013,13.38
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",DNK,2014,12.67
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",DNK,2015,12.66
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",DNK,2016,12.72
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",LVA,2012,13
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",LVA,2013,13.21
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",LVA,2014,13.17
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",LVA,2015,13.66
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SAU,2013,9.5
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",RWA,2012,3.73
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",RWA,2014,4.01
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ZWE,2012,7.5
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",ZWE,2014,7.53
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BGR,2012,10.79
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BGR,2013,10.88
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BGR,2014,10.88
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BGR,2015,11.71
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BGR,2016,11.75
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",TZA,2012,4.88
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",HND,2012,5.56
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",HND,2014,6.22
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",HND,2015,6.41
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",HND,2016,6.56
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",PHL,2013,8.98
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",TZA,2012,5.46
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SUR,2012,8.84
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",GEO,2012,12.41
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",GEO,2014,12.6
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",GEO,2016,12.83
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",UGA,2012,5.13
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",STP,2012,5.64
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",UGA,2012,6.33
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",HUN,2012,11.94
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",HUN,2013,12.14
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",HUN,2014,12.03
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",HUN,2015,12.09
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",HUN,2016,12.13
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BIH,2014,9.16
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BIH,2015,9
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BIH,2016,9.69
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",TZA,2012,6.09
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",MLI,2015,1.88
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",MLI,2016,1.55
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BTN,2012,3.36
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BGR,2012,10.82
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BGR,2013,10.93
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BGR,2014,11
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BGR,2015,11.82
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BGR,2016,11.87
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",THA,2013,7.79
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",THA,2016,7.85
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",CZE,2012,12.37
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",CZE,2013,12.62
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",CZE,2014,12.83
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",CZE,2015,12.68
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",CZE,2016,12.74
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",MOZ,2015,3.48
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BGD,2012,5.81
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BGD,2013,5.52
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BGD,2014,4.99
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BGD,2015,5.78
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BGD,2016,5.91
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BGD,2017,6.06
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",TJK,2017,11.42
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",PRI,2012,13.71
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",MOZ,2015,2.63
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",LUX,2012,13.6
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",LUX,2013,13.79
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",LUX,2014,13.96
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",LUX,2015,13.53
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",GEO,2012,12.5
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",GEO,2014,12.62
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",GEO,2016,12.81
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SGP,2012,10.2
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SGP,2013,10.31
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SGP,2014,10.34
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SGP,2015,10.46
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",SGP,2016,10.48
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",LCA,2013,8.15
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",LCA,2013,8.64
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",IRL,2017,11.32
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SGP,2012,9.82
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SGP,2013,9.94
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SGP,2014,9.99
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SGP,2015,10.11
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",SGP,2016,10.12
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",AND,2014,10.26
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",AND,2015,10.23
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",AND,2016,10.22
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",IRL,2017,11.13
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SGP,2012,9.48
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SGP,2013,9.59
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SGP,2014,9.67
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SGP,2015,9.78
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",SGP,2016,9.79
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",IRL,2017,11.5
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",AND,2014,10.15
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",AND,2015,10.11
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",AND,2016,10.09
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",LCA,2013,8.41
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",AND,2014,10.2
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",AND,2015,10.17
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",AND,2016,10.16
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",BDI,2014,1.47
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",UZB,2013,11.27
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",UZB,2014,11.34
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",UZB,2015,11.36
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",UZB,2016,11.52
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",TUN,2012,5.8
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",TUN,2016,6.35
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",TUN,2012,7.79
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",TUN,2016,7.86
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",IRQ,2013,7.37
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",COD,2013,7.67
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",COD,2016,8.37
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",IRQ,2013,7.98
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",PLW,2013,12.95
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",UZB,2013,11.07
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",UZB,2014,11.15
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",UZB,2015,11.17
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",UZB,2016,11.3
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",PLW,2013,13.01
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",BDI,2014,1.9
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",FIN,2012,12.35
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",FIN,2013,12.53
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",FIN,2014,12.57
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",FIN,2015,12.61
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",UZB,2013,11.48
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",UZB,2014,11.54
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",UZB,2015,11.56
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",UZB,2016,11.76
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",TUN,2012,6.77
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",TUN,2016,7.09
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",AUT,2012,11.42
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",AUT,2013,11.49
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",AUT,2014,12.05
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",AUT,2015,12.21
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",AUT,2016,12.28
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",IRQ,2013,8.48
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",COD,2013,5.97
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",COD,2016,6.76
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",COD,2013,4.45
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",COD,2016,5.27
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",BDI,2014,2.39
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",FIN,2012,12.16
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",FIN,2013,12.22
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",FIN,2014,12.25
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",FIN,2015,12.26
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",CIV,2014,3.65
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",NZL,2012,13.37
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",NZL,2014,13.29
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",NZL,2015,13.6
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",NZL,2016,13.34
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",AUT,2012,12.25
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",AUT,2013,12.26
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",AUT,2014,12.86
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",AUT,2015,12.93
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",AUT,2016,12.95
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",CPV,2015,6.12
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",NZL,2012,12.95
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",NZL,2014,13.17
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",NZL,2015,13.48
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",NZL,2016,13.27
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",FIN,2012,12.25
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",FIN,2013,12.38
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",FIN,2014,12.41
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",FIN,2015,12.44
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",PLW,2013,12.89
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",AUT,2012,11.82
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",AUT,2013,11.86
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",AUT,2014,12.44
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",AUT,2015,12.56
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",AUT,2016,12.56
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",CIV,2014,4.44
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",CIV,2014,5.18
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",NZL,2012,13.13
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",NZL,2014,13.41
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",NZL,2015,13.73
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",NZL,2016,13.42
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",CPV,2015,6.4
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",CPV,2015,5.87
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",IRN,2012,9.61
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",IRN,2013,9.88
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",IRN,2014,9.93
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",IRN,2016,10.07
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",IRN,2012,9.31
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",IRN,2013,9.63
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",IRN,2014,9.73
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",IRN,2016,9.94
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, male",AGO,2014,4.95
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, female",AGO,2014,3.13
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",IRN,2012,9.47
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",IRN,2013,9.77
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",IRN,2014,9.84
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",IRN,2016,10.01
-"Mean years of schooling (ISCED 1 or higher), population 25+ years, both sexes",AGO,2014,3.99
+﻿name,edu_index
+Afghanistan,0.365333
+Albania,0.608519
+Algeria,0.642589
+Andorra,0.670287
+Angola,0.474212
+Antigua and Barbuda,0.681141
+Argentina,0.783356
+Armenia,0.701367
+Australia,0.926536
+Austria,0.794481
+Azerbaijan,0.699778
+Bahamas,0.713955
+Bahrain,0.713967
+Bangladesh,0.446880
+Barbados,0.739778
+Belarus,0.819984
+Belgium,0.812292
+Belize,0.688889
+Benin,0.413556
+Bhutan,0.421244
+Bolivia (Plurinational State of),0.673500
+Bosnia and Herzegovina,0.655318
+Botswana,0.619000
+Brazil,0.661306
+Brunei Darussalam,0.692111
+Bulgaria,0.749407
+Burkina Faso,0.250033
+Burundi,0.370089
+Cambodia,0.495178
+Cameroon,0.485789
+Canada,0.850300
+Cape Verde,0.483467
+Central African Republic,0.317867
+Chad,0.255852
+Chile,0.745675
+China,0.609667
+Colombia,0.602222
+Comoros,0.450420
+Congo,0.511333
+Congo (Democratic Republic of the),0.371778
+Costa Rica,0.653922
+Cote d'Ivoire,0.389222
+Croatia,0.770334
+Cuba,0.742878
+Cyprus,0.776198
+Czech Republic,0.866222
+Denmark,0.872826
+Djibouti,0.305878
+Dominica,0.607498
+Dominican Republic,0.590171
+Ecuador,0.593838
+Egypt,0.573444
+El Salvador,0.553262
+Equatorial Guinea,0.414911
+Eritrea,0.227514
+Estonia,0.858533
+Ethiopia,0.316522
+Fiji,0.766517
+Finland,0.815089
+France,0.815549
+Gabon,0.589333
+Gambia,0.345611
+Georgia,0.770333
+Germany,0.884372
+Ghana,0.552744
+Greece,0.796989
+Grenada,0.723976
+Guatemala,0.483880
+Guinea,0.294445
+Guinea-Bissau,0.325333
+Guyana,0.581656
+Haiti,0.374278
+Honduras,0.504963
+"Hong Kong, China (SAR)",0.767367
+Hungary,0.804894
+Iceland,0.846867
+India,0.472667
+Indonesia,0.603136
+Iran (Islamic Republic of),0.683456
+Iraq,0.466556
+Ireland,0.887067
+Israel,0.854268
+Italy,0.789506
+Jamaica,0.668356
+Japan,0.808000
+Jordan,0.699725
+Kazakhstan,0.762267
+Kenya,0.514556
+Kiribati,0.602071
+Korea (Democratic People's Republic of),..
+Korea (Republic of),0.864510
+Kuwait,0.645787
+Kyrgyzstan,0.656289
+Lao People's Democratic Republic,0.435867
+Latvia,0.813188
+Lebanon,0.630576
+Lesotho,0.504158
+Liberia,0.367244
+Libya,0.697889
+Liechtenstein,0.761544
+Lithuania,0.876660
+Luxembourg,0.762111
+Madagascar,0.458426
+Malawi,0.439667
+Malaysia,0.670544
+Maldives,0.547543
+Mali,0.305181
+Malta,0.732538
+Marshall Islands,..
+Mauritania,0.352278
+Mauritius,0.718097
+Mexico,0.637833
+Micronesia (Federated States of),0.611085
+Moldova (Republic of),0.653444
+Monaco,..
+Mongolia,0.693667
+Montenegro,0.773556
+Morocco,0.467856
+Mozambique,0.372056
+Myanmar,0.370556
+Namibia,0.520189
+Nauru,..
+Nepal,0.452311
+Netherlands,0.893532
+New Zealand,0.916767
+Nicaragua,0.483900
+Niger,0.197933
+Nigeria,0.424860
+Norway,0.909922
+Oman,0.603279
+Pakistan,0.371667
+Palau,0.786760
+Palestine (State of),0.662477
+Panama,0.657411
+Papua New Guinea,0.376311
+Paraguay,0.587322
+Peru,0.664338
+Philippines,0.609984
+Poland,0.824700
+Portugal,0.727615
+Qatar,0.685687
+Romania,0.747894
+Russian Federation,0.779956
+Rwanda,0.478167
+Saint Kitts and Nevis,0.637913
+Saint Lucia,0.631431
+Saint Vincent and the Grenadines,0.656834
+Samoa,0.701508
+San Marino,..
+Sao Tome and Principe,0.469166
+Saudi Arabia,0.723174
+Senegal,0.367811
+Serbia,0.695444
+Seychelles,0.635929
+Sierra Leone,0.304500
+Singapore,0.767778
+Slovakia,0.802100
+Slovenia,0.863083
+Solomon Islands,0.405499
+Somalia,..
+South Africa,0.695447
+South Sudan,..
+Spain,0.794397
+Sri Lanka,0.737778
+Sudan,0.305956
+Suriname,0.588380
+Swaziland,0.551289
+Sweden,0.830134
+Switzerland,0.844089
+Syrian Arab Republic,0.553192
+Tajikistan,0.639444
+Tanzania (United Republic of),0.425889
+Thailand,0.607965
+The former Yugoslav Republic of Macedonia,0.641898
+Timor-Leste,0.472407
+Togo,0.514422
+Tonga,0.720333
+Trinidad and Tobago,0.700321
+Tunisia,0.621456
+Turkey,0.652024
+Turkmenistan,0.678713
+Tuvalu,..
+Uganda,0.478644
+Ukraine,0.795511
+United Arab Emirates,0.673215
+United Kingdom,0.860260
+United States,0.889759
+Uruguay,0.712262
+Uzbekistan,0.651111
+Vanuatu,0.595511
+Venezuela (Bolivarian Republic of),0.682483
+Vietnam,0.513489
+Yemen,0.339222
+Zambia,0.591333
+Zimbabwe,0.499933
+,
+,
+,
+,
+,
+Data not available,
+Greater (or less) than zero but small enough to be rounded off to zero at the displayed number of decimal points,
+Less than,
+Not applicable,
+Total,

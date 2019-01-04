@@ -84,7 +84,7 @@ r_downloads <- na.omit(r_downloads)%>%
 
 # Summary
 
-*To see the code used in this post, visit my [kernel on kaggle in R Markdown format](https://www.kaggle.com/adcastillogill/regression-trees-predicting-property-prices/code).* 
+*To see the code used in this post, visit my [kernel on kaggle in R Markdown format](https://www.kaggle.com/adcastillogill/r-downloads-around-the-world/code).* 
 
 In this blogpost I analysed a dataset containing downloads of the R software in one year, spanning from October 2017 to 2018. Unsurprisingly, I found that large countries have the most total downloads. I then decide to explore downloads per capita and find that small, developed countries around the world have the most downloads. Finally, I look into which the times of the year are most common for downloading R. I find that almost everywhere, the summer isn't a very popular season for R downloads.
 
@@ -105,13 +105,17 @@ The dataset contained 938,115 observations and eight features corresponding to a
 
 So what are the top ten countries with the most downloads? 
 
-```{r read-country-codes-and-pop-and-map}
+```{r read-data}
 iso_codes <- read_csv(here::here("static","data","iso_countries.csv"))
 
 pop <-read_csv(here::here("static","data","country_populations.csv"))
 
 map_path <- here::here("static","data","world_shapefile","world_shapefile.shp")
 world <- sf::st_read(map_path)
+
+educ <- read_csv(here::here("static","data","edu_year.csv"))
+
+educ$edu_index <- as.double(educ$edu_index)
 
 ```
 
@@ -258,6 +262,28 @@ monthly_downloads_per_region
 # Conclusion
 
 In this post I analysed a dataset that contained downloads of R software around the world spanning a one year period between 2017 and 2018. Using the `tidyverse`, `lubridate`, and `tmap`packages, I found out which countries download the software the most. Since large countries with large populations will have more total downloads, I decided to inspect number downloads per capita. This extra step revealed that small, developed countries, such as Hong Kong, Switzerland, Iceland, Singapore, Liechtenstein, the Netherlands and Denmark have the most downloads per capita. An exception to this were the US and Australia with at least one download per capita despite being larger countries. Lastly, I looked into which months had the most R downloads by sub-regions and found that almost everywhere, there are few R downloads during the summer. 
+
+```{r merge-years-of-education}
+
+full_maps_edu <- full_maps%>%
+  left_join(educ, by="name")%>%
+  na.omit()
+
+```
+
+
+```{r create-model-of-educ-r-capita}
+fit <- lm( log(n_capita) ~ edu_index, data = full_maps_edu)
+summary(fit)
+par(mfrow=c(2,2))
+plot(fit)
+```
+
+```{r plot-relationship-between-educ-and-n-capita}
+ggplot(full_maps_edu, aes(x=edu_index, y=log(n_capita)))+
+  geom_point(alpha=0.5)+
+  geom_smooth(method="lm")
+```
 
 
 
