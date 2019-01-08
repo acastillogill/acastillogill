@@ -47,7 +47,8 @@ x <-
     "tmap",
     "tmaptools",
     "lubridate",
-    "RColorBrewer")
+    "RColorBrewer",
+    "hrbrthemes")
 
 
 lapply(x, require, character.only = TRUE)
@@ -62,7 +63,7 @@ opts_chunk$set(echo = FALSE,
                tidy = TRUE,
                include = FALSE)
 
-theme_set(theme_light())
+theme_set(theme_ipsum_rc())
 
 options(
   digits=3,

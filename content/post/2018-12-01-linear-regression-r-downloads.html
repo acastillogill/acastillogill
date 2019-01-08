@@ -1,0 +1,85 @@
+---
+title: "Linear regression: who tends to download R software"
+author: Ángela Castillo-Gill
+date: '2018-12-01'
+slug: linear-regression-r-downloads
+categories: []
+tags: 
+  - Kaggle
+  - Tidy Tuesday
+  - EDA
+  - Maps
+description: "To define."
+banner: "banners/edu_index_downloads_capita.png"
+images: ["banners/edu_index_downloads_capita.png"]
+draft: TRUE
+summary: ""
+header: 
+  image: "banners/edu_index_downloads_capita.png"
+  caption: ""
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+    toc_depth: 2
+  fig_caption: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#summary"><span class="toc-section-number">1</span> Summary</a></li>
+<li><a href="#question"><span class="toc-section-number">2</span> Question</a></li>
+<li><a href="#dataset-description"><span class="toc-section-number">3</span> Dataset description</a></li>
+<li><a href="#the-relationship-between-the-education-index-and-r-downloads"><span class="toc-section-number">4</span> The relationship between the education index and R downloads</a></li>
+<li><a href="#conclusion"><span class="toc-section-number">5</span> Conclusion</a></li>
+</ul>
+</div>
+
+<div id="summary" class="section level1">
+<h1><span class="header-section-number">1</span> Summary</h1>
+<p><em>To see the code used in this post, visit my <a href="https://www.kaggle.com/adcastillogill/r-downloads-around-the-world/code">kernel on kaggle in R Markdown format</a>.</em></p>
+</div>
+<div id="question" class="section level1">
+<h1><span class="header-section-number">2</span> Question</h1>
+</div>
+<div id="dataset-description" class="section level1">
+<h1><span class="header-section-number">3</span> Dataset description</h1>
+<p>I used the <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2018-10-30">Tidy Tuesday dataset</a> for R downloads posted on 30th October 2018.</p>
+<p>The dataset contained 938,115 observations and eight features corresponding to a unique id, download date, time, size, version, os, country, and IP id. The downloads correspond to a year’s worth of downloads running from 2017-10-20 to 2018-10-20. To prevent any overlap and have one entire year, I limited downloads until 2018-10-19. After I removed missing values, there were 910,351 observations.</p>
+<p>In a <a href="">previous post</a> I had a look at the which countries downloaded R the most. That let me to ask which countries were the most intense R users, using downloads per capita as a proxy.</p>
+<p>When I was writing the conclusions on which countries were the most intense users, I tried to draw up patterns. What the countries had in common was that they were “developed” countries. Does developed mean high levels of education and that’s why they end up being intensive R users.</p>
+<p>To further explore the relationship between countries that intense R users and education, I decided to do some regression analysis.</p>
+</div>
+<div id="the-relationship-between-the-education-index-and-r-downloads" class="section level1">
+<h1><span class="header-section-number">4</span> The relationship between the education index and R downloads</h1>
+<div class="figure"><span id="fig:plot-relationship-between-educ-and-n-capita"></span>
+<img src="/post/2018-12-01-linear-regression-r-downloads_files/figure-html/plot-relationship-between-educ-and-n-capita-1.png" alt="There appears to be an exponential relationship between the education index and the number of R downloads per capita." width="672" />
+<p class="caption">
+Figure 4.1: There appears to be an exponential relationship between the education index and the number of R downloads per capita.
+</p>
+</div>
+<p>We’re seeing some sort of exponential behaviour in the y-axis. Why don’t we try the same plot but logging the dependent variable.</p>
+<div class="figure"><span id="fig:plot-relationship-between-educ-and-n-capita-log"></span>
+<img src="/post/2018-12-01-linear-regression-r-downloads_files/figure-html/plot-relationship-between-educ-and-n-capita-log-1.png" alt="By taking the logarithm of R downloads per capita, we have met the criteria for a linear regression." width="672" />
+<p class="caption">
+Figure 4.2: By taking the logarithm of R downloads per capita, we have met the criteria for a linear regression.
+</p>
+</div>
+<p>The relationship between the two variables is linear now - time for a linear regression!</p>
+<p>After checking out the residuals, we can see there are a few outliers, mainly observations 160 (Turkmenistan), 148 (Tajikistan), 140 (Libya), 95 (Burkina Faso), 162 (Chad). I’m going to leave them in, anyway because it’s interesting to think about what specific characteristcs contributes to them being be under or over the trend line.</p>
+<p>This model explains <code>summary(fit)$adj.r.squared*100</code> of the variation in the data. It’s not a lot but it’s also not insignificant. After having tried with other variables such as GDP and life expectancy, I found the education index to best predictor.</p>
+<p>Now I want to see if their is an increase in the model’s adjusted R^2 if we run a model for each region.</p>
+<p>I thought the model’s adjusted R^2 would go up but it didn’t! Interesting. Let’s look at the plot by regions.</p>
+<div class="figure"><span id="fig:plot-relationship-between-educ-and-n-capita-log-regions"></span>
+<img src="/post/2018-12-01-linear-regression-r-downloads_files/figure-html/plot-relationship-between-educ-and-n-capita-log-regions-1.png" alt="Seems that the relationship is less strong when the data is separated into regions." width="672" />
+<p class="caption">
+Figure 4.3: Seems that the relationship is less strong when the data is separated into regions.
+</p>
+</div>
+</div>
+<div id="conclusion" class="section level1">
+<h1><span class="header-section-number">5</span> Conclusion</h1>
+</div>

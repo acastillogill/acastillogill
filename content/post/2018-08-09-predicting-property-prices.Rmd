@@ -60,10 +60,12 @@ x <-
     "rpart.plot",
     "Metrics",
     "caret",
-    "psych")
+    "psych",
+    "hrbrthemes")
 
 lapply(x, require, character.only = TRUE)
 
+theme_set(theme_ipsum_rc())
 
 opts_chunk$set(echo = FALSE,
                warning = FALSE,
@@ -76,7 +78,7 @@ opts_chunk$set(echo = FALSE,
                results ='asis')
 options(scipen = 999)
 options(digits=4)
-theme_set(theme_light())
+
 
 ```
 
@@ -604,7 +606,7 @@ ggplot(aes(names,x/total_importance,fill=names))+
   geom_col()+
   scale_y_continuous(labels = scales::percent_format())+
   coord_flip()+
-  labs(title="Top 15 most important variables for predicting `SalePrice`",
+  labs(title="Top 15 variables for predicting SalePrice",
        y="",
        x="")+
   theme(legend.position = "none")

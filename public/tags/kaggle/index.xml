@@ -12,21 +12,22 @@
     
     
     <item>
-      <title>R-Downloads around the world</title>
-      <link>/2018/12/r-downloads-around-the-world/</link>
+      <title>Linear regression: who tends to download R software</title>
+      <link>/2018/12/linear-regression-r-downloads/</link>
       <pubDate>Sat, 01 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/12/r-downloads-around-the-world/</guid>
-      <description>1 Summary 2 Question 3 Dataset description 3.1 Total R Downloads 3.2 Total R Downloads per capita 3.3 Times of the year with most downloads  4 Conclusion   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
-In this blogpost I analysed a dataset containing downloads of the R software in one year, spanning from October 2017 to 2018.</description>
+      <guid>/2018/12/linear-regression-r-downloads/</guid>
+      <description>1 Summary 2 Question 3 Dataset description 4 The relationship between the education index and R downloads 5 Conclusion   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
+ 2 Question  3 Dataset description I used the Tidy Tuesday dataset for R downloads posted on 30th October 2018.
+The dataset contained 938,115 observations and eight features corresponding to a unique id, download date, time, size, version, os, country, and IP id.</description>
     </item>
     
     <item>
       <title>R-Downloads around the world</title>
-      <link>/2018/12/r-downloads-around-the-world/</link>
-      <pubDate>Sat, 01 Dec 2018 00:00:00 +0000</pubDate>
+      <link>/2018/11/r-downloads-around-the-world/</link>
+      <pubDate>Thu, 01 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/12/r-downloads-around-the-world/</guid>
+      <guid>/2018/11/r-downloads-around-the-world/</guid>
       <description>1 Summary 2 Question 3 Dataset description 3.1 Total R Downloads 3.2 Total R Downloads per capita 3.3 Times of the year with most downloads  4 Conclusion   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
 In this blogpost I analysed a dataset containing downloads of the R software in one year, spanning from October 2017 to 2018.</description>
     </item>
