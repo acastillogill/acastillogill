@@ -49,7 +49,7 @@ x <-
 
 lapply(x, require, character.only = TRUE)
 
-theme_set(theme_ipsum_rc())
+theme_set(theme_minimal())
 
 opts_chunk$set(echo = FALSE,
                warning = FALSE,
@@ -362,7 +362,7 @@ AF_borrower_genders <- kiva_loans %>%
     color = borrower_genders
   )) +
   geom_col(show.legend = FALSE, alpha = 0.7) +
-  theme_ipsum_rc() +
+  theme_minimal() +
   labs(title = "Africa",
        x = "",
        y = "Number of loans") +
@@ -385,7 +385,7 @@ OC_borrower_genders <- na.omit(kiva_loans) %>%
     color = borrower_genders
   )) +
   geom_col(show.legend = FALSE, alpha = 0.7) +
-  theme_ipsum_rc() +
+  theme_minimal() +
   labs(title = "Oceania",
        x = "",
        y = "Number of loans") +
@@ -408,7 +408,7 @@ AS_borrower_genders <- na.omit(kiva_loans) %>%
     color = borrower_genders
   )) +
   geom_col(show.legend = FALSE, alpha = 0.7) +
-  theme_ipsum_rc() +
+  theme_minimal() +
   labs(title = "Asia",
        x = "",
        y = "Number of loans") +
@@ -431,7 +431,7 @@ SA_borrower_genders <- na.omit(kiva_loans) %>%
     color = borrower_genders
   )) +
   geom_col(show.legend = FALSE, alpha = 0.7) +
-  theme_ipsum_rc() +
+  theme_minimal() +
   labs(title = "South America",
        x = "",
        y = "Number of loans") +
@@ -482,7 +482,7 @@ AF_repayment_interval <- kiva_loans %>%
     fill = repayment_interval,
     color = repayment_interval)) +
   geom_col(show.legend = FALSE, alpha=0.7) +
-  theme_ipsum_rc() +
+  theme_minimal() +
   labs(title = "Africa",
        x = "",
        y = "Number of loans") +
@@ -504,7 +504,7 @@ OC_repayment_interval <- kiva_loans %>%
     fill = repayment_interval,
     color = repayment_interval)) +
   geom_col(show.legend = FALSE, alpha=0.7) +
-  theme_ipsum_rc() +
+  theme_minimal() +
   labs(title = "Oceania",
        x = "",
        y = "Number of loans") +
@@ -526,7 +526,7 @@ AS_repayment_interval <- kiva_loans %>%
     fill = repayment_interval,
     color = repayment_interval)) +
   geom_col(show.legend = FALSE, alpha=0.7) +
-  theme_ipsum_rc() +
+  theme_minimal() +
   labs(title = "Asia",
        x = "",
        y = "Number of loans") +
@@ -548,7 +548,7 @@ SA_repayment_interval <- kiva_loans %>%
     fill = repayment_interval,
     color = repayment_interval)) +
   geom_col(show.legend = FALSE, alpha=0.7) +
-  theme_ipsum_rc() +
+  theme_minimal() +
   labs(title = "South America",
        x = "",
        y = "Number of loans") +
@@ -592,7 +592,7 @@ y = n,
 fill = sector,
 color = sector)) +
 geom_col(show.legend = FALSE, alpha=0.7) +
-theme_ipsum_rc() +
+theme_minimal() +
 labs(title = "Africa",
 x = "",
 y = "Number of loans") +
@@ -613,7 +613,7 @@ y = n,
 fill = sector,
 color = sector)) +
 geom_col(show.legend = FALSE, alpha=0.7) +
-theme_ipsum_rc() +
+theme_minimal() +
 labs(title = "Oceania",
 x = "",
 y = "Number of loans") +
@@ -634,7 +634,7 @@ y = n,
 fill = sector,
 color = sector)) +
 geom_col(show.legend = FALSE, alpha=0.7) +
-theme_ipsum_rc() +
+theme_minimal() +
 labs(title = "Asia",
 x = "",
 y = "Number of loans") +
@@ -655,7 +655,7 @@ y = n,
 fill = sector,
 color = sector)) +
 geom_col(show.legend = FALSE, alpha=0.7) +
-theme_ipsum_rc() +
+theme_minimal() +
 labs(title = "South America",
 x = "",
 y = "Number of loans") +
@@ -714,7 +714,7 @@ kiva_loans %>%
   fill = "#84628e",
   alpha=0.6) +
   coord_flip() +
-  theme_ipsum_rc() +
+  theme_minimal() +
   labs(title = "Top 10 countries requesting Kiva loans",
   x = "",
   y = "Number of loans")+
@@ -770,7 +770,7 @@ pop_iso_loans %>%
   fill = "#a0d985",
   alpha=0.6) +
   coord_flip() +
-  theme_ipsum_rc() +
+  theme_minimal() +
   labs(title = "Top 10 countries requesting Kiva loans per 1,000 capita",
   x = "",
   y = "Number of loans per 1,000 capita")+
@@ -809,7 +809,7 @@ users_iso_loans %>%
   fill = "#8283ad",
   alpha=0.6) +
   coord_flip() +
-  theme_ipsum_rc() +
+  theme_minimal() +
   labs(title = "Top 10 countries requesting Kiva loans per 1,000 internet users",
   x = "",
   y = "Number of loans per 1,000 internet users")+
@@ -931,7 +931,7 @@ kiva_16%>%
   #Add median line
   geom_vline(aes(xintercept = country_lender_median)) +
   #Minimal theme
-  theme_ipsum_rc() +
+  theme_minimal() +
   #Add limits to the x axis
   xlim(0,70) +
   #Remove x axis labels

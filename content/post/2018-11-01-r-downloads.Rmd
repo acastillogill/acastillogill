@@ -63,7 +63,7 @@ opts_chunk$set(echo = FALSE,
                tidy = TRUE,
                include = FALSE)
 
-theme_set(theme_ipsum_rc())
+theme_set(theme_minimal())
 
 options(
   digits=3,
@@ -204,7 +204,7 @@ full_maps%>%
   expand_limits(y=0)+
   coord_flip()+
   scale_y_continuous(labels=comma_format())+
-  labs(title="Top 10 countries by R downloads per capita in 2017/18",
+  labs(title="Top 10 by R downloads per capita in 2017/18",
        x="",
        y="Downloads")+
   theme(legend.position = "none")+
