@@ -67,7 +67,7 @@ opts_chunk$set(echo = FALSE,
 theme_set(theme_ipsum_rc())
 
 options(
-  digits=3,
+  digits=2,
   scipen = 999
 )
 
@@ -173,7 +173,7 @@ ggplot(full_maps_edu, aes(x=edu_index, y=log(n_capita)))+
   geom_point(alpha=0.5)+
   geom_smooth(method="lm", color="salmon", se=FALSE, size=2, alpha=0.5)+
   geom_text_repel(aes(label=name), force=0.2, size=2, segment.alpha = 0.5)+
-  labs(title="The education index vs. R downloads per capita",
+  labs(title="The Education Index vs. R Downloads per Capita",
        x="Education index",
        y="R downloads per capita (logarithm applied)")
 ```
@@ -242,5 +242,23 @@ ggplot(full_maps_edu, aes(x=edu_index, y=log(n_capita)))+
   facet_wrap(.~region, scales="free")
 ```
 
+The trend lines are less steep and also, by breaking up the data into smaller groups, we have less data points per group which make the results of the regression more unreliable.
+
+# Results
+
+- As we saw earlier, the education index explains `summary(fit)$coef[2]` in the variation of R Downloads around the world. 
+
+- The education index is expected to increase the predicted logged downloads per capita by `summary(fit)$coef[2]`.
+
+
+
+
 # Conclusion
+
+```{r}
+fit%>%
+  augment()%>%
+  select(log.n_capita., edu_index, .fitted)%>%
+  View()
+```
 

@@ -39,7 +39,7 @@
 
 <meta itemprop="datePublished" content="2018-12-01T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-12-01T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="463">
+<meta itemprop="wordCount" content="532">
 
   <meta itemprop="image" content="/banners/edu_index_downloads_capita.png">
 
@@ -262,7 +262,7 @@
             <i class="far fa-calendar"></i>
             <time datetime="2018-12-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-12-01</time>
             &middot;
-            463
+            532
             words
             &middot;
             3
@@ -311,7 +311,8 @@
 <li><a href="#question"><span class="toc-section-number">2</span> Question</a></li>
 <li><a href="#dataset-description"><span class="toc-section-number">3</span> Dataset description</a></li>
 <li><a href="#the-relationship-between-the-education-index-and-r-downloads"><span class="toc-section-number">4</span> The relationship between the education index and R downloads</a></li>
-<li><a href="#conclusion"><span class="toc-section-number">5</span> Conclusion</a></li>
+<li><a href="#results"><span class="toc-section-number">5</span> Results</a></li>
+<li><a href="#conclusion"><span class="toc-section-number">6</span> Conclusion</a></li>
 </ul>
 </div>
 
@@ -356,9 +357,17 @@ Figure 4.2: By taking the logarithm of R downloads per capita, we have met the c
 Figure 4.3: Seems that the relationship is less strong when the data is separated into regions.
 </p>
 </div>
+<p>The trend lines are less steep and also, by breaking up the data into smaller groups, we have less data points per group which make the results of the regression more unreliable.</p>
+</div>
+<div id="results" class="section level1">
+<h1><span class="header-section-number">5</span> Results</h1>
+<ul>
+<li><p>As we saw earlier, the education index explains <code>summary(fit)$coef[2]</code> in the variation of R Downloads around the world.</p></li>
+<li><p>The education index is expected to increase the predicted logged downloads per capita by <code>summary(fit)$coef[2]</code>.</p></li>
+</ul>
 </div>
 <div id="conclusion" class="section level1">
-<h1><span class="header-section-number">5</span> Conclusion</h1>
+<h1><span class="header-section-number">6</span> Conclusion</h1>
 </div>
 
         </div>
