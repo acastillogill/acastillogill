@@ -39,7 +39,7 @@
 
 <meta itemprop="datePublished" content="2018-12-01T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-12-01T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="532">
+<meta itemprop="wordCount" content="546">
 
   <meta itemprop="image" content="/banners/edu_index_downloads_capita.png">
 
@@ -262,7 +262,7 @@
             <i class="far fa-calendar"></i>
             <time datetime="2018-12-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-12-01</time>
             &middot;
-            532
+            546
             words
             &middot;
             3
@@ -347,10 +347,10 @@ Figure 4.2: By taking the logarithm of R downloads per capita, we have met the c
 </p>
 </div>
 <p>The relationship between the two variables is linear now - time for a linear regression!</p>
-<p>After checking out the residuals, we can see there are a few outliers, mainly observations 160 (Turkmenistan), 148 (Tajikistan), 140 (Libya), 95 (Burkina Faso), 162 (Chad). I’m going to leave them in, anyway because it’s interesting to think about what specific characteristcs contributes to them being be under or over the trend line.</p>
-<p>This model explains <code>summary(fit)$adj.r.squared*100</code> of the variation in the data. It’s not a lot but it’s also not insignificant. After having tried with other variables such as GDP and life expectancy, I found the education index to best predictor.</p>
-<p>Now I want to see if their is an increase in the model’s adjusted R^2 if we run a model for each region.</p>
-<p>I thought the model’s adjusted R^2 would go up but it didn’t! Interesting. Let’s look at the plot by regions.</p>
+<p>After checking out the residuals, we can see there are a few outliers, mainly observations Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad. I’m going to leave them in, anyway because it’s interesting to think about what specific characteristcs contributes to them being be under or over the trend line.</p>
+<p>This model explains 64.41 of the variation in the data. It’s not a lot but it’s also not insignificant. After having tried with other variables such as GDP and life expectancy, I found the education index to best predictor.</p>
+<p>Now I want to see if their is an increase in the model’s adjusted R squared if we run a model for each region.</p>
+<p>I thought the model’s adjusted R squared would go up but it didn’t! Interesting. Let’s look at the plot by regions.</p>
 <div class="figure"><span id="fig:plot-relationship-between-educ-and-n-capita-log-regions"></span>
 <img src="../../../post/2018-12-01-linear-regression-r-downloads_files/figure-html/plot-relationship-between-educ-and-n-capita-log-regions-1.png" alt="Seems that the relationship is less strong when the data is separated into regions." width="672" />
 <p class="caption">
@@ -362,8 +362,9 @@ Figure 4.3: Seems that the relationship is less strong when the data is separate
 <div id="results" class="section level1">
 <h1><span class="header-section-number">5</span> Results</h1>
 <ul>
-<li><p>As we saw earlier, the education index explains <code>summary(fit)$coef[2]</code> in the variation of R Downloads around the world.</p></li>
-<li><p>The education index is expected to increase the predicted logged downloads per capita by <code>summary(fit)$coef[2]</code>.</p></li>
+<li><p>As we saw earlier, the education index explains 64.41 in the variation of R Downloads around the world.</p></li>
+<li><p>The geometric mean of R downloads per capita is 0.</p></li>
+<li><p>A one unit increase in the education index is expected to increase R downloads per capita by a factor of 31,087.</p></li>
 </ul>
 </div>
 <div id="conclusion" class="section level1">

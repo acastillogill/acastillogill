@@ -67,13 +67,13 @@ opts_chunk$set(echo = FALSE,
 theme_set(theme_ipsum_rc())
 
 options(
-  digits=2,
+  digits=4,
   scipen = 999
 )
 
 
 knit_hooks$set(inline = function(x) {
-  prettyNum(round(x,2), big.mark=",")
+  prettyNum(round(x,4), big.mark=",")
 })
 
 
@@ -158,12 +158,13 @@ full_maps_edu <- full_maps%>%
 ```
 
 
-```{r plot-relationship-between-educ-and-n-capita,include=TRUE, fig.cap="There appears to be an exponential relationship between the education index and the number of R downloads per capita."}
+```{r plot-relationship-between-educ-and-n-capita,include=TRUE, fig.height=7,fig.cap="There appears to be an exponential relationship between the education index and the number of R downloads per capita."}
 ggplot(full_maps_edu, aes(x=edu_index, y=n_capita))+
   geom_point(alpha=0.5)+
   labs(title="The education index vs. R downloads per capita",
        x="Education index",
-       y="R downloads per capita")
+       y="R downloads per capita")+
+  geom_text_repel(aes(label=name), force=0.2, size=2, segment.alpha = 0.5)
 ```
 
 We're seeing some sort of exponential behaviour in the y-axis. Why don't we try the same plot but logging the dependent variable. 
@@ -187,9 +188,9 @@ summary(fit)
 plot(fit)
 ```
 
-After checking out the residuals, we can see there are a few outliers, mainly observations 160 (Turkmenistan), 148 (Tajikistan), 140 (Libya), 95 (Burkina Faso), 162 (Chad). I'm going to leave them in, anyway because it's interesting to think about what specific characteristcs contributes to them being be under or over the trend line.
+After checking out the residuals, we can see there are a few outliers, mainly observations Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad. I'm going to leave them in, anyway because it's interesting to think about what specific characteristcs contributes to them being be under or over the trend line.
 
-This model explains `summary(fit)$adj.r.squared*100` of the variation in the data. It's not a lot but it's also not insignificant. After having tried with other variables such as GDP and life expectancy, I found the education index to best predictor. 
+This model explains `r summary(fit)$adj.r.squared*100` of the variation in the data. It's not a lot but it's also not insignificant. After having tried with other variables such as GDP and life expectancy, I found the education index to best predictor. 
 
 ```{r remove-outliers}
 outliers <- c(160,148,140,95,162)
@@ -201,7 +202,7 @@ summary(fit_2)
 plot(fit_2)
 ```
 
-Now I want to see if their is an increase in the model's adjusted R^2 if we run a model for each region. 
+Now I want to see if their is an increase in the model's adjusted R squared if we run a model for each region. 
 
 ```{r nesting-models}
 
@@ -228,14 +229,13 @@ full_maps_edu%>%
 
 ```
 
-I thought the model's adjusted R^2 would go up but it didn't! Interesting. Let's look at the plot by regions. 
+I thought the model's adjusted R squared would go up but it didn't! Interesting. Let's look at the plot by regions. 
 
 
 ```{r plot-relationship-between-educ-and-n-capita-log-regions,include=TRUE, fig.cap="Seems that the relationship is less strong when the data is separated into regions."}
 ggplot(full_maps_edu, aes(x=edu_index, y=log(n_capita)))+
   geom_point(alpha=0.5)+
   geom_smooth(method="lm", color="salmon", se=FALSE, size=2, alpha=0.5)+
-  geom_text_repel(aes(label=name), force=0.2, size=2, segment.alpha = 0.5)+
   labs(title="The education index vs. R downloads per capita by region",
        x="Education index",
        y="R downloads per capita (logarithm applied)")+
@@ -246,9 +246,11 @@ The trend lines are less steep and also, by breaking up the data into smaller gr
 
 # Results
 
-- As we saw earlier, the education index explains `summary(fit)$coef[2]` in the variation of R Downloads around the world. 
+- As we saw earlier, the education index explains `r  summary(fit)$adj.r.squared*100` in the variation of R Downloads around the world. 
 
-- The education index is expected to increase the predicted logged downloads per capita by `summary(fit)$coef[2]`.
+- The geometric mean of R downloads per capita is `r exp(summary(fit)$coef[1])`.
+
+- A one unit increase in the education index is expected to increase R downloads per capita by a factor of `r exp(summary(fit)$coef[2])`.
 
 
 
