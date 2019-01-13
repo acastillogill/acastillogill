@@ -153,13 +153,14 @@ full_maps <- downloads_per_country%>%
 
 full_maps_edu <- full_maps%>%
   left_join(educ, by="name")%>%
+  mutate(edu_index_percent=edu_index*100)%>%
   na.omit()
 
 ```
 
 
 ```{r plot-relationship-between-educ-and-n-capita,include=TRUE, fig.height=7,fig.cap="There appears to be an exponential relationship between the education index and the number of R downloads per capita."}
-ggplot(full_maps_edu, aes(x=edu_index, y=n_capita))+
+ggplot(full_maps_edu, aes(x=edu_index_percent, y=n_capita))+
   geom_point(alpha=0.5)+
   labs(title="The education index vs. R downloads per capita",
        x="Education index",
@@ -170,7 +171,7 @@ ggplot(full_maps_edu, aes(x=edu_index, y=n_capita))+
 We're seeing some sort of exponential behaviour in the y-axis. Why don't we try the same plot but logging the dependent variable. 
 
 ```{r plot-relationship-between-educ-and-n-capita-log,include=TRUE, fig.cap="By taking the logarithm of R downloads per capita, we have met the criteria for a linear regression."}
-ggplot(full_maps_edu, aes(x=edu_index, y=log(n_capita)))+
+ggplot(full_maps_edu, aes(x=edu_index_percent, y=log(n_capita)))+
   geom_point(alpha=0.5)+
   geom_smooth(method="lm", color="salmon", se=FALSE, size=2, alpha=0.5)+
   geom_text_repel(aes(label=name), force=0.2, size=2, segment.alpha = 0.5)+
@@ -183,7 +184,7 @@ The relationship between the two variables is linear now - time for a linear reg
 
 
 ```{r create-model-of-educ-r-capita}
-fit <- lm( log(n_capita) ~ edu_index, data = full_maps_edu)
+fit <- lm( log(n_capita) ~ edu_index_percent, data = full_maps_edu)
 summary(fit)
 plot(fit)
 ```
@@ -197,7 +198,7 @@ outliers <- c(160,148,140,95,162)
 
 full_maps_edu_sans_outliers <- full_maps_edu[-outliers,]
 
-fit_2 <- lm( log(n_capita) ~ edu_index, data = full_maps_edu_sans_outliers)
+fit_2 <- lm( log(n_capita) ~ edu_index_percent, data = full_maps_edu_sans_outliers)
 summary(fit_2)
 plot(fit_2)
 ```
