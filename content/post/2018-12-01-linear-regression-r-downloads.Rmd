@@ -171,13 +171,14 @@ ggplot(full_maps_edu, aes(x=edu_index_percent, y=n_capita))+
 We're seeing some sort of exponential behaviour in the y-axis. Why don't we try the same plot but logging the dependent variable. 
 
 ```{r plot-relationship-between-educ-and-n-capita-log,include=TRUE, fig.cap="By taking the logarithm of R downloads per capita, we have met the criteria for a linear regression."}
-ggplot(full_maps_edu, aes(x=edu_index_percent, y=log(n_capita)))+
+ggplot(full_maps_edu, aes(x=edu_index, y=log(n_capita)))+
   geom_point(alpha=0.5)+
   geom_smooth(method="lm", color="salmon", se=FALSE, size=2, alpha=0.5)+
   geom_text_repel(aes(label=name), force=0.2, size=2, segment.alpha = 0.5)+
   labs(title="The Education Index vs. R Downloads per Capita",
        x="Education index",
-       y="R downloads per capita (logarithm applied)")
+       y="R downloads per capita (logarithm applied)")+
+  scale_x_continuous(labels = percent_format())
 ```
 
 The relationship between the two variables is linear now - time for a linear regression!
@@ -251,17 +252,26 @@ The trend lines are less steep and also, by breaking up the data into smaller gr
 
 - The geometric mean of R downloads per capita is `r exp(summary(fit)$coef[1])`.
 
-- A one unit increase in the education index is expected to increase R downloads per capita by a factor of `r exp(summary(fit)$coef[2])`.
+- A one unit increase in the education index, in this case, one percentage point, is expected to increase R downloads per capita by `r (exp(summary(fit)$coef[2])-1)*100` percent.
 
+- So for example, if the fictious country Republic of Ángela with an education index of 78 and downloads per capita of 1.1, increased its education index to 79, R downloads per capita would be expected to increase to $1.1* 1.109=1.22$.
+
+We can see this increase by plotting the fitted values:
+
+```{r plot-fitted-values}
+
+fit%>%
+  augment()%>%
+  ggplot(aes(x=edu_index_percent, y=.fitted))+
+  geom_point(alpha=0.5, color="red")+
+  geom_point(data=full_maps_edu,aes(x=edu_index_percent, y=log(n_capita)))+
+  labs(title="The Education Index vs. R Downloads per Capita",
+       subtitle="Black dots are real values and red dots are fitted values. For every percentage point increase in the education index, the geometric mean of R downloads per capita is expected to increase by 10.9%",
+       x="Education index",
+       y="R downloads per capita (logarithm applied)")
+```
 
 
 
 # Conclusion
-
-```{r}
-fit%>%
-  augment()%>%
-  select(log.n_capita., edu_index, .fitted)%>%
-  View()
-```
 
