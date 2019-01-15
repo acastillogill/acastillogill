@@ -96,9 +96,7 @@ Which months of the year are the most popular times to download R? Does it depen
 
 # Dataset description 
 
-I used the [Tidy Tuesday dataset](https://github.com/rfordatascience/tidytuesday/tree/master/data/2018-10-30) for R downloads posted on 30th October 2018. 
-
-The dataset contained 938,115 observations and eight features corresponding to a unique id, download date, time, size, version, os, country, and IP id. The downloads correspond to a year's worth of downloads running from 2017-10-20 to 2018-10-20. To prevent any overlap and have one entire year, I limited downloads until 2018-10-19. After I removed missing values, there were `r nrow(r_downloads)` observations.
+I used the [Tidy Tuesday dataset](https://github.com/rfordatascience/tidytuesday/tree/master/data/2018-10-30) for R downloads posted on 30th October 2018. The dataset contained 938,115 observations and eight features corresponding to a unique id, download date, time, size, version, os, country, and IP id. The downloads correspond to a year's worth of downloads running from 2017-10-20 to 2018-10-20. To prevent any overlap and have one entire year, I limited downloads until 2018-10-19. After I removed missing values, there were `r nrow(r_downloads)` observations.
 
 
 
@@ -150,7 +148,7 @@ downloads_per_country%>%
   expand_limits(y=0)+
   coord_flip()+
   scale_y_continuous(labels=comma_format())+
-  labs(title="Top 10 countries by \n R downloads in 2017/18",
+  labs(title="Top 10 countries by R downloads in 2017/18",
        x="",
        y="Downloads")+
   theme_ipsum_rc()+
@@ -180,8 +178,8 @@ n_map <- tm_shape(world_full) +
   tm_borders(col="black", lwd=0.1)+
     tm_fill(col="n",n=4, style="jenks", palette = get_brewer_pal("BuPu", n = 4, contrast = c(0.13, 0.9))) + 
 tm_layout(main.title = "Total R downloads in 2017/18",
-          main.title.size = 2, frame = TRUE, bg.color = "aliceblue", title.position = c("right","bottom"))+
-tm_legend(position=c("left", "bottom"), bg.color="white", frame=TRUE, legend.title.size=1)
+          main.title.size = 1, frame = FALSE, bg.color = "aliceblue", title.position = c("right","bottom"))+
+tm_legend(position=c("left", "bottom"), bg.color="white", frame=FALSE, legend.title.size=1)
 ```
 And what about other countries and regions?
 ```{r plot-total-downloads-map, include=TRUE, fig.cap="Besides the US, China, Germany, and other countries featured in the top 10, the map allows us to see which countries in each country downloaded R the most. These are Colombia and Brazil in South America; Mexico in Central America; and Italy, France and Poland in Europe."}
@@ -221,8 +219,8 @@ n_capita_map <- tm_shape(world_full) +
   tm_borders(col="black", lwd=0.1)+
     tm_fill(col="n_capita",n=4, style="jenks", palette = get_brewer_pal("OrRd", n = 4, contrast = c(0.13, 0.9))) + 
 tm_layout(main.title = "R downloads per capita in 2017/18",
-          main.title.size = 2, frame = TRUE, bg.color = "aliceblue", title.position = c("right","bottom"))+
-tm_legend(position=c("left", "bottom"), bg.color="white", frame=TRUE, legend.title.size=1)
+          main.title.size = 1, frame = FALSE, bg.color = "aliceblue", title.position = c("right","bottom"))+
+tm_legend(position=c("left", "bottom"), bg.color="white", frame=FALSE, legend.title.size=1)
 ```
 
 ```{r plot-downloads-per-capita-map, include=TRUE, fig.cap="Besides the top 10 downloads per capita plot, here we see that Uruguay and Chile in South America have the most downloads per capita; El Salvador in Central America; and Japan in Asia."}
@@ -255,7 +253,8 @@ caption = "Data source: Tidy Tuesday (2018-10-30)")+
 facet_wrap(~sub_region, scales="free", nrow = 6)+
   theme(strip.background =element_rect(fill="white"))+
   theme(strip.text = element_text(size=8,face="bold"))+
-  theme(title =element_text(size=12, face='bold'))
+  theme(title =element_text(size=12, face='bold'))+
+  theme_classic()
 ```
 
 ```{r plot-monthly-downloads-per-region, include=TRUE, fig.cap="It seems like not everybody loves the sunshine, #RStats doesn't. The summer months had the least downloads around the world with the exception of Sub-Saharan Africa and the Pacific Islander regions." ,fig.height=12}

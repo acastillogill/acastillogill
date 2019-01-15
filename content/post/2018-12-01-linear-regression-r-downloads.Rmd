@@ -12,7 +12,7 @@ tags:
 description: "To define."
 banner: "banners/edu_index_downloads_capita.png"
 images: ["banners/edu_index_downloads_capita.png"]
-draft: TRUE
+draft: FALSE
 summary: ""
 header: 
   image: "banners/edu_index_downloads_capita.png"
@@ -88,17 +88,17 @@ r_downloads <- na.omit(r_downloads)%>%
 
 *To see the code used in this post, visit my [kernel on kaggle in R Markdown format](https://www.kaggle.com/adcastillogill/r-downloads-around-the-world/code).* 
 
-
-
 # Question
 
-
+How does the education index relate to R downloads per capita? 
 
 # Dataset description 
 
-I used the [Tidy Tuesday dataset](https://github.com/rfordatascience/tidytuesday/tree/master/data/2018-10-30) for R downloads posted on 30th October 2018. 
+I used the [Tidy Tuesday dataset](https://github.com/rfordatascience/tidytuesday/tree/master/data/2018-10-30) for R downloads posted on 30th October 2018. The dataset contained 938,115 observations and eight features corresponding to a unique id, download date, time, size, version, os, country, and IP id. The downloads correspond to a year's worth of downloads running from 2017-10-20 to 2018-10-20. To prevent any overlap and have one entire year, I limited downloads until 2018-10-19. After I removed missing values, there were `r nrow(r_downloads)` observations.
 
-The dataset contained 938,115 observations and eight features corresponding to a unique id, download date, time, size, version, os, country, and IP id. The downloads correspond to a year's worth of downloads running from 2017-10-20 to 2018-10-20. To prevent any overlap and have one entire year, I limited downloads until 2018-10-19. After I removed missing values, there were `r nrow(r_downloads)` observations.
+In addition to that, I downloaded the education index for all countries. The education index is a metric published by the United Nations and it corresponds to the average of the Mean Years of Schooling Index (MYSI) and the Expected Years of Schooling Index (EYSI). 
+
+$$EI={\frac {{\textrm {MYSI}}+{\textrm {EYSI}}}{2}}$$
 
 ```{r read-data}
 iso_codes <- read_csv(here::here("static","data","iso_countries.csv"))
@@ -129,11 +129,11 @@ r_downloads%>%
 ```
 
 
-In a [previous post]() I had a look at the which countries downloaded R the most. That let me to ask which countries were the most intense R users, using downloads per capita as a proxy. 
+In a [previous post](https://acastillogill.com/2018/11/r-downloads-around-the-world/) I had looked at which countries downloaded R the most. That led me to ask which countries were the most intense R users, using downloads per capita as a proxy. 
 
 When I was writing the conclusions on which countries were the most intense users, I tried to draw up patterns. What the countries had in common was that they were "developed" countries. Does developed mean high levels of education and that's why they end up being intensive R users.
 
-To further explore the relationship between countries that intense R users and education, I decided to do some regression analysis.
+To further explore the relationship between countries that intense R users and education, I decided to do some regression analysis using the education index and the main independent variable.
 
 # The relationship between the education index and R downloads
 
@@ -159,7 +159,7 @@ full_maps_edu <- full_maps%>%
 ```
 
 
-```{r plot-relationship-between-educ-and-n-capita,include=TRUE, fig.height=7,fig.cap="There appears to be an exponential relationship between the education index and the number of R downloads per capita."}
+```{r plot-relationship-between-educ-and-n-capita, fig.height=7,fig.cap="There appears to be an exponential relationship between the education index and the number of R downloads per capita."}
 ggplot(full_maps_edu, aes(x=edu_index_percent, y=n_capita))+
   geom_point(alpha=0.5)+
   labs(title="The education index vs. R downloads per capita",
@@ -250,25 +250,26 @@ The trend lines are less steep and also, by breaking up the data into smaller gr
 
 - As we saw earlier, the education index explains `r  summary(fit)$adj.r.squared*100` in the variation of R Downloads around the world. 
 
-- The geometric mean of R downloads per capita is `r exp(summary(fit)$coef[1])`.
+- The geometric mean of R downloads per capita is 0.00004917.
 
 - A one unit increase in the education index, in this case, one percentage point, is expected to increase R downloads per capita by `r (exp(summary(fit)$coef[2])-1)*100` percent.
 
-- So for example, if the fictious country Republic of Ángela with an education index of 78 and downloads per capita of 1.1, increased its education index to 79, R downloads per capita would be expected to increase to $1.1* 1.109=1.22$.
+- So for example, if the fictious country Republic of Ángela with an education index of 78 and downloads per capita of 1.1, increased its education index to 79, R downloads per capita would be expected to increase to 1.1*1.109=1.22.
 
 We can see this increase by plotting the fitted values:
 
-```{r plot-fitted-values}
+```{r plot-fitted-values,include=TRUE, fig.height=7}
 
 fit%>%
   augment()%>%
-  ggplot(aes(x=edu_index_percent, y=.fitted))+
+  ggplot(aes(x=edu_index_percent, y=exp(.fitted)))+
   geom_point(alpha=0.5, color="red")+
-  geom_point(data=full_maps_edu,aes(x=edu_index_percent, y=log(n_capita)))+
+  geom_point(data=full_maps_edu,aes(x=edu_index_percent, y=n_capita),alpha=0.5)+
   labs(title="The Education Index vs. R Downloads per Capita",
-       subtitle="Black dots are real values and red dots are fitted values. For every percentage point increase in the education index, the geometric mean of R downloads per capita is expected to increase by 10.9%",
+       subtitle="Black dots are real values and red dots are fitted values. \nFor every percentage point increase in the education index, \nthe geometric mean of R downloads per capita is expected to increase by 10.9%",
        x="Education index",
-       y="R downloads per capita (logarithm applied)")
+       y="R downloads per capita")+
+  expand_limits(0,0)
 ```
 
 

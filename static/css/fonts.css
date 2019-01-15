@@ -1,14 +1,14 @@
 @font-face {
-  font-family: "LuissSans-ThinSans";
-  src: url("/LuissSans-ThinSans.otf");
+  font-family: "LuissSans-Regular";
+  src: url("/LuissSans-Regular.otf");
 }
 
 body {
-  font-family:  LuissSans-ThinSans
+  font-family:  LuissSans-Regular
 }
 
 footer {
-  font-family:  LuissSans-ThinSans
+  font-family:  LuissSans-Regular
 }
 
 code {
@@ -17,36 +17,36 @@ code {
 }
 
 h1 {
-    font-family: "LuissSans-ThinSans";
+    font-family: "LuissSans-Regular";
 }
 
 h2 {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 
 h3 {
-    font-family: "LuissSans-ThinSans";
+    font-family: "LuissSans-Regular";
 }
 
 h4 {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 h5 {
-    font-family: "LuissSans-ThinSans";
+    font-family: "LuissSans-Regular";
 }
 
 h6 {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 html {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 div {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 span {
@@ -54,191 +54,191 @@ span {
 }
 
 applet {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 big {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 cite {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 legend {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 del {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 fieldset {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 small {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 strong {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 ul {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 sub {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 strike {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 li {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 form {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 label {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 samp {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 s {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 kbd {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 dfn {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 q {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 ins {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 img {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 em {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 table {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 caption {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 tbody {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 tfoot {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 thead {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 address {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 acronym {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 abbr {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 tr {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 a {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 pre {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 blockquote {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 p {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 iframe {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 object {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 th {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 td {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 sup {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 tt {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 var {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 dl {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 dt {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 dd {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 ol {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 site-title {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 
 
 logo {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 search {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 
 main {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 header-inner {
-    font-family: 'LuissSans-ThinSans';
+    font-family: 'LuissSans-Regular';
 }
 
 .header-inner #logo,
 #main-nav {
   float: left;
-  font-family: "LuissSans-ThinSans";
+  font-family: "LuissSans-Regular";
 }
 #sub-nav,
 #search-form-wrap {
@@ -259,7 +259,7 @@ header-inner {
   display: inline-block;
   vertical-align: top;
   /* Ángela mod - title text */
-  font-family: "LuissSans-ThinSans";
+  font-family: "LuissSans-Regular";
   font-size: 1.2em;
 
   font-weight: bolder;
@@ -292,10 +292,10 @@ header-inner {
   text-decoration: none;
   line-height: 1.3em;
   /* Ángela mod */
-  font-family: "LuissSans-ThinSans";
+  font-family: "LuissSans-Regular";
 }
 
 
 .article-entry .caption {
-  font-family: "LuissSans-ThinSans";
+  font-family: "LuissSans-Regular";
 }

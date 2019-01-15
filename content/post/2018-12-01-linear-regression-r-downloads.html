@@ -12,7 +12,7 @@ tags:
 description: "To define."
 banner: "banners/edu_index_downloads_capita.png"
 images: ["banners/edu_index_downloads_capita.png"]
-draft: TRUE
+draft: FALSE
 summary: ""
 header: 
   image: "banners/edu_index_downloads_capita.png"
@@ -45,28 +45,24 @@ editor_options:
 </div>
 <div id="question" class="section level1">
 <h1><span class="header-section-number">2</span> Question</h1>
+<p>How does the education index relate to R downloads per capita?</p>
 </div>
 <div id="dataset-description" class="section level1">
 <h1><span class="header-section-number">3</span> Dataset description</h1>
-<p>I used the <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2018-10-30">Tidy Tuesday dataset</a> for R downloads posted on 30th October 2018.</p>
-<p>The dataset contained 938,115 observations and eight features corresponding to a unique id, download date, time, size, version, os, country, and IP id. The downloads correspond to a year’s worth of downloads running from 2017-10-20 to 2018-10-20. To prevent any overlap and have one entire year, I limited downloads until 2018-10-19. After I removed missing values, there were 910,351 observations.</p>
-<p>In a <a href="">previous post</a> I had a look at the which countries downloaded R the most. That let me to ask which countries were the most intense R users, using downloads per capita as a proxy.</p>
+<p>I used the <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2018-10-30">Tidy Tuesday dataset</a> for R downloads posted on 30th October 2018. The dataset contained 938,115 observations and eight features corresponding to a unique id, download date, time, size, version, os, country, and IP id. The downloads correspond to a year’s worth of downloads running from 2017-10-20 to 2018-10-20. To prevent any overlap and have one entire year, I limited downloads until 2018-10-19. After I removed missing values, there were 910,351 observations.</p>
+<p>In addition to that, I downloaded the education index for all countries. The education index is a metric published by the United Nations and it corresponds to the average of the Mean Years of Schooling Index (MYSI) and the Expected Years of Schooling Index (EYSI).</p>
+<p><span class="math display">\[EI={\frac {{\textrm {MYSI}}+{\textrm {EYSI}}}{2}}\]</span></p>
+<p>In a <a href="https://acastillogill.com/2018/11/r-downloads-around-the-world/">previous post</a> I had looked at which countries downloaded R the most. That led me to ask which countries were the most intense R users, using downloads per capita as a proxy.</p>
 <p>When I was writing the conclusions on which countries were the most intense users, I tried to draw up patterns. What the countries had in common was that they were “developed” countries. Does developed mean high levels of education and that’s why they end up being intensive R users.</p>
-<p>To further explore the relationship between countries that intense R users and education, I decided to do some regression analysis.</p>
+<p>To further explore the relationship between countries that intense R users and education, I decided to do some regression analysis using the education index and the main independent variable.</p>
 </div>
 <div id="the-relationship-between-the-education-index-and-r-downloads" class="section level1">
 <h1><span class="header-section-number">4</span> The relationship between the education index and R downloads</h1>
-<div class="figure"><span id="fig:plot-relationship-between-educ-and-n-capita"></span>
-<img src="/post/2018-12-01-linear-regression-r-downloads_files/figure-html/plot-relationship-between-educ-and-n-capita-1.png" alt="There appears to be an exponential relationship between the education index and the number of R downloads per capita." width="672" />
-<p class="caption">
-Figure 4.1: There appears to be an exponential relationship between the education index and the number of R downloads per capita.
-</p>
-</div>
 <p>We’re seeing some sort of exponential behaviour in the y-axis. Why don’t we try the same plot but logging the dependent variable.</p>
 <div class="figure"><span id="fig:plot-relationship-between-educ-and-n-capita-log"></span>
 <img src="/post/2018-12-01-linear-regression-r-downloads_files/figure-html/plot-relationship-between-educ-and-n-capita-log-1.png" alt="By taking the logarithm of R downloads per capita, we have met the criteria for a linear regression." width="672" />
 <p class="caption">
-Figure 4.2: By taking the logarithm of R downloads per capita, we have met the criteria for a linear regression.
+Figure 4.1: By taking the logarithm of R downloads per capita, we have met the criteria for a linear regression.
 </p>
 </div>
 <p>The relationship between the two variables is linear now - time for a linear regression!</p>
@@ -77,7 +73,7 @@ Figure 4.2: By taking the logarithm of R downloads per capita, we have met the c
 <div class="figure"><span id="fig:plot-relationship-between-educ-and-n-capita-log-regions"></span>
 <img src="/post/2018-12-01-linear-regression-r-downloads_files/figure-html/plot-relationship-between-educ-and-n-capita-log-regions-1.png" alt="Seems that the relationship is less strong when the data is separated into regions." width="672" />
 <p class="caption">
-Figure 4.3: Seems that the relationship is less strong when the data is separated into regions.
+Figure 4.2: Seems that the relationship is less strong when the data is separated into regions.
 </p>
 </div>
 <p>The trend lines are less steep and also, by breaking up the data into smaller groups, we have less data points per group which make the results of the regression more unreliable.</p>
@@ -86,11 +82,12 @@ Figure 4.3: Seems that the relationship is less strong when the data is separate
 <h1><span class="header-section-number">5</span> Results</h1>
 <ul>
 <li><p>As we saw earlier, the education index explains 64.41 in the variation of R Downloads around the world.</p></li>
-<li><p>The geometric mean of R downloads per capita is 0.</p></li>
+<li><p>The geometric mean of R downloads per capita is 0.00004917.</p></li>
 <li><p>A one unit increase in the education index, in this case, one percentage point, is expected to increase R downloads per capita by 10.9 percent.</p></li>
-<li><p>So for example, if the fictious country Republic of Ángela with an education index of 78 and downloads per capita of 1.1, increased its education index to 79, R downloads per capita would be expected to increase to <span class="math inline">\(1.1* 1.109=1.22\)</span>.</p></li>
+<li><p>So for example, if the fictious country Republic of Ángela with an education index of 78 and downloads per capita of 1.1, increased its education index to 79, R downloads per capita would be expected to increase to 1.1*1.109=1.22.</p></li>
 </ul>
 <p>We can see this increase by plotting the fitted values:</p>
+<p><img src="/post/2018-12-01-linear-regression-r-downloads_files/figure-html/plot-fitted-values-1.png" width="672" /></p>
 </div>
 <div id="conclusion" class="section level1">
 <h1><span class="header-section-number">6</span> Conclusion</h1>
