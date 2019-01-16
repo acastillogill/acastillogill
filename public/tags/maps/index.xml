@@ -17,9 +17,8 @@
       <pubDate>Sat, 01 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/2018/12/linear-regression-r-downloads/</guid>
-      <description>1 Summary 2 Question 3 Dataset description 4 The relationship between the education index and R downloads 5 Results 6 Conclusion   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
- 2 Question How does the education index relate to R downloads per capita?
- 3 Dataset description I used the Tidy Tuesday dataset for R downloads posted on 30th October 2018.</description>
+      <description>1 Summary 2 Question 3 Dataset description 4 The relationship between the education index and R downloads 5 Results 6 Conclusion   1 Summary To see the all the code used in this post, visit my GitHub repository for this site
+ Objectives: To understand what factors contribute to R downloads per capita. Challenge: Interpretation of log-linear coefficients. Data points: 11,806,912 Language: R   2 Question In a previous post I had looked at which countries downloaded R the most.</description>
     </item>
     
     <item>

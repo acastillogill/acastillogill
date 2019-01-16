@@ -9,11 +9,10 @@ tags:
   - Tidy Tuesday
   - EDA
   - Maps
-description: "To define."
+description: "In this blog post, I set out to explain the relationship between the education index and R downloads per capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad."
 banner: "banners/edu_index_downloads_capita.png"
 images: ["banners/edu_index_downloads_capita.png"]
 draft: FALSE
-summary: ""
 header: 
   image: "banners/edu_index_downloads_capita.png"
   caption: ""
@@ -86,17 +85,29 @@ r_downloads <- na.omit(r_downloads)%>%
 
 # Summary
 
-*To see the code used in this post, visit my [kernel on kaggle in R Markdown format](https://www.kaggle.com/adcastillogill/r-downloads-around-the-world/code).* 
+*To see the all the code used in this post, visit my [GitHub repository for this site](https://github.com/acastillogill/acastillogill)* 
+
+- Objectives: To understand what factors contribute to R downloads per capita. 
+- Challenge: Interpretation of log-linear coefficients.
+- Data points: `r 908224*13`
+- Language: R 
+
 
 # Question
 
-How does the education index relate to R downloads per capita? 
+In a [previous post](https://acastillogill.com/2018/11/r-downloads-around-the-world/) I had looked at which countries downloaded R the most. That led me to ask which countries were the most intense R users, using downloads per capita as a proxy. 
+
+When I was writing the conclusions about the most R-using countries, I tried to draw up patterns. What did those R-using countries have in common? They were mostly "developed" countries. Since developed countries tend to have high levels of academic attainment, I decided to explore the relationship between education levels and R-usage across the globe:  
+
+**How does the education index relate to R downloads per capita?** 
+
+To answer my question, I identified a metric that would allow me to explore the relationship between education and R usage. That metric turned out to be the UN's education index, which I will explain below. 
 
 # Dataset description 
 
-I used the [Tidy Tuesday dataset](https://github.com/rfordatascience/tidytuesday/tree/master/data/2018-10-30) for R downloads posted on 30th October 2018. The dataset contained 938,115 observations and eight features corresponding to a unique id, download date, time, size, version, os, country, and IP id. The downloads correspond to a year's worth of downloads running from 2017-10-20 to 2018-10-20. To prevent any overlap and have one entire year, I limited downloads until 2018-10-19. After I removed missing values, there were `r nrow(r_downloads)` observations.
+I used the [Tidy Tuesday dataset](https://github.com/rfordatascience/tidytuesday/tree/master/data/2018-10-30) for R downloads posted on 30th October 2018. The dataset contained 938,115 observations and eight features corresponding to a unique id, download date, time, size, version, os, country, and IP id. The downloads correspond to a year's worth of downloads running from 2017-10-20 to 2018-10-20. To prevent any overlap and have one entire year, I limited downloads to 2018-10-19. After I removed missing values, there were `r nrow(r_downloads)` observations.
 
-In addition to that, I downloaded the education index for all countries. The education index is a metric published by the United Nations and it corresponds to the average of the Mean Years of Schooling Index (MYSI) and the Expected Years of Schooling Index (EYSI). 
+For the independent variable, I downloaded the education index for all countries. The education index is a metric published by the United Nations and it corresponds to the average of the Mean Years of Schooling Index (MYSI) and the Expected Years of Schooling Index (EYSI): 
 
 $$EI={\frac {{\textrm {MYSI}}+{\textrm {EYSI}}}{2}}$$
 
@@ -127,14 +138,6 @@ r_downloads%>%
   filter(!is.na(n))%>%
   arrange(desc(n))->downloads_per_country
 ```
-
-
-In a [previous post](https://acastillogill.com/2018/11/r-downloads-around-the-world/) I had looked at which countries downloaded R the most. That led me to ask which countries were the most intense R users, using downloads per capita as a proxy. 
-
-When I was writing the conclusions on which countries were the most intense users, I tried to draw up patterns. What the countries had in common was that they were "developed" countries. Does developed mean high levels of education and that's why they end up being intensive R users.
-
-To further explore the relationship between countries that intense R users and education, I decided to do some regression analysis using the education index and the main independent variable.
-
 # The relationship between the education index and R downloads
 
 ```{r create-tibble-with-pop-and-users-only}
@@ -148,7 +151,6 @@ full_maps <- downloads_per_country%>%
          pop_2018!=0)
 ```
 
-
 ```{r merge-years-of-education}
 
 full_maps_edu <- full_maps%>%
@@ -157,7 +159,6 @@ full_maps_edu <- full_maps%>%
   na.omit()
 
 ```
-
 
 ```{r plot-relationship-between-educ-and-n-capita, fig.height=7,fig.cap="There appears to be an exponential relationship between the education index and the number of R downloads per capita."}
 ggplot(full_maps_edu, aes(x=edu_index_percent, y=n_capita))+
@@ -168,31 +169,26 @@ ggplot(full_maps_edu, aes(x=edu_index_percent, y=n_capita))+
   geom_text_repel(aes(label=name), force=0.2, size=2, segment.alpha = 0.5)
 ```
 
-We're seeing some sort of exponential behaviour in the y-axis. Why don't we try the same plot but logging the dependent variable. 
-
-```{r plot-relationship-between-educ-and-n-capita-log,include=TRUE, fig.cap="By taking the logarithm of R downloads per capita, we have met the criteria for a linear regression."}
-ggplot(full_maps_edu, aes(x=edu_index, y=log(n_capita)))+
+```{r plot-relationship-between-educ-and-n-capita-log,include=TRUE, fig.height=10,fig.cap="When I plotted the education index vs. R downloads per capita, I noticed exponential behaviour in the y-axis. Since I planned to use a linear regression, I took the logarithm of the response variable. The figure shows that by taking the logarithm of R downloads per capita, we have met the criteria for a linear regression."}
+ggplot(full_maps_edu, aes(x=edu_index_percent, y=log(n_capita)))+
   geom_point(alpha=0.5)+
   geom_smooth(method="lm", color="salmon", se=FALSE, size=2, alpha=0.5)+
   geom_text_repel(aes(label=name), force=0.2, size=2, segment.alpha = 0.5)+
   labs(title="The Education Index vs. R Downloads per Capita",
        x="Education index",
-       y="R downloads per capita (logarithm applied)")+
-  scale_x_continuous(labels = percent_format())
+       y="R downloads per capita (logarithm applied)")
 ```
 
 The relationship between the two variables is linear now - time for a linear regression!
 
-
-```{r create-model-of-educ-r-capita}
+```{r create-model-of-educ-r-capita, include=TRUE}
 fit <- lm( log(n_capita) ~ edu_index_percent, data = full_maps_edu)
-summary(fit)
-plot(fit)
+fit%>%
+  tidy()%>%
+  kable()
 ```
 
-After checking out the residuals, we can see there are a few outliers, mainly observations Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad. I'm going to leave them in, anyway because it's interesting to think about what specific characteristcs contributes to them being be under or over the trend line.
-
-This model explains `r summary(fit)$adj.r.squared*100` of the variation in the data. It's not a lot but it's also not insignificant. After having tried with other variables such as GDP and life expectancy, I found the education index to best predictor. 
+After checking out the residuals, I saw there are a few outliers, mainly Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad. I decided to leave them in because it's interesting to think about what specific characteristcs contribute to them being be under or over the trend line. The model I proposed, explains `r summary(fit)$adj.r.squared*100` of the variation in the data. It's not a lot but it's also not insignificant. After having tried to fit a multiple linear regression model with other variables such as GDP and life expectancy, I found the education index to be the best predictor of R downloads per capita. 
 
 ```{r remove-outliers}
 outliers <- c(160,148,140,95,162)
@@ -203,8 +199,6 @@ fit_2 <- lm( log(n_capita) ~ edu_index_percent, data = full_maps_edu_sans_outlie
 summary(fit_2)
 plot(fit_2)
 ```
-
-Now I want to see if their is an increase in the model's adjusted R squared if we run a model for each region. 
 
 ```{r nesting-models}
 
@@ -231,10 +225,7 @@ full_maps_edu%>%
 
 ```
 
-I thought the model's adjusted R squared would go up but it didn't! Interesting. Let's look at the plot by regions. 
-
-
-```{r plot-relationship-between-educ-and-n-capita-log-regions,include=TRUE, fig.cap="Seems that the relationship is less strong when the data is separated into regions."}
+```{r plot-relationship-between-educ-and-n-capita-log-regions, fig.cap="Seems that the relationship is less strong when the data is separated into regions."}
 ggplot(full_maps_edu, aes(x=edu_index, y=log(n_capita)))+
   geom_point(alpha=0.5)+
   geom_smooth(method="lm", color="salmon", se=FALSE, size=2, alpha=0.5)+
@@ -243,8 +234,6 @@ ggplot(full_maps_edu, aes(x=edu_index, y=log(n_capita)))+
        y="R downloads per capita (logarithm applied)")+
   facet_wrap(.~region, scales="free")
 ```
-
-The trend lines are less steep and also, by breaking up the data into smaller groups, we have less data points per group which make the results of the regression more unreliable.
 
 # Results
 
@@ -266,13 +255,12 @@ fit%>%
   geom_point(alpha=0.5, color="red")+
   geom_point(data=full_maps_edu,aes(x=edu_index_percent, y=n_capita),alpha=0.5)+
   labs(title="The Education Index vs. R Downloads per Capita",
-       subtitle="Black dots are real values and red dots are fitted values. \nFor every percentage point increase in the education index, \nthe geometric mean of R downloads per capita is expected to increase by 10.9%",
+       subtitle="Black dots are real values and red dots are fitted values. For every percentage point \nincrease in the education index, the geometric mean of R downloads per capita is \nexpected to increase by 10.9%",
        x="Education index",
        y="R downloads per capita")+
   expand_limits(0,0)
 ```
 
-
-
 # Conclusion
 
+In this blog post, I set out to explain the relationship between the education index and R downloads per capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per capita onto the education index. I found that the education index (values from 2016) explains about `r  summary(fit)$adj.r.squared*100` of variation in R downloads per capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad.
