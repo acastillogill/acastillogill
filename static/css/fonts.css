@@ -1,23 +1,23 @@
 @font-face {
-  font-family: "LuissSans-Regular";
-  src: url("/LuissSans-Regular.otf");
+  font-family: 'LuissSans-Regular';
+  src: url('/LuissSans-Regular.otf');
 }
 
 body {
-  font-family:  "LuissSans-Regular"
+  font-family:  'LuissSans-Regular'
 }
 
 footer {
-  font-family:  "LuissSans-Regular"
+  font-family:  'LuissSans-Regular'
 }
 
 code {
-  font-family: "Lucida Console", Monaco, monospace;
+  font-family: 'Lucida Console', Monaco, monospace;
   font-size: 85%;
 }
 
 h1 {
-    font-family: "LuissSans-Regular";
+    font-family: 'LuissSans-Regular';
 }
 
 h2 {
@@ -26,7 +26,7 @@ h2 {
 
 
 h3 {
-    font-family: "LuissSans-Regular";
+    font-family: 'LuissSans-Regular';
 }
 
 h4 {
@@ -34,7 +34,7 @@ h4 {
 }
 
 h5 {
-    font-family: "LuissSans-Regular";
+    font-family: 'LuissSans-Regular';
 }
 
 h6 {
@@ -50,7 +50,7 @@ div {
 }
 
 span {
-    font-family: "Lucida Console", Monaco, monospace;
+    font-family: 'Lucida Console', Monaco, monospace;
 }
 
 applet {
@@ -238,7 +238,7 @@ header-inner {
 .header-inner #logo,
 #main-nav {
   float: left;
-  font-family: "LuissSans-Regular";
+  font-family: 'LuissSans-Regular';
 }
 #sub-nav,
 #search-form-wrap {
@@ -259,7 +259,7 @@ header-inner {
   display: inline-block;
   vertical-align: top;
   /* Ángela mod - title text */
-  font-family: "LuissSans-Regular";
+  font-family: 'LuissSans-Regular';
   font-size: 1.2em;
 
   font-weight: bolder;
@@ -292,10 +292,10 @@ header-inner {
   text-decoration: none;
   line-height: 1.3em;
   /* Ángela mod */
-  font-family: "LuissSans-Regular";
+  font-family: 'LuissSans-Regular';
 }
 
 
 .article-entry .caption {
-  font-family: "LuissSans-Regular";
+  font-family: 'LuissSans-Regular';
 }
