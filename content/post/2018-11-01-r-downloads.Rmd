@@ -154,6 +154,8 @@ downloads_per_country%>%
   theme_ipsum_rc()+
   theme(legend.position = "none")+
   scale_fill_manual(values=blue_range(10))
+
+
   
 ```
 
