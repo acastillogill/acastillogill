@@ -1,7 +1,7 @@
 ---
 title: "NBA free throws analysis"
 author: Ángela Castillo-Gill
-date: '2019-01-28'
+date: '2019-01-18'
 slug: nba-stats
 categories: []
 tags: 

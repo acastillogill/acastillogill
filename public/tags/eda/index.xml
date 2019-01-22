@@ -6,7 +6,7 @@
     <description>Recent content in Eda on Ángela Castillo-Gill</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 28 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 18 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/eda/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>NBA free throws analysis</title>
       <link>/2019/01/nba-stats/</link>
-      <pubDate>Mon, 28 Jan 2019 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/2019/01/nba-stats/</guid>
       <description>1 Summary 2 Question 3 Dataset description 3.1 Who made the most shots between 2006 and 2016? 3.2 Who had the highest shots per free throw attempt between 2006 and 2016? 3.3 Who made the most shots each season? 3.4 What was the free throw attempt between 2006 and 2016 for the player that scored the most each season?  4 Results 5 Conclusion   1 Summary To see the all the code used in this post, visit my GitHub repository for this site</description>
