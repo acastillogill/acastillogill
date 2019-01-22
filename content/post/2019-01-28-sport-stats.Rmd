@@ -1,20 +1,19 @@
 ---
-title: "Linear regression: who tends to download R software"
+title: "NBA free throws analysis."
 author: Ángela Castillo-Gill
-date: '2018-12-01'
-slug: linear-regression-r-downloads
+date: '2019-01-28'
+slug: NBA-stats
 categories: []
 tags: 
   - Kaggle
-  - Tidy Tuesday
   - EDA
-  - Maps
-description: "In this blog post, I set out to explain the relationship between the education index and R downloads per capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad."
-banner: "banners/edu_index_downloads_capita.png"
-images: ["banners/edu_index_downloads_capita.png"]
+  - NBA
+description: "This is why despite knowing little to nothing about basketball, I still knew who Lebron James was."
+banner: "banners/NBA_season.png"
+images: ["banners/NBA_season.png"]
 draft: FALSE
 header: 
-  image: "banners/edu_index_downloads_capita.png"
+  image: "banners/NBA_season.png"
   caption: ""
 output:
   blogdown::html_page:
@@ -35,10 +34,9 @@ x <-
     "tidyverse",
     "RColorBrewer",
     "hrbrthemes",
-    "devtools",
-    "roxygen2",
     "ggrepel",
-    "gridExtra")
+    "gridExtra",
+    "cowplot")
 
 
 lapply(x, require, character.only = TRUE)
@@ -51,7 +49,8 @@ opts_chunk$set(echo = FALSE,
                collapse = TRUE,
                comment = NA,
                tidy = TRUE,
-               include = TRUE)
+               include = TRUE,
+               fig.height = 10)
              # fig.width = 25,
             #  out.extra='angle=90',
             #  fig.align='center',
@@ -77,20 +76,6 @@ extrafont::loadfonts()
 
 
 
-
-
-
-
-
-
-
-
-
-```{r where-am-i}
-#Where am I?
-here::here()
-```
-
 ```{r read-data}
 # Read data
 NBA <- read_csv(here::here("static","data","free_throws.csv"))
@@ -99,13 +84,26 @@ NBA <- read_csv(here::here("static","data","free_throws.csv"))
 
 
 
+# Summary 
+
+*To see the all the code used in this post, visit my [GitHub repository for this site](https://github.com/acastillogill/acastillogill)* 
+
+- Objectives: Visually understand who were the best NBA players between 2006 and 2016 and why. 
+- Challenge: Using the list-column workflow and the Purrr package. 
+- Data points: `r nrow(NBA)*length(NBA)`
+- Language: R 
 
 
 
+# Question
+
+I know very little about sports, I know so little that when I came across this dataset about "free throws" in basketball, I pretty much had to look up what every column meant, except "Players". After seeing that all the other columns to some extent say something about "Players", I decided to explore **who were the "best" players, and why?**
 
 
 
+# Dataset description
 
+The package is available on [Kaggle](https://www.kaggle.com/sebastianmantey/nba-free-throws). It contains `r nrow(NBA)` rows and `r length(NBA)` rows. Each row corresponds to a free throw attempt and there is a column called `shot_made`, which indicates whether or not the shot was made. 
 
 
 
@@ -185,14 +183,57 @@ season_NBA_play <- NBA_play%>%
 
 ```
 
-
-
-```{r all-time-ratio-col}
+```{r creating-colour-palette}
 blues <- brewer.pal(9,"Blues")
 blue_range <- colorRampPalette(blues)
 
 reds <- brewer.pal(9,"Reds")
 red_range <- colorRampPalette(reds)
+```
+
+
+## Who made the most shots between 2006 and 2016?
+
+```{r all-time-shots-col, fig.cap="Between 2006 and 2016, Lebron James made the most shots in both the regular and playoffs season. During the playoffs, he scored twice as many shots as Kevin Durant. \\hspace{\\textwidth}B: It's also interesting to note that the top 10 players "}
+
+
+
+all_time_shots_reg <- all_NBA_reg%>%
+  mutate(player=fct_reorder(player, shots))%>%
+  ggplot(aes(x=player,y=shots))+
+  geom_col(fill=blue_range(10))+
+  coord_flip()+
+  labs(
+       title="Total shots, top ten players (2006/16)",
+       subtitle = "Regular season, players ranked by total shots.",
+       x="",
+       y="Total shots")
+
+all_time_shots_play  <- all_NBA_play%>%
+  mutate(player=fct_reorder(player, shots))%>%
+  ggplot(aes(x=player,y=shots))+
+  geom_col(fill=red_range(10))+
+  coord_flip()+
+  labs(
+      title="Total shots, top ten players (2006/16)",
+       subtitle = "Playoffs season, players ranked by total shots.",
+       x="",
+       y="Total shots")
+
+all_time_shots <- plot_grid(all_time_shots_reg,
+                           all_time_shots_play,
+                           nrow=2)
+
+all_time_shots
+```
+
+
+
+
+## Who had the highest shots per free throw attempt between 2006 and 2016?
+
+```{r all-time-ratio-col}
+
 
 best_players_plot_ratio_reg <- all_NBA_reg%>%
   mutate(player=fct_reorder(player, shots_attempts_ratio))%>%
@@ -219,45 +260,47 @@ best_players_plot_ratio_play <- all_NBA_play%>%
   theme(text = element_text(size=30))+
   scale_y_comma(labels = scales::percent_format())
 
-all_time_ratio <- arrangeGrob(best_players_plot_ratio_reg,
+all_time_ratio <- plot_grid(best_players_plot_ratio_reg,
                            best_players_plot_ratio_play,
-                           nrow=1)
+                           nrow=2)
 
-ggsave("all_time_ratio.png",all_time_ratio,width = 14,height=5,limitsize = FALSE,bg="white")
+all_time_ratio
 ```
 
-```{r all-time-shots-col}
-all_time_shots_reg <- all_NBA_reg%>%
-  mutate(player=fct_reorder(player, shots))%>%
-  ggplot(aes(x=player,y=shots))+
-  geom_col(fill=blue_range(10))+
-  coord_flip()+
-  labs(
-       title="Total shots, top ten players (2006/16)",
+## Who made the most shots each season?
+```{r season-shots-point}
+
+season_players_plot_shots_reg <-  season_NBA_reg%>%
+  ggplot(aes(x=season,y=shots))+
+  geom_point(size=5, color="Blue", alpha=0.3)+
+  labs(title="Total shots, top annual players (2006/16)",
        subtitle = "Regular season, players ranked by total shots.",
        x="",
-       y="Total shots")
+       y="Total shots") +
+  geom_text_repel(aes(label=player), force=10, size=3, segment.alpha = 0.5)+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  expand_limits(y=400)
 
-all_time_shots_play  <- all_NBA_play%>%
-  mutate(player=fct_reorder(player, shots))%>%
-  ggplot(aes(x=player,y=shots))+
-  geom_col(fill=red_range(10))+
-  coord_flip()+
-  labs(
-      title="Total shots, top ten players (2006/16)",
+season_players_plot_shots_play <-  season_NBA_play%>%
+  ggplot(aes(x=season,y=shots))+
+  geom_point(size=5, color="Red", alpha=0.3)+
+  labs(title="Total shots, top annual players (2006/16)",
        subtitle = "Playoffs season, players ranked by total shots.",
        x="",
-       y="Total shots")
+       y="Total shots") +
+  geom_text_repel(aes(label=player), force=10, size=3, segment.alpha = 0.5)+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  expand_limits(y=120)
 
-all_time_shots <- arrangeGrob(all_time_shots_reg,
-                           all_time_shots_play,
-                           nrow=1)
 
-ggsave("all_time_shots.png",all_time_shots,width = 14,height=5,limitsize = FALSE,bg="white")
+season_shots <- plot_grid(season_players_plot_shots_reg,
+                           season_players_plot_shots_play,
+                           nrow=2)
+season_shots
 ```
 
 
-
+## What was the free throw attempt between 2006 and 2016 for the player that scored the most each season?
 
 ```{r season-ratios-point}
 
@@ -286,55 +329,18 @@ season_players_plot_ratio_play <- season_NBA_play%>%
   expand_limits(y=c(0.7,0.95))
 
 
-season_ratios <- arrangeGrob(season_players_plot_ratio_reg,
+season_ratios <- plot_grid(season_players_plot_ratio_reg,
                            season_players_plot_ratio_play,
-                           nrow=1)
+                           nrow=2)
 
-ggsave("season_ratios.png",season_ratios,width = 14,height=5,limitsize = FALSE,bg="white")
+season_ratios
 ```
 
 
-```{r season-shots-point}
 
-season_players_plot_shots_reg <-  season_NBA_reg%>%
-  ggplot(aes(x=season,y=shots))+
-  geom_point(size=5, color="Blue", alpha=0.3)+
-  labs(title="Total shots, top annual players (2006/16)",
-       subtitle = "Regular season, players ranked by total shots.",
-       x="",
-       y="Total shots") +
-  geom_text_repel(aes(label=player), force=10, size=3, segment.alpha = 0.5)+
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
-  expand_limits(y=400)
-
-season_players_plot_shots_play <-  season_NBA_play%>%
-  ggplot(aes(x=season,y=shots))+
-  geom_point(size=5, color="Red", alpha=0.3)+
-  labs(title="Total shots, top annual players (2006/16)",
-       subtitle = "Playoffs season, players ranked by total shots.",
-       x="",
-       y="Total shots") +
-  geom_text_repel(aes(label=player), force=10, size=3, segment.alpha = 0.5)+
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
-  expand_limits(y=120)
+# Results
 
 
-season_shots <- arrangeGrob(season_players_plot_shots_reg,
-                           season_players_plot_shots_play,
-                           nrow=1)
 
-ggsave("season_shots.png",season_shots,width = 14,height=5,limitsize = FALSE,bg="white")
-```
+# Conclusion
 
-
-```{r final-grobs}
-
-season <- arrangeGrob(season_shots, season_ratios, nrow=2)
-
-ggsave("season.png",season,width = 14,height=10,limitsize = FALSE,bg="white")
-
-
-all_time <- arrangeGrob(all_time_shots, all_time_ratio, nrow=2)
-
-ggsave("all_time.png",all_time,width = 14,height=10,limitsize = FALSE,bg="white")
-```

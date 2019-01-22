@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>NBA free throws analysis. &middot; Ángela Castillo-Gill</title>
+    <meta name="generator" content="Hugo 0.53" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Ángela Castillo-Gill">
+    
+      <meta name="description" content="This is why despite knowing little to nothing about basketball, I still knew who Lebron James was.">
+    
+    
+    <link rel="canonical" href="../../../2019/01/nba-stats/"/>
+    <link rel="icon" href="../../../favicon.ico">
+    <link rel="apple-touch-icon" href="../../../apple-touch-icon.png"/>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../css/monokai.css">
+    <link rel="stylesheet" href="../../../css/coarse.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="../../../fancybox/jquery.fancybox.css">
+    
+    <link rel="stylesheet" href="../../../css/fonts.css">
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:regular,medium,bold' rel='stylesheet' type='text/css'>
+    <meta property="og:title" content="NBA free throws analysis." />
+<meta property="og:description" content="This is why despite knowing little to nothing about basketball, I still knew who Lebron James was." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/2019/01/nba-stats/" />
+<meta property="og:image" content="/banners/NBA_season.png" />
+<meta property="article:published_time" content="2019-01-28T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-01-28T00:00:00&#43;00:00"/>
+
+    
+    
+<meta itemprop="name" content="NBA free throws analysis.">
+<meta itemprop="description" content="This is why despite knowing little to nothing about basketball, I still knew who Lebron James was.">
+
+
+<meta itemprop="datePublished" content="2019-01-28T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-01-28T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="311">
+
+  <meta itemprop="image" content="/banners/NBA_season.png">
+
+
+
+<meta itemprop="keywords" content="Kaggle,EDA,NBA," />
+
+    <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/banners/NBA_season.png"/>
+
+<meta name="twitter:title" content="NBA free throws analysis."/>
+<meta name="twitter:description" content="This is why despite knowing little to nothing about basketball, I still knew who Lebron James was."/>
+<meta name="twitter:site" content="@acastillogill"/>
+
+    
+<link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Alegreya|Source+Sans+Pro" rel="stylesheet">
+
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+	<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="../../../" id="logo">
+          
+          <span class="site-title">Ángela Castillo-Gill</span>
+      </a>
+      <nav id="main-nav">
+          
+          
+          <a class="main-nav-link" href="../../../">Home</a>
+          
+          
+
+          
+          <a class="main-nav-link" href="../../../about/">About</a>
+          
+
+          
+          
+          
+      </nav>
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="../../../img/angela.jpeg"><i class="fas fa-caret-down"></i></a>
+          </div>
+        </nav>
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+              <input type="search" name="q" class="search-form-input" placeholder="Search">
+              <button type="submit" class="search-form-submit">
+              </button>
+              <input type="hidden" name="sitesearch" value="/" />
+         </form>
+        </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tbody>
+          <tr>
+          
+          
+          <td><a class="main-nav-link" href="../../../">Home</a></td>
+          
+          
+
+          
+          <td><a class="main-nav-link" href="../../../about/">About</a></td>
+          
+
+          
+          
+          
+          <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="Search">
+          <input type="hidden" name="sitesearch" value="/" />
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</header>
+
+   	
+   	<div class="outer">
+   	
+    	<aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      
+      <img id="avatar" src="../../../img/angela.jpeg">
+      
+      <h2 id="name">Ángela Castillo-Gill</h2>
+      <h3 id="title">Data Scientist | kindness &amp; discipline.</h3>
+      
+      
+          <a id="follow" href="https://twitter.com/acastillogill">
+              @acastillogill
+          </a>
+      
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        5
+        <span>Posts</span>
+      </div>
+      <div class="article-info-block">
+        
+          11
+        
+        <span>
+            Tags
+        </span>
+      </div>
+    </div>
+    <div class="profile-block social-links">
+      <table>
+        <tr>
+          
+<td><a href="//github.com/acastillogill" target="_blank" title="GitHub"><i class="fab fa-github-square"></i></a></td>
+
+
+
+<td><a href="//twitter.com/acastillogill" target="_blank" title="Twitter"><i class="fab fa-twitter-square"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//medium.com/@acastillogill" target="_blank" title="Medium"><i class="fab fa-medium"></i></a></td>
+
+
+
+
+
+
+
+
+
+<td><a href="//linkedin.com/in/acastillogill" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <td><a href="../../../index.xml" target="_blank" title="RSS"><i class="fas fa-rss-square"></i></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+
+    
+
+    <section id="main">
+    
+    <article id="page-undefined" class="article article-type-page" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <img src="../../../banners/NBA_season.png" class="article-banner">
+        
+
+        <header class="article-header">
+    <a href="../../../2019/01/nba-stats/">
+    <h1 class="article-title" itemprop="name">
+        NBA free throws analysis.
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="far fa-calendar"></i>
+            <time datetime="2019-01-28 00:00:00 &#43;0000 UTC" itemprop="datePublished">2019-01-28</time>
+            &middot;
+            311
+            words
+            &middot;
+            2
+            minute read
+        </div>
+        
+        
+            
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fas fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="../../../tags/kaggle">Kaggle</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/eda">EDA</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/nba">NBA</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            
+
+<div id="TOC">
+<ul>
+<li><a href="#summary"><span class="toc-section-number">1</span> Summary</a></li>
+<li><a href="#question"><span class="toc-section-number">2</span> Question</a></li>
+<li><a href="#dataset-description"><span class="toc-section-number">3</span> Dataset description</a><ul>
+<li><a href="#who-made-the-most-shots-between-2006-and-2016"><span class="toc-section-number">3.1</span> Who made the most shots between 2006 and 2016?</a></li>
+<li><a href="#who-had-the-highest-shots-per-free-throw-attempt-between-2006-and-2016"><span class="toc-section-number">3.2</span> Who had the highest shots per free throw attempt between 2006 and 2016?</a></li>
+<li><a href="#who-made-the-most-shots-each-season"><span class="toc-section-number">3.3</span> Who made the most shots each season?</a></li>
+<li><a href="#what-was-the-free-throw-attempt-between-2006-and-2016-for-the-player-that-scored-the-most-each-season"><span class="toc-section-number">3.4</span> What was the free throw attempt between 2006 and 2016 for the player that scored the most each season?</a></li>
+</ul></li>
+<li><a href="#results"><span class="toc-section-number">4</span> Results</a></li>
+<li><a href="#conclusion"><span class="toc-section-number">5</span> Conclusion</a></li>
+</ul>
+</div>
+
+<div id="summary" class="section level1">
+<h1><span class="header-section-number">1</span> Summary</h1>
+<p><em>To see the all the code used in this post, visit my <a href="https://github.com/acastillogill/acastillogill">GitHub repository for this site</a></em></p>
+<ul>
+<li>Objectives: Visually understand who were the best NBA players between 2006 and 2016 and why.</li>
+<li>Challenge: Using the list-column workflow and the Purrr package.</li>
+<li>Data points: 6,798,209</li>
+<li>Language: R</li>
+</ul>
+</div>
+<div id="question" class="section level1">
+<h1><span class="header-section-number">2</span> Question</h1>
+<p>I know very little about sports, I know so little that when I came across this dataset about “free throws” in basketball, I pretty much had to look up what every column meant, except “Players”. After seeing that all the other columns to some extent say something about “Players”, I decided to explore <strong>who were the “best” players, and why?</strong></p>
+</div>
+<div id="dataset-description" class="section level1">
+<h1><span class="header-section-number">3</span> Dataset description</h1>
+<p>The package is available on <a href="https://www.kaggle.com/sebastianmantey/nba-free-throws">Kaggle</a>. It contains 618,019 rows and 11 rows. Each row corresponds to a free throw attempt and there is a column called <code>shot_made</code>, which indicates whether or not the shot was made.</p>
+<div id="who-made-the-most-shots-between-2006-and-2016" class="section level2">
+<h2><span class="header-section-number">3.1</span> Who made the most shots between 2006 and 2016?</h2>
+<div class="figure"><span id="fig:all-time-shots-col"></span>
+<img src="../../../post/2019-01-28-sport-stats_files/figure-html/all-time-shots-col-1.png" alt="Between 2006 and 2016, Lebron James made the most shots in both the regular and playoffs season. During the playoffs, he scored twice as many shots as Kevin Durant. \hspace{\textwidth}B: It's also interesting to note that the top 10 players " width="672" />
+<p class="caption">
+Figure 3.1: Between 2006 and 2016, Lebron James made the most shots in both the regular and playoffs season. During the playoffs, he scored twice as many shots as Kevin Durant. B: It’s also interesting to note that the top 10 players
+</p>
+</div>
+</div>
+<div id="who-had-the-highest-shots-per-free-throw-attempt-between-2006-and-2016" class="section level2">
+<h2><span class="header-section-number">3.2</span> Who had the highest shots per free throw attempt between 2006 and 2016?</h2>
+<p><img src="../../../post/2019-01-28-sport-stats_files/figure-html/all-time-ratio-col-1.png" width="672" /></p>
+</div>
+<div id="who-made-the-most-shots-each-season" class="section level2">
+<h2><span class="header-section-number">3.3</span> Who made the most shots each season?</h2>
+<p><img src="../../../post/2019-01-28-sport-stats_files/figure-html/season-shots-point-1.png" width="672" /></p>
+</div>
+<div id="what-was-the-free-throw-attempt-between-2006-and-2016-for-the-player-that-scored-the-most-each-season" class="section level2">
+<h2><span class="header-section-number">3.4</span> What was the free throw attempt between 2006 and 2016 for the player that scored the most each season?</h2>
+<p><img src="../../../post/2019-01-28-sport-stats_files/figure-html/season-ratios-point-1.png" width="672" /></p>
+</div>
+</div>
+<div id="results" class="section level1">
+<h1><span class="header-section-number">4</span> Results</h1>
+</div>
+<div id="conclusion" class="section level1">
+<h1><span class="header-section-number">5</span> Conclusion</h1>
+</div>
+
+        </div>
+        <footer class="article-footer">
+    <a data-url="/2019/01/nba-stats/" data-id="9d0da175539003988f4882729ec3e576" text="NBA free throws analysis." via="acastillogill" class="article-share-link">
+        <i class="fas fa-share"></i>
+        Share
+    </a>
+    
+    <a href="../../../2019/01/nba-stats/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                titleText = $this.attr('text'),
+                via = $this.attr('via'),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/share?url=' + encodedUrl + '&text=' + titleText + '&via=' + via + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest-p article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+
+    
+<nav id="article-nav">
+    
+    <a href="../../../2018/12/linear-regression-r-downloads/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Older
+      </strong>
+      <div class="article-nav-title">Linear regression: who tends to download R software</div>
+    </a>
+    
+
+    
+</nav>
+
+
+</article>
+
+
+<section id="comments">
+    <div id="disqus_thread">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-acastillogill-com" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+</section>
+
+
+    </section>
+
+   	
+    	<aside id="sidebar">
+    
+
+    
+
+    
+
+    
+
+
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+    
+	</div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019
+      Ángela Castillo-Gill. Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="https://github.com/ppoffice">PPOffice</a>. Customised by <a href="https://maraaverick.rbind.io/">Mara Averick</a> and used with permission.
+    </div>
+  </div>
+</footer>
+
+
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	if (window.sessionStorage) {
+		var GA_SESSION_STORAGE_KEY = 'ga:clientId';
+		ga('create', 'UA-128602464-1', {
+	    'storage': 'none',
+	    'clientId': sessionStorage.getItem(GA_SESSION_STORAGE_KEY)
+	   });
+	   ga(function(tracker) {
+	    sessionStorage.setItem(GA_SESSION_STORAGE_KEY, tracker.get('clientId'));
+	   });
+   }
+	
+	ga('send', 'pageview');
+}
+</script>
+
+<script src="../../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../../js/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+---
+title: "NBA free throws analysis."
+author: Ángela Castillo-Gill
+date: '2019-01-28'
+slug: NBA-stats
+categories: []
+tags: 
+  - Kaggle
+  - EDA
+  - NBA
+description: "This is why despite knowing little to nothing about basketball, I still knew who Lebron James was."
+banner: "banners/NBA_season.png"
+images: ["banners/NBA_season.png"]
+draft: FALSE
+header: 
+  image: "banners/NBA_season.png"
+  caption: ""
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+    toc_depth: 2
+  fig_caption: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#summary"><span class="toc-section-number">1</span> Summary</a></li>
+<li><a href="#question"><span class="toc-section-number">2</span> Question</a></li>
+<li><a href="#dataset-description"><span class="toc-section-number">3</span> Dataset description</a><ul>
+<li><a href="#who-made-the-most-shots-between-2006-and-2016"><span class="toc-section-number">3.1</span> Who made the most shots between 2006 and 2016?</a></li>
+<li><a href="#who-had-the-highest-shots-per-free-throw-attempt-between-2006-and-2016"><span class="toc-section-number">3.2</span> Who had the highest shots per free throw attempt between 2006 and 2016?</a></li>
+<li><a href="#who-made-the-most-shots-each-season"><span class="toc-section-number">3.3</span> Who made the most shots each season?</a></li>
+<li><a href="#what-was-the-free-throw-attempt-between-2006-and-2016-for-the-player-that-scored-the-most-each-season"><span class="toc-section-number">3.4</span> What was the free throw attempt between 2006 and 2016 for the player that scored the most each season?</a></li>
+</ul></li>
+<li><a href="#results"><span class="toc-section-number">4</span> Results</a></li>
+<li><a href="#conclusion"><span class="toc-section-number">5</span> Conclusion</a></li>
+</ul>
+</div>
+
+<div id="summary" class="section level1">
+<h1><span class="header-section-number">1</span> Summary</h1>
+<p><em>To see the all the code used in this post, visit my <a href="https://github.com/acastillogill/acastillogill">GitHub repository for this site</a></em></p>
+<ul>
+<li>Objectives: Visually understand who were the best NBA players between 2006 and 2016 and why.</li>
+<li>Challenge: Using the list-column workflow and the Purrr package.</li>
+<li>Data points: 6,798,209</li>
+<li>Language: R</li>
+</ul>
+</div>
+<div id="question" class="section level1">
+<h1><span class="header-section-number">2</span> Question</h1>
+<p>I know very little about sports, I know so little that when I came across this dataset about “free throws” in basketball, I pretty much had to look up what every column meant, except “Players”. After seeing that all the other columns to some extent say something about “Players”, I decided to explore <strong>who were the “best” players, and why?</strong></p>
+</div>
+<div id="dataset-description" class="section level1">
+<h1><span class="header-section-number">3</span> Dataset description</h1>
+<p>The package is available on <a href="https://www.kaggle.com/sebastianmantey/nba-free-throws">Kaggle</a>. It contains 618,019 rows and 11 rows. Each row corresponds to a free throw attempt and there is a column called <code>shot_made</code>, which indicates whether or not the shot was made.</p>
+<div id="who-made-the-most-shots-between-2006-and-2016" class="section level2">
+<h2><span class="header-section-number">3.1</span> Who made the most shots between 2006 and 2016?</h2>
+<div class="figure"><span id="fig:all-time-shots-col"></span>
+<img src="/post/2019-01-28-sport-stats_files/figure-html/all-time-shots-col-1.png" alt="Between 2006 and 2016, Lebron James made the most shots in both the regular and playoffs season. During the playoffs, he scored twice as many shots as Kevin Durant. \hspace{\textwidth}B: It's also interesting to note that the top 10 players " width="672" />
+<p class="caption">
+Figure 3.1: Between 2006 and 2016, Lebron James made the most shots in both the regular and playoffs season. During the playoffs, he scored twice as many shots as Kevin Durant. B: It’s also interesting to note that the top 10 players
+</p>
+</div>
+</div>
+<div id="who-had-the-highest-shots-per-free-throw-attempt-between-2006-and-2016" class="section level2">
+<h2><span class="header-section-number">3.2</span> Who had the highest shots per free throw attempt between 2006 and 2016?</h2>
+<p><img src="/post/2019-01-28-sport-stats_files/figure-html/all-time-ratio-col-1.png" width="672" /></p>
+</div>
+<div id="who-made-the-most-shots-each-season" class="section level2">
+<h2><span class="header-section-number">3.3</span> Who made the most shots each season?</h2>
+<p><img src="/post/2019-01-28-sport-stats_files/figure-html/season-shots-point-1.png" width="672" /></p>
+</div>
+<div id="what-was-the-free-throw-attempt-between-2006-and-2016-for-the-player-that-scored-the-most-each-season" class="section level2">
+<h2><span class="header-section-number">3.4</span> What was the free throw attempt between 2006 and 2016 for the player that scored the most each season?</h2>
+<p><img src="/post/2019-01-28-sport-stats_files/figure-html/season-ratios-point-1.png" width="672" /></p>
+</div>
+</div>
+<div id="results" class="section level1">
+<h1><span class="header-section-number">4</span> Results</h1>
+</div>
+<div id="conclusion" class="section level1">
+<h1><span class="header-section-number">5</span> Conclusion</h1>
+</div>
