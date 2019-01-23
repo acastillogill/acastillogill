@@ -225,7 +225,7 @@ tm_layout(main.title = "R downloads per capita in 2017/18",
 tm_legend(position=c("left", "bottom"), bg.color="white", frame=FALSE, legend.title.size=1)
 ```
 
-```{r plot-downloads-per-capita-map, include=TRUE, fig.cap="Besides the top 10 downloads per capita plot, here we see that Uruguay and Chile in South America have the most downloads per capita; El Salvador in Central America; and Japan in Asia."}
+```{r plot-downloads-per-capita-map, include=TRUE, fig.cap="Besides the top 10 downloads per capita plot, here we see that Uruguay and Chile in South America have the most downloads per capita; Costa Rica in Central America; and Japan in Asia."}
 n_capita_map
 ```
 
