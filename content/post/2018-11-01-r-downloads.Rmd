@@ -290,4 +290,11 @@ ggplot(full_maps_edu, aes(x=edu_index, y=log(n_capita)))+
 ```
 
 
+```{r cowplot-for-r-downloads}
+no_title_map_1 <- tm_shape(world_full) + 
+  tm_borders(col="black", lwd=0.1)+
+    tm_fill(col="n",n=4, style="jenks", palette = get_brewer_pal("BuPu", n = 4, contrast = c(0.13, 0.9))) + 
+tm_layout(main.title.size = 1, frame = FALSE, bg.color = "aliceblue", title.position = c("right","bottom"))+
+tm_legend(position=c("left", "bottom"), bg.color="white", frame=FALSE, legend.title.size=1)
+```
 

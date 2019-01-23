@@ -237,13 +237,15 @@ ggplot(full_maps_edu, aes(x=edu_index, y=log(n_capita)))+
 
 # Results
 
-- As we saw earlier, the education index explains `r  summary(fit)$adj.r.squared*100` in the variation of R Downloads around the world. 
+- As we saw earlier, the education index explains `r  summary(fit)$adj.r.squared*100` percent of the variation in R Downloads per capita around the world. 
 
 - The geometric mean of R downloads per capita is 0.00004917.
 
-- A one unit increase in the education index, in this case, one percentage point, is expected to increase R downloads per capita by `r (exp(summary(fit)$coef[2])-1)*100` percent.
+- A one unit increase in the education index, in this case, one percentage point, is expected to increase, on average, R downloads per capita by `r (exp(summary(fit)$coef[2])-1)*100` percent.
 
-- So for example, if the fictious country Republic of Ángela with an education index of 78 and downloads per capita of 1.1, increased its education index to 79, R downloads per capita would be expected to increase to 1.1*1.109=1.22.
+- There is a 95% chance that the following interval contains the true value of the coefficient corresponding to the education index: [`r 100*(exp((summary(fit)$coef[2])-2*summary(fit)$coef[2,2])-1)` and `r 100*(exp((summary(fit)$coef[2])+2*summary(fit)$coef[2,2])-1)`] percent.
+
+- So for example, if the fictitious country Republic of Ángela with an education index of 78 and downloads per capita of 1.1, increased its education index to 79, R downloads per capita would be expected to increase between a range of 1.1 * 1.09593 = 1.206 and 1.1 * 1.1222 = 1.234.
 
 We can see this increase by plotting the fitted values:
 
@@ -255,7 +257,7 @@ fit%>%
   geom_point(alpha=0.5, color="red")+
   geom_point(data=full_maps_edu,aes(x=edu_index_percent, y=n_capita),alpha=0.5)+
   labs(title="The Education Index vs. R Downloads per Capita",
-       subtitle="Black dots are real values and red dots are fitted values. For every percentage point \nincrease in the education index, the geometric mean of R downloads per capita is \nexpected to increase by 10.9%",
+       subtitle="Black dots are real values and red dots are fitted values. For every percentage point \nincrease in the education index, the geometric mean of R downloads per capita is \nexpected to increase, on average, by 10.9%. Also, ",
        x="Education index",
        y="R downloads per capita")+
   expand_limits(0,0)
