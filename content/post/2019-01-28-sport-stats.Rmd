@@ -22,7 +22,7 @@ output:
     toc_depth: 2
   fig_caption: true
 editor_options: 
-  chunk_output_type: console
+  chunk_output_type: inline
 ---
 
 ```{r setup, include=FALSE}
@@ -125,12 +125,22 @@ factors <- c("end_result",
 NBA[factors] <- lapply(NBA[factors], factor)
 ```
 
+
+
+
 ```{r NBA-regular-vs-playoffs}
+#Create a regular season dataset
 NBA_reg <- NBA%>%
   filter(playoffs=="regular")
+
+#Create a playoffs dataset
 NBA_play <- NBA%>%
   filter(playoffs=="playoffs")
 ```
+
+
+
+
 
 
 ```{r stats-all-time}
@@ -152,20 +162,28 @@ all_NBA_play <- NBA_play%>%
 
 ```
 
+
+
+
+
+
+
+
+
+
 ```{r stats-per-season}
 season_NBA_reg <- NBA_reg%>%
-  group_by(season)%>%
-  nest() %>%
-  mutate(data = map(data, ~ .x %>%
-        group_by(player)%>%
-        summarise(shots_attempts_ratio=sum(shot_made)/n(),
-        total_attempts=n(),
-        shots=sum(shot_made))%>%
-        arrange(desc(shots))%>%
-        top_n(1)
-        )) %>%
- unnest
-
+group_by(season)%>%
+  nest()%>%
+  mutate(data=map(data, ~.x%>%
+                    group_by(player)%>%
+                    summarise(shots_attempts_ratio=sum(shot_made)/n(),
+                              total_attempts=n(),
+                              shots=sum(shot_made))%>%
+                    arrange(desc(shots))%>%
+                    top_n(1)
+                  ))%>%
+  unnest
 
 season_NBA_play <- NBA_play%>%
   group_by(season)%>%
@@ -182,6 +200,9 @@ season_NBA_play <- NBA_play%>%
 
 
 ```
+
+
+
 
 ```{r creating-colour-palette}
 blues <- brewer.pal(9,"Blues")
