@@ -202,8 +202,6 @@ season_NBA_play <- NBA_play%>%
 ```
 
 
-
-
 ```{r creating-colour-palette}
 blues <- brewer.pal(9,"Blues")
 blue_range <- colorRampPalette(blues)
