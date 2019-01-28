@@ -8,7 +8,7 @@ tags:
   - Kaggle
   - EDA
   - NBA
-description: "This is why despite knowing little to nothing about basketball, I still knew who Lebron James was."
+description: "This is why despite knowing little to nothing about basketball, I still knew who Lebron James was. In this post I analysed 6,798,209 data points on NBA free throws from 2006 to 2018. I focused on the Players variable to rank NBA players by the total number of shots for all ten seasons and amongst seasons. There is much scoring variability amongst top ten players with some playing less but being scoring more and others attempting much more but being consistent. The better strategy, judging by the ranking, is to attempt more and stay consistent."
 banner: "banners/NBA_season.png"
 images: ["banners/NBA_season.png"]
 draft: FALSE
@@ -89,7 +89,7 @@ NBA <- read_csv(here::here("static","data","free_throws.csv"))
 *To see the all the code used in this post, visit my [GitHub repository for this site](https://github.com/acastillogill/acastillogill)* 
 
 - Objectives: Visually understand who were the best NBA players between 2006 and 2016 and why. 
-- Challenge: Using the list-column workflow and the Purrr package. 
+- Challenge: Using the list-column workflow and the `Purrr` package. 
 - Data points: `r nrow(NBA)*length(NBA)`
 - Language: R 
 
@@ -368,8 +368,16 @@ season_ratios
 
 # Results
 
-
+- Over the 2006-2016 period, Lebron James scored the most free throws in both the regular season (`r all_NBA_reg[1,4]`) and playoffs (`r all_NBA_play[1,4]`). 
+- During the 2006-2016 period, amongst the top 10 players in terms of most scored free throws, Dirk Nowitzki had the highest accuracy in both regular season (`r all_NBA_reg[7,2]`) and the playoffs (`r all_NBA_play[7,2]`).
+- Kevin Durant made the most shots during four (or five if you count the 2011-2012 season) regular seasons. Quite a feat!
+- During the playoffs, Kobe Bryant was three times the top player in terms of free throw shots per season. Not bad also!
+- Lebron James attempts free throws more often than other top players but is consistent by scoring about three out of four attempts.
+- Kobe Bryant's accuracy is much more variable than Lebron's, plot H shows the constrast between Lebron's consistency and Kobe's variability season to season.
+- Between the 2006-2016 period there was much competition between Kobe and Lebron. The latter, however, manages to score almost double than the former during the playoffs. 
 
 
 # Conclusion
+
+In this post I analysed `r nrow(NBA)*length(NBA)` data points on NBA free throws from 2006 to 2018. I focused on the `Players` variable to rank NBA players by the total number of shots for all ten seasons and amongst seasons. There is much scoring variability amongst top ten players with some playing less but being scoring more and others attempting much more but being consistent. The better strategy, judging by the ranking, is to attempt more and stay consistent. 
 
