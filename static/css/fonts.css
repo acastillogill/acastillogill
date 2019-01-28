@@ -98,6 +98,7 @@ strike {
 
 li {
     font-family: 'LuissSans-ThinSans';
+    font-size: 100%;
 }
 form {
     font-family: 'LuissSans-ThinSans';
@@ -295,6 +296,10 @@ header-inner {
   font-family: 'LuissSans-ThinSans';
 }
 
+
+.article-entry .article-entry {
+  font-family: 'LuissSans-ThinSans';
+}
 
 .article-entry .caption {
   font-family: 'LuissSans-ThinSans';

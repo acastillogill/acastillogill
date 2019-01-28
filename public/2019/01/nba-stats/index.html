@@ -39,7 +39,7 @@
 
 <meta itemprop="datePublished" content="2019-01-18T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2019-01-18T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="311">
+<meta itemprop="wordCount" content="656">
 
   <meta itemprop="image" content="/banners/NBA_season.png">
 
@@ -262,10 +262,10 @@
             <i class="far fa-calendar"></i>
             <time datetime="2019-01-18 00:00:00 &#43;0000 UTC" itemprop="datePublished">2019-01-18</time>
             &middot;
-            311
+            656
             words
             &middot;
-            2
+            4
             minute read
         </div>
         
@@ -328,30 +328,29 @@
 </div>
 <div id="question" class="section level1">
 <h1><span class="header-section-number">2</span> Question</h1>
-<p>I know very little about sports, I know so little that when I came across this dataset about “free throws” in basketball, I pretty much had to look up what every column meant, except “Players”. After seeing that all the other columns to some extent say something about “Players”, I decided to explore <strong>who were the “best” players, and why?</strong></p>
+<p>I know very little about sports, I know so little that when I came across this dataset about “free throws” in basketball, I pretty much had to look up what every column meant, except <code>Players</code>. After seeing that all the other columns to some extent say something about <code>Players</code>, I decided to explore <strong>who were the “best” players, and why?</strong></p>
 </div>
 <div id="dataset-description" class="section level1">
 <h1><span class="header-section-number">3</span> Dataset description</h1>
-<p>The package is available on <a href="https://www.kaggle.com/sebastianmantey/nba-free-throws">Kaggle</a>. It contains 618,019 rows and 11 rows. Each row corresponds to a free throw attempt and there is a column called <code>shot_made</code>, which indicates whether or not the shot was made.</p>
+<p>The dataset is available on <a href="https://www.kaggle.com/sebastianmantey/nba-free-throws">Kaggle</a>. It contains 618,019 rows and 11 rows. Each row corresponds to a free throw attempt and there is a column called <code>shot_made</code>, which indicates whether or not the shot was made.</p>
 <div id="who-made-the-most-shots-between-2006-and-2016" class="section level2">
 <h2><span class="header-section-number">3.1</span> Who made the most shots between 2006 and 2016?</h2>
-<div class="figure"><span id="fig:all-time-shots-col"></span>
-<img src="../../../post/2019-01-28-sport-stats_files/figure-html/all-time-shots-col-1.png" alt="Between 2006 and 2016, Lebron James made the most shots in both the regular and playoffs season. During the playoffs, he scored twice as many shots as Kevin Durant. \hspace{\textwidth}B: It's also interesting to note that the top 10 players " width="672" />
-<p class="caption">
-Figure 3.1: Between 2006 and 2016, Lebron James made the most shots in both the regular and playoffs season. During the playoffs, he scored twice as many shots as Kevin Durant. B: It’s also interesting to note that the top 10 players
-</p>
-</div>
+<p>Plot A shows that between 2006 and 2016, Lebron James made the most shots in both the regular season and playoffs. In this figure there is not much difference between the second best player, Kevin Durant. Plot B shows a different story when during the playoffs, Lebron James scored twice as many shots as Kevin Durant. It’s also interesting to note that the top 10 players during the regular season (plot A) are different to those in the playoffs (plot B).</p>
+<p><img src="../../../post/2019-01-28-sport-stats_files/figure-html/all-time-shots-col-1.png" width="672" /></p>
 </div>
 <div id="who-had-the-highest-shots-per-free-throw-attempt-between-2006-and-2016" class="section level2">
 <h2><span class="header-section-number">3.2</span> Who had the highest shots per free throw attempt between 2006 and 2016?</h2>
+<p>Shots per free throw attempt is a good indicator of how accurate players are at free throwing. It can also indicate something about the players’ strategy. For example, figure C and D shows that player accuracy is similar during the regular season and playoffs. We also see that Dirk Nowitzki had the highest accuracy. Contrast this with Lebron James whom despite scoring the most shots, doesn’t have as much free throw accuracy. This shows that during the 2006-2016 period, Lebron James had many more free throw attempts that Dirk Nowitzki, had the latter had more attempts, perhaps we would have had scored more shots than the former.</p>
 <p><img src="../../../post/2019-01-28-sport-stats_files/figure-html/all-time-ratio-col-1.png" width="672" /></p>
 </div>
 <div id="who-made-the-most-shots-each-season" class="section level2">
 <h2><span class="header-section-number">3.3</span> Who made the most shots each season?</h2>
-<p><img src="../../../post/2019-01-28-sport-stats_files/figure-html/season-shots-point-1.png" width="672" /></p>
+<p>Plots A through D summarised free throw stats for all ten seasons included in this analysis. Plots E through G will describe free throw stats per season. We begin with Plot E and F. These show a rivalry for the most free throws for each season between Kobe Bryant and Lebron James from 2006 to 2009. That year, an additional competitor is introduced, Kevin Durant. These three players dispute the title of the top scoring player for each season alternating the leading role. In 2014, James Harden makes a strong appearance by leading both the regular season and the playoffs in terms of total shots.
+<img src="../../../post/2019-01-28-sport-stats_files/figure-html/season-shots-point-1.png" width="672" /></p>
 </div>
 <div id="what-was-the-free-throw-attempt-between-2006-and-2016-for-the-player-that-scored-the-most-each-season" class="section level2">
 <h2><span class="header-section-number">3.4</span> What was the free throw attempt between 2006 and 2016 for the player that scored the most each season?</h2>
+<p>Plots G and H provide more insight into each player’s strategy. In order to score the most shots each season, free throw accuracy must be around 80 to 90%. That’s most of where the variation is. There are two players that slightly step outside this pattern: during the 2010-2011 season, Dirk Nowitzki had almost 95% accuracy! Contrast this with Lebron James’ during the playoffs where he has below 80% accuracy. This indeed shows that he probably has a volume-centric strategy where he simply tries more and fails about once every four tries. Not bad!</p>
 <p><img src="../../../post/2019-01-28-sport-stats_files/figure-html/season-ratios-point-1.png" width="672" /></p>
 </div>
 </div>
