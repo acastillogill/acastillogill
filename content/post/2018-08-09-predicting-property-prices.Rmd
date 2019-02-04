@@ -687,3 +687,14 @@ Size matters in all property dimensions: garage area, basement area, living area
 As a final note it's important to add that to a large extent the results of this analysis are limited Ames, Iowa, where this dataset is from.
 
 
+```{r create-data-table, eval=FALSE}
+DT <- data.table(A=1:6, B=c("a","b","c"), C=rnorm(6), D=TRUE)
+```
+
+
+
+
+```{r apply_xgboost}
+train_xgboost <- xgb.DMatrix(data=as.matrix(homes_train), label=homes_train$SalePrice)
+```
+
