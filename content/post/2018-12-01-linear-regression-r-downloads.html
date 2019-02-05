@@ -1,15 +1,15 @@
 ---
-title: "Linear regression: who tends to download R software"
+title: "Log-linear regression: who tends to download R software"
 author: Ángela Castillo-Gill
 date: '2018-12-01'
-slug: linear-regression-r-downloads
+slug: log-linear-regression-r-downloads
 categories: []
 tags: 
   - Kaggle
   - Tidy Tuesday
   - EDA
   - Maps
-description: "In this blog post, I set out to explain the relationship between the education index and R downloads per capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad."
+description: "In this blog post, I set out to explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad."
 banner: "banners/edu_index_downloads_capita.png"
 images: ["banners/edu_index_downloads_capita.png"]
 draft: FALSE
@@ -42,7 +42,7 @@ editor_options:
 <h1><span class="header-section-number">1</span> Summary</h1>
 <p><em>To see the all the code used in this post, visit my <a href="https://github.com/acastillogill/acastillogill">GitHub repository for this site</a></em></p>
 <ul>
-<li>Objectives: To understand what factors contribute to R downloads per capita.</li>
+<li>Objectives: To understand what factors contribute to R downloads per 1,000 capita.</li>
 <li>Challenge: Interpretation of log-linear coefficients.</li>
 <li>Data points: 11,806,912</li>
 <li>Language: R</li>
@@ -50,9 +50,9 @@ editor_options:
 </div>
 <div id="question" class="section level1">
 <h1><span class="header-section-number">2</span> Question</h1>
-<p>In a <a href="https://acastillogill.com/2018/11/r-downloads-around-the-world/">previous post</a> I had looked at which countries downloaded R the most. That led me to ask which countries were the most intense R users, using downloads per capita as a proxy.</p>
+<p>In a <a href="https://acastillogill.com/2018/11/r-downloads-around-the-world/">previous post</a> I had looked at which countries downloaded R the most. That led me to ask which countries were the most intense R users, using downloads per 1,000 capita as a proxy.</p>
 <p>When I was writing the conclusions about the most R-using countries, I tried to draw up patterns. What did those R-using countries have in common? They were mostly “developed” countries. Since developed countries tend to have high levels of academic attainment, I decided to explore the relationship between education levels and R-usage across the globe:</p>
-<p><strong>How does the education index relate to R downloads per capita?</strong></p>
+<p><strong>How does the education index relate to R downloads per 1,000 capita?</strong></p>
 <p>To answer my question, I identified a metric that would allow me to explore the relationship between education and R usage. That metric turned out to be the UN’s education index, which I will explain below.</p>
 </div>
 <div id="dataset-description" class="section level1">
@@ -64,12 +64,14 @@ editor_options:
 <div id="the-relationship-between-the-education-index-and-r-downloads" class="section level1">
 <h1><span class="header-section-number">4</span> The relationship between the education index and R downloads</h1>
 <div class="figure"><span id="fig:plot-relationship-between-educ-and-n-capita-log"></span>
-<img src="/post/2018-12-01-linear-regression-r-downloads_files/figure-html/plot-relationship-between-educ-and-n-capita-log-1.png" alt="When I plotted the education index vs. R downloads per capita, I noticed exponential behaviour in the y-axis. Since I planned to use a linear regression, I took the logarithm of the response variable. The figure shows that by taking the logarithm of R downloads per capita, we have met the criteria for a linear regression." width="672" />
+<img src="/post/2018-12-01-linear-regression-r-downloads_files/figure-html/plot-relationship-between-educ-and-n-capita-log-1.png" alt="When I plotted the education index vs. R downloads per 1,000 capita, I noticed exponential behaviour in the y-axis. Since I planned to use a linear regression, I took the logarithm of the response variable. The figure shows that by taking the logarithm of R downloads per 1,000 capita, we have met the criteria for a linear regression." width="672" />
 <p class="caption">
-Figure 4.1: When I plotted the education index vs. R downloads per capita, I noticed exponential behaviour in the y-axis. Since I planned to use a linear regression, I took the logarithm of the response variable. The figure shows that by taking the logarithm of R downloads per capita, we have met the criteria for a linear regression.
+Figure 4.1: When I plotted the education index vs. R downloads per 1,000 capita, I noticed exponential behaviour in the y-axis. Since I planned to use a linear regression, I took the logarithm of the response variable. The figure shows that by taking the logarithm of R downloads per 1,000 capita, we have met the criteria for a linear regression.
 </p>
 </div>
 <p>The relationship between the two variables is linear now - time for a linear regression!</p>
+<p>That will take the form:</p>
+<p><span class="math display">\[ln(downloads\space per \space 1,000 \space capita)=\beta_0+\beta_1*Education\space index + \varepsilon\]</span></p>
 <table>
 <thead>
 <tr class="header">
@@ -97,21 +99,23 @@ Figure 4.1: When I plotted the education index vs. R downloads per capita, I no
 </tr>
 </tbody>
 </table>
-<p>After checking out the residuals, I saw there are a few outliers, mainly Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad. I decided to leave them in because it’s interesting to think about what specific characteristcs contribute to them being be under or over the trend line. The model I proposed, explains 64.41 of the variation in the data. It’s not a lot but it’s also not insignificant. After having tried to fit a multiple linear regression model with other variables such as GDP and life expectancy, I found the education index to be the best predictor of R downloads per capita.</p>
+<p>After checking out the residuals, I saw there are a few outliers, mainly Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad. I decided to leave them in because it’s interesting to think about what specific characteristcs contribute to them being be under or over the trend line. The model I proposed, explains 64.41 of the variation in the data. It’s not a lot but it’s also not insignificant. After having tried to fit a multiple linear regression model with other variables such as GDP and life expectancy, I found the education index to be the best predictor of R downloads per 1,000 capita.</p>
 </div>
 <div id="results" class="section level1">
 <h1><span class="header-section-number">5</span> Results</h1>
+<p>Based on the model:</p>
+<p><span class="math inline">\(ln(downloads\space per \space 1,000 \space capita)=\beta_0+\beta_1*Education\space index + \varepsilon\)</span></p>
 <ul>
-<li><p>As we saw earlier, the education index explains 64.41 percent of the variation in R Downloads per capita around the world.</p></li>
-<li><p>The geometric mean of R downloads per capita is 0.00004917.</p></li>
-<li><p>A one unit increase in the education index, in this case, one percentage point, is expected to increase, on average, R downloads per capita by 10.9 percent.</p></li>
-<li><p>There is a 95% chance that the following interval contains the true value of the coefficient corresponding to the education index: [9.593 and 12.22] percent.</p></li>
-<li><p>So for example, if the fictitious country Republic of Ángela with an education index of 78 and downloads per capita of 1.1, increased its education index to 79, R downloads per capita would be expected to increase between a range of 1.1 * 1.09593 = 1.206 and 1.1 * 1.1222 = 1.234.</p></li>
+<li><p>The education index explains 64.41 percent of the variation in R Downloads per 1,000 capita around the world.</p></li>
+<li><p>The geometric mean of R downloads per 1,000 capita is 0.00004917.</p></li>
+<li><p>A one unit increase in the education index, in this case, one percentage point, is expected to increase, on average, R downloads per 1,000 capita by 10.34%.</p></li>
+<li><p>There is a 95% chance that the following interval contains the true value of the coefficient corresponding to the education index: [9.16% and 11.53%.]</p></li>
+<li><p>So for example, if the fictitious country Republic of Ángela with an education index of 78 and downloads per 1,000 capita of 1.1, increased its education index to 79, R downloads per 1,000 capita would be expected to increase between a range of 1.1 * 1.0916 = 1.201 and 1.1 * 1.1153 = 1.227.</p></li>
 </ul>
 <p>We can see this increase by plotting the fitted values:</p>
 <p><img src="/post/2018-12-01-linear-regression-r-downloads_files/figure-html/plot-fitted-values-1.png" width="672" /></p>
 </div>
 <div id="conclusion" class="section level1">
 <h1><span class="header-section-number">6</span> Conclusion</h1>
-<p>In this blog post, I set out to explain the relationship between the education index and R downloads per capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per capita onto the education index. I found that the education index (values from 2016) explains about 64.41 of variation in R downloads per capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad.</p>
+<p>In this blog post, I set out to explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.41 of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad.</p>
 </div>

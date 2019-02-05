@@ -1,15 +1,15 @@
 ---
-title: "Linear regression: who tends to download R software"
+title: "Log-linear regression: who tends to download R software"
 author: Ángela Castillo-Gill
 date: '2018-12-01'
-slug: linear-regression-r-downloads
+slug: log-linear-regression-r-downloads
 categories: []
 tags: 
   - Kaggle
   - Tidy Tuesday
   - EDA
   - Maps
-description: "In this blog post, I set out to explain the relationship between the education index and R downloads per capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad."
+description: "In this blog post, I set out to explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad."
 banner: "banners/edu_index_downloads_capita.png"
 images: ["banners/edu_index_downloads_capita.png"]
 draft: FALSE
@@ -87,7 +87,7 @@ r_downloads <- na.omit(r_downloads)%>%
 
 *To see the all the code used in this post, visit my [GitHub repository for this site](https://github.com/acastillogill/acastillogill)* 
 
-- Objectives: To understand what factors contribute to R downloads per capita. 
+- Objectives: To understand what factors contribute to R downloads per 1,000 capita. 
 - Challenge: Interpretation of log-linear coefficients.
 - Data points: `r 908224*13`
 - Language: R 
@@ -95,11 +95,11 @@ r_downloads <- na.omit(r_downloads)%>%
 
 # Question
 
-In a [previous post](https://acastillogill.com/2018/11/r-downloads-around-the-world/) I had looked at which countries downloaded R the most. That led me to ask which countries were the most intense R users, using downloads per capita as a proxy. 
+In a [previous post](https://acastillogill.com/2018/11/r-downloads-around-the-world/) I had looked at which countries downloaded R the most. That led me to ask which countries were the most intense R users, using downloads per 1,000 capita as a proxy. 
 
 When I was writing the conclusions about the most R-using countries, I tried to draw up patterns. What did those R-using countries have in common? They were mostly "developed" countries. Since developed countries tend to have high levels of academic attainment, I decided to explore the relationship between education levels and R-usage across the globe:  
 
-**How does the education index relate to R downloads per capita?** 
+**How does the education index relate to R downloads per 1,000 capita?** 
 
 To answer my question, I identified a metric that would allow me to explore the relationship between education and R usage. That metric turned out to be the UN's education index, which I will explain below. 
 
@@ -160,26 +160,31 @@ full_maps_edu <- full_maps%>%
 
 ```
 
-```{r plot-relationship-between-educ-and-n-capita, fig.height=7,fig.cap="There appears to be an exponential relationship between the education index and the number of R downloads per capita."}
+```{r plot-relationship-between-educ-and-n-capita, fig.height=7,fig.cap="There appears to be an exponential relationship between the education index and the number of R downloads per 1,000 capita."}
 ggplot(full_maps_edu, aes(x=edu_index_percent, y=n_capita))+
   geom_point(alpha=0.5)+
-  labs(title="The education index vs. R downloads per capita",
+  labs(title="The education index vs. R downloads per 1,000 capita",
        x="Education index",
-       y="R downloads per capita")+
+       y="R downloads per 1,000 capita")+
   geom_text_repel(aes(label=name), force=0.2, size=2, segment.alpha = 0.5)
 ```
 
-```{r plot-relationship-between-educ-and-n-capita-log,include=TRUE, fig.height=10,fig.cap="When I plotted the education index vs. R downloads per capita, I noticed exponential behaviour in the y-axis. Since I planned to use a linear regression, I took the logarithm of the response variable. The figure shows that by taking the logarithm of R downloads per capita, we have met the criteria for a linear regression."}
+```{r plot-relationship-between-educ-and-n-capita-log,include=TRUE, fig.height=10,fig.cap="When I plotted the education index vs. R downloads per 1,000 capita, I noticed exponential behaviour in the y-axis. Since I planned to use a linear regression, I took the logarithm of the response variable. The figure shows that by taking the logarithm of R downloads per 1,000 capita, we have met the criteria for a linear regression."}
 ggplot(full_maps_edu, aes(x=edu_index_percent, y=log(n_capita)))+
   geom_point(alpha=0.5)+
   geom_smooth(method="lm", color="salmon", se=FALSE, size=2, alpha=0.5)+
   geom_text_repel(aes(label=name), force=0.2, size=2, segment.alpha = 0.5)+
-  labs(title="The Education Index vs. R Downloads per Capita",
+  labs(title="The Education Index vs. R Downloads per 1,000 capita",
        x="Education index",
-       y="R downloads per capita (logarithm applied)")
+       y="R downloads per 1,000 capita (logarithm applied)")
 ```
 
 The relationship between the two variables is linear now - time for a linear regression!
+
+That will take the form:
+
+$$ln(downloads\space per \space 1,000 \space capita)=\beta_0+\beta_1*Education\space index + \varepsilon$$
+
 
 ```{r create-model-of-educ-r-capita, include=TRUE}
 fit <- lm( log(n_capita) ~ edu_index_percent, data = full_maps_edu)
@@ -188,7 +193,7 @@ fit%>%
   kable()
 ```
 
-After checking out the residuals, I saw there are a few outliers, mainly Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad. I decided to leave them in because it's interesting to think about what specific characteristcs contribute to them being be under or over the trend line. The model I proposed, explains `r summary(fit)$adj.r.squared*100` of the variation in the data. It's not a lot but it's also not insignificant. After having tried to fit a multiple linear regression model with other variables such as GDP and life expectancy, I found the education index to be the best predictor of R downloads per capita. 
+After checking out the residuals, I saw there are a few outliers, mainly Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad. I decided to leave them in because it's interesting to think about what specific characteristcs contribute to them being be under or over the trend line. The model I proposed, explains `r summary(fit)$adj.r.squared*100` of the variation in the data. It's not a lot but it's also not insignificant. After having tried to fit a multiple linear regression model with other variables such as GDP and life expectancy, I found the education index to be the best predictor of R downloads per 1,000 capita. 
 
 ```{r remove-outliers}
 outliers <- c(160,148,140,95,162)
@@ -202,67 +207,71 @@ plot(fit_2)
 
 ```{r nesting-models}
 
-full_maps_edu%>%
-  group_by(region)%>%
+full_maps_edu %>%
+  group_by(region) %>%
   
   #Nest models
-  nest()%>%
+  nest() %>%
 
 #Create linear regression
 
-  mutate(model=map(data,~lm(formula=log(n_capita) ~ edu_index, data=.x)))%>%
+  mutate(model = map(data,~lm(formula=log(n_capita) ~ edu_index, data=.x))) %>%
   
 
 #Metrics of all models
   
-  mutate(coef=map(model,~glance(.x)))%>%
+  mutate(coef = map(model,~glance(.x))) %>%
   
 #Models  
-  unnest(coef)%>%
+  unnest(coef) %>%
   
-  select(region, adj.r.squared)%>%
+  select(region, adj.r.squared) %>%
   kable()
 
 ```
 
 ```{r plot-relationship-between-educ-and-n-capita-log-regions, fig.cap="Seems that the relationship is less strong when the data is separated into regions."}
-ggplot(full_maps_edu, aes(x=edu_index, y=log(n_capita)))+
-  geom_point(alpha=0.5)+
-  geom_smooth(method="lm", color="salmon", se=FALSE, size=2, alpha=0.5)+
-  labs(title="The education index vs. R downloads per capita by region",
+ggplot(full_maps_edu, aes(x = edu_index, y = log(n_capita)))+
+  geom_point(alpha = 0.5) +
+  geom_smooth(method="lm", color="salmon", se=FALSE, size=2, alpha = 0.5) +
+  labs(title ="The education index vs. R downloads per 1,000 capita by region",
        x="Education index",
-       y="R downloads per capita (logarithm applied)")+
+       y="R downloads per 1,000 capita (logarithm applied)")+
   facet_wrap(.~region, scales="free")
 ```
 
 # Results
 
-- As we saw earlier, the education index explains `r  summary(fit)$adj.r.squared*100` percent of the variation in R Downloads per capita around the world. 
+Based on the model:
 
-- The geometric mean of R downloads per capita is 0.00004917.
+$ln(downloads\space per \space 1,000 \space capita)=\beta_0+\beta_1*Education\space index + \varepsilon$
 
-- A one unit increase in the education index, in this case, one percentage point, is expected to increase, on average, R downloads per capita by `r (exp(summary(fit)$coef[2])-1)*100` percent.
+- The education index explains `r  summary(fit)$adj.r.squared*100` percent of the variation in R Downloads per 1,000 capita around the world. 
 
-- There is a 95% chance that the following interval contains the true value of the coefficient corresponding to the education index: [`r 100*(exp((summary(fit)$coef[2])-2*summary(fit)$coef[2,2])-1)` and `r 100*(exp((summary(fit)$coef[2])+2*summary(fit)$coef[2,2])-1)`] percent.
+- The geometric mean of R downloads per 1,000 capita is 0.00004917.
 
-- So for example, if the fictitious country Republic of Ángela with an education index of 78 and downloads per capita of 1.1, increased its education index to 79, R downloads per capita would be expected to increase between a range of 1.1 * 1.09593 = 1.206 and 1.1 * 1.1222 = 1.234.
+- A one unit increase in the education index, in this case, one percentage point, is expected to increase, on average, R downloads per 1,000 capita by `r summary(fit)$coef[2]*100`%.
+
+- There is a 95% chance that the following interval contains the true value of the coefficient corresponding to the education index: [`r (summary(fit)$coef[2]-2*summary(fit)$coef[2,2])*100`% and `r (summary(fit)$coef[2]+2*summary(fit)$coef[2,2])*100`%.]
+
+- So for example, if the fictitious country Republic of Ángela with an education index of 78 and downloads per 1,000 capita of 1.1, increased its education index to 79, R downloads per 1,000 capita would be expected to increase between a range of 1.1 * 1.0916 = 1.201 and 1.1 * 1.1153 = 1.227.
 
 We can see this increase by plotting the fitted values:
 
 ```{r plot-fitted-values,include=TRUE, fig.height=7}
 
-fit%>%
-  augment()%>%
-  ggplot(aes(x=edu_index_percent, y=exp(.fitted)))+
+fit %>%
+  augment() %>%
+  ggplot(aes (x = edu_index_percent, y = exp(.fitted)))+
   geom_point(alpha=0.5, color="red")+
-  geom_point(data=full_maps_edu,aes(x=edu_index_percent, y=n_capita),alpha=0.5)+
-  labs(title="The Education Index vs. R Downloads per Capita",
-       subtitle="Black dots are real values and red dots are fitted values. For every percentage point \nincrease in the education index, the geometric mean of R downloads per capita is \nexpected to increase, on average, by 10.9%. Also, ",
-       x="Education index",
-       y="R downloads per capita")+
+  geom_point(data=full_maps_edu,aes(x= edu_index_percent, y= n_capita),alpha=0.5)+
+  labs(title= "The Education Index vs. R Downloads per 1,000 capita",
+       subtitle="Black dots are real values and red dots are fitted values. For every percentage point \nincrease in the education index, the geometric mean of R downloads per 1,000 capita is \nexpected to increase, on average, by 10.9%. Also, ",
+       x = "Education index",
+       y = "R downloads per 1,000 capita") +
   expand_limits(0,0)
 ```
 
 # Conclusion
 
-In this blog post, I set out to explain the relationship between the education index and R downloads per capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per capita onto the education index. I found that the education index (values from 2016) explains about `r  summary(fit)$adj.r.squared*100` of variation in R downloads per capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad.
+In this blog post, I set out to explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about `r  summary(fit)$adj.r.squared*100` of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad.

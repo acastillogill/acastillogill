@@ -9,7 +9,7 @@ tags:
   - Home sales prices
   - Decision trees
   - Regression trees
-description: "In this post I explore a property dataset from Ames, Iowa. The data describes a set of features for houses. My goal was to understand what characteristics make a house more valuable than others in Ames, Iowa. To do this, I first prepared the data by dealing with missing values in the dataset and created other variables to make results easier to understand. After preparing the data, I used regression trees to answer the question."
+description: "In this post I explore a property dataset from Ames, Iowa. The data describes a set of features for houses. My goal was to understand what characteristics make a house more valuable than others in Ames, Iowa. To do this, I first prepared the data by dealing with missing values in the dataset and created other variables to make results easier to understand. After preparing the data, I used regression trees to answer the question. The benefits of regression trees are that they produce an output that can be illustrated and easily interpreted. I found that the overall quality of properties is the most closely linked characteristic with sale prices. Other features such as living area and basement size were also key. An interesting finding was that there are three neighborhoods that have the most expensive houses. These are NorthRidge Heights, Northridge and, Stone Brook."
 draft: FALSE
 banner: "banners/property-prices.png"
 images: ["banners/property-prices.png"]
@@ -86,7 +86,20 @@ options(digits=4)
 
 *To see the code used in this post, visit my [kernel on kaggle in R Markdown format](https://www.kaggle.com/adcastillogill/regression-trees-predicting-property-prices/code).* 
 
-In this post I explore a property dataset from Ames, Iowa. The data describes a set of features for houses. My goal was to understand what characteristics make a house more valuable than others in Ames, Iowa. To do this, I first prepared the data by dealing with missing values in the dataset and created other variables to make results easier to understand. After preparing the data, I used regression trees to answer the question. The benefits of regression trees are that they produce an output that can be illustrated and easily interpreted. I found that the overall quality of properties is the most closely linked characteristic with sale prices. Other features such as living area and basement size were also key. An interesting finding was that there are three neighborhoods that have the most expensive houses. These are NorthRidge Heights, Northridge and, Stone Brook. 
+
+```{r reading data, results='hide'}
+path <- here::here("static","data","property_train.csv")
+#Read `train.csv` as homes
+homes <- read.csv(path, stringsAsFactors = FALSE)
+```
+
+
+- Objectives: To predict property prices using decision trees, specifically, the classification and regression algorithm.
+- Challenge: First time applying decision trees.
+- Data points: `r nrow(homes)*length(homes)`
+- Language: R 
+
+
 
 # Question
 
@@ -99,12 +112,6 @@ Let's say that you have a house in Ames, Iowa [^2]. You're about to buy a house 
 
 
 
-
-```{r reading data, results='hide'}
-path <- here::here("static","data","property_train.csv")
-#Read `train.csv` as homes
-homes <- read.csv(path, stringsAsFactors = FALSE)
-```
 
 
 ```{r counting variable types}
@@ -687,14 +694,4 @@ Size matters in all property dimensions: garage area, basement area, living area
 As a final note it's important to add that to a large extent the results of this analysis are limited Ames, Iowa, where this dataset is from.
 
 
-```{r create-data-table, eval=FALSE}
-DT <- data.table(A=1:6, B=c("a","b","c"), C=rnorm(6), D=TRUE)
-```
-
-
-
-
-```{r apply_xgboost}
-train_xgboost <- xgb.DMatrix(data=as.matrix(homes_train), label=homes_train$SalePrice)
-```
 

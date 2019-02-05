@@ -9,14 +9,14 @@ tags:
   - Tidy Tuesday
   - EDA
   - Maps
-description: "In this blogpost I analysed a dataset containing downloads of the R software in one year, spanning from October 2017 to 2018. Unsurprisingly, I found that large countries have the most total downloads. I then decide to explore downloads per capita and find that small, developed countries around the world have the most downloads. Finally, I look into which the times of the year are most common for downloading R. I find that almost everywhere, the summer isn't a very popular season for R downloads."
+description: "In this blogpost I analysed a dataset containing downloads of the R software in one year, spanning from October 2017 to 2018. Unsurprisingly, I found that large countries have the most total downloads. I then decide to explore downloads per 1,000 capita and find that small, developed countries around the world have the most downloads. Finally, I look into which the times of the year are most common for downloading R. I find that almost everywhere, the summer isn't a very popular season for R downloads."
 banner: "banners/r-downloads.png"
 images: ["banners/r-downloads.png"]
 draft: FALSE
-summary: "In this blogpost I analysed a dataset containing downloads of the R software in one year, spanning from October 2017 to 2018. Unsurprisingly, I found that large countries have the most total downloads. I then decide to explore downloads per capita and find that small, developed countries around the world have the most downloads. Finally, I look into which the times of the year are most common for downloading R. I find that almost everywhere, the summer isn't a very popular season for R downloads."
+summary: "In this blogpost I analysed a dataset containing downloads of the R software in one year, spanning from October 2017 to 2018. Unsurprisingly, I found that large countries have the most total downloads. I then decide to explore downloads per 1,000 capita and find that small, developed countries around the world have the most downloads. Finally, I look into which the times of the year are most common for downloading R. I find that almost everywhere, the summer isn't a very popular season for R downloads."
 header: 
   image: "banners/r-downloads.png"
-  caption: "R downloads per capita around the world. Iceland and Switzerland are right on top!"
+  caption: "R downloads per 1,000 capita around the world. Iceland and Switzerland are right on top!"
 output:
   blogdown::html_page:
     toc: true
@@ -87,11 +87,14 @@ r_downloads <- na.omit(r_downloads)%>%
 
 *To see the code used in this post, visit my [kernel on kaggle in R Markdown format](https://www.kaggle.com/adcastillogill/r-downloads-around-the-world/code).* 
 
-In this blogpost I analysed a dataset containing downloads of the R software in one year, spanning from October 2017 to 2018. Unsurprisingly, I found that large countries have the most total downloads. I then decide to explore downloads per capita and find that small, developed countries around the world have the most downloads. Finally, I look into which the times of the year are most common for downloading R. I find that almost everywhere, the summer isn't a very popular season for R downloads.
+- Objectives: To spatially visualise a dataset to understand global trends.
+- Challenge: Using the `tmap` package.
+- Data points: `r nrow(r_downloads)*length(r_downloads)`
+- Language: R 
 
 # Question
 
-What countries download R the most? Where are they? And who are the most *intense* R users measured by R downloads per capita?
+What countries download R the most? Where are they? And who are the most *intense* R users measured by R downloads per 1,000 capita?
 Which months of the year are the most popular times to download R? Does it depend on the season? What variable could we attempt to use as a predictor of R downloads? Could we use linear regression for inference?
 
 # Dataset description 
@@ -188,11 +191,11 @@ And what about other countries and regions?
 n_map
 ```
 
-## Total R Downloads per capita
+## Total R Downloads per 1,000 capita
 
-Some countries are heavier R users measured by the number of downloads per capita. I wanted to see how this compared with total downloads. 
+Some countries are heavier R users measured by the number of downloads per 1,000 capita. I wanted to see how this compared with total downloads. 
 
-```{r plot-top-10-countries-per-capita, fig.cap="Hong Kong, Switzerland, and Iceland, had more than two downloads per capita during the 2017/18 period.", include=TRUE}
+```{r plot-top-10-countries-per-capita, fig.cap="Hong Kong, Switzerland, and Iceland, had more than two downloads per 1,000 capita during the 2017/18 period.", include=TRUE}
 yellows <- brewer.pal(9,"OrRd")
 yellow_range <- colorRampPalette(yellows)
 
@@ -205,7 +208,7 @@ full_maps%>%
   expand_limits(y=0)+
   coord_flip()+
   scale_y_continuous(labels=comma_format())+
-  labs(title="Top 10 countries by \n R downloads per capita in 2017/18",
+  labs(title="Top 10 countries by \n R downloads per 1,000 capita in 2017/18",
        x="",
        y="Downloads")+
   theme_ipsum_rc()+
@@ -219,13 +222,13 @@ And again, how does this look like around the world?
 ```{r create-downloads-per-capita-map}
 n_capita_map <- tm_shape(world_full) + 
   tm_borders(col="black", lwd=0.1)+
-    tm_fill(col="n_capita",n=4, style="jenks", palette = get_brewer_pal("OrRd", n = 4, contrast = c(0.13, 0.9))) + 
-tm_layout(main.title = "R downloads per capita in 2017/18",
+    tm_fill(col="n_capita",n=4, title="n_capita (in 1,000s)",style="jenks", palette = get_brewer_pal("OrRd", n = 4, contrast = c(0.13, 0.9))) + 
+tm_layout(main.title = "R downloads per 1,000 capita in 2017/18",
           main.title.size = 1, frame = FALSE, bg.color = "aliceblue", title.position = c("right","bottom"))+
 tm_legend(position=c("left", "bottom"), bg.color="white", frame=FALSE, legend.title.size=1)
 ```
 
-```{r plot-downloads-per-capita-map, include=TRUE, fig.cap="Besides the top 10 downloads per capita plot, here we see that Uruguay and Chile in South America have the most downloads per capita; Costa Rica in Central America; and Japan in Asia."}
+```{r plot-downloads-per-capita-map, include=TRUE, fig.cap="Besides the top 10 downloads per 1,000 capita plot, here we see that Uruguay and Chile in South America have the most downloads per 1,000 capita; Costa Rica in Central America; and Japan in Asia."}
 n_capita_map
 ```
 
@@ -265,7 +268,7 @@ monthly_downloads_per_region
 
 # Conclusion
 
-In this post I analysed a dataset that contained downloads of R software around the world spanning a one year period between 2017 and 2018. Using the `tidyverse`, `lubridate`, and `tmap`packages, I found out which countries download the software the most. Since large countries with large populations will have more total downloads, I decided to inspect number downloads per capita. This extra step revealed that small, developed countries, such as Hong Kong, Switzerland, Iceland, Singapore, Liechtenstein, the Netherlands and Denmark have the most downloads per capita. An exception to this were the US and Australia with at least one download per capita despite being larger countries. Lastly, I looked into which months had the most R downloads by sub-regions and found that almost everywhere, there are few R downloads during the summer. 
+In this post I analysed a dataset that contained downloads of R software around the world spanning a one year period between 2017 and 2018. Using the `tidyverse`, `lubridate`, and `tmap`packages, I found out which countries download the software the most. Since large countries with large populations will have more total downloads, I decided to inspect number downloads per 1,000 capita. This extra step revealed that small, developed countries, such as Hong Kong, Switzerland, Iceland, Singapore, Liechtenstein, the Netherlands and Denmark have the most downloads per 1,000 capita. An exception to this were the US and Australia with at least one download per 1,000 capita despite being larger countries. Lastly, I looked into which months had the most R downloads by sub-regions and found that almost everywhere, there are few R downloads during the summer. 
 
 ```{r merge-years-of-education}
 

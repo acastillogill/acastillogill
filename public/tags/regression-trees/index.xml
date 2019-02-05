@@ -18,7 +18,7 @@
       
       <guid>/2018/08/regression-trees-predicting-property-prices/</guid>
       <description>1 Summary 2 Question 3 Dataset description 3.1 Missing values 3.2 Correlation  4 Regression trees - why use them? 4.1 Variable importance  5 Results 6 What does it mean?   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
-In this post I explore a property dataset from Ames, Iowa. The data describes a set of features for houses.</description>
+ Objectives: To predict property prices using decision trees, specifically, the classification and regression algorithm. Challenge: First time applying decision trees.</description>
     </item>
     
   </channel>
