@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Log-linear regression: who tends to download R software &middot; Ángela Castillo-Gill</title>
+    <meta name="generator" content="Hugo 0.53" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Ángela Castillo-Gill">
+    
+      <meta name="description" content="In this blog post, I set out to explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad.">
+    
+    
+    <link rel="canonical" href="../../../2018/10/log-linear-regression-r-downloads/"/>
+    <link rel="icon" href="../../../favicon.ico">
+    <link rel="apple-touch-icon" href="../../../apple-touch-icon.png"/>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../css/monokai.css">
+    <link rel="stylesheet" href="../../../css/coarse.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="../../../fancybox/jquery.fancybox.css">
+    
+    <link rel="stylesheet" href="../../../css/fonts.css">
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:regular,medium,bold' rel='stylesheet' type='text/css'>
+    <meta property="og:title" content="Log-linear regression: who tends to download R software" />
+<meta property="og:description" content="In this blog post, I set out to explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/2018/10/log-linear-regression-r-downloads/" />
+<meta property="og:image" content="/banners/edu_index_downloads_capita.png" />
+<meta property="article:published_time" content="2018-10-17T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2018-10-17T00:00:00&#43;00:00"/>
+
+    
+    
+<meta itemprop="name" content="Log-linear regression: who tends to download R software">
+<meta itemprop="description" content="In this blog post, I set out to explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad.">
+
+
+<meta itemprop="datePublished" content="2018-10-17T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-10-17T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="785">
+
+  <meta itemprop="image" content="/banners/edu_index_downloads_capita.png">
+
+
+
+<meta itemprop="keywords" content="Kaggle,Tidy Tuesday,EDA,Maps," />
+
+    <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/banners/edu_index_downloads_capita.png"/>
+
+<meta name="twitter:title" content="Log-linear regression: who tends to download R software"/>
+<meta name="twitter:description" content="In this blog post, I set out to explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad."/>
+<meta name="twitter:site" content="@acastillogill"/>
+
+    
+<link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Alegreya|Source+Sans+Pro" rel="stylesheet">
+
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+	<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="../../../" id="logo">
+          
+          <span class="site-title">Ángela Castillo-Gill</span>
+      </a>
+      <nav id="main-nav">
+          
+          
+          <a class="main-nav-link" href="../../../">Home</a>
+          
+          
+
+          
+          <a class="main-nav-link" href="../../../about/">About</a>
+          
+
+          
+          
+          
+      </nav>
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="../../../img/angela.jpeg"><i class="fas fa-caret-down"></i></a>
+          </div>
+        </nav>
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+              <input type="search" name="q" class="search-form-input" placeholder="Search">
+              <button type="submit" class="search-form-submit">
+              </button>
+              <input type="hidden" name="sitesearch" value="/" />
+         </form>
+        </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tbody>
+          <tr>
+          
+          
+          <td><a class="main-nav-link" href="../../../">Home</a></td>
+          
+          
+
+          
+          <td><a class="main-nav-link" href="../../../about/">About</a></td>
+          
+
+          
+          
+          
+          <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="Search">
+          <input type="hidden" name="sitesearch" value="/" />
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</header>
+
+   	
+   	<div class="outer">
+   	
+    	<aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      
+      <img id="avatar" src="../../../img/angela.jpeg">
+      
+      <h2 id="name">Ángela Castillo-Gill</h2>
+      <h3 id="title">Data Scientist | kindness &amp; discipline.</h3>
+      
+      
+          <a id="follow" href="https://twitter.com/acastillogill">
+              @acastillogill
+          </a>
+      
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        6
+        <span>Posts</span>
+      </div>
+      <div class="article-info-block">
+        
+          11
+        
+        <span>
+            Tags
+        </span>
+      </div>
+    </div>
+    <div class="profile-block social-links">
+      <table>
+        <tr>
+          
+<td><a href="//github.com/acastillogill" target="_blank" title="GitHub"><i class="fab fa-github-square"></i></a></td>
+
+
+
+<td><a href="//twitter.com/acastillogill" target="_blank" title="Twitter"><i class="fab fa-twitter-square"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//medium.com/@acastillogill" target="_blank" title="Medium"><i class="fab fa-medium"></i></a></td>
+
+
+
+
+
+
+
+
+
+<td><a href="//linkedin.com/in/acastillogill" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <td><a href="../../../index.xml" target="_blank" title="RSS"><i class="fas fa-rss-square"></i></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+
+    
+
+    <section id="main">
+    
+    <article id="page-undefined" class="article article-type-page" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <img src="../../../banners/edu_index_downloads_capita.png" class="article-banner">
+        
+
+        <header class="article-header">
+    <a href="../../../2018/10/log-linear-regression-r-downloads/">
+    <h1 class="article-title" itemprop="name">
+        Log-linear regression: who tends to download R software
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="far fa-calendar"></i>
+            <time datetime="2018-10-17 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-10-17</time>
+            &middot;
+            785
+            words
+            &middot;
+            4
+            minute read
+        </div>
+        
+        
+            
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fas fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="../../../tags/kaggle">Kaggle</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/tidy-tuesday">Tidy Tuesday</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/eda">EDA</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/maps">Maps</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            
+
+<div id="TOC">
+<ul>
+<li><a href="#summary"><span class="toc-section-number">1</span> Summary</a></li>
+<li><a href="#question"><span class="toc-section-number">2</span> Question</a></li>
+<li><a href="#dataset-description"><span class="toc-section-number">3</span> Dataset description</a></li>
+<li><a href="#the-relationship-between-the-education-index-and-r-downloads"><span class="toc-section-number">4</span> The relationship between the education index and R downloads</a></li>
+<li><a href="#results"><span class="toc-section-number">5</span> Results</a></li>
+<li><a href="#conclusion"><span class="toc-section-number">6</span> Conclusion</a></li>
+</ul>
+</div>
+
+<div id="summary" class="section level1">
+<h1><span class="header-section-number">1</span> Summary</h1>
+<p><em>To see the all the code used in this post, visit my <a href="https://github.com/acastillogill/acastillogill">GitHub repository for this site</a></em></p>
+<ul>
+<li>Objectives: To understand what factors contribute to R downloads per 1,000 capita.</li>
+<li>Challenge: Interpretation of log-linear coefficients.</li>
+<li>Data points: 11,806,912</li>
+<li>Language: R</li>
+</ul>
+</div>
+<div id="question" class="section level1">
+<h1><span class="header-section-number">2</span> Question</h1>
+<p>In a <a href="https://acastillogill.com/2018/11/r-downloads-around-the-world/">previous post</a> I had looked at which countries downloaded R the most. That led me to ask which countries were the most intense R users, using downloads per 1,000 capita as a proxy.</p>
+<p>When I was writing the conclusions about the most R-using countries, I tried to draw up patterns. What did those R-using countries have in common? They were mostly “developed” countries. Since developed countries tend to have high levels of academic attainment, I decided to explore the relationship between education levels and R-usage across the globe:</p>
+<p><strong>How does the education index relate to R downloads per 1,000 capita?</strong></p>
+<p>To answer my question, I identified a metric that would allow me to explore the relationship between education and R usage. That metric turned out to be the UN’s education index, which I will explain below.</p>
+</div>
+<div id="dataset-description" class="section level1">
+<h1><span class="header-section-number">3</span> Dataset description</h1>
+<p>I used the <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2018-10-30">Tidy Tuesday dataset</a> for R downloads posted on 30th October 2018. The dataset contained 938,115 observations and eight features corresponding to a unique id, download date, time, size, version, os, country, and IP id. The downloads correspond to a year’s worth of downloads running from 2017-10-20 to 2018-10-20. To prevent any overlap and have one entire year, I limited downloads to 2018-10-19. After I removed missing values, there were 910,351 observations.</p>
+<p>For the independent variable, I downloaded the education index for all countries. The education index is a metric published by the United Nations and it corresponds to the average of the Mean Years of Schooling Index (MYSI) and the Expected Years of Schooling Index (EYSI):</p>
+<p><span class="math display">\[EI={\frac {{\textrm {MYSI}}+{\textrm {EYSI}}}{2}}\]</span></p>
+</div>
+<div id="the-relationship-between-the-education-index-and-r-downloads" class="section level1">
+<h1><span class="header-section-number">4</span> The relationship between the education index and R downloads</h1>
+<div class="figure"><span id="fig:plot-relationship-between-educ-and-n-capita-log"></span>
+<img src="../../../post/2018-10-17-cluster-analysis_files/figure-html/plot-relationship-between-educ-and-n-capita-log-1.png" alt="When I plotted the education index vs. R downloads per 1,000 capita, I noticed exponential behaviour in the y-axis. Since I planned to use a linear regression, I took the logarithm of the response variable. The figure shows that by taking the logarithm of R downloads per 1,000 capita, we have met the criteria for a linear regression." width="672" />
+<p class="caption">
+Figure 4.1: When I plotted the education index vs. R downloads per 1,000 capita, I noticed exponential behaviour in the y-axis. Since I planned to use a linear regression, I took the logarithm of the response variable. The figure shows that by taking the logarithm of R downloads per 1,000 capita, we have met the criteria for a linear regression.
+</p>
+</div>
+<p>The relationship between the two variables is linear now - time for a linear regression!</p>
+<p>That will take the form:</p>
+<p><span class="math display">\[ln(downloads\space per \space 1,000 \space capita)=\beta_0+\beta_1*Education\space index + \varepsilon\]</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">term</th>
+<th align="right">estimate</th>
+<th align="right">std.error</th>
+<th align="right">statistic</th>
+<th align="right">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="right">-9.9203</td>
+<td align="right">0.3805</td>
+<td align="right">-26.07</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">edu_index_percent</td>
+<td align="right">0.1034</td>
+<td align="right">0.0059</td>
+<td align="right">17.47</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p>After checking out the residuals, I saw there are a few outliers, mainly Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad. I decided to leave them in because it’s interesting to think about what specific characteristcs contribute to them being be under or over the trend line. The model I proposed, explains 64.41 of the variation in the data. It’s not a lot but it’s also not insignificant. After having tried to fit a multiple linear regression model with other variables such as GDP and life expectancy, I found the education index to be the best predictor of R downloads per 1,000 capita.</p>
+</div>
+<div id="results" class="section level1">
+<h1><span class="header-section-number">5</span> Results</h1>
+<p>Based on the model:</p>
+<p><span class="math inline">\(ln(downloads\space per \space 1,000 \space capita)=\beta_0+\beta_1*Education\space index + \varepsilon\)</span></p>
+<ul>
+<li><p>The education index explains 64.41 percent of the variation in R Downloads per 1,000 capita around the world.</p></li>
+<li><p>The geometric mean of R downloads per 1,000 capita is 0.00004917.</p></li>
+<li><p>A one unit increase in the education index, in this case, one percentage point, is expected to increase, on average, R downloads per 1,000 capita by 10.34%.</p></li>
+<li><p>There is a 95% chance that the following interval contains the true value of the coefficient corresponding to the education index: [9.16% and 11.53%.]</p></li>
+<li><p>So for example, if the fictitious country Republic of Ángela with an education index of 78 and downloads per 1,000 capita of 1.1, increased its education index to 79, R downloads per 1,000 capita would be expected to increase between a range of 1.1 * 1.0916 = 1.201 and 1.1 * 1.1153 = 1.227.</p></li>
+</ul>
+<p>We can see this increase by plotting the fitted values:</p>
+<p><img src="../../../post/2018-10-17-cluster-analysis_files/figure-html/plot-fitted-values-1.png" width="672" /></p>
+</div>
+<div id="conclusion" class="section level1">
+<h1><span class="header-section-number">6</span> Conclusion</h1>
+<p>In this blog post, I set out to explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.41 of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad.</p>
+</div>
+
+        </div>
+        <footer class="article-footer">
+    <a data-url="/2018/10/log-linear-regression-r-downloads/" data-id="80d9adefbaa7447d144a916b455cc419" text="Log-linear regression: who tends to download R software" via="acastillogill" class="article-share-link">
+        <i class="fas fa-share"></i>
+        Share
+    </a>
+    
+    <a href="../../../2018/10/log-linear-regression-r-downloads/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                titleText = $this.attr('text'),
+                via = $this.attr('via'),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/share?url=' + encodedUrl + '&text=' + titleText + '&via=' + via + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest-p article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+
+    
+<nav id="article-nav">
+    
+    <a href="../../../2018/08/regression-trees-predicting-property-prices/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Older
+      </strong>
+      <div class="article-nav-title">Regression trees: predicting property prices</div>
+    </a>
+    
+
+    
+    <a href="../../../2018/11/r-downloads-around-the-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Newer
+      </strong>
+      <div class="article-nav-title">R-Downloads around the world</div>
+    </a>
+    
+</nav>
+
+
+</article>
+
+
+<section id="comments">
+    <div id="disqus_thread">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-acastillogill-com" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+</section>
+
+
+    </section>
+
+   	
+    	<aside id="sidebar">
+    
+
+    
+
+    
+
+    
+
+
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+    
+	</div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019
+      Ángela Castillo-Gill. Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="https://github.com/ppoffice">PPOffice</a>. Customised by <a href="https://maraaverick.rbind.io/">Mara Averick</a> and used with permission.
+    </div>
+  </div>
+</footer>
+
+
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	if (window.sessionStorage) {
+		var GA_SESSION_STORAGE_KEY = 'ga:clientId';
+		ga('create', 'UA-128602464-1', {
+	    'storage': 'none',
+	    'clientId': sessionStorage.getItem(GA_SESSION_STORAGE_KEY)
+	   });
+	   ga(function(tracker) {
+	    sessionStorage.setItem(GA_SESSION_STORAGE_KEY, tracker.get('clientId'));
+	   });
+   }
+	
+	ga('send', 'pageview');
+}
+</script>
+
+<script src="../../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../../js/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+</body>
+</html>

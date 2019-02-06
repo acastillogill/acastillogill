@@ -41,6 +41,16 @@
     </item>
     
     <item>
+      <title>Cluster analysis: wear your seatbelts</title>
+      <link>/2018/10/cluster-analysis-wear-your-seatbelts/</link>
+      <pubDate>Wed, 17 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/10/cluster-analysis-wear-your-seatbelts/</guid>
+      <description>1 Summary 2 Question 3 Dataset description 4 The relationship between the education index and R downloads 5 Results 6 Conclusion   1 Summary To see the all the code used in this post, visit my GitHub repository for this site
+ Objectives: To find what what kind of clusters are there in the seatbelts dataset. Challenge: To implement a clustering algorithm for the first time. Data points: 294,912 Language: R   2 Question What types of clusters are there in the seatbelts dataset?</description>
+    </item>
+    
+    <item>
       <title>Regression trees: predicting property prices</title>
       <link>/2018/08/regression-trees-predicting-property-prices/</link>
       <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>

@@ -18,6 +18,11 @@
   </url>
   
   <url>
+    <loc>/2018/10/cluster-analysis-wear-your-seatbelts/</loc>
+    <lastmod>2018-10-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/2018/08/regression-trees-predicting-property-prices/</loc>
     <lastmod>2018-08-09T00:00:00+00:00</lastmod>
   </url>
@@ -33,6 +38,12 @@
   
   <url>
     <loc>/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/cluster-analysis/</loc>
+    <lastmod>2018-10-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -104,7 +115,7 @@
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2018-08-09T00:00:00+00:00</lastmod>
+    <lastmod>2018-10-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
