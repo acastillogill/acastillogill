@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Data science interviews: Lessons learned &middot; Ángela Castillo-Gill</title>
+    <meta name="generator" content="Hugo 0.53" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Ángela Castillo-Gill">
+    
+      <meta name="description" content="">
+    
+    
+    <link rel="canonical" href="../../../2019/02/data-science/"/>
+    <link rel="icon" href="../../../favicon.ico">
+    <link rel="apple-touch-icon" href="../../../apple-touch-icon.png"/>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../css/monokai.css">
+    <link rel="stylesheet" href="../../../css/coarse.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="../../../fancybox/jquery.fancybox.css">
+    
+    <link rel="stylesheet" href="../../../css/fonts.css">
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:regular,medium,bold' rel='stylesheet' type='text/css'>
+    <meta property="og:title" content="Data science interviews: Lessons learned" />
+<meta property="og:description" content="1 Summary 2 Why? 3 What would I have done differently? 3.1 Schedule interviews further apart and when possible, in your peak time (i.e. morning or evening person) 3.2 Focus on the basics 3.3 Rehearse not knowing, or being wrong, and feeling embarrased and STILL speaking with confidence 3.4 Recruiters can be a great support but it’s important to set boundaries  4 What would I do again? 4." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/2019/02/data-science/" />
+<meta property="og:image" content="/banners/edu_index_downloads_capita.png" />
+<meta property="article:published_time" content="2019-02-21T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-02-21T00:00:00&#43;00:00"/>
+
+    
+    
+<meta itemprop="name" content="Data science interviews: Lessons learned">
+<meta itemprop="description" content="1 Summary 2 Why? 3 What would I have done differently? 3.1 Schedule interviews further apart and when possible, in your peak time (i.e. morning or evening person) 3.2 Focus on the basics 3.3 Rehearse not knowing, or being wrong, and feeling embarrased and STILL speaking with confidence 3.4 Recruiters can be a great support but it’s important to set boundaries  4 What would I do again? 4.">
+
+
+<meta itemprop="datePublished" content="2019-02-21T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-02-21T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1861">
+
+  <meta itemprop="image" content="/banners/edu_index_downloads_capita.png">
+
+
+
+<meta itemprop="keywords" content="Reflection,Data science interviews," />
+
+    <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/banners/edu_index_downloads_capita.png"/>
+
+<meta name="twitter:title" content="Data science interviews: Lessons learned"/>
+<meta name="twitter:description" content="1 Summary 2 Why? 3 What would I have done differently? 3.1 Schedule interviews further apart and when possible, in your peak time (i.e. morning or evening person) 3.2 Focus on the basics 3.3 Rehearse not knowing, or being wrong, and feeling embarrased and STILL speaking with confidence 3.4 Recruiters can be a great support but it’s important to set boundaries  4 What would I do again? 4."/>
+<meta name="twitter:site" content="@acastillogill"/>
+
+    
+<link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Alegreya|Source+Sans+Pro" rel="stylesheet">
+
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+	<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="../../../" id="logo">
+          
+          <span class="site-title">Ángela Castillo-Gill</span>
+      </a>
+      <nav id="main-nav">
+          
+          
+          <a class="main-nav-link" href="../../../">Home</a>
+          
+          
+
+          
+          <a class="main-nav-link" href="../../../about/">About</a>
+          
+
+          
+          
+          
+      </nav>
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="../../../img/angela.jpeg"><i class="fas fa-caret-down"></i></a>
+          </div>
+        </nav>
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+              <input type="search" name="q" class="search-form-input" placeholder="Search">
+              <button type="submit" class="search-form-submit">
+              </button>
+              <input type="hidden" name="sitesearch" value="/" />
+         </form>
+        </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tbody>
+          <tr>
+          
+          
+          <td><a class="main-nav-link" href="../../../">Home</a></td>
+          
+          
+
+          
+          <td><a class="main-nav-link" href="../../../about/">About</a></td>
+          
+
+          
+          
+          
+          <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="Search">
+          <input type="hidden" name="sitesearch" value="/" />
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</header>
+
+   	
+   	<div class="outer">
+   	
+    	<aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      
+      <img id="avatar" src="../../../img/angela.jpeg">
+      
+      <h2 id="name">Ángela Castillo-Gill</h2>
+      <h3 id="title">Data Scientist | kindness &amp; discipline.</h3>
+      
+      
+          <a id="follow" href="https://twitter.com/acastillogill">
+              @acastillogill
+          </a>
+      
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        7
+        <span>Posts</span>
+      </div>
+      <div class="article-info-block">
+        
+          14
+        
+        <span>
+            Tags
+        </span>
+      </div>
+    </div>
+    <div class="profile-block social-links">
+      <table>
+        <tr>
+          
+<td><a href="//github.com/acastillogill" target="_blank" title="GitHub"><i class="fab fa-github-square"></i></a></td>
+
+
+
+<td><a href="//twitter.com/acastillogill" target="_blank" title="Twitter"><i class="fab fa-twitter-square"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//medium.com/@acastillogill" target="_blank" title="Medium"><i class="fab fa-medium"></i></a></td>
+
+
+
+
+
+
+
+
+
+<td><a href="//linkedin.com/in/acastillogill" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <td><a href="../../../index.xml" target="_blank" title="RSS"><i class="fas fa-rss-square"></i></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+
+    
+
+    <section id="main">
+    
+    <article id="page-undefined" class="article article-type-page" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <img src="../../../banners/edu_index_downloads_capita.png" class="article-banner">
+        
+
+        <header class="article-header">
+    <a href="../../../2019/02/data-science/">
+    <h1 class="article-title" itemprop="name">
+        Data science interviews: Lessons learned
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="far fa-calendar"></i>
+            <time datetime="2019-02-21 00:00:00 &#43;0000 UTC" itemprop="datePublished">2019-02-21</time>
+            &middot;
+            1861
+            words
+            &middot;
+            9
+            minute read
+        </div>
+        
+        
+            
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fas fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="../../../tags/reflection">Reflection</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="../../../tags/data-science-interviews">Data science interviews</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            
+
+<div id="TOC">
+<ul>
+<li><a href="#summary"><span class="toc-section-number">1</span> Summary</a></li>
+<li><a href="#why"><span class="toc-section-number">2</span> Why?</a></li>
+<li><a href="#what-would-i-have-done-differently"><span class="toc-section-number">3</span> What would I have done differently?</a><ul>
+<li><a href="#schedule-interviews-further-apart-and-when-possible-in-your-peak-time-i.e.morning-or-evening-person"><span class="toc-section-number">3.1</span> Schedule interviews further apart and when possible, in your peak time (i.e. morning or evening person)</a></li>
+<li><a href="#focus-on-the-basics"><span class="toc-section-number">3.2</span> Focus on the basics</a></li>
+<li><a href="#rehearse-not-knowing-or-being-wrong-and-feeling-embarrased-and-still-speaking-with-confidence"><span class="toc-section-number">3.3</span> Rehearse not knowing, or being wrong, and feeling embarrased and STILL speaking with confidence</a></li>
+<li><a href="#recruiters-can-be-a-great-support-but-its-important-to-set-boundaries"><span class="toc-section-number">3.4</span> Recruiters can be a great support but it’s important to set boundaries</a></li>
+</ul></li>
+<li><a href="#what-would-i-do-again"><span class="toc-section-number">4</span> What would I do again?</a><ul>
+<li><a href="#be-myself-at-every-job-interview"><span class="toc-section-number">4.1</span> Be myself at every job interview</a></li>
+<li><a href="#have-a-mentor-to-support-you-along-the-way"><span class="toc-section-number">4.2</span> Have a mentor to support you along the way</a></li>
+<li><a href="#be-transparent-to-each-company-about-other-interviews"><span class="toc-section-number">4.3</span> Be transparent to each company about other interviews</a></li>
+<li><a href="#be-kind-to-everyone-i-meet"><span class="toc-section-number">4.4</span> Be kind to everyone I meet</a></li>
+</ul></li>
+<li><a href="#results"><span class="toc-section-number">5</span> Results</a></li>
+<li><a href="#conclusion"><span class="toc-section-number">6</span> Conclusion</a></li>
+</ul>
+</div>
+
+<div id="summary" class="section level1">
+<h1><span class="header-section-number">1</span> Summary</h1>
+</div>
+<div id="why" class="section level1">
+<h1><span class="header-section-number">2</span> Why?</h1>
+<p>I’ve just joined a wonderful data science company based in London as a data scientist. I’m thrilled! In preparation I read a bunch of blog posts full of interview advice and watched some helpful videos.</p>
+<p>The core of it happened over a three-week period ending in a with six-day marathon where I split my attention to packing, studying, unpacking, researching.</p>
+<p>in my case, that one core period also involved handing moving countries. It was an exciting period in my life and sometimes it felt as events were happening at a quicker pace than my mind could process the situation. Now, a few weeks after the dust has settled, I’ve reflected about the month past to the point where I can sit down and distill the lessons I’ve learned. I’m writing this mainly for my future self but also will try to generalise the ideas so they can help others as others’ have helped me.</p>
+</div>
+<div id="what-would-i-have-done-differently" class="section level1">
+<h1><span class="header-section-number">3</span> What would I have done differently?</h1>
+<div id="schedule-interviews-further-apart-and-when-possible-in-your-peak-time-i.e.morning-or-evening-person" class="section level2">
+<h2><span class="header-section-number">3.1</span> Schedule interviews further apart and when possible, in your peak time (i.e. morning or evening person)</h2>
+<p>Do not move house and schedule four interviews in the same week. No. Don’t do this. There was no need. Yes, I was excited about moving house. Yes, things worked out very well. But no, it was not necessary to endure so much.</p>
+<p>I scheduled four interviews in one week. As preparation</p>
+<p>Also, bear in mind at what time of the day these interviews will happen. I am a morning person through and through. If there was ever a morning person poster woman, it is me. I naturally wake up between 4 and 5 am and my head is as lucid as it gets 30 min after I open my eyes. When I can, I enjoy starting work bright and early and then around midday I go to the gym and use to the afternoons for non-intellectual activities.</p>
+<p>Most of my interviews, fortunately, were in the morning and then is when I did my best. I had one interview scheduled for the afternoon, on the last day of the week and that by far was my worst performance. At the end of the week I struggled to be enthusiastic, remember names, take a technical written test with 50 questions (which actually weren’t that hard), be white-boarded (not waterboarded but also no dissimilar) and carry myself with confidence.</p>
+<p>Of course some things would not have changed had I had the interview at 7 am, but! I do attribute some of my performance to the time of day, especially because I couldn’t recall certain concepts. When you’re in the interview, even if you would like to say:</p>
+<p>“Can we please stop? Can we reschedule? I’m feeling pretty tired. Woke up at 4 am, moved here less than a week ago. Was too excited so my sleep wasn’t the best throughout the week. I know I can do better, this isn’t my typical performance.”</p>
+<p>No excuses. No excuses and you have to see the interview through. Halfway I somewhat psychologically quit. I didn’t want, I kept trying to push through but my mind wasn’t collaborating and it the energy in the room definitely declined.</p>
+<p><strong>What would I do now?</strong></p>
+<p>Avoid after lunch interviews on the last day of the week. DO NOT DO THIS. You are dealing with people and not only you but they will be tired and that never helps. I know you must be excited but try to sleep well and exercise.</p>
+<p>First move house, sort things out, unpack clothes, etc. I would make sure I feel properly settled in and that the macro things in my life are sort of set to then start applying.</p>
+</div>
+<div id="focus-on-the-basics" class="section level2">
+<h2><span class="header-section-number">3.2</span> Focus on the basics</h2>
+<p>As a data scientist there are statistics, programming, and application basics you should know. Now, here is where I could have done things differently. During the last few months I had focused on re-writing manuscripts, enjoying the Christmas/New Year break and planning moving countries. I am a firm believer of: “if you don’t use it, you lose it.”</p>
+<p>Each of the four interviews involved a technical test which required a little brushing up. To this add having to research each person you’ll meet, study their background, adapt and rehearse your answers to the company, etc.</p>
+<p>By scheduling</p>
+<p><strong>What would I do now?</strong></p>
+</div>
+<div id="rehearse-not-knowing-or-being-wrong-and-feeling-embarrased-and-still-speaking-with-confidence" class="section level2">
+<h2><span class="header-section-number">3.3</span> Rehearse not knowing, or being wrong, and feeling embarrased and STILL speaking with confidence</h2>
+<p>The main feedback I’ve received when I give public speeches is that my voice sounds a bit monotonous and that I speak too fast. Wanting to improve, last year I joined Toastmasters Barcelona and I improved so much in terms of pausing, entonation, rythym.</p>
+<p>There is one thing however, that I did not practice and that I should have, and that is being wrong, being called out on being wrong, knowing they’re right on you being wrong, and still CRACKING ON WITH CONFIDENCE. This is a skill for a lifetime.</p>
+<p><strong>What would I do now?</strong></p>
+</div>
+<div id="recruiters-can-be-a-great-support-but-its-important-to-set-boundaries" class="section level2">
+<h2><span class="header-section-number">3.4</span> Recruiters can be a great support but it’s important to set boundaries</h2>
+<p>Some people have negative preconceptions about recruiters. It was my first time working with them and after talking to about 20 to 30, I would still work with them but I would lay down some ground rules from the beginning.</p>
+<p><strong>What would I do now?</strong></p>
+<p>Do not pick up the phone to hear about an opportunity that has fallen out of the sky. I received a lot of unsolicited calls at different hours of the day. I had handed in my notice but I was still working from home. This constant phone ringing when I was focused on work, packing my things, at the gym, or doing something else used up energy that I could I needed to spend elsewhere. It wasn’t the best use of my time.</p>
+<p>Plus, sometimes I would be called for random roles in industries I wasn’t even interested in. After five minutes of them asking me “so, tell me about yourself”, they would then say they have this great opportunity that isn’t actually a fit for me and what I just answered but they would pitch it anyway. Those were 10 minutes of my time that I will never get back and if you allow that kind of call, you’ll see hours slip away from you.</p>
+<p><strong>What would I do now?</strong></p>
+<p>I would not pick up the phone nor answer text messages. My first point of contact is either LinkedIn or my e-mail. If someone were to reach out with a fantastic opportunity that seems especially well suited for me, I would say, “sounds great, please send over the job spec first”.</p>
+<p>I would then sit down and read the job spec. After, I would google the company, find the employees on LinkedIn and pause. You know. In your heart of hearts you know if at this point you want to go forward or not. If you don’t feel excited, move on immediately. Politely reply: “Thank you, however, this is not a good fit for me at this time.”</p>
+<p>If you do feel excited, then go ahead and schedule that call. Make sure that you pick up at the time it was scheduled. If you start taking calls at random times, in my experience, it will get worse. I had no experience and started to take calls from a particularly persuasive recruiter. Since I picked up whenever they called, they ended up calling increasingly often to ask for small things they could have figured out themselves (i.e. do you mind filling out this form for me even though I have all your information and could do it myself?).</p>
+<p>The recruiters I ended up working with the most would respect the times we set for phone calls and asked: “is this still a good time to speak?”. Yes. Yes, it is because we have scheduled this and I can give it my full attention. I would like to work with you and continue respecting each other.</p>
+</div>
+</div>
+<div id="what-would-i-do-again" class="section level1">
+<h1><span class="header-section-number">4</span> What would I do again?</h1>
+<div id="be-myself-at-every-job-interview" class="section level2">
+<h2><span class="header-section-number">4.1</span> Be myself at every job interview</h2>
+<p>Adopting some sort of persona and putting a mask on for the one or two hours that the interview asks</p>
+</div>
+<div id="have-a-mentor-to-support-you-along-the-way" class="section level2">
+<h2><span class="header-section-number">4.2</span> Have a mentor to support you along the way</h2>
+<p>A couple of month before moving, I thought it would be interesting to get some commercial data science experience. Through R-Ladies I met Raquel Redó, a data scientist based in Barcelona. Although the timing wasn’t right for me to try to engage</p>
+</div>
+<div id="be-transparent-to-each-company-about-other-interviews" class="section level2">
+<h2><span class="header-section-number">4.3</span> Be transparent to each company about other interviews</h2>
+<p>This is very important for several reasons. First, you can manage expectations and follow ups. Imagine interviewing a candidate, offering them a position and then for days not hearing back from them. Rude. Do you even want this person to join your team?</p>
+<p>Being transparent helps you in several ways:</p>
+<ul>
+<li>Helps manage timing expectations: I am interviewing until xxxx date, therefore I will not know all my options until xxxx date.</li>
+</ul>
+</div>
+<div id="be-kind-to-everyone-i-meet" class="section level2">
+<h2><span class="header-section-number">4.4</span> Be kind to everyone I meet</h2>
+<p>This is where I know I have learnt at least one thing in the decade that has passed since I was a teenager. I received one rejection. When I was younger, I would have said to the HR person that delivered the bad news: “you know what? I didn’t even want to work for you anyway!”. Now I know that even if they lived in another planet and there was zero chance of ever crossing paths with them again, it’s important to me and my conscience to be understanding and kind.</p>
+<p>Nobody likes to be rejected and of course it doesn’t feel good. But thanks to that experience, I have so many lessons, some of which I have shared here. Not as important but still worth mentioning, the data science community in a city or even in a country isn’t that big. I know that in upcoming months and years I’ll run into them at events or conferences. I know a rejection is an opinion has a time and a place, it’s not a universal truth about myself but rather a lack of right time and right place. Happily, I had options so I didn’t feel threatened or hostile and that door closing clarified my next steps.</p>
+<p>Now, in retrospective, I feel good about my interactions with everyone I met. I feel glad I listened and gave my best self along the way no matter how sleep deprived, confused, or tired I was.</p>
+</div>
+</div>
+<div id="results" class="section level1">
+<h1><span class="header-section-number">5</span> Results</h1>
+</div>
+<div id="conclusion" class="section level1">
+<h1><span class="header-section-number">6</span> Conclusion</h1>
+</div>
+
+        </div>
+        <footer class="article-footer">
+    <a data-url="/2019/02/data-science/" data-id="1bb8b0dfae515e946d7cfc4940203f91" text="Data science interviews: Lessons learned" via="acastillogill" class="article-share-link">
+        <i class="fas fa-share"></i>
+        Share
+    </a>
+    
+    <a href="../../../2019/02/data-science/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                titleText = $this.attr('text'),
+                via = $this.attr('via'),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/share?url=' + encodedUrl + '&text=' + titleText + '&via=' + via + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest-p article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+
+    
+<nav id="article-nav">
+    
+    <a href="../../../2019/01/nba-stats/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Older
+      </strong>
+      <div class="article-nav-title">NBA free throws analysis</div>
+    </a>
+    
+
+    
+</nav>
+
+
+</article>
+
+
+<section id="comments">
+    <div id="disqus_thread">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "https-acastillogill-com" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+</section>
+
+
+    </section>
+
+   	
+    	<aside id="sidebar">
+    
+
+    
+
+    
+
+    
+
+
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+    
+	</div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019
+      Ángela Castillo-Gill. Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="https://github.com/ppoffice">PPOffice</a>. Customised by <a href="https://maraaverick.rbind.io/">Mara Averick</a> and used with permission.
+    </div>
+  </div>
+</footer>
+
+
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	if (window.sessionStorage) {
+		var GA_SESSION_STORAGE_KEY = 'ga:clientId';
+		ga('create', 'UA-128602464-1', {
+	    'storage': 'none',
+	    'clientId': sessionStorage.getItem(GA_SESSION_STORAGE_KEY)
+	   });
+	   ga(function(tracker) {
+	    sessionStorage.setItem(GA_SESSION_STORAGE_KEY, tracker.get('clientId'));
+	   });
+   }
+	
+	ga('send', 'pageview');
+}
+</script>
+
+<script src="../../../fancybox/jquery.fancybox.pack.js"></script>
+<script src="../../../js/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+</body>
+</html>

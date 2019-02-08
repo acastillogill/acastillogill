@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Reflection on Ángela Castillo-Gill</title>
+    <link>/tags/reflection/</link>
+    <description>Recent content in Reflection on Ángela Castillo-Gill</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 21 Feb 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/reflection/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Data science interviews: Lessons learned</title>
+      <link>/2019/02/data-science/</link>
+      <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/02/data-science/</guid>
+      <description>1 Summary 2 Why? 3 What would I have done differently? 3.1 Schedule interviews further apart and when possible, in your peak time (i.e. morning or evening person) 3.2 Focus on the basics 3.3 Rehearse not knowing, or being wrong, and feeling embarrased and STILL speaking with confidence 3.4 Recruiters can be a great support but it’s important to set boundaries  4 What would I do again? 4.</description>
+    </item>
+    
+  </channel>
+</rss>
