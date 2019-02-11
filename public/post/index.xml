@@ -17,7 +17,7 @@
       <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>/2019/02/data-science/</guid>
-      <description>1 Summary 2 Why? 3 What would I have done differently? 3.1 Schedule interviews further apart and when possible, in your peak time (i.e. morning or evening person) 3.2 Focus on the basics 3.3 Rehearse not knowing, or being wrong, and feeling embarrased and STILL speaking with confidence 3.4 Recruiters can be a great support but it’s important to set boundaries  4 What would I do again? 4.</description>
+      <description>1 Summary 2 Why? 3 What would I have done differently? 3.1 Schedule interviews further apart and when possible, in your peak time (i.e. morning or evening person) 3.2 Focus on the basics and then move on to more complex things. 3.3 Rehearse not knowing, or being wrong, and feeling embarrased/nervous/uncomfortable and STILL speaking with confidence 3.4 Recruiters can be a great support but it’s important to set boundaries  4 What would I do again?</description>
     </item>
     
     <item>
@@ -77,6 +77,22 @@
       <guid>/2018/07/exploring-kiva-loans/</guid>
       <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 5 Exploratory data analysis 5.1 Borrower gender by region 5.2 Repayment interval by region 5.3 Loan use by region  6 Techniques used 7 Questions from this analysis   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
  Objectives: To visualise a dataset and understand its main trends.</description>
+    </item>
+    
+    <item>
+      <title>Lessons learned: Data science interviews</title>
+      <link>/1/01/lessons-learned-data-science-interviews/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/1/01/lessons-learned-data-science-interviews/</guid>
+      <description>background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/be/Sharingan_triple.svg)
+???
+Image credit: Wikimedia Commons
+class: inverse, center, middle
+Get Started  Hello World Install the xaringan package from Github:
+devtools::install_github(&amp;quot;yihui/xaringan&amp;quot;) –
+You are recommended to use the RStudio IDE, but you do not have to.
+ Create a new R Markdown document from the menu File -&amp;gt; New File -&amp;gt; R Markdown -&amp;gt; From Template -&amp;gt; Ninja Presentation;1  –</description>
     </item>
     
   </channel>

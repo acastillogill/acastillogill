@@ -62,23 +62,34 @@ Avoid after lunch interviews on the last day of the week. DO NOT DO THIS. You ar
 
 First move house, sort things out, unpack clothes, etc. I would make sure I feel properly settled in and that the macro things in my life are sort of set to then start applying. 
 
-## Focus on the basics 
+## Focus on the basics and then move on to more complex things.
 
-As a data scientist there are statistics, programming, and application basics you should know. Now, here is where I could have done things differently. During the last few months I had focused on re-writing manuscripts, enjoying the Christmas/New Year break and planning moving countries. I am a firm believer of: "if you don't use it, you lose it."
+There are statistics and programming basics that every data scientist should know. You would think that because they are basics you would never forget them. Not me. This round of data science interviews showed me that you can indeed forget the basics and that it can be quite embarrassing. Let me give an example, there was one basic data wrangling task I was asked at all interviews: joining tables. Now, I've done this several times, many tables have been merged. The problem was that as soon as a merge works, I check that it works and then I move on. I crack on.
+
+During the last few months I had focused on re-writing manuscripts based on analysis done in the summer. I enjoyed the Christmas/New Year break and planned moving countries. All this happened and I forgot the syntax of merging. I didn't forget to the types of joins, nor how to do it. But I did forget the specific bit that goes inside the `by` `left_join(table1, table2, by=c("key table a"="key table b"))`. Maybe I've gotten too used to cheatsheets. Is this a problem? I can't imagine a world where I sit down and do data science without Google. But should I know the syntax of joins by heart? I'm torn because on one hand I think, of course. It's a basic data wrangling task, know the syntax. But then I think, I understand how they work and know how to do them, in what context would I not have access to my cheatsheets?
+
+I don't seem to have any issue recalling it now, but during the test I had to write the join on paper and perhaps not having the keyboard trigger was a factor? I don't know. 
 
 Each of the four interviews involved a technical test which required a little brushing up. To this add having to research each person you'll meet, study their background, adapt and rehearse your answers to the company, etc. 
 
-By scheduling 
 
 **What would I do now?**
 
-## Rehearse not knowing, or being wrong, and feeling embarrased and STILL speaking with confidence
+I would focus less on specific algorithm details and just through and through know intro to statistics, data cleaning and wrangling basics by heart. Most of the questions on the technical examinations didn't touch on advanced topics. I think I actually just had one neural network question out of probably 80 questions asked as part of my technical tests. Next time I would brush up on the basics a couple of weeks before interviews. 
 
-The main feedback I've received when I give public speeches is that my voice sounds a bit monotonous and that I speak too fast. Wanting to improve, last year I joined Toastmasters Barcelona and I improved so much in terms of pausing, entonation, rythym.
+## Rehearse not knowing, or being wrong, and feeling embarrased/nervous/uncomfortable and STILL speaking with confidence
 
-There is one thing however, that I did not practice and that I should have, and that is being wrong, being called out on being wrong, knowing they're right on you being wrong, and still CRACKING ON WITH CONFIDENCE. This is a skill for a lifetime.
+I have a new found respect for politicians now. When they announce a policy or a plan and are at a press conference, inevitably they will be asked something they do not know. They might be corrected on something they just stated. The ability to keep calm or appear calm is something they have practiced over and over. I had no idea how important this skill is to practice until I went through this round of interviews. 
+
+I've never struggled too much with public speaking. I would usually be the student other group members would select to go and present during my undergraduate and even my masters. I was by no means a great speaker, but usually a good enough speaker. The main feedback I received and sometimes still receive is that my voice sounds a bit monotonous and that I speak too fast.
+
+To improve this I joined Barcelona Toastmasters and worked with a very experienced mentor (thanks Olga!) who worked on these two things with me. As with any skill, if you don't use it, you lose it, so as long as I'm practicing weekly I improve a lot in terms of pausing, entonation, rythym.
+
+Now, something I did not practice in Toastmasters, because it is not so easy to practice is speaking in public AFTER being wrong, being called out on being wrong, knowing they're right on you being wrong, and still CRACKING ON WITH CONFIDENCE. This is a skill for a lifetime. During two of my interviews, I made several mistakes, I knew I had made mistakes, I knew the person interviewing me knew I had made a mistake, and I was even called on my mistake. Being there and not losing all your confidence and feeling like you want to apologise for wasting everybody's time and running away is THE public speaking skill to practice. 
 
 **What would I do now?**
+
+I love Toastmasters because it's helped become aware of my impact on an audience, for better or for worse. I think I've learned to know when people are zoning out and what I have done to cause that. It's helped me improve my pace, pauses and entonation. But what I think would be better practice is joining a debate club. In a debate club there is another team actively pushing against you and trying to undermine what you're saying. Constantly. If they're skilled, they might even attempt to provoke a reaction. That's what I need to practice. Does anyone know of any debate clubs in London?
 
 ## Recruiters can be a great support but it's important to set boundaries
 
@@ -104,11 +115,18 @@ The recruiters I ended up working with the most would respect the times we set f
 
 ## Be myself at every job interview
 
-Adopting some sort of persona and putting a mask on for the one or two hours that the interview asks 
+I've learned that one of the things I care about the most is the people I'm surrounded by and working with. I want to fit into the group in terms of technical ability and personality, etc. If during the interview I project myself as someone I'm not and they make an offer, I'll have to transform myself each day before work. 
+
+Adopting some sort of persona and putting a mask during an interview is not a good idea. On top of the technical work you'll be doing each, you'll have to do the emotional work of transforming your personality. This is exhausting. Instead, just be yourself. Of course, if someone is more introverted, a little bit of work to show a tiny bit of more enthusiasm during the interview is ok, or if like me, you're a bit too enthusiastic, dialing it back just a bit is not a bad idea. So now I am myself and hope that I fit, and if I don't, there more than likely will be a fit elsewhere. 
+
 
 ## Have a mentor to support you along the way
 
-A couple of month before moving, I thought it would be interesting to get some commercial data science experience. Through R-Ladies I met Raquel Redó, a data scientist based in Barcelona. Although the timing wasn't right for me to try to engage 
+A couple of month before moving, I thought it would be interesting to get some commercial data science experience. Through R-Ladies I met Raquel Redó, a data scientist based in Barcelona. Although the timing wasn't right because I was moving, we made sure we met face to face. Raquel has been doing data science work for a while and is very enthusiastic about supporting other women in the field. Perfect! She herself had gone through the data science interview process I as about to go through and had very wise words to offer. 
+
+I think what made our mentorship work was that I wrote down all her advice after our first meeting and went off and did it. I put as much of her advice I could into practice. I was particularly motivated because I would see how her advice was having an impact in my job search. 
+
+When I had scheduled my final round interviews, we went over the companies and she gave me some advice on them, too. Going through data science interviews can feel a bit lonely and it's easy to doubt yourself. Having a mentor helped me make my search legitimate to myself and kept me accountable. This was good to have. 
 
 ## Be transparent to each company about other interviews
 
@@ -126,9 +144,6 @@ Nobody likes to be rejected and of course it doesn't feel good. But thanks to th
 
 Now, in retrospective, I feel good about my interactions with everyone I met. I feel glad I listened and gave my best self along the way no matter how sleep deprived, confused, or tired I was. 
 
-
-
-# Results
 
 # Conclusion
 

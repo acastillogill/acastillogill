@@ -76,6 +76,10 @@
           
           <a class="main-nav-link" href="./about/">About</a>
           
+          <a class="main-nav-link" href="./post/">Posts</a>
+          
+          <a class="main-nav-link" href="./presentations/">Presentations</a>
+          
 
           
           
@@ -108,6 +112,10 @@
 
           
           <td><a class="main-nav-link" href="./about/">About</a></td>
+          
+          <td><a class="main-nav-link" href="./post/">Posts</a></td>
+          
+          <td><a class="main-nav-link" href="./presentations/">Presentations</a></td>
           
 
           
@@ -145,7 +153,7 @@
     </div>
     <div class="article-info profile-block">
       <div class="article-info-block">
-        7
+        8
         <span>Posts</span>
       </div>
       <div class="article-info-block">
@@ -255,10 +263,10 @@
             <i class="far fa-calendar"></i>
             <time datetime="2019-02-21 00:00:00 &#43;0000 UTC" itemprop="datePublished">2019-02-21</time>
             &middot;
-            1861
+            2820
             words
             &middot;
-            9
+            14
             minute read
         </div>
         
@@ -289,7 +297,7 @@
 
         <div class="article-entry" itemprop="articleBody">
             <p>
-                1 Summary 2 Why? 3 What would I have done differently? 3.1 Schedule interviews further apart and when possible, in your peak time (i.e. morning or evening person) 3.2 Focus on the basics 3.3 Rehearse not knowing, or being wrong, and feeling embarrased and STILL speaking with confidence 3.4 Recruiters can be a great support but it’s important to set boundaries  4 What would I do again? 4.
+                1 Summary 2 Why? 3 What would I have done differently? 3.1 Schedule interviews further apart and when possible, in your peak time (i.e. morning or evening person) 3.2 Focus on the basics and then move on to more complex things. 3.3 Rehearse not knowing, or being wrong, and feeling embarrased/nervous/uncomfortable and STILL speaking with confidence 3.4 Recruiters can be a great support but it’s important to set boundaries  4 What would I do again?
             </p>
             <p class="article-more-link">
                 <a href="./2019/02/data-science/">
@@ -1210,6 +1218,136 @@
     </a>
     
     <a href="./2018/07/exploring-kiva-loans/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                titleText = $this.attr('text'),
+                via = $this.attr('via'),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/share?url=' + encodedUrl + '&text=' + titleText + '&via=' + via + '" class="fab fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fab fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fab fa-pinterest-p article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fab fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+</article>
+
+<article class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        </a>
+
+        <header class="article-header">
+    <a href="./1/01/lessons-learned-data-science-interviews/">
+    <h1 class="article-title" itemprop="name">
+        Lessons learned: Data science interviews
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="far fa-calendar"></i>
+            <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">0001-01-01</time>
+            &middot;
+            2229
+            words
+            &middot;
+            11
+            minute read
+        </div>
+        
+        
+
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>
+                background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/be/Sharingan_triple.svg)
+???
+Image credit: Wikimedia Commons
+class: inverse, center, middle
+Get Started  Hello World Install the xaringan package from Github:
+devtools::install_github(&quot;yihui/xaringan&quot;) –
+You are recommended to use the RStudio IDE, but you do not have to.
+ Create a new R Markdown document from the menu File -&gt; New File -&gt; R Markdown -&gt; From Template -&gt; Ninja Presentation;1  –
+            </p>
+            <p class="article-more-link">
+                <a href="./1/01/lessons-learned-data-science-interviews/">
+                    Read more
+                </a>
+            </p>
+        </div>
+        <footer class="article-footer">
+    <a data-url="/1/01/lessons-learned-data-science-interviews/" data-id="16231f198d3f2f9ef1eddec4c6434acd" text="Lessons learned: Data science interviews" via="acastillogill" class="article-share-link">
+        <i class="fas fa-share"></i>
+        Share
+    </a>
+    
+    <a href="./1/01/lessons-learned-data-science-interviews/#disqus_thread" class="article-comment-link">
         Comments
     </a>
     
