@@ -142,7 +142,7 @@ Image by [Polly Nor](https://www.pollynor.com/)]
 ---
 
 background-image: url("https://media.giphy.com/media/1n833bZxdzKzaErLe9/giphy.gif")
-background-size: 80%
+background-size: 50%
 background-position: 50% 50%
 class: center
 
@@ -164,7 +164,11 @@ background-size: 50%
 background-position: 50% 50%
 class: center
 
-# Be kind to everyone you meet (no matter what)
+# Be kind to everyone you meet 
+
+--
+
+**(no matter what)**
 
 ---
 
@@ -174,4 +178,4 @@ class: center, middle, inverse
 
 Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
 
-R-Ladies theme created by [**Alison Presman Hill**](https://alison.rbind.io/).
+R-Ladies theme created by [**Alison Presmanes Hill**](https://alison.rbind.io/).
