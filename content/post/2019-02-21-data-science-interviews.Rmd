@@ -62,17 +62,6 @@ opts_chunk$set(echo = FALSE,
 
 theme_set(theme_ipsum_rc())
 
-options(
-  digits=4,
-  scipen = 999
-)
-
-
-knit_hooks$set(inline = function(x) {
-  prettyNum(round(x,4), big.mark=",")
-})
-
-
 job_search <- read_csv(file=here::here("static","data","job_search.csv"))
 
 
@@ -158,13 +147,13 @@ This was a surprise. I thought I would have had to fill out more job application
 
 ## Interview prep
 
-This includes researching companies, preparing for technical tests, doing technical tests, notice the peak on 17th January? That was me prettifying plots as part of a technical test :)
+This includes researching companies, preparing for technical tests, doing technical tests, notice the peak on 17th January? That was me prettifying plots as part of a technical test `r emo::ji("nail_care")`
 
 Notice how during my interview week I split the day between being at interviews and then cramming for the next. This was not fun and most definitely sub-optimal with mixed results.
 
 ## Job admin
 
-This is basically everything related to sending e-mails to arrange phone calls, or interviews, and towards the end, going over the final job offer, signing and posting it. Signed, sealed, delivered, I'm yours!
+This is basically everything related to sending e-mails to arrange phone calls, or interviews, and towards the end, going over the final job offer, signing and posting it. Signed, sealed, delivered, I'm yours `r emo::ji("musical_note")`!
 
 ## Phone calls
 
