@@ -124,7 +124,7 @@ class: center
 ---
 
 background-image: url("https://media.giphy.com/media/l2SpUoAPo0CBOkyxq/giphy.gif")
-background-size: 80%
+background-size: 50%
 background-position: 50% 50%
 class: center
 
