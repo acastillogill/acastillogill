@@ -270,9 +270,12 @@ $$\frac{Education\space index\space +1}{Education\space index}=1.109$$
 The corresponding confidence interval is:
 
 $$\mathbb{P} (e^{lower\space bound}<\frac{Education\space index\space +1}{Education\space index}<e^{upper\space bound})=0.95$$
-The lower bound is $point\space estimate-2*SE=0.1034-2*0.0059=0.0916$ and the upper bound is $point\space estimate+2*SE=0.1034+2*0.0059=0.1152$ 
+The lower bound is $$point\space estimate-2*SE=0.1034-2*0.0059=0.0916$$
+and the upper bound is 
+$$point\space estimate+2*SE=0.1034+2*0.0059=0.1152$$ 
 
 $$\mathbb{P} (e^{0.0916}<\frac{Education\space index\space +1}{Education\space index}<e^{0.1152})=0.95$$
+so the final confidence interval is: 
 $$\mathbb{P}(1.096<\frac{Education\space index\space +1}{Education\space index}<1.122)=0.95$$
 
 We can see this increase by plotting the fitted values:

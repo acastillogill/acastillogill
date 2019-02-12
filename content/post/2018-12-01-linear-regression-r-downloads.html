@@ -120,8 +120,11 @@ Figure 4.1: When I plotted the education index vs. R downloads per 1,000 capita
 <span class="math display">\[\frac{Education\space index\space +1}{Education\space index}=1.109\]</span></p>
 <p>The corresponding confidence interval is:</p>
 <p><span class="math display">\[\mathbb{P} (e^{lower\space bound}&lt;\frac{Education\space index\space +1}{Education\space index}&lt;e^{upper\space bound})=0.95\]</span>
-The lower bound is <span class="math inline">\(point\space estimate-2*SE=0.1034-2*0.0059=0.0916\)</span> and the upper bound is <span class="math inline">\(point\space estimate+2*SE=0.1034+2*0.0059=0.1152\)</span></p>
+The lower bound is <span class="math display">\[point\space estimate-2*SE=0.1034-2*0.0059=0.0916\]</span>
+and the upper bound is
+<span class="math display">\[point\space estimate+2*SE=0.1034+2*0.0059=0.1152\]</span></p>
 <p><span class="math display">\[\mathbb{P} (e^{0.0916}&lt;\frac{Education\space index\space +1}{Education\space index}&lt;e^{0.1152})=0.95\]</span>
+so the final confidence interval is:
 <span class="math display">\[\mathbb{P}(1.096&lt;\frac{Education\space index\space +1}{Education\space index}&lt;1.122)=0.95\]</span></p>
 <p>We can see this increase by plotting the fitted values:</p>
 <p><img src="/post/2018-12-01-linear-regression-r-downloads_files/figure-html/plot-fitted-values-1.png" width="672" /></p>

@@ -51,8 +51,12 @@ class: inverse, center, middle
 
 ---
 
+background-image: url("https://media.giphy.com/media/F6rmluLeKdfCo/giphy.gif")
+background-position: 50% 50%
 class: center, middle
 # Establish boundaries with recruiters
+
+
 
 ---
 
