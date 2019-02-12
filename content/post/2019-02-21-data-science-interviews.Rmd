@@ -8,7 +8,7 @@ tags:
   - Reflection
   - Data science interviews
   - R-Ladies London
-description: "Write summary here"
+description: "In this post I share how I spent my time during my data scientist job search. I point out the things I would have done differently and the things I'm glad I did. The content of this blogpost was first presented at R-Ladies London on 2019-02-21."
 banner: "banners/london.jpg"
 images: ["banners/london.jpg"]
 draft: FALSE
@@ -81,17 +81,49 @@ job_search <- read_csv(file=here::here("static","data","job_search.csv"))
 
 # Summary
 
+In this post I share how I spent my time during my data scientist job search. I point out the things I would have done differently and the things I'm glad I did. The content of this blogpost was first presented at R-Ladies London on 2019-02-21 and the presentation is [here](https://acastillogill.com/slides/2019-02-21-r-ladies-data-science-interviews-presentation.html#1): 
 
+```{r echo = FALSE}
+knitr::include_url('https://acastillogill.com/slides/2019-02-21-r-ladies-data-science-interviews-presentation.html#1')
+```
+
+To summarise:
+
+**Would have done differently:**
+
+- Establish healthy boundaries with recruiters
+- Focus on the basics for technical tests
+- Schedule interviews at favourable times
+- Practice not knowing and staying confident
+
+
+**Glad I did:**
+
+- Be yourself (or as close as possible)
+- Have a mentor to support you along the way
+- Be transparent about other interviews
+- Be kind to everyone you meet (no matter what)
 
 # Why?
 
-I've just joined a wonderful data science company based in London as a data scientist. I'm thrilled! In preparation I read a bunch of blog posts full of interview advice and watched some helpful videos. 
+I just finished a data scientist job search in London that lasted about a month and ended in the data scientist role based in London I'm about to start. I'm thrilled! The job search lasted about a month and included international relocation - this did not make it easy. The core of it was a three-week period that culminated in four back-to-back job interviews where each day I split my attention between unpacking, studying, researching, and rehearsing.
 
-The core of it happened over a three-week period ending in a with six-day marathon where I split my attention to packing, studying, unpacking, researching.
+I learned very much in a very short period of time. It was an exciting time with events happening quicker than my mind could process them. Now, a couple weeks after the dust has settled, I can reflect about the whole process and sit down to distill lessons. I'm writing this with three objectives in mind:
 
-in my case, that one core period also involved handing moving countries. It was an exciting period in my life and sometimes it felt as events were happening at a quicker pace than my mind could process the situation. Now, a few weeks after the dust has settled, I've reflected about the month past to the point where I can sit down and distill the lessons I've learned. I'm writing this mainly for my future self but also will try to generalise the ideas so they can help others as others' have helped me. 
+1. **Is there anybody out there?** I'd like to know if others have gone through a similar situation and if so, please leave a comment or write me an e-mail about your experience. It's important to hear about how others overcame the obstacles I had to deal with and what obstacles others have faced.
+
+2. **To guide/advice others:** Of course, this was my personal experience and I would take it with a grain of salt. After all, I'm just one observation and that's why we need a bigger sample size (see objective 1). However, I do hope this will be helpful to someone in their data scientist job search.
+
+
+3. **For my future self:** I love journaling and reflection helps me improve. Hopefully I wont have to go through a job search in a while but as a memento of what has happened I'd like to leave this in writing.
 
 # Here's how I spent my time
+
+So to the best of my abilities, I try to track all my work. I do this to constantly update my learning loop and efficiently allocate time. I tried to extend this to my job search by tracking as many activities as possible. Here is the key for the tasks I show along with a commentary on my usage. 
+
+## Adapting CVs
+
+Pretty self-explanatory. On the 5th January 2019 I met up with my mentor (more on this later), we went through my CV and my LinkedIn profile in great detail. After, I dedicated a few hours to putting what she suggested into practice. This task had a great time investment. 
 
 ```{r read-time}
 job_search$date <- dmy(job_search$date)
@@ -116,8 +148,35 @@ job_search%>%
   scale_fill_brewer(palette = "Paired")
 ```
 
+## Face-to-face interviews
+
+Self-explanatory again. This is one of my to-improve points. I scheduled four interviews in one week just two days after I moved countries with all my belongings. DO NOT DO THIS. This was not necessary. I could have spaced out interviews more into the future and with more days in between each one. This definitely had a negative impact on my performance on interviews, especially those scheduled later in the week.
+
+## Filling out forms
+
+This was a surprise. I thought I would have had to fill out more job applications than I did. The time spent here was minimal because I ended up working mostly with recruiters. I wish I would have tracked it but most of my applications were through LinkedIn. I had the intention to also fill in my details on other job search platforms like Indeed, etc. but this ended up not being necessary. 
+
+## Interview prep
+
+This includes researching companies, preparing for technical tests, doing technical tests, notice the peak on 17th January? That was me prettifying plots as part of a technical test :)
+
+Notice how during my interview week I split the day between being at interviews and then cramming for the next. This was not fun and most definitely sub-optimal with mixed results.
+
+## Job admin
+
+This is basically everything related to sending e-mails to arrange phone calls, or interviews, and towards the end, going over the final job offer, signing and posting it. Signed, sealed, delivered, I'm yours!
+
+## Phone calls
+
+This is another point to improve. At the beginning I was taking way too many unexpected phone calls from recruiters. This was an inefficient use of our time. After a bit I tried to push back by asking to send job specs first and then scheduling calls. More on this later. Phone calls also included technical interviews but these were actually only about two hours of the total phone call time. 
+
+## Writing cover letters
+
+Again, surprisingly low. Only wrote one cover letter as part of an application and didn't hear back from that company at all. The data scientist job search works in mysterious ways. 
 
 # What would I have done differently?
+
+Here's the fun bit where I tell you how I fell down and scratched my knee so you don't have to. 
 
 ## Schedule interviews further apart and when possible, in your peak time (i.e. morning or evening person)
  
@@ -128,7 +187,7 @@ I scheduled four interviews in one week. As preparation
 
 Also, bear in mind at what time of the day these interviews will happen. I am a morning person through and through. If there was ever a morning person poster woman, it is me. I naturally wake up between 4 and 5 am and my head is as lucid as it gets 30 min after I open my eyes. When I can, I enjoy starting work bright and early and then around midday I go to the gym and use to the afternoons for non-intellectual activities. 
 
-Most of my interviews, fortunately, were in the morning and then is when I did my best. I had one interview scheduled for the afternoon, on the last day of the week and that by far was my worst performance. At the end of the week I struggled to be enthusiastic, remember names, take a technical written test with 50 questions (which actually weren't that hard), be white-boarded (not waterboarded but also no dissimilar) and carry myself with confidence. 
+Most of my interviews, fortunately, were in the morning and then is when I did my best. I had one interview scheduled for the afternoon, on the last day of the week and that by far was my worst performance. At the end of the week I struggled to be enthusiastic, remember names, take a technical written test with 50 questions (which actually weren't that hard), be white-boarded (not water-boarded but also no dissimilar) and carry myself with confidence. 
 
 Of course some things would not have changed had I had the interview at 7 am, but! I do attribute some of my performance to the time of day, especially because I couldn't recall certain concepts. When you're in the interview, even if you would like to say:
 
@@ -146,7 +205,7 @@ First move house, sort things out, unpack clothes, etc. I would make sure I feel
 
 There are statistics and programming basics that every data scientist should know. You would think that because they are basics you would never forget them. Not me. This round of data science interviews showed me that you can indeed forget the basics and that it can be quite embarrassing. Let me give an example, there was one basic data wrangling task I was asked at all interviews: joining tables. Now, I've done this several times, many tables have been merged. The problem was that as soon as a merge works, I check that it works and then I move on. I crack on.
 
-During the last few months I had focused on re-writing manuscripts based on analysis done in the summer. I enjoyed the Christmas/New Year break and planned moving countries. All this happened and I forgot the syntax of merging. I didn't forget to the types of joins, nor how to do it. But I did forget the specific bit that goes inside the `by` `left_join(table1, table2, by=c("key table a"="key table b"))`. Maybe I've gotten too used to cheatsheets. Is this a problem? I can't imagine a world where I sit down and do data science without Google. But should I know the syntax of joins by heart? I'm torn because on one hand I think, of course. It's a basic data wrangling task, know the syntax. But then I think, I understand how they work and know how to do them, in what context would I not have access to my cheatsheets?
+During the last few months I had focused on re-writing manuscripts based on analysis done in the summer. I enjoyed the Christmas/New Year break and planned moving countries. All this happened and I forgot the syntax of merging. I didn't forget to the types of joins, nor how to do it. But I did forget the specific bit that goes inside the `by` `left_join(table1, table2, by=c("key table a"="key table b"))`. Maybe I've gotten too used to cheat-sheets. Is this a problem? I can't imagine a world where I sit down and do data science without Google. But should I know the syntax of joins by heart? I'm torn because on one hand I think, of course. It's a basic data wrangling task, know the syntax. But then I think, I understand how they work and know how to do them, in what context would I not have access to my cheat-sheets?
 
 I don't seem to have any issue recalling it now, but during the test I had to write the join on paper and perhaps not having the keyboard trigger was a factor? I don't know. 
 
@@ -157,19 +216,19 @@ Each of the four interviews involved a technical test which required a little br
 
 I would focus less on specific algorithm details and just through and through know intro to statistics, data cleaning and wrangling basics by heart. Most of the questions on the technical examinations didn't touch on advanced topics. I think I actually just had one neural network question out of probably 80 questions asked as part of my technical tests. Next time I would brush up on the basics a couple of weeks before interviews. 
 
-## Rehearse not knowing, or being wrong, and feeling embarrased/nervous/uncomfortable and STILL speaking with confidence
+## Rehearse not knowing, or being wrong, and feeling embarrassed/nervous/uncomfortable and STILL speaking with confidence
 
 I have a new found respect for politicians now. When they announce a policy or a plan and are at a press conference, inevitably they will be asked something they do not know. They might be corrected on something they just stated. The ability to keep calm or appear calm is something they have practiced over and over. I had no idea how important this skill is to practice until I went through this round of interviews. 
 
 I've never struggled too much with public speaking. I would usually be the student other group members would select to go and present during my undergraduate and even my masters. I was by no means a great speaker, but usually a good enough speaker. The main feedback I received and sometimes still receive is that my voice sounds a bit monotonous and that I speak too fast.
 
-To improve this I joined Barcelona Toastmasters and worked with a very experienced mentor (thanks Olga!) who worked on these two things with me. As with any skill, if you don't use it, you lose it, so as long as I'm practicing weekly I improve a lot in terms of pausing, entonation, rythym.
+To improve this I joined Barcelona Toastmasters and worked with a very experienced mentor (thanks Olga!) who worked on these two things with me. As with any skill, if you don't use it, you lose it, so as long as I'm practicing weekly I improve a lot in terms of pausing, intonation, rhythm.
 
 Now, something I did not practice in Toastmasters, because it is not so easy to practice is speaking in public AFTER being wrong, being called out on being wrong, knowing they're right on you being wrong, and still CRACKING ON WITH CONFIDENCE. This is a skill for a lifetime. During two of my interviews, I made several mistakes, I knew I had made mistakes, I knew the person interviewing me knew I had made a mistake, and I was even called on my mistake. Being there and not losing all your confidence and feeling like you want to apologise for wasting everybody's time and running away is THE public speaking skill to practice. 
 
 **What would I do now?**
 
-I love Toastmasters because it's helped become aware of my impact on an audience, for better or for worse. I think I've learned to know when people are zoning out and what I have done to cause that. It's helped me improve my pace, pauses and entonation. But what I think would be better practice is joining a debate club. In a debate club there is another team actively pushing against you and trying to undermine what you're saying. Constantly. If they're skilled, they might even attempt to provoke a reaction. That's what I need to practice. Does anyone know of any debate clubs in London?
+I love Toastmasters because it's helped become aware of my impact on an audience, for better or for worse. I think I've learned to know when people are zoning out and what I have done to cause that. It's helped me improve my pace, pauses and intonation. But what I think would be better practice is joining a debate club. In a debate club there is another team actively pushing against you and trying to undermine what you're saying. Constantly. If they're skilled, they might even attempt to provoke a reaction. That's what I need to practice. Does anyone know of any debate clubs in London?
 
 ## Recruiters can be a great support but it's important to set boundaries
 
@@ -185,7 +244,7 @@ Plus, sometimes I would be called for random roles in industries I wasn't even i
 
 I would not pick up the phone nor answer text messages. My first point of contact is either LinkedIn or my e-mail. If someone were to reach out with a fantastic opportunity that seems especially well suited for me, I would say, "sounds great, please send over the job spec first".
 
-I would then sit down and read the job spec. After, I would google the company, find the employees on LinkedIn and pause. You know. In your heart of hearts you know if at this point you want to go forward or not. If you don't feel excited, move on immediately. Politely reply: "Thank you, however, this is not a good fit for me at this time." 
+I would then sit down and read the job spec. After, I would Google the company, find the employees on LinkedIn and pause. You know. In your heart of hearts you know if at this point you want to go forward or not. If you don't feel excited, move on immediately. Politely reply: "Thank you, however, this is not a good fit for me at this time." 
 
 If you do feel excited, then go ahead and schedule that call. Make sure that you pick up at the time it was scheduled. If you start taking calls at random times, in my experience, it will get worse. I had no experience and started to take calls from a particularly persuasive recruiter. Since I picked up whenever they called, they ended up calling increasingly often to ask for small things they could have figured out themselves (i.e. do you mind filling out this form for me even though I have all your information and could do it myself?).
 
