@@ -185,7 +185,7 @@ That will take the form:
 
 $$ln(downloads\space per \space 1,000 \space capita)=\beta_0+\beta_1*Education\space index + \varepsilon$$
 
-The F-Statistics will be testing:
+The F-statistic will be testing:
 
 $$ H_0: \beta_1=0$$
 $$ H_A: \beta_1\neq 0$$
@@ -248,7 +248,7 @@ ggplot(full_maps_edu, aes(x = edu_index, y = log(n_capita)))+
 
 # Results
 
-- Based on the model:
+Based on the model:
 
 $ln(downloads\space per \space 1,000 \space capita)=-9.9203 +0.1034*Education\space index + \varepsilon$
 
@@ -267,14 +267,13 @@ $$log({\frac{Education\space index\space +1}{Education\space index}})=0.1034$$
 $$e^{log({\frac{Education\space index\space +1}{Education\space index}})}=e^{0.1034}$$
 $$\frac{Education\space index\space +1}{Education\space index}=1.109$$
 
+The corresponding confidence interval is:
 
-Now, if we wanted to create a confidence interval:
+$$\mathbb{P} (e^{lower\space bound}<\frac{Education\space index\space +1}{Education\space index}<e^{upper\space bound})=0.95$$
+The lower bound is $point\space estimate-2*SE=0.1034-2*0.0059=0.0916$ and the upper bound is $point\space estimate+2*SE=0.1034+2*0.0059=0.1152$ 
 
-$$P (e^{lower\space bound}<\frac{Education\space index\space +1}{Education\space index}<e^{upper\space bound})=0.95$$
-The $lower\space bound$ is $point\space estimate-2*SE=0.1034-2*0.0059=$ and the $upper\space bound$ is $point\space estimate+2*SE=0.1034+2*0.0059=0.1152$, 
-
-$$P (e^{0.0916}<\frac{Education\space index\space +1}{Education\space index}<e^{0.1152})=0.95$$
-$$P (1.096<\frac{Education\space index\space +1}{Education\space index}<1.122)=0.95$$
+$$\mathbb{P} (e^{0.0916}<\frac{Education\space index\space +1}{Education\space index}<e^{0.1152})=0.95$$
+$$\mathbb{P}(1.096<\frac{Education\space index\space +1}{Education\space index}<1.122)=0.95$$
 
 We can see this increase by plotting the fitted values:
 
