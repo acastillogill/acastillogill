@@ -37,10 +37,12 @@ class: inverse, center, middle
 # Why do this presentation 
 
 
-- Learn from others
+- .large[Learn from others]
 - Help others
 - Future self
 
+
+# Full blogpost here:
 ---
 
 class: inverse, center, middle
@@ -92,23 +94,40 @@ class: inverse, center, middle
 
 ---
 
-class: center, middle
-# Be yourself or as close as possible
+background-image: url("https://mediaslide-europe.storage.googleapis.com/premier/pictures/3695/7841/large-1464701629-b5a421eed8ec4a169e5a5541ea0ce4cf.jpg")
+background-size: 40%
+background-position: 50% 50%
+class: center
 
+# Be yourself (or as close as possible)
+
+.footnote[
+Image by [Polly Nor](https://www.pollynor.com/)]
 ---
 
-class: center, middle
+background-image: url("https://media.giphy.com/media/1n833bZxdzKzaErLe9/giphy.gif")
+background-size: 80%
+background-position: 50% 50%
+class: center
+
 # Have a mentor to support you along the way
 
 ---
 
-class: center, middle
+background-image: url("https://media.giphy.com/media/5hkF0WXKLqDW4GoejJ/source.gif")
+background-size: 40%
+background-position: 50% 50%
+class: center
+
 # Be transparent about other interviews
 
 ---
 
+background-image: url("https://media.giphy.com/media/l2SpUoAPo0CBOkyxq/giphy.gif")
+background-size: 80%
+background-position: 50% 50%
+class: center
 
-class: center, middle
 # Be kind to everyone you meet
 
 ---

@@ -1,18 +1,19 @@
 ---
 title: "Data science interviews: Lessons learned"
 author: Ángela Castillo-Gill
-date: '2019-02-21'
-slug: data-science 
+date: '2019-02-10'
+slug: data-science-interviews
 categories: []
 tags: 
   - Reflection
   - Data science interviews
-description: ""
-banner: "banners/edu_index_downloads_capita.png"
-images: ["banners/edu_index_downloads_capita.png"]
+  - R-Ladies London
+description: "Write summary here"
+banner: "banners/london.jpg"
+images: ["banners/london.jpg"]
 draft: FALSE
 header: 
-  image: "banners/edu_index_downloads_capita.png"
+  image: "banners/london.jpg"
   caption: ""
 output:
   blogdown::html_page:
