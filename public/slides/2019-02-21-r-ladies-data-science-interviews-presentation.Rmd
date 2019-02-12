@@ -37,12 +37,12 @@ class: inverse, center, middle
 # Why do this presentation 
 
 
-- .large[Learn from others]
+- Learn from others
 - Help others
 - Future self
 
 
-# Full blogpost here:
+## Full blogpost [here.](https://acastillogill.com/2019/02/data-science-interviews/)
 ---
 
 class: inverse, center, middle
