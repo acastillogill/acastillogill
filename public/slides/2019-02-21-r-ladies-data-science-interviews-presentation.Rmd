@@ -1,7 +1,7 @@
 ---
 title: "Lessons learned: Data science interviews"
 subtitle: "R-Ladies London"
-author: "Ángela Castillo-Gill @acastillogill"
+author: "Ángela Castillo-Gill \n @acastillogill"
 date: "2019/02/21"
 output:
   xaringan::moon_reader:
@@ -26,7 +26,7 @@ class: inverse, center, middle
 
 # Keep in touch
 
-<a href="mailto:acastillogil@gmail.com"><i class="fa fa-paper-plane fa-fw"></i>&nbsp; acastillogil@gmail.com</a><br>
+<a href="mailto:acastillogill@gmail.com"><i class="fa fa-paper-plane fa-fw"></i>&nbsp; acastillogill@gmail.com</a><br>
 <a href="https://acastillogill.com/"><i class="fa fa-link fa-fw"></i>&nbsp; acastillogill.com </a><br>
 <a href="http://twitter.com/acastillogill"><i class="fa fa-twitter fa-fw"></i>&nbsp; @acastillogill</a><br>
 <a href="https://www.linkedin.com/in/acastillogill/"><i class="fa fa-linkedin fa-fw"></i>&nbsp; @acastillogill</a><br>
@@ -37,9 +37,8 @@ class: inverse, center, middle
 # Why do this presentation 
 
 
-- Learn from others: *is there anybody out there*?
-- Closure
-- Others
+- Learn from others
+- Help others
 - Future self
 
 ---
@@ -51,27 +50,36 @@ class: inverse, center, middle
 
 ---
 
-background-image: url("https://media.giphy.com/media/F6rmluLeKdfCo/giphy.gif")
+background-image: url("https://media.giphy.com/media/l0HlNHy5MTxgg56lW/giphy.gif")
+background-size: 60%
 background-position: 50% 50%
-class: center, middle
-# Establish boundaries with recruiters
-
-
+class: center
+# Establish healthy boundaries with recruiters
 
 ---
 
-class: center, middle
-# Schedule interviews at favourable times
-### Or at least not at the worst part of the week 
 
----
-
-class: center, middle
+background-image: url("https://cdn-images-1.medium.com/max/1600/1*mgXvzNcwfpnBawI6XTkVRg.png")
+background-size: 50%
+background-position: 50% 50%
+class: center
 # Focus on the basics
 
 ---
 
-class: center, middle
+background-image: url("https://media.giphy.com/media/SbGTbK8EBb08o/giphy.gif")
+background-size: 50%
+background-position: 50% 50%
+class: center
+# Schedule interviews at favourable times
+
+
+---
+
+background-image: url("https://media.giphy.com/media/40a263o3XOpkaGFHrS/source.gif")
+background-size: 80%
+background-position: 50% 50%
+class: center
 # Practice **this** public speaking skill
 
 ---
