@@ -185,12 +185,18 @@ That will take the form:
 
 $$ln(downloads\space per \space 1,000 \space capita)=\beta_0+\beta_1*Education\space index + \varepsilon$$
 
+The F-Statistics will be testing:
+
+$$ H_0: \beta_1=0$$
+$$ H_A: \beta_1\neq 0$$
 
 ```{r create-model-of-educ-r-capita, include=TRUE}
 fit <- lm( log(n_capita) ~ edu_index_percent, data = full_maps_edu)
 fit%>%
   tidy()%>%
   kable()
+f_statistic <- summary(fit)$fstatistic
+p_value_f_statistic <- pf(f_statistic[1],f_statistic[2],f_statistic[3],lower.tail = FALSE)
 ```
 
 After checking out the residuals, I saw there are a few outliers, mainly Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad. I decided to leave them in because it's interesting to think about what specific characteristcs contribute to them being be under or over the trend line. The model I proposed, explains `r summary(fit)$adj.r.squared*100` of the variation in the data. It's not a lot but it's also not insignificant. After having tried to fit a multiple linear regression model with other variables such as GDP and life expectancy, I found the education index to be the best predictor of R downloads per 1,000 capita. 
@@ -242,19 +248,33 @@ ggplot(full_maps_edu, aes(x = edu_index, y = log(n_capita)))+
 
 # Results
 
-Based on the model:
+- Based on the model:
 
-$ln(downloads\space per \space 1,000 \space capita)=\beta_0+\beta_1*Education\space index + \varepsilon$
+$ln(downloads\space per \space 1,000 \space capita)=-9.9203 +0.1034*Education\space index + \varepsilon$
+
+and the F-Statistic with p-value `r p_value_f_statistic`, we can reject $H_0$ and say that there is a relationship between the education index and R Downloads per 1,000 capita.
 
 - The education index explains `r  summary(fit)$adj.r.squared*100` percent of the variation in R Downloads per 1,000 capita around the world. 
 
-- The geometric mean of R downloads per 1,000 capita is 0.00004917.
+- The geometric mean of R downloads per 1,000 capita is `r exp(summary(fit)$coef[1])`.
 
-- A one unit increase in the education index, in this case, one percentage point, is expected to increase, on average, R downloads per 1,000 capita by `r summary(fit)$coef[2]*100`%.
+- A one unit increase in the education index, is expected to increase on average, R downloads per 1,000 capita by a factor of 1.109:
 
-- There is a 95% chance that the following interval contains the true value of the coefficient corresponding to the education index: [`r (summary(fit)$coef[2]-2*summary(fit)$coef[2,2])*100`% and `r (summary(fit)$coef[2]+2*summary(fit)$coef[2,2])*100`%.]
+$$log(Education\space index\space +1) - log(Education\space index)=0.1034$$
 
-- So for example, if the fictitious country Republic of Ángela with an education index of 78 and downloads per 1,000 capita of 1.1, increased its education index to 79, R downloads per 1,000 capita would be expected to increase between a range of 1.1 * 1.0916 = 1.201 and 1.1 * 1.1153 = 1.227.
+$$log({\frac{Education\space index\space +1}{Education\space index}})=0.1034$$
+
+$$e^{log({\frac{Education\space index\space +1}{Education\space index}})}=e^{0.1034}$$
+$$\frac{Education\space index\space +1}{Education\space index}=1.109$$
+
+
+Now, if we wanted to create a confidence interval:
+
+$$P (e^{lower\space bound}<\frac{Education\space index\space +1}{Education\space index}<e^{upper\space bound})=0.95$$
+The $lower\space bound$ is $point\space estimate-2*SE=0.1034-2*0.0059=$ and the $upper\space bound$ is $point\space estimate+2*SE=0.1034+2*0.0059=0.1152$, 
+
+$$P (e^{0.0916}<\frac{Education\space index\space +1}{Education\space index}<e^{0.1152})=0.95$$
+$$P (1.096<\frac{Education\space index\space +1}{Education\space index}<1.122)=0.95$$
 
 We can see this increase by plotting the fitted values:
 

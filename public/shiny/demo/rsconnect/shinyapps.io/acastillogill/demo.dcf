@@ -1,0 +1,10 @@
+name: demo
+title:
+username:
+account: acastillogill
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 706919
+bundleId: 1868941
+url: https://acastillogill.shinyapps.io/demo/
+when: 1549889551.24826

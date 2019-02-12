@@ -1,0 +1,110 @@
+---
+title: "Lessons learned: Data science interviews"
+subtitle: "R-Ladies London"
+author: "Ángela Castillo-Gill @acastillogill"
+date: "2019/02/21"
+output:
+  xaringan::moon_reader:
+    css: ["default", "rladies", "rladies-fonts"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+    includes:
+      in_header: header.html
+---
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(tidy = FALSE, eval = FALSE)
+```
+
+
+class: inverse, center, middle
+
+# Keep in touch
+
+<a href="mailto:acastillogil@gmail.com"><i class="fa fa-paper-plane fa-fw"></i>&nbsp; acastillogil@gmail.com</a><br>
+<a href="https://acastillogill.com/"><i class="fa fa-link fa-fw"></i>&nbsp; acastillogill.com </a><br>
+<a href="http://twitter.com/acastillogill"><i class="fa fa-twitter fa-fw"></i>&nbsp; @acastillogill</a><br>
+<a href="https://www.linkedin.com/in/acastillogill/"><i class="fa fa-linkedin fa-fw"></i>&nbsp; @acastillogill</a><br>
+<a href="http://github.com/acastillogill"><i class="fa fa-github fa-fw"></i>&nbsp; @acastillogill</a><br>
+
+---
+
+# Why do this presentation 
+
+
+- Learn from others: *is there anybody out there*?
+- Closure
+- Others
+- Future self
+
+---
+
+class: inverse, center, middle
+
+# Four lessons learnt 
+## (the not so easy way)
+
+---
+
+class: center, middle
+# Establish boundaries with recruiters
+
+---
+
+class: center, middle
+# Schedule interviews at favourable times
+### Or at least not at the worst part of the week 
+
+---
+
+class: center, middle
+# Focus on the basics
+
+---
+
+class: center, middle
+# Practice **this** public speaking skill
+
+---
+
+class: inverse, center, middle
+
+# Four things to do again 
+## Yo go girl!
+
+
+---
+
+class: center, middle
+# Be yourself or as close as possible
+
+---
+
+class: center, middle
+# Have a mentor to support you along the way
+
+---
+
+class: center, middle
+# Be transparent about other interviews
+
+---
+
+
+class: center, middle
+# Be kind to everyone you meet
+
+---
+
+class: center, middle, inverse
+
+# Thank you!
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
+
+R-Ladies theme created by [**Alison Presman Hill**](https://alison.rbind.io/).

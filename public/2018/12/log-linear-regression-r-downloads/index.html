@@ -39,7 +39,7 @@
 
 <meta itemprop="datePublished" content="2018-12-01T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-12-01T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="785">
+<meta itemprop="wordCount" content="801">
 
   <meta itemprop="image" content="/banners/edu_index_downloads_capita.png">
 
@@ -164,7 +164,7 @@
     </div>
     <div class="article-info profile-block">
       <div class="article-info-block">
-        8
+        7
         <span>Posts</span>
       </div>
       <div class="article-info-block">
@@ -270,7 +270,7 @@
             <i class="far fa-calendar"></i>
             <time datetime="2018-12-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-12-01</time>
             &middot;
-            785
+            801
             words
             &middot;
             4
@@ -358,6 +358,9 @@ Figure 4.1: When I plotted the education index vs. R downloads per 1,000 capita
 <p>The relationship between the two variables is linear now - time for a linear regression!</p>
 <p>That will take the form:</p>
 <p><span class="math display">\[ln(downloads\space per \space 1,000 \space capita)=\beta_0+\beta_1*Education\space index + \varepsilon\]</span></p>
+<p>The F-Statistics will be testing:</p>
+<p><span class="math display">\[ H_0: \beta_1=0\]</span>
+<span class="math display">\[ H_A: \beta_1\neq 0\]</span></p>
 <table>
 <thead>
 <tr class="header">
@@ -389,15 +392,25 @@ Figure 4.1: When I plotted the education index vs. R downloads per 1,000 capita
 </div>
 <div id="results" class="section level1">
 <h1><span class="header-section-number">5</span> Results</h1>
-<p>Based on the model:</p>
-<p><span class="math inline">\(ln(downloads\space per \space 1,000 \space capita)=\beta_0+\beta_1*Education\space index + \varepsilon\)</span></p>
+<ul>
+<li>Based on the model:</li>
+</ul>
+<p><span class="math inline">\(ln(downloads\space per \space 1,000 \space capita)=-9.9203 +0.1034*Education\space index + \varepsilon\)</span></p>
+<p>and the F-Statistic with p-value 0, we can reject <span class="math inline">\(H_0\)</span> and say that there is a relationship between the education index and R Downloads per 1,000 capita.</p>
 <ul>
 <li><p>The education index explains 64.41 percent of the variation in R Downloads per 1,000 capita around the world.</p></li>
-<li><p>The geometric mean of R downloads per 1,000 capita is 0.00004917.</p></li>
-<li><p>A one unit increase in the education index, in this case, one percentage point, is expected to increase, on average, R downloads per 1,000 capita by 10.34%.</p></li>
-<li><p>There is a 95% chance that the following interval contains the true value of the coefficient corresponding to the education index: [9.16% and 11.53%.]</p></li>
-<li><p>So for example, if the fictitious country Republic of Ángela with an education index of 78 and downloads per 1,000 capita of 1.1, increased its education index to 79, R downloads per 1,000 capita would be expected to increase between a range of 1.1 * 1.0916 = 1.201 and 1.1 * 1.1153 = 1.227.</p></li>
+<li><p>The geometric mean of R downloads per 1,000 capita is 0.</p></li>
+<li><p>A one unit increase in the education index, is expected to increase on average, R downloads per 1,000 capita by a factor of 1.109:</p></li>
 </ul>
+<p><span class="math display">\[log(Education\space index\space +1) - log(Education\space index)=0.1034\]</span></p>
+<p><span class="math display">\[log({\frac{Education\space index\space +1}{Education\space index}})=0.1034\]</span></p>
+<p><span class="math display">\[e^{log({\frac{Education\space index\space +1}{Education\space index}})}=e^{0.1034}\]</span>
+<span class="math display">\[\frac{Education\space index\space +1}{Education\space index}=1.109\]</span></p>
+<p>Now, if we wanted to create a confidence interval:</p>
+<p><span class="math display">\[P (e^{lower\space bound}&lt;\frac{Education\space index\space +1}{Education\space index}&lt;e^{upper\space bound})=0.95\]</span>
+The <span class="math inline">\(lower\space bound\)</span> is <span class="math inline">\(point\space estimate-2*SE=0.1034-2*0.0059=\)</span> and the <span class="math inline">\(upper\space bound\)</span> is <span class="math inline">\(point\space estimate+2*SE=0.1034+2*0.0059=0.1152\)</span>,</p>
+<p><span class="math display">\[P (e^{0.0916}&lt;\frac{Education\space index\space +1}{Education\space index}&lt;e^{0.1152})=0.95\]</span>
+<span class="math display">\[P (1.096&lt;\frac{Education\space index\space +1}{Education\space index}&lt;1.122)=0.95\]</span></p>
 <p>We can see this increase by plotting the fitted values:</p>
 <p><img src="../../../post/2018-12-01-linear-regression-r-downloads_files/figure-html/plot-fitted-values-1.png" width="672" /></p>
 </div>
