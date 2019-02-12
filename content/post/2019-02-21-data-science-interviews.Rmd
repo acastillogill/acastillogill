@@ -111,7 +111,9 @@ job_search%>%
   scale_x_date(breaks = "1 day")+
   labs(title ="Time usage during data scientist job search",
        x="Date",
-       y="Time")
+       y="Time",
+       subtitle = "Moved from Spain to UK on 26th Jan.")+
+  scale_fill_brewer(palette = "Paired")
 ```
 
 
