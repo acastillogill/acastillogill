@@ -110,15 +110,12 @@ I learned very much in a very short period of time. It was an exciting time with
 
 I try to track all my work to constantly update my learning loop and efficiently allocate time. I tried to extend this to my job search by tracking as many activities as possible. Here is the key for the tasks I show in the plot along with a short commentary.
 
-## Adapting CVs
-
-Pretty self-explanatory. On the 5th January 2019 I met up with my mentor (more on this later), we went through my CV and my LinkedIn profile in great detail. After, I dedicated a few hours to putting what she suggested into practice. This task had a great time investment. 
 
 ```{r read-time}
 job_search$date <- dmy(job_search$date)
 job_search$task <- as.factor(job_search$task)
 job_search <- job_search %>%
-  select(date, day, amount, task) %>%
+  select(date, amount, task) %>%
   filter (date>"2019-01-04")
 ```
 
@@ -137,13 +134,75 @@ job_search%>%
   scale_fill_brewer(palette = "Paired")
 ```
 
+
+## Adapting CVs
+
+On the 5th January 2019 I met up with my mentor (more on this later), we went through my CV and my LinkedIn profile in great detail. After, I dedicated a few hours to putting what she suggested into practice. This task had a great time investment. 
+
+
+```{r plotting-adapting-CVs, include=TRUE, fig.width=10}
+job_search%>%
+  group_by(date, task)%>%
+  filter(task=="Adapting CVs")%>%
+  ggplot(aes(x=date, y=amount, fill=task))+
+  geom_bar(stat="identity")+
+  theme(axis.text.x = element_text(angle=90,hjust=1))+
+  scale_x_date(breaks = "1 day")+
+  labs(title ="Time spent adapting CVs",
+       x="Date",
+       y="Time")+
+  expand_limits(x=as.Date(c("2019-01-05","2019-02-12")))+
+  scale_fill_manual(values="#A6CEE3" )+
+  theme(legend.position = "none")
+```
+
+
 ## Face-to-face interviews
 
-Self-explanatory again. This is one of my to-improve points. I scheduled four interviews in one week just two days after I moved countries with all my belongings. DO NOT DO THIS. This was not necessary. I could have spaced out interviews more into the future and with more days in between each one. This definitely had a negative impact on my performance on interviews, especially those scheduled later in the week.
+This is one of my to-improve points. I scheduled four interviews in one week just two days after I moved countries with all my belongings. DO NOT DO THIS. This was not necessary. I could have spaced out interviews more into the future and with more days in between each one. This definitely had a negative impact on my performance on interviews, especially those scheduled later in the week.
+
+
+```{r plotting-face-interviews, include=TRUE, fig.width=10}
+
+
+job_search%>%
+  group_by(date, task)%>%
+  filter(task=="Face to face interviews")%>%
+  ggplot(aes(x=date, y=amount, fill=task))+
+  geom_bar(stat="identity")+
+  theme(axis.text.x = element_text(angle=90,hjust=1))+
+  scale_x_date(breaks = "1 day")+
+  labs(title ="Time spent at face-to-face interviews",
+       x="Date",
+       y="Time")+
+  expand_limits(x=as.Date(c("2019-01-05","2019-02-12")))+
+  scale_fill_manual(values =   "#1F78B4"   ) +
+  theme(legend.position = "none")
+```
+
 
 ## Filling out forms
 
 This was a surprise. I thought I would have had to fill out more job applications than I did. The time spent here was minimal because I ended up working mostly with recruiters. I wish I would have tracked it but most of my applications were through LinkedIn. I had the intention to also fill in my details on other job search platforms like Indeed, etc. but this ended up not being necessary. 
+
+```{r plotting-filling-forms, include=TRUE, fig.width=10}
+
+
+job_search%>%
+  group_by(date, task)%>%
+  filter(task=="Filling out forms")%>%
+  ggplot(aes(x=date, y=amount, fill=task))+
+  geom_bar(stat="identity")+
+  theme(axis.text.x = element_text(angle=90,hjust=1))+
+  scale_x_date(breaks = "1 day")+
+  labs(title ="Time spent filling out forms",
+       x="Date",
+       y="Time")+
+  expand_limits(x=as.Date(c("2019-01-05","2019-02-12")))+
+  scale_fill_manual(values =   "#B2DF8A"   ) +
+  theme(legend.position = "none")
+```
+
 
 ## Interview prep
 
@@ -151,17 +210,97 @@ This includes researching companies, preparing for technical tests, doing techni
 
 Notice how during my interview week I split the day between being at interviews and then cramming for the next. This was not fun and most definitely sub-optimal with mixed results.
 
+
+```{r plotting-interview-prep, include=TRUE, fig.width=10}
+
+job_search%>%
+  group_by(date, task)%>%
+  filter(task=="Interview prep")%>%
+  ggplot(aes(x=date, y=amount, fill=task))+
+  geom_bar(stat="identity")+
+  theme(axis.text.x = element_text(angle=90,hjust=1))+
+  scale_x_date(breaks = "1 day")+
+  labs(title ="Time spent preparing for interviews",
+       x="Date",
+       y="Time")+
+  expand_limits(x=as.Date(c("2019-01-05","2019-02-12")))+
+  scale_fill_manual(values =   "#33A02C"   ) +
+  theme(legend.position = "none")
+```
+
+
+
 ## Job admin
 
 This is basically everything related to sending e-mails to arrange phone calls, or interviews, and towards the end, going over the final job offer, signing, sealing it and delivering it to my new employer `r emo::ji("musical_note")`!
+
+```{r plotting-job-admin, include=TRUE, fig.width=10}
+
+job_search%>%
+  group_by(date, task)%>%
+  filter(task=="Job admin")%>%
+  ggplot(aes(x=date, y=amount, fill=task))+
+  geom_bar(stat="identity")+
+  theme(axis.text.x = element_text(angle=90,hjust=1))+
+  scale_x_date(breaks = "1 day")+
+  labs(title ="Time spent doing administrative activities",
+       x="Date",
+       y="Time")+
+  expand_limits(x=as.Date(c("2019-01-05","2019-02-12")))+
+  scale_fill_manual(values =   "#FB9A99"  ) +
+  theme(legend.position = "none")
+```
+
 
 ## Phone calls
 
 This is another point to improve. At the beginning I was taking way too many unexpected phone calls from recruiters. This was an inefficient use of our time. After a bit I tried to push back by asking to send job specs first and then scheduling calls. More on this later. Phone calls also included technical interviews but these were actually only about two hours of the total phone call time. 
 
+```{r plotting-phone-calls, include=TRUE, fig.width=10}
+phone_calls <- job_search%>%
+  filter(task=="Phone calls")%>%
+  summarise(phone_call= seconds_to_period(sum(amount)))
+
+job_search%>%
+  group_by(date, task)%>%
+  filter(task=="Phone calls")%>%
+  ggplot(aes(x=date, y=amount, fill=task))+
+  geom_bar(stat="identity")+
+  theme(axis.text.x = element_text(angle=90,hjust=1))+
+  scale_x_date(breaks = "1 day")+
+  labs(title ="Time spent on phone calls",
+       subtitle=paste("Only about 2.5 hrs of the total ~7 hrs on was spent on phone interviews." ),
+       x="Date",
+       y="Time")+
+  expand_limits(x=as.Date(c("2019-01-05","2019-02-12")))+
+  scale_fill_manual(values =  "#E31A1C"  ) +
+  theme(legend.position = "none")
+```
+
+
+
 ## Writing cover letters
 
 Again, surprisingly low. Only wrote one cover letter as part of an application and didn't hear back from that company at all. The data scientist job search works in mysterious ways. 
+
+```{r plotting-cover-letters, include=TRUE, fig.width=10}
+
+job_search%>%
+  group_by(date, task)%>%
+  filter(task=="Writing cover letters")%>%
+  ggplot(aes(x=date, y=amount, fill=task))+
+  geom_bar(stat="identity")+
+  theme(axis.text.x = element_text(angle=90,hjust=1))+
+  scale_x_date(breaks = "1 day")+
+  labs(title ="Time spent writing cover letters",
+       x="Date",
+       y="Time")+
+  expand_limits(x=as.Date(c("2019-01-05","2019-02-12")))+
+  scale_fill_manual(values = "#FDBF6F" ) +
+  theme(legend.position = "none")
+```
+
+
 
 # What would I have done differently?
 
