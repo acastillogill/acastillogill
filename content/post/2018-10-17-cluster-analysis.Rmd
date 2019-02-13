@@ -6,13 +6,12 @@ slug: cluster-analysis-wear-your-seatbelts
 categories: []
 tags: 
   - Cluster Analysis
-  - EDA
-description: "In this blog post, I set out to explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad."
-banner: "banners/edu_index_downloads_capita.png"
-images: ["banners/edu_index_downloads_capita.png"]
+description: "I do hierarchical clustering on the seatbelts dataset."
+banner: "banners/cluster.png"
+images: ["banners/cluster.png"]
 draft: FALSE
 header: 
-  image: "banners/edu_index_downloads_capita.png"
+  image: "banners/cluster.png"
   caption: ""
 output:
   blogdown::html_page:
@@ -46,7 +45,9 @@ x <-
     "lubridate",
     "RColorBrewer",
     "hrbrthemes",
-    "ggrepel")
+    "ggrepel",
+    "dummies",
+    "stats")
 
 
 lapply(x, require, character.only = TRUE)
@@ -74,10 +75,14 @@ knit_hooks$set(inline = function(x) {
 })
 
 
-seatbelts <- datasets::Seatbelts
 
-data.frame(as.matrix(seatbelts), date=time(seatbelts))
-
+seatbelts <- data.frame(as.matrix(datasets::Seatbelts), date=time(datasets::Seatbelts))
+seatbelts$year <- trunc(seatbelts$date)
+seatbelts$month <- round((seatbelts$date-seatbelts$year)*12+1, digits = 0)
+seatbelts$month <- as.factor(seatbelts$month)
+seatbelts$law <- as.factor(seatbelts$law)
+seatbelts$year <- as.factor(seatbelts$year)
+seatbelts$date <- NULL
 ```
 
 # Summary
@@ -97,8 +102,27 @@ data.frame(as.matrix(seatbelts), date=time(seatbelts))
 
 # Dataset description 
 
+```{r converting-month-to-dummy}
+#Remove categorical variables
+num_seatbelts <- seatbelts[,1:7]
+#scale numeric variables
+num_seatbelts <- scale(num_seatbelts)
+```
 
-# The relationship between the education index and R downloads
+
+
+```{r hierarchical-clustering}
+dist_seat <- dist(num_seatbelts, method = "euclidean")
+hc_seat <- hclust(dist_seat, method = "complete")
+clusters_k2 <- cutree(hc_seat, k=2)
+seat_k2_complete <- mutate(seatbelts, cluster=clusters_k2)
+
+count(seat_k2_complete, cluster)
+
+ggplot(seat_k2_complete, aes(x = law, y = month, color = factor(cluster))) +
+  geom_jitter()+
+  scale_color_brewer(palette="Dark2")
+```
 
 
 # Results

@@ -55,8 +55,8 @@
       <pubDate>Wed, 17 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>/2018/10/cluster-analysis-wear-your-seatbelts/</guid>
-      <description>1 Summary 2 Question 3 Dataset description 4 The relationship between the education index and R downloads 5 Results 6 Conclusion   1 Summary To see the all the code used in this post, visit my GitHub repository for this site
- Objectives: To find what what kind of clusters are there in the seatbelts dataset. Challenge: To implement a clustering algorithm for the first time. Data points: 294,912 Language: R   2 Question What types of clusters are there in the seatbelts dataset?</description>
+      <description>1 Summary 2 Question 3 Dataset description 4 Results 5 Conclusion   1 Summary To see the all the code used in this post, visit my GitHub repository for this site
+ Objectives: To find what what kind of clusters are there in the seatbelts dataset. Challenge: To implement a clustering algorithm for the first time. Data points: 1,920 Language: R   2 Question What types of clusters are there in the seatbelts dataset?</description>
     </item>
     
     <item>

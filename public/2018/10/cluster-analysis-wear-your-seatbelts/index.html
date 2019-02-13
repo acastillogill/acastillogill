@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="author" content="Ángela Castillo-Gill">
     
-      <meta name="description" content="In this blog post, I set out to explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad.">
+      <meta name="description" content="I do hierarchical clustering on the seatbelts dataset.">
     
     
     <link rel="canonical" href="../../../2018/10/cluster-analysis-wear-your-seatbelts/"/>
@@ -24,34 +24,34 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:regular,medium,bold' rel='stylesheet' type='text/css'>
     <meta property="og:title" content="Cluster analysis: wear your seatbelts" />
-<meta property="og:description" content="In this blog post, I set out to explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad." />
+<meta property="og:description" content="I do hierarchical clustering on the seatbelts dataset." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/2018/10/cluster-analysis-wear-your-seatbelts/" />
-<meta property="og:image" content="/banners/edu_index_downloads_capita.png" />
+<meta property="og:image" content="/banners/cluster.png" />
 <meta property="article:published_time" content="2018-10-17T00:00:00&#43;00:00"/>
 <meta property="article:modified_time" content="2018-10-17T00:00:00&#43;00:00"/>
 
     
     
 <meta itemprop="name" content="Cluster analysis: wear your seatbelts">
-<meta itemprop="description" content="In this blog post, I set out to explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad.">
+<meta itemprop="description" content="I do hierarchical clustering on the seatbelts dataset.">
 
 
 <meta itemprop="datePublished" content="2018-10-17T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-10-17T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="98">
+<meta itemprop="wordCount" content="78">
 
-  <meta itemprop="image" content="/banners/edu_index_downloads_capita.png">
+  <meta itemprop="image" content="/banners/cluster.png">
 
 
 
-<meta itemprop="keywords" content="Cluster Analysis,EDA," />
+<meta itemprop="keywords" content="Cluster Analysis," />
 
     <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="/banners/edu_index_downloads_capita.png"/>
+<meta name="twitter:image" content="/banners/cluster.png"/>
 
 <meta name="twitter:title" content="Cluster analysis: wear your seatbelts"/>
-<meta name="twitter:description" content="In this blog post, I set out to explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad."/>
+<meta name="twitter:description" content="I do hierarchical clustering on the seatbelts dataset."/>
 <meta name="twitter:site" content="@acastillogill"/>
 
     
@@ -254,7 +254,7 @@
     <article id="page-undefined" class="article article-type-page" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
-            <img src="../../../banners/edu_index_downloads_capita.png" class="article-banner">
+            <img src="../../../banners/cluster.png" class="article-banner">
         
 
         <header class="article-header">
@@ -270,7 +270,7 @@
             <i class="far fa-calendar"></i>
             <time datetime="2018-10-17 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-10-17</time>
             &middot;
-            98
+            78
             words
             &middot;
             1
@@ -290,10 +290,6 @@
                 
                 
                 <a class="article-category-link" href="../../../tags/cluster-analysis">Cluster Analysis</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="../../../tags/eda">EDA</a>
                 
                 
             </div>
@@ -310,9 +306,8 @@
 <li><a href="#summary"><span class="toc-section-number">1</span> Summary</a></li>
 <li><a href="#question"><span class="toc-section-number">2</span> Question</a></li>
 <li><a href="#dataset-description"><span class="toc-section-number">3</span> Dataset description</a></li>
-<li><a href="#the-relationship-between-the-education-index-and-r-downloads"><span class="toc-section-number">4</span> The relationship between the education index and R downloads</a></li>
-<li><a href="#results"><span class="toc-section-number">5</span> Results</a></li>
-<li><a href="#conclusion"><span class="toc-section-number">6</span> Conclusion</a></li>
+<li><a href="#results"><span class="toc-section-number">4</span> Results</a></li>
+<li><a href="#conclusion"><span class="toc-section-number">5</span> Conclusion</a></li>
 </ul>
 </div>
 
@@ -322,7 +317,7 @@
 <ul>
 <li>Objectives: To find what what kind of clusters are there in the seatbelts dataset.</li>
 <li>Challenge: To implement a clustering algorithm for the first time.</li>
-<li>Data points: 294,912</li>
+<li>Data points: 1,920</li>
 <li>Language: R</li>
 </ul>
 </div>
@@ -333,14 +328,11 @@
 <div id="dataset-description" class="section level1">
 <h1><span class="header-section-number">3</span> Dataset description</h1>
 </div>
-<div id="the-relationship-between-the-education-index-and-r-downloads" class="section level1">
-<h1><span class="header-section-number">4</span> The relationship between the education index and R downloads</h1>
-</div>
 <div id="results" class="section level1">
-<h1><span class="header-section-number">5</span> Results</h1>
+<h1><span class="header-section-number">4</span> Results</h1>
 </div>
 <div id="conclusion" class="section level1">
-<h1><span class="header-section-number">6</span> Conclusion</h1>
+<h1><span class="header-section-number">5</span> Conclusion</h1>
 </div>
 
         </div>
