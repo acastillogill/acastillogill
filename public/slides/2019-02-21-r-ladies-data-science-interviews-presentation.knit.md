@@ -16,15 +16,7 @@ output:
 ---
 
 
-```{r setup, include=FALSE}
-options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(tidy = FALSE,
-                      echo=FALSE,
-                      include=TRUE,
-                      message=FALSE,
-                      warning=FALSE,
-                      fig.width=12)
-```
+
 
 
 class: inverse, center, middle
@@ -51,35 +43,7 @@ class: inverse, center, middle
 # Here's how I spent my time
 
 Full blogpost [here.](https://acastillogill.com/2019/02/data-science-interviews/)
-```{r time-usage-plot}
-
-library(tidyverse)
-library(lubridate)
-library(hrbrthemes)
-theme_set(theme_ipsum_rc())
-#Read data
-
-job_search <- read_csv(file=here::here("static","data","job_search.csv"))
-
-#Prepare data
-job_search$date <- dmy(job_search$date)
-job_search$task <- as.factor(job_search$task)
-job_search <- job_search %>%
-  select(date, day, amount, task) %>%
-  filter (date>"2019-01-04")
-
-#Create plot
-job_search%>%
-  group_by(date, task)%>%
-  ggplot(aes(x=date, y=amount, fill=task))+
-  geom_bar(stat="identity")+
-  theme(axis.text.x = element_text(angle=90,hjust=1))+
-  scale_x_date(breaks = "1 day")+
-  labs(title ="Time usage during data scientist job search",
-       x="Date",
-       y="Time")+
-  scale_fill_brewer(palette = "Paired")
-```
+![](2019-02-21-r-ladies-data-science-interviews-presentation_files/figure-html/time-usage-plot-1.png)<!-- -->
 
 
 
@@ -102,23 +66,7 @@ class: center
 
 # Establish healthy boundaries with recruiters
 
-```{r plotting-phone-calls}
-
-job_search%>%
-  group_by(date, task)%>%
-  filter(task=="Phone calls")%>%
-  ggplot(aes(x=date, y=amount, fill=task))+
-  geom_bar(stat="identity")+
-  theme(axis.text.x = element_text(angle=90,hjust=1))+
-  scale_x_date(breaks = "1 day")+
-  labs(title ="Time spent on phone calls",
-       subtitle=paste("Only about 2.5 hrs of the total ~7 hrs on was spent on phone interviews." ),
-       x="Date",
-       y="Time")+
-  expand_limits(x=as.Date(c("2019-01-05","2019-02-12")))+
-  scale_fill_manual(values =  "#E31A1C"  ) +
-  theme(legend.position = "none")
-```
+![](2019-02-21-r-ladies-data-science-interviews-presentation_files/figure-html/plotting-phone-calls-1.png)<!-- -->
 
 ---
 
@@ -142,24 +90,7 @@ class: center
 
 
 
-```{r plotting-face-interviews}
-
-
-job_search%>%
-  group_by(date, task)%>%
-  filter(task=="Face to face interviews")%>%
-  ggplot(aes(x=date, y=amount, fill=task))+
-  geom_bar(stat="identity")+
-  theme(axis.text.x = element_text(angle=90,hjust=1))+
-  scale_x_date(breaks = "1 day")+
-  labs(title ="Time spent at face-to-face interviews",
-       subtitle = "Had moved countries two days before interviews.",
-       x="Date",
-       y="Time")+
-  expand_limits(x=as.Date(c("2019-01-05","2019-02-12")))+
-  scale_fill_manual(values =   "#1F78B4"   ) +
-  theme(legend.position = "none")
-```
+![](2019-02-21-r-ladies-data-science-interviews-presentation_files/figure-html/plotting-face-interviews-1.png)<!-- -->
 
 
 ---
@@ -201,22 +132,7 @@ class: center
 
 
 # Have a mentor to support you along the way
-```{r plotting-adapting-CVs}
-job_search%>%
-  group_by(date, task)%>%
-  filter(task=="Adapting CVs")%>%
-  ggplot(aes(x=date, y=amount, fill=task))+
-  geom_bar(stat="identity")+
-  theme(axis.text.x = element_text(angle=90,hjust=1))+
-  scale_x_date(breaks = "1 day")+
-  labs(title ="Time spent adapting CVs",
-       subtitle="Intensive one-to-one session on 2019-01-05.",
-       x="Date",
-       y="Time")+
-  expand_limits(x=as.Date(c("2019-01-05","2019-02-12")))+
-  scale_fill_manual(values="#A6CEE3" )+
-  theme(legend.position = "none")
-```
+![](2019-02-21-r-ladies-data-science-interviews-presentation_files/figure-html/plotting-adapting-CVs-1.png)<!-- -->
 
 ---
 
