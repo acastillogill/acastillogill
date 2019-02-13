@@ -72,7 +72,7 @@ job_search <- read_csv(file=here::here("static","data","job_search.csv"))
 
 In this post I share how I spent my time during my data scientist job search. I point out the things I would have done differently and the things I'm glad I did. The content of this blogpost was first presented at R-Ladies London on 2019-02-21 and the presentation is [here](https://acastillogill.com/slides/2019-02-21-r-ladies-data-science-interviews-presentation.html#1): 
 
-```{r echo = FALSE}
+```{r include=TRUE}
 knitr::include_url('https://acastillogill.com/slides/2019-02-21-r-ladies-data-science-interviews-presentation.html#1')
 ```
 
@@ -108,7 +108,7 @@ I learned very much in a very short period of time. It was an exciting time with
 
 # Here's how I spent my time
 
-So to the best of my abilities, I try to track all my work. I do this to constantly update my learning loop and efficiently allocate time. I tried to extend this to my job search by tracking as many activities as possible. Here is the key for the tasks I show along with a commentary on my usage. 
+I try to track all my work to constantly update my learning loop and efficiently allocate time. I tried to extend this to my job search by tracking as many activities as possible. Here is the key for the tasks I show in the plot along with a short commentary.
 
 ## Adapting CVs
 
@@ -153,7 +153,7 @@ Notice how during my interview week I split the day between being at interviews 
 
 ## Job admin
 
-This is basically everything related to sending e-mails to arrange phone calls, or interviews, and towards the end, going over the final job offer, signing and posting it. Signed, sealed, delivered, I'm yours `r emo::ji("musical_note")`!
+This is basically everything related to sending e-mails to arrange phone calls, or interviews, and towards the end, going over the final job offer, signing, sealing it and delivering it to my new employer `r emo::ji("musical_note")`!
 
 ## Phone calls
 
