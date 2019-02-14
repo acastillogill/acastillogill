@@ -1,5 +1,5 @@
 ---
-title: "Hierarchical clustering: cerals, supermarket shelves, and sugar"
+title: "Clustering: cereals, supermarket shelves, and sugar"
 author: Ángela Castillo-Gill
 date: '2018-10-17'
 slug: cluster-analysis-cereals
