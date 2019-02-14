@@ -1,7 +1,7 @@
 ---
 title: Exploring Kiva loans
 author: Ángela Castillo-Gill
-date: '2018-07-07'
+date: '2018-08-07'
 slug: exploring-kiva-loans
 categories: []
 tags: 

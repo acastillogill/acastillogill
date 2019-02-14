@@ -52,10 +52,10 @@
     
     <item>
       <title>Exploring Kiva loans</title>
-      <link>/2018/07/exploring-kiva-loans/</link>
-      <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
+      <link>/2018/08/exploring-kiva-loans/</link>
+      <pubDate>Tue, 07 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/07/exploring-kiva-loans/</guid>
+      <guid>/2018/08/exploring-kiva-loans/</guid>
       <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 5 Exploratory data analysis 5.1 Borrower gender by region 5.2 Repayment interval by region 5.3 Loan use by region  6 Techniques used 7 Questions from this analysis   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
  Objectives: To visualise a dataset and understand its main trends.</description>
     </item>

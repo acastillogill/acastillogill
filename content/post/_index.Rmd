@@ -10,4 +10,33 @@ output:
 
 # 2019
 
+
+## February
+
+[Data science interviews: lessons learned](https://acastillogill.com/2019/02/data-science-interviews/)
+
+## January
+
+[NBA free throws analysis](https://acastillogill.com/2019/01/nba-stats/)
+
 # 2018
+
+## December
+
+[Log-linear regression: who tends to download R software](https://acastillogill.com/2018/12/log-linear-regression-r-downloads/)
+
+## November
+
+[Maps: R-Downloads around the world](https://acastillogill.com/2018/11/r-downloads-around-the-world/)
+
+## October
+
+[Clustering: cereals, supermarket shelves, and sugar](https://acastillogill.com/2018/10/cluster-analysis-cereals/)
+
+## September
+
+[Regression trees: predicting property prices](https://acastillogill.com/2018/08/regression-trees-predicting-property-prices/)
+
+## August
+
+[Exploring Kiva loans](https://acastillogill.com/2018/07/exploring-kiva-loans/)
