@@ -1,0 +1,73 @@
+---
+title: "demo"
+author: "Ángela"
+date: "11/02/2019"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+x <-
+  c("shiny",
+    "knitr",
+    "here",
+    "scales",
+    "cowplot",
+    "tidyverse",
+    "lubridate",
+    "RColorBrewer",
+    "hrbrthemes",
+    "ggrepel",
+    "googlesheets")
+
+
+lapply(x, require, character.only = TRUE)
+
+#Set theme
+theme_set(theme_ipsum_rc())
+
+
+#Read the data
+money_gs <-  gs_title("Money tracker (Responses)")
+money <- gs_read(money_gs)
+
+```
+
+```{r UI}
+ui <- fluidPage(
+  
+  # Sidebar layout with an input and output definitions
+  
+  sidebarLayout(
+    
+     # Inputs
+    
+    sidebarPanel(
+      
+      #Select variable for y-axis
+      
+      selectInput(inputId = "fill",
+                  label = "Who:",
+                  choices = c("Tim","Angela","Joint"),
+                  selected = "Joint"),
+      
+      
+    ),
+    
+    
+    #Outputs
+    
+    mainPanel(
+      plotOutput(outputId = "plot")
+    )
+    
+  )
+    
+)
+  
+#Define server function required to create the scatterplot 
+
+server <- function(input, output){}
+```
+

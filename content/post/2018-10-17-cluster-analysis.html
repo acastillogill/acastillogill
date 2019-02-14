@@ -23,14 +23,16 @@ editor_options:
   chunk_output_type: console
 ---
 
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
 
 <div id="TOC">
 <ul>
 <li><a href="#summary"><span class="toc-section-number">1</span> Summary</a></li>
 <li><a href="#question"><span class="toc-section-number">2</span> Question</a></li>
 <li><a href="#dataset-description"><span class="toc-section-number">3</span> Dataset description</a></li>
-<li><a href="#results"><span class="toc-section-number">4</span> Results</a></li>
-<li><a href="#conclusion"><span class="toc-section-number">5</span> Conclusion</a></li>
+<li><a href="#hierarchical-clustering"><span class="toc-section-number">4</span> Hierarchical clustering</a></li>
+<li><a href="#results"><span class="toc-section-number">5</span> Results</a></li>
+<li><a href="#conclusion"><span class="toc-section-number">6</span> Conclusion</a></li>
 </ul>
 </div>
 
@@ -38,22 +40,235 @@ editor_options:
 <h1><span class="header-section-number">1</span> Summary</h1>
 <p><em>To see the all the code used in this post, visit my <a href="https://github.com/acastillogill/acastillogill">GitHub repository for this site</a></em></p>
 <ul>
-<li>Objectives: To find what what kind of clusters are there in the seatbelts dataset.</li>
+<li>Objectives: To find what what kind of clusters are there in the <a href="https://www.kaggle.com/crawford/80-cereals/home">cereals dataset</a> available on Kaggle.</li>
 <li>Challenge: To implement a clustering algorithm for the first time.</li>
-<li>Data points: 1,920</li>
+<li>Data points: 1232</li>
 <li>Language: R</li>
 </ul>
 </div>
 <div id="question" class="section level1">
 <h1><span class="header-section-number">2</span> Question</h1>
-<p><strong>What types of clusters are there in the seatbelts dataset?</strong></p>
+<p><strong>What types of clusters are there in the cereals dataset?</strong></p>
 </div>
 <div id="dataset-description" class="section level1">
 <h1><span class="header-section-number">3</span> Dataset description</h1>
+<p>The dataset is available on Kaggle. It contains nutrition data on 80 cereal products. I chose this dataset because it had plenty of numeric variables and I’m interested in using two types of clustering algorithms to explore the data. Another reason I chose this dataset is because the data is unlabelled so I can add labels with clustering.</p>
+<p>I wanted to focus on numeric variables using Euclidean distances. Not all variables in the dataset were numeric: the cereal name, the manufacturer, the type of cereal (hot or cold). There was also a numeric variable <code>Shelf</code> corresponding to the supemarket display shelf that doesn’t make much sense as a numeric variable, so I removed it from the analysis. After leaving just numeric variables, I was left with 12 variables.</p>
+<p>I first scaled the data because I will calculate the Euclidean distance between each cereal but the variables are on different scales. When the data are scaled, the mean for each variable will be zero and a standard deviation of one.</p>
+</div>
+<div id="hierarchical-clustering" class="section level1">
+<h1><span class="header-section-number">4</span> Hierarchical clustering</h1>
+<p>I first implemented hierarchical clustering with three different linkage methods.</p>
+<ul>
+<li>Complete: maximum distance between two sets.</li>
+<li>Single: minimum distance between two sets.</li>
+<li>Average: average distance between two sets.</li>
+</ul>
+<p>The complete linkage method will choose the closest observation based on the maximum distance bewteen two sets. I wanted balanced clusters so I ended up choosing the complete linkage method that classified observations more or less into two similar groups.</p>
+<div class="figure"><span id="fig:dendrograms"></span>
+<img src="/post/2018-10-17-cluster-analysis_files/figure-html/dendrograms-1.png" alt="This tree diagram shows the complete linkage process. It first linked the two observations that were closest together. Then it chose the closest observation based on the maximum distance between the considered observation and its distance to each element in the pair. The height in the plot shows the distance between two observation. Each horizontal line represents the number of clusters. After choosing two clusters, we can say that maximum distance between observations in the two clusters is equal two or less than 11." width="1344" />
+<p class="caption">
+Figure 4.1: This tree diagram shows the complete linkage process. It first linked the two observations that were closest together. Then it chose the closest observation based on the maximum distance between the considered observation and its distance to each element in the pair. The height in the plot shows the distance between two observation. Each horizontal line represents the number of clusters. After choosing two clusters, we can say that maximum distance between observations in the two clusters is equal two or less than 11.
+</p>
+</div>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:table-counting-sugar-shelf">Table 4.1: </span>The top shelf (3), has an equal quantity of cereals belonging to either cluster. The bottom shelf has almost twice as doubl cluster 2 cereals. Finally, the middle shelf has almost as three times cluster 2 cereals.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Cluster 1
+</th>
+<th style="text-align:right;">
+Cluster 2
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+18
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:mean-for-each-cluster">Table 4.2: </span>
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+cluster
+</th>
+<th style="text-align:right;">
+calories
+</th>
+<th style="text-align:right;">
+protein
+</th>
+<th style="text-align:right;">
+fat
+</th>
+<th style="text-align:right;">
+sodium
+</th>
+<th style="text-align:right;">
+fiber
+</th>
+<th style="text-align:right;">
+carbo
+</th>
+<th style="text-align:right;">
+sugars
+</th>
+<th style="text-align:right;">
+potass
+</th>
+<th style="text-align:right;">
+vitamins
+</th>
+<th style="text-align:right;">
+weight
+</th>
+<th style="text-align:right;">
+cups
+</th>
+<th style="text-align:right;">
+rating
+</th>
+<th style="text-align:right;">
+complete_count$n
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+95.67
+</td>
+<td style="text-align:right;">
+3.100
+</td>
+<td style="text-align:right;">
+1.1000
+</td>
+<td style="text-align:right;">
+99.5
+</td>
+<td style="text-align:right;">
+3.44
+</td>
+<td style="text-align:right;">
+13.42
+</td>
+<td style="text-align:right;">
+4.20
+</td>
+<td style="text-align:right;">
+128.13
+</td>
+<td style="text-align:right;">
+18.33
+</td>
+<td style="text-align:right;">
+0.961
+</td>
+<td style="text-align:right;">
+0.7203
+</td>
+<td style="text-align:right;">
+54.65
+</td>
+<td style="text-align:right;">
+30
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+114.04
+</td>
+<td style="text-align:right;">
+2.192
+</td>
+<td style="text-align:right;">
+0.9574
+</td>
+<td style="text-align:right;">
+198.1
+</td>
+<td style="text-align:right;">
+1.33
+</td>
+<td style="text-align:right;">
+15.35
+</td>
+<td style="text-align:right;">
+8.66
+</td>
+<td style="text-align:right;">
+75.62
+</td>
+<td style="text-align:right;">
+34.57
+</td>
+<td style="text-align:right;">
+1.073
+</td>
+<td style="text-align:right;">
+0.8853
+</td>
+<td style="text-align:right;">
+35.02
+</td>
+<td style="text-align:right;">
+47
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/post/2018-10-17-cluster-analysis_files/figure-html/plot-sugar-shelf-1.png" width="1344" /></p>
 </div>
 <div id="results" class="section level1">
-<h1><span class="header-section-number">4</span> Results</h1>
+<h1><span class="header-section-number">5</span> Results</h1>
 </div>
 <div id="conclusion" class="section level1">
-<h1><span class="header-section-number">5</span> Conclusion</h1>
+<h1><span class="header-section-number">6</span> Conclusion</h1>
 </div>
