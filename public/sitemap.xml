@@ -23,7 +23,7 @@
   </url>
   
   <url>
-    <loc>/2018/10/cluster-analysis-wear-your-seatbelts/</loc>
+    <loc>/2018/10/cluster-analysis-cereals/</loc>
     <lastmod>2018-10-17T00:00:00+00:00</lastmod>
   </url>
   
@@ -79,6 +79,12 @@
   <url>
     <loc>/tags/exploratory-data-analysis/</loc>
     <lastmod>2018-07-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/hierarchical-clustering/</loc>
+    <lastmod>2018-10-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

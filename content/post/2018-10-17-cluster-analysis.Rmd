@@ -1,12 +1,13 @@
 ---
-title: "Cluster analysis: wear your seatbelts"
+title: "Hierarchical clustering: cerals, supermarket shelves, and sugar"
 author: Ángela Castillo-Gill
 date: '2018-10-17'
-slug: cluster-analysis-wear-your-seatbelts
+slug: cluster-analysis-cereals
 categories: []
 tags: 
-  - Cluster Analysis
-description: "I do hierarchical clustering on the seatbelts dataset."
+  - Cluster analysis
+  - Hierarchical clustering
+description: "I do hierarchical clustering on the cereals dataset."
 banner: "banners/cluster.png"
 images: ["banners/cluster.png"]
 draft: FALSE
@@ -217,6 +218,9 @@ cereals_k2_complete %>%
   
 
 ```
+
+# K-means clustering
+
 
 
 # Results
