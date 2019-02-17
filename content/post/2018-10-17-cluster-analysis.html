@@ -7,7 +7,7 @@ categories: []
 tags: 
   - Cluster analysis
   - Hierarchical clustering
-description: "I do hierarchical clustering on the cereals dataset."
+description: "I do perform two types of clustering on the Kaggle cereals dataset."
 banner: "banners/cluster.png"
 images: ["banners/cluster.png"]
 draft: FALSE
@@ -33,8 +33,10 @@ editor_options:
 <li><a href="#dataset-description"><span class="toc-section-number">3</span> Dataset description</a></li>
 <li><a href="#hierarchical-clustering"><span class="toc-section-number">4</span> Hierarchical clustering</a></li>
 <li><a href="#k-means-clustering"><span class="toc-section-number">5</span> K-means clustering</a></li>
-<li><a href="#results"><span class="toc-section-number">6</span> Results</a></li>
-<li><a href="#conclusion"><span class="toc-section-number">7</span> Conclusion</a></li>
+<li><a href="#estimating-k-empirically-with-the-elbow-method"><span class="toc-section-number">6</span> Estimating K empirically with the elbow method</a></li>
+<li><a href="#estimating-k-empirically-with-silhouette-analysis"><span class="toc-section-number">7</span> Estimating k empirically with silhouette analysis</a></li>
+<li><a href="#results"><span class="toc-section-number">8</span> Results</a></li>
+<li><a href="#conclusion"><span class="toc-section-number">9</span> Conclusion</a></li>
 </ul>
 </div>
 
@@ -270,10 +272,19 @@ complete_count$n
 </div>
 <div id="k-means-clustering" class="section level1">
 <h1><span class="header-section-number">5</span> K-means clustering</h1>
+<p>The first step of the K-means clustering is to decide how many clusters do we want. This is because the first step of the algorithm is to initialise k-points at random positions, these are called cluster centroids. In a second step, the Euclidean distance between each observation and the centroid is calculated. Observations are assigned to the closest centroid. The third step is to move the centroids to the central points of the resulting clusters. Once this is done, the second and third step are repeated until the centroids don’t move any further and the observations are no longer reassigned.</p>
+</div>
+<div id="estimating-k-empirically-with-the-elbow-method" class="section level1">
+<h1><span class="header-section-number">6</span> Estimating K empirically with the elbow method</h1>
+<p>This method tries to estimate the number of k’s that we should have. It calculates the sum of the distances between each observation and the cluster corresponding to the observation to which each observation is assigned.</p>
+</div>
+<div id="estimating-k-empirically-with-silhouette-analysis" class="section level1">
+<h1><span class="header-section-number">7</span> Estimating k empirically with silhouette analysis</h1>
+<p>The silhouette width is a measurement composed by the Within Cluster Distance (each observation to every other observation) and the Closest Neighbor Distance (the closest average distance from that observation to the points of the closest neighboring cluster).</p>
 </div>
 <div id="results" class="section level1">
-<h1><span class="header-section-number">6</span> Results</h1>
+<h1><span class="header-section-number">8</span> Results</h1>
 </div>
 <div id="conclusion" class="section level1">
-<h1><span class="header-section-number">7</span> Conclusion</h1>
+<h1><span class="header-section-number">9</span> Conclusion</h1>
 </div>
