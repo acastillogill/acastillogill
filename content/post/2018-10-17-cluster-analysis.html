@@ -32,11 +32,8 @@ editor_options:
 <li><a href="#question"><span class="toc-section-number">2</span> Question</a></li>
 <li><a href="#dataset-description"><span class="toc-section-number">3</span> Dataset description</a></li>
 <li><a href="#hierarchical-clustering"><span class="toc-section-number">4</span> Hierarchical clustering</a></li>
-<li><a href="#k-means-clustering"><span class="toc-section-number">5</span> K-means clustering</a></li>
-<li><a href="#estimating-k-empirically-with-the-elbow-method"><span class="toc-section-number">6</span> Estimating K empirically with the elbow method</a></li>
-<li><a href="#estimating-k-empirically-with-silhouette-analysis"><span class="toc-section-number">7</span> Estimating k empirically with silhouette analysis</a></li>
-<li><a href="#results"><span class="toc-section-number">8</span> Results</a></li>
-<li><a href="#conclusion"><span class="toc-section-number">9</span> Conclusion</a></li>
+<li><a href="#results"><span class="toc-section-number">5</span> Results</a></li>
+<li><a href="#conclusion"><span class="toc-section-number">6</span> Conclusion</a></li>
 </ul>
 </div>
 
@@ -62,22 +59,152 @@ editor_options:
 </div>
 <div id="hierarchical-clustering" class="section level1">
 <h1><span class="header-section-number">4</span> Hierarchical clustering</h1>
-<p>I first implemented hierarchical clustering with three different linkage methods.</p>
-<ul>
-<li>Complete: maximum distance between two sets.</li>
-<li>Single: minimum distance between two sets.</li>
-<li>Average: average distance between two sets.</li>
-</ul>
-<p>The complete linkage method will choose the closest observation based on the maximum distance bewteen two sets. I wanted balanced clusters so I ended up choosing the complete linkage method that classified observations more or less into two similar groups.</p>
-<div class="figure"><span id="fig:dendrograms"></span>
-<img src="/post/2018-10-17-cluster-analysis_files/figure-html/dendrograms-1.png" alt="This tree diagram shows the complete linkage process. It first linked the two observations that were closest together. Then it chose the closest observation based on the maximum distance between the considered observation and its distance to each element in the pair. The height in the plot shows the distance between two observation. Each horizontal line represents the number of clusters. After choosing two clusters, we can say that maximum distance between observations in the two clusters is equal two or less than 11." width="1344" />
+<p>I first implemented hierarchical clustering with three different linkage methods. Generally, the hierarchical clustering algorithm works by first linking the two observations that are closest together. It then chooses the closest observation based on <strong>a distance</strong> between the current observation and its distance to each element in a pair. That distance may vary according to the type of linkage as I show in the next tree diagrams (or dendrograms).</p>
+<div class="figure"><span id="fig:plot-complete-linkage"></span>
+<img src="/post/2018-10-17-cluster-analysis_files/figure-html/plot-complete-linkage-1.png" alt="This tree diagram shows the complete linkage process. Here the algorithm chooses the closest MAXIMUM distance between the considered observation and the current pair. The height in the plot shows the distance between two observation. Each horizontal line represents the number of clusters. After choosing two clusters, we can say that maximum distance between observations in the two clusters is equal two or less than 11.06." width="1344" />
 <p class="caption">
-Figure 4.1: This tree diagram shows the complete linkage process. It first linked the two observations that were closest together. Then it chose the closest observation based on the maximum distance between the considered observation and its distance to each element in the pair. The height in the plot shows the distance between two observation. Each horizontal line represents the number of clusters. After choosing two clusters, we can say that maximum distance between observations in the two clusters is equal two or less than 11.
+Figure 4.1: This tree diagram shows the complete linkage process. Here the algorithm chooses the closest MAXIMUM distance between the considered observation and the current pair. The height in the plot shows the distance between two observation. Each horizontal line represents the number of clusters. After choosing two clusters, we can say that maximum distance between observations in the two clusters is equal two or less than 11.06.
 </p>
 </div>
+<div class="figure"><span id="fig:plot-average-linkage"></span>
+<img src="/post/2018-10-17-cluster-analysis_files/figure-html/plot-average-linkage-1.png" alt="This is the average linkage with maximum height 7.57. Here the algorithm chooses the closest AVERAGE distance between the considered observation and the current pair. Although the maximum distance between obsverations in a cluster is shorter than in complete linkage, average linkage leads to one cluster with three observations and another with 74. This an unbalanced set of clusters." width="1344" />
+<p class="caption">
+Figure 4.2: This is the average linkage with maximum height 7.57. Here the algorithm chooses the closest AVERAGE distance between the considered observation and the current pair. Although the maximum distance between obsverations in a cluster is shorter than in complete linkage, average linkage leads to one cluster with three observations and another with 74. This an unbalanced set of clusters.
+</p>
+</div>
+<div class="figure"><span id="fig:plot-single-linkage"></span>
+<img src="/post/2018-10-17-cluster-analysis_files/figure-html/plot-single-linkage-1.png" alt="Single linkage has even a smaller distance between observations with the maximum being 4.16. Here the algorithm chooses the closest MINIMUM distance between the considered observation and the current pair. Here 76 observations are in one cluster and one is in another. " width="1344" />
+<p class="caption">
+Figure 4.3: Single linkage has even a smaller distance between observations with the maximum being 4.16. Here the algorithm chooses the closest MINIMUM distance between the considered observation and the current pair. Here 76 observations are in one cluster and one is in another.
+</p>
+</div>
+<p>I wanted balanced clusters so I ended up choosing the complete linkage method that classified observations more or less into two similar groups with one cluster having 30 observations and the other 47. Now I’d like to show the differences amongst clusters for each numerical variable.</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:table-counting-sugar-shelf">Table 4.1: </span>The top shelf (3), has an equal quantity of cereals belonging to either cluster. The bottom shelf has almost twice as doubl cluster 2 cereals. Finally, the middle shelf has almost as three times cluster 2 cereals.
+<span id="tab:mean-for-each-cluster">Table 4.1: </span>Cluster two on average has 20% more calores, 35% less protein, 70% more sodium, 60% less fiber, more than twice as much sugar, 40% less potasium, 86% more vitamins and 37% lower ratings.
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+cluster
+</th>
+<th style="text-align:right;">
+calories
+</th>
+<th style="text-align:right;">
+protein
+</th>
+<th style="text-align:right;">
+fat
+</th>
+<th style="text-align:right;">
+sodium
+</th>
+<th style="text-align:right;">
+fiber
+</th>
+<th style="text-align:right;">
+carbo
+</th>
+<th style="text-align:right;">
+sugars
+</th>
+<th style="text-align:right;">
+potass
+</th>
+<th style="text-align:right;">
+vitamins
+</th>
+<th style="text-align:right;">
+rating
+</th>
+<th style="text-align:right;">
+complete_count$n
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+95.67
+</td>
+<td style="text-align:right;">
+3.100
+</td>
+<td style="text-align:right;">
+1.1000
+</td>
+<td style="text-align:right;">
+99.5
+</td>
+<td style="text-align:right;">
+3.44
+</td>
+<td style="text-align:right;">
+13.42
+</td>
+<td style="text-align:right;">
+4.20
+</td>
+<td style="text-align:right;">
+128.13
+</td>
+<td style="text-align:right;">
+18.33
+</td>
+<td style="text-align:right;">
+54.65
+</td>
+<td style="text-align:right;">
+30
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+114.04
+</td>
+<td style="text-align:right;">
+2.192
+</td>
+<td style="text-align:right;">
+0.9574
+</td>
+<td style="text-align:right;">
+198.1
+</td>
+<td style="text-align:right;">
+1.33
+</td>
+<td style="text-align:right;">
+15.35
+</td>
+<td style="text-align:right;">
+8.66
+</td>
+<td style="text-align:right;">
+75.62
+</td>
+<td style="text-align:right;">
+34.57
+</td>
+<td style="text-align:right;">
+35.02
+</td>
+<td style="text-align:right;">
+47
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:table-counting-sugar-shelf">Table 4.2: </span>The top shelf (3), has roughly an equal quantity of cereals belonging to either cluster. The bottom shelf (1) only has two cereals difference. The middle shelf, however, has three times as much cluster two
 </caption>
 <thead>
 <tr>
@@ -127,164 +254,12 @@ Cluster 2
 </tr>
 </tbody>
 </table>
-<table class="table" style="margin-left: auto; margin-right: auto;">
-<caption>
-<span id="tab:mean-for-each-cluster">Table 4.2: </span>
-</caption>
-<thead>
-<tr>
-<th style="text-align:right;">
-cluster
-</th>
-<th style="text-align:right;">
-calories
-</th>
-<th style="text-align:right;">
-protein
-</th>
-<th style="text-align:right;">
-fat
-</th>
-<th style="text-align:right;">
-sodium
-</th>
-<th style="text-align:right;">
-fiber
-</th>
-<th style="text-align:right;">
-carbo
-</th>
-<th style="text-align:right;">
-sugars
-</th>
-<th style="text-align:right;">
-potass
-</th>
-<th style="text-align:right;">
-vitamins
-</th>
-<th style="text-align:right;">
-weight
-</th>
-<th style="text-align:right;">
-cups
-</th>
-<th style="text-align:right;">
-rating
-</th>
-<th style="text-align:right;">
-complete_count$n
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-95.67
-</td>
-<td style="text-align:right;">
-3.100
-</td>
-<td style="text-align:right;">
-1.1000
-</td>
-<td style="text-align:right;">
-99.5
-</td>
-<td style="text-align:right;">
-3.44
-</td>
-<td style="text-align:right;">
-13.42
-</td>
-<td style="text-align:right;">
-4.20
-</td>
-<td style="text-align:right;">
-128.13
-</td>
-<td style="text-align:right;">
-18.33
-</td>
-<td style="text-align:right;">
-0.961
-</td>
-<td style="text-align:right;">
-0.7203
-</td>
-<td style="text-align:right;">
-54.65
-</td>
-<td style="text-align:right;">
-30
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-114.04
-</td>
-<td style="text-align:right;">
-2.192
-</td>
-<td style="text-align:right;">
-0.9574
-</td>
-<td style="text-align:right;">
-198.1
-</td>
-<td style="text-align:right;">
-1.33
-</td>
-<td style="text-align:right;">
-15.35
-</td>
-<td style="text-align:right;">
-8.66
-</td>
-<td style="text-align:right;">
-75.62
-</td>
-<td style="text-align:right;">
-34.57
-</td>
-<td style="text-align:right;">
-1.073
-</td>
-<td style="text-align:right;">
-0.8853
-</td>
-<td style="text-align:right;">
-35.02
-</td>
-<td style="text-align:right;">
-47
-</td>
-</tr>
-</tbody>
-</table>
 <p><img src="/post/2018-10-17-cluster-analysis_files/figure-html/plot-sugar-shelf-1.png" width="1344" /></p>
-</div>
-<div id="k-means-clustering" class="section level1">
-<h1><span class="header-section-number">5</span> K-means clustering</h1>
-<p>The first step of the K-means clustering is to decide how many clusters do we want. This is because the first step of the algorithm is to initialise k-points at random positions, these are called cluster centroids. In a second step, the Euclidean distance between each observation and the centroid is calculated. Observations are assigned to the closest centroid. The third step is to move the centroids to the central points of the resulting clusters. Once this is done, the second and third step are repeated until the centroids don’t move any further and the observations are no longer reassigned.</p>
-</div>
-<div id="estimating-k-empirically-with-the-elbow-method" class="section level1">
-<h1><span class="header-section-number">6</span> Estimating K empirically with the elbow method</h1>
-<p>This method tries to estimate the number of k’s that we should have. It calculates the sum of the distances between each observation and the cluster corresponding to the observation to which each observation is assigned.</p>
-</div>
-<div id="estimating-k-empirically-with-silhouette-analysis" class="section level1">
-<h1><span class="header-section-number">7</span> Estimating k empirically with silhouette analysis</h1>
-<p>The silhouette width is a measurement composed by the Within Cluster Distance (each observation to every other observation) and the Closest Neighbor Distance (the closest average distance from that observation to the points of the closest neighboring cluster).</p>
+<p><img src="/post/2018-10-17-cluster-analysis_files/figure-html/plot-sodium-shelf-1.png" width="1344" /></p>
 </div>
 <div id="results" class="section level1">
-<h1><span class="header-section-number">8</span> Results</h1>
+<h1><span class="header-section-number">5</span> Results</h1>
 </div>
 <div id="conclusion" class="section level1">
-<h1><span class="header-section-number">9</span> Conclusion</h1>
+<h1><span class="header-section-number">6</span> Conclusion</h1>
 </div>

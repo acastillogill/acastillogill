@@ -9,7 +9,7 @@ tags:
   - Home sales prices
   - Decision trees
   - Regression trees
-description: "In this post I explore a property dataset from Ames, Iowa. The data describes a set of features for houses. My goal was to understand what characteristics make a house more valuable than others in Ames, Iowa. To do this, I first prepared the data by dealing with missing values in the dataset and created other variables to make results easier to understand. After preparing the data, I used regression trees to answer the question. The benefits of regression trees are that they produce an output that can be illustrated and easily interpreted. I found that the overall quality of properties is the most closely linked characteristic with sale prices. Other features such as living area and basement size were also key. An interesting finding was that there are three neighborhoods that have the most expensive houses. These are NorthRidge Heights, Northridge and, Stone Brook."
+description: "In this post I explore a property dataset from Ames, Iowa. The data describes a set of features for houses and includes sales price. My goal was to understand what features are linked with sales price for this specific dataset using regression trees. To do this, I first prepared the data by dealing with missing values and created other variables to better interpet the results. After preparing the data, I used regression trees to answer the question. One of the benefits of regression trees is that the output can be illustrated and easily interpreted. I found that the variable: overall quality is most closely linked to sales price. Other features such as living area and basement size are also important. I also found that neighborhoods NorthRidge Heights, Northridge and, Stone Brook have the most expensive houses."
 draft: FALSE
 banner: "banners/property-prices.png"
 images: ["banners/property-prices.png"]
@@ -61,7 +61,8 @@ x <-
     "Metrics",
     "caret",
     "psych",
-    "hrbrthemes")
+    "hrbrthemes",
+    "tidylog")
 
 lapply(x, require, character.only = TRUE)
 
@@ -84,7 +85,7 @@ options(digits=4)
 
 # Summary
 
-*To see the code used in this post, visit my [kernel on kaggle in R Markdown format](https://www.kaggle.com/adcastillogill/regression-trees-predicting-property-prices/code).* 
+*To see the all the code used in this post, visit my [GitHub repository for this site](https://github.com/acastillogill/acastillogill)*
 
 
 ```{r reading data, results='hide'}
@@ -103,15 +104,11 @@ homes <- read.csv(path, stringsAsFactors = FALSE)
 
 # Question
 
-Let's say that you have a house in Ames, Iowa [^2]. You're about to buy a house or some terrain to build your own house and you want to understand **what makes a house more valuable than others**. 
+You're interested in buying or building a house in Ames, Iowa [^2]. You want to understand **which characteristics are most closely linked to sales price**. Perhaps you can find a less expensive house and modify certain features to increase the sales price.
 
 [^2]:That's where the dataset is from.
 
 # Dataset description 
-
-
-
-
 
 
 ```{r counting variable types}
@@ -131,7 +128,7 @@ The dataset [House Prices: Advanced Regression Techniques](https://www.kaggle.co
 
 ## Missing values
 
-As is more common than not, the dataset contains missing values. Missing values need to be dealt with because often regression (and other models) require complete observations. Dealing with missing data depends on *why the data are missing*. [This article](http://www.stat.columbia.edu/~gelman/arm/missing.pdf) explains four reasons why data could be missing. When the data are missing at random (MAR) or completely at random (MCAR), observations with missing values can be removed without introducing bias into the model. Sometimes, however, if the dataset is not too big and we don't want to lose observations, or even if it is big, yet we still don't want to remove observations, we can impute data. Imputing means replacing missing values by taking some educated guesses. [This article](https://towardsdatascience.com/how-to-handle-missing-data-8646b18db0d4) summarises how to impute data depending on why it is missing. If the data are not missing at random, then the imputation mechanism has to be modelled. 
+Naturally, the dataset contains missing values. Missing values need to be dealt with because often regression (and other models) require complete observations. Dealing with missing data depends on *why the data are missing*. [This article](http://www.stat.columbia.edu/~gelman/arm/missing.pdf) explains four reasons why data could be missing. When the data are missing at random (MAR) or completely at random (MCAR), observations with missing values can be removed without introducing bias into the model. Sometimes, however, if the dataset is not too big and we don't want to lose observations, or even if it is big, yet we still don't want to remove observations, we can impute data. Imputing means replacing missing values by making some educated guesses. [This article](https://towardsdatascience.com/how-to-handle-missing-data-8646b18db0d4) summarises how to impute data depending on why it is missing. If the data are not missing at random, then the imputation mechanism has to be modelled. 
 
 ```{r missigness-table}
 
@@ -144,7 +141,7 @@ homes%>%
 
 ```
 
-About `r nrow(missing_columns)` variables have missing values - based on the codebook, the reason why so many houses have pool quality (`PoolQC`) missing is because `NA`, means there is no pool. Since this variable is ordinal, I can revalue it to make it numerical and `0` will mean the property has no pool. Other features (`MiscFeature`), `Alley`, `Fence`, and fireplace quality (`FireplaceQu`) are missing because of similar reasons. We don't know why `LotFrontage` is missing but we will impute as the median for properties in the same neighborhood. I learned a lot about imputation and missing values from [Erik Bruin's kernel on Kaggle](https://www.kaggle.com/erikbruin/house-prices-lasso-xgboost-and-a-detailed-eda/code).
+About `r nrow(missing_columns)` variables have missing values - based on the codebook, the reason why so many houses have pool quality (`PoolQC`) missing is because `NA`, means there is no pool. Since this variable is ordinal, I can revalue it to make it numerical and `0` will mean the property has no pool. Other features (`MiscFeature`), `Alley`, `Fence`, and fireplace quality (`FireplaceQu`) are missing because of similar reasons. We don't know why `LotFrontage` is missing but we will impute the median for properties in the same neighborhood. I learned a lot about imputation and missing values from [Erik Bruin's kernel on Kaggle](https://www.kaggle.com/erikbruin/house-prices-lasso-xgboost-and-a-detailed-eda/code).
 
 ```{r missingness and recoding ordinal variables, results='hide'}
 
@@ -551,7 +548,7 @@ There are 17 variables that have a correlation stronger than 0.5. When variables
 
 # Regression trees - why use them?
 
-The tool that I'm going to be using to answer the question is regression trees. They are also known as classification and regression trees (CART) or the recursing and partitioning (RPART) algorithm. The reason I'm choosing this tool or algorithm to answer the business question is because regression trees are interpretable and we can make easy-to-follow plots with them. It will be implemented with the `rpart` package in R. Rpart, builds a model in two stages:
+The tool that I'm going to be using to answer the question is regression trees. They are also known as classification and regression trees (CART) or the recursing and partitioning (RPART) algorithm. The reason I'm choosing this tool or algorithm to answer the question is because regression trees are interpretable and we can make easy-to-follow plots with them. It will be implemented with the `rpart` package in R. Rpart, builds a model in two stages:
 
 **First stage**:
 
@@ -684,14 +681,9 @@ The most influential variable for `SalePrice` was `OverallQual`. This variable "
 
 On the other hand, houses with a rating below 8 for `OverallQual`, the same variable decides again classifying them above or equal to 7, which is "good". Either way, houses will be classified again by `GrLivArea`: "above grade living area in square feet", where smaller houses will depend on basement size (`TotalBsmtSF`) or on `MS_type`, which describes the type of dwelling. Modern dwellings include: split foyer, 1-story built in 1946 or newer. Less modern dwellings are 1945 or older in some cases.
 
-In response to the question: what makes a house more valuable than others? Many variables in the tree are related to area: basement area, garage area, and total living area. Even the size of the lot plays an important role and is related to area. So an important one definitely is size. But more important than size in this case, the overall quality of the house is critical. 
+In response to the question: what makes a house more valuable than others? Many variables in the tree are related to area: basement area, garage area, and total living area. Even the size of the lot plays an important role and is related to area. So an important one definitely is size. But more important than size in this case is the overall quality of the house. It seems that having a property in good shape pays off. Would it be worth to find a house in a somewhat fancy neighborhood and work on improving its finish and materials to increase quality. Who knows? That is a causal question. There is a strong relationship between `OverallQual` and `SalePrice` but correlation does not imply causation. Size matters in all property dimensions: garage area, basement area, living area above ground, lot size. As a final note it's important to add that to a large extent the results of this analysis are limited to Ames, Iowa, where this dataset is from.
 
+# Conclusion 
 
-# What does it mean?
-
-It seems that having a property in very good condition or better pays a lot. Would it be worth to find a house in a somewhat fancy neighborhood and work on improving its finish and materials to increase quality. Who knows? That is a causal question. There is a strong relationship between `OverallQual` and `SalePrice` but correlation does not imply causation.
-Size matters in all property dimensions: garage area, basement area, living area above ground, lot size. These are all important characteristics strongly linked to sales price. 
-As a final note it's important to add that to a large extent the results of this analysis are limited Ames, Iowa, where this dataset is from.
-
-
+In this post I explored a property dataset from Ames, Iowa. The data described a set of features for houses and included sales price. My goal was to understand what features are linked with sales price for this specific dataset using regression trees. To do this, I first prepared the data by dealing with missing values and created other variables to better interpet the results. After preparing the data, I used regression trees to answer the question. One of the benefits of regression trees is that the output can be illustrated and easily interpreted. I found that the variable: overall quality is most closely linked to sales price. Other features such as living area and basement size are also important. I also found that neighborhoods NorthRidge Heights, Northridge and, Stone Brook have the most expensive houses.
 

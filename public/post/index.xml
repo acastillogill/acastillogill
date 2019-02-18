@@ -55,8 +55,8 @@
       <pubDate>Wed, 17 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>/2018/10/cluster-analysis-cereals/</guid>
-      <description>1 Summary 2 Question 3 Dataset description 4 Hierarchical clustering 5 K-means clustering 6 Estimating K empirically with the elbow method 7 Estimating k empirically with silhouette analysis 8 Results 9 Conclusion   1 Summary To see the all the code used in this post, visit my GitHub repository for this site
- Objectives: To find what what kind of clusters are there in the cereals dataset available on Kaggle.</description>
+      <description>1 Summary 2 Question 3 Dataset description 4 Hierarchical clustering 5 Results 6 Conclusion   1 Summary To see the all the code used in this post, visit my GitHub repository for this site
+ Objectives: To find what what kind of clusters are there in the cereals dataset available on Kaggle. Challenge: To implement a clustering algorithm for the first time. Data points: 1232 Language: R   2 Question What types of clusters are there in the cereals dataset?</description>
     </item>
     
     <item>
@@ -65,8 +65,8 @@
       <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>/2018/08/regression-trees-predicting-property-prices/</guid>
-      <description>1 Summary 2 Question 3 Dataset description 3.1 Missing values 3.2 Correlation  4 Regression trees - why use them? 4.1 Variable importance  5 Results 6 What does it mean?   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
- Objectives: To predict property prices using decision trees, specifically, the classification and regression algorithm. Challenge: First time applying decision trees.</description>
+      <description>1 Summary 2 Question 3 Dataset description 3.1 Missing values 3.2 Correlation  4 Regression trees - why use them? 4.1 Variable importance  5 Results 6 What does it mean? 7 Conclusion   1 Summary To see the all the code used in this post, visit my GitHub repository for this site
+ Objectives: To predict property prices using decision trees, specifically, the classification and regression algorithm.</description>
     </item>
     
     <item>

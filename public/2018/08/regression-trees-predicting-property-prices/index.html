@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="author" content="Ángela Castillo-Gill">
     
-      <meta name="description" content="In this post I explore a property dataset from Ames, Iowa. The data describes a set of features for houses. My goal was to understand what characteristics make a house more valuable than others in Ames, Iowa. To do this, I first prepared the data by dealing with missing values in the dataset and created other variables to make results easier to understand. After preparing the data, I used regression trees to answer the question. The benefits of regression trees are that they produce an output that can be illustrated and easily interpreted. I found that the overall quality of properties is the most closely linked characteristic with sale prices. Other features such as living area and basement size were also key. An interesting finding was that there are three neighborhoods that have the most expensive houses. These are NorthRidge Heights, Northridge and, Stone Brook.">
+      <meta name="description" content="In this post I explore a property dataset from Ames, Iowa. The data describes a set of features for houses and includes sales price. My goal was to understand what features are linked with sales price for this specific dataset using regression trees. To do this, I first prepared the data by dealing with missing values and created other variables to better interpet the results. After preparing the data, I used regression trees to answer the question. One of the benefits of regression trees is that the output can be illustrated and easily interpreted. I found that the variable: overall quality is most closely linked to sales price. Other features such as living area and basement size are also important. I also found that neighborhoods NorthRidge Heights, Northridge and, Stone Brook have the most expensive houses.">
     
     
     <link rel="canonical" href="../../../2018/08/regression-trees-predicting-property-prices/"/>
@@ -24,7 +24,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:regular,medium,bold' rel='stylesheet' type='text/css'>
     <meta property="og:title" content="Regression trees: predicting property prices" />
-<meta property="og:description" content="In this post I explore a property dataset from Ames, Iowa. The data describes a set of features for houses. My goal was to understand what characteristics make a house more valuable than others in Ames, Iowa. To do this, I first prepared the data by dealing with missing values in the dataset and created other variables to make results easier to understand. After preparing the data, I used regression trees to answer the question. The benefits of regression trees are that they produce an output that can be illustrated and easily interpreted. I found that the overall quality of properties is the most closely linked characteristic with sale prices. Other features such as living area and basement size were also key. An interesting finding was that there are three neighborhoods that have the most expensive houses. These are NorthRidge Heights, Northridge and, Stone Brook." />
+<meta property="og:description" content="In this post I explore a property dataset from Ames, Iowa. The data describes a set of features for houses and includes sales price. My goal was to understand what features are linked with sales price for this specific dataset using regression trees. To do this, I first prepared the data by dealing with missing values and created other variables to better interpet the results. After preparing the data, I used regression trees to answer the question. One of the benefits of regression trees is that the output can be illustrated and easily interpreted. I found that the variable: overall quality is most closely linked to sales price. Other features such as living area and basement size are also important. I also found that neighborhoods NorthRidge Heights, Northridge and, Stone Brook have the most expensive houses." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/2018/08/regression-trees-predicting-property-prices/" />
 <meta property="og:image" content="/banners/property-prices.png" />
@@ -34,12 +34,12 @@
     
     
 <meta itemprop="name" content="Regression trees: predicting property prices">
-<meta itemprop="description" content="In this post I explore a property dataset from Ames, Iowa. The data describes a set of features for houses. My goal was to understand what characteristics make a house more valuable than others in Ames, Iowa. To do this, I first prepared the data by dealing with missing values in the dataset and created other variables to make results easier to understand. After preparing the data, I used regression trees to answer the question. The benefits of regression trees are that they produce an output that can be illustrated and easily interpreted. I found that the overall quality of properties is the most closely linked characteristic with sale prices. Other features such as living area and basement size were also key. An interesting finding was that there are three neighborhoods that have the most expensive houses. These are NorthRidge Heights, Northridge and, Stone Brook.">
+<meta itemprop="description" content="In this post I explore a property dataset from Ames, Iowa. The data describes a set of features for houses and includes sales price. My goal was to understand what features are linked with sales price for this specific dataset using regression trees. To do this, I first prepared the data by dealing with missing values and created other variables to better interpet the results. After preparing the data, I used regression trees to answer the question. One of the benefits of regression trees is that the output can be illustrated and easily interpreted. I found that the variable: overall quality is most closely linked to sales price. Other features such as living area and basement size are also important. I also found that neighborhoods NorthRidge Heights, Northridge and, Stone Brook have the most expensive houses.">
 
 
 <meta itemprop="datePublished" content="2018-08-09T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-08-09T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1373">
+<meta itemprop="wordCount" content="1517">
 
   <meta itemprop="image" content="/banners/property-prices.png">
 
@@ -51,7 +51,7 @@
 <meta name="twitter:image" content="/banners/property-prices.png"/>
 
 <meta name="twitter:title" content="Regression trees: predicting property prices"/>
-<meta name="twitter:description" content="In this post I explore a property dataset from Ames, Iowa. The data describes a set of features for houses. My goal was to understand what characteristics make a house more valuable than others in Ames, Iowa. To do this, I first prepared the data by dealing with missing values in the dataset and created other variables to make results easier to understand. After preparing the data, I used regression trees to answer the question. The benefits of regression trees are that they produce an output that can be illustrated and easily interpreted. I found that the overall quality of properties is the most closely linked characteristic with sale prices. Other features such as living area and basement size were also key. An interesting finding was that there are three neighborhoods that have the most expensive houses. These are NorthRidge Heights, Northridge and, Stone Brook."/>
+<meta name="twitter:description" content="In this post I explore a property dataset from Ames, Iowa. The data describes a set of features for houses and includes sales price. My goal was to understand what features are linked with sales price for this specific dataset using regression trees. To do this, I first prepared the data by dealing with missing values and created other variables to better interpet the results. After preparing the data, I used regression trees to answer the question. One of the benefits of regression trees is that the output can be illustrated and easily interpreted. I found that the variable: overall quality is most closely linked to sales price. Other features such as living area and basement size are also important. I also found that neighborhoods NorthRidge Heights, Northridge and, Stone Brook have the most expensive houses."/>
 <meta name="twitter:site" content="@acastillogill"/>
 
     
@@ -270,10 +270,10 @@
             <i class="far fa-calendar"></i>
             <time datetime="2018-08-09 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-08-09</time>
             &middot;
-            1373
+            1517
             words
             &middot;
-            7
+            8
             minute read
         </div>
         
@@ -326,12 +326,13 @@
 </ul></li>
 <li><a href="#results"><span class="toc-section-number">5</span> Results</a></li>
 <li><a href="#what-does-it-mean"><span class="toc-section-number">6</span> What does it mean?</a></li>
+<li><a href="#conclusion"><span class="toc-section-number">7</span> Conclusion</a></li>
 </ul>
 </div>
 
 <div id="summary" class="section level1">
 <h1><span class="header-section-number">1</span> Summary</h1>
-<p><em>To see the code used in this post, visit my <a href="https://www.kaggle.com/adcastillogill/regression-trees-predicting-property-prices/code">kernel on kaggle in R Markdown format</a>.</em></p>
+<p><em>To see the all the code used in this post, visit my <a href="https://github.com/acastillogill/acastillogill">GitHub repository for this site</a></em></p>
 <ul>
 <li>Objectives: To predict property prices using decision trees, specifically, the classification and regression algorithm.</li>
 <li>Challenge: First time applying decision trees.</li>
@@ -341,14 +342,14 @@
 </div>
 <div id="question" class="section level1">
 <h1><span class="header-section-number">2</span> Question</h1>
-<p>Let’s say that you have a house in Ames, Iowa <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. You’re about to buy a house or some terrain to build your own house and you want to understand <strong>what makes a house more valuable than others</strong>.</p>
+<p>You’re interested in buying or building a house in Ames, Iowa <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. You want to understand <strong>what characteristics are most closely linked to sales price</strong>. Perhaps you can find a less expensive house and modify those features to increase its sales price if you decide to sell.</p>
 </div>
 <div id="dataset-description" class="section level1">
 <h1><span class="header-section-number">3</span> Dataset description</h1>
 <p>The dataset <a href="https://www.kaggle.com/c/house-prices-advanced-regression-techniques">House Prices: Advanced Regression Techniques</a> was put together by <a href="https://ww2.amstat.org/publications/jse/v19n3/decock.pdf">Dean De Cock.</a> It has 79 explanatory variables describing 1,460 homes in Ames, Iowa. The codebook for all the variables can be <a href="https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data">found here.</a> As I go along, I’ll explain the most relevant ones. The dataset has 38 numeric and 43 character variables.</p>
 <div id="missing-values" class="section level2">
 <h2><span class="header-section-number">3.1</span> Missing values</h2>
-<p>As is more common than not, the dataset contains missing values. Missing values need to be dealt with because often regression (and other models) require complete observations. Dealing with missing data depends on <em>why the data are missing</em>. <a href="http://www.stat.columbia.edu/~gelman/arm/missing.pdf">This article</a> explains four reasons why data could be missing. When the data are missing at random (MAR) or completely at random (MCAR), observations with missing values can be removed without introducing bias into the model. Sometimes, however, if the dataset is not too big and we don’t want to lose observations, or even if it is big, yet we still don’t want to remove observations, we can impute data. Imputing means replacing missing values by taking some educated guesses. <a href="https://towardsdatascience.com/how-to-handle-missing-data-8646b18db0d4">This article</a> summarises how to impute data depending on why it is missing. If the data are not missing at random, then the imputation mechanism has to be modelled.</p>
+<p>Naturally, the dataset contains missing values. Missing values need to be dealt with because often regression (and other models) require complete observations. Dealing with missing data depends on <em>why the data are missing</em>. <a href="http://www.stat.columbia.edu/~gelman/arm/missing.pdf">This article</a> explains four reasons why data could be missing. When the data are missing at random (MAR) or completely at random (MCAR), observations with missing values can be removed without introducing bias into the model. Sometimes, however, if the dataset is not too big and we don’t want to lose observations, or even if it is big, yet we still don’t want to remove observations, we can impute data. Imputing means replacing missing values by taking some educated guesses. <a href="https://towardsdatascience.com/how-to-handle-missing-data-8646b18db0d4">This article</a> summarises how to impute data depending on why it is missing. If the data are not missing at random, then the imputation mechanism has to be modelled.</p>
 <p>About 19 variables have missing values - based on the codebook, the reason why so many houses have pool quality (<code>PoolQC</code>) missing is because <code>NA</code>, means there is no pool. Since this variable is ordinal, I can revalue it to make it numerical and <code>0</code> will mean the property has no pool. Other features (<code>MiscFeature</code>), <code>Alley</code>, <code>Fence</code>, and fireplace quality (<code>FireplaceQu</code>) are missing because of similar reasons. We don’t know why <code>LotFrontage</code> is missing but we will impute as the median for properties in the same neighborhood. I learned a lot about imputation and missing values from <a href="https://www.kaggle.com/erikbruin/house-prices-lasso-xgboost-and-a-detailed-eda/code">Erik Bruin’s kernel on Kaggle</a>.</p>
 </div>
 <div id="correlation" class="section level2">
@@ -407,6 +408,10 @@ Figure 5.1: The tree with 10 nodes and 9 splits had the lowest performance metri
 <p>It seems that having a property in very good condition or better pays a lot. Would it be worth to find a house in a somewhat fancy neighborhood and work on improving its finish and materials to increase quality. Who knows? That is a causal question. There is a strong relationship between <code>OverallQual</code> and <code>SalePrice</code> but correlation does not imply causation.
 Size matters in all property dimensions: garage area, basement area, living area above ground, lot size. These are all important characteristics strongly linked to sales price.
 As a final note it’s important to add that to a large extent the results of this analysis are limited Ames, Iowa, where this dataset is from.</p>
+</div>
+<div id="conclusion" class="section level1">
+<h1><span class="header-section-number">7</span> Conclusion</h1>
+<p>In this post I explored a property dataset from Ames, Iowa. The data described a set of features for houses and included sales price. My goal was to understand what features are linked with sales price for this specific dataset using regression trees. To do this, I first prepared the data by dealing with missing values and created other variables to better interpet the results. After preparing the data, I used regression trees to answer the question. One of the benefits of regression trees is that the output can be illustrated and easily interpreted. I found that the variable: overall quality is most closely linked to sales price. Other features such as living area and basement size are also important. I also found that neighborhoods NorthRidge Heights, Northridge and, Stone Brook have the most expensive houses.</p>
 </div>
 <div class="footnotes">
 <hr />
