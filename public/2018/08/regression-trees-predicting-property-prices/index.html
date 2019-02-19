@@ -39,7 +39,7 @@
 
 <meta itemprop="datePublished" content="2018-08-09T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-08-09T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1517">
+<meta itemprop="wordCount" content="1486">
 
   <meta itemprop="image" content="/banners/property-prices.png">
 
@@ -270,10 +270,10 @@
             <i class="far fa-calendar"></i>
             <time datetime="2018-08-09 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-08-09</time>
             &middot;
-            1517
+            1486
             words
             &middot;
-            8
+            7
             minute read
         </div>
         
@@ -325,8 +325,7 @@
 <li><a href="#variable-importance"><span class="toc-section-number">4.1</span> Variable importance</a></li>
 </ul></li>
 <li><a href="#results"><span class="toc-section-number">5</span> Results</a></li>
-<li><a href="#what-does-it-mean"><span class="toc-section-number">6</span> What does it mean?</a></li>
-<li><a href="#conclusion"><span class="toc-section-number">7</span> Conclusion</a></li>
+<li><a href="#conclusion"><span class="toc-section-number">6</span> Conclusion</a></li>
 </ul>
 </div>
 
@@ -342,15 +341,15 @@
 </div>
 <div id="question" class="section level1">
 <h1><span class="header-section-number">2</span> Question</h1>
-<p>You’re interested in buying or building a house in Ames, Iowa <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. You want to understand <strong>what characteristics are most closely linked to sales price</strong>. Perhaps you can find a less expensive house and modify those features to increase its sales price if you decide to sell.</p>
+<p>You’re interested in buying or building a house in Ames, Iowa <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. You want to understand <strong>which characteristics are most closely linked to sales price</strong>. Perhaps you can find a less expensive house and modify certain features to increase the sales price.</p>
 </div>
 <div id="dataset-description" class="section level1">
 <h1><span class="header-section-number">3</span> Dataset description</h1>
 <p>The dataset <a href="https://www.kaggle.com/c/house-prices-advanced-regression-techniques">House Prices: Advanced Regression Techniques</a> was put together by <a href="https://ww2.amstat.org/publications/jse/v19n3/decock.pdf">Dean De Cock.</a> It has 79 explanatory variables describing 1,460 homes in Ames, Iowa. The codebook for all the variables can be <a href="https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data">found here.</a> As I go along, I’ll explain the most relevant ones. The dataset has 38 numeric and 43 character variables.</p>
 <div id="missing-values" class="section level2">
 <h2><span class="header-section-number">3.1</span> Missing values</h2>
-<p>Naturally, the dataset contains missing values. Missing values need to be dealt with because often regression (and other models) require complete observations. Dealing with missing data depends on <em>why the data are missing</em>. <a href="http://www.stat.columbia.edu/~gelman/arm/missing.pdf">This article</a> explains four reasons why data could be missing. When the data are missing at random (MAR) or completely at random (MCAR), observations with missing values can be removed without introducing bias into the model. Sometimes, however, if the dataset is not too big and we don’t want to lose observations, or even if it is big, yet we still don’t want to remove observations, we can impute data. Imputing means replacing missing values by taking some educated guesses. <a href="https://towardsdatascience.com/how-to-handle-missing-data-8646b18db0d4">This article</a> summarises how to impute data depending on why it is missing. If the data are not missing at random, then the imputation mechanism has to be modelled.</p>
-<p>About 19 variables have missing values - based on the codebook, the reason why so many houses have pool quality (<code>PoolQC</code>) missing is because <code>NA</code>, means there is no pool. Since this variable is ordinal, I can revalue it to make it numerical and <code>0</code> will mean the property has no pool. Other features (<code>MiscFeature</code>), <code>Alley</code>, <code>Fence</code>, and fireplace quality (<code>FireplaceQu</code>) are missing because of similar reasons. We don’t know why <code>LotFrontage</code> is missing but we will impute as the median for properties in the same neighborhood. I learned a lot about imputation and missing values from <a href="https://www.kaggle.com/erikbruin/house-prices-lasso-xgboost-and-a-detailed-eda/code">Erik Bruin’s kernel on Kaggle</a>.</p>
+<p>Naturally, the dataset contains missing values. Missing values need to be dealt with because often regression (and other models) require complete observations. Dealing with missing data depends on <em>why the data are missing</em>. <a href="http://www.stat.columbia.edu/~gelman/arm/missing.pdf">This article</a> explains four reasons why data could be missing. When the data are missing at random (MAR) or completely at random (MCAR), observations with missing values can be removed without introducing bias into the model. Sometimes, however, if the dataset is not too big and we don’t want to lose observations, or even if it is big, yet we still don’t want to remove observations, we can impute data. Imputing means replacing missing values by making some educated guesses. <a href="https://towardsdatascience.com/how-to-handle-missing-data-8646b18db0d4">This article</a> summarises how to impute data depending on why it is missing. If the data are not missing at random, then the imputation mechanism has to be modelled.</p>
+<p>About 19 variables have missing values - based on the codebook, the reason why so many houses have pool quality (<code>PoolQC</code>) missing is because <code>NA</code>, means there is no pool. Since this variable is ordinal, I can revalue it to make it numerical and <code>0</code> will mean the property has no pool. Other features (<code>MiscFeature</code>), <code>Alley</code>, <code>Fence</code>, and fireplace quality (<code>FireplaceQu</code>) are missing because of similar reasons. We don’t know why <code>LotFrontage</code> is missing but we will impute the median for properties in the same neighborhood. I learned a lot about imputation and missing values from <a href="https://www.kaggle.com/erikbruin/house-prices-lasso-xgboost-and-a-detailed-eda/code">Erik Bruin’s kernel on Kaggle</a>.</p>
 </div>
 <div id="correlation" class="section level2">
 <h2><span class="header-section-number">3.2</span> Correlation</h2>
@@ -375,7 +374,7 @@ Figure 3.1: Variables are arranged in descending order according to the strength
 </div>
 <div id="regression-trees---why-use-them" class="section level1">
 <h1><span class="header-section-number">4</span> Regression trees - why use them?</h1>
-<p>The tool that I’m going to be using to answer the question is regression trees. They are also known as classification and regression trees (CART) or the recursing and partitioning (RPART) algorithm. The reason I’m choosing this tool or algorithm to answer the business question is because regression trees are interpretable and we can make easy-to-follow plots with them. It will be implemented with the <code>rpart</code> package in R. Rpart, builds a model in two stages:</p>
+<p>The tool that I’m going to be using to answer the question is regression trees. They are also known as classification and regression trees (CART) or the recursing and partitioning (RPART) algorithm. The reason I’m choosing this tool or algorithm to answer the question is because regression trees are interpretable and we can make easy-to-follow plots with them. It will be implemented with the <code>rpart</code> package in R. Rpart, builds a model in two stages:</p>
 <p><strong>First stage</strong>:</p>
 <p>The variable which can best<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> split the data into two groups is identified. The data are then separated into two groups and the whole process is repeated <em>recursively</em> or indefinitely until the sub-groups reach a minimum size, or until no further improvements can be made. When the split is made, similarity amongst the observations can more or less homogenous. This homogeneity is also called purity and it can be measured. The impurity measure of a node specifies how mixed the resulting subset is.</p>
 <p><strong>Second stage</strong>:</p>
@@ -401,16 +400,10 @@ Figure 5.1: The tree with 10 nodes and 9 splits had the lowest performance metri
 </div>
 <p>The most influential variable for <code>SalePrice</code> was <code>OverallQual</code>. This variable “rates the overall material and finish of the house”, values equal or above to 8 correspond to “very good”, “excellent”, and “very excellent”. On one hand, for houses with a rating of 8 or above in <code>OverallQual</code>, the next most decisive variable is <code>TotalBsmtSF</code>, which is the “total square feet of basement area”. If it’s above 1,850, the house is classified depending on <code>Neighborhood_type</code>. Fancy houses are thoses that are in either of these neighborhoods NridgHt, NoRidge, StoneBr. All other neighborhoods are not fancy. Houses below 1,850 feet are further classified depending on the <code>LotArea</code>.</p>
 <p>On the other hand, houses with a rating below 8 for <code>OverallQual</code>, the same variable decides again classifying them above or equal to 7, which is “good”. Either way, houses will be classified again by <code>GrLivArea</code>: “above grade living area in square feet”, where smaller houses will depend on basement size (<code>TotalBsmtSF</code>) or on <code>MS_type</code>, which describes the type of dwelling. Modern dwellings include: split foyer, 1-story built in 1946 or newer. Less modern dwellings are 1945 or older in some cases.</p>
-<p>In response to the question: what makes a house more valuable than others? Many variables in the tree are related to area: basement area, garage area, and total living area. Even the size of the lot plays an important role and is related to area. So an important one definitely is size. But more important than size in this case, the overall quality of the house is critical.</p>
-</div>
-<div id="what-does-it-mean" class="section level1">
-<h1><span class="header-section-number">6</span> What does it mean?</h1>
-<p>It seems that having a property in very good condition or better pays a lot. Would it be worth to find a house in a somewhat fancy neighborhood and work on improving its finish and materials to increase quality. Who knows? That is a causal question. There is a strong relationship between <code>OverallQual</code> and <code>SalePrice</code> but correlation does not imply causation.
-Size matters in all property dimensions: garage area, basement area, living area above ground, lot size. These are all important characteristics strongly linked to sales price.
-As a final note it’s important to add that to a large extent the results of this analysis are limited Ames, Iowa, where this dataset is from.</p>
+<p>In response to the question: what makes a house more valuable than others? Many variables in the tree are related to area: basement area, garage area, and total living area. Even the size of the lot plays an important role and is related to area. So an important one definitely is size. But more important than size in this case is the overall quality of the house. It seems that having a property in good shape pays off. Would it be worth to find a house in a somewhat fancy neighborhood and work on improving its finish and materials to increase quality. Who knows? That is a causal question. There is a strong relationship between <code>OverallQual</code> and <code>SalePrice</code> but correlation does not imply causation. Size matters in all property dimensions: garage area, basement area, living area above ground, lot size. As a final note it’s important to add that to a large extent the results of this analysis are limited to Ames, Iowa, where this dataset is from.</p>
 </div>
 <div id="conclusion" class="section level1">
-<h1><span class="header-section-number">7</span> Conclusion</h1>
+<h1><span class="header-section-number">6</span> Conclusion</h1>
 <p>In this post I explored a property dataset from Ames, Iowa. The data described a set of features for houses and included sales price. My goal was to understand what features are linked with sales price for this specific dataset using regression trees. To do this, I first prepared the data by dealing with missing values and created other variables to better interpet the results. After preparing the data, I used regression trees to answer the question. One of the benefits of regression trees is that the output can be illustrated and easily interpreted. I found that the variable: overall quality is most closely linked to sales price. Other features such as living area and basement size are also important. I also found that neighborhoods NorthRidge Heights, Northridge and, Stone Brook have the most expensive houses.</p>
 </div>
 <div class="footnotes">
