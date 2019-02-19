@@ -88,10 +88,8 @@ To summarise:
 
 **Glad I did:**
 
-- Be yourself (or as close as possible)
 - Have a mentor to support you along the way
 - Be transparent about other interviews
-- Strive kind to everyone you meet (no matter what)
 
 # Why?
 
@@ -250,7 +248,7 @@ job_search%>%
 
 ## Phone calls
 
-This is another point to improve. At the beginning I was taking way too many unexpected phone calls from recruiters. This was an inefficient use of both party's time. After a bit I tried to push back by asking for job specs first and then scheduling calls. More on this later. Phone calls also included technical interviews but these were only about two hours of the total seven hours spent on phone calls.
+This is another point to improve. At the beginning I was taking way too many unexpected phone calls from recruiters. This was an inefficient use of both parties' time. After a bit I tried to push back by asking for job specs first and then scheduling calls. More on this later. Phone calls also included technical interviews but these were only about two hours of the total seven hours spent on phone calls.
 
 ```{r plotting-phone-calls, include=TRUE, fig.width=10}
 phone_calls <- job_search%>%
@@ -338,10 +336,6 @@ I like public speaking clubs like Toastmasters because they have made me aware o
 
 # What would I do again?
 
-## Be yourself (or as close as possible)
-
-Adopting some sort of persona and putting a mask during an interview is not a good idea. On top of the technical work you'll be doing each day, you'll have to do the emotional work of transforming your personality. This is exhausting. Instead, just be yourself. Of course, if someone is more introverted, a little bit of work to show a tiny bit of more enthusiasm during the interview is ok, or if like me, you're a bit too enthusiastic, dialing it back just a tad is not a bad idea. However, if during the interview I project myself as someone I'm not and they make an offer, I'll have to transform myself each day before work. Recipe for unsatisfaction in the workplace, I think.
-
 ## Have a mentor to support you along the way
 
 Through R-Ladies I met Raquel Redó, a data scientist based in Barcelona. Although the timing wasn't right because I was moving, we made sure we met face to face at least twice. Raquel has been doing data science work for a while and is very enthusiastic about supporting other women in the field. Perfect! She herself has gone through the data science interview process and had very wise words to offer. 
@@ -349,11 +343,7 @@ I think what made our mentorship work was that I wrote down all her advice after
 
 ## Be transparent about other interviews to everyone
 
-This is very important for several reasons. First, you can manage expectations and follow ups. Imagine interviewing a candidate, offering them a position and then for days not hearing back from them. Rude. Do you even want this person to join your team? It also helps you to have some leverage in terms of package negotiation.
-
-## Strive to be kind to everyone you meet (no matter what)
-
-This is where I know I have learnt at least one thing since I was a teenager. I received a rejection. Nobody likes to be rejected and of course it doesn't feel good but I'm glad I stayed kind. We may or may not meet again, it doesn't matter. In retrospective, I feel good about my interactions. I feel glad I listened carefully to others and strived to give my best self along the way no matter how confused or tired I felt,
+This is very important for several reasons. First, you can manage expectations and follow ups. Imagine interviewing a candidate, offering them a position and then for days not hearing back from them. Rude. Do you even want this person to join your team? It also helps you to have some leverage in terms of package negotiation. At their request I disclosed to the recruiters I was working with, what offers other companies had made and without sharing details, I'm glad I did this `r emo::ji("100")`!
 
 # Conclusion
 

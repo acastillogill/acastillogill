@@ -174,21 +174,10 @@ class: center
 
 class: inverse, center, middle
 
-# Four things to do again 
+# Two things to do again 
 ## You go girl!
 
 
----
-
-background-image: url("https://mediaslide-europe.storage.googleapis.com/premier/pictures/3695/7841/large-1464701629-b5a421eed8ec4a169e5a5541ea0ce4cf.jpg")
-background-size: 40%
-background-position: 50% 50%
-class: center
-
-# Be yourself (or as close as possible)
-
-.footnote[
-Image by [Polly Nor](https://www.pollynor.com/)]
 ---
 
 background-image: url("https://media.giphy.com/media/1n833bZxdzKzaErLe9/giphy.gif")
@@ -229,16 +218,6 @@ class: center
 
 ---
 
-background-image: url("https://media.giphy.com/media/l2SpUoAPo0CBOkyxq/giphy.gif")
-background-size: 50%
-background-position: 50% 50%
-class: center
-
-# Strive to be kind to everyone you meet 
-
-**(no matter what)**
-
----
 
 class: center, middle, inverse
 
