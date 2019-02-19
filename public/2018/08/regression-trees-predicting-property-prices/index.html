@@ -39,7 +39,7 @@
 
 <meta itemprop="datePublished" content="2018-08-09T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-08-09T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1596">
+<meta itemprop="wordCount" content="1874">
 
   <meta itemprop="image" content="/banners/property-prices.png">
 
@@ -273,10 +273,10 @@
             <i class="far fa-calendar"></i>
             <time datetime="2018-08-09 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-08-09</time>
             &middot;
-            1596
+            1874
             words
             &middot;
-            8
+            9
             minute read
         </div>
         
@@ -395,14 +395,14 @@ homes_model &lt;- rpart(formula = SalePrice ~ ., data = homes_train, method = &q
 <h2><span class="header-section-number">4.1</span> Variable importance</h2>
 <p>Using the <code>rpart</code> function, we are able to rank which variables are most predictive of <code>SalePrice</code>. The following plot ranks these variables in descending order.</p>
 <div class="figure"><span id="fig:variable-importance-table"></span>
-<img src="../../../post/2018-08-09-predicting-property-prices_files/figure-html/variable-importance-table-1.png" alt="Overall quality is the most predictive variable and the one that originally had the most correlation with `SalePrice`, it's followed by basement size and neighborhood type." width="672" />
+<img src="../../../post/2018-08-09-predicting-property-prices_files/figure-html/variable-importance-table-1.png" alt="Overall quality (`OverallQual`) is the most predictive variable - it was also most correlated with `SalePrice`. It's followed by basement size (`TotalBsmtSF`) and neighborhood type." width="672" />
 <p class="caption">
-Figure 4.1: Overall quality is the most predictive variable and the one that originally had the most correlation with <code>SalePrice</code>, it’s followed by basement size and neighborhood type.
+Figure 4.1: Overall quality (<code>OverallQual</code>) is the most predictive variable - it was also most correlated with <code>SalePrice</code>. It’s followed by basement size (<code>TotalBsmtSF</code>) and neighborhood type.
 </p>
 </div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:tuning-hyperparameters">Table 4.1: </span>
+<span id="tab:tuning-hyperparameters">Table 4.1: </span>Understanding the complexity parameter table: <code>CP</code> stands for complexity parameter, which can be thought as the minimum benefit a split <code>nsplit</code> can add to a tree and equivalent to the decrease of the <code>rel.error</code>. The <code>rel.error</code> stands for 1-RSquared, similar to linear regression, where it explains how much variability in the data is explained by the model. The <code>xerror</code> is the relative sum-of-squared errors in tenfold cross-validation. <code>xstd</code> is the variation in prediction across ten validation samples. We are going to choose the smallest tree (by splits) whose error is no more than one standard error above the error of the best model. The smallest error is 0.3242, adding one standard error: 0.3242+0.0373=0.3615. The model that has an <code>xerror</code> smaller than 0.3615 is the one with 4 splits with an <code>xerror</code> of 0.3604.
 </caption>
 <thead>
 <tr>
@@ -596,19 +596,48 @@ xstd
 </tr>
 </tbody>
 </table>
+<div class="figure"><span id="fig:opt-plot"></span>
+<img src="../../../post/2018-08-09-predicting-property-prices_files/figure-html/opt-plot-1.png" alt="This is the optimised model according to the criterion of choosing the smallest model within one standard error of the smallest `xerror`." width="672" />
+<p class="caption">
+Figure 4.2: This is the optimised model according to the criterion of choosing the smallest model within one standard error of the smallest <code>xerror</code>.
+</p>
+</div>
+<p>Now I will compute two measures of error (MSE and RMSE) on both the baseline and optimised models using the test data. I will choose the model with the smallest MSE and RMSE on this unseen data.</p>
+<pre class="r"><code>
+#Compute RMSE baseline model
+rmse(actual=homes_test$SalePrice, #Actual values
+     predicted = pred_base ) #Predicted values</code></pre>
+<p>[1] 44.35</p>
+<pre class="r"><code>
+#Compute MAE baseline model
+mae(actual=homes_test$SalePrice, #Actual values
+     predicted = pred_base ) #Predicted values</code></pre>
+<p>[1] 29.38</p>
+<pre class="r"><code>
+#Compute RMSE optimised model
+rmse(actual=homes_test$SalePrice, #Actual values
+     predicted = pred_opt) #Predicted values</code></pre>
+<p>[1] 49.59</p>
+<pre class="r"><code>
+#Compute MAE optimised model
+mae(actual=homes_test$SalePrice, #Actual values
+    predicted = pred_opt) #Predicted values</code></pre>
+<p>[1] 35.49</p>
+<p>It seems the baseline model with 10 splits resulted in a lower test MSE and RMSE than the optimised model.</p>
 </div>
 </div>
 <div id="results" class="section level1">
 <h1><span class="header-section-number">5</span> Results</h1>
+<p>I chose the model with 10 splits and 11 nodes because it had the lowest performance metrics on unseen data. I was surprised because I had expected the smaller model to perform better.</p>
 <div class="figure"><span id="fig:final-plot"></span>
-<img src="../../../post/2018-08-09-predicting-property-prices_files/figure-html/final-plot-1.png" alt="The tree with 10 nodes and 9 splits had the lowest performance metric `RMSE`." width="672" />
+<img src="../../../post/2018-08-09-predicting-property-prices_files/figure-html/final-plot-1.png" alt="The tree with 11 nodes and 10 splits had the lowest performance metrics." width="672" />
 <p class="caption">
-Figure 5.1: The tree with 10 nodes and 9 splits had the lowest performance metric <code>RMSE</code>.
+Figure 5.1: The tree with 11 nodes and 10 splits had the lowest performance metrics.
 </p>
 </div>
-<p>The most influential variable for <code>SalePrice</code> was <code>OverallQual</code>. This variable “rates the overall material and finish of the house”, values equal or above to 8 correspond to “very good”, “excellent”, and “very excellent”. On one hand, for houses with a rating of 8 or above in <code>OverallQual</code>, the next most decisive variable is <code>TotalBsmtSF</code>, which is the “total square feet of basement area”. If it’s above 1,850, the house is classified depending on <code>Neighborhood_type</code>. Fancy houses are thoses that are in either of these neighborhoods NridgHt, NoRidge, StoneBr. All other neighborhoods are not fancy. Houses below 1,850 feet are further classified depending on the <code>LotArea</code>.</p>
-<p>On the other hand, houses with a rating below 8 for <code>OverallQual</code>, the same variable decides again classifying them above or equal to 7, which is “good”. Either way, houses will be classified again by <code>GrLivArea</code>: “above grade living area in square feet”, where smaller houses will depend on basement size (<code>TotalBsmtSF</code>) or on <code>MS_type</code>, which describes the type of dwelling. Modern dwellings include: split foyer, 1-story built in 1946 or newer. Less modern dwellings are 1945 or older in some cases.</p>
-<p>In response to the question: what makes a house more valuable than others? Many variables in the tree are related to area: basement area, garage area, and total living area. Even the size of the lot plays an important role and is related to area. So an important one definitely is size. But more important than size in this case is the overall quality of the house. It seems that having a property in good shape pays off. Would it be worth to find a house in a somewhat fancy neighborhood and work on improving its finish and materials to increase quality. Who knows? That is a causal question. There is a strong relationship between <code>OverallQual</code> and <code>SalePrice</code> but correlation does not imply causation. Size matters in all property dimensions: garage area, basement area, living area above ground, lot size. As a final note it’s important to add that to a large extent the results of this analysis are limited to Ames, Iowa, where this dataset is from.</p>
+<p>The most influential variable for <code>SalePrice</code> was <code>OverallQual</code>. This variable “rates the overall material and finish of the house”, values equal or above to 8 correspond to “very good”, “excellent”, and “very excellent”. On one hand, for houses with a rating of 8 or above in <code>OverallQual</code>, the next most decisive variable is <code>TotalBsmtSF</code>, which is the “total square feet of basement area”. If it’s above 1850, the house is classified depending on <code>Neighborhood_type</code>. <code>Fancy</code> houses are in neighborhoods: NridgHt, NoRidge, StoneBr. All other neighborhoods are <code>Not_fancy</code>. Houses below 1850 feet are further classified depending on <code>LotArea</code>.</p>
+<p>On the other hand, for houses with a rating below 8 for <code>OverallQual</code>, the same variable decides again classifying them above or equal to 7, which is “good”. Either way, houses will be classified again by <code>GrLivArea</code>: “above grade living area in square feet”, where smaller houses will depend on basement size (<code>TotalBsmtSF</code>) or on <code>MS_type</code>, which describes the type of dwelling. Modern dwellings include: split foyer, 1-story built in 1946 or newer. Less modern dwellings are 1945 or older in some cases.</p>
+<p>In response to the question: what makes a house more valuable than others? <strong>The simple response is quality and area</strong>. Many variables in the tree are related to area: basement area, garage area, and total living area. Even the size of the lot plays an important role, so size is essential. But more important than size, in this case, is the overall quality of the house. It seems that having a property in good shape pays off. Would it be worth to find a house in a somewhat fancy neighborhood and work on improving its finish and materials to increase quality. Who knows? That is a causal question. There is a strong relationship between the variables I describe but correlation does not imply causation. As a final note it’s important to add that because the dataset is from Ames, Iowa, the results of this analysis are limited to that area.</p>
 </div>
 <div id="conclusion" class="section level1">
 <h1><span class="header-section-number">6</span> Conclusion</h1>

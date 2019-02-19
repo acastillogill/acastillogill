@@ -77,9 +77,17 @@ opts_chunk$set(echo = FALSE,
                cache=FALSE,
                comment = NA,
                results ='asis')
-options(scipen = 999)
-options(digits=4)
 
+options(
+  digits=4,
+  scipen = 999
+)
+
+
+#Set number of inline digits
+#knit_hooks$set(inline = function(x) {
+#  prettyNum(round(x,4), big.mark=",")
+#})
 
 ```
 
@@ -568,7 +576,7 @@ The tree is trimmed back or prunned using cross-validation. We identify the lowe
 
 
 
-```{r}
+```{r }
 homes <- homes%>%
   mutate(SalePrice=SalePrice/1000)
 ```
@@ -601,7 +609,7 @@ homes_model <- rpart(formula = SalePrice ~ .,
 
 Using the `rpart` function, we are able to rank which variables are most predictive of `SalePrice`. The following plot ranks these variables in descending order. 
 
-```{r variable-importance-table, fig.cap="Overall quality is the most predictive variable and the one that originally had the most correlation with `SalePrice`, it's followed by basement size and neighborhood type."}
+```{r variable-importance-table, fig.cap="Overall quality (`OverallQual`) is the most predictive variable - it was also most correlated with `SalePrice`. It's followed by basement size (`TotalBsmtSF`) and neighborhood type."}
 #Look at variable importance
 
 var_importance <- tidy(homes_model$variable.importance)
@@ -644,11 +652,11 @@ mae(actual=homes_test$SalePrice, #Actual values
 
 # Print the "CP Table"
 homes_model$cptable%>%broom::tidy()%>%
-  kable(caption="")%>%
+  kable(caption ="Understanding the complexity parameter table: `CP` stands for complexity parameter, which can be thought as the minimum benefit a split `nsplit` can add to a tree and equivalent to the decrease of the `rel.error`. The `rel.error` stands for 1-RSquared, similar to linear regression, where it explains how much variability in the data is explained by the model. The `xerror` is the relative sum-of-squared errors in tenfold cross-validation. `xstd` is the variation in prediction across ten validation samples. We are going to choose the smallest tree (by splits) whose error is no more than one standard error above the error of the best model. The smallest error is 0.3242, adding one standard error: 0.3242+0.0373=0.3615. The model that has an `xerror` smaller than 0.3615 is the one with 4 splits with an `xerror` of 0.3604.")%>%
   kable_styling()
 
 # Retrieve optimal cp value based on cross-validated error
-opt_index <- 7
+opt_index <- 4
 cp_opt <- homes_model$cptable[opt_index, "CP"]
 
 # Prune the model (to optimized cp value)
@@ -673,22 +681,56 @@ mae(actual=homes_test$SalePrice, #Actual values
     predicted = pred_opt) #Predicted values
 ```
 
+```{r opt-plot, fig.cap="This is the optimised model according to the criterion of choosing the smallest model within one standard error of the smallest `xerror`."}
+
+
+# Plot the optimized model
+ rpart.plot(x = homes_model_opt, type = 5, extra = 1, digits = 0)
+
+
+```
+
+Now I will compute two measures of error (MSE and RMSE) on both the baseline and optimised models using the test data. I will choose the model with the smallest MSE and RMSE on this unseen data. 
+
+```{r prediction-compare, echo=TRUE, include=TRUE}
+
+#Compute RMSE baseline model
+rmse(actual=homes_test$SalePrice, #Actual values
+     predicted = pred_base ) #Predicted values
+
+#Compute MAE baseline model
+mae(actual=homes_test$SalePrice, #Actual values
+     predicted = pred_base ) #Predicted values
+
+#Compute RMSE optimised model
+rmse(actual=homes_test$SalePrice, #Actual values
+     predicted = pred_opt) #Predicted values
+
+#Compute MAE optimised model
+mae(actual=homes_test$SalePrice, #Actual values
+    predicted = pred_opt) #Predicted values
+```
+
+It seems the baseline model with 10 splits resulted in a lower test MSE and RMSE than the optimised model. 
+
 # Results
 
-```{r final-plot, fig.cap="The tree with 10 nodes and 9 splits had the lowest performance metric `RMSE`."}
+I chose the  model with 10 splits and 11 nodes because it had the lowest performance metrics on unseen data. I was surprised because I had expected the smaller model to perform better. 
 
-par(mar=c(1,1,1,1))
+```{r final-plot, fig.cap="The tree with 11 nodes and 10 splits had the lowest performance metrics."}
+
+
 # Plot the optimized model
  rpart.plot(x = homes_model, type = 5, extra = 1, digits = 0)
 
 
 ```
 
-The most influential variable for `SalePrice` was `OverallQual`. This variable "rates the overall material and finish of the house", values equal or above to 8 correspond to "very good", "excellent", and "very excellent". On one hand, for houses with a rating of 8 or above in `OverallQual`, the next most decisive variable is `TotalBsmtSF`, which is the "total square feet of basement area". If it's above 1,850, the house is classified depending on `Neighborhood_type`. Fancy houses are thoses that are in either of these neighborhoods `r fancy`. All other neighborhoods are not fancy. Houses below 1,850 feet are further classified depending on the `LotArea`.
+The most influential variable for `SalePrice` was `OverallQual`. This variable "rates the overall material and finish of the house", values equal or above to 8 correspond to "very good", "excellent", and "very excellent". On one hand, for houses with a rating of 8 or above in `OverallQual`, the next most decisive variable is `TotalBsmtSF`, which is the "total square feet of basement area". If it's above 1850, the house is classified depending on `Neighborhood_type`. `Fancy` houses are in neighborhoods: `r fancy`. All other neighborhoods are `Not_fancy`. Houses below 1850 feet are further classified depending on `LotArea`.
 
-On the other hand, houses with a rating below 8 for `OverallQual`, the same variable decides again classifying them above or equal to 7, which is "good". Either way, houses will be classified again by `GrLivArea`: "above grade living area in square feet", where smaller houses will depend on basement size (`TotalBsmtSF`) or on `MS_type`, which describes the type of dwelling. Modern dwellings include: split foyer, 1-story built in 1946 or newer. Less modern dwellings are 1945 or older in some cases.
+On the other hand, for houses with a rating below 8 for `OverallQual`, the same variable decides again classifying them above or equal to 7, which is "good". Either way, houses will be classified again by `GrLivArea`: "above grade living area in square feet", where smaller houses will depend on basement size (`TotalBsmtSF`) or on `MS_type`, which describes the type of dwelling. Modern dwellings include: split foyer, 1-story built in 1946 or newer. Less modern dwellings are 1945 or older in some cases.
 
-In response to the question: what makes a house more valuable than others? Many variables in the tree are related to area: basement area, garage area, and total living area. Even the size of the lot plays an important role and is related to area. So an important one definitely is size. But more important than size in this case is the overall quality of the house. It seems that having a property in good shape pays off. Would it be worth to find a house in a somewhat fancy neighborhood and work on improving its finish and materials to increase quality. Who knows? That is a causal question. There is a strong relationship between `OverallQual` and `SalePrice` but correlation does not imply causation. Size matters in all property dimensions: garage area, basement area, living area above ground, lot size. As a final note it's important to add that to a large extent the results of this analysis are limited to Ames, Iowa, where this dataset is from.
+In response to the question: what makes a house more valuable than others? **The simple response is quality and area**. Many variables in the tree are related to area: basement area, garage area, and total living area. Even the size of the lot plays an important role, so size is essential. But more important than size, in this case, is the overall quality of the house. It seems that having a property in good shape pays off. Would it be worth to find a house in a somewhat fancy neighborhood and work on improving its finish and materials to increase quality. Who knows? That is a causal question. There is a strong relationship between the variables I describe but correlation does not imply causation. As a final note it's important to add that because the dataset is from Ames, Iowa, the results of this analysis are limited to that area.
 
 # Conclusion 
 
