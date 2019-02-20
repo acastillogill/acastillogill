@@ -6,7 +6,7 @@ slug: data-science-interviews
 categories: []
 tags: 
   - Reflection
-  - Data science interviews
+  - Talk
   - R-Ladies London
 description: "In this post I share how I spent my time during my data scientist job search. I then use this information to point out things I would have done differently and things I'm glad I did. The content of this blogpost was first presented at R-Ladies London on 2019-02-21."
 banner: "banners/london.jpg"
@@ -104,7 +104,7 @@ I just finished a month-long data scientist job search in London. It was success
 
 # Here's how I spent my time
 
-I track time spent working to update my learning loop and allocate time. I tried to extend this to my job search by tracking as many activities as possible. Here is the key for the tasks I show in the plot along with a short commentary.
+I track time spent working to update my learning loop and allocate time. I tried to extend this to my job search by tracking as many activities as possible. I now discuss the tasks I show in the plot.
 
 
 ```{r read-time}
@@ -347,5 +347,5 @@ This is very important for several reasons. First, you can manage expectations a
 
 # Conclusion
 
-The data science job search is quite to different to others. In my experience, very little time was spent on filling out forms or writing cover letters. It's more about thoroughly researching the company and articulating how you will help them while keeping your technical and social abilities current and fresh. There are always things to improve upon and by distilling the four lessons I've shared, I hope to correct them next time. I also hope to hear from others who have gone through a similar processes and learn about their trials and tribulations. There are some things I got right, after all, I'm very excited to start my data scientist job soon. This worked for me but will not necessarily work for you so take them with a grain of salt. Finally, enjoy it! It was fun to go to so many offices, meet so many people, and interview my interviewers. I'd like to think we both enjoyed the process. Hope to hear from your experience in the comments or privately through e-mail.
+The data science job search is quite to different to others. In my experience, very little time was spent filling out forms or writing cover letters. It was more about thoroughly researching the company and articulating how you will help them while keeping your technical and social abilities current and fresh. There are always things to improve upon and by distilling the four lessons I've shared, I hope to correct them next time. I also hope to hear from others who have gone through a similar processes and learn about their trials and tribulations. There are some things I got right, after all, I'm very excited to start my data scientist job soon. This worked for me but will not necessarily work for you so take my experience with a grain of salt. Finally, enjoy the process! It was fun to go to so many offices, meet so many people, and interview my interviewers. I'd like to think we both enjoyed the process. Hope to hear from your experience in the comments or privately through e-mail.
 

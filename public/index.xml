@@ -55,8 +55,8 @@
       <pubDate>Wed, 17 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>/2018/10/cluster-analysis-cereals/</guid>
-      <description>1 Summary 2 Question 3 Dataset description 4 Hierarchical clustering 5 Results 6 Conclusion   1 Summary To see the all the code used in this post, visit my GitHub repository for this site
- Objectives: To find what what kind of clusters are there in the cereals dataset available on Kaggle. Challenge: To implement a clustering algorithm for the first time. Data points: 1232 Language: R   2 Question What types of clusters are there in the cereals dataset?</description>
+      <description>1 Summary 2 Question 3 Dataset description 4 Hierarchical clustering 5 Results 5.1 What are the difference between cereals in cluster? 5.2 Can we classify cereals into either cluster based on their names? 5.3 Which shelves have the most unhealthy cereals?  6 Conclusion   1 Summary To see the the code used in this post, visit my GitHub repository for this site
+ Objectives: To find what what kind of clusters are there in the cereals dataset available on Kaggle.</description>
     </item>
     
     <item>
@@ -75,8 +75,7 @@
       <pubDate>Tue, 07 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>/2018/08/exploring-kiva-loans/</guid>
-      <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 5 Exploratory data analysis 5.1 Borrower gender by region 5.2 Repayment interval by region 5.3 Loan use by region  6 Techniques used 7 Questions from this analysis   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
- Objectives: To visualise a dataset and understand its main trends.</description>
+      <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 4.1 Borrower gender 4.2 Loan amounts 4.3 Country codes 4.4 Dates  5 Exploratory data analysis 5.1 Which gender borrows the most by region? 5.2 What type of repayment interval is used in each region? 5.3 What are Kiva loans used across regions? 5.4 Which are the top ten countries for Kiva loans? 5.5 Kiva statistics 5.</description>
     </item>
     
   </channel>

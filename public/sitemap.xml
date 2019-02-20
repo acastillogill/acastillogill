@@ -53,32 +53,14 @@
   </url>
   
   <url>
-    <loc>/tags/data-science-interviews/</loc>
-    <lastmod>2019-02-21T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/decision-trees/</loc>
-    <lastmod>2018-08-09T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/eda/</loc>
     <lastmod>2019-01-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/end-to-end/</loc>
-    <lastmod>2018-08-07T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/exploratory-data-analysis/</loc>
-    <lastmod>2018-08-07T00:00:00+00:00</lastmod>
+    <lastmod>2019-01-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -89,32 +71,20 @@
   </url>
   
   <url>
-    <loc>/tags/home-sale-prices/</loc>
-    <lastmod>2018-08-09T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/kaggle/</loc>
     <lastmod>2019-01-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/kiva/</loc>
-    <lastmod>2018-08-07T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/maps/</loc>
+    <loc>/tags/log-linear-regression/</loc>
     <lastmod>2018-12-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/nba/</loc>
-    <lastmod>2019-01-18T00:00:00+00:00</lastmod>
+    <loc>/tags/maps/</loc>
+    <lastmod>2018-11-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -125,6 +95,12 @@
   
   <url>
     <loc>/presentations/</loc>
+  </url>
+  
+  <url>
+    <loc>/tags/r/</loc>
+    <lastmod>2019-01-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -146,8 +122,20 @@
   </url>
   
   <url>
+    <loc>/tags/rpart/</loc>
+    <lastmod>2018-08-09T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/</loc>
     <lastmod>2018-10-17T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/talk/</loc>
+    <lastmod>2019-02-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -6,10 +6,9 @@ slug: exploring-kiva-loans
 categories: []
 tags: 
   - Kaggle
-  - Kiva
-  - End-to-end
   - Exploratory data analysis
-description: "In this post I analyse 671,205 Kiva loans from around the world. I find that single female is the gender that requests the most loans. The main uses for Kiva loans are agriculture, retail, and food with some variations amongst regions. Half of the loans are 4.22 USD or less and are funded by 12 or less contributers. The median time between posting on the Kiva platform and disbursing it to the borrower is 16.89 days. I mainly use the tidyverse, stringr, and quantmode packages."  
+  - EDA
+description: "In this post I analyse 671,205 Kiva loans from around the world. Most loans are requested by single females, EU requests the fewest loans, weekly repayment is an unpopular form of paying back loans and entertainment, wholesale, manufacturing, and construction amount less than 2.2% of sectors. The main uses for Kiva loans are agriculture, retail, and food with some variations amongst regions. Half of the loans are 4.22 USD or less and are funded by 12 or less lenders. The median time between posting on the Kiva platform and disbursing it to the borrower is 16.89 days. I mainly use the tidyverse, stringr, and quantmode packages."  
 draft: FALSE
 banner: "banners/lenders-country.png"
 images: ["banners/lenders-country.png"]
@@ -129,7 +128,7 @@ This variable has a lot of missing values and the Kiva explanation on Kaggle doe
 - `term_in_months`: "The duration for which the loan was disbursed in months"
 - `lender_count`: "The total number of lenders that contributed to this loan"
 - `borrower_genders`: "Comma separated M,F letters, where each instance represents a single male/female in the group"
-- `repayment_interval`: Not specified so we'll assume that it means the standard definition of when the loan is repaid back to the lender.
+- `repayment_interval`: Not specified so I assume that it means the standard definition of when the loan is repaid back to the lender.
 
 # Data cleaning 
 ```{r}
@@ -160,15 +159,12 @@ kiva_loans[categorical] <- lapply(kiva_loans[categorical],
                                   factor)
 ```
 
-From  at the structure of our data, we can soon see there are a few bits that don't make sense and need to be fixed. 
+By glancing at the data I see there are a few bits that don't make sense and need to be fixed. 
 
-**a. Missing values**
 
-We will leave missing values in for now. 
+## Borrower gender
 
-**b. `borrower_genders`**
-
-From the variable descriptions, we expected `borrower_genders`to have only two levels, `male`or `female`. Here we see many more levels, 11,298 to be precise. This isn't very clear so we'll fix that first by creating five levels:
+From the variable descriptions, I expected `borrower_genders`to have only two levels, male or female. I see many more levels, 11298 to be precise. This isn't very clear so I fix that first by creating five levels:
 
 ```{r }
 
@@ -216,9 +212,9 @@ kiva_loans$borrower_genders <- as.factor(kiva_loans$borrower_genders)
 levels(kiva_loans$borrower_genders)
 ```
 
-**c. `loan_amounts`**
+## Loan amounts
 
-Now, since we're trying to make sense of all loans, it's better if `loan_amounts` is in the same currency. Let's translate it to USD.
+Now, since I'm trying to make sense of loans around the world, it's better if all loans are in the same currency for reference. I use the `quantmode` package to convert all loans into a single currency (US dollars). There were two currencies that were unavailable.
 
 ```{r eval=FALSE}
 
@@ -230,7 +226,7 @@ for (curr in levels(kiva_loans$currency))
 
 
 ```{r}
-## It seems like two currencies are returning an error. Let's filter them out. 
+## It seems like two currencies are returning an error. I will filter them out. 
 #Turning kiva_loans back into a character vector
 kiva_loans$currency <- as.character(kiva_loans$currency)
 
@@ -276,11 +272,11 @@ kiva_loans%>%
   mutate(loan_usd=loan_amount*Last)-> kiva_loans
 ```
 
-**d. `country_codes`**
+## Country codes
 
-Finally, with 86 countries, we have 86 levels. Perhaps it would be interesting to create another category called region to produce less levels and have a better understanding of the overall function of regional distributions.
+Finally, with 86 countries there are 86 levels. Perhaps it would be interesting to create another category called region to produce less levels and have a better understanding of the overall function of regional distributions.
 
-Our country codes are in the ISO3166 format, so we will use the associated region code found [here](https://dev.maxmind.com/geoip/legacy/codes/country_region/). And make five regions. Africa, Asia, Europe, Oceania, and South America.
+Country codes are in the ISO-3166 format, so I the associated region code found [here](https://dev.maxmind.com/geoip/legacy/codes/country_region/) and created five regions: Africa, Asia, Europe, Oceania, and South America.
 
 ```{r}
 #Read `country_region.csv`
@@ -293,15 +289,15 @@ kiva_loans%>%
   left_join(regions, by=c("country_code"="iso")) -> kiva_loans
 ```
 
-```{r}
+```{r echo=FALSE}
 kiva_loans$region <- as.factor(kiva_loans$region)
 levels(kiva_loans$region)
 ```
 
 
-**e. Dates**
+## Dates
 
-Let's calculate two lengths of time that I think are interesting. First, how much time passes from the moment the loan is posted to the moment it's disbursed (`total_time`). Second, how long does a loan take to get funded (`giving_time`)? 
+I calculate two lengths of time that I think are interesting. First, how much time is there between posting the loan to disbursement (`total_time`). Second, how long does a loan take to get funded (`giving_time`)? 
 
 ```{r total_time_creation}
 kiva_loans%>%
@@ -340,9 +336,8 @@ skim(kiva_loans)
 
 # Exploratory data analysis
 
-Now, let's describe the data starting with some plots and tables to understand it. 
 
-```{r region-table}
+```{r region-table, eval=FALSE}
 
 prop.table(table(kiva_loans$region))%>%
   data.frame()%>%
@@ -369,7 +364,7 @@ kiva_loans <-  kiva_loans%>%
   na.omit()
 ```
 
-## Borrower gender by region
+## Which gender borrows the most by region?
 ```{r region-and-borrower-genders-plots, fig.cap="Four regions in descending order from the region that requests the most loans (Asia). Notice Europe and North America do not appear. `mult_females` or `mult_males` means more than one female or male. A single female is the most common type of borrower gender with over half of all Kiva loans requested.",fig.width=10}
 AF_borrower_genders <- kiva_loans %>%
   filter(region == "Africa") %>%
@@ -469,7 +464,7 @@ cowplot::plot_grid(
 )
 ```
 
-```{r borrower-genders-table, include=FALSE}
+```{r borrower-genders-table, eval=FALSE}
 options("digits"=2)
 prop.table(table(kiva_loans$borrower_genders))%>%
 data.frame()%>%
@@ -482,10 +477,7 @@ data.frame()%>%
 ```
 
 
-
-In all regions, single females request the most loans followed by single males. In Asia and South America, the third category is multiple females while in Africa it's mixed genders. 
-
-## Repayment interval by region
+## What type of repayment interval is used in each region?
 
 ```{r repayment-interval-and-region, fig.cap="In Asia and Oceania, the most popular repayment interval is irregular while in Africa and South America it's monthly.",fig.width=10}
 AF_repayment_interval <- kiva_loans %>%
@@ -583,7 +575,7 @@ cowplot::plot_grid(AS_repayment_interval,
 
 ```
 
-```{r repayment-interval-table, include=FALSE}
+```{r repayment-interval-table, eval=FALSE}
 
 prop.table(table(kiva_loans$repayment_interval))%>%
 data.frame()%>%
@@ -595,7 +587,7 @@ data.frame()%>%
 
 ```
 
-## Loan use by region
+## What are Kiva loans used across regions?
 
 ```{r sectors-and-regions, fig.cap="In every region, the three most popular sectors are agriculture, retail, and food.",fig.width=10}
 AF_sector <- kiva_loans %>%
@@ -686,7 +678,7 @@ cowplot::plot_grid(AS_sector,
 )
 ```
 
-```{r sector-table, include=FALSE}
+```{r sector-table, eval=FALSE}
 
 prop.table(table(kiva_loans$sector))%>%
   data.frame()%>%
@@ -698,7 +690,6 @@ prop.table(table(kiva_loans$sector))%>%
 ```
 
 
-Notice most loans are requested by single females, the least amount of loans are given in the EU, weekly repayment is an unpopular form of paying loans back and entertainment, wholesale, manufacturing, and construction amount less than 2.2% of sectors.
 
 ```{r countries-plot, fig.cap="Philippines requests the mosts loans with over double as the second country, Kenya `KE`. Other top countries in this ranking are Cambodia `KH`, Pakistan `PK`, Peru `PE`, Colombia `CO`, Uganda `UG`, Tajikistan `TJ`, Ecuador `EC`, and Paraguay `PY`.", fig.width=8}
 
@@ -720,7 +711,9 @@ country_plot <- kiva_loans %>%
  geom_label(aes(label=n))
 ```
 
-Now I'm curious to look at the top 10 countries requesting Kiva loans but per capita and per number of internet users.
+## Which are the top ten countries for Kiva loans?
+
+Here I create three different top ten rankings to order countries by number of total Kiva loans, loans per capita, and by internet users. For the internet users ranking, I used [this ranking](https://en.wikipedia.org/wiki/List_of_countries_by_number_of_Internet_users), which is based on numbers published by the [International Telecommunications Union](https://www.itu.int/en/Pages/default.aspx).
 
 ```{r loans per country}
 #Count all loans per country
@@ -758,7 +751,7 @@ pop_iso_loans <- pop_iso_loans %>%
 pop_iso_loans <- pop_iso_loans[-1,]
 ```
 
-```{r countries-plot-capita, fig.cap="Interesting to see how the ranking changed! The island of Samoa `WS` is leading, followed by Armenia `AM`. Countries that remain in the top 10 are Cambodia `KH`, Philippines `PH`, Kenya `KE`, and Tajikstan `TJ`. Other new countries are Timor-Leste `TL`, Paraguay `PY`, Palestine `PS`, and Lebanon `LB`."}
+```{r countries-plot-capita, fig.cap="Interesting to see how the ranking changed! The island of Samoa (WS) is leading, followed by Armenia (AM). Countries that remain in the top 10 are Cambodia (KH), Philippines (PH), Kenya (KE), and Tajikstan (TJ). Other new countries are Timor-Leste (TL), Paraguay (PY), Palestine (PS), and Lebanon (LB)."}
 pop_plot <- pop_iso_loans %>%
   top_n(10) %>%
   ggplot(aes(reorder(x = country_code,
@@ -777,7 +770,7 @@ pop_plot <- pop_iso_loans %>%
                             digits = 2)))
 ```
 
-Let's see how the top 10 changes when it comes to internet users. I used [this ranking](https://en.wikipedia.org/wiki/List_of_countries_by_number_of_Internet_users), which is based on numbers published by the [International Telecommunications Union](https://www.itu.int/en/Pages/default.aspx).
+
 
 ```{r}
 #Left join country codes with users
@@ -799,7 +792,7 @@ users_iso_loans$n_per_users <- users_iso_loans$n/users_iso_loans$users*1000
    arrange(desc(n_per_users))
 ```
 
-```{r countries-plot-users, fig.cap="Interesting to see how the ranking changed! Leading the charts is the island of Samoa, followed by Armenia. Countries that remain in the top 10 are Cambodia `KH`, Philippines `PH`, Kenya `KE`, and Tajikstan `TJ`. Other new countries are Timor-Leste `TL`, Paraguay `PY`, Palestine `PS`, and Lebanon `LB`."}
+```{r countries-plot-users, fig.cap="Interesting to see how the ranking changed! Leading the charts is the island of Samoa, followed by Armenia. Countries that remain in the top 10 are Cambodia (KH), Philippines (PH), Kenya (KE), and Tajikstan (TJ). Other new countries are Timor-Leste (TL), Paraguay (PY), Palestine (PS), and Lebanon (LB)."}
 user_plot <- users_iso_loans %>%
   top_n(10) %>%
   ggplot(aes(reorder(x = country_code, n_per_users), y = n_per_users)) +
@@ -817,10 +810,11 @@ user_plot <- users_iso_loans %>%
 ```
 
 
-```{r plot-labelled, fig.cap="Figure A: Philippines requests the mosts loans with over double as the second country, Kenya `KE`. Other top countries in this ranking are Cambodia `KH`, Pakistan `PK`, Peru `PE`, Colombia `CO`, Uganda `UG`, Tajikistan `TJ`, Ecuador `EC`, and Paraguay `PY`. Figure B: El Salvador `SV` requests the most Kiva loans per 1,000 capita. Figure C: Interesting to see how the ranking changed! The island of Samoa `WS` is leading, followed by Armenia `AM`. Countries that remain in the top 10 are Cambodia `KH`, Philippines `PH`, Kenya `KE`, and Tajikstan `TJ`. Other new countries are Timor-Leste `TL`, Paraguay `PY`, Palestine `PS`, and Lebanon `LB`. ", fig.height=15}
+```{r plot-labelled, fig.cap="`Figure A`: Philippines requests the mosts loans with over double as the second country, Kenya (KE). Other top countries in this ranking are Cambodia (KH), Pakistan (PK), Peru (PE), Colombia (CO), Uganda (UG), Tajikistan (TJ), Ecuador (EC), and Paraguay (PY). `Figure B`: El Salvador (SV) requests the most Kiva loans per 1,000 capita. `Figure C`: Interesting to see how the ranking changed! The island of Samoa (WS) is leading, followed by Armenia (AM). Countries that remain in the top 10 are Cambodia (KH), Philippines (PH), Kenya (KE), and Tajikstan (TJ). Other new countries are Timor-Leste (TL), Paraguay (PY), Palestine (PS), and Lebanon (LB). ", fig.height=15}
 cowplot::plot_grid(country_plot,pop_plot,user_plot, nrow=3, labels=c("A","B","C"))
 ```
 
+## Kiva statistics
 
 
 ```{r loan-usd-distribution, fig.cap="Half of Kiva loans are 4.22 USD or less. Although the maximum loan is 100,000 USD, 75% of loans are equal to or less than 89.79 USD."}
@@ -840,7 +834,7 @@ amount_plot <- ggplot(kiva_loans, aes(x = loan_usd)) +
              x=round(median(kiva_loans$loan_usd),
                      digits = 2),
            color="#84628e")+
-  labs(title = "Distribution of Kiva loan amounts in USD",
+  labs(title = "How much is a Kiva loan (amounts in USD)?",
   x = "US Dollars",
   y = "Density")
 ```
@@ -860,7 +854,7 @@ term_plot <- ggplot(kiva_loans,
                 x=median(kiva_loans$term_in_months),
                 y=0.2,
            color="#84628e")+
-    labs(title = "Distribution of Kiva loan terms in months",
+    labs(title = "What are the Kiva loan terms?",
   x = "Months",
   y = "Density")
 ```
@@ -880,7 +874,7 @@ lender_count <- ggplot(kiva_loans,
                 x=median(kiva_loans$lender_count),
                 y=150000,
            color="#84628e")+
-    labs(title = "Distribution of number of lenders per Kiva loan",
+    labs(title = "How many lenders are there per Kiva loan?",
   x = "Lenders",
   y = "Frequency")
 ```
@@ -904,7 +898,7 @@ kiva_16 <-  kiva_loans%>%
 
 ```
 
-
+## How many lenders fund a single Kiva microloan per country?
 
 ```{r lenders-per-country, fig.cap="Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans."}
 
@@ -943,8 +937,7 @@ kiva_16%>%
   theme(axis.text.x = element_blank())+
   #Add labels to all the plot
   labs(x = "Lenders", y = "Frequency",
-       title = "How many lenders fund a single Kiva microloan per country?",
-       subtitle="Top 16 countries borrowing countries included.")
+       title = "Top 16 countries borrowing countries included.")
 
 ```
 
@@ -968,7 +961,7 @@ posting_plot <- ggplot(kiva_loans,
                     na.rm=TRUE),
            y=0.1,
            color="#84628e")+
-    labs(title = "Distribution of time to fully fund a Kiva loan",
+    labs(title = "How long does it take to fund a Kiva loan?",
   x = "Days",
   y = "Density")
 ```
@@ -993,29 +986,27 @@ disbursed_plot <- ggplot(kiva_loans,
                     na.rm=TRUE),
            y=0.1,
            color="#84628e")+
-    labs(title = "Distribution of time between posting and disbursing a Kiva loan",
+    labs(title = "How much time is there between posting and disbursing a Kiva loan?",
   x = "Days",
   y = "Density")
 ```
-Now let's look at the distributions of our numeric variables.
-```{r dist-plots, fig.cap="Figure A: Half of Kiva loans are 4.22 USD or less. Although the maximum loan is 100,000 USD, 75% of loans are equal to or less than 89.79 USD. Figure B: The loan term in months is a bimodal distribution with its first peak around 8 months and its second around 12, the median. Figure C: The lender count has a text book right-skewed distribution with a median of 12 lenders. Figure D: The median time between posting the loan and the loan being fully funded is about 9.6 days. It is a bimodal distribution with its first peak around 6 days and its second peak around 30 days. Figure E: The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days.", fig.height=25}
+
+
+```{r dist-plots, fig.cap="`Figure A`: Half of Kiva loans are 4.22 USD or less. Although the maximum loan is 100,000 USD, 75% of loans are equal to or less than 89.79 USD. `Figure B`: The loan term in months is a bimodal distribution with its first peak around 8 and 12 months. `Figure C`: The lender count has a text book right-skewed distribution with a median of 12 lenders. `Figure D`: On average it takes about 9.6 days to fund a loan. It can vary with a bimodal distribution with its first peak around 6 days and its second peak around 30 days. Figure E`: The total time between posting the loan it's disbursement has different peaks at 7, 14, 21 and 30 days.", fig.height=25}
 cowplot::plot_grid(amount_plot, 
 term_plot,
 lender_count, posting_plot, disbursed_plot, nrow=5, labels=c("A","B","C","D","E"))
 ```
  
 
-# Techniques used
+# Questions
 
-- I used the `quantmode` package to convert all loans into a unique currency (US dollars) for comparison. There were two currencies that were unavailable.
-
-- Taking all the different levels that came in the `borrower_genders` variable and creating five neat categories to better understand who are the borrowers was good practice with lists and the `stringr` package. 
-
-# Questions from this analysis
-
-- Why is `Retail` and not `Food` (as in other regions) the second most common use for loans in Asia. 
+- Why is retail and not food (as in other regions) the second most common use for loans in Asia?
 
 - Who are the givers? Where are they? Does proximity of the lender to the borrower have anything to do with funding times?
 
 - Does the Kiva website have anything to do with funding times? For example, `giving_time`, the time between posting the loan and the loan being fully funded, has two peaks, at around one week and one month. Is this due to the platform and the promotion of loans that have been posted for a certain amount of time?
 
+# Conclusion 
+
+In this post I analyse 671,205 Kiva loans from around the world. Most loans are requested by single females, EU requests the fewest loans, weekly repayment is an unpopular form of paying back loans and entertainment, wholesale, manufacturing, and construction amount less than 2.2% of sectors. The main uses for Kiva loans are agriculture, retail, and food with some variations amongst regions. Half of the loans are 4.22 USD or less and are funded by 12 or less lenders. The median time between posting on the Kiva platform and disbursing it to the borrower is 16.89 days. I mainly use the tidyverse, stringr, and quantmode packages.

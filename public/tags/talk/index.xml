@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Talk on Ángela Castillo-Gill</title>
+    <link>/tags/talk/</link>
+    <description>Recent content in Talk on Ángela Castillo-Gill</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 21 Feb 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/talk/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Data science interviews: lessons learned</title>
+      <link>/2019/02/data-science-interviews/</link>
+      <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/02/data-science-interviews/</guid>
+      <description>1 Summary 2 Why? 3 Here’s how I spent my time 3.1 Adapting CVs 3.2 Face-to-face interviews 3.3 Filling out forms 3.4 Interview prep 3.5 Job admin 3.6 Phone calls 3.7 Writing cover letters  4 What would I have done differently? 4.1 Establish healthy boundaries with recruiters 4.2 Focus on the basics for technical test prep 4.3 Schedule interviews at favourable times 4.4 Rehearse not knowing, or being wrong, and feeling embarrassed/nervous/uncomfortable and STILL speaking with confidence  5 What would I do again?</description>
+    </item>
+    
+  </channel>
+</rss>

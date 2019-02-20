@@ -40,5 +40,14 @@
  Objectives: To spatially visualise a dataset to understand global trends. Challenge: Using the tmap package. Data points: 7,282,808 Language: R   2 Question What countries download R the most?</description>
     </item>
     
+    <item>
+      <title>Exploring Kiva loans</title>
+      <link>/2018/08/exploring-kiva-loans/</link>
+      <pubDate>Tue, 07 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/08/exploring-kiva-loans/</guid>
+      <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 4.1 Borrower gender 4.2 Loan amounts 4.3 Country codes 4.4 Dates  5 Exploratory data analysis 5.1 Which gender borrows the most by region? 5.2 What type of repayment interval is used in each region? 5.3 What are Kiva loans used across regions? 5.4 Which are the top ten countries for Kiva loans? 5.5 Kiva statistics 5.</description>
+    </item>
+    
   </channel>
 </rss>

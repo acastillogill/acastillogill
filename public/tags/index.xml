@@ -21,24 +21,6 @@
     </item>
     
     <item>
-      <title>Data Science Interviews</title>
-      <link>/tags/data-science-interviews/</link>
-      <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/data-science-interviews/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Decision Trees</title>
-      <link>/tags/decision-trees/</link>
-      <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/decision-trees/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Eda</title>
       <link>/tags/eda/</link>
       <pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate>
@@ -48,18 +30,9 @@
     </item>
     
     <item>
-      <title>End to End</title>
-      <link>/tags/end-to-end/</link>
-      <pubDate>Tue, 07 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/end-to-end/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Exploratory Data Analysis</title>
       <link>/tags/exploratory-data-analysis/</link>
-      <pubDate>Tue, 07 Aug 2018 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/exploratory-data-analysis/</guid>
       <description></description>
@@ -75,15 +48,6 @@
     </item>
     
     <item>
-      <title>Home Sale Prices</title>
-      <link>/tags/home-sale-prices/</link>
-      <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/home-sale-prices/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Kaggle</title>
       <link>/tags/kaggle/</link>
       <pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate>
@@ -93,29 +57,29 @@
     </item>
     
     <item>
-      <title>Kiva</title>
-      <link>/tags/kiva/</link>
-      <pubDate>Tue, 07 Aug 2018 00:00:00 +0000</pubDate>
+      <title>Log Linear Regression</title>
+      <link>/tags/log-linear-regression/</link>
+      <pubDate>Sat, 01 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/kiva/</guid>
+      <guid>/tags/log-linear-regression/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Maps</title>
       <link>/tags/maps/</link>
-      <pubDate>Sat, 01 Dec 2018 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 01 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/maps/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Nba</title>
-      <link>/tags/nba/</link>
+      <title>R</title>
+      <link>/tags/r/</link>
       <pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/nba/</guid>
+      <guid>/tags/r/</guid>
       <description></description>
     </item>
     
@@ -143,6 +107,24 @@
       <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/regression-trees/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rpart</title>
+      <link>/tags/rpart/</link>
+      <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/rpart/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Talk</title>
+      <link>/tags/talk/</link>
+      <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/talk/</guid>
       <description></description>
     </item>
     
