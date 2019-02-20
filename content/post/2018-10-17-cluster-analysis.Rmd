@@ -53,7 +53,8 @@ x <-
     "kableExtra",
     "dendextend",
     "cluster",
-    "tidylog")
+    "tidylog",
+    "flextable")
 
 
 lapply(x, require, character.only = TRUE)
@@ -167,7 +168,7 @@ average_count <- count(cereals_k2_average, cluster)
 ```
 
 
-```{r plot-complete-linkage, include=TRUE, fig.cap="This tree diagram shows the complete linkage process. Here the algorithm chooses the closest MAXIMUM distance between the considered observation and the current pair. The height in the plot shows the distance between two observation. Each horizontal line represents the number of clusters. After choosing two clusters, we can say that maximum distance between observations in the two clusters is equal two or less than 11.06."}
+```{r plot-complete-linkage, include=TRUE, fig.cap="This tree diagram shows the complete linkage process. Here, the algorithm chooses the closest MAXIMUM distance between the considered observation and the current pair. The height in the plot shows the distance between two observations. Each horizontal line represents the number of clusters. By choosing two clusters, we can say that the maximum distance between observations in either of the two clusters is equal two or less than 11.06."}
 
 dend_cereals_comp <- as.dendrogram(hc_cereals_complete)
 dend_colored_comp <- color_branches(dend_cereals_comp, k=2)
@@ -192,22 +193,23 @@ plot(dend_colored_sin)
 
 I wanted balanced clusters so I ended up choosing the complete linkage method that classified observations more or less into two similar groups with one cluster having 30 observations and the other 47. Now I'd like to show the differences amongst clusters for each numerical variable. 
 
-```{r mean-for-each-cluster, include=TRUE}
+```{r table-mean-for-each-cluster, include=TRUE}
 two_clusters <- cereals_k2_complete %>% 
-  select(-shelf,-name,-mfr,-type,-cups,-weight)%>%
+  select(-shelf,-name,-mfr,-type)%>%
   group_by(cluster) %>% 
   summarise_all(funs(mean(.)))%>%
   cbind(complete_count$n)
 
-colnames(two_clusters)[12] <- "n"
+colnames(two_clusters)[14] <- "n"
 
-
-  
-  kable(two_clusters, caption="Cluster two (47 cereals), has on average, 19% more calories, 30% less protein, 99% more sodium, 62% less fiber, twice as much sugar, 41% less potasium, 89% more vitamins, and 36% lower ratings.")%>%
-  kable_styling()
+regulartable(two_clusters)%>%
+  theme_vanilla()
 ```
 
-Since one of the aims of clustering is to label unlabelled data, based on the average differences between the two clusters, I will label cluster one as `healthy` and cluster two as `unhealthy`. It's interesting to see that `unhealthy` cereals have a worse nutritional profile that `healthy` cereals but they have 90% more vitamins. 
+Cluster two (47 cereals), has on average, 19% more calories, 30% less protein, 99% more sodium, 62% less fiber, twice as much sugar, 41% less potasium, 89% more vitamins, and 36% lower ratings.
+Since one of the aims of clustering is to label unlabelled data, based on the differences between the two clusters, I will label cluster one as `healthy` and cluster two as `unhealthy`. It's interesting to see that `unhealthy` cereals have a worse nutritional profile that `healthy` cereals but they are very enriched with 90% more vitamins[^1]. 
+
+[^1]: Skip the unhealthy cereal and just take a multivitamin perhaps?
 
 ```{r renaming-clusters}
 cereals_k2_complete$cluster <- as.factor(cereals_k2_complete$cluster)
@@ -217,38 +219,49 @@ colnames(cereals_k2_complete)[17] <- "Cluster"
 ```
 
 
-Let's look at the clusters and see which specific cereals belong to each cluster.
+Let's look at the clusters and see which specific cereals belong to each cluster. Figure \@ref(fig:plot-sodium-sugar) shows how cereal names don't necessarily indicate to which cluster the cereal belongs to. For example, Total Raisin Bran has a high sugar and sodium content, higher than a perhaps intuitively unhealthy cereal like Lucky Charms. Another example is the word Bran, which years of marketing leads us to associate it with healthy cereals. Not always some Bran cereals like 100% Natural Bran, Bran Chex, Raisin Nut Bran do have a relatively low sugar and sodium content. Other Bran products like Raisin Bran, Fruitful Bran, and Post Nat Raisin Bran have a higher sugar content than Fruity Pebbles! 
 
-```{r plot-sodium-sugar, include=TRUE, fig.cap="It's interesting to note how cereal names don't necessarily indicate to which cluster the cereal belongs to. For example, Total Raisin Bran has a high sugar and sodium content, higher than a perhaps intuitively unhealthy cereal like Lucky Charms. Another example is the word Bran, which years of marketing leads us to associate it with healthy cereals. Not always some Bran cereals like 100% Natural Bran, Bran Chex, Raisin Nut Bran do have a relatively low sugar and sodium content. Other Bran products like Raisin Bran, Fruitful Bran, and Post Nat Raisin Bran have a higher sugar content than Fruity Pebbles!"}
+```{r plot-sodium-sugar, include=TRUE, fig.cap="Across all numerical variables, sugar and sodium was the biggest contrast between both clusters. This plot shows both clusters (healthy in blue and unhealthy in red) plotted against the sugar and sodium content per serving. Unhealthy cereals tend to have a higher sugar and sodium content (upper right side), while healthy cereals tend to have a less of these ingredients. There are exceptions of course. All-Bran, labelled as a healthy cereal has much more sodium than several unhealthy cereals."}
 
 ggplot(cereals_k2_complete, aes(x = sugars, y = sodium, color = Cluster)) +
   geom_point(alpha=0.5)+
   scale_color_manual(values=c("#1F78B4" , "#E31A1C"))+
   geom_text_repel(aes(label=name), force=2, size=3, segment.alpha = 0.5)+
-  labs(title="How do clusters stack up on the sugar and sodium content?",
+  labs(title="How do clusters stack up on sugar and sodium content?",
        x="Sugar content per serving",
        y="Sodium content per serving")
   
 ```
 
-From my brief food marketing experience, I remember learning that Brands pay a premium to have their product on certain shelves. I'm curious to know what types of cereals are placed on which shelves. 
+From my brief food marketing experience, I remember learning that Brands pay a premium to have their product on certain shelves. Figure \@ref(fig:plot-sugar-shelf) illustrates types of cereals according to shelf (y-axis) and sugar (x-axis). The top shelf (3), has an equal quantity of cereals belonging to either cluster. My guess is that brands don't pay extra for their cereals to be stocked on this shelf. The bottom shelf (1) has six more unhealthy cereals. I notice that cereals on this shelf are sort of basics whether they're unhealthy or not: basic Oatmeal, Frosted Flakes, Rice Krispies, Corn Flakes. The middle shelf appears to be the premium one with three times more unhealthy than healthy cereals. For the most part they are the unhealthy ones geared towards children: Cap'n Crunch, Lucky Charms, Fruity Pebbles, Cocoa Puffs.
 
-```{r table-counting-sugar-shelf}
+```{r table-counting-sugar-shelf, include=TRUE}
 
-shelf_cluster <- table(cereals_k2_complete$shelf,cereals_k2_complete$Cluster)
+shelf_cluster <- as.data.frame.matrix(table(cereals_k2_complete$shelf,cereals_k2_complete$Cluster))
 
 colnames(shelf_cluster) <- c("Healthy","Unhealthy")
 
-shelf_cluster
+shelf_cluster <- shelf_cluster%>%
+  mutate(Total=Healthy+Unhealthy)%>%
+  rownames_to_column()
+
+colnames(shelf_cluster)[1] <- "Shelf"
+
+shelf_cluster%>%
+  arrange(desc(Shelf))%>%
+  regulartable()%>%
+  theme_vanilla()
 ```
 
+Cereal types per shelf: the middle (2) and bottom (1) shelves have around 20 cereals with more unhealthy than healthy options. The top shelf is much more crowded at 36 cereals with a good mix between cereal types.
 
-```{r plot-sugar-shelf, include=TRUE, fig.cap="The top shelf (3), has an equal quantity of cereals belonging to either cluster. My guess is that brands don't pay extra for their cereals to be stocked on this shelf. The bottom shelf (1) has six more unhealthy cereals. I notice that cereals on this shelf are sort of basics whether they're unhealthy or not: basic Oatmeal, Frosted Flakes, Rice Krispies, Corn Flakes. The middle shelf appears to be the premium one with three times more unhealthy than healthy cereals. For the most part they are the unhealthy ones geared towards children: Cap'n Crunch, Lucky Charms, Fruity Pebbles, Cocoa Puffs."}
+```{r plot-sugar-shelf, include=TRUE, fig.cap="Supermarket shelves and sugar content. The middle shelf has three times as many unhealthy cereals. The top shelf has equal amounts of types of cereal with a broad range along the sugar content."}
+
 
  ggplot(cereals_k2_complete, aes(x = sugars, y = shelf, color = Cluster)) +
-  geom_point(alpha=0.5)+
+  geom_jitter(alpha=0)+
   scale_color_manual(values=c("#1F78B4" , "#E31A1C"))+
-  geom_text_repel(aes(label=name), force=2, size=3, segment.alpha = 0.5)+
+  geom_text_repel(aes(label=name), force=2, size=3, segment.alpha = 0)+
     scale_y_continuous(breaks=c(1,2,3))+
   labs(title="Which shelf has the most sugary cereals?",
        x="Sugar content per serving",

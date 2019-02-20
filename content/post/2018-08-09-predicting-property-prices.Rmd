@@ -567,7 +567,7 @@ The tool I'm using to answer the question is regression trees. They are also kno
 
 The variable which can best[^1] split the data into two groups is identified. The data are then separated into two groups and the whole process is repeated *recursively* or indefinitely until the sub-groups reach a minimum size, or until no further improvements can be made. When the split is made, similarity amongst the observations can more or less homogenous. This homogeneity is also called purity and it can be measured. The impurity measure of a node specifies how mixed the resulting subset is.
 
-[^1]: The best tree is the smallest tree with highest cross-validated error.
+[^1]: The best tree is the smallest tree with lowest cross-validated error.
 
 **Second stage**:
 
