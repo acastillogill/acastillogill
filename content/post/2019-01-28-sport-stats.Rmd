@@ -9,7 +9,7 @@ tags:
   - Exploratory data analysis
   - EDA
   - R
-description: "This is why despite knowing little to nothing about basketball, I still knew who Lebron James was. In this post I analysed 6,798,209 data points on NBA free throws from 2006 to 2018. I focused on the Players variable to rank NBA players by the total number of shots for all ten seasons and amongst seasons. There is much scoring variability amongst top ten players with some playing less but being scoring more and others attempting much more but being consistent. The better strategy, judging by the ranking, is to attempt more and stay consistent."
+description: "This is why despite knowing little to nothing about basketball, I still knew who Lebron James was. In this post I analysed 6,798,209 data points on NBA free throws from 2006 to 2018. I focused on the Players variable to rank NBA players by the total number of shots for all ten seasons and amongst seasons. There is much scoring variability amongst top ten players with some playing less but scoring more and others attempting much more but being consistent. The better strategy, judging by the ranking, is to attempt more often and stay consistent throughout the season."
 banner: "banners/NBA_season.png"
 images: ["banners/NBA_season.png"]
 draft: FALSE
@@ -87,7 +87,7 @@ NBA <- read_csv(here::here("static","data","free_throws.csv"))
 
 # Summary 
 
-*To see the all the code used in this post, visit my [GitHub repository for this site](https://github.com/acastillogill/acastillogill)* 
+*To see the the code used in this post, visit my [GitHub repository for this site](https://github.com/acastillogill/acastillogill)* 
 
 - Objectives: Visually understand who were the best NBA players between 2006 and 2016 and why. 
 - Challenge: Using the list-column workflow and the `Purrr` package. 
@@ -380,5 +380,5 @@ season_ratios
 
 # Conclusion
 
-In this post I analysed `r nrow(NBA)*length(NBA)` data points on NBA free throws from 2006 to 2018. I focused on the `Players` variable to rank NBA players by the total number of shots for all ten seasons and amongst seasons. There is much scoring variability amongst top ten players with some playing less but being scoring more and others attempting much more but being consistent. The better strategy, judging by the ranking, is to attempt more and stay consistent. 
+In this post I analysed `r nrow(NBA)*length(NBA)` data points on NBA free throws from 2006 to 2018. I focused on the `Players` variable to rank NBA players by the total number of shots for all ten seasons and amongst seasons. There is much scoring variability amongst top ten players with some playing less but scoring more and others attempting much more but being consistent. The better strategy, judging by the ranking, is to attempt more often and stay consistent throughout the season. 
 

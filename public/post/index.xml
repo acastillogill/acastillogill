@@ -26,7 +26,7 @@
       <pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/2019/01/nba-stats/</guid>
-      <description>1 Summary 2 Question 3 Dataset description 3.1 Who made the most shots between 2006 and 2016? 3.2 Who had the highest shots per free throw attempt between 2006 and 2016? 3.3 Who made the most shots each season? 3.4 What was the free throw attempt between 2006 and 2016 for the player that scored the most each season?  4 Results 5 Conclusion   1 Summary To see the all the code used in this post, visit my GitHub repository for this site</description>
+      <description>1 Summary 2 Question 3 Dataset description 3.1 Who made the most shots between 2006 and 2016? 3.2 Who had the highest shots per free throw attempt between 2006 and 2016? 3.3 Who made the most shots each season? 3.4 What was the free throw attempt between 2006 and 2016 for the player that scored the most each season?  4 Results 5 Conclusion   1 Summary To see the the code used in this post, visit my GitHub repository for this site</description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
       <pubDate>Sat, 01 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/2018/12/log-linear-regression-r-downloads/</guid>
-      <description>1 Summary 2 Question 3 Dataset description 4 The relationship between the education index and R downloads 5 Results 6 Conclusion   1 Summary To see the all the code used in this post, visit my GitHub repository for this site
+      <description>1 Summary 2 Question 3 Dataset description 4 The relationship between the education index and R downloads 5 Results 6 Conclusion   1 Summary To see the the code used in this post, visit my GitHub repository for this site
  Objectives: To understand what factors contribute to R downloads per 1,000 capita. Challenge: Interpretation of log-linear coefficients. Data points: 11,806,912 Language: R   2 Question In a previous post I had looked at which countries downloaded R the most.</description>
     </item>
     
@@ -75,7 +75,7 @@
       <pubDate>Tue, 07 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>/2018/08/exploring-kiva-loans/</guid>
-      <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 4.1 Borrower gender 4.2 Loan amounts 4.3 Country codes 4.4 Dates  5 Exploratory data analysis 5.1 Which gender borrows the most by region? 5.2 What type of repayment interval is used in each region? 5.3 What are Kiva loans used across regions? 5.4 Which are the top ten countries for Kiva loans? 5.5 Kiva statistics 5.</description>
+      <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 4.1 Borrower gender 4.2 Loan amounts 4.3 Country codes 4.4 Dates  5 Exploratory data analysis 5.1 Which gender borrows the most by region? 5.2 What type of repayment interval is used in each region? 5.3 What are Kiva loans used across regions? 5.4 Which are the top ten countries for Kiva loans? 5.5 How many lenders fund a single Kiva microloan per country?</description>
     </item>
     
   </channel>

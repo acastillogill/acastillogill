@@ -61,7 +61,7 @@ opts_chunk$set(echo = FALSE,
 
 # Summary
 
-*To see the code used in this post, visit my [kernel on kaggle in R Markdown format](https://www.kaggle.com/adcastillogill/exploring-kiva-loans).* 
+*To see the the code used in this post, visit my [GitHub repository for this site](https://github.com/acastillogill/acastillogill)* 
 
 ```{r read-data}
 kiva_loans <- readRDS(here::here("static","data","datakiva_loans.rds"))
@@ -75,17 +75,13 @@ kiva_loans <- readRDS(here::here("static","data","datakiva_loans.rds"))
 
 # Purpose of this post
 
-Muhammad Yunus and the Grameen Bank won the [Nobel Peace Prize](https://www.nobelpeaceprize.org/Prize-winners/Winners/2006) in 2006 for "their efforts through microcredit to create economic and social development from below."
-
-Back in 1976, Yunus, at the time a professor at the University of Chittagong (Bangladesh), [noticed that small amounts of money could make a substantial difference to people living in poverty](https://www.bbc.co.uk/news/world-south-asia-11901625). He started to loan money to people that didn't meet the requirements listed by the mainstream banking system. It was reported that these type of loans were effective to ["emerge" from poverty](https://www.nobelpeaceprize.org/Prize-winners/Prizewinner-documentation/Muhammad-Yunus-Grameen-Bank) using default rates lower than those of commercial banks, [reported at 2%](https://www.gdrc.org/icm/grameen-article4.html). Eventually, in October 1983, Muhammad Yunus founded [Grameen Bank](https://grameenfoundation.org/about/history), considered to be the first microfinance institution. 
+Muhammad Yunus and the Grameen Bank won the [Nobel Peace Prize](https://www.nobelpeaceprize.org/Prize-winners/Winners/2006) in 2006 for "their efforts through microcredit to create economic and social development from below." Back in 1976, Yunus, at the time a professor at the University of Chittagong (Bangladesh), [noticed that small amounts of money could make a substantial difference to people living in poverty](https://www.bbc.co.uk/news/world-south-asia-11901625). He started to loan money to people that didn't meet the requirements listed by the mainstream banking system. It was reported that these type of loans were effective to ["emerge" from poverty](https://www.nobelpeaceprize.org/Prize-winners/Prizewinner-documentation/Muhammad-Yunus-Grameen-Bank) using default rates lower than those of commercial banks, [reported at 2%](https://www.gdrc.org/icm/grameen-article4.html). Eventually, in October 1983, Muhammad Yunus founded [Grameen Bank](https://grameenfoundation.org/about/history), considered to be the first microfinance institution. 
 
 Founded in 2005, [Kiva](https://www.kiva.org/), has the same mission as Grameen Bank except that anyone can become a Kiva banker. This online platform enables microcredit lending to help low-income entrepreneurs around the world with a couple of clicks. Pretty neat, huh? In this post, I unpack a large dataset published by [Kiva on the Kaggle platform](https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding) and explore these microloans. 
 
 # The data
 
-The dataset was published during the first months of 2018 on the [Kaggle platform](https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding). 
-
-The complete dataset was a zip file with size 232.7 MB containing four files: `kiva_loans.csv`, `kiva_mpi_region_locations.csv`,`loan_theme_ids.csv`, and `loan_themes_by_region.csv`. After I looked at the contents, I chose to work with the first one `kiva_loans.csv`.
+The dataset was published on the [Kaggle platform](https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding). The complete dataset was a zip file with size 232.7 MB containing four files: `kiva_loans.csv`, `kiva_mpi_region_locations.csv`,`loan_theme_ids.csv`, and `loan_themes_by_region.csv`. After I looked at the contents, I chose to work with the first one `kiva_loans.csv` with 671,205 observations and 20 variables.
 
 ```{r results='hide', eval=FALSE}
 path <- "/Volumes/TOSHIBAEXT/RStudio/blog/content/post/kiva_data/"
@@ -100,35 +96,11 @@ saveRDS(kiva_loans,paste0(path_2,"kiva_loans.rds"))
 ```
 
 
-The dataset had 671,205 observations and 20 variables.
 
 ```{r results='hide'}
 #Get a glimpse of kiva_loans
 glimpse(kiva_loans)
 ```
-
-Some of the codebook came with the dataset and some I researched to make assumptions:
-
-- `funded_amount`: "The amount disbursed by Kiva to the field agent(USD)"
-- `loan_amount`: "The amount disbursed by the field agent to the borrower(USD)"
-- `activity`: "More granular category"
-- `sector`: "High level category"
-- `use`: "Exact usage of loan amount"
-- `country_code`: "ISO country code of country in which loan was disbursed"
-- `country`: "Full country name of country in which loan was disbursed"
-- `region`: "Full region name within the country"
-- `currency`: "The currency in which the loan was disbursed"
-- `partner_id`: "ID of partner organization"
-
-This variable has a lot of missing values and the Kiva explanation on Kaggle doesn't go much further. For now, I will exclude `partner_id`. 
-
-- `posted_time`: "The time at which the loan is posted on Kiva by the field agent"
-- `disbursed_time`: "The time at which the loan is disbursed by the field agent to the borrower"
-- `funded_time`: "The time at which the loan posted to Kiva gets funded by lenders completely"
-- `term_in_months`: "The duration for which the loan was disbursed in months"
-- `lender_count`: "The total number of lenders that contributed to this loan"
-- `borrower_genders`: "Comma separated M,F letters, where each instance represents a single male/female in the group"
-- `repayment_interval`: Not specified so I assume that it means the standard definition of when the loan is repaid back to the lender.
 
 # Data cleaning 
 ```{r}
@@ -158,9 +130,6 @@ categorical <- c("sector",
 kiva_loans[categorical] <- lapply(kiva_loans[categorical],
                                   factor)
 ```
-
-By glancing at the data I see there are a few bits that don't make sense and need to be fixed. 
-
 
 ## Borrower gender
 
@@ -814,7 +783,6 @@ user_plot <- users_iso_loans %>%
 cowplot::plot_grid(country_plot,pop_plot,user_plot, nrow=3, labels=c("A","B","C"))
 ```
 
-## Kiva statistics
 
 
 ```{r loan-usd-distribution, fig.cap="Half of Kiva loans are 4.22 USD or less. Although the maximum loan is 100,000 USD, 75% of loans are equal to or less than 89.79 USD."}
@@ -966,6 +934,7 @@ posting_plot <- ggplot(kiva_loans,
   y = "Density")
 ```
 
+## How much, how long, how many lenders, how long to fund and disburse
 ```{r total-time, fig.cap="The total time between posting the loan and it being disbursed has a funky looking multimodal distribution. It seems to be cut off at 30 days with peaks at 7, 14, 21 and 30 days. Median time is 17.2 days."}
 
 
@@ -1002,9 +971,7 @@ lender_count, posting_plot, disbursed_plot, nrow=5, labels=c("A","B","C","D","E"
 # Questions
 
 - Why is retail and not food (as in other regions) the second most common use for loans in Asia?
-
 - Who are the givers? Where are they? Does proximity of the lender to the borrower have anything to do with funding times?
-
 - Does the Kiva website have anything to do with funding times? For example, `giving_time`, the time between posting the loan and the loan being fully funded, has two peaks, at around one week and one month. Is this due to the platform and the promotion of loans that have been posted for a certain amount of time?
 
 # Conclusion 

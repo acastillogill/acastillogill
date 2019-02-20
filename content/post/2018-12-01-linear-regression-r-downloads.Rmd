@@ -9,7 +9,7 @@ tags:
   - EDA
   - Log-linear regression
   - Exploratory data analysis
-description: "In this blog post, I set out to explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad."
+description: "In this blog post, I explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad."
 banner: "banners/edu_index_downloads_capita.png"
 images: ["banners/edu_index_downloads_capita.png"]
 draft: FALSE
@@ -85,7 +85,7 @@ r_downloads <- na.omit(r_downloads)%>%
 
 # Summary
 
-*To see the all the code used in this post, visit my [GitHub repository for this site](https://github.com/acastillogill/acastillogill)* 
+*To see the the code used in this post, visit my [GitHub repository for this site](https://github.com/acastillogill/acastillogill)* 
 
 - Objectives: To understand what factors contribute to R downloads per 1,000 capita. 
 - Challenge: Interpretation of log-linear coefficients.
@@ -296,4 +296,4 @@ fit %>%
 
 # Conclusion
 
-In this blog post, I set out to explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about `r  summary(fit)$adj.r.squared*100` of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad.
+In this blog post, I explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad.

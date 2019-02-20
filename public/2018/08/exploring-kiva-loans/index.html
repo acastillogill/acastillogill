@@ -39,7 +39,7 @@
 
 <meta itemprop="datePublished" content="2018-08-07T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-08-07T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1455">
+<meta itemprop="wordCount" content="1225">
 
   <meta itemprop="image" content="/banners/lenders-country.png">
 
@@ -273,10 +273,10 @@
             <i class="far fa-calendar"></i>
             <time datetime="2018-08-07 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-08-07</time>
             &middot;
-            1455
+            1225
             words
             &middot;
-            7
+            6
             minute read
         </div>
         
@@ -328,8 +328,8 @@
 <li><a href="#what-type-of-repayment-interval-is-used-in-each-region"><span class="toc-section-number">5.2</span> What type of repayment interval is used in each region?</a></li>
 <li><a href="#what-are-kiva-loans-used-across-regions"><span class="toc-section-number">5.3</span> What are Kiva loans used across regions?</a></li>
 <li><a href="#which-are-the-top-ten-countries-for-kiva-loans"><span class="toc-section-number">5.4</span> Which are the top ten countries for Kiva loans?</a></li>
-<li><a href="#kiva-statistics"><span class="toc-section-number">5.5</span> Kiva statistics</a></li>
-<li><a href="#how-many-lenders-fund-a-single-kiva-microloan-per-country"><span class="toc-section-number">5.6</span> How many lenders fund a single Kiva microloan per country?</a></li>
+<li><a href="#how-many-lenders-fund-a-single-kiva-microloan-per-country"><span class="toc-section-number">5.5</span> How many lenders fund a single Kiva microloan per country?</a></li>
+<li><a href="#how-much-how-long-how-many-lenders-how-long-to-fund-and-disburse"><span class="toc-section-number">5.6</span> How much, how long, how many lenders, how long to fund and disburse</a></li>
 </ul></li>
 <li><a href="#questions"><span class="toc-section-number">6</span> Questions</a></li>
 <li><a href="#conclusion"><span class="toc-section-number">7</span> Conclusion</a></li>
@@ -338,7 +338,7 @@
 
 <div id="summary" class="section level1">
 <h1><span class="header-section-number">1</span> Summary</h1>
-<p><em>To see the code used in this post, visit my <a href="https://www.kaggle.com/adcastillogill/exploring-kiva-loans">kernel on kaggle in R Markdown format</a>.</em></p>
+<p><em>To see the the code used in this post, visit my <a href="https://github.com/acastillogill/acastillogill">GitHub repository for this site</a></em></p>
 <ul>
 <li>Objectives: To visualise a dataset and understand its main trends.</li>
 <li>Challenge: Largest dataset worked with so far.</li>
@@ -348,42 +348,15 @@
 </div>
 <div id="purpose-of-this-post" class="section level1">
 <h1><span class="header-section-number">2</span> Purpose of this post</h1>
-<p>Muhammad Yunus and the Grameen Bank won the <a href="https://www.nobelpeaceprize.org/Prize-winners/Winners/2006">Nobel Peace Prize</a> in 2006 for “their efforts through microcredit to create economic and social development from below.”</p>
-<p>Back in 1976, Yunus, at the time a professor at the University of Chittagong (Bangladesh), <a href="https://www.bbc.co.uk/news/world-south-asia-11901625">noticed that small amounts of money could make a substantial difference to people living in poverty</a>. He started to loan money to people that didn’t meet the requirements listed by the mainstream banking system. It was reported that these type of loans were effective to <a href="https://www.nobelpeaceprize.org/Prize-winners/Prizewinner-documentation/Muhammad-Yunus-Grameen-Bank">“emerge” from poverty</a> using default rates lower than those of commercial banks, <a href="https://www.gdrc.org/icm/grameen-article4.html">reported at 2%</a>. Eventually, in October 1983, Muhammad Yunus founded <a href="https://grameenfoundation.org/about/history">Grameen Bank</a>, considered to be the first microfinance institution.</p>
+<p>Muhammad Yunus and the Grameen Bank won the <a href="https://www.nobelpeaceprize.org/Prize-winners/Winners/2006">Nobel Peace Prize</a> in 2006 for “their efforts through microcredit to create economic and social development from below.” Back in 1976, Yunus, at the time a professor at the University of Chittagong (Bangladesh), <a href="https://www.bbc.co.uk/news/world-south-asia-11901625">noticed that small amounts of money could make a substantial difference to people living in poverty</a>. He started to loan money to people that didn’t meet the requirements listed by the mainstream banking system. It was reported that these type of loans were effective to <a href="https://www.nobelpeaceprize.org/Prize-winners/Prizewinner-documentation/Muhammad-Yunus-Grameen-Bank">“emerge” from poverty</a> using default rates lower than those of commercial banks, <a href="https://www.gdrc.org/icm/grameen-article4.html">reported at 2%</a>. Eventually, in October 1983, Muhammad Yunus founded <a href="https://grameenfoundation.org/about/history">Grameen Bank</a>, considered to be the first microfinance institution.</p>
 <p>Founded in 2005, <a href="https://www.kiva.org/">Kiva</a>, has the same mission as Grameen Bank except that anyone can become a Kiva banker. This online platform enables microcredit lending to help low-income entrepreneurs around the world with a couple of clicks. Pretty neat, huh? In this post, I unpack a large dataset published by <a href="https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding">Kiva on the Kaggle platform</a> and explore these microloans.</p>
 </div>
 <div id="the-data" class="section level1">
 <h1><span class="header-section-number">3</span> The data</h1>
-<p>The dataset was published during the first months of 2018 on the <a href="https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding">Kaggle platform</a>.</p>
-<p>The complete dataset was a zip file with size 232.7 MB containing four files: <code>kiva_loans.csv</code>, <code>kiva_mpi_region_locations.csv</code>,<code>loan_theme_ids.csv</code>, and <code>loan_themes_by_region.csv</code>. After I looked at the contents, I chose to work with the first one <code>kiva_loans.csv</code>.</p>
-<p>The dataset had 671,205 observations and 20 variables.</p>
-<p>Some of the codebook came with the dataset and some I researched to make assumptions:</p>
-<ul>
-<li><code>funded_amount</code>: “The amount disbursed by Kiva to the field agent(USD)”</li>
-<li><code>loan_amount</code>: “The amount disbursed by the field agent to the borrower(USD)”</li>
-<li><code>activity</code>: “More granular category”</li>
-<li><code>sector</code>: “High level category”</li>
-<li><code>use</code>: “Exact usage of loan amount”</li>
-<li><code>country_code</code>: “ISO country code of country in which loan was disbursed”</li>
-<li><code>country</code>: “Full country name of country in which loan was disbursed”</li>
-<li><code>region</code>: “Full region name within the country”</li>
-<li><code>currency</code>: “The currency in which the loan was disbursed”</li>
-<li><code>partner_id</code>: “ID of partner organization”</li>
-</ul>
-<p>This variable has a lot of missing values and the Kiva explanation on Kaggle doesn’t go much further. For now, I will exclude <code>partner_id</code>.</p>
-<ul>
-<li><code>posted_time</code>: “The time at which the loan is posted on Kiva by the field agent”</li>
-<li><code>disbursed_time</code>: “The time at which the loan is disbursed by the field agent to the borrower”</li>
-<li><code>funded_time</code>: “The time at which the loan posted to Kiva gets funded by lenders completely”</li>
-<li><code>term_in_months</code>: “The duration for which the loan was disbursed in months”</li>
-<li><code>lender_count</code>: “The total number of lenders that contributed to this loan”</li>
-<li><code>borrower_genders</code>: “Comma separated M,F letters, where each instance represents a single male/female in the group”</li>
-<li><code>repayment_interval</code>: Not specified so I assume that it means the standard definition of when the loan is repaid back to the lender.</li>
-</ul>
+<p>The dataset was published on the <a href="https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding">Kaggle platform</a>. The complete dataset was a zip file with size 232.7 MB containing four files: <code>kiva_loans.csv</code>, <code>kiva_mpi_region_locations.csv</code>,<code>loan_theme_ids.csv</code>, and <code>loan_themes_by_region.csv</code>. After I looked at the contents, I chose to work with the first one <code>kiva_loans.csv</code> with 671,205 observations and 20 variables.</p>
 </div>
 <div id="data-cleaning" class="section level1">
 <h1><span class="header-section-number">4</span> Data cleaning</h1>
-<p>By glancing at the data I see there are a few bits that don’t make sense and need to be fixed.</p>
 <div id="borrower-gender" class="section level2">
 <h2><span class="header-section-number">4.1</span> Borrower gender</h2>
 <p>From the variable descriptions, I expected <code>borrower_genders</code>to have only two levels, male or female. I see many more levels, 11298 to be precise. This isn’t very clear so I fix that first by creating five levels:</p>
@@ -444,17 +417,17 @@ Figure 5.4: <code>Figure A</code>: Philippines requests the mosts loans with ove
 </p>
 </div>
 </div>
-<div id="kiva-statistics" class="section level2">
-<h2><span class="header-section-number">5.5</span> Kiva statistics</h2>
-</div>
 <div id="how-many-lenders-fund-a-single-kiva-microloan-per-country" class="section level2">
-<h2><span class="header-section-number">5.6</span> How many lenders fund a single Kiva microloan per country?</h2>
+<h2><span class="header-section-number">5.5</span> How many lenders fund a single Kiva microloan per country?</h2>
 <div class="figure"><span id="fig:lenders-per-country"></span>
 <img src="../../../post/2018-07-09-exploring-kiva-loans_files/figure-html/lenders-per-country-1.png" alt="Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans." width="672" />
 <p class="caption">
 Figure 5.5: Lender count ranges between 5 and 40 for the top 16 countries that request the most Kiva loans.
 </p>
 </div>
+</div>
+<div id="how-much-how-long-how-many-lenders-how-long-to-fund-and-disburse" class="section level2">
+<h2><span class="header-section-number">5.6</span> How much, how long, how many lenders, how long to fund and disburse</h2>
 <div class="figure"><span id="fig:dist-plots"></span>
 <img src="../../../post/2018-07-09-exploring-kiva-loans_files/figure-html/dist-plots-1.png" alt="`Figure A`: Half of Kiva loans are 4.22 USD or less. Although the maximum loan is 100,000 USD, 75% of loans are equal to or less than 89.79 USD. `Figure B`: The loan term in months is a bimodal distribution with its first peak around 8 and 12 months. `Figure C`: The lender count has a text book right-skewed distribution with a median of 12 lenders. `Figure D`: On average it takes about 9.6 days to fund a loan. It can vary with a bimodal distribution with its first peak around 6 days and its second peak around 30 days. Figure E`: The total time between posting the loan it's disbursement has different peaks at 7, 14, 21 and 30 days." width="672" />
 <p class="caption">
@@ -466,9 +439,9 @@ Figure 5.6: <code>Figure A</code>: Half of Kiva loans are 4.22 USD or less. Alth
 <div id="questions" class="section level1">
 <h1><span class="header-section-number">6</span> Questions</h1>
 <ul>
-<li><p>Why is retail and not food (as in other regions) the second most common use for loans in Asia?</p></li>
-<li><p>Who are the givers? Where are they? Does proximity of the lender to the borrower have anything to do with funding times?</p></li>
-<li><p>Does the Kiva website have anything to do with funding times? For example, <code>giving_time</code>, the time between posting the loan and the loan being fully funded, has two peaks, at around one week and one month. Is this due to the platform and the promotion of loans that have been posted for a certain amount of time?</p></li>
+<li>Why is retail and not food (as in other regions) the second most common use for loans in Asia?</li>
+<li>Who are the givers? Where are they? Does proximity of the lender to the borrower have anything to do with funding times?</li>
+<li>Does the Kiva website have anything to do with funding times? For example, <code>giving_time</code>, the time between posting the loan and the loan being fully funded, has two peaks, at around one week and one month. Is this due to the platform and the promotion of loans that have been posted for a certain amount of time?</li>
 </ul>
 </div>
 <div id="conclusion" class="section level1">

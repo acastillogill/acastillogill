@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="author" content="Ángela Castillo-Gill">
     
-      <meta name="description" content="In this blog post, I set out to explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad.">
+      <meta name="description" content="In this blog post, I explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad.">
     
     
     <link rel="canonical" href="../../../2018/12/log-linear-regression-r-downloads/"/>
@@ -24,7 +24,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:regular,medium,bold' rel='stylesheet' type='text/css'>
     <meta property="og:title" content="Log-linear regression: who tends to download R software" />
-<meta property="og:description" content="In this blog post, I set out to explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad." />
+<meta property="og:description" content="In this blog post, I explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/2018/12/log-linear-regression-r-downloads/" />
 <meta property="og:image" content="/banners/edu_index_downloads_capita.png" />
@@ -34,12 +34,12 @@
     
     
 <meta itemprop="name" content="Log-linear regression: who tends to download R software">
-<meta itemprop="description" content="In this blog post, I set out to explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad.">
+<meta itemprop="description" content="In this blog post, I explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad.">
 
 
 <meta itemprop="datePublished" content="2018-12-01T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-12-01T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="802">
+<meta itemprop="wordCount" content="798">
 
   <meta itemprop="image" content="/banners/edu_index_downloads_capita.png">
 
@@ -51,7 +51,7 @@
 <meta name="twitter:image" content="/banners/edu_index_downloads_capita.png"/>
 
 <meta name="twitter:title" content="Log-linear regression: who tends to download R software"/>
-<meta name="twitter:description" content="In this blog post, I set out to explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad."/>
+<meta name="twitter:description" content="In this blog post, I explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad."/>
 <meta name="twitter:site" content="@acastillogill"/>
 
     
@@ -273,7 +273,7 @@
             <i class="far fa-calendar"></i>
             <time datetime="2018-12-01 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-12-01</time>
             &middot;
-            802
+            798
             words
             &middot;
             4
@@ -329,7 +329,7 @@
 
 <div id="summary" class="section level1">
 <h1><span class="header-section-number">1</span> Summary</h1>
-<p><em>To see the all the code used in this post, visit my <a href="https://github.com/acastillogill/acastillogill">GitHub repository for this site</a></em></p>
+<p><em>To see the the code used in this post, visit my <a href="https://github.com/acastillogill/acastillogill">GitHub repository for this site</a></em></p>
 <ul>
 <li>Objectives: To understand what factors contribute to R downloads per 1,000 capita.</li>
 <li>Challenge: Interpretation of log-linear coefficients.</li>
@@ -420,7 +420,7 @@ so the final confidence interval is:
 </div>
 <div id="conclusion" class="section level1">
 <h1><span class="header-section-number">6</span> Conclusion</h1>
-<p>In this blog post, I set out to explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.41 of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad.</p>
+<p>In this blog post, I explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad.</p>
 </div>
 
         </div>
