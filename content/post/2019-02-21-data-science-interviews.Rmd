@@ -70,7 +70,7 @@ job_search <- read_csv(file=here::here("static","data","job_search.csv"))
 
 # Summary
 
-In this post I share how I spent my time during my data scientist job search. I then use this information to point out things I would have done differently and things I'm glad I did. The content of this blogpost was first presented at R-Ladies London on 2019-02-21 with this presentation is [here](https://acastillogill.com/slides/2019-02-21-r-ladies-data-science-interviews-presentation.html#1): 
+In this post I share how I spent my time during my data scientist job search. I then use this information to point out things I would have done differently and things I'm glad I did. The content of this blogpost was first presented at R-Ladies London on 2019-02-21 with [these slides](https://acastillogill.com/slides/2019-02-21-r-ladies-data-science-interviews-presentation.html#1): 
 
 ```{r include=TRUE}
 knitr::include_url('https://acastillogill.com/slides/2019-02-21-r-ladies-data-science-interviews-presentation.html#1')
