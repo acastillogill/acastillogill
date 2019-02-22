@@ -314,7 +314,7 @@ There are statistics and programming basics that every data scientist should kno
 
 **What would I do now?**
 
-I would focus less on specific algorithm details and just throughly freshen up on stats 101, data cleaning and wrangling basics by heart including syntax in both R and SQL.
+I would focus less on specific algorithm details and just throughly freshen up on stats 101, data cleaning and wrangling basics in both R and SQL.
 
 ## Schedule interviews at favourable times
 
