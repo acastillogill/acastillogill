@@ -17,8 +17,8 @@
       <pubDate>Thu, 01 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/2018/11/r-downloads-around-the-world/</guid>
-      <description>1 Summary 2 Question 3 Dataset description 3.1 Total R Downloads 3.2 Total R Downloads per 1,000 capita 3.3 Times of the year with most downloads  4 Conclusion   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
- Objectives: To spatially visualise a dataset to understand global trends. Challenge: Using the tmap package. Data points: 7,282,808 Language: R   2 Question What countries download R the most?</description>
+      <description>1 Summary2 Question3 Dataset description3.1 Total R Downloads3.2 Total R Downloads per 1,000 capita3.3 Times of the year with most downloads4 Conclusion1 SummaryTo see the code used in this post, visit my kernel on kaggle in R Markdown format.
+Objectives: To spatially visualise a dataset to understand global trends.Challenge: Using the tmap package.Data points: 7,282,808Language: R2 QuestionWhat countries download R the most?</description>
     </item>
     
   </channel>

@@ -2,7 +2,7 @@
 <html lang="en-us">
 <head>
     <title>Log-linear regression: who tends to download R software &middot; Ángela Castillo-Gill</title>
-    <meta name="generator" content="Hugo 0.53" />
+    <meta name="generator" content="Hugo 0.54.0" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="author" content="Ángela Castillo-Gill">
@@ -27,6 +27,7 @@
 <meta property="og:description" content="In this blog post, I explain the relationship between the education index and R downloads per 1,000 capita across the globe. To do this, I identified an education based metric for all countries. I then regressed R downloads per 1,000 capita onto the education index. I found that the education index (values from 2016) explains about 64.6% of variation in R downloads per 1,000 capita. There were several outliers including Turkmenistan, Tajikistan, Libya, Burkina Faso, and Chad." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/2018/12/log-linear-regression-r-downloads/" />
+
 <meta property="og:image" content="/banners/edu_index_downloads_capita.png" />
 <meta property="article:published_time" content="2018-12-01T00:00:00&#43;00:00"/>
 <meta property="article:modified_time" content="2018-12-01T00:00:00&#43;00:00"/>
@@ -167,12 +168,12 @@
     </div>
     <div class="article-info profile-block">
       <div class="article-info-block">
-        7
+        8
         <span>Posts</span>
       </div>
       <div class="article-info-block">
         
-          14
+          15
         
         <span>
             Tags
@@ -362,8 +363,7 @@ Figure 4.1: When I plotted the education index vs. R downloads per 1,000 capita
 <p>That will take the form:</p>
 <p><span class="math display">\[ln(downloads\space per \space 1,000 \space capita)=\beta_0+\beta_1*Education\space index + \varepsilon\]</span></p>
 <p>The F-statistic will be testing:</p>
-<p><span class="math display">\[ H_0: \beta_1=0\]</span>
-<span class="math display">\[ H_A: \beta_1\neq 0\]</span></p>
+<p><span class="math display">\[ H_0: \beta_1=0\]</span> <span class="math display">\[ H_A: \beta_1\neq 0\]</span></p>
 <table>
 <thead>
 <tr class="header">
@@ -405,16 +405,10 @@ Figure 4.1: When I plotted the education index vs. R downloads per 1,000 capita
 </ul>
 <p><span class="math display">\[log(Education\space index\space +1) - log(Education\space index)=0.1034\]</span></p>
 <p><span class="math display">\[log({\frac{Education\space index\space +1}{Education\space index}})=0.1034\]</span></p>
-<p><span class="math display">\[e^{log({\frac{Education\space index\space +1}{Education\space index}})}=e^{0.1034}\]</span>
-<span class="math display">\[\frac{Education\space index\space +1}{Education\space index}=1.109\]</span></p>
+<p><span class="math display">\[e^{log({\frac{Education\space index\space +1}{Education\space index}})}=e^{0.1034}\]</span> <span class="math display">\[\frac{Education\space index\space +1}{Education\space index}=1.109\]</span></p>
 <p>The corresponding confidence interval is:</p>
-<p><span class="math display">\[\mathbb{P} (e^{lower\space bound}&lt;\frac{Education\space index\space +1}{Education\space index}&lt;e^{upper\space bound})=0.95\]</span>
-The lower bound is <span class="math display">\[point\space estimate-2*SE=0.1034-2*0.0059=0.0916\]</span>
-and the upper bound is
-<span class="math display">\[point\space estimate+2*SE=0.1034+2*0.0059=0.1152\]</span></p>
-<p><span class="math display">\[\mathbb{P} (e^{0.0916}&lt;\frac{Education\space index\space +1}{Education\space index}&lt;e^{0.1152})=0.95\]</span>
-so the final confidence interval is:
-<span class="math display">\[\mathbb{P}(1.096&lt;\frac{Education\space index\space +1}{Education\space index}&lt;1.122)=0.95\]</span></p>
+<p><span class="math display">\[\mathbb{P} (e^{lower\space bound}&lt;\frac{Education\space index\space +1}{Education\space index}&lt;e^{upper\space bound})=0.95\]</span> The lower bound is <span class="math display">\[point\space estimate-2*SE=0.1034-2*0.0059=0.0916\]</span> and the upper bound is <span class="math display">\[point\space estimate+2*SE=0.1034+2*0.0059=0.1152\]</span></p>
+<p><span class="math display">\[\mathbb{P} (e^{0.0916}&lt;\frac{Education\space index\space +1}{Education\space index}&lt;e^{0.1152})=0.95\]</span> so the final confidence interval is: <span class="math display">\[\mathbb{P}(1.096&lt;\frac{Education\space index\space +1}{Education\space index}&lt;1.122)=0.95\]</span></p>
 <p>We can see this increase by plotting the fitted values:</p>
 <p><img src="../../../post/2018-12-01-linear-regression-r-downloads_files/figure-html/plot-fitted-values-1.png" width="672" /></p>
 </div>
