@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Ángela Castillo-Gill</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 31 Mar 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>TBA</title>
+      <link>/2019/03/data-science-career/</link>
+      <pubDate>Sun, 31 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/03/data-science-career/</guid>
+      <description>1 Summary1 SummaryIn this post I share how I spent my time during my data scientist job search. I then use this information to point out things I would have done differently and things I’m glad I did. The content of this blogpost was first presented at R-Ladies London on 2019-02-21 with these slides:
+</description>
+    </item>
     
     <item>
       <title>Data science interviews: lessons learned</title>
@@ -17,7 +27,7 @@
       <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>/2019/02/data-science-interviews/</guid>
-      <description>1 Summary 2 Why? 3 Here’s how I spent my time 3.1 Adapting CVs 3.2 Face-to-face interviews 3.3 Filling out forms 3.4 Interview prep 3.5 Job admin 3.6 Phone calls 3.7 Writing cover letters  4 What would I have done differently? 4.1 Establish healthy boundaries with recruiters 4.2 Focus on the basics for technical test prep 4.3 Schedule interviews at favourable times 4.4 Rehearse not knowing, or being wrong, and feeling embarrassed/nervous/uncomfortable and STILL speaking with confidence  5 What would I do again?</description>
+      <description>1 Summary2 Why?3 Here’s how I spent my time3.1 Adapting CVs3.2 Face-to-face interviews3.3 Filling out forms3.4 Interview prep3.5 Job admin3.6 Phone calls3.7 Writing cover letters4 What would I have done differently?4.1 Establish healthy boundaries with recruiters4.2 Focus on the basics for technical test prep4.3 Schedule interviews at favourable times4.4 Rehearse not knowing, or being wrong, and feeling embarrassed/nervous/uncomfortable and STILL speaking with confidence5 What would I do again?</description>
     </item>
     
     <item>
@@ -26,7 +36,7 @@
       <pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/2019/01/nba-stats/</guid>
-      <description>1 Summary 2 Question 3 Dataset description 3.1 Who made the most shots between 2006 and 2016? 3.2 Who had the highest shots per free throw attempt between 2006 and 2016? 3.3 Who made the most shots each season? 3.4 What was the free throw attempt between 2006 and 2016 for the player that scored the most each season?  4 Results 5 Conclusion   1 Summary To see the the code used in this post, visit my GitHub repository for this site</description>
+      <description>1 Summary2 Question3 Dataset description3.1 Who made the most shots between 2006 and 2016?3.2 Who had the highest shots per free throw attempt between 2006 and 2016?3.3 Who made the most shots each season?3.4 What was the free throw attempt between 2006 and 2016 for the player that scored the most each season?4 Results5 Conclusion1 SummaryTo see the the code used in this post, visit my GitHub repository for this site</description>
     </item>
     
     <item>
@@ -35,8 +45,8 @@
       <pubDate>Sat, 01 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/2018/12/log-linear-regression-r-downloads/</guid>
-      <description>1 Summary 2 Question 3 Dataset description 4 The relationship between the education index and R downloads 5 Results 6 Conclusion   1 Summary To see the the code used in this post, visit my GitHub repository for this site
- Objectives: To understand what factors contribute to R downloads per 1,000 capita. Challenge: Interpretation of log-linear coefficients. Data points: 11,806,912 Language: R   2 Question In a previous post I had looked at which countries downloaded R the most.</description>
+      <description>1 Summary2 Question3 Dataset description4 The relationship between the education index and R downloads5 Results6 Conclusion1 SummaryTo see the the code used in this post, visit my GitHub repository for this site
+Objectives: To understand what factors contribute to R downloads per 1,000 capita.Challenge: Interpretation of log-linear coefficients.Data points: 11,806,912Language: R2 QuestionIn a previous post I had looked at which countries downloaded R the most.</description>
     </item>
     
     <item>
@@ -45,8 +55,8 @@
       <pubDate>Thu, 01 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/2018/11/r-downloads-around-the-world/</guid>
-      <description>1 Summary 2 Question 3 Dataset description 3.1 Total R Downloads 3.2 Total R Downloads per 1,000 capita 3.3 Times of the year with most downloads  4 Conclusion   1 Summary To see the code used in this post, visit my kernel on kaggle in R Markdown format.
- Objectives: To spatially visualise a dataset to understand global trends. Challenge: Using the tmap package. Data points: 7,282,808 Language: R   2 Question What countries download R the most?</description>
+      <description>1 Summary2 Question3 Dataset description3.1 Total R Downloads3.2 Total R Downloads per 1,000 capita3.3 Times of the year with most downloads4 Conclusion1 SummaryTo see the code used in this post, visit my kernel on kaggle in R Markdown format.
+Objectives: To spatially visualise a dataset to understand global trends.Challenge: Using the tmap package.Data points: 7,282,808Language: R2 QuestionWhat countries download R the most?</description>
     </item>
     
     <item>
@@ -55,8 +65,8 @@
       <pubDate>Wed, 17 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>/2018/10/cluster-analysis-cereals/</guid>
-      <description>1 Summary 2 Question 3 Dataset description 4 Hierarchical clustering 5 Results 5.1 What are the difference between cereals in cluster? 5.2 Can we classify cereals into either cluster based on their names? 5.3 Which shelves have the most unhealthy cereals?  6 Conclusion   1 Summary To see the the code used in this post, visit my GitHub repository for this site
- Objectives: To find what what kind of clusters are there in the cereals dataset available on Kaggle.</description>
+      <description>1 Summary2 Question3 Dataset description4 Hierarchical clustering5 Results5.1 What are the differences between clusters?5.2 Can we classify cereals into either cluster based on their names?5.3 Which shelves have the most unhealthy cereals?6 Conclusion1 SummaryTo see the the code used in this post, visit my GitHub repository for this site
+Objectives: To find what what kind of clusters are there in the cereals dataset available on Kaggle.</description>
     </item>
     
     <item>
@@ -65,8 +75,8 @@
       <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>/2018/08/regression-trees-predicting-property-prices/</guid>
-      <description>1 Summary 2 Question 3 Dataset description 3.1 Missing values 3.2 Correlation  4 Regression trees - why use them? 4.1 Variable importance  5 Results 6 Conclusion   1 Summary To see the all the code used in this post, visit my GitHub repository for this site
- Objectives: To predict property prices using decision trees, specifically, the classification and regression algorithm. Challenge: First time applying decision trees.</description>
+      <description>1 Summary2 Question3 Dataset description3.1 Missing values3.2 Correlation4 Regression trees - why use them?4.1 Variable importance5 Results6 Conclusion1 SummaryTo see the all the code used in this post, visit my GitHub repository for this site
+Objectives: To predict property prices using decision trees, specifically, the classification and regression algorithm.Challenge: First time applying decision trees.</description>
     </item>
     
     <item>
@@ -75,7 +85,7 @@
       <pubDate>Tue, 07 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>/2018/08/exploring-kiva-loans/</guid>
-      <description>1 Summary 2 Purpose of this post 3 The data 4 Data cleaning 4.1 Borrower gender 4.2 Loan amounts 4.3 Country codes 4.4 Dates  5 Exploratory data analysis 5.1 Which gender borrows the most by region? 5.2 What type of repayment interval is used in each region? 5.3 What are Kiva loans used across regions? 5.4 Which are the top ten countries for Kiva loans? 5.5 How many lenders fund a single Kiva microloan per country?</description>
+      <description>1 Summary2 Purpose of this post3 The data4 Data cleaning4.1 Borrower gender4.2 Loan amounts4.3 Country codes4.4 Dates5 Exploratory data analysis5.1 Which gender borrows the most by region?5.2 What type of repayment interval is used in each region?5.3 What are Kiva loans used across regions?5.4 Which are the top ten countries for Kiva loans?5.5 How many lenders fund a single Kiva microloan per country?</description>
     </item>
     
   </channel>

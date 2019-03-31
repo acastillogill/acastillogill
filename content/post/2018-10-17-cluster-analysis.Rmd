@@ -40,11 +40,6 @@ x <-
     "Metrics",
     "rsample",
     "broom",
-    "sf",
-    "rgdal",
-    "summarytools",
-    "tmap",
-    "tmaptools",
     "lubridate",
     "RColorBrewer",
     "hrbrthemes",
@@ -83,7 +78,7 @@ options(
 
 
 
-cereals <- read_csv(here::here("static","data","cereals.csv"))
+cereals <- readr::read_csv(here::here("static","data","cereals.csv"))
 ```
 
 # Summary
@@ -196,7 +191,7 @@ I wanted balanced clusters so I chose the complete linkage method, which classif
 
 # Results
 
-## What are the difference between cereals in cluster?
+## What are the differences between clusters?
 
 ```{r table-mean-for-each-cluster, include=TRUE}
 two_clusters <- cereals_k2_complete %>% 
@@ -211,9 +206,8 @@ regulartable(two_clusters)%>%
   theme_vanilla()
 ```
 
-Cluster two (47 cereals), has on average, 19% more calories, 30% less protein, 99% more sodium, 62% less fiber, twice as much sugar, 41% less potasium, 89% more vitamins, and 36% lower ratings. Since one of the aims of clustering is to label unlabelled data, based on the differences between the two clusters, I will label cluster one as `healthy` and cluster two as `unhealthy`. It's interesting to see that `unhealthy` cereals have a worse nutritional profile than `healthy` cereals but are very enriched with 90% more vitamins[^1]. 
+Cluster two (47 cereals), has on average, 19% more calories, 30% less protein, 99% more sodium, 62% less fiber, twice as much sugar, 41% less potasium, 89% more vitamins, and 36% lower ratings. Since one of the aims of clustering is to label unlabelled data, based on the differences between the two clusters, I will label cluster one as `healthy` and cluster two as `unhealthy`. It's interesting to see that `unhealthy` cereals have a worse nutritional profile than `healthy` cereals but are very enriched with 90% more vitamins. 
 
-[^1]: Skip the unhealthy cereal and just take a multivitamin perhaps?
 
 ```{r renaming-clusters}
 cereals_k2_complete$cluster <- as.factor(cereals_k2_complete$cluster)
