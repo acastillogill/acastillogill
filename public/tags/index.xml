@@ -39,6 +39,15 @@
     </item>
     
     <item>
+      <title>Event Summary</title>
+      <link>/tags/event-summary/</link>
+      <pubDate>Tue, 09 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/event-summary/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Exploratory Data Analysis</title>
       <link>/tags/exploratory-data-analysis/</link>
       <pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate>
@@ -104,7 +113,7 @@
     <item>
       <title>Reflection</title>
       <link>/tags/reflection/</link>
-      <pubDate>Sun, 31 Mar 2019 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 09 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/reflection/</guid>
       <description></description>

@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Ángela Castillo-Gill</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 31 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 09 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Making learnings stick: April 2019 learnings</title>
+      <link>/2019/04/making-learnings-stick-april-2019-learnings/</link>
+      <pubDate>Tue, 09 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/04/making-learnings-stick-april-2019-learnings/</guid>
+      <description>Spring is my favourite season. I wish blooms were a year-round thing. There’s a gorgeous cherry blossom in my garden that has greeted me with so much beauty over that past two weeks. When its petals started falling off I felt like grabbing some glue and sticking them back on. Alas! I can’t stick petals back onto trees, but I can make this month’s learnings stick by summarising them here:</description>
+    </item>
     
     <item>
       <title>TBA</title>
@@ -18,7 +27,7 @@
       
       <guid>/2019/03/data-science-career/</guid>
       <description>1 Summary1 SummaryIn this post I share how I spent my time during my data scientist job search. I then use this information to point out things I would have done differently and things I’m glad I did. The content of this blogpost was first presented at R-Ladies London on 2019-02-21 with these slides:
-</description>
+</description>
     </item>
     
     <item>

@@ -1,0 +1,15 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+## Data Engineering 
+
+The students would get anxious and flag and raise issues. It was just a comma or an unloaded library most of the time.
+
+The important thing was to keep calm, stop, and go through a checklist of logical steps for troubleshooting.
+
+Then I realised that I am there too. I am at a different stage but sometimes when I'm anxious or not knowing what to do or if I will cope with a certain responsibility. All I have to do is to stop, and think. Go through the steps logically and I will be able to navigate the situation whatever it might be.
+
+
+## How if there are issues in the any step of the data retrieval process, it can affect the pipeline later.
