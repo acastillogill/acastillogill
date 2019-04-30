@@ -8,6 +8,11 @@
   </url>
   
   <url>
+    <loc>/2019/03/everyday-data-analysis-tidytext/</loc>
+    <lastmod>2019-03-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/2019/03/data-science-career/</loc>
     <lastmod>2019-03-31T00:00:00+00:00</lastmod>
   </url>
@@ -164,6 +169,12 @@
   <url>
     <loc>/tags/tidy-tuesday/</loc>
     <lastmod>2018-12-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/tidytext/</loc>
+    <lastmod>2019-03-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

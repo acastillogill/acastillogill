@@ -1,0 +1,79 @@
+---
+title: "Every day data analysis: my mood during the first month as a data scientist consultant"
+author: Angela Castillo-Gill
+date: '2019-03-31'
+slug: everyday-data-analysis-tidytext
+categories: []
+tags: 
+  - Reflection
+  - tidytext
+description: "In this post I analyse my moods during my first month as a data scientist."
+banner: "banners/daily-moods.png"
+images: ["banners/daily-moods.png"]
+draft: FALSE
+header: 
+  image: "banners/daily-moods.png"
+  caption: ""
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+    toc_depth: 2
+  fig_caption: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#what-was-my-daily-mood"><span class="toc-section-number">1</span> What was my daily mood?</a></li>
+<li><a href="#how-does-my-mood-vary-depending-on-the-day-of-the-week"><span class="toc-section-number">2</span> How does my mood vary depending on the day of the week?</a></li>
+<li><a href="#did-i-fall-into-any-thinking-traps"><span class="toc-section-number">3</span> Did I fall into any thinking traps?</a></li>
+<li><a href="#positive-and-negative-feelings"><span class="toc-section-number">4</span> Positive and negative feelings</a></li>
+</ul>
+</div>
+
+<p>So how did my first month as a data scientist go, I hear you ask? Well what better way to answer than by opening a bit of data.</p>
+<p><em>To see the all the code used in this post, visit my <a href="https://github.com/acastillogill/acastillogill">GitHub repository for this site</a></em></p>
+<p>Many moons ago I came across an app called <a href="https://moodnotes.thriveport.com/">Moodnotes</a>. The app intends to help the user understand their moods based on <a href="https://en.wikipedia.org/wiki/Cognitive_behavioral_therapy">cognitive behavioual therapy (CBT)</a>. When I first find out about the app in 2015, I didn’t know how to code so I didn’t care about the app’s data export feature. I kept using it throughout the years and when I learned about the <a href="https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html">tidytext package</a>, I immediately knew I wanted use my Moodnotes data and tidytext it as much as I could.</p>
+<p>In this post I tidytext my March 2019 data. I picked this month because it shows how I felt during my first month as a data scientist/consultant in London.</p>
+<p>After importing the data, we have the columns <code>Date</code>, <code>How are you feeling?</code>, <code>What happened?</code>, <code>Positive feelings?</code>, <code>Negative feelings</code>, <code>What thought went through your mind that contributed most to your negative feeling?</code>, <code>What have you learned today/What are you grateful for?</code>, <code>Did you fall into any traps?</code>, <code>What's another way of thinking about the situation without traps?</code>.</p>
+<p>First I chose to plot my daily reported mood. So at the end of everyday I fill out a moodnotes exercise to reflect on my day. It all starts with a measurement from <strong>1</strong> to <strong>5</strong>, where <strong>5</strong> is feeling <em>Over the moon 🌔</em> and <strong>1</strong> is <em>Dismal 😭</em>.</p>
+<div id="what-was-my-daily-mood" class="section level1">
+<h1><span class="header-section-number">1</span> What was my daily mood?</h1>
+<div class="figure"><span id="fig:plot-mood"></span>
+<img src="/post/2019-03-31-Every-Day-Data-Analysis_files/figure-html/plot-mood-1.png" alt="Interesting to note how my reported daily mood had a lot of extremes. Bit of an all our nothing. There were four days where I felt dismal, one day where I felt over the moon, and the rest were between 4 and 2. I felt average on seven days which is only one week of the month." width="672" />
+<p class="caption">
+Figure 1.1: Interesting to note how my reported daily mood had a lot of extremes. Bit of an all our nothing. There were four days where I felt dismal, one day where I felt over the moon, and the rest were between 4 and 2. I felt average on seven days which is only one week of the month.
+</p>
+</div>
+</div>
+<div id="how-does-my-mood-vary-depending-on-the-day-of-the-week" class="section level1">
+<h1><span class="header-section-number">2</span> How does my mood vary depending on the day of the week?</h1>
+<p>I’m interested in seeing how my daily reported mood varied according to the day of the week.</p>
+<div class="figure"><span id="fig:plot-mood-day-of-week"></span>
+<img src="/post/2019-03-31-Every-Day-Data-Analysis_files/figure-html/plot-mood-day-of-week-1.png" alt="Well, well, well, like most people, it seems I'm usually pretty pumped on Friday based on my median Friday mood. Tuesdays and Sundays are not my best. At the end of Monday I'm doing ok and on Wednesdays I'm like, happy hump day!" width="672" />
+<p class="caption">
+Figure 2.1: Well, well, well, like most people, it seems I’m usually pretty pumped on Friday based on my median Friday mood. Tuesdays and Sundays are not my best. At the end of Monday I’m doing ok and on Wednesdays I’m like, happy hump day!
+</p>
+</div>
+</div>
+<div id="did-i-fall-into-any-thinking-traps" class="section level1">
+<h1><span class="header-section-number">3</span> Did I fall into any thinking traps?</h1>
+<div class="figure"><span id="fig:plot-thinking-traps"></span>
+<img src="/post/2019-03-31-Every-Day-Data-Analysis_files/figure-html/plot-thinking-traps-1.png" alt="You can find a list of thinking traps online for an explanation of each one. Here I'll explain the most common one, Catastrophising, defined as blowing things out of proportion, telling yourself that you won't be able to handle something, or viewing tough situations as if they will never end. Mmmm given that I was on a new job, on new projects, it makes complete sense for this to be my most frequent thinking trap." width="672" />
+<p class="caption">
+Figure 3.1: You can find a list of thinking traps online for an explanation of each one. Here I’ll explain the most common one, Catastrophising, defined as blowing things out of proportion, telling yourself that you won’t be able to handle something, or viewing tough situations as if they will never end. Mmmm given that I was on a new job, on new projects, it makes complete sense for this to be my most frequent thinking trap.
+</p>
+</div>
+</div>
+<div id="positive-and-negative-feelings" class="section level1">
+<h1><span class="header-section-number">4</span> Positive and negative feelings</h1>
+<div class="figure"><span id="fig:plots-negative-positive"></span>
+<img src="/post/2019-03-31-Every-Day-Data-Analysis_files/figure-html/plots-negative-positive-1.png" alt="Here I don't know what to comment except that it seems I am a human being. As everyone else I'm more propense to negative feelings and experience a healthy broad range of them. For my positives feelings, seems I tend to be quite content and you know what, that's great." width="672" />
+<p class="caption">
+Figure 4.1: Here I don’t know what to comment except that it seems I am a human being. As everyone else I’m more propense to negative feelings and experience a healthy broad range of them. For my positives feelings, seems I tend to be quite content and you know what, that’s great.
+</p>
+</div>
+</div>

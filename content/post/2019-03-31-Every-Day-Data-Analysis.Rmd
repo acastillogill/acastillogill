@@ -1,0 +1,239 @@
+---
+title: "Every day data analysis: my mood during the first month as a data scientist consultant"
+author: Angela Castillo-Gill
+date: '2019-03-31'
+slug: everyday-data-analysis-tidytext
+categories: []
+tags: 
+  - Reflection
+  - tidytext
+description: "In this post I analyse my moods during my first month as a data scientist."
+banner: "banners/daily-moods.png"
+images: ["banners/daily-moods.png"]
+draft: FALSE
+header: 
+  image: "banners/daily-moods.png"
+  caption: ""
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+    toc_depth: 2
+  fig_caption: true
+editor_options: 
+  chunk_output_type: console
+---
+
+So how did my first month as a data scientist go, I hear you ask? Well what better way to answer than by opening a bit of data. 
+
+```{r setup, include = FALSE}
+x <-
+  c(
+    "knitr",
+    "here",
+    "scales",
+    "cowplot",
+    "tidyverse",
+    "Metrics",
+    "rsample",
+    "broom",
+    "summarytools",
+    "lubridate",
+    "RColorBrewer",
+    "hrbrthemes",
+    "safejoin", 
+    "googlesheets",
+    "ggrepel")
+
+
+lapply(x, require, character.only = TRUE)
+
+
+opts_chunk$set(echo = FALSE,
+               warning = FALSE,
+               error = FALSE,
+               message = FALSE,
+               collapse = TRUE,
+               comment = NA,
+               tidy = TRUE,
+               include = FALSE)
+
+theme_set(theme_ipsum_rc())
+```
+
+
+*To see the all the code used in this post, visit my [GitHub repository for this site](https://github.com/acastillogill/acastillogill)* 
+
+Many moons ago I came across an app called [Moodnotes](https://moodnotes.thriveport.com/). The app intends to help the user understand their moods based on [cognitive behavioual therapy (CBT)](https://en.wikipedia.org/wiki/Cognitive_behavioral_therapy). When I first find out about the app in 2015, I didn't know how to code so I didn't care about the app's data export feature. I kept using it throughout the years and when I learned about the [tidytext package](https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html), I immediately knew I wanted use my Moodnotes data and tidytext it as much as I could. 
+
+In this post I tidytext my March 2019 data. I picked this month because it shows how I felt during my first month as a data scientist/consultant in London. 
+
+```{r import-data}
+
+moodnotes_gs <-  googlesheets::gs_title("Moodnotes (Responses)")
+moodnotes <- googlesheets::gs_read(moodnotes_gs)
+
+#Change data type
+
+moodnotes <- moodnotes %>%
+  
+    mutate(Date =  dmy(Date)) %>%
+  
+  filter(Date >= "2019-03-01" & Date <= "2019-03-31") 
+```
+
+
+
+After importing the data, we have the columns `Date`, `How are you feeling?`, `What happened?`, `Positive feelings?`, `Negative feelings`, `What thought went through your mind that contributed most to your negative feeling?`, `What have you learned today/What are you grateful for?`, `Did you fall into any traps?`, `What's another way of thinking about the situation without traps?`.
+
+First I chose to plot my daily reported mood. So at the end of everyday I fill out a moodnotes exercise to reflect on my day. It all starts with a measurement from **1** to **5**, where **5** is feeling *Over the moon `r emo::ji("moon")`* and **1** is *Dismal `r emo::ji("sad")`*.
+
+# What was my daily mood?
+
+```{r plot-mood, include = TRUE, fig.cap =  "Interesting to note how my reported daily mood had a lot of extremes. Bit of an all our nothing. There were four days where I felt dismal, one day where I felt over the moon, and the rest were between 4 and 2. I felt average on seven days which is only one week of the month."}
+
+moodnotes %>%
+  
+    ggplot(aes(x=Date, y=`How are you feeling?`)) +
+  
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  
+  scale_x_date(breaks = "1 day") +
+  
+  labs(title ="What was my daily mood?",
+       
+       subtitle = "Data collected during my first month as a data scientist in London.",
+       
+       x="",
+       
+       y="Mood")+
+  
+  geom_line()+
+  
+  geom_smooth(method = "lm",
+              fill = "purple", 
+              color = "purple")
+
+```
+
+# How does my mood vary depending on the day of the week?
+I'm interested in seeing how my daily reported mood varied according to the day of the week. 
+
+```{r plot-mood-day-of-week, include = TRUE, fig.cap= "Well, well, well, like most people, it seems I'm usually pretty pumped on Friday based on my median Friday mood. Tuesdays and Sundays are not my best. At the end of Monday I'm doing ok and on Wednesdays I'm like, happy hump day!"}
+
+moodnotes %>%
+  
+  mutate(Date = wday(Date, label = TRUE)) %>%
+  
+  group_by(Date) %>%
+  
+  summarise(average_mood_wday = median (`How are you feeling?`)) %>%
+  
+  ggplot(aes(Date, average_mood_wday)) +
+  
+  geom_col(color = "purple",
+           fill = "purple")+
+  
+
+  labs(title ="Daily mood by day of the week",
+       x="Day of the week",
+       y="Mood")
+  
+  
+```
+
+
+# Did I fall into any thinking traps?
+
+```{r plot-thinking-traps, include = TRUE, fig.cap = "You can find a list of thinking traps online for an explanation of each one. Here I'll explain the most common one, Catastrophising, defined as blowing things out of proportion, telling yourself that you won't be able to handle something, or viewing tough situations as if they will never end. Mmmm given that I was on a new job, on new projects, it makes complete sense for this to be my most frequent thinking trap." }
+
+thinking_traps <- c("Catastrophising",
+                    "Fortune Telling",
+                    "Intolerance of Uncertainty",
+                    "Negative Filtering",
+                    "Should and Must Statements",
+                    "Not Accepting",
+                    "Labelling",
+                    "All-or-Nothing Thinking", 
+                    "Blaming"
+                    )
+moodnotes %>%
+  mutate(thinking_trap = str_split (`Did you fall into any traps?`, ","),) %>%
+  unnest(thinking_trap) %>%
+  mutate(thinking_trap = str_split (thinking_trap, ":"),) %>%
+  select(thinking_trap) %>%
+  unnest(thinking_trap) %>%
+  filter (thinking_trap %in% thinking_traps) %>%
+   group_by(thinking_trap)%>%
+  summarise(Cases = n()) %>%
+  ggplot(aes(reorder( thinking_trap, Cases), Cases)) +
+  
+  geom_col(fill = "red")+
+  
+  labs(title ="What thinking traps did I fall into?",
+       x="",
+       y="Cases")+
+  coord_flip() 
+  
+```
+
+#Positive and negative feelings
+
+```{r positive-feelings}
+
+
+positive_feelings <- moodnotes %>%
+  mutate(positive_feelings = str_split(`Positive feelings?`, ","),) %>%
+   
+  unnest(positive_feelings) %>%
+  
+   mutate(positive_feelings = str_trim(positive_feelings, "left")) %>%
+filter(!is.na(positive_feelings))%>%
+   group_by(positive_feelings)%>%
+  summarise(Cases = n()) %>%
+  ggplot(aes(reorder(positive_feelings, Cases), Cases)) +
+  
+  geom_col(fill = "royalblue4")+
+  
+  labs(title ="Positive feelings",
+       x="",
+       y="Cases")+
+  coord_flip() 
+  
+
+  
+```
+
+
+```{r negative-feelings}
+negative_feelings <- moodnotes %>%
+  mutate(negative_feelings = str_split(`Negative feelings`, ","),) %>%
+  
+  unnest(negative_feelings) %>%
+  
+  mutate(negative_feelings = str_trim(negative_feelings, "left")) %>%
+  filter(!is.na(negative_feelings))%>%
+  group_by(negative_feelings)%>%
+  summarise(Cases = n()) %>%
+  ggplot(aes(reorder(negative_feelings, Cases), Cases)) +
+  
+  geom_col( fill = "olivedrab4")+
+  
+  labs(title ="Negative feelings",
+       x="",
+       y="Cases")+
+  coord_flip() 
+```
+
+```{r plots-negative-positive, include = TRUE, fig.cap = "Here I don't know what to comment except that it seems I am a human being. As everyone else I'm more propense to negative feelings and experience a healthy broad range of them. For my positives feelings, seems I tend to be quite content and you know what, that's great."}
+
+
+cowplot::plot_grid(positive_feelings,
+                   negative_feelings,
+                   nrow = 1)
+
+```
+
+
+
+
