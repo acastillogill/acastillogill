@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="author" content="Ángela Castillo-Gill">
     
-      <meta name="description" content="In this post I analyse my moods during my first month as a data scientist.">
+      <meta name="description" content="In this post I analyse my moods during my first month as a data scientist consulting in London.">
     
     
     <link rel="canonical" href="../../../2019/03/everyday-data-analysis-moodnotes/"/>
@@ -24,7 +24,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:regular,medium,bold' rel='stylesheet' type='text/css'>
     <meta property="og:title" content="Every day data analysis: moods during the first month as a data scientist consultant" />
-<meta property="og:description" content="In this post I analyse my moods during my first month as a data scientist." />
+<meta property="og:description" content="In this post I analyse my moods during my first month as a data scientist consulting in London." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/2019/03/everyday-data-analysis-moodnotes/" />
 
@@ -35,7 +35,7 @@
     
     
 <meta itemprop="name" content="Every day data analysis: moods during the first month as a data scientist consultant">
-<meta itemprop="description" content="In this post I analyse my moods during my first month as a data scientist.">
+<meta itemprop="description" content="In this post I analyse my moods during my first month as a data scientist consulting in London.">
 
 
 <meta itemprop="datePublished" content="2019-03-31T00:00:00&#43;00:00" />
@@ -46,13 +46,13 @@
 
 
 
-<meta itemprop="keywords" content="Reflection,tidytext," />
+<meta itemprop="keywords" content="Reflection,Moodnotes," />
 
     <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="/banners/daily-moods.png"/>
 
 <meta name="twitter:title" content="Every day data analysis: moods during the first month as a data scientist consultant"/>
-<meta name="twitter:description" content="In this post I analyse my moods during my first month as a data scientist."/>
+<meta name="twitter:description" content="In this post I analyse my moods during my first month as a data scientist consulting in London."/>
 <meta name="twitter:site" content="@acastillogill"/>
 
     
@@ -297,7 +297,7 @@
                 &middot;
                 
                 
-                <a class="article-category-link" href="../../../tags/tidytext">tidytext</a>
+                <a class="article-category-link" href="../../../tags/moodnotes">Moodnotes</a>
                 
                 
             </div>
@@ -323,7 +323,7 @@
 <p>Many moons ago I came across an app called <a href="https://moodnotes.thriveport.com/">Moodnotes</a>. The app intends to help the user understand their moods based on <a href="https://en.wikipedia.org/wiki/Cognitive_behavioral_therapy">cognitive behavioual therapy (CBT)</a>. When I first find out about the app in 2015, I didn’t know how to code so I didn’t care about the app’s data export feature. I kept using it throughout the years and when I learned about the <a href="https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html">tidytext package</a>, I immediately knew I wanted use my Moodnotes data and tidytext it as much as I could.</p>
 <p>In this post I tidytext my March 2019 data. I picked this month because it shows how I felt during my first month as a data scientist/consultant in London.</p>
 <p>After importing the data, we have the columns <code>Date</code>, <code>How are you feeling?</code>, <code>What happened?</code>, <code>Positive feelings?</code>, <code>Negative feelings</code>, <code>What thought went through your mind that contributed most to your negative feeling?</code>, <code>What have you learned today/What are you grateful for?</code>, <code>Did you fall into any traps?</code>, <code>What's another way of thinking about the situation without traps?</code>.</p>
-<p>First I chose to plot my daily reported mood. So at the end of everyday I fill out a moodnotes exercise to reflect on my day. It all starts with a measurement from <strong>1</strong> to <strong>5</strong>, where <strong>5</strong> is feeling <em>Over the moon 🌔</em> and <strong>1</strong> is <em>Dismal 😢</em>.</p>
+<p>First I chose to plot my daily reported mood. So at the end of everyday I fill out a moodnotes exercise to reflect on my day. It all starts with a measurement from <strong>1</strong> to <strong>5</strong>, where <strong>5</strong> is feeling <em>Over the moon 🌔</em> and <strong>1</strong> is <em>Dismal 😿</em>.</p>
 <div id="what-was-my-daily-mood" class="section level1">
 <h1><span class="header-section-number">1</span> What was my daily mood?</h1>
 <div class="figure"><span id="fig:plot-mood"></span>
