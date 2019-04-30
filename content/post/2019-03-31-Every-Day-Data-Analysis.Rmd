@@ -6,8 +6,8 @@ slug: everyday-data-analysis-moodnotes
 categories: []
 tags: 
   - Reflection
-  - tidytext
-description: "In this post I analyse my moods during my first month as a data scientist."
+  - Moodnotes
+description: "In this post I analyse my moods during my first month as a data scientist consulting in London."
 banner: "banners/daily-moods.png"
 images: ["banners/daily-moods.png"]
 draft: FALSE
