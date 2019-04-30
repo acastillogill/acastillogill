@@ -12,11 +12,11 @@
     
     
     <item>
-      <title>Every day data analysis: my mood during the first month as a data scientist consultant</title>
-      <link>/2019/03/everyday-data-analysis-tidytext/</link>
+      <title>Every day data analysis: moods during the first month as a data scientist consultant</title>
+      <link>/2019/03/everyday-data-analysis-moodnotes/</link>
       <pubDate>Sun, 31 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/03/everyday-data-analysis-tidytext/</guid>
+      <guid>/2019/03/everyday-data-analysis-moodnotes/</guid>
       <description>1 What was my daily mood?2 How does my mood vary depending on the day of the week?3 Did I fall into any thinking traps?4 Positive and negative feelingsSo how did my first month as a data scientist go, I hear you ask? Well what better way to answer than by opening a bit of data.
 To see the all the code used in this post, visit my GitHub repository for this site</description>
     </item>

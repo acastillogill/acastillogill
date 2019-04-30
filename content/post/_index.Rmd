@@ -11,6 +11,10 @@ output:
 # 2019
 
 
+## March
+
+[Every day data analysis: moods during the first month as a data scientist consultant](https://acastillogill.com/2019/03/everyday-data-analysis-moodnotes/)
+
 ## February
 
 [Data science interviews: lessons learned](https://acastillogill.com/2019/02/data-science-interviews/)

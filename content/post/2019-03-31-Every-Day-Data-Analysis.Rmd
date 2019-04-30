@@ -1,8 +1,8 @@
 ---
-title: "Every day data analysis: my mood during the first month as a data scientist consultant"
+title: "Every day data analysis: moods during the first month as a data scientist consultant"
 author: Angela Castillo-Gill
 date: '2019-03-31'
-slug: everyday-data-analysis-tidytext
+slug: everyday-data-analysis-moodnotes
 categories: []
 tags: 
   - Reflection
