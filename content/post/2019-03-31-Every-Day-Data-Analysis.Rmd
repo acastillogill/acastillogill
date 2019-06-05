@@ -10,7 +10,7 @@ tags:
 description: "In this post I analyse my moods during my first month as a data scientist consulting in London."
 banner: "banners/daily-moods.png"
 images: ["banners/daily-moods.png"]
-draft: FALSE
+draft: TRUE
 header: 
   image: "banners/daily-moods.png"
   caption: ""
